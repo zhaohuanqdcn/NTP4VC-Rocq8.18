@@ -1,4 +1,8 @@
 # Neural Theorem Proving for Verification Conditions
+[![paper](https://img.shields.io/badge/paper-pdf-yellow.svg)](paper.pdf)
+[![license](https://img.shields.io/badge/license-hibrid_open_source-blue.svg)](LICENSE)
+[![iclr](https://img.shields.io/badge/accepted_in-ICLR26-orange)](https://openreview.net/forum?id=MfDyickxQA)
+
 A benhamrk based on real-world industrial pipelines and projects, across the theorem provers Isabelle, Rocq, and Lean.
 
 ## The Benchmark

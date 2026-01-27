@@ -2,8 +2,11 @@
 [![paper](https://img.shields.io/badge/paper-pdf-yellow.svg)](paper.pdf)
 [![license](https://img.shields.io/badge/license-hibrid_open_source-blue.svg)](LICENSE)
 [![iclr](https://img.shields.io/badge/accepted_in-ICLR26-orange)](https://openreview.net/forum?id=MfDyickxQA)
+[![bib](https://img.shields.io/badge/cite_by-bibtex-brown)](bib.bib)
 
 A benhamrk based on real-world industrial pipelines and projects, across the theorem provers Isabelle, Rocq, and Lean.
+
+![iamges](./statistics/image.png)
 
 ## The Benchmark
 

@@ -6,7 +6,7 @@
 
 A benhamrk based on real-world industrial pipelines and projects, across the theorem provers Isabelle, Rocq, and Lean.
 
-![iamges](./statistics/image.png)
+<img src="./statistics/image.png" width="600">
 
 ## The Benchmark
 

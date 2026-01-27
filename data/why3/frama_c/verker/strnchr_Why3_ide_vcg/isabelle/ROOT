@@ -1,0 +1,16 @@
+session strnchr_Why3_ide = NTP4Verif +
+theories
+  "strnchr_Why3_ide_VCstrnchr_loop_inv_6_preserved_goal7"
+  "strnchr_Why3_ide_VCstrnchr_loop_inv_established_goal1"
+  "strnchr_Why3_ide_VCstrnchr_loop_inv_preserved_goal0"
+  "strnchr_Why3_ide_VCstrnchr_exists_post_goal10"
+  "strnchr_Why3_ide_VCstrnchr_loop_inv_4_preserved_goal5"
+  "strnchr_Why3_ide_VCstrnchr_loop_inv_5_preserved_goal6"
+  "strnchr_Why3_ide_VCstrnchr_exists_post_3_goal12"
+  "strnchr_Why3_ide_VCstrnchr_not_exists_post_goal13"
+  "strnchr_Why3_ide_VCstrnchr_loop_inv_6_established_goal8"
+  "strnchr_Why3_ide_VCstrnchr_loop_inv_3_preserved_goal4"
+  "strnchr_Why3_ide_VCstrnchr_exists_post_2_goal11"
+  "strnchr_Why3_ide_VCstrnchr_loop_inv_2_preserved_goal2"
+  "strnchr_Why3_ide_VCstrnchr_loop_term_decrease_goal9"
+  "strnchr_Why3_ide_VCstrnchr_loop_inv_2_established_goal3"

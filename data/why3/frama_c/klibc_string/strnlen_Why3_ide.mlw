@@ -1,0 +1,444 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strnlen.c, line 32) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_loop_inv_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file strnlen.c, line 32) (1/2)":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a (i_1 - i)) in
+  let x = t_1[a_1] in
+  (x <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_1 ((shift_sint8 a i_1)))) ->
+  ((is_sint8 x)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i) < i_1) ->
+   (t_1[(shift_sint8 a i_2)] <> 0)) ->
+  (((to_uint32 (i - 1))) <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strnlen.c, line 33) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file strnlen.c, line 33)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a (i_1 - i)) in
+  let x = t_1[a_1] in
+  (x <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  ((i_2 + ((to_uint32 (i - 1)))) < i_1) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_1 ((shift_sint8 a i_1)))) ->
+  ((is_sint8 x)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + i) < i_1) ->
+   (t_1[(shift_sint8 a i_3)] <> 0)) ->
+  (t_1[(shift_sint8 a i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strnlen.c, line 34) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file strnlen.c, line 34)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a (i_1 - i)) in
+  let x = t_1[a_1] in
+  (x <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_1 ((shift_sint8 a i_1)))) ->
+  ((is_sint8 x)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i) < i_1) ->
+   (t_1[(shift_sint8 a i_2)] <> 0)) ->
+  ((1 + ((to_uint32 (i - 1)))) = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strnlen.c, line 35) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_loop_inv_4_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file strnlen.c, line 35) (1/2)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = - i in
+  let a_1 = (shift_sint8 a (i_1 - i)) in
+  let x_1 = t_1[a_1] in
+  (x_1 <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_1 ((shift_sint8 a i_1)))) ->
+  ((is_sint8 x_1)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i) < i_1) ->
+   (t_1[(shift_sint8 a i_2)] <> 0)) ->
+  ((addr_le a ((shift_sint8 a (1 + i_1 - i)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strnlen.c, line 35) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_loop_inv_4_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file strnlen.c, line 35) (2/2)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = - i in
+  let a_1 = (shift_sint8 a (i_1 - i)) in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint8 a i_1) in
+  (x_1 <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x_1)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i) < i_1) ->
+   (t_1[(shift_sint8 a i_2)] <> 0)) ->
+  ((addr_le ((shift_sint8 a (1 + i_1 - i))) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strnlen.c, line 35) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_loop_inv_4_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file strnlen.c, line 35) (1/2)":
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((addr_le a a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strnlen.c, line 35) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_loop_inv_4_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file strnlen.c, line 35) (2/2)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((addr_le a ((shift_sint8 a i))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file strnlen.c, line 39) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file strnlen.c, line 39)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a (i_1 - i)) in
+  let x = t_1[a_1] in
+  (x <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_1 ((shift_sint8 a i_1)))) ->
+  ((is_sint8 x)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i) < i_1) ->
+   (t_1[(shift_sint8 a i_2)] <> 0)) ->
+  (((to_uint32 (i - 1))) < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'bigger' (file strnlen.c, line 14) in 'strnlen' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_bigger_post_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'bigger' (file strnlen.c, line 14) in 'strnlen' (1/2)":
+*)
+goal goal8:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = i - i_1 in
+  let a_1 = (shift_sint8 a x) in
+  (t_1[a_1] = 0) ->
+  (0 < i_1) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_1 ((shift_sint8 a i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i) ->
+   (t_1[(shift_sint8 a i_2)] <> 0)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (t_1[(shift_sint8 a i_2)] <> 0)) ->
+  (((to_uint32 x)) = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'smaller' (file strnlen.c, line 18) in 'strnlen' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrnlen_smaller_post_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'smaller' (file strnlen.c, line 18) in 'strnlen' (1/2)":
+*)
+goal goal9:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = i - i_1 in
+  let a_1 = (shift_sint8 a x) in
+  (t_1[(shift_sint8 a i_2)] = 0) ->
+  (t_1[a_1] = 0) ->
+  (0 < i_1) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_1 ((shift_sint8 a i)))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + i_1) < i) ->
+   (t_1[(shift_sint8 a i_3)] <> 0)) ->
+  (((to_uint32 x)) <= i)
+
+end
+

@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name airborne.float_quat_of_orientation_vect.float_quat_of_orientation_vect_Why3_ide_vcg)
+(theories Why3.Cfloat Why3 Why3.Memory float_quat_of_orientation_vect.Axiomatic15 Why3.Qed Why3.Cmath float_quat_of_orientation_vect.Compound))

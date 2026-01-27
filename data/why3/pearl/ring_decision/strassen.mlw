@@ -1,0 +1,681 @@
+theory InfMatrixGen
+
+use int.Int
+
+type mat 'a
+
+clone algebra.UnitaryCommutativeRing as F with axiom .
+
+function get (mat F.t) int int : F.t
+function set (mat F.t) int int F.t : mat F.t
+
+function row_zeros (mat F.t) int : int
+function col_zeros (mat F.t) int : int
+
+axiom row_zeros_def:
+  forall m: mat F.t, i j: int. 0 <= i -> j >= row_zeros m i -> get m i j = F.zero
+
+axiom col_zeros_def:
+  forall m: mat F.t, i j: int. 0 <= j -> i >= col_zeros m j -> get m i j = F.zero
+
+axiom row_zeros_nonneg:
+  forall m: mat F.t, i: int. 0 <= i -> 0 <= row_zeros m i
+
+axiom col_zeros_nonneg:
+  forall m: mat F.t, j: int. 0 <= j -> 0 <= col_zeros m j
+(*FIXME should be invariants*)
+
+axiom set_def_changed:
+  forall m: mat F.t, i j: int, v: F.t. 0 <= i -> 0 <= j ->
+  get (set m i j v) i j = v
+
+axiom set_def_unchanged:
+  forall m: mat F.t, i j: int, v: F.t. 0 <= i -> 0 <= j ->
+  forall i' j': int. 0 <= i' -> 0 <= j' -> (i <> i' \/ j <> j') ->
+  get (set m i j v) i' j' = get m i' j'
+
+axiom set_def_rowz_changed:
+  forall m: mat F.t, i j: int, v: F.t. 0 <= i -> 0 <= j ->
+  j >= row_zeros m i -> row_zeros (set m i j v) i = j+1
+
+axiom set_def_colz_changed:
+  forall m: mat F.t, i j: int, v: F.t. 0 <= i -> 0 <= j ->
+  i >= col_zeros m j -> col_zeros (set m i j v) j = i+1
+
+axiom set_def_rowz_unchanged:
+  forall m: mat F.t, i j: int, v: F.t. 0 <= i -> 0 <= j ->
+  j < row_zeros m i -> row_zeros (set m i j v) i = row_zeros m i
+
+axiom set_def_colz_unchanged:
+  forall m: mat F.t, i j: int, v: F.t. 0 <= i -> 0 <= j ->
+  i < col_zeros m j -> col_zeros (set m i j v) j = col_zeros m j
+
+axiom set_def_other_rowz:
+  forall m: mat F.t, i j: int, v: F.t. 0 <= i -> 0 <= j ->
+  forall i': int. 0 <= i' -> i <> i' ->
+  row_zeros (set m i j v) i' = row_zeros m i'
+
+axiom set_def_other_colz:
+  forall m: mat F.t, i j: int, v: F.t. 0 <= i -> 0 <= j ->
+  forall j': int. 0 <= j' -> j <> j' ->
+  col_zeros (set m i j v) j' = col_zeros m j'
+
+predicate (==) (m1 m2: mat F.t) =
+  forall i j: int. 0 <= i -> 0 <= j -> get m1 i j = get m2 i j
+
+axiom extensionality:
+  forall m1 m2: mat F.t. m1 == m2 -> m1 = m2
+
+predicate (===) (m1 m2: mat F.t) =
+  forall i j: int. 0 <= i -> 0 <= j ->
+  row_zeros m1 i = row_zeros m2 i /\ col_zeros m1 j = col_zeros m2 j
+
+predicate in_bounds (m: mat F.t) (i j: int) =
+  0 <= i < col_zeros m j /\ 0 <= j < row_zeros m i
+
+let ghost ext_by_bounds (m1 m2: mat F.t) : unit
+  requires { m1 === m2 }
+  requires { forall i j. in_bounds m1 i j -> get m1 i j = get m2 i j }
+  ensures  { m1 == m2 }
+= ()
+
+let ghost oob_zero (m: mat F.t) (i j: int) : unit
+  requires { 0 <= i }
+  requires { 0 <= j }
+  requires { not in_bounds m i j }
+  ensures  { get m i j = F.zero }
+= ()
+
+predicate size (m: mat F.t) (r c: int) =
+  (forall i: int. 0 <= i -> row_zeros m i = c)
+  /\ (forall j: int. 0 <= j -> col_zeros m j = r)
+
+let ghost size_to_bounds (m: mat F.t) (r c i j: int) : unit
+  requires { size m r c }
+  ensures  { in_bounds m i j <-> (0 <= i < r /\ 0 <= j < c) }
+= ()
+
+let ghost iso_size (a b: mat F.t) (r c: int) : unit
+  requires { a === b }
+  ensures  { size a r c <-> size b r c }
+= ()
+
+let ghost size_rows_ib (a: mat F.t) (r c i: int) : unit
+  requires { size a r c }
+  requires { 0 <= i < r }
+  ensures  { row_zeros a i = c }
+= ()
+
+let ghost size_iso (a b: mat F.t) (r c: int) : unit
+  requires { size a r c }
+  requires { size b r c }
+  ensures  { a === b }
+= ()
+
+end
+
+module InfMatrix
+
+  type t
+  constant tzero: t
+
+  clone export algebra.UnitaryCommutativeRing with
+    type t = t, constant zero = tzero, axiom .
+
+  use int.Int
+  use export int.MinMax
+
+  type mat
+
+  val function get mat int int : t
+
+  val function row_zeros mat int : int
+  val function col_zeros mat int : int
+
+  val function create (rz: int -> int) (cz: int -> int) (f: int -> int -> t)
+             : mat
+
+  axiom create_rowz:
+    forall rz cz: int -> int, f: int -> int -> t, i: int.
+    0 <= i -> 0 <= rz i -> row_zeros (create rz cz f) i = rz i
+
+  axiom create_colz:
+    forall rz cz: int -> int, f: int -> int -> t, j: int.
+    0 <= j -> 0 <= cz j -> col_zeros (create rz cz f) j = cz j
+
+  axiom create_get_ib:
+    forall rz cz: int -> int, f: int -> int -> t, i j: int.
+    0 <= i < cz j -> 0 <= j < rz i -> get (create rz cz f) i j = f i j
+
+  axiom create_get_oob:
+    forall rz cz: int -> int, f: int -> int -> t, i j: int.
+    0 <= i -> 0 <= j -> (i >= cz j \/ j >= rz i) ->
+    get (create rz cz f) i j = tzero
+
+  let ghost function set (m: mat) (i j:int) (v:t) : mat =
+    if 0 <= i && 0 <= j
+    then
+    create
+      (fun i1 -> if i1 = i then max (j+1) (row_zeros m i) else row_zeros m i1)
+      (fun j1 -> if j1 = j then max (i+1) (col_zeros m j) else col_zeros m j1)
+      (fun i1 j1 -> if i1 = i && j1 = j then v else get m i1 j1)
+    else m
+
+  clone export InfMatrixGen with type mat 'a = mat,
+    type F.t = t,
+    function get = get,
+    function set = set,
+    function row_zeros = row_zeros,
+    function col_zeros = col_zeros,
+    lemma set_def_changed,
+    lemma set_def_unchanged,
+    lemma set_def_colz_changed,
+    lemma set_def_colz_unchanged,
+    lemma set_def_rowz_changed,
+    lemma set_def_rowz_unchanged,
+    lemma set_def_other_rowz,
+    lemma set_def_other_colz,
+    axiom . (* FIXME: replace with "goal" and prove *)
+
+  let function fcreate (r c: int) (f: int -> int -> t) : mat =
+    create (fun _ -> max 0 c) (fun _ -> max 0 r) f
+
+  let ghost fcreate_get_ib (r c i j: int) (f: int -> int -> t) : unit
+    requires { 0 <= i < r }
+    requires { 0 <= j < c }
+    ensures  { get (fcreate r c f) i j = f i j }
+  = ()
+
+  let ghost fcreate_get_oob (r c i j: int) (f: int -> int -> t) : unit
+    requires { 0 <= i }
+    requires { 0 <= j }
+    requires { i >= r \/ j >= c }
+    ensures  { get (fcreate r c f) i j = tzero }
+  = ()
+
+  let ghost fcreate_size (r c: int) (f: int -> int -> t) : unit
+    requires { 0 <= r }
+    requires { 0 <= c }
+    ensures  { size (fcreate r c f) r c }
+  = ()
+
+
+end
+
+(* copied over from verifythis_2016_matrix_multiplication *)
+module Sum_extended
+
+  use int.Int
+  use int.Sum
+
+  function addf (f g:int -> int) : int -> int = fun x -> f x + g x
+
+  function smulf (f:int -> int) (l:int) : int -> int = fun x -> l * f x
+
+  let ghost sum_mult (f:int -> int) (a b l:int) : unit
+    ensures { sum (smulf f l) a b = l * sum f a b }
+  = ()
+
+
+  let ghost sum_add (f g:int -> int) (a b:int) : unit
+    ensures { sum (addf f g) a b = sum f a b + sum g a b }
+  = ()
+
+
+  function sumf (f:int -> int -> int) (a b:int) : int -> int = fun x -> sum (f x) a b
+
+  let ghost fubini (f1 f2: int -> int -> int) (a b c d: int) : unit
+    requires { forall x y. a <= x < b /\ c <= y < d -> f1 x y = f2 y x }
+    ensures  { sum (sumf f1 c d) a b = sum (sumf f2 a b) c d }
+  = ()
+
+  let ghost sum_ext (f g: int -> int) (a b: int) : unit
+    requires { forall i. a <= i < b -> f i = g i }
+    ensures  { sum f a b  = sum g a b }
+  = ()
+
+end
+
+theory MaxFun
+
+  use int.Int
+  use int.MinMax
+
+  (* maximum of a function over an interval; always at least 0 *)
+
+  let rec function maxf (f: int -> int) (a b: int) : int
+    variant { b - a }
+  = if b <= a then zero else max (maxf f a (b - 1)) (f (b-1))
+
+  let ghost maxf_nonneg (f: int -> int) (a b: int) : unit
+    requires { a <= b }
+    ensures { maxf f a b >= 0 }
+  = ()
+
+  let ghost maxf_larger (f: int -> int) (a b i: int) : unit
+    requires { a <= i < b }
+    ensures { maxf f a b >= f i }
+  = ()
+
+  let ghost max_left (f: int -> int) (a b: int) : unit
+    requires { a < b }
+    ensures { maxf f a b = max (f a) (maxf f (a+1) b) }
+  = ()
+
+  let ghost max_ext (f g: int -> int) (a b: int) : unit
+    requires { a < b }
+    requires { forall i. a <= i < b -> f i = g i }
+    ensures { maxf f a b = maxf g a b }
+  = ()
+
+  let ghost max_decomp (f: int -> int) (a b c: int) : unit
+    requires { a <= b <= c }
+    ensures  { maxf f a c = max (maxf f a b) (maxf f b c) }
+  = ()
+
+  let ghost max_constant (f: int -> int) (v a b: int) : unit
+      requires { v >= 0 }
+      requires { a < b }
+      requires { forall i. a <= i < b -> f i = v }
+      ensures  { maxf f a b = v }
+  = ()
+
+end
+
+module InfIntMatrix
+
+  use int.Int
+  clone export InfMatrix with
+    type t = int, constant tzero = zero,
+    axiom . (* FIXME: replace with "goal" and prove *)
+  use int.Sum
+
+  use int.Int (*FIXME needed so i < i+1 ?*)
+
+  (* Zero matrix *)
+
+  let constant zerof : int -> int -> int = fun _ _ -> 0
+
+  let constant mzero : mat = fcreate 0 0 zerof
+
+  let ghost function zerorc (r c: int) : mat = fcreate r c zerof
+
+  (* Identity matrix *)
+
+  let constant idf : int -> int -> int = fun x y -> if x = y then 1 else 0
+
+  let constant id : mat = create (fun i -> i+1) (fun j -> j+1) idf
+
+  let ghost id_def (i: int) : unit
+    requires { 0 <= i }
+    ensures  { get id i i = 1 }
+  = ()
+
+  function idrc (r c: int) : mat = fcreate r c idf
+
+  (* Matrix addition *)
+
+  let ghost function add2f (a b: mat) : int -> int -> int =
+    fun x y -> get a x y + get b x y
+
+  function f_add (a b: mat) : mat =
+    create (fun i -> max (row_zeros a i) (row_zeros b i))
+           (fun j -> max (col_zeros a j) (col_zeros b j))
+           (add2f a b)
+
+  val function add (a b: mat) : mat
+    ensures { result = f_add a b }
+
+  let ghost add_get (a b: mat) (i j: int) : unit
+    requires { 0 <= i }
+    requires { 0 <= j }
+    ensures  { get (add a b) i j = get a i j + get b i j }
+  = ()
+
+  let ghost add_iso (a b: mat) : unit
+    requires { a === b }
+    ensures  { a === add a b === b }
+  = ()
+
+  let ghost add_size (a b: mat) (r c: int) : unit
+    requires { size a r c }
+    requires { size b r c }
+    ensures  { size (add a b) r c }
+  = ()
+
+  let ghost add_assoc (a b c: mat) : unit
+    ensures  { add (add a b) c = add a (add b c) }
+  = ()
+
+  let ghost add_commutative (a b: mat) : unit
+    ensures  { add a b = add b a }
+  = ()
+
+  let ghost zero_neutral (a: mat) : unit
+    ensures  { add a mzero = a }
+  = ()
+
+  (* Matrix additive inverse *)
+  function opp2f (a: mat) : int -> int -> int =
+    fun x y -> - get a x y
+
+  function f_opp (a: mat) : mat =
+    create (row_zeros a) (col_zeros a) (opp2f a)
+
+  val function opp (a: mat) : mat
+    ensures { result = f_opp a }
+
+  let function sub (a b: mat) : mat = add a (opp b)
+
+  let ghost sub_size (a b: mat) (r c: int) : unit
+    requires { size a r c }
+    requires { size b r c }
+    ensures  { size (sub a b) r c }
+  = ()
+
+  let ghost opp_involutive (m: mat) : unit
+    ensures  { opp (opp m) = m }
+  = ()
+
+  (* Matrix multiplication *)
+
+  function mul_atom (a b: mat) (i j: int) : int -> int =
+    fun k -> get a i k * get b k j
+
+  let ghost atom_oob (a b: mat) (i j k: int) : unit
+    requires { 0 <= i }
+    requires { 0 <= j }
+    requires { k >= row_zeros a i \/ k >= col_zeros b j }
+    ensures  { mul_atom a b i j k = 0 }
+  = ()
+
+  function mul_cell_bound (a b: mat) (i j: int) : int
+    = min (row_zeros a i) (col_zeros b j) (* row_zeros a i*)
+
+  function mul_cell (a b: mat) : int -> int -> int =
+    fun i j -> sum (mul_atom a b i j) 0 (mul_cell_bound a b i j)
+
+  use MaxFun
+
+  let ghost cell_oob_r (a b: mat) (i j: int) : unit
+    requires { j >= maxf (fun k -> row_zeros b k) 0 (row_zeros a i) }
+    ensures  { mul_cell a b i j = 0 }
+  = ()
+
+  let ghost cell_oob_c (a b: mat) (i j: int) : unit
+    requires { i >= maxf (fun k -> col_zeros a k) 0 (col_zeros b j) }
+    ensures  { mul_cell a b i j = 0 }
+  = ()
+
+  function f_mul (a b: mat) : mat =
+    create (fun i -> maxf (fun k -> row_zeros b k) 0 (row_zeros a i))
+           (fun j -> maxf (fun k -> col_zeros a k) 0 (col_zeros b j))
+           (mul_cell a b)
+
+  val function mul (a b: mat) : mat
+    ensures { result = f_mul a b }
+
+  let ghost mul_sizes (m1 m2: mat) (m n p: int) : unit
+    requires { size m1 m n /\ size m2 n p }
+    requires { 0 < m /\ 0 < n /\ 0 < p }
+    ensures  { size (mul m1 m2) m p }
+  = ()
+
+
+  let ghost id_neutral_r (m: mat) : unit
+    ensures  { mul m id = m }
+  = ()
+
+  let ghost id_neutral_l (m: mat) : unit
+    ensures  { mul id m = m }
+  = ()
+
+  use Sum_extended
+
+  function ft1 (a b c: mat) (i j: int)  : int -> int -> int =
+                fun k -> smulf (mul_atom a b i k) (get c k j)
+
+  function ft2 (a b c: mat) (i j: int) : int -> int -> int =
+                fun k -> smulf (mul_atom b c k j) (get a i k)
+
+  let ghost mul_assoc_get (a b c: mat) (i j: int) : unit
+    requires { 0 <= i /\ 0 <= j }
+    ensures  { get (mul (mul a b) c) i j = get (mul a (mul b c)) i j }
+  = ()
+
+  let ghost mul_assoc (a b c: mat) : unit
+    ensures  { let ab = mul a b in
+               let bc = mul b c in
+               let a_bc = mul a bc in
+               let ab_c = mul ab c in
+               a_bc =  ab_c }
+  = ()
+
+
+  let ghost mul_distr_right_get (a b c: mat) (i j: int) : unit
+    requires { 0 <= i /\ 0 <= j }
+    ensures  { get (mul (add a b) c) i j = get (add (mul a c) (mul b c)) i j }
+  = ()
+
+
+(* External product *)
+
+function extf (c: int) (a: mat): int -> int -> int =
+  fun x y -> c * (get a x y)
+
+function f_extp (c: int) (a: mat) : mat =
+  create (fun i -> row_zeros a i) (fun j -> col_zeros a j) (extf c a)
+
+val function extp (c: int) (a: mat) : mat
+  ensures { result = f_extp c a }
+
+let ghost ext_iso (m: mat) (r: int) : unit
+  ensures  { extp r m === m }
+= ()
+
+let ghost ext_get (m: mat) (r i j: int) : unit
+  requires { 0 <= i }
+  requires { 0 <= j }
+  ensures  { get (extp r m) i j = r * (get m i j) }
+= ()
+
+let ghost ext_dist_sum_mat (x y: mat) (r: int) : unit
+  ensures  { extp r (add x y) = add (extp r x) (extp r y) }
+= ()
+
+let ghost ext_dist_sum_r (x: mat) (r s: int) : unit
+  ensures  { extp (r+s) x = add (extp r x) (extp s x) }
+= ()
+
+let ghost assoc_mul_ext (x: mat) (r s: int) : unit
+  ensures  { extp (r*s) x = extp r (extp s x) }
+= ()
+
+let ghost unit_ext (x: mat) : unit
+  ensures  { extp 1 x = x }
+= ()
+
+let ghost comm_mul_ext_ij (x y: mat) (r i j: int) : unit
+  requires { 0 <= i /\ 0 <= j }
+  ensures { get (mul (extp r x) y) i j = r * (get (mul x y) i j) }
+  ensures { get (mul x (extp r y)) i j = r * (get (mul x y) i j) }
+= ()
+
+let ghost comm_mul_ext (x y: mat) (r: int) : unit
+  ensures  { extp r (mul x y) = mul (extp r x) y = mul x (extp r y) }
+= ()
+
+end
+
+module InfIntMatrixDecision
+
+use InfIntMatrix
+use int.Int
+
+let predicate eq0_int (x:int) = x = 0
+
+clone export ringdecision.AssocAlgebraDecision with type r = int, type a = mat, val rzero = Int.zero, val rone = Int.one, val rplus = (+), val ropp = (-_), val rtimes = (*), val azero = mzero, val aone = id, val aplus = add, val aopp = opp, val atimes = mul, val asub = sub, val ($) = extp, goal AUnitary, goal ANonTrivial, goal ExtDistSumA, goal ExtDistSumR, goal AssocMulExt, goal UnitExt, goal CommMulExt, val eq0 = eq0_int, goal A.MulAssoc.Assoc, goal A.Unit_def_l, goal A.Unit_def_r, goal A.Comm, goal A.Assoc, goal A.Mul_distr_l, goal A.Mul_distr_r, goal asub_def, goal A.Inv_def_l, goal A.Inv_def_r,
+  axiom . (* FIXME: replace with "goal" and prove *)
+
+meta reflection val norm_f
+
+end
+
+module MatrixTests
+  use InfIntMatrix
+  use int.Int
+
+  use InfIntMatrixDecision
+  use int.Sum
+  use Sum_extended
+
+  function cols (a: mat) : int (* if matrix is a finite rectangle, return number of cols *)
+  function rows (a: mat) : int
+
+ (* lemma t: forall a: mat, r1 r2 c: int. size a r1 c -> size a r2 c -> r1 = r2*)
+
+  axiom rows_def:
+    forall a: mat, r c: int. 0 <= r -> 0 <= c -> size a r c -> rows a = r
+
+  axiom cols_def:
+    forall a: mat, r c: int. 0 <= r -> 0 <= c -> size a r c -> cols a = c
+
+  predicate is_finite (m: mat) = size m m.rows m.cols
+
+  function ofs2 (a: mat) (ai aj: int) : int -> int -> int
+    = fun i j -> get a (ai + i) (aj + j)
+
+  function block (a: mat) (r dr c dc: int) : mat =
+    fcreate dr dc (ofs2 a r c)
+
+  predicate c_blocks (a a1 a2: mat) =
+    0 <= a1.cols <= a.cols /\ a1 = block a 0 a.rows 0 a1.cols /\
+    a2 = block a 0 a.rows a1.cols (a.cols - a1.cols)
+
+  predicate r_blocks (a a1 a2: mat) =
+    0 <= a1.rows <= a.rows /\ a1 = block a 0 a1.rows 0 a.cols /\
+    a2 = block a a1.rows (a.rows - a1.rows) 0 a.cols
+
+  let ghost block_mul_ij (a a1 a2 b b1 b2: mat) (k: int) : unit
+    requires { a.cols = b.rows /\ a1.cols = b1.rows}
+    requires { 0 <= k <= a.cols }
+    requires { c_blocks a a1 a2 /\ r_blocks b b1 b2 }
+    ensures  { forall i j. 0 <= i < a.rows -> 0 <= j < b.cols ->
+                 0 <= k <= a1.cols ->
+                   sum (mul_atom a b i j) 0 k = sum (mul_atom a1 b1 i j) 0 k }
+    ensures  { forall i j. 0 <= i < a.rows -> 0 <= j < b.cols ->
+                a1.cols <= k <= a.cols ->
+                  sum (mul_atom a b i j) 0 k =
+	            sum (mul_atom a1 b1 i j) 0 a1.cols +
+		    sum (mul_atom a2 b2 i j) 0 (k - a1.cols) }
+  = ()
+
+  let ghost mul_split (a a1 a2 b b1 b2: mat) : unit
+    requires { is_finite a /\ is_finite b }
+    requires { a.cols = b.rows /\ a1.cols = b1.rows}
+    requires { 0 < a.rows /\ 0 < a.cols /\ 0 < b.cols
+               /\ 0 < a1.cols /\ 0 < a2.cols }
+    requires { c_blocks a a1 a2 /\ r_blocks b b1 b2 }
+    ensures  { add (mul a1 b1) (mul a2 b2) = mul a b }
+  = ()
+
+  let ghost mul_block_cell (a b: mat) (r dr c dc i j: int) : unit
+    requires { is_finite a /\ is_finite b }
+    requires { a.cols = b.rows }
+    requires { 0 <= r /\ r + dr <= a.rows }
+    requires { 0 <= c /\ c + dc <= b.cols }
+    requires { 0 <= i < dr /\ 0 <= j < dc }
+    ensures  { ofs2 (mul a b) r c i j =
+               get (mul (block a r dr 0 a.cols) (block b 0 b.rows c dc)) i j }
+  = ()
+
+  let ghost mul_block (a b a' b' m': mat) (r dr c dc: int) : unit
+    requires { a.cols = b.rows }
+    requires { 0 <= r <= r + dr <= a.rows }
+    requires { 0 <= c <= c + dc <= b.cols }
+    requires { a' = block a r dr 0 a.cols }
+    requires { b' = block b 0 b.rows c dc }
+    requires { m' = block (mul a b) r dr c dc }
+    ensures  { m' =  mul a' b' }
+  = ()
+
+  predicate quarters (a a11 a12 a21 a22: mat) =
+    (is_finite a /\ is_finite a11 /\ is_finite a12 /\ is_finite a21 /\ is_finite a22) /\
+    (rows a11 = rows a12 = rows a21 = rows a22 = cols a11 = cols a12 = cols a21 = cols a22) /\
+    rows a = cols a = 2 * rows a11 /\
+    a11 = block a 0 a11.rows 0 a11.cols /\ a12 = block a 0 a11.rows a11.cols a11.cols /\
+    a21 = block a a11.rows a11.rows 0 a11.cols /\ a22 = block a a11.rows a11.rows a11.cols a11.cols
+
+  let ghost naive_blocks (a b c a11 a12 a21 a22 b11 b12 b21 b22 c11 c12 c21 c22: mat) : unit
+    requires { is_finite a /\ is_finite b /\ is_finite c }
+    requires { quarters a a11 a12 a21 a22 }
+    requires { quarters b b11 b12 b21 b22 }
+    requires { quarters c c11 c12 c21 c22 }
+    requires { c11 = add (mul a11 b11) (mul a12 b21) }
+    requires { c12 = add (mul a11 b12) (mul a12 b22) }
+    requires { c21 = add (mul a21 b11) (mul a22 b21) }
+    requires { c22 = add (mul a21 b12) (mul a22 b22) }
+    ensures  { c = mul a b }
+  = ()
+
+  use int.Power
+  use number.Parity
+  use int.ComputerDivision
+
+  let ghost function cut_quarters (a: mat) : (mat, mat, mat, mat)
+    requires { is_finite a }
+    requires { rows a = cols a }
+    requires { even (rows a) }
+    returns  { (a11, a12, a21, a22) -> quarters a a11 a12 a21 a22 }
+  =
+    let s = div (rows a) 2 in
+    (block a 0 s 0 s, block a 0 s s s, block a s s 0 s, block a s s s s)
+
+  let ghost function paste_quarters (a11 a12 a21 a22: mat): mat
+    requires { is_finite a11 /\ is_finite a12 /\ is_finite a21 /\ is_finite a22 }
+    requires { rows a11 = rows a12 = rows a21 = rows a22
+               = cols a11 = cols a12 = cols a21 = cols a22 }
+    ensures  { quarters result a11 a12 a21 a22 }
+  =
+    let s = rows a11 in
+    let r = fcreate (2 * s) (2 * s)
+            (fun i j -> if i < s && j < s then get a11 i j
+                        else if i < s then get a12 i (j-s)
+                        else if j < s then get a21 (i-s) j
+                        else get a22 (i-s) (j-s)) in
+    r
+
+  meta "compute_max_steps" 0x100000
+
+  let rec ghost function strassen_pow2 (a b: mat) (ghost k: int)
+    requires { 0 <= k }
+    requires { size a (power 2 k) (power 2 k) }
+    requires { size b (power 2 k) (power 2 k) }
+    ensures  { result = mul a b }
+    variant  { k }
+  =
+    let cutoff = begin ensures { result >= 1 } 4 end in
+    if k <= cutoff then mul a b
+    else begin
+      let (a11, a12, a21, a22) = cut_quarters a in
+      let (b11, b12, b21, b22) = cut_quarters b in
+      let s = power 2 (k-1) in
+      let ghost c11 = add (mul a11 b11) (mul a12 b21) in
+      let ghost c12 = add (mul a11 b12) (mul a12 b22) in
+      let ghost c21 = add (mul a21 b11) (mul a22 b21) in
+      let ghost c22 = add (mul a21 b12) (mul a22 b22) in
+      let ghost c = paste_quarters c11 c12 c21 c22 in
+      let m1 = strassen_pow2 (add a11 a22) (add b11 b22) (k-1) in
+      let m2 = strassen_pow2 (add a21 a22) b11 (k-1) in
+      let m3 = strassen_pow2 a11 (sub b12 b22) (k-1) in
+      let m4 = strassen_pow2 a22 (sub b21 b11) (k-1) in
+      let m5 = strassen_pow2 (add a11 a12) b22 (k-1) in
+      let m6 = strassen_pow2 (sub a21 a11) (add b11 b12) (k-1) in
+      let m7 = strassen_pow2 (sub a12 a22) (add b21 b22) (k-1) in
+      let s11 = add m1 (add m4 (sub m7 m5)) in
+      let s12 = add m3 m5 in
+      let s21 = add m2 m4 in
+      let s22 = add m1 (add m3 (sub m6 m2)) in
+      paste_quarters s11 s12 s21 s22
+      end
+end

@@ -1,0 +1,16 @@
+import Why3.Base
+open Classical
+open Lean4Why3
+namespace queue_two_lists_Queue_transferqtvc
+axiom t : Type -> Type
+axiom inhabited_axiom_t {α : Type} [Inhabited α] : Inhabited (t α)
+attribute [instance] inhabited_axiom_t
+axiom front :  {α : Type} -> [Inhabited α] -> t α -> List α
+axiom rear :  {α : Type} -> [Inhabited α] -> t α -> List α
+axiom seq :  {α : Type} -> [Inhabited α] -> t α -> List α
+axiom t'invariant {α : Type} [Inhabited α] (self : t α) : Int.ofNat (List.length (seq self)) = Int.ofNat (List.length (front self)) + Int.ofNat (List.length (rear self)) ∧ ((0 : ℤ) < Int.ofNat (List.length (front self)) → (0 : ℤ) < Int.ofNat (List.length (rear self))) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length (seq self)) → (seq self)[Int.toNat i]! = (let n : ℤ := Int.ofNat (List.length (rear self)); if i < n then (rear self)[Int.toNat i]! else (front self)[Int.toNat (Int.ofNat (List.length (front self)) - (1 : ℤ) - (i - n))]!))
+noncomputable def t'eq {α : Type} [Inhabited α] (a : t α) (b : t α) := front a = front b ∧ rear a = rear b ∧ seq a = seq b
+axiom t'inj {α : Type} [Inhabited α] (a : t α) (b : t α) (fact0 : t'eq a b) : a = b
+theorem transfer'vc {α : Type} [Inhabited α] (q2 : t α) (q11 : t α) : match rear q2 with | ([] : List α) => (∀(q21 : t α) (q1 : t α), seq q1 = ([] : List α) → (Int.ofNat (List.length (seq q11)) = Int.ofNat (List.length (front q11)) + Int.ofNat (List.length (rear q11)) ∧ ((0 : ℤ) < Int.ofNat (List.length (front q11)) → (0 : ℤ) < Int.ofNat (List.length (rear q11))) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length (seq q11)) → (seq q11)[Int.toNat i]! = (let n : ℤ := Int.ofNat (List.length (rear q11)); if i < n then (rear q11)[Int.toNat i]! else (front q11)[Int.toNat (Int.ofNat (List.length (front q11)) - (1 : ℤ) - (i - n))]!))) ∧ (seq q11 = seq q21 ∧ rear q11 = rear q21 ∧ front q11 = front q21 → seq q1 = ([] : List α) ∧ seq q21 = seq q2 ++ seq q11)) | _ => (let o1 : List α := seq q11; let o2 : List α := seq q2 ++ o1; Int.ofNat (List.length o2) = Int.ofNat (List.length (seq q2)) + Int.ofNat (List.length o1) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length (seq q2)) → o2[Int.toNat i]! = (seq q2)[Int.toNat i]!) ∧ (∀(i : ℤ), Int.ofNat (List.length (seq q2)) ≤ i ∧ i < Int.ofNat (List.length o2) → o2[Int.toNat i]! = o1[Int.toNat (i - Int.ofNat (List.length (seq q2)))]!) → (∀(q21 : t α) (q1 : t α), seq q1 = ([] : List α) → (Int.ofNat (List.length o2) = Int.ofNat (List.length (front q11 ++ List.reverse (rear q11) ++ front q2)) + Int.ofNat (List.length (rear q2)) ∧ ((0 : ℤ) < Int.ofNat (List.length (front q11 ++ List.reverse (rear q11) ++ front q2)) → (0 : ℤ) < Int.ofNat (List.length (rear q2))) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length o2) → o2[Int.toNat i]! = (let n : ℤ := Int.ofNat (List.length (rear q2)); if i < n then (rear q2)[Int.toNat i]! else (front q11 ++ List.reverse (rear q11) ++ front q2)[Int.toNat (Int.ofNat (List.length (front q11 ++ List.reverse (rear q11) ++ front q2)) - (1 : ℤ) - (i - n))]!))) ∧ (o2 = seq q21 ∧ rear q2 = rear q21 ∧ front q11 ++ List.reverse (rear q11) ++ front q2 = front q21 → seq q1 = ([] : List α) ∧ seq q21 = seq q2 ++ seq q11)))
+  := sorry
+end queue_two_lists_Queue_transferqtvc

@@ -1,0 +1,68 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'sqrtf'' in 'vect_scale' at initialization of 'norm' (file math/pprz_algebra_float.c, line 1065)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCvect_scale_call_sqrtf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import S2_FloatVect3.S2_FloatVect3
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'sqrtf'' in 'vect_scale' at initialization of 'norm' (file math/pprz_algebra_float.c, line 1065)
+":
+*)
+goal goal0:
+  forall f : s2_floatvect3.
+  let r = f.f2_floatvect3_x in
+  let r_1 = f.f2_floatvect3_y in
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_finite32 ((add_float32 ((mul_float32 r r)) ((mul_float32 r_1 r_1))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'arg_positive' in 'sqrtf'' in 'vect_scale' at initialization of 'norm' (file math/pprz_algebra_float.c, line 1065)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCvect_scale_call_sqrtf_pre_arg_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import S2_FloatVect3.S2_FloatVect3
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'arg_positive' in 'sqrtf'' in 'vect_scale' at initialization of 'norm' (file math/pprz_algebra_float.c, line 1065)
+":
+*)
+goal goal1:
+  forall f : s2_floatvect3.
+  let r = f.f2_floatvect3_x in
+  let r_1 = f.f2_floatvect3_y in
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  (0.0 <=. ((add_float32 ((mul_float32 r r)) ((mul_float32 r_1 r_1)))))
+
+end
+

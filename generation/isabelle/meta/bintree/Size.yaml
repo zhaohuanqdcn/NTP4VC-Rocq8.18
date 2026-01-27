@@ -1,0 +1,10 @@
+atoms:
+  bintree.Size.size: [size, bintree_Size.size]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.bintree_Size
+prefix_ops: {}
+types: {}

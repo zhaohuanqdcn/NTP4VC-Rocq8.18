@@ -1,0 +1,13 @@
+session induction = NTP4Verif +
+theories
+  "induction_LemmaFunction1_ind_lemmaqtvc"
+  "induction_Hyps"
+  "induction_Induction1_G"
+  "induction_Induction2_G"
+  "induction_Induction1_base"
+  "induction_LemmaFunction2_G"
+  "induction_LemmaFunction3_ind_lemmaqtvc"
+  "induction_LemmaFunction3_G"
+  "induction_Induction1_induction_step"
+  "induction_LemmaFunction2_ind_lemmaqtvc"
+  "induction_LemmaFunction1_G"

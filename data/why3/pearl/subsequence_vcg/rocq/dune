@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name subsequence_vcg)
+(theories Why3))

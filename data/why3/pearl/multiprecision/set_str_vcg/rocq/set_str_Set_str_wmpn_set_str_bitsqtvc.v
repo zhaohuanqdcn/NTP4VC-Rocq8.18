@@ -1,0 +1,58 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.why3.Ref.Ref.
+Require Import Why3.map.Const.
+Require Import Why3.map.MapEq.
+Require Import Why3.mach.int.Unsigned.
+Require Import Why3.mach.c.C.
+Require Import Why3.mach.c.UChar.
+Require Import multiprecision.types.Config.
+Require Import multiprecision.types.Types.
+Require Import multiprecision.types.Int32Eq.
+Require Import multiprecision.types.UInt64Eq.
+Require Import multiprecision.lemmas.Lemmas.
+Require Import multiprecision.powm.Powm.
+Require Import multiprecision.compare.Compare.
+Require Import multiprecision.valuation.Valuation.
+Require Import multiprecision.util.Util.
+Require Import multiprecision.ptralias.Alias.
+Require Import multiprecision.util.UtilOld.
+Require Import multiprecision.add.Add.
+Require Import multiprecision.add.AddOld.
+Require Import multiprecision.sub.SubOld.
+Require Import multiprecision.mul.Mul.
+Require Import multiprecision.mul.Mul_basecase.
+Require Import multiprecision.logical.LogicalUtil.
+Require Import multiprecision.logical.Logical.
+Require Import multiprecision.logical.LogicalOld.
+Require Import multiprecision.div.Div.
+Require Import multiprecision.toom.Toom.
+Require Import multiprecision.add_1.Add_1.
+Require Import multiprecision.sub_1.Sub_1.
+Require Import multiprecision.stringlemmas.String_lemmas.
+Require Import multiprecision.base_info.BaseInfo.
+Open Scope Z_scope.
+Theorem wmpn_set_str_bits'vc (sn : bv 32%N) (sz : bv 32%N) (rp : ptr (bv 64%N)) (sp : ptr (bv 8%N)) (bits : bv 32%N) (fact0 : 0%Z < bv_unsigned sn) (fact1 : bv_unsigned sn ≤ 2147483647%Z) (fact2 : 0%Z < bv_signed sz) (fact3 : valid rp (bv_signed sz)) (fact4 : valid sp (bv_unsigned sn)) (fact5 : 1%Z ≤ bv_unsigned bits) (fact6 : bv_unsigned bits ≤ 8%Z) (fact7 : Z.pow 2%Z (bv_unsigned bits * bv_unsigned sn) ≤ Z.pow (18446744073709551615%Z + 1%Z) (bv_signed sz)) (fact8 : writable rp = true) (fact9 : in_base (Z.pow 2%Z (bv_unsigned bits)) (pelts sp) (offset sp) (offset sp + bv_unsigned sn)) : bv_unsigned sn ≤ 2147483647%Z ∧ (∀(o1 : bv 32%N), bv_signed o1 = bv_unsigned sn -> (let b : Z := Z.pow 2%Z (bv_unsigned bits) in ((0%Z ≤ bv_signed o1 ∧ bv_signed o1 ≤ bv_unsigned sn) ∧ (0%Z ≤ 0%Z ∧ 0%Z ≤ bv_signed sz) ∧ (bv_unsigned sn - bv_signed o1) * bv_unsigned bits = 0%Z ∧ (0%Z < bv_signed o1 -> 0%Z = 64%Z * 0%Z) ∧ (0%Z ≤ 0%Z ∧ 0%Z < 64%Z) ∧ (0%Z < 0%Z -> bv_unsigned (pelts rp (offset rp + 0%Z - 1%Z)) < Z.pow 2%Z 0%Z) ∧ value rp 0%Z = svalue_sub b (pelts sp) (offset sp + bv_signed o1) (offset sp + bv_unsigned sn)) ∧ (∀(j : bv 32%N) (shift : bv 32%N) (rn : bv 32%N) (rp1 : ptr (bv 64%N)), length (data rp1) = length (data rp) ∧ offset rp1 = offset rp ∧ min rp1 = min rp ∧ C.max rp1 = C.max rp ∧ writable rp1 = writable rp ∧ zone1 rp1 = zone1 rp -> (0%Z ≤ bv_signed j ∧ bv_signed j ≤ bv_unsigned sn) ∧ (0%Z ≤ bv_signed rn ∧ bv_signed rn ≤ bv_signed sz) ∧ (0%Z < bv_signed j -> (if decide (bv_unsigned shift = 0%Z) then (bv_unsigned sn - bv_signed j) * bv_unsigned bits = 64%Z * bv_signed rn else (bv_unsigned sn - bv_signed j) * bv_unsigned bits = 64%Z * bv_signed rn - 64%Z + bv_unsigned shift)) ∧ (0%Z ≤ bv_unsigned shift ∧ bv_unsigned shift < 64%Z) ∧ (0%Z < bv_unsigned shift -> bv_unsigned (pelts rp1 (offset rp1 + bv_signed rn - 1%Z)) < Z.pow 2%Z (bv_unsigned shift)) ∧ (bv_signed rn = 0%Z -> bv_unsigned shift = 0%Z) ∧ value rp1 (bv_signed rn) = svalue_sub b (pelts sp) (offset sp + bv_signed j) (offset sp + bv_unsigned sn) -> (if decide (0%Z < bv_signed j) then int'32_in_bounds (bv_signed j - 1%Z) ∧ (∀(o2 : bv 32%N), bv_signed o2 = bv_signed j - 1%Z -> (min sp ≤ offset sp + bv_signed o2 ∧ offset sp + bv_signed o2 < C.max sp) ∧ (∀(sj : bv 64%N), bv_unsigned sj = bv_signed (pelts sp (offset sp + bv_signed o2)) -> (bv_unsigned shift = 0%Z -> shift = (0%bv : bv 32%N)) -> (if decide (shift = (0%bv : bv 32%N)) then ((min rp1 ≤ offset rp1 + bv_signed rn ∧ offset rp1 + bv_signed rn < C.max rp1) ∧ writable rp1 = true) ∧ (∀(rp2 : ptr (bv 64%N)), length (data rp2) = length (data rp1) ∧ offset rp2 = offset rp1 ∧ min rp2 = min rp1 ∧ C.max rp2 = C.max rp1 ∧ writable rp2 = writable rp1 ∧ zone1 rp2 = zone1 rp1 -> pelts rp2 = fun_updt (pelts rp1) (offset rp2 + bv_signed rn) sj ∧ pelts rp2 (offset rp2 + bv_signed rn) = sj -> int'32_in_bounds (bv_signed rn + 1%Z) ∧ (∀(o3 : bv 32%N), bv_signed o3 = bv_signed rn + 1%Z -> bv_signed o2 < bv_signed j ∧ (0%Z ≤ bv_signed o2 ∧ bv_signed o2 ≤ bv_unsigned sn) ∧ (0%Z ≤ bv_signed o3 ∧ bv_signed o3 ≤ bv_signed sz) ∧ (bv_unsigned sn - bv_signed o2) * bv_unsigned bits = (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits ∧ (0%Z < bv_signed o2 -> (if decide (bv_unsigned bits = 0%Z) then (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits = 64%Z * bv_signed o3 else (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits = 64%Z * bv_signed o3 - 64%Z + bv_unsigned bits)) ∧ (0%Z ≤ bv_unsigned bits ∧ bv_unsigned bits < 64%Z) ∧ (0%Z < bv_unsigned bits -> bv_unsigned (pelts rp2 (offset rp2 + bv_signed o3 - 1%Z)) < Z.pow 2%Z (bv_unsigned bits)) ∧ (bv_signed o3 = 0%Z -> bv_unsigned bits = 0%Z) ∧ value rp2 (bv_signed o3) = svalue_sub b (pelts sp) (offset sp + bv_signed o2) (offset sp + bv_unsigned sn))) else int'32_in_bounds (bv_signed rn - 1%Z) ∧ (∀(o3 : bv 32%N), bv_signed o3 = bv_signed rn - 1%Z -> (min rp1 ≤ offset rp1 + bv_signed o3 ∧ offset rp1 + bv_signed o3 < C.max rp1) ∧ (let rlow : bv 64%N := pelts rp1 (offset rp1 + bv_signed o3) in ∀(o4 : bv 64%N), bv_unsigned o4 = bv_unsigned shift -> (0%Z ≤ bv_unsigned o4 ∧ bv_unsigned o4 < 64%Z) ∧ (∀(slow : bv 64%N), bv_unsigned slow = ZEuclid.modulo (bv_unsigned sj * Z.pow 2%Z (bv_unsigned o4)) (18446744073709551615%Z + 1%Z) -> uint'64_in_bounds (bv_unsigned rlow + bv_unsigned slow) ∧ (∀(nr : bv 64%N), bv_unsigned nr = bv_unsigned rlow + bv_unsigned slow -> int'32_in_bounds (bv_signed rn - 1%Z) ∧ (∀(o5 : bv 32%N), bv_signed o5 = bv_signed rn - 1%Z -> ((min rp1 ≤ offset rp1 + bv_signed o5 ∧ offset rp1 + bv_signed o5 < C.max rp1) ∧ writable rp1 = true) ∧ (∀(rp2 : ptr (bv 64%N)), length (data rp2) = length (data rp1) ∧ offset rp2 = offset rp1 ∧ min rp2 = min rp1 ∧ C.max rp2 = C.max rp1 ∧ writable rp2 = writable rp1 ∧ zone1 rp2 = zone1 rp1 -> pelts rp2 = fun_updt (pelts rp1) (offset rp2 + bv_signed o5) nr ∧ pelts rp2 (offset rp2 + bv_signed o5) = nr -> uint'32_in_bounds (bv_unsigned shift + bv_unsigned bits) ∧ (∀(o6 : bv 32%N), bv_unsigned o6 = bv_unsigned shift + bv_unsigned bits -> (if decide (64%Z ≤ bv_unsigned o6) then uint'32_in_bounds (bv_unsigned o6 - 64%Z) ∧ (∀(o7 : bv 32%N), bv_unsigned o7 = bv_unsigned o6 - 64%Z -> (if decide (0%Z < bv_unsigned o7) then uint'32_in_bounds (bv_unsigned bits - bv_unsigned o7) ∧ (∀(o8 : bv 32%N), bv_unsigned o8 = bv_unsigned bits - bv_unsigned o7 -> (∀(o9 : bv 64%N), bv_unsigned o9 = bv_unsigned o8 -> (0%Z ≤ bv_unsigned o9 ∧ bv_unsigned o9 < 64%Z) ∧ (∀(shigh : bv 64%N), bv_unsigned shigh = ZEuclid.div (bv_unsigned sj) (Z.pow 2%Z (bv_unsigned o9)) -> ((min rp2 ≤ offset rp2 + bv_signed rn ∧ offset rp2 + bv_signed rn < C.max rp2) ∧ writable rp2 = true) ∧ (∀(rp3 : ptr (bv 64%N)), length (data rp3) = length (data rp2) ∧ offset rp3 = offset rp2 ∧ min rp3 = min rp2 ∧ C.max rp3 = C.max rp2 ∧ writable rp3 = writable rp2 ∧ zone1 rp3 = zone1 rp2 -> pelts rp3 = fun_updt (pelts rp2) (offset rp3 + bv_signed rn) shigh ∧ pelts rp3 (offset rp3 + bv_signed rn) = shigh -> int'32_in_bounds (bv_signed rn + 1%Z) ∧ (∀(o10 : bv 32%N), bv_signed o10 = bv_signed rn + 1%Z -> bv_signed o2 < bv_signed j ∧ (0%Z ≤ bv_signed o2 ∧ bv_signed o2 ≤ bv_unsigned sn) ∧ (0%Z ≤ bv_signed o10 ∧ bv_signed o10 ≤ bv_signed sz) ∧ (bv_unsigned sn - bv_signed o2) * bv_unsigned bits = (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits ∧ (0%Z < bv_signed o2 -> (if decide (bv_unsigned o7 = 0%Z) then (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits = 64%Z * bv_signed o10 else (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits = 64%Z * bv_signed o10 - 64%Z + bv_unsigned o7)) ∧ (0%Z ≤ bv_unsigned o7 ∧ bv_unsigned o7 < 64%Z) ∧ (0%Z < bv_unsigned o7 -> bv_unsigned (pelts rp3 (offset rp3 + bv_signed o10 - 1%Z)) < Z.pow 2%Z (bv_unsigned o7)) ∧ (bv_signed o10 = 0%Z -> bv_unsigned o7 = 0%Z) ∧ value rp3 (bv_signed o10) = svalue_sub b (pelts sp) (offset sp + bv_signed o2) (offset sp + bv_unsigned sn)))))) else bv_signed o2 < bv_signed j ∧ (0%Z ≤ bv_signed o2 ∧ bv_signed o2 ≤ bv_unsigned sn) ∧ (0%Z ≤ bv_signed rn ∧ bv_signed rn ≤ bv_signed sz) ∧ (bv_unsigned sn - bv_signed o2) * bv_unsigned bits = (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits ∧ (0%Z < bv_signed o2 -> (if decide (bv_unsigned o7 = 0%Z) then (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits = 64%Z * bv_signed rn else (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits = 64%Z * bv_signed rn - 64%Z + bv_unsigned o7)) ∧ (0%Z ≤ bv_unsigned o7 ∧ bv_unsigned o7 < 64%Z) ∧ (0%Z < bv_unsigned o7 -> bv_unsigned (pelts rp2 (offset rp2 + bv_signed rn - 1%Z)) < Z.pow 2%Z (bv_unsigned o7)) ∧ (bv_signed rn = 0%Z -> bv_unsigned o7 = 0%Z) ∧ value rp2 (bv_signed rn) = svalue_sub b (pelts sp) (offset sp + bv_signed o2) (offset sp + bv_unsigned sn))) else bv_signed o2 < bv_signed j ∧ (0%Z ≤ bv_signed o2 ∧ bv_signed o2 ≤ bv_unsigned sn) ∧ (0%Z ≤ bv_signed rn ∧ bv_signed rn ≤ bv_signed sz) ∧ (bv_unsigned sn - bv_signed o2) * bv_unsigned bits = (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits ∧ (0%Z < bv_signed o2 -> (if decide (bv_unsigned o6 = 0%Z) then (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits = 64%Z * bv_signed rn else (bv_unsigned sn - bv_signed j) * bv_unsigned bits + bv_unsigned bits = 64%Z * bv_signed rn - 64%Z + bv_unsigned o6)) ∧ (0%Z ≤ bv_unsigned o6 ∧ bv_unsigned o6 < 64%Z) ∧ (0%Z < bv_unsigned o6 -> bv_unsigned (pelts rp2 (offset rp2 + bv_signed rn - 1%Z)) < Z.pow 2%Z (bv_unsigned o6)) ∧ (bv_signed rn = 0%Z -> bv_unsigned o6 = 0%Z) ∧ value rp2 (bv_signed rn) = svalue_sub b (pelts sp) (offset sp + bv_signed o2) (offset sp + bv_unsigned sn)))))))))))) else (0%Z ≤ bv_signed rn ∧ valid rp1 (bv_signed rn)) ∧ (∀(rn1 : bv 32%N), (0%Z ≤ bv_signed rn1 ∧ bv_signed rn1 ≤ bv_signed rn) ∧ value rp1 (bv_signed rn1) = value rp1 (bv_signed rn) ∧ (bv_signed rn1 = 0%Z ∨ 0%Z < bv_unsigned (pelts rp1 (offset rp1 + bv_signed rn1 - 1%Z))) ∧ (bv_signed rn1 = 0%Z ∨ Z.pow (18446744073709551615%Z + 1%Z) (bv_signed rn1 - 1%Z) ≤ value rp1 (bv_signed rn1)) -> (0%Z ≤ bv_signed rn1 ∧ bv_signed rn1 ≤ bv_signed sz) ∧ value rp1 (bv_signed rn1) = svalue (Z.pow 2%Z (bv_unsigned bits)) sp (bv_unsigned sn) ∧ (0%Z < bv_signed rn1 -> 0%Z < bv_unsigned (pelts rp1 (offset rp1 + bv_signed rn1 - 1%Z)))))))).
+Admitted.

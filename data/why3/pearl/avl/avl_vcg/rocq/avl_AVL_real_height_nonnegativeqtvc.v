@@ -1,0 +1,68 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.why3.Ref.Ref.
+Open Scope Z_scope.
+Axiom t : Type.
+Axiom t_inhabited : Inhabited t.
+Global Existing Instance t_inhabited.
+Axiom t_countable : Countable t.
+Global Existing Instance t_countable.
+Axiom zero : t.
+Axiom op : t -> t -> t.
+Axiom assoc : forall  (a : t) (b : t) (c : t), op a (op b c) = op (op a b) c.
+Axiom neutral : forall  (x : t), op x zero = x ∧ x = op zero x.
+Axiom agg : forall {α : Type} `{Inhabited α}, (α -> t) -> list α -> t.
+Axiom agg_empty : forall  {α : Type} `{Inhabited α} (f : α -> t), agg f ([] : list α) = zero.
+Axiom agg_sing : forall  {α : Type} `{Inhabited α} (s : list α) (f : α -> t) (fact0 : Z.of_nat (length s) = 1%Z), agg f s = f (nth 0%nat s inhabitant).
+Axiom agg_cat : forall  {α : Type} `{Inhabited α} (f : α -> t) (s1 : list α) (s2 : list α), agg f (s1 ++ s2) = op (agg f s1) (agg f s2).
+Axiom t1 : Type -> Type.
+Axiom t1_inhabited : forall  {α : Type} `{Inhabited α}, Inhabited (t1 α).
+Global Existing Instance t1_inhabited.
+Axiom measure : forall {α : Type} `{Inhabited α}, t1 α -> t.
+Axiom balancing : nat.
+Axiom balancing'def : 0%Z < Z.of_nat balancing.
+Inductive tree (α : Type) :=
+  | Empty : tree α
+  | Node : tree α -> t1 α -> tree α -> nat -> t -> tree α.
+Axiom tree_inhabited : forall  {α : Type} `{Inhabited α}, Inhabited (tree α).
+Global Existing Instance tree_inhabited.
+Arguments Empty {α}.
+Arguments Node {α}.
+Inductive m (α : Type) :=
+  | m'mk : list (t1 α) -> Z -> m α.
+Axiom m_inhabited : forall  {α : Type} `{Inhabited α}, Inhabited (m α).
+Global Existing Instance m_inhabited.
+Arguments m'mk {α}.
+Definition seq {α : Type} (x : m α) := match x with |  m'mk a _ => a end.
+Definition hgt {α : Type} (x : m α) := match x with |  m'mk _ a => a end.
+Definition node_model {α : Type} `{Inhabited α} (l : list α) (d : α) (r : list α) : list α := l ++ cons d r.
+Program Fixpoint seq_model {α : Type} `{Inhabited α} (t2 : tree α) : list (t1 α) :=
+match t2 with | Empty => ([] : list (t1 α)) | Node l d r _ _ => node_model (seq_model l) d (seq_model r) end.
+Admit Obligations.
+Program Fixpoint real_height {α : Type} `{Inhabited α} (t2 : tree α) : Z :=
+match t2 with | Empty => 0%Z | Node l _ r _ _ => (let hl : Z := real_height l in let hr : Z := real_height r in 1%Z + (if decide (hl < hr) then hr else hl)) end.
+Admit Obligations.
+Theorem real_height_nonnegative'vc {α : Type} `{Inhabited α} (t2 : tree α) : 0%Z ≤ real_height t2.
+Admitted.

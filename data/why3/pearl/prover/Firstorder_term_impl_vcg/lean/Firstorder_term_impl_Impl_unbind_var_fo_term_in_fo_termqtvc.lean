@@ -1,0 +1,19 @@
+import Why3.Base
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+open Classical
+open Lean4Why3
+namespace Firstorder_term_impl_Impl_unbind_var_fo_term_in_fo_termqtvc
+theorem unbind_var_fo_term_in_fo_term'vc {ty'b0 : Type} {ty'b3 : Type} [Inhabited ty'b0] [Inhabited ty'b3] (i : ℤ) (t : Types.nl_fo_term ℤ ℤ) (x : Types.nl_fo_term ℤ ℤ) (bnd13 : ℤ -> Spec.fo_term ty'b0 ty'b3) (fr3 : ℤ -> Spec.fo_term ty'b0 ty'b3) (bnd10 : ℤ -> Spec.symbol ty'b0) (fr0 : ℤ -> Spec.symbol ty'b0) (bnd20 : ℤ -> Spec.symbol ty'b0) (bnd23 : ℤ -> Spec.fo_term ty'b0 ty'b3) (fact0 : (0 : ℤ) ≤ i) (fact1 : Logic.correct_indexes_fo_term t) (fact2 : Logic.bound_depth_of_fo_term_in_fo_term t ≤ i + (1 : ℤ)) (fact3 : Logic.correct_indexes_fo_term x) (fact4 : Logic.bound_depth_of_symbol_in_fo_term x = (0 : ℤ)) (fact5 : Logic.bound_depth_of_fo_term_in_fo_term x = (0 : ℤ)) : (match t with | Types.nl_fo_term.NLFVar_fo_term v0 => True | Types.nl_fo_term.NLBruijn_fo_term v0 => True | Types.nl_fo_term.NL_App v0 v1 => (let o1 : ℤ := i + (0 : ℤ); ((0 : ℤ) ≤ Logic.nlsize_fo_term t ∧ Logic.nlsize_fo_term_list v1 < Logic.nlsize_fo_term t) ∧ (0 : ℤ) ≤ o1 ∧ Logic.correct_indexes_fo_term_list v1 ∧ Logic.bound_depth_of_fo_term_in_fo_term_list v1 ≤ o1 + (1 : ℤ) ∧ Logic.correct_indexes_fo_term x ∧ Logic.bound_depth_of_symbol_in_fo_term x = (0 : ℤ) ∧ Logic.bound_depth_of_fo_term_in_fo_term x = (0 : ℤ))) ∧ (∀(result : Types.nl_fo_term ℤ ℤ), (match t with | Types.nl_fo_term.NLFVar_fo_term v0 => result = Types.nl_fo_term.NLFVar_fo_term v0 | Types.nl_fo_term.NLBruijn_fo_term v0 => (if v0 = i then result = x else result = Types.nl_fo_term.NLBruijn_fo_term v0) | Types.nl_fo_term.NL_App v0 v1 => (let o1 : ℤ -> Spec.fo_term ty'b0 ty'b3 := Spec.rename_subst_fo_term bnd13 Func.identity Func.identity; let o2 : ℤ -> Spec.fo_term ty'b0 ty'b3 := Spec.rename_subst_fo_term fr3 Func.identity Func.identity; let o3 : ℤ -> Spec.symbol ty'b0 := Spec.rename_subst_symbol bnd10 Func.identity; let o4 : ℤ -> Spec.symbol ty'b0 := Spec.rename_subst_symbol fr0 Func.identity; let o5 : ℤ := i + (0 : ℤ); ∃(o6 : Types.nl_fo_term_list ℤ ℤ), (Logic.correct_indexes_fo_term_list o6 ∧ Logic.bound_depth_of_fo_term_in_fo_term_list o6 ≤ o5 ∧ Logic.bound_depth_of_symbol_in_fo_term_list o6 = Logic.bound_depth_of_symbol_in_fo_term_list v1 ∧ Logic.nlmodel_fo_term_list o6 o4 o3 o2 o1 = Logic.nlmodel_fo_term_list v1 o4 o3 o2 (Func.update o1 o5 (Logic.nlmodel_fo_term x o4 (Spec.rename_subst_symbol bnd20 Func.identity) o2 (Spec.rename_subst_fo_term bnd23 Func.identity Func.identity)))) ∧ result = Types.nl_fo_term.NL_App v0 o6)) → Logic.correct_indexes_fo_term result ∧ Logic.bound_depth_of_fo_term_in_fo_term result ≤ i ∧ Logic.bound_depth_of_symbol_in_fo_term result = Logic.bound_depth_of_symbol_in_fo_term t ∧ Logic.nlmodel_fo_term result fr0 bnd10 fr3 bnd13 = Logic.nlmodel_fo_term t fr0 bnd10 fr3 (Func.update bnd13 i (Logic.nlmodel_fo_term x fr0 bnd20 fr3 bnd23)))
+  := sorry
+end Firstorder_term_impl_Impl_unbind_var_fo_term_in_fo_termqtvc

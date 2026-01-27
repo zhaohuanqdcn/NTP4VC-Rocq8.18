@@ -1,0 +1,12 @@
+theory float_quat_comp_norm_shortest_Why3_ide_VCfloat_quat_comp_norm_shortest_call_float_quat_comp_pre_4_goal0
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "../../lib/isabelle/Axiomatic15_Axiomatic15" "Why3STD.Cmath_Cmath" "Why3STD.Cfloat_Cfloat" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal0:
+  fixes a_1 :: "addr"
+  fixes a :: "addr"
+  fixes a_2 :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes t_1 :: "addr \<Rightarrow> real"
+  shows "let a_3 :: addr = shift a_1 (0 :: int); a_4 :: addr = shift a (0 :: int); a_5 :: addr = shift a_2 (0 :: int); a_6 :: addr = shift a (1 :: int); a_7 :: addr = shift a_1 (1 :: int); a_8 :: addr = shift a_2 (1 :: int); a_9 :: addr = shift a (2 :: int); a_10 :: addr = shift a_1 (2 :: int); a_11 :: addr = shift a_2 (2 :: int); a_12 :: addr = shift a (3 :: int); a_13 :: addr = shift a_1 (3 :: int); a_14 :: addr = shift a_2 (3 :: int) in region (base a) \<le> (0 :: int) \<longrightarrow> region (base a_1) \<le> (0 :: int) \<longrightarrow> region (base a_2) \<le> (0 :: int) \<longrightarrow> linked t \<longrightarrow> valid_rw t a_1 (4 :: int) \<longrightarrow> p_rvalid_floatquat t t_1 a \<longrightarrow> p_rvalid_floatquat t t_1 a_2 \<longrightarrow> \<not>a_3 = a_4 \<and> \<not>a_5 = a_4 \<and> \<not>a_5 = a_3 \<and> \<not>a_6 = a_3 \<and> \<not>a_6 = a_5 \<and> \<not>a_7 = a_4 \<and> \<not>a_7 = a_5 \<and> \<not>a_7 = a_6 \<and> \<not>a_8 = a_4 \<and> \<not>a_8 = a_3 \<and> \<not>a_8 = a_6 \<and> \<not>a_8 = a_7 \<and> \<not>a_9 = a_3 \<and> \<not>a_9 = a_5 \<and> \<not>a_9 = a_7 \<and> \<not>a_9 = a_8 \<and> \<not>a_10 = a_4 \<and> \<not>a_10 = a_5 \<and> \<not>a_10 = a_6 \<and> \<not>a_10 = a_8 \<and> \<not>a_10 = a_9 \<and> \<not>a_11 = a_4 \<and> \<not>a_11 = a_3 \<and> \<not>a_11 = a_6 \<and> \<not>a_11 = a_7 \<and> \<not>a_11 = a_9 \<and> \<not>a_11 = a_10 \<and> \<not>a_12 = a_3 \<and> \<not>a_12 = a_5 \<and> \<not>a_12 = a_7 \<and> \<not>a_12 = a_8 \<and> \<not>a_12 = a_10 \<and> \<not>a_12 = a_11 \<and> \<not>a_13 = a_4 \<and> \<not>a_13 = a_5 \<and> \<not>a_13 = a_6 \<and> \<not>a_13 = a_8 \<and> \<not>a_13 = a_9 \<and> \<not>a_13 = a_11 \<and> \<not>a_13 = a_12 \<and> \<not>a_14 = a_4 \<and> \<not>a_14 = a_3 \<and> \<not>a_14 = a_6 \<and> \<not>a_14 = a_7 \<and> \<not>a_14 = a_9 \<and> \<not>a_14 = a_10 \<and> \<not>a_14 = a_12 \<and> \<not>a_14 = a_13"
+  sorry
+end

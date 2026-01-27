@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.copy_backward.copy_backward_Why3_ide_vcg)
+(theories Why3 Why3.Cint Why3.Memory copy_backward.Compound copy_backward.Axiomatic Why3.Qed))

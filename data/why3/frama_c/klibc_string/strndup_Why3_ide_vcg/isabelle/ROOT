@@ -1,0 +1,8 @@
+session strndup_Why3_ide = NTP4Verif +
+theories
+  "strndup_Why3_ide_VCstrndup_call_strnlen_pre_goal0"
+  "strndup_Why3_ide_VCstrndup_call_memcpy_pre_4_goal5"
+  "strndup_Why3_ide_VCstrndup_call_strnlen_pre_2_goal1"
+  "strndup_Why3_ide_VCstrndup_call_memcpy_pre_goal2"
+  "strndup_Why3_ide_VCstrndup_call_memcpy_pre_3_goal4"
+  "strndup_Why3_ide_VCstrndup_call_memcpy_pre_2_goal3"

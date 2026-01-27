@@ -1,0 +1,841 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strrchr.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strrchr.c, line 8)":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = t_1[null] in
+  let a_2 = (shift_sint8 a_1 ((l_strlen t_1 a_1))) in
+  let x_2 = (to_sint8 i) in
+  let a_3 = (shift_sint8 a 1) in
+  (x <> 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a a_2)) ->
+  ((x_1 <> x_2) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_4 : addr. ((addr_lt a_4 a)) -> ((addr_le a_1 a_4)) ->
+   (t_1[a_4] <> x_2)) ->
+  (((addr_le a_1 a_3)) /\ ((addr_le a_3 a_2)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/strrchr.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/strrchr.c, line 8)":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_valid_str t t_1 a)) ->
+  (((addr_le a a)) /\ ((addr_le a ((shift_sint8 a ((l_strlen t_1 a)))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strrchr.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strrchr.c, line 9)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = t_1[a_2] in
+  let x_2 = t_1[null] in
+  let x_3 = (to_sint8 i) in
+  (x <> 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((is_sint8 x_2)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_strlen t_1 a_1)))))) ->
+  (if (x = x_3) then (a_2 = a) else (null = a_2)) ->
+  ((x_2 <> x_3) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_3 : addr. ((addr_lt a_3 a)) -> ((addr_le a_1 a_3)) ->
+   (t_1[a_3] <> x_3)) ->
+  (not ((x_1 = x_3) /\ ((addr_le a_1 a_2)) /\
+        ((addr_lt a_2 ((shift_sint8 a 1))))) <-> (null = a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/strrchr.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_inv_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Establishment of Invariant (file src/strrchr.c, line 9)":
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[null] in
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((x <> ((to_sint8 i))) \/ (not (addr_lt null a)) \/ (not (addr_le a null)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strrchr.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strrchr.c, line 10)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = t_1[null] in
+  let x_2 = (to_sint8 i) in
+  (x <> 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 t_1[a_2])) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_strlen t_1 a_1)))))) ->
+  (if (x = x_2) then (a_2 = a) else (null = a_2)) ->
+  ((x_1 <> x_2) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_3 : addr. ((addr_lt a_3 a)) -> ((addr_le a_1 a_3)) ->
+   (t_1[a_3] <> x_2)) ->
+  ((exists a_3 : addr. (t_1[a_3] = x_2) /\ ((addr_le a_1 a_3)) /\
+    ((addr_lt a_3 ((shift_sint8 a 1))))) <-> (null <> a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/strrchr.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_inv_3_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Establishment of Invariant (file src/strrchr.c, line 10)":
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((is_sint8 t_1[null])) ->
+  ((p_valid_str t t_1 a)) ->
+  ((t_1[a_1] <> ((to_sint8 i))) \/ (not (addr_lt a_1 a)) \/
+   (not (addr_le a a_1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strrchr.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_inv_4_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strrchr.c, line 11)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = t_1[null] in
+  let x_2 = (to_sint8 i) in
+  (x <> 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 t_1[a_2])) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_strlen t_1 a_1)))))) ->
+  (if (x = x_2) then (a_2 = a) else (null = a_2)) ->
+  ((x_1 <> x_2) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_3 : addr. ((addr_lt a_3 a)) -> ((addr_le a_1 a_3)) ->
+   (t_1[a_3] <> x_2)) ->
+  ((forall a_3 : addr. ((addr_le a_1 a_3)) ->
+    ((addr_lt a_3 ((shift_sint8 a 1)))) -> (t_1[a_3] <> x_2)) <->
+   (null = a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/strrchr.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_inv_4_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Establishment of Invariant (file src/strrchr.c, line 11)":
+*)
+goal goal7:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_lt a_1 a)) ->
+  ((addr_le a a_1)) ->
+  ((is_sint8 t_1[null])) ->
+  ((p_valid_str t t_1 a)) ->
+  (t_1[a_1] <> ((to_sint8 i)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strrchr.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_inv_5_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strrchr.c, line 12)":
+*)
+goal goal8:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = t_1[null] in
+  (null <> a) ->
+  (x <> 0) ->
+  (x = ((to_sint8 i))) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_lt a a_2)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_lt a_2 ((shift_sint8 a 1)))) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_strlen t_1 a_1)))))) ->
+  ((x_1 <> x) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_3 : addr. ((addr_lt a_3 a)) -> ((addr_le a_1 a_3)) ->
+   (x <> t_1[a_3])) ->
+  (t_1[a_2] <> x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion (file src/strrchr.c, line 21)            --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_assert
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion (file src/strrchr.c, line 21)":
+*)
+goal goal9:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[null] in
+  let x_1 = t_1[(shift_sint8 a 0)] in
+  let x_2 = (to_sint8 i) in
+  (t_1[a] = 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((is_sint8 x_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_strlen t_1 a_1)))))) ->
+  ((x <> x_2) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a_1 a_2)) ->
+   (t_1[a_2] <> x_2)) ->
+  (x_1 = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion (file src/strrchr.c, line 22)            --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_assert_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Assertion (file src/strrchr.c, line 22)":
+*)
+goal goal10:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[null] in
+  let x_1 = (l_strlen t_1 a_1) in
+  let x_2 = (to_sint8 i) in
+  (t_1[a] = 0) ->
+  (t_1[(shift_sint8 a 0)] = 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_1)))) ->
+  ((x <> x_2) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a_1 a_2)) ->
+   (t_1[a_2] <> x_2)) ->
+  (((shift_sint8 a_1 (1 + x_1))) = ((shift_sint8 a 1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion (file src/strrchr.c, line 23)            --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_assert_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Assertion (file src/strrchr.c, line 23)":
+*)
+goal goal11:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_1[a_2] in
+  let x_1 = (l_strlen t_1 a_1) in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_1[null] in
+  (t_1[a] = 0) ->
+  (x = ((to_sint8 i))) ->
+  (t_1[a_3] = 0) ->
+  (((shift_sint8 a_1 (1 + x_1))) = ((shift_sint8 a 1))) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x_2)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_lt a_2 a_3)) ->
+  ((addr_le a a_3)) ->
+  ((null = a) \/ (x <> 0)) ->
+  ((x_2 <> x) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_4 : addr. ((addr_lt a_4 a)) -> ((addr_le a_1 a_4)) ->
+   (x <> t_1[a_4])) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file src/strrchr.c, line 14) (2/3)   --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_assign_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file src/strrchr.c, line 14) (2/3)":
+*)
+goal goal12:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = t_1[null] in
+  (x <> 0) ->
+  (x = ((to_sint8 i))) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_strlen t_1 a_1)))))) ->
+  ((x_1 <> x) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a_1 a_2)) ->
+   (x <> t_1[a_2])) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file src/strrchr.c, line 17) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_loop_term_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file src/strrchr.c, line 17)":
+*)
+goal goal13:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = t_1[null] in
+  let x_2 = (l_strlen t_1 a_1) in
+  let x_3 = (to_sint8 i) in
+  (x <> 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_2)))) ->
+  ((x_1 <> x_3) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a_1 a_2)) ->
+   (t_1[a_2] <> x_3)) ->
+  ((a.offset) <= ((a_1.offset) + x_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file src/strrchr.h, line 65) in 'strrchr' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_found_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Post-condition for 'found' (file src/strrchr.h, line 65) in 'strrchr'":
+*)
+goal goal14:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_1[a_2] in
+  let x_1 = (l_strlen t_1 a_1) in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_1[null] in
+  (t_1[a] = 0) ->
+  (x <> 0) ->
+  (x = ((to_sint8 i))) ->
+  (t_1[a_3] = 0) ->
+  (((shift_sint8 a_1 (1 + x_1))) = ((shift_sint8 a 1))) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x_2)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_2 a_3)) ->
+  ((x_2 <> x) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_4 : addr. ((addr_lt a_4 a)) -> ((addr_le a_1 a_4)) ->
+   (x <> t_1[a_4])) ->
+  (forall a_4 : addr. (x <> t_1[a_4]) \/ (not (addr_le a_1 a_4)) \/
+   (not (addr_lt a_4 a_3))) ->
+  (((addr_le a_1 null)) /\ ((addr_le null a_3)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file src/strrchr.h, line 66) in 'strrchr' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_found_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Post-condition for 'found' (file src/strrchr.h, line 66) in 'strrchr'":
+*)
+goal goal15:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_1[a_2] in
+  let x_1 = (l_strlen t_1 a_1) in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_1[null] in
+  (t_1[a] = 0) ->
+  (x <> 0) ->
+  (x = ((to_sint8 i))) ->
+  (t_1[a_3] = 0) ->
+  (((shift_sint8 a_1 (1 + x_1))) = ((shift_sint8 a 1))) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x_2)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_2 a_3)) ->
+  ((x_2 <> x) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_4 : addr. ((addr_lt a_4 a)) -> ((addr_le a_1 a_4)) ->
+   (x <> t_1[a_4])) ->
+  (forall a_4 : addr. (x <> t_1[a_4]) \/ (not (addr_le a_1 a_4)) \/
+   (not (addr_lt a_4 a_3))) ->
+  (x_2 = x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file src/strrchr.h, line 67) in 'strrchr' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_found_post_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Post-condition for 'found' (file src/strrchr.h, line 67) in 'strrchr'":
+*)
+goal goal16:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_3] in
+  let x_1 = (l_strlen t_1 a_1) in
+  let a_5 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_1[null] in
+  (t_1[a] = 0) ->
+  (x = ((to_sint8 i))) ->
+  (t_1[a_5] = 0) ->
+  (((shift_sint8 a_1 (1 + x_1))) = ((shift_sint8 a 1))) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_lt a_2 a_4)) ->
+  ((addr_le a_1 a)) ->
+  ((addr_le a_1 a_3)) ->
+  ((is_sint8 t_1[a_2])) ->
+  ((is_sint8 x_2)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a a_5)) ->
+  ((addr_le a_3 a_5)) ->
+  ((addr_le a_4 a_5)) ->
+  (if (x = 0) then (a_2 = a) else (null = a_2)) ->
+  ((exists a_6 : addr. (x = t_1[a_6]) /\ ((addr_le a_1 a_6)) /\
+    ((addr_lt a_6 a_5))) -> (null <> a_2)) ->
+  ((x_2 <> x) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_6 : addr. ((addr_lt a_6 a)) -> ((addr_le a_1 a_6)) ->
+   (x <> t_1[a_6])) ->
+  (t_1[a_4] <> x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_found' (file src/strrchr.h, line 71) in 'strrchr' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrrchr_not_found_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Post-condition for 'not_found' (file src/strrchr.h, line 71) in 'strrchr'":
+*)
+goal goal17:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = (l_strlen t_1 a_1) in
+  let a_2 = (shift_sint8 a_1 x) in
+  let x_1 = t_1[null] in
+  (t_1[a] = 0) ->
+  (((to_sint8 i)) = 0) ->
+  (t_1[a_2] = 0) ->
+  (((shift_sint8 a_1 (1 + x))) = ((shift_sint8 a 1))) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_le a a_2)) ->
+  ((exists a_3 : addr. (t_1[a_3] = 0) /\ ((addr_le a_1 a_3)) /\
+    ((addr_lt a_3 a_2))) -> (null <> a)) ->
+  ((x_1 <> 0) \/ (not (addr_lt null a)) \/ (not (addr_le a_1 null))) ->
+  (forall a_3 : addr. ((addr_lt a_3 a)) -> ((addr_le a_1 a_3)) ->
+   (t_1[a_3] <> 0)) ->
+  (forall a_3 : addr. ((addr_le a_1 a_3)) -> ((addr_le a_3 a_2)) ->
+   (t_1[a_3] <> 0)) ->
+  (null = a)
+
+end
+

@@ -1,0 +1,105 @@
+(* ---------------------------------------------------------- *)
+(* --- Memory Compound Updates                            --- *)
+(* ---------------------------------------------------------- *)
+theory Compound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function shift_sint8 (p : addr) (k : int) : addr = (shift p k)
+
+function shift_sint32 (p : addr) (k : int) : addr = (shift p k)
+
+function shift_uint8 (p : addr) (k : int) : addr = (shift p k)
+
+function shift_ptr (p : addr) (k : int) : addr = (shift p k)
+
+function shiftfield_f20_alg_der_oid (p : addr) : addr = (shift p 2)
+
+function shiftfield_f20_alg_der_oid_len (p : addr) : addr = (shift p 3)
+
+function shiftfield_f18_crv_der_oid (p : addr) : addr = (shift p 2)
+
+function shiftfield_f18_crv_der_oid_len (p : addr) : addr = (shift p 3)
+
+function shift___anonstruct__name_oid_11 (p : addr) (k : int) : addr =
+    (shift p (3 * k))
+
+function shiftfield_f21_oid (p : addr) : addr = (shift p 0)
+
+function shiftfield_f21_oid_len (p : addr) : addr = (shift p 1)
+
+function shift___anonstruct__ext_oid_14 (p : addr) (k : int) : addr =
+    (shift p (3 * k))
+
+function shiftfield_f24_oid (p : addr) : addr = (shift p 0)
+
+function shiftfield_f24_oid_len (p : addr) : addr = (shift p 1)
+
+function shift___anonstruct__kp_oid_13 (p : addr) (k : int) : addr =
+    (shift p (2 * k))
+
+function shiftfield_f23_oid (p : addr) : addr = (shift p 0)
+
+function shiftfield_f23_oid_len (p : addr) : addr = (shift p 1)
+
+function shiftfield_f21_parse_rdn_val (p : addr) : addr = (shift p 2)
+
+function shiftfield_f22_one_crldp_has_all_reasons (p : addr) : addr =
+    (shift p 12)
+
+function shiftfield_f19_curve_param (p : addr) : addr = (shift p 0)
+
+function shiftfield_f19_ecdsa_no_param (p : addr) : addr = (shift p 2)
+
+function shiftfield_f19_unparsed_param (p : addr) : addr = (shift p 3)
+
+function shiftfield_f19_null_param (p : addr) : addr = (shift p 1)
+
+function shiftfield_f22_aki_has_keyidentifier (p : addr) : addr =
+    (shift p 13)
+
+function shiftfield_f22_has_crldp (p : addr) : addr = (shift p 11)
+
+function shiftfield_f22_san_critical (p : addr) : addr = (shift p 2)
+
+function shiftfield_f22_san_empty (p : addr) : addr = (shift p 1)
+
+function shiftfield_f22_has_ski (p : addr) : addr = (shift p 5)
+
+function shiftfield_f22_ca_true (p : addr) : addr = (shift p 3)
+
+function shiftfield_f22_pathlenconstraint_set (p : addr) : addr = (shift p 9)
+
+function shiftfield_f22_bc_critical (p : addr) : addr = (shift p 4)
+
+function shiftfield_f22_crlsign_set (p : addr) : addr = (shift p 8)
+
+function shiftfield_f22_keycertsign_set (p : addr) : addr = (shift p 7)
+
+function shiftfield_f22_has_keyusage (p : addr) : addr = (shift p 6)
+
+function shiftfield_f22_has_name_constraints (p : addr) : addr = (shift p 10)
+
+function shiftfield_f18_crv_order_bit_len (p : addr) : addr = (shift p 4)
+
+function shiftfield_f20_parse_algoid_params (p : addr) : addr = (shift p 7)
+
+function shiftfield_f24_parse_ext_params (p : addr) : addr = (shift p 2)
+
+function shiftfield_f22_empty_subject (p : addr) : addr = (shift p 0)
+
+function shiftfield_f20_alg_type (p : addr) : addr = (shift p 4)
+
+function shiftfield_f20_parse_sig (p : addr) : addr = (shift p 5)
+
+function shiftfield_f20_parse_subjectpubkey (p : addr) : addr = (shift p 6)
+
+end
+

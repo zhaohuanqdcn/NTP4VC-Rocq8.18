@@ -1,0 +1,24 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Variables                                   --- *)
+(* ---------------------------------------------------------- *)
+theory Globals
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function l_exp_omega_dt_3319 : int = 3320
+
+use import Memory.Memory
+
+axiom Q_L_exp_omega_dt_3319_region: ((region l_exp_omega_dt_3319)) = 2
+
+axiom Q_L_exp_omega_dt_3319_linked:
+  forall t : map int int. ((linked t)) -> (t[l_exp_omega_dt_3319] = 0)
+
+end
+

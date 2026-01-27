@@ -1,0 +1,16 @@
+(* ---------------------------------------------------------- *)
+(* --- Struct 'FloatRMat'                                 --- *)
+(* ---------------------------------------------------------- *)
+theory S5_FloatRMat
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+type s5_floatrmat = { f5_floatrmat_m : map int real }
+
+end
+

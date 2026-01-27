@@ -1,0 +1,6 @@
+session multiplication = NTP4Verif +
+theories
+  "multiplication_MultiplicationDouble_multiplication_errors_basicqtvc"
+  "multiplication_MultiplicationDouble_multiplication_errorsqtvc"
+  "multiplication_MultiplicationSingle_multiplication_errorsqtvc"
+  "multiplication_MultiplicationSingle_multiplication_errors_basicqtvc"

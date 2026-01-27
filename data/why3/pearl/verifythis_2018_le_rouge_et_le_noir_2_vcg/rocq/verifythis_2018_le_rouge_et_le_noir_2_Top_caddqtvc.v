@@ -1,0 +1,36 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Open Scope Z_scope.
+Definition bijection {β : Type} {α : Type} `{Inhabited β} `{Countable β} `{Inhabited α} `{Countable α} (p : gset α) (q : β -> bool) (f : α -> β) (g : β -> α) := (∀(x : α), x ∈ p -> q (f x) = true ∧ g (f x) = x) ∧ (∀(x : β), q x = true -> g x ∈ p ∧ f (g x) = x).
+Axiom cardinal : Type -> Type.
+Axiom cardinal_inhabited : forall  {α : Type} `{Inhabited α} `{Countable α}, Inhabited (cardinal α).
+Global Existing Instance cardinal_inhabited.
+Axiom card : forall {α : Type} `{Inhabited α} `{Countable α}, cardinal α -> Z.
+Axiom cset : forall {α : Type} `{Inhabited α} `{Countable α}, cardinal α -> gset α.
+Axiom cardinal'invariant : forall  {α : Type} `{Inhabited α} `{Countable α} (self : cardinal α), card self = Z.of_nat (size (cset self)).
+Definition cardinal'eq {α : Type} `{Inhabited α} `{Countable α} (a : cardinal α) (b : cardinal α) := card a = card b ∧ cset a = cset b.
+Axiom cardinal'inj : forall  {α : Type} `{Inhabited α} `{Countable α} (a : cardinal α) (b : cardinal α) (fact0 : cardinal'eq a b), a = b.
+Theorem cadd'vc {α : Type} `{Inhabited α} `{Countable α} (i1 : cardinal α) (i2 : cardinal α) (fact0 : ∀(x : α), ¬ (x ∈ cset i1 ∧ x ∈ cset i2)) : let o1 : gset α := cset i2 in let o2 : gset α := cset i1 in (∀(x : α), ¬ (x ∈ o2 ∧ x ∈ o1)) ∧ (Z.of_nat (size (o2 ∪ o1)) = Z.of_nat (size o2) + Z.of_nat (size o1) -> (let o3 : gset α := cset i1 ∪ cset i2 in let o4 : Z := card i1 + card i2 in o4 = Z.of_nat (size o3) ∧ (∀(result : cardinal α), card result = o4 ∧ cset result = o3 -> cset result = cset i1 ∪ cset i2 ∧ card result = card i1 + card i2))).
+Admitted.

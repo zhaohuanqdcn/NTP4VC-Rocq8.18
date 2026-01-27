@@ -1,0 +1,22 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions                                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_constantrange (mint_0 : map addr int) (a : addr) (first_0 : int)
+    (last_0 : int) (val_0 : int) =
+    forall i : int. (first_0 <= i) -> (i < last_0) ->
+    (mint_0[(shift_sint32 a i)] = val_0)
+
+end
+

@@ -1,0 +1,12 @@
+session string_search = NTP4Verif +
+theories
+  "string_search_BadShiftTable_bad_shift_tableqtvc"
+  "string_search_Spec"
+  "string_search_Occurs"
+  "string_search_BadShiftTable_no_shiftqtvc"
+  "string_search_BadShiftTable_make_tableqtvc"
+  "string_search_Naive_search2qtvc"
+  "string_search_Naive_search1qtvc"
+  "string_search_BadShiftTable_shift_lemmaqtvc"
+  "string_search_Occurs_occursqtvc"
+  "string_search_BadShiftTable_searchqtvc"

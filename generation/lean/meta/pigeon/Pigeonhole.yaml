@@ -1,0 +1,10 @@
+atoms: {}
+axioms:
+  pigeon.Pigeonhole.pigeonhole: Pigeonhole.pigeonhole
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.pigeon.Pigeonhole
+prefix_ops: {}
+types: {}

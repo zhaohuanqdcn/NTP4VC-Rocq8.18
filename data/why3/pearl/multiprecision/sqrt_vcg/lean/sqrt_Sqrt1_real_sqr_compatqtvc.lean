@@ -1,0 +1,19 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.real.Truncate
+import Why3.mach.int.Unsigned
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import Why3.mach.fxp.Fxp
+open Classical
+open Lean4Why3
+namespace sqrt_Sqrt1_real_sqr_compatqtvc
+theorem real_sqr_compat'vc (x : ℝ) (y : ℝ) (fact0 : (0 : ℝ) < x) (fact1 : x < y) : x * x < y * y
+  := sorry
+end sqrt_Sqrt1_real_sqr_compatqtvc

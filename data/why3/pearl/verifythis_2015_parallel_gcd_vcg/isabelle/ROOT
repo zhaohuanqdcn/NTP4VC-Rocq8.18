@@ -1,0 +1,8 @@
+session verifythis_2015_parallel_gcd = NTP4Verif +
+theories
+  "verifythis_2015_parallel_gcd_ParallelGCD_gcd_subqtvc"
+  "verifythis_2015_parallel_gcd_Interleaving_parallel_gcdqtvc"
+  "verifythis_2015_parallel_gcd_Interleaving_can_progressqtvc"
+  "verifythis_2015_parallel_gcd_Interleaving_stepqtvc"
+  "verifythis_2015_parallel_gcd_Interleaving_gcd_subqtvc"
+  "verifythis_2015_parallel_gcd_ParallelGCD_parallel_gcdqtvc"

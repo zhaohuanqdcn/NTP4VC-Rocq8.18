@@ -1,0 +1,11 @@
+session udouble = NTP4Verif +
+theories
+  "udouble_UDouble_sub_bound_rightqtvc"
+  "udouble_UDouble_add_bound_leftqtvc"
+  "udouble_UDouble_sub_roundingqtvc"
+  "udouble_UDouble_mul_roundingqtvc"
+  "udouble_UDouble_udiv_roundingqtvc"
+  "udouble_UDouble_sub_bound_leftqtvc"
+  "udouble_UDouble_add_roundingqtvc"
+  "udouble_UDouble_uminus_roundingqtvc"
+  "udouble_UDouble_add_bound_rightqtvc"

@@ -1,0 +1,303 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 751) in 'float_quat_comp'' in 'float_quat_comp_norm_shortest' at call 'float_quat_comp' (file math/pprz_algebra_float.c, line 383)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_comp_norm_shortest_call_float_quat_comp_pre_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic15.Axiomatic15
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 751) in 'float_quat_comp'' in 'float_quat_comp_norm_shortest' at call 'float_quat_comp' (file math/pprz_algebra_float.c, line 383)
+":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a_2 a_1 a : addr.
+  let a_3 = (shiftfield_f3_floatquat_qi a_1) in
+  let a_4 = (shiftfield_f3_floatquat_qi a) in
+  let a_5 = (shiftfield_f3_floatquat_qi a_2) in
+  let a_6 = (shiftfield_f3_floatquat_qx a) in
+  let a_7 = (shiftfield_f3_floatquat_qx a_1) in
+  let a_8 = (shiftfield_f3_floatquat_qx a_2) in
+  let a_9 = (shiftfield_f3_floatquat_qy a) in
+  let a_10 = (shiftfield_f3_floatquat_qy a_1) in
+  let a_11 = (shiftfield_f3_floatquat_qy a_2) in
+  let a_12 = (shiftfield_f3_floatquat_qz a) in
+  let a_13 = (shiftfield_f3_floatquat_qz a_1) in
+  let a_14 = (shiftfield_f3_floatquat_qz a_2) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((linked t)) ->
+  ((valid_rw t a_1 4)) ->
+  ((p_rvalid_floatquat t t_1 a)) ->
+  ((p_rvalid_floatquat t t_1 a_2)) ->
+  ((a_3 <> a_4) /\ (a_5 <> a_4) /\ (a_5 <> a_3) /\ (a_6 <> a_3) /\
+   (a_6 <> a_5) /\ (a_7 <> a_4) /\ (a_7 <> a_5) /\ (a_7 <> a_6) /\
+   (a_8 <> a_4) /\ (a_8 <> a_3) /\ (a_8 <> a_6) /\ (a_8 <> a_7) /\
+   (a_9 <> a_3) /\ (a_9 <> a_5) /\ (a_9 <> a_7) /\ (a_9 <> a_8) /\
+   (a_10 <> a_4) /\ (a_10 <> a_5) /\ (a_10 <> a_6) /\ (a_10 <> a_8) /\
+   (a_10 <> a_9) /\ (a_11 <> a_4) /\ (a_11 <> a_3) /\ (a_11 <> a_6) /\
+   (a_11 <> a_7) /\ (a_11 <> a_9) /\ (a_11 <> a_10) /\ (a_12 <> a_3) /\
+   (a_12 <> a_5) /\ (a_12 <> a_7) /\ (a_12 <> a_8) /\ (a_12 <> a_10) /\
+   (a_12 <> a_11) /\ (a_13 <> a_4) /\ (a_13 <> a_5) /\ (a_13 <> a_6) /\
+   (a_13 <> a_8) /\ (a_13 <> a_9) /\ (a_13 <> a_11) /\ (a_13 <> a_12) /\
+   (a_14 <> a_4) /\ (a_14 <> a_3) /\ (a_14 <> a_6) /\ (a_14 <> a_7) /\
+   (a_14 <> a_9) /\ (a_14 <> a_10) /\ (a_14 <> a_12) /\ (a_14 <> a_13))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 732) in 'float_quat_wrap_shortest'' in 'float_quat_comp_norm_shortest' at call 'float_quat_wrap_shortest' (file math/pprz_algebra_float.c, line 384)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_comp_norm_shortest_call_float_quat_wrap_shorte____2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import S12_RealQuatVect_s.S12_RealQuatVect_s
+use import Axiomatic19.Axiomatic19
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 732) in 'float_quat_wrap_shortest'' in 'float_quat_comp_norm_shortest' at call 'float_quat_wrap_shortest' (file math/pprz_algebra_float.c, line 384)
+":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_2 t_1 : map addr real.
+  forall a_2 a_1 a : addr.
+  let a_3 = (shiftfield_f3_floatquat_qi a_1) in
+  let a_4 = (shiftfield_f3_floatquat_qi a) in
+  let a_5 = (shiftfield_f3_floatquat_qi a_2) in
+  let a_6 = (shiftfield_f3_floatquat_qx a) in
+  let a_7 = (shiftfield_f3_floatquat_qx a_1) in
+  let a_8 = (shiftfield_f3_floatquat_qx a_2) in
+  let a_9 = (shiftfield_f3_floatquat_qy a) in
+  let a_10 = (shiftfield_f3_floatquat_qy a_1) in
+  let a_11 = (shiftfield_f3_floatquat_qy a_2) in
+  let a_12 = (shiftfield_f3_floatquat_qz a) in
+  let a_13 = (shiftfield_f3_floatquat_qz a_1) in
+  let a_14 = (shiftfield_f3_floatquat_qz a_2) in
+  let r = t_1[a_3] in
+  let r_1 = t_1[a_7] in
+  let r_2 = t_1[a_10] in
+  let r_3 = t_1[a_13] in
+  let a_15 = (havoc t_1 t_2 a_1 4) in
+  (a_3 <> a_4) ->
+  (a_5 <> a_4) ->
+  (a_5 <> a_3) ->
+  (a_6 <> a_3) ->
+  (a_6 <> a_5) ->
+  (a_7 <> a_4) ->
+  (a_7 <> a_5) ->
+  (a_7 <> a_6) ->
+  (a_8 <> a_4) ->
+  (a_8 <> a_3) ->
+  (a_8 <> a_6) ->
+  (a_8 <> a_7) ->
+  (a_9 <> a_3) ->
+  (a_9 <> a_5) ->
+  (a_9 <> a_7) ->
+  (a_9 <> a_8) ->
+  (a_10 <> a_4) ->
+  (a_10 <> a_5) ->
+  (a_10 <> a_6) ->
+  (a_10 <> a_8) ->
+  (a_10 <> a_9) ->
+  (a_11 <> a_4) ->
+  (a_11 <> a_3) ->
+  (a_11 <> a_6) ->
+  (a_11 <> a_7) ->
+  (a_11 <> a_9) ->
+  (a_11 <> a_10) ->
+  (a_12 <> a_3) ->
+  (a_12 <> a_5) ->
+  (a_12 <> a_7) ->
+  (a_12 <> a_8) ->
+  (a_12 <> a_10) ->
+  (a_12 <> a_11) ->
+  (a_13 <> a_4) ->
+  (a_13 <> a_5) ->
+  (a_13 <> a_6) ->
+  (a_13 <> a_8) ->
+  (a_13 <> a_9) ->
+  (a_13 <> a_11) ->
+  (a_13 <> a_12) ->
+  (a_14 <> a_4) ->
+  (a_14 <> a_3) ->
+  (a_14 <> a_6) ->
+  (a_14 <> a_7) ->
+  (a_14 <> a_9) ->
+  (a_14 <> a_10) ->
+  (a_14 <> a_12) ->
+  (a_14 <> a_13) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((linked t)) ->
+  ((valid_rw t a_1 4)) ->
+  ((p_rvalid_floatquat t t_2 a)) ->
+  ((p_rvalid_floatquat t t_2 a_2)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_float32 r_2)) ->
+  ((is_float32 r_3)) ->
+  ((eqs12_realquatvect_s ((l_l_quatvect_of_floatquat a_15 a_1))
+     ((l_mult_realquatvect ((l_l_quatvect_of_floatquat a_15 a_2))
+        ((l_l_quatvect_of_floatquat a_15 a)))))) ->
+  (((is_finite32 r)) /\ ((is_finite32 r_1)) /\ ((is_finite32 r_2)) /\
+   ((is_finite32 r_3)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 706) in 'float_quat_normalize'' in 'float_quat_comp_norm_shortest' at call 'float_quat_normalize' (file math/pprz_algebra_float.c, line 385)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_comp_norm_shortest_call_float_quat_normalize_p___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import S12_RealQuatVect_s.S12_RealQuatVect_s
+use import Axiomatic19.Axiomatic19
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 706) in 'float_quat_normalize'' in 'float_quat_comp_norm_shortest' at call 'float_quat_normalize' (file math/pprz_algebra_float.c, line 385)
+":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr real.
+  forall a_2 a_1 a : addr.
+  let a_3 = (shiftfield_f3_floatquat_qi a_1) in
+  let a_4 = (shiftfield_f3_floatquat_qi a) in
+  let a_5 = (shiftfield_f3_floatquat_qi a_2) in
+  let a_6 = (shiftfield_f3_floatquat_qx a) in
+  let a_7 = (shiftfield_f3_floatquat_qx a_1) in
+  let a_8 = (shiftfield_f3_floatquat_qx a_2) in
+  let a_9 = (shiftfield_f3_floatquat_qy a) in
+  let a_10 = (shiftfield_f3_floatquat_qy a_1) in
+  let a_11 = (shiftfield_f3_floatquat_qy a_2) in
+  let a_12 = (shiftfield_f3_floatquat_qz a) in
+  let a_13 = (shiftfield_f3_floatquat_qz a_1) in
+  let a_14 = (shiftfield_f3_floatquat_qz a_2) in
+  let r = t_1[a_3] in
+  let r_1 = t_1[a_7] in
+  let r_2 = t_1[a_10] in
+  let r_3 = t_1[a_13] in
+  let r_4 = t_2[a_3] in
+  let r_5 = t_2[a_7] in
+  let r_6 = t_2[a_10] in
+  let r_7 = t_2[a_13] in
+  let a_15 = (havoc t_1 t_3 a_1 4) in
+  (a_3 <> a_4) ->
+  (a_5 <> a_4) ->
+  (a_5 <> a_3) ->
+  (a_6 <> a_3) ->
+  (a_6 <> a_5) ->
+  (a_7 <> a_4) ->
+  (a_7 <> a_5) ->
+  (a_7 <> a_6) ->
+  (a_8 <> a_4) ->
+  (a_8 <> a_3) ->
+  (a_8 <> a_6) ->
+  (a_8 <> a_7) ->
+  (a_9 <> a_3) ->
+  (a_9 <> a_5) ->
+  (a_9 <> a_7) ->
+  (a_9 <> a_8) ->
+  (a_10 <> a_4) ->
+  (a_10 <> a_5) ->
+  (a_10 <> a_6) ->
+  (a_10 <> a_8) ->
+  (a_10 <> a_9) ->
+  (a_11 <> a_4) ->
+  (a_11 <> a_3) ->
+  (a_11 <> a_6) ->
+  (a_11 <> a_7) ->
+  (a_11 <> a_9) ->
+  (a_11 <> a_10) ->
+  (a_12 <> a_3) ->
+  (a_12 <> a_5) ->
+  (a_12 <> a_7) ->
+  (a_12 <> a_8) ->
+  (a_12 <> a_10) ->
+  (a_12 <> a_11) ->
+  (a_13 <> a_4) ->
+  (a_13 <> a_5) ->
+  (a_13 <> a_6) ->
+  (a_13 <> a_8) ->
+  (a_13 <> a_9) ->
+  (a_13 <> a_11) ->
+  (a_13 <> a_12) ->
+  (a_14 <> a_4) ->
+  (a_14 <> a_3) ->
+  (a_14 <> a_6) ->
+  (a_14 <> a_7) ->
+  (a_14 <> a_9) ->
+  (a_14 <> a_10) ->
+  (a_14 <> a_12) ->
+  (a_14 <> a_13) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((linked t)) ->
+  ((valid_rw t a_1 4)) ->
+  ((p_rvalid_floatquat t t_3 a)) ->
+  ((p_rvalid_floatquat t t_3 a_2)) ->
+  ((is_finite32 r)) ->
+  ((is_finite32 r_1)) ->
+  ((is_finite32 r_2)) ->
+  ((is_finite32 r_3)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_float32 r_2)) ->
+  ((is_float32 r_3)) ->
+  ((is_float32 r_4)) ->
+  ((is_float32 r_5)) ->
+  ((is_float32 r_6)) ->
+  ((is_float32 r_7)) ->
+  ((eqs12_realquatvect_s ((l_l_quatvect_of_floatquat a_15 a_1))
+     ((l_mult_realquatvect ((l_l_quatvect_of_floatquat a_15 a_2))
+        ((l_l_quatvect_of_floatquat a_15 a)))))) ->
+  (((is_finite32 r_4)) /\ ((is_finite32 r_5)) /\ ((is_finite32 r_6)) /\
+   ((is_finite32 r_7)))
+
+end
+

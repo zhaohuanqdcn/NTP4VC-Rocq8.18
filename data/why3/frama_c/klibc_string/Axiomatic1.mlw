@@ -1,0 +1,32 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #1)                  --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import A_Length.A_Length
+
+predicate p_exists_first_occurence_of_char (malloc_0 : map int int)
+    (mchar_0 : map addr int) (s : addr) (c : int) (pos_0 : int) =
+    let x = (to_sint8 c) in let x_1 = (l_length mchar_0 s) in
+    (mchar_0[(shift_sint8 s pos_0)] = x) /\ (0 <= pos_0) /\ (pos_0 <= x_1) /\
+    ((-128) <= c) /\ (c <= 127) /\
+    ((valid_rw malloc_0 ((shift_sint8 s 0)) (1 + x_1))) /\
+    (forall i : int. (0 <= i) -> (i < pos_0) ->
+     (mchar_0[(shift_sint8 s i)] <> x))
+
+predicate p_char_in_str (mchar_0 : map addr int) (s : addr) (c : int) =
+    exists i : int. (mchar_0[(shift_sint8 s i)] = c) /\ (0 <= i) /\
+    (i < ((l_length mchar_0 s)))
+
+end
+

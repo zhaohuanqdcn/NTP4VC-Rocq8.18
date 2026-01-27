@@ -1,0 +1,78 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'schedule_cpumask'                       --- *)
+(* ---------------------------------------------------------- *)
+theory A_schedule_cpumask
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function l_idle_cpu int : int
+
+use import Memory.Memory
+
+function l_sched_group_cpus addr : addr
+
+function l_sched_group_mask addr : addr
+
+function l_group_balance_mask addr : addr
+
+function l_group_balance_cpu addr : int
+
+function l_cpu_smt_mask int : addr
+
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+
+predicate p_idle_core (mptr_0 : map addr addr) (mint_0 : map addr int)
+    (cpu_0 : int) =
+    forall i : int.
+    (mint_0[(shift_uint8
+              mptr_0[(shiftfield_f1_cpumask_bits ((l_cpu_smt_mask cpu_0)))]
+              i)] <> 0) -> (0 <= i) -> (i < l_size) ->
+    (((l_idle_cpu i)) <> 0)
+
+use import Cint.Cint
+
+axiom Q_TL_idle_cpu:
+  forall cpu_0 : int
+  [(l_idle_cpu cpu_0)].
+  (is_uint8 ((l_idle_cpu cpu_0)))
+
+axiom Q_mask_refl:
+  forall mptr_0 : map addr addr.
+  forall mint_0 : map addr int.
+  forall i : int.
+  (0 <= i) -> (i < l_size) ->
+    (mint_0[(shift_uint8
+              mptr_0[(shiftfield_f1_cpumask_bits ((l_cpu_smt_mask i)))] i)]
+       <> 0)
+
+axiom Q_mask_symm:
+  forall mptr_0 : map addr addr.
+  forall mint_0 : map addr int.
+  forall i j : int.
+  (mint_0[(shift_uint8
+            mptr_0[(shiftfield_f1_cpumask_bits ((l_cpu_smt_mask j)))] i)]
+     <> 0) -> (0 <= i) -> (i < l_size) -> (0 <= j) -> (j < l_size) ->
+    (mint_0[(shift_uint8
+              mptr_0[(shiftfield_f1_cpumask_bits ((l_cpu_smt_mask i)))] j)]
+       <> 0)
+
+axiom Q_mask_trans:
+  forall mptr_0 : map addr addr.
+  forall mint_0 : map addr int.
+  forall i j k : int.
+  let a = mptr_0[(shiftfield_f1_cpumask_bits ((l_cpu_smt_mask i)))] in
+    (mint_0[(shift_uint8 a j)] <> 0) ->
+    (mint_0[(shift_uint8
+              mptr_0[(shiftfield_f1_cpumask_bits ((l_cpu_smt_mask j)))] k)]
+       <> 0) -> (0 <= i) -> (i < l_size) -> (0 <= j) -> (j < l_size) ->
+    (0 <= k) -> (k < l_size) -> (mint_0[(shift_uint8 a k)] <> 0)
+
+end
+

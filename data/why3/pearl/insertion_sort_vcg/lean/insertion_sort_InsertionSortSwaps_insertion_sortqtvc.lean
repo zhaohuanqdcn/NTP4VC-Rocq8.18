@@ -1,0 +1,11 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.MapEq
+import Why3.map.MapExchange
+import Why3.map.MapPermut
+open Classical
+open Lean4Why3
+namespace insertion_sort_InsertionSortSwaps_insertion_sortqtvc
+theorem insertion_sort'vc (a : List ℤ) : let o1 : ℤ := Int.ofNat (List.length a) - (1 : ℤ); ((1 : ℤ) ≤ o1 + (1 : ℤ) → ((∀(p : ℤ) (q : ℤ), (0 : ℤ) ≤ p ∧ p ≤ q ∧ q < (1 : ℤ) → a[Int.toNat p]! ≤ a[Int.toNat q]!) ∧ List.Perm a a) ∧ (∀(a1 : List ℤ), List.length a1 = List.length a → (∀(i : ℤ), ((1 : ℤ) ≤ i ∧ i ≤ o1) ∧ (∀(p : ℤ) (q : ℤ), (0 : ℤ) ≤ p ∧ p ≤ q ∧ q < i → a1[Int.toNat p]! ≤ a1[Int.toNat q]!) ∧ List.Perm a a1 → (((0 : ℤ) ≤ i ∧ i ≤ i) ∧ List.Perm a a1 ∧ (∀(p : ℤ) (q : ℤ), (0 : ℤ) ≤ p ∧ p ≤ q ∧ q ≤ i → ¬q = i → a1[Int.toNat p]! ≤ a1[Int.toNat q]!)) ∧ (∀(j : ℤ) (a2 : List ℤ), List.length a2 = List.length a1 → ((0 : ℤ) ≤ j ∧ j ≤ i) ∧ List.Perm a a2 ∧ (∀(p : ℤ) (q : ℤ), (0 : ℤ) ≤ p ∧ p ≤ q ∧ q ≤ i → ¬q = j → a2[Int.toNat p]! ≤ a2[Int.toNat q]!) → ((0 : ℤ) < j → ((0 : ℤ) ≤ j ∧ j < Int.ofNat (List.length a2)) ∧ (let o2 : ℤ := j - (1 : ℤ); (0 : ℤ) ≤ o2 ∧ o2 < Int.ofNat (List.length a2))) ∧ (∀(o2 : Bool), (if (0 : ℤ) < j then o2 = (if a2[Int.toNat j]! < a2[Int.toNat (j - (1 : ℤ))]! then true else false) else o2 = false) → (if o2 = true then let o3 : ℤ := j - (1 : ℤ); (((0 : ℤ) ≤ o3 ∧ o3 < Int.ofNat (List.length a2)) ∧ (0 : ℤ) ≤ j ∧ j < Int.ofNat (List.length a2)) ∧ (∀(a3 : List ℤ), List.length a3 = List.length a2 → Lean4Why3.arrayExchange a2 a3 o3 j → ((0 : ℤ) ≤ j ∧ j - (1 : ℤ) < j) ∧ ((0 : ℤ) ≤ j - (1 : ℤ) ∧ j - (1 : ℤ) ≤ i) ∧ List.Perm a a3 ∧ (∀(p : ℤ) (q : ℤ), (0 : ℤ) ≤ p ∧ p ≤ q ∧ q ≤ i → ¬q = j - (1 : ℤ) → a3[Int.toNat p]! ≤ a3[Int.toNat q]!)) else (∀(p : ℤ) (q : ℤ), (0 : ℤ) ≤ p ∧ p ≤ q ∧ q < i + (1 : ℤ) → a2[Int.toNat p]! ≤ a2[Int.toNat q]!) ∧ List.Perm a a2)))) ∧ ((∀(p : ℤ) (q : ℤ), (0 : ℤ) ≤ p ∧ p ≤ q ∧ q < o1 + (1 : ℤ) → a1[Int.toNat p]! ≤ a1[Int.toNat q]!) ∧ List.Perm a a1 → (∀(p : ℤ) (q : ℤ), (0 : ℤ) ≤ p ∧ p ≤ q ∧ q < Int.ofNat (List.length a1) → a1[Int.toNat p]! ≤ a1[Int.toNat q]!) ∧ List.Perm a a1))) ∧ (o1 + (1 : ℤ) < (1 : ℤ) → (∀(p : ℤ) (q : ℤ), (0 : ℤ) ≤ p ∧ p ≤ q ∧ q < Int.ofNat (List.length a) → a[Int.toNat p]! ≤ a[Int.toNat q]!) ∧ List.Perm a a)
+  := sorry
+end insertion_sort_InsertionSortSwaps_insertion_sortqtvc

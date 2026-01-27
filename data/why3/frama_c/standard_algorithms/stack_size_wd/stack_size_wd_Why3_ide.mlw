@@ -1,0 +1,41 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'equal' in 'stack_size_wd'          --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_size_wd_post_equal
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'equal' in 'stack_size_wd'":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let x = (l_size t_1 a) in
+  let x_1 = (l_size t_1 a_1) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((valid_rw t a 3)) ->
+  ((valid_rw t a_1 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((p_invariant t t_2 t_1 a_1)) ->
+  ((p_equal t_2 t_1 t_2 t_1 a_1 a)) ->
+  (x_1 = x)
+
+end
+

@@ -1,0 +1,251 @@
+(* ---------------------------------------------------------- *)
+(* --- Complete behaviors 'nonzero', 'zero'               --- *)
+(* ---------------------------------------------------------- *)
+theory VCzalloc_complete_nonzero_zero
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+
+(*
+goal WP "expl:Complete behaviors 'nonzero', 'zero'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  (0 <= i) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((i = 0) \/ (0 < i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Disjoint behaviors 'nonzero', 'zero'               --- *)
+(* ---------------------------------------------------------- *)
+theory VCzalloc_disjoint_nonzero_zero
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+
+(*
+goal WP "expl:Disjoint behaviors 'nonzero', 'zero'":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  (0 <= i) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((i <> 0) \/ (i <= 0))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns nothing in 'zalloc' (3/3)                  --- *)
+(* ---------------------------------------------------------- *)
+theory VCzalloc_assign_exit_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns nothing in 'zalloc' (3/3)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 i)) ->
+  ((invalid t a_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns nothing in 'zalloc' (3/5)                  --- *)
+(* ---------------------------------------------------------- *)
+theory VCzalloc_assign_normal_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns nothing in 'zalloc' (3/5)":
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 i)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   (((havoc t_1 t_2 a_1 i))[(shift_sint8 a i_1)] = 0)) ->
+  ((invalid t a_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 84) in 'memset'' in 'zalloc' at call 'memset' (file zalloc.c, line 14)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCzalloc_call_memset_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 84) in 'memset'' in 'zalloc' at call 'memset' (file zalloc.c, line 14)
+":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((0 < i) -> ((valid_rw t a_1 i))) ->
+  ((valid_rw t a_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'nonzero' (file /home/root/klibc_framac_wp/include/malloc.h, line 63) in 'zalloc' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCzalloc_nonzero_post_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'nonzero' (file /home/root/klibc_framac_wp/include/malloc.h, line 63) in 'zalloc' (1/2)":
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (null <> a) ->
+  (0 < i) ->
+  (0 <= i) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 i)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   (((havoc t_1 t_2 a_1 i))[(shift_sint8 a i_1)] = 0)) ->
+  ((valid_rw t a_1 (1 + i)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'nonzero' (file /home/root/klibc_framac_wp/include/malloc.h, line 64) in 'zalloc' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCzalloc_nonzero_post_2_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'nonzero' (file /home/root/klibc_framac_wp/include/malloc.h, line 64) in 'zalloc' (1/2)":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  let a_2 = (havoc t_1 t_2 a_1 i) in
+  (null <> a) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 i)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i) ->
+   (a_2[(shift_sint8 a i_2)] = 0)) ->
+  (a_2[(shift_sint8 a i_1)] = 0)
+
+end
+

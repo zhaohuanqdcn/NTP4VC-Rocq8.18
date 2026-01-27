@@ -1,0 +1,16 @@
+session my_exp_log = NTP4Verif +
+theories
+  "my_exp_log_ExpLogApprox_u_exp_boundsqtvc"
+  "my_exp_log_ExpLogApprox_log_2_boundsqtvc"
+  "my_exp_log_ExpLogApprox_log_boundsqtvc"
+  "my_exp_log_ExpLogApprox_u_exp_posqtvc"
+  "my_exp_log_ExpLogLemmas_log_combine_errqtvc"
+  "my_exp_log_ExpLogApprox_exp_boundsqtvc"
+  "my_exp_log_ExpLogLemmas_exp_invqtvc"
+  "my_exp_log_ExpLogLemmas_log_increasingqtvc"
+  "my_exp_log_ExpLogLemmas_exp_increasingqtvc"
+  "my_exp_log_ExpLogLemmas_log_1_minus_xqtvc"
+  "my_exp_log_ExpLogApprox_log2_boundsqtvc"
+  "my_exp_log_ExpLogLemmas_exp_positiveqtvc"
+  "my_exp_log_ExpLogLemmas_log_monotonicqtvc"
+  "my_exp_log_ExpLogLemmas_exp_monotonicqtvc"

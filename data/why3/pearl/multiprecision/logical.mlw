@@ -1,0 +1,510 @@
+module LogicalUtil
+
+  use int.Int
+  use mach.int.Int32
+  use import mach.int.UInt64GMP as Limb
+  use int.Power
+  use ref.Ref
+  use mach.c.C
+  use array.Array
+  use map.Map
+  use types.Types
+  use types.Int32Eq
+  use types.UInt64Eq
+  use lemmas.Lemmas
+  use int.EuclideanDivision
+
+  let ghost pow2_64 () : unit
+    ensures { power 2 64 = radix }
+  = ()
+
+  (* is a logical lemma in ComputerDivision*)
+  let ghost mod_mult (x y z:int) : unit
+    requires { x > 0 }
+    ensures { mod (x * y + z) x = mod z x }
+  = ()
+
+let lsl_mod_ext [@extraction:inline] (x cnt: limb) : limb
+    requires { 0 <= cnt < Limb.length }
+    ensures  { result = mod (x * power 2 cnt) radix }
+    ensures  { result <= radix - power 2 cnt }
+  =
+    let r = lsl_mod x cnt in
+    let ghost p = power 2 (Limb.to_int cnt) in
+    let ghost q = power 2 (Limb.length - Limb.to_int cnt) in
+    let ghost d = div (Limb.to_int x * p) radix in
+    r
+
+  let lsld_ext [@extraction:inline] (x cnt:limb) : (limb,limb)
+    requires { 0 < cnt < Limb.length }
+    returns { (r,d) -> uint64'int r + radix * uint64'int d = (power 2 cnt) * x }
+    returns { (r,_d) -> mod (l2i r) (power 2 cnt) = 0 }
+    returns { (r,_d) -> l2i r <= radix - (power 2 cnt) }
+    returns { (_r,d) -> l2i d < power 2 cnt }
+  =
+    let (r:limb,d:limb) = lsld x cnt in
+    let ghost p = power 2 (l2i cnt) in
+    let ghost q = power 2 (Limb.length - l2i cnt) in
+    (r,d)
+
+  let clz_ext [@extraction:inline] (x:limb) : int32
+    requires { x > 0 }
+    ensures { power 2 result * x < radix }
+    ensures { 2 * power 2 result * x >= radix }
+    ensures { 0 <= result < Limb.length }
+    ensures { power 2 result * x <= radix - power 2 result }
+  =
+    let r = count_leading_zeros x in
+    let ghost p = power 2 (p2i r) in
+    let ghost q = power 2 (Limb.length - p2i r) in
+    r
+end
+
+module Logical
+
+  use int.Int
+  use mach.int.Int32
+  use import mach.int.UInt64GMP as Limb
+  use int.Power
+  use ref.Ref
+  use mach.c.C
+  use array.Array
+  use map.Map
+  use types.Types
+  use types.Int32Eq
+  use types.UInt64Eq
+  use lemmas.Lemmas
+  use int.EuclideanDivision
+  use LogicalUtil
+
+  let wmpn_lshift (r x:t) (sz:int32) (cnt:limb) : limb
+    requires { 0 < cnt < Limb.length }
+    requires { valid r sz }
+    requires { valid x sz }
+    requires { writable r }
+    requires { 0 < sz }
+    requires { offset x <= offset r \/ offset r + sz <= offset x }
+    alias    { r.data with x.data }
+    ensures { value r sz + (power radix sz) * result =
+              old value x sz * (power 2 (cnt)) }
+    ensures { forall j. (j < offset r \/ offset r + sz <= j) ->
+              (pelts r)[j] = old (pelts r)[j] }
+    ensures { min r = old min r /\ max r = old max r
+               /\ plength r = old plength r }
+    ensures { min x = old min x /\ max x = old max x
+               /\ plength x = old plength x }
+    writes  { r.data.elts }
+  =
+    let msb = sz - 1 in
+    let xp = ref (C.incr x msb) in
+    let rp = ref (C.incr r msb) in
+    let ghost ox = pure { x } in
+    let ghost oxp = ref (C.incr ox msb) in
+    let high = ref 0 in
+    let low = ref (C.get !xp) in
+    let i = ref msb in
+    let l, retval = lsld_ext !low cnt in
+    high := l;
+    let ghost c = power 2 (uint64'int cnt) in
+    while (!i > 0) do
+      variant { !i }
+      invariant { 0 <= !i < sz }
+      invariant { radix
+                  * value_sub (pelts r) (r.offset + 1 + !i) (r.offset + sz)
+                  + (power radix (sz - !i)) * retval + !high
+                  = value !oxp (sz - !i) * c }
+      invariant { (!rp).offset = r.offset + !i }
+      invariant { (!xp).offset = x.offset + !i }
+      invariant { (!oxp).offset = !xp.offset }
+      invariant { plength !rp = plength r }
+      invariant { !rp.min = r.min }
+      invariant { !rp.max = r.max }
+      invariant { writable !rp }
+      invariant { pelts !rp = pelts r }
+      invariant { plength !xp = plength x }
+      invariant { !xp.min = ox.min }
+      invariant { !xp.max = ox.max }
+      invariant { !oxp.min = ox.min }
+      invariant { !oxp.max = ox.max }
+      invariant { pelts !xp = pelts x }
+      invariant { pelts !oxp = pelts ox }
+      invariant { !high <= radix - c }
+      invariant unchanged { forall j. 0 <= j <= !i ->
+                  (pelts x)[offset x + j] = (pelts ox)[offset x + j] }
+      invariant { forall j. (j < offset r \/ offset r + sz <= j) ->
+              (pelts r)[j] = old (pelts r)[j] }
+      label StartLoop in
+      xp.contents <- C.incr !xp (-1);
+      oxp.contents <- C.incr !oxp (-1);
+      low := C.get !xp;
+      let ghost olow = C.get !oxp in
+      let l,h = lsld_ext !low cnt in
+      let ghost v = !high + h in
+      C.set !rp (!high + h);
+      high := l;
+      let ghost k = p2i !i in
+      i := !i - 1;
+      rp.contents <- C.incr !rp (-1);
+   done;
+   label EndLoop in
+   C.set r !high;
+   retval
+
+  use ptralias.Alias
+
+  let wmpn_lshift_sep [@extraction:inline] (r x:t) (sz:int32) (cnt:limb) : limb
+    requires { 0 < cnt < Limb.length }
+    requires { valid r sz }
+    requires { valid x sz }
+    requires { writable r }
+    requires { 0 < sz }
+    ensures { value r sz + (power radix sz) * result =
+              old value x sz * (power 2 (cnt)) }
+    ensures { forall j. (j < offset r \/ offset r + sz <= j) ->
+              (pelts r)[j] = old (pelts r)[j] }
+    ensures { forall j. (pelts x)[j] = old (pelts x)[j] }
+    ensures { min r = old min r /\ max r = old max r
+               /\ plength r = old plength r }
+    ensures { min x = old min x /\ max x = old max x
+               /\ plength x = old plength x }
+  =
+    let ghost ox = pure { x } in
+    let nr, nx, m = open_shift_sep r x sz in
+    label Shift in
+    let res = wmpn_lshift nr nx sz cnt in
+    let ghost onx = pure { nx } in
+    close_shift_sep r x sz nr nx m;
+    res
+
+  let wmpn_rshift (r x:t) (sz:int32) (cnt:limb) : limb
+    requires { 0 < cnt < Limb.length }
+    requires { valid x sz }
+    requires { valid r sz }
+    requires { 0 < sz }
+    requires { writable r }
+    requires { offset r <= offset x \/ offset x + sz <= offset r }
+    alias    { r.data with x.data }
+    ensures { result + radix * value r sz
+              = old (value x sz) * (power 2 (Limb.length - cnt)) }
+    ensures { forall j. (j < offset r \/ offset r + sz <= j) ->
+              (pelts r)[j] = old (pelts r)[j] }
+    ensures { min r = old min r /\ max r = old max r
+               /\ plength r = old plength r }
+    ensures { min x = old min x /\ max x = old max x
+               /\ plength x = old plength x }
+    writes  { r.data.elts }
+  =
+    let tnc = (64:uint64) - cnt in
+    let msb = sz - 1 in
+    let xp = ref (C.incr x 0) in
+    let ghost ox = pure { x } in
+    let ghost oxp = ref (C.incr ox 0) in
+    let rp = ref (C.incr r 0) in
+    let high = ref (C.get !xp) in
+    let retval, h = lsld_ext !high tnc in
+    let low = ref h in
+    let i = ref 0 in
+    let ghost c = power 2 (uint64'int tnc) in
+    while (!i < msb) do
+      variant { sz - !i }
+      invariant { 0 <= !i <= msb }
+      invariant { retval + radix * (value r !i
+                  + (power radix !i) * !low)
+                  = value ox (!i+1) * c }
+      invariant { (!rp).offset = r.offset + !i }
+      invariant { (!xp).offset = x.offset + !i }
+      invariant { (!oxp).offset = !xp.offset }
+      invariant { plength !rp = plength r }
+      invariant { !rp.min = r.min }
+      invariant { !rp.max = r.max }
+      invariant { writable !rp }
+      invariant { plength !xp = plength x }
+      invariant { !xp.min = x.min }
+      invariant { !xp.max = x.max }
+      invariant { !oxp.min = ox.min }
+      invariant { !oxp.max = ox.max }
+      invariant { pelts !rp = pelts r }
+      invariant { pelts !xp = pelts x }
+      invariant { pelts !oxp = pelts ox }
+      invariant { !low < c }
+      invariant unchanged { forall j. !i <= j < sz ->
+                  (pelts x)[offset x + j] = (pelts ox)[offset x + j] }
+      invariant { forall j. (j < offset r \/ offset r + sz <= j) ->
+              (pelts r)[j] = old (pelts r)[j] }
+      label StartLoop in
+      xp.contents <- C.incr !xp 1;
+      oxp.contents <- C.incr !oxp 1;
+      high := C.get !xp;
+      let ghost ohigh = C.get !oxp in
+      let l,h = lsld_ext !high tnc in
+      let ghost v = !low + l in
+      C.set !rp (!low + l);
+      low := h;
+      (*nonlinear part*)
+      i := !i + 1;
+      rp.contents <- C.incr !rp 1;
+    done;
+    label EndLoop in
+    C.set !rp !low;
+    retval
+
+  let wmpn_rshift_sep [@extraction:inline] (r x:t) (sz:int32) (cnt:limb) : limb
+    requires { valid x sz }
+    requires { valid r sz }
+    requires { 0 < cnt < Limb.length }
+    requires { 0 < sz }
+    requires { writable r }
+    ensures { result + radix * value r sz
+              = value x sz * (power 2 (Limb.length - cnt)) }
+    ensures { forall j. (j < offset r \/ offset r + sz <= j) ->
+              (pelts r)[j] = old (pelts r)[j] }
+    ensures { pelts x =  old pelts x }
+    ensures { min x = old min x /\ max x = old max x
+               /\ plength x = old plength x }
+    ensures { min r = old min r /\ max r = old max r
+               /\ plength r = old plength r }
+=
+    let ghost ox = pure { x } in
+    let nr, nx, m = open_shift_sep r x sz in
+    label Shift in
+    let res = wmpn_rshift nr nx sz cnt in
+    let ghost onx = pure { nx } in
+    let ghost onr = pure { nr } in
+    close_shift_sep r x sz nr nx m;
+    res
+
+end
+
+module LogicalOld
+
+  use int.Int
+  use mach.int.Int32
+  use import mach.int.UInt64GMP as Limb
+  use int.Power
+  use ref.Ref
+  use mach.c.C
+  use array.Array
+  use map.Map
+  use types.Types
+  use types.Int32Eq
+  use types.UInt64Eq
+  use lemmas.Lemmas
+  use int.EuclideanDivision
+  use LogicalUtil
+
+  (** `wmpn_lshift r x sz cnt` shifts `(x, sz)` `cnt` bits to the left and
+      writes the result in `(r, sz)`. Returns the `cnt` most significant
+      bits of `(x, sz)`. Corresponds to `mpn_lshift`. *)
+  (*TODO overlapping allowed if r >= x*)
+  let wmpn_lshift (r x:t) (sz:int32) (cnt:limb) : limb
+    requires { 0 < cnt < Limb.length }
+    requires { valid r sz }
+    requires { valid x sz }
+    requires { writable r }
+    requires { 0 < sz }
+    ensures { value r sz + (power radix sz) * result =
+              value x sz * (power 2 (cnt)) }
+  =
+    let msb = sz - 1 in
+    let xp = ref (C.incr x msb) in
+    let rp = ref (C.incr r msb) in
+    let high = ref 0 in
+    let low = ref (C.get !xp) in
+    let i = ref msb in
+    let l, retval = lsld_ext !low cnt in
+    high := l;
+    while (!i > 0) do
+      variant { !i }
+      invariant { 0 <= !i < sz }
+      invariant { radix * value_sub (pelts r) (r.offset + 1 + !i) (r.offset + sz)
+                  + (power radix (sz - !i)) * retval + !high
+                = value !xp (sz - !i) * (power 2 (cnt)) }
+      invariant { (!rp).offset = r.offset + !i }
+      invariant { (!xp).offset = x.offset + !i }
+      invariant { plength !rp = plength r }
+      invariant { !rp.min = r.min }
+      invariant { !rp.max = r.max }
+      invariant { writable !rp }
+      invariant { pelts !rp = pelts r }
+      invariant { plength !xp = plength x }
+      invariant { !xp.min = x.min }
+      invariant { !xp.max = x.max }
+      invariant { pelts !xp = pelts x }
+      invariant { !high <= radix - power 2 (cnt) }
+      label StartLoop in
+      xp.contents <- C.incr !xp (-1);
+      low := C.get !xp;
+      let l,h = lsld_ext !low cnt in
+      let ghost v = !high + h in
+      C.set !rp (!high + h);
+      rp.contents <- C.incr !rp (-1);
+      high := l;
+      let ghost k = p2i !i in
+      i := !i - 1;
+   done;
+   C.set r !high;
+   retval
+
+  (** `wmpn_rshift r x sz cnt` shifts `(x, sz)` `cnt` bits to the right and
+      writes the result in `(r, sz)`. Returns the `cnt` least significant
+      bits of `(x, sz)`. Corresponds to `mpn_rshift`. *)
+  let wmpn_rshift (r x:t) (sz:int32) (cnt:limb) : limb
+    requires { valid x sz }
+    requires { valid r sz }
+    requires { 0 < cnt < Limb.length }
+    requires { 0 < sz }
+    requires { writable r }
+    ensures { result + radix * value r sz
+              = value x sz * (power 2 (Limb.length - cnt)) }
+  =
+    let tnc = (64:uint64) - cnt in
+    let msb = sz - 1 in
+    let xp = ref (C.incr x 0) in
+    let rp = ref (C.incr r 0) in
+    let high = ref (C.get !xp) in
+    let retval, h = lsld_ext !high tnc in
+    let low = ref h in
+    let i = ref 0 in
+    let ghost c = power 2 (uint64'int tnc) in
+    while (!i < msb) do
+      variant { sz - !i }
+      invariant { 0 <= !i <= msb }
+      invariant { retval + radix * (value r !i
+                  + (power radix !i) * !low)
+                  = value x (!i+1) * c }
+      invariant { (!rp).offset = r.offset + !i }
+      invariant { (!xp).offset = x.offset + !i }
+      invariant { plength !rp = plength r }
+      invariant { !rp.min = r.min }
+      invariant { !rp.max = r.max }
+      invariant { writable !rp }
+      invariant { plength !xp = plength x }
+      invariant { !xp.min = x.min }
+      invariant { !xp.max = x.max }
+      invariant { pelts !rp = pelts r }
+      invariant { pelts !xp = pelts x }
+      invariant { !low < c}
+      label StartLoop in
+      xp.contents <- C.incr !xp 1;
+      high := C.get !xp;
+      let l,h = lsld_ext !high tnc in
+      let ghost v = !low + l in
+      C.set !rp (!low + l);
+      low := h;
+      (*nonlinear part*)
+      i := !i + 1;
+      rp.contents <- C.incr !rp 1;
+    done;
+    label EndLoop in
+    C.set !rp !low;
+    retval
+
+  let wmpn_lshift_in_place (x:t) (sz:int32) (cnt:limb) : limb
+    requires { 0 < cnt < Limb.length }
+    requires { valid x sz }
+    requires { writable x }
+    requires { 0 < sz }
+    ensures  { value x sz + (power radix sz) * result =
+               value (old x) sz * power 2 cnt }
+  =
+    label Start in
+    let msb = sz - 1 in
+    let xp = ref (C.incr x msb) in
+    let ghost ox = { x } in
+    let ghost oxp = ref (C.incr ox msb) in
+    let high = ref 0 in
+    let low = ref (C.get !xp) in
+    let i = ref msb in
+    let l, retval = lsld_ext !low cnt in
+    high := l;
+    let ghost c = power 2 (l2i cnt) in
+    while (!i > 0) do
+      variant   { !i }
+      invariant { 0 <= !i < sz }
+      invariant { radix * value_sub (pelts x) (x.offset + !i + 1) (x.offset + sz)
+                    + (power radix (sz - !i)) * retval + !high
+                  =  value !oxp (sz - !i) * c }
+      invariant { (!xp).offset = x.offset + !i }
+      invariant { (!oxp).offset = x.offset + !i }
+      invariant { plength !oxp = plength x }
+      invariant { !oxp.min = x.min }
+      invariant { !oxp.max = x.max }
+      invariant { pelts !oxp = pelts ox }
+      invariant { plength !xp = plength x }
+      invariant { !xp.min = x.min }
+      invariant { !xp.max = x.max }
+      invariant { writable !xp }
+      invariant { pelts !xp = pelts x }
+      invariant { !high <= radix - c }
+      invariant { forall j. 0 <= j <= !i ->
+                  (pelts x)[offset x + j] = (pelts ox)[offset x + j] }
+      label StartLoop in
+      xp.contents <- C.incr !xp (-1);
+      oxp.contents <- C.incr !oxp (-1);
+      low := C.get !xp;
+      let ghost olow = C.get !oxp in
+      let l, h = lsld_ext !low cnt in
+      let ghost v = !high + h in
+      C.set_ofs !xp 1 (!high + h);
+      high := l;
+      (* nonlinear part *)
+      (* proof by reflection *)
+      i := !i - 1;
+    done;
+    C.set x !high;
+    retval
+
+  let wmpn_rshift_in_place (x:t) (sz:int32) (cnt:limb) : limb
+    requires { valid x sz }
+    requires { writable x }
+    requires { 0 < cnt < Limb.length }
+    requires { 0 < sz }
+    ensures  { result + radix * value x sz
+               = value (old x) sz * (power 2 (Limb.length - cnt)) }
+  =
+    let tnc = (64:uint64) - cnt in
+    let msb = sz - 1 in
+    let xp = ref (C.incr x 0) in
+    let ghost ox = { x } in
+    let ghost oxp = ref (C.incr ox 0) in
+    let high = ref (C.get !xp) in
+    let retval, h = lsld_ext !high tnc in
+    let low = ref h in
+    let i = ref 0 in
+    let ghost c = power 2 (l2i tnc) in
+    while (!i < msb) do
+      variant { sz - !i }
+      invariant { 0 <= !i <= msb }
+      invariant { retval + radix * (value x !i + (power radix !i) * !low)
+                  = value ox (!i+1) * c }
+      invariant { (!xp).offset = x.offset + !i }
+      invariant { (!oxp).offset = x.offset + !i }
+      invariant { plength !oxp = plength x }
+      invariant { !oxp.min = x.min }
+      invariant { !oxp.max = x.max }
+      invariant { pelts !oxp = pelts ox }
+      invariant { plength !xp = plength x }
+      invariant { !xp.min = x.min }
+      invariant { !xp.max = x.max }
+      invariant { writable !xp }
+      invariant { pelts !xp = pelts x }
+      invariant { !low < c }
+      invariant { forall j. !i <= j < sz ->
+                  (pelts x)[x.offset + j] = (pelts ox)[x.offset + j] }
+      label StartLoop in
+      xp.contents <- C.incr !xp 1;
+      oxp.contents <- C.incr !oxp 1;
+      high := C.get !xp;
+      let ghost ohigh = C.get !oxp in
+      let l, h = lsld_ext !high tnc in
+      let ghost v = !low + l in
+      C.set_ofs !xp (-1) (!low + l);
+      low := h;
+      (* nonlinear part *)
+      i := !i + 1;
+    done;
+    label EndLoop in
+    C.set_ofs x msb !low;
+    retval
+
+end

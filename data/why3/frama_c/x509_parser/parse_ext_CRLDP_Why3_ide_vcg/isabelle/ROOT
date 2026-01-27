@@ -1,0 +1,4 @@
+session parse_ext_CRLDP_Why3_ide = NTP4Verif +
+theories
+  "parse_ext_CRLDP_Why3_ide_VCparse_ext_CRLDP_loop_inv_preserved_goal0"
+  "parse_ext_CRLDP_Why3_ide_VCparse_ext_CRLDP_loop_inv_established_goal1"

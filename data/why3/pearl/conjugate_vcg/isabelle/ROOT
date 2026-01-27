@@ -1,0 +1,9 @@
+session conjugate = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "conjugate_Test_testqtvc"
+  "conjugate_Conjugate"
+  "conjugate_Conjugate_conjugateqtvc"
+  "conjugate_Test_benchqtvc"
+  "conjugate_Conjugate32_conjugateqtvc"

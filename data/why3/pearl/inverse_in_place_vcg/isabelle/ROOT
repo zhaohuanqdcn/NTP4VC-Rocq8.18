@@ -1,0 +1,9 @@
+session inverse_in_place = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "inverse_in_place_Harness_test2qtvc"
+  "inverse_in_place_InverseInPlace"
+  "inverse_in_place_InverseInPlace_inverse_in_placeqtvc"
+  "inverse_in_place_Harness_test1qtvc"
+  "inverse_in_place_InverseInPlace_is_permutation_inverseqtvc"

@@ -1,0 +1,45 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Variables                                   --- *)
+(* ---------------------------------------------------------- *)
+theory Globals
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function l_matchmap_16405 : int = 16406
+
+function l_numbuf_7638 : int = 7639
+
+function g_message_16589 : int = 16590
+
+function g_buf_16729 : int = 16730
+
+use import Memory.Memory
+
+axiom Q_L_matchmap_16405_region: ((region l_matchmap_16405)) = 2
+
+axiom Q_L_matchmap_16405_linked:
+  forall t : map int int. ((linked t)) -> (t[l_matchmap_16405] = 0)
+
+axiom Q_L_numbuf_7638_region: ((region l_numbuf_7638)) = 2
+
+axiom Q_L_numbuf_7638_linked:
+  forall t : map int int. ((linked t)) -> (t[l_numbuf_7638] = 0)
+
+axiom Q_G_message_16589_region: ((region g_message_16589)) = 0
+
+axiom Q_G_message_16589_linked:
+  forall t : map int int. ((linked t)) -> (t[g_message_16589] = 32)
+
+axiom Q_G_buf_16729_region: ((region g_buf_16729)) = 0
+
+axiom Q_G_buf_16729_linked:
+  forall t : map int int. ((linked t)) -> (t[g_buf_16729] = 64)
+
+end
+

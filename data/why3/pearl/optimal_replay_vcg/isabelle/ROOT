@@ -1,0 +1,7 @@
+session optimal_replay = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "optimal_replay_OptimalReplay"
+  "optimal_replay_OptimalReplay_distanceqtvc"
+  "optimal_replay_OptimalReplay_nqtvc"

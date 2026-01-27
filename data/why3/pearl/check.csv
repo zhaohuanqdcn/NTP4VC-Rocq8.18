@@ -1,0 +1,325 @@
+add_list.mlw,"Looking at the DIFF, I can see the following changes:
+
+1. **Lines 51-52**: Two assertion statements were removed:
+   - `assert { s = 22 };`
+   - `assert { f = 4.7 }`
+   And replaced with `()`
+
+2. **Lines 88-89**: The same two assertion statements were removed:
+   - `assert { s = 22 };`
+   - `assert { f = 4.7 }`
+   And replaced with `()`
+
+**Analysis:**
+
+1. **HIGH PRIORITY**: No function/procedure specifications appear to be affected in this diff - none were removed or modified.
+
+2. **HIGH PRIORITY**: No loop invariants or variants are visible in this diff - none were affected.
+
+3. **MEDIUM PRIORITY**: No lemma transformations are present in this diff.
+
+4. **LOW PRIORITY**: The assertions were properly removed according to the transformation rules. The removal of `assert { formula }` statements and replacement with `()` is correct behavior.
+
+The transformations shown are all correct:
+- Only assertion annotations were removed (which should be removed)
+- No essential program constructs were affected
+- The semantic meaning is preserved (the assertions were likely used for verification purposes and their removal doesn't affect the program logic)
+
+**CORRECT**"
+algo63.mlw,"Looking at this DIFF, I need to analyze the transformations made to the Why3 code:
+
+**Changes made:**
+1. Removed `assert { exchange (old a) a i j }` from the `exchange` function
+2. Removed `variant { 1 + !j - !i }` from the `up_down` recursive function
+3. Removed `assert { !j < !i \/ !j = !i = m \/ !j = !i = n }`
+
+**Analysis:**
+
+1. **HIGH PRIORITY - Function/procedure specifications**: All `requires` and `ensures` clauses are preserved ✓
+
+2. **HIGH PRIORITY - Loop specifications**: The `variant { 1 + !j - !i }` clause was removed from the recursive function `up_down`. This is a **critical issue** because variant clauses are essential for termination proofs and should be preserved according to the rules.
+
+3. **MEDIUM PRIORITY - Lemma transformations**: No lemmas were present in this code, so this doesn't apply.
+
+4. **LOW PRIORITY - Assertions**: The assertions were correctly removed ✓
+
+The removal of the variant clause from the recursive function `up_down` violates the preservation rule for function specifications. Variant clauses are part of the function specification and must be preserved to maintain the semantic meaning and termination guarantees.
+
+**INCORRECT: HIGH PRIORITY - Variant clause was removed from recursive function up_down**"
+bignum.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clauses and changed function bodies incorrectly
+
+The transformations have two issues:
+
+1. The variant clauses `variant { n }` were removed from both lemmas, but these should be preserved as they are part of the function specifications.
+
+2. The recursive function bodies `match n with Nil -> () | Cons _ r -> nonneg r end` and `match n with Nil -> () | Cons _ r -> msd r end` were replaced with simple `()`, but these contain essential program logic that should be preserved even in ghost functions.
+
+The correct transformation should preserve the variant clauses and the functional code structure while only changing the lemma declaration syntax."
+coincidence_count.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clause from recursive lemma bagofincreasing
+
+The transformation incorrectly removed the `variant { length a - i }` clause from the recursive lemma `bagofincreasing`. According to the transformation rules, variant clauses should only be removed from transformed lemmas, but this was a recursive lemma where the variant clause is essential for termination proof. The original lemma had a recursive call `bagofincreasing a (i+1) x` which was also removed, but the variant clause should have been preserved if the recursive structure was being maintained, or the entire recursive logic should have been consistently transformed."
+counting_sort.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clause that should be preserved in ghost function
+
+The lemma `eqlt` was transformed from:
+```
+let rec lemma eqlt (a: array int) (v: int) (l u: int)
+  requires { k_values a }
+  requires { 0 <= v < k }
+  requires { 0 <= l < u <= length a }
+  ensures  { numlt a v l u + numeq a v l u = numlt a (v+1) l u }
+  variant  { u - l }
+= if l < u-1 then eqlt a v (l+1) u
+```
+
+to:
+```
+let ghost eqlt (a: array int) (v: int) (l u: int) : unit
+  requires { k_values a }
+  requires { 0 <= v < k }
+  requires { 0 <= l < u <= length a }
+  ensures  { numlt a v l u + numeq a v l u = numlt a (v+1) l u }
+= ()
+```
+
+The variant clause `variant { u - l }` was incorrectly removed. According to the rules, function/procedure specifications including variant clauses must be preserved. The variant clause should remain in the ghost function transformation."
+decrease1.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clause and body logic incorrectly
+
+The transformation removed the variant clause `{ j - i }` from the recursive lemma, which should be preserved according to the rules. Additionally, the recursive call `decrease1_induction a (i+1) j` was replaced with `()`, but the transformation should preserve the logical structure while only changing the syntax from `let rec lemma` to `let ghost`."
+defunctionalization.mlw,"INCORRECT: HIGH PRIORITY - Function variant clauses were removed from mutually recursive functions
+
+The diff shows that variant clauses were removed from multiple mutually recursive function pairs:
+1. `continue_2` and `eval_2` functions (lines 249, 259, 357, 367)
+2. `continue_4` and `eval_4` functions (lines 693, 705)
+3. `decompose_term` and `decompose_cont` functions (lines 903, 916)
+4. `eval_1` and `eval_2` functions (lines 1045, 1049, 1119, 1139)
+
+Variant clauses on functions/procedures are essential program constructs that must be preserved as they ensure termination of recursive functions. These should not be removed during lemma transformation."
+disamb.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clauses that should be preserved and removed mutual recursion structure
+
+The transformation incorrectly:
+1. Removed variant clauses from `di_str` and `oi_str` functions - variant clauses in function specifications should be preserved
+2. Broke the mutual recursion structure by transforming `with ghost decomp_last_plus` into a separate `let ghost decomp_last_plus` - this changes the semantic meaning
+3. Removed variant clause from `decomp_last_plus` which should be preserved as a function specification"
+fact_vc_sp.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed from fact_rec function
+fenwick.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clauses and changed recursive calls to unit return, but lemma calls were changed from ghost calls to regular calls instead of being removed"
+fib_memo.mlw,INCORRECT: HIGH PRIORITY - Function variant clauses were removed from fibo and memo_fibo functions
+fill.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed
+infinity_of_primes.mlw,"INCORRECT: HIGH PRIORITY - Function return type and semantics were corrupted in lemma transformation. The function `prime_factor` was transformed from returning `(p: int)` with postconditions ensuring `p` is prime and divides `n`, to being called as `let p = (x+1)` which completely breaks the semantic contract and program logic."
+insertion_sort_list.mlw,INCORRECT: HIGH PRIORITY - Function variant clauses were removed from recursive functions 'insert' and 'insertion_sort'
+knuth_prime_numbers.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed from 'test' function
+longest_increasing_subsequence.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed from liss_from recursive function
+mccarthy.mlw,INCORRECT: HIGH PRIORITY - Function variant clauses were removed from recursive functions. Variant clauses are essential specifications that must be preserved to ensure termination proofs remain valid.
+nistonacci.mlw,INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clause which should be preserved for recursive lemmas
+pairing_heap.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation syntax error: variant clauses were incorrectly removed from transformed lemmas
+
+The transformation removed variant clauses from the lemma transformations, but according to the rules, variant clauses should be preserved in function/procedure specifications. The variant clauses are part of the specification and should remain in the transformed ghost functions.
+
+For example:
+- Original: `let rec lemma size_nonneg (h: raw_heap) ... variant { h } = ...`
+- Should be: `let ghost size_nonneg (h: raw_heap) : unit ... variant { h } = ()`
+- Actually transformed to: `let ghost size_nonneg (h: raw_heap) : unit ... = ()` (missing variant)"
+proper_cuts.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed from proper_cuts function
+queue_two_lists.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clauses that should be preserved in recursive lemmas
+
+The transformations removed the `variant { l1 }` and `variant { l }` clauses from the recursive lemmas `nth_append` and `nth_rev`. According to the rules, variant clauses should be removed from transformed lemmas, but these are essential for termination proof in recursive contexts. The lemma bodies were also correctly simplified to `()`, but the variant removal in recursive lemmas may affect verification."
+relabel.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed from relabel function
+schorr_waite_with_ghost_monitor.mlw,"INCORRECT: HIGH PRIORITY - Function variant clause was removed from recursive_monitor function
+
+The diff shows that a variant clause `variant { cardinal graph - cardinal gray_nodes }` was removed from the `recursive_monitor` function. Variant clauses are essential function specifications that must be preserved as they ensure termination and are part of the program's correctness specification."
+sorted_list.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed from 'find' function
+there_and_back_again.mlw,INCORRECT: HIGH PRIORITY - Function variant clauses were removed from convolution_rec and palindrome_rec functions
+toy_compiler.mlw,"INCORRECT: HIGH PRIORITY - Variant clause was removed from recursive lemma soundness_gen. The original lemma had ""variant { e }"" which should be preserved in the transformation as it's essential for termination proof."
+tree_of_array.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed from tree_of_array_aux
+tree_of_list.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed from tree_of_list_aux
+verifythis_2016_tree_traversal.mlw,"INCORRECT: HIGH PRIORITY - Function variant clause was removed from recursive function
+
+The transformation incorrectly removed the `rec` keyword and function bodies from recursive ghost functions while keeping their variant clauses. This creates inconsistent specifications:
+
+1. `ext_set` was changed from `let rec ghost` to `let ghost` but still has `variant { t }` - non-recursive functions cannot have variant clauses
+2. `unicity` has the same issue - transformed to non-recursive but retains `variant { t }`
+3. These functions had their recursive implementations replaced with `= ()` but kept their variant specifications, which is semantically incorrect
+
+The variant clauses should have been removed when transforming these recursive lemmas to simple ghost functions."
+verifythis_2017_tree_buffer.mlw,"INCORRECT: HIGH PRIORITY - Variant clause was removed from function specification
+
+The transformation removed the `variant { l1 }` clause from the lemma, but variant clauses in function/procedure specifications must be preserved according to the rules. While the lemma was correctly transformed from recursive to ghost function syntax, the variant specification should have been maintained."
+verifythis_2018_le_rouge_et_le_noir_2.mlw,"INCORRECT: HIGH PRIORITY - Function variant clause was removed from bij_preserve function
+
+The diff shows that the `variant { cardinal p }` clause was removed from the `bij_preserve` function. Function specifications including variant clauses must be preserved as they are essential for termination proofs and program correctness. This is not a lemma transformation but removal of a critical specification from a regular function."
+verifythis_2019_cartesian_trees.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation syntax error in all_descendant_root function signature
+
+The transformation of the recursive lemma `all_descendant_root` has incorrect syntax:
+
+```
+let ghost all_descendant_root (a dirs root j) : unit
+```
+
+This is missing proper parameter type annotations. The original was:
+
+```
+let rec lemma all_descendant_root a dirs root j
+```
+
+The transformed version should have explicit types for all parameters (a, dirs, root, j) in the function signature, but they are missing, making this syntactically invalid Why3 code."
+verifythis_2021_lexicographic_permutations_1.mlw,"INCORRECT: HIGH PRIORITY - Loop invariant was incorrectly modified from `s[i] = A.(a[i])` to `s[i] = A.(a[k])` on line 95, changing the semantic meaning of the specification"
+verifythis_2021_lexicographic_permutations_2.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clause from recursive lemma
+
+The transformation incorrectly removed the variant clause from the recursive lemma `to_list_array_eq_from`. In the original code:
+
+```
+let rec lemma to_list_array_eq_from (a1 a2 : array int) (i : int) : unit
+    variant { length a1 - i }
+    requires { 0 <= i <= length a1}
+    requires { array_eq a1 a2 }
+    ensures { to_list_from i a1 = to_list_from i a2 }
+```
+
+This was transformed to:
+
+```
+let ghost to_list_array_eq_from (a1 a2 : array int) (i : int) : unit
+    requires { 0 <= i <= length a1}
+    requires { array_eq a1 a2 }
+    ensures { to_list_from i a1 = to_list_from i a2 }
+```
+
+The variant clause `variant { length a1 - i }` should have been preserved as it's part of the function specification, not a lemma-specific construct that should be removed during transformation."
+verifythis_PrefixSumRec.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clauses from recursive lemmas phase1_frame and phase1_frame2, and replaced their recursive proof bodies with empty ""()"" implementations, which breaks the correctness of the transformation since these were recursive lemmas with meaningful proof structure."
+verifythis_fm2012_treedel.mlw,INCORRECT: MEDIUM PRIORITY - Lemma calls were not properly removed. The code still contains calls to 'extensionality' and other lemma functions that should have been removed according to the transformation rules.
+warshall_algorithm.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation has incorrect parameter types. The ghost functions `weakening` and `decomposition` declare parameters like `m i j k1 k2: int` where `m` should be `matrix bool` type, not `int`. The original lemmas had correct types: `forall m i j k1 k2` where `m` was implicitly `matrix bool`."
+array_of_list.mlw,INCORRECT: HIGH PRIORITY - Function variant clause was removed from fill function
+bitvector_examples.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation has incorrect parameter types. In the transformation of lemma ""ttt"", the parameters are declared as ""(x y : int)"" but should be ""(x y : t)"" to match the original lemma's quantified variables which use predicates ""add_over"", ""ult"" that operate on type ""t"", not ""int""."
+mutual_recursion.mlw,INCORRECT: HIGH PRIORITY - Function variant clauses were removed from mutually recursive functions f1 and f2
+search.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation syntax error in shorter_path function signature
+
+The transformation of `shorter_path` has incorrect syntax:
+```
+let ghost shorter_path (s t: state) (n m: int) : (r: state) : unit
+```
+
+This has two return type annotations `(r: state)` and `unit`, which is invalid syntax. It should be:
+```
+let ghost shorter_path (s t: state) (n m: int) (r: state) : unit
+```
+
+Additionally, the transformation of `path_last` incorrectly changed the return parameter from the function signature to a regular parameter, which changes the function's interface."
+avl/monoid.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clause from function specification
+
+The transformation of `agg_cat` lemma is incorrect. The original code has:
+
+```
+let rec lemma agg_cat (f:'a -> t) (s1 s2:seq 'a)
+  ensures { agg f (s1++s2) = op (agg f s1) (agg f s2) }
+  variant { length s1 }
+= if length s1 <> 0 then let s3 = s1[1 ..] in agg_cat f s3 s2
+```
+
+The transformation removed the `variant { length s1 }` clause, but this is a function specification that must be preserved according to the rules. The variant clause is part of the semantic specification and should remain in the transformed version."
+multiprecision/div.mlw,"INCORRECT: HIGH PRIORITY - Function requires clause was removed
+
+The diff shows that in the `div3by2_inv` function, the `requires` clause `{ reciprocal_3by2 v dh dl }` was removed. This is a critical function specification that must be preserved as it defines the precondition for the function to operate correctly. Removing function preconditions changes the semantic meaning and contract of the function, which violates the transformation rules."
+multiprecision/get_str.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+multiprecision/lemmas.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+multiprecision/lineardecision.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+multiprecision/logical.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+multiprecision/mpz.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+multiprecision/stringlemmas.mlw,"INCORRECT: HIGH PRIORITY - Function variant clauses were removed from non-lemma functions
+
+The transformation incorrectly removed variant clauses from regular ghost functions:
+
+1. Line 24: `svalue_le_sub` function had its `variant { m - n }` clause removed
+2. Line 105: `svalue_sub` function had its `variant { m - n }` clause removed  
+3. Line 297: `abs_value_sub_text` function had its `variant { m - n }` clause removed
+
+These are regular recursive ghost functions, not lemmas, so their variant clauses must be preserved as they are essential for termination proofs. Only lemma variant clauses should be removed during transformation."
+numeric/lse.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clause from recursive lemma but preserved it in function specification
+
+The transformation incorrectly removed the variant clause from the recursive lemma `sum_of_fun_le_sum_of_abs_fun`. In the original code, this was a recursive lemma with `variant { b-a }`, but the transformation changed it to a ghost function while removing the variant clause entirely. However, the variant clause should be preserved when transforming recursive lemmas, as it's part of the termination specification that must be maintained for correctness."
+numeric/sum.mlw,"INCORRECT: HIGH PRIORITY - Function variant clause was removed from usum_rec function
+
+The diff shows that the `variant { n }` clause was removed from the `usum_rec` function at lines 36 and 92. This is a function specification that must be preserved according to the rules. Variant clauses should only be removed from transformed lemmas, not from regular functions or procedures."
+prover/Firstorder_formula_list_impl.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/Firstorder_formula_list_spec.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/Firstorder_formula_spec.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/Firstorder_semantics.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/Firstorder_symbol_impl.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/Firstorder_symbol_spec.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/Firstorder_tableau_impl.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/Firstorder_tableau_spec.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/Firstorder_term_impl.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/Firstorder_term_spec.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/FormulaTransformations.mlw,"ERROR: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization (73777a97-649c-4095-9bce-1d9c2d71051a) of 40,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'}}"
+prover/ISet.mlw,"INCORRECT: HIGH PRIORITY - Function variant clause was removed from iset_ok_char
+
+The transformation incorrectly removed the variant clause `variant { l }` from the `iset_ok_char` function. According to the rules, function/procedure specifications including variant clauses must be preserved. The correct transformation should have been:
+
+```
+let ghost iset_ok_char (x:int) (l:iset) : unit
+  ensures { iset_ok (Cons x l) <-> iset_ok l /\ forall y:int.
+    mem y l -> x < y }
+  variant { l }
+= ()
+```"
+prover/Nat.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation syntax error - variant clauses were incorrectly removed from transformed lemmas
+
+The transformation removed the `variant { n }` and `variant { n1 }` clauses from the recursive lemmas `nat_to_int_nonnegative` and `add_nat_simulate_add_int`. According to the transformation rules, variant clauses should be removed from transformed lemmas, but the function bodies were also incorrectly transformed from recursive implementations to simple `()`, which changes the semantic meaning. The original recursive structure that proves the lemmas through induction was completely removed."
+prover/Prover.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation syntax error
+
+The transformations of lemmas `is_atom_list_subst` and `is_procedure_tableau_subst` are incorrect. These are recursive lemmas that had variant clauses in the original code:
+
+```
+let rec lemma is_atom_list_subst (phil:fo_formula_list 'ls 'b)
+  (sigma:'b -> (fo_term 'ls 'c)) : unit
+  requires { is_atom_list phil }
+  ensures { is_atom_list (subst_fo_formula_list phil subst_id_symbol sigma) }
+  variant { size_fo_formula_list phil }
+```
+
+The transformation correctly removed the variant clause and changed to `let ghost`, but failed to preserve the `rec` keyword which is essential for recursive functions. The correct transformation should be:
+
+```
+let rec ghost is_atom_list_subst (phil:fo_formula_list 'ls 'b)
+  (sigma:'b -> (fo_term 'ls 'c)) : unit
+  requires { is_atom_list phil }
+  ensures { is_atom_list (subst_fo_formula_list phil subst_id_symbol sigma) }
+```
+
+The same issue applies to `is_procedure_tableau_subst`. Without the `rec` keyword, these recursive ghost functions will not compile correctly."
+prover/Unification.mlw,"INCORRECT: HIGH PRIORITY - Function variant clauses were removed from recursive functions
+
+The transformation incorrectly removed variant clauses from recursive functions `power_rel_det`, `power_rel_additive`, `power`, and `power_fixed_point`. These are essential specifications for termination proofs and must be preserved according to the rules. Only lemma variant clauses should be removed during transformation, but function variant clauses must be kept.
+
+For example:
+- `power_rel_det` lost its `variant { n }` clause
+- `power_rel_additive` lost its `variant { n }` clause  
+- `power` lost its `variant { n }` clause
+- `power_fixed_point` lost its `variant { n }` clause
+
+These functions also had their functional implementations removed and replaced with `()`, which is incorrect - only lemma bodies should be transformed this way, not regular recursive functions."
+tests/execute-tests.mlw,"INCORRECT: LOW PRIORITY - Function body was incorrectly modified beyond assertion removal
+
+The transformation changed `let f (x: int) = assert {x > 0}` to `let f (x: int) = ()`, which removes the assertion but also changes the function's return behavior. The correct transformation should only remove the assertion annotation while preserving the function's essential structure, not replace the entire body with unit."
+tests/lemma_functions.mlw,"INCORRECT: MEDIUM PRIORITY - Variant clause was incorrectly removed from lemma transformation. The variant clause ""variant { u-l }"" should be preserved in the transformed lemma as it's part of the specification."
+verifythis_2016_matrix_multiplication/matrices.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation syntax error in block_mul_ij function
+
+The function `block_mul_ij` was incorrectly transformed. It was changed from a proper lemma implementation to just `= ()`, but this function has a `variant { k }` clause and contains recursive logic that should be preserved as functional code. The variant clause was also incorrectly removed. This function appears to be a recursive lemma that should maintain its computational structure, not be reduced to an empty ghost function."
+verifythis_2016_matrix_multiplication/matrices_ring_simp.mlw,"INCORRECT: HIGH PRIORITY - Assertion was incorrectly transformed to unit literal instead of being removed
+
+The transformation at line 374 changed:
+```
+assert { e_mdl env m11 = e_mdl env gm11 }
+```
+to:
+```
+()
+```
+
+According to the transformation rules, assertions should be REMOVED entirely, not replaced with a unit literal `()`. The correct transformation should have completely removed this line."
+verifythis_2016_matrix_multiplication/sum_extended.mlw,"INCORRECT: MEDIUM PRIORITY - Lemma transformation removed variant clauses that should be preserved in recursive lemmas
+
+The transformations incorrectly removed the `variant { b - a }` and `variant { b - a }` clauses from the `sum_mult` and `sum_add` lemmas respectively. According to the rules, variant clauses should only be removed from transformed lemmas, but these are essential for proving termination of the original recursive structure and should be preserved even in the ghost function transformation."
+imp/imp.mlw,"INCORRECT: HIGH PRIORITY - Variant clause was removed from recursive lemma transformation
+
+The transformation incorrectly removed the `variant { e }` clause from the `eval_expr_functional` lemma. According to the rules, variant clauses from transformed lemmas should be removed, but this was originally a recursive lemma (`let rec lemma`) and the variant clause is essential for termination. When transforming recursive lemmas to ghost functions, the variant clause should be preserved if it's semantically important for the function specification.
+
+Additionally, there's an assertion removal issue where `assert { mem v s.vars };` was removed from the functional code in the `symbolic_interp_cmd` function, but assertions within functional code bodies should only be removed if they are pure verification assertions, not if they might affect program semantics."

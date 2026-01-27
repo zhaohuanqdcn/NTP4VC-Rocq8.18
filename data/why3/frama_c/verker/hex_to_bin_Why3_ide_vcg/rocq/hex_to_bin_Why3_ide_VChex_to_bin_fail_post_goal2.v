@@ -1,0 +1,31 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.Qed.Qed.
+Require Import verker.Axiomatic3.Axiomatic3.
+Require Import Why3.Cint.Cint.
+Require Import verker.A_Ctype.A_Ctype.
+Open Scope Z_scope.
+Theorem goal2 (i_4 : Z) (i : Z) (i_1 : Z) (i_2 : Z) (i_3 : Z) (i_5 : Z) : let x : Z := l_tolower i_4 in let x_1 : Z := 87%Z + i in let x_2 : Z := 87%Z + i_1 in is_sint8 i_2 -> is_sint8 i_3 -> is_sint8 i_4 -> is_sint8 i_5 -> is_sint32 i -> is_sint32 i_1 -> ¬ p_isxdigit i_2 -> (if decide (48%Z ≤ i_2) then i_3 = i_2 ∧ (if decide (i_3 ≤ 57%Z) then i_1 = i ∧ 48%Z + i_1 = i_3 else i_4 = i_3 ∧ x = i_5 ∧ (if decide (97%Z ≤ i_5) then if decide (i_5 ≤ 102%Z) then x_1 = i_5 ∧ x_2 = i_5 else i = - 1%Z ∧ i_1 = - 1%Z else i = - 1%Z ∧ i_1 = - 1%Z)) else i_4 = i_2 ∧ x = i_5 ∧ (if decide (97%Z ≤ i_5) then if decide (i_5 ≤ 102%Z) then x_1 = i_5 ∧ x_2 = i_5 else i = - 1%Z ∧ i_1 = - 1%Z else i = - 1%Z ∧ i_1 = - 1%Z)) -> i_1 = - 1%Z.
+Admitted.

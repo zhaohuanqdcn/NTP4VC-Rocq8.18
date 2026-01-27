@@ -1,0 +1,16 @@
+session edit_distance = NTP4Verif +
+theories
+  "edit_distance_EditDistance_distanceqtvc"
+  "edit_distance_MyWord"
+  "edit_distance_MyWord_key_lemma_rightqtvc"
+  "edit_distance_MyWord_dist_symetryqtvc"
+  "edit_distance_MyWord_min_dist_equalqtvc"
+  "edit_distance_MyWord_min_dist_eps_lengthqtvc"
+  "edit_distance_MyWord_min_dist_epsqtvc"
+  "edit_distance_MyWord_dist_concat_leftqtvc"
+  "edit_distance_MyWord_first_lastqtvc"
+  "edit_distance_MyWord_first_last_explicitqtvc"
+  "edit_distance_EditDistance_suffix_lengthqtvc"
+  "edit_distance_MyWord_key_lemma_leftqtvc"
+  "edit_distance_MyWord_min_dist_diffqtvc"
+  "edit_distance_MyWord_dist_concat_rightqtvc"

@@ -1,0 +1,20 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.int.Unsigned
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.logical.LogicalUtil
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.logical.Logical
+import pearl.multiprecision.lib.lean.ptralias.Alias
+open Classical
+open Lean4Why3
+namespace base_info_BaseInfo_wmpn_base_infoqtvc
+theorem wmpn_base_info'vc : (2 : ℤ) ≤ (2 : ℤ) ∧ (2 : ℤ) ≤ (256 : ℤ) ∧ ((2 : ℤ) ≤ (2 : ℤ) ∧ (2 : ℤ) ≤ (256 : ℤ) → ((9223372036854775808 : ℤ) < (18446744073709551615 : ℤ) + (1 : ℤ) ∧ (18446744073709551615 : ℤ) + (1 : ℤ) ≤ (9223372036854775808 : ℤ) * (2 : ℤ)) ∧ ((9223372036854775808 : ℤ) < (18446744073709551615 : ℤ) + (1 : ℤ) ∧ (18446744073709551615 : ℤ) + (1 : ℤ) ≤ (9223372036854775808 : ℤ) * (2 : ℤ) → ((7 : ℤ) ≤ (63 : ℤ) ∧ (63 : ℤ) ≤ (63 : ℤ)) ∧ ((7 : ℤ) ≤ (63 : ℤ) ∧ (63 : ℤ) ≤ (63 : ℤ) → (9223372036854775808 : ℤ) = HPow.hPow (2 : ℤ) (63 : ℕ))))
+  := sorry
+end base_info_BaseInfo_wmpn_base_infoqtvc

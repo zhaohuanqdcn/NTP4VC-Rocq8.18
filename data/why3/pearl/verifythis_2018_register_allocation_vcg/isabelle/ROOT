@@ -1,0 +1,12 @@
+session verifythis_2018_register_allocation = NTP4Verif +
+theories
+  "verifythis_2018_register_allocation_Top_mergeqtvc"
+  "verifythis_2018_register_allocation_Top_initqtvc"
+  "verifythis_2018_register_allocation_Top_replaceqtvc"
+  "verifythis_2018_register_allocation_Top_eqqtrefnqtvc"
+  "verifythis_2018_register_allocation_Top_sym_mergeqtvc"
+  "verifythis_2018_register_allocation_Top_availableqtvc"
+  "verifythis_2018_register_allocation_Top_ircqtvc"
+  "verifythis_2018_register_allocation_Top_all_fromqtvc"
+  "verifythis_2018_register_allocation_Top_remqtvc"
+  "verifythis_2018_register_allocation_Top_eqqtrefnqtvc1"

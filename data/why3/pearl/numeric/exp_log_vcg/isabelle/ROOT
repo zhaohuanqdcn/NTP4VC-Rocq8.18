@@ -1,0 +1,16 @@
+session exp_log = NTP4Verif +
+theories
+  "exp_log_ExpLogDouble_example4qtvc"
+  "exp_log_ExpLogDouble_lse6qtvc"
+  "exp_log_ExpLogDouble_example1qtvc"
+  "exp_log_ExpLogSingle_example3qtvc"
+  "exp_log_ExpLogSingle_example2qtvc"
+  "exp_log_ExpLogDouble_lse7qtvc"
+  "exp_log_ExpLogDouble_lse4qtvc"
+  "exp_log_ExpLogDouble_example3qtvc"
+  "exp_log_ExpLogSingle_example1qtvc"
+  "exp_log_ExpLogDouble_lse8qtvc"
+  "exp_log_ExpLogDouble_lse5qtvc"
+  "exp_log_ExpLogDouble_example2qtvc"
+  "exp_log_ExpLogDouble_lse10qtvc"
+  "exp_log_ExpLogSingle_example4qtvc"

@@ -1,0 +1,8 @@
+session isqrt_von_neumann = NTP4Verif +
+theories
+  "isqrt_von_neumann_VonNeumann16_isqrt16qtvc"
+  "isqrt_von_neumann_VonNeumann16_sqr_add2qtvc"
+  "isqrt_von_neumann_VonNeumann64_isqrt64qtvc"
+  "isqrt_von_neumann_VonNeumann64_sqr_add2qtvc"
+  "isqrt_von_neumann_VonNeumann32_isqrt32qtvc"
+  "isqrt_von_neumann_VonNeumann32_sqr_add2qtvc"

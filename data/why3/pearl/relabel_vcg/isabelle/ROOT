@@ -1,0 +1,6 @@
+session relabel = NTP4Verif +
+theories
+  "relabel_Relabel_labels_Nodeqtvc"
+  "relabel_Relabel_freshqtvc"
+  "relabel_Relabel_relabelqtvc"
+  "relabel_Relabel_labels_Leafqtvc"

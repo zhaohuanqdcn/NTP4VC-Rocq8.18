@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name tower_of_hanoi_vcg.tower_of_hanoi)
+(theories Why3))

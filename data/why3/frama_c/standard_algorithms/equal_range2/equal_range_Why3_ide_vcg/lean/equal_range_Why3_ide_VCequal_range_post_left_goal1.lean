@@ -1,0 +1,13 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import frama_c.standard_algorithms.equal_range2.lib.lean.S1_size_type_pair.S1_size_type_pair
+import Why3.Cint.Cint
+import frama_c.standard_algorithms.equal_range2.lib.lean.Axiomatic.Axiomatic
+import frama_c.standard_algorithms.equal_range2.lib.lean.Compound.Compound
+open Classical
+open Lean4Why3
+namespace equal_range_Why3_ide_VCequal_range_post_left_goal1
+theorem goal1 (s : S1_size_type_pair.s1_size_type_pair) (i_1 : ℤ) (i_3 : ℤ) (a : Memory.addr) (t_1 : Memory.addr -> ℤ) (i_2 : ℤ) (i : ℤ) (t : ℤ -> ℤ) : let x : ℤ := S1_size_type_pair.s1_size_type_pair.f1_size_type_pair_second s; let x_1 : ℤ := S1_size_type_pair.s1_size_type_pair.f1_size_type_pair_first s; let x_2 : ℤ := i_1 + i_3; let x_4 : ℤ := i_1 + i_3 - x_1; let x_5 : ℤ := Int.tdiv x_4 (2 : ℤ); let x_6 : ℤ := x_1 + x_5; let x_7 : ℤ := x_1 + Cint.to_uint32 (Int.tdiv (Cint.to_uint32 x_4) (2 : ℤ)); let x_9 : ℤ := x_1 + x_5 - i_1; let a_1 : Memory.addr := Memory.shift a x_9; let x_10 : ℤ := t_1 a_1; let x_11 : ℤ := x_1 - i_1; let a_2 : Memory.addr := Memory.shift a x_11; let x_12 : ℤ := (1 : ℤ) + x_1 + x_5 - i_1; let x_14 : ℤ := i_1 + x - (1 : ℤ) - x_1 - x_5; let a_3 : Memory.addr := Memory.shift a x_12; let x_15 : ℤ := i_1 + i_3 - (1 : ℤ) - x_1 - x_5; (0 : ℤ) ≤ i_1 → i_3 ≤ i_2 → x ≤ i_3 → (0 : ℤ) ≤ x_1 → i_1 ≤ x_1 → (0 : ℤ) ≤ x → x_1 < x_2 → Memory.region (Memory.addr.base a) ≤ (0 : ℤ) → (0 : ℤ) ≤ x_5 → i_1 ≤ x_5 → x_6 < x_2 → x_6 < i_1 + x → i_1 ≤ x_7 → x_10 ≤ i → i ≤ x_10 → x_1 ≤ (4294967295 : ℤ) → x ≤ (4294967295 : ℤ) → x_2 ≤ (4294967295 : ℤ) + x_1 → x_5 ≤ (4294967295 : ℤ) → x_6 ≤ (4294967294 : ℤ) + i_1 → x_2 ≤ (4294967296 : ℤ) + x_1 + x_5 → x_7 ≤ (4294967295 : ℤ) + i_1 → S1_size_type_pair.iss1_size_type_pair s → Memory.linked t → Cint.is_uint32 i_1 → Cint.is_uint32 i_2 → Cint.is_uint32 i_3 → Cint.is_sint32 i → Cint.is_uint32 x_1 → Cint.is_uint32 x → Axiomatic.p_sorted_1' t_1 a (0 : ℤ) i_2 → Cint.is_uint32 x_11 → Axiomatic.p_strictlowerbound_1' t_1 a i_3 i_2 i → Memory.valid_rd t (Memory.shift a (0 : ℤ)) i_2 → Axiomatic.p_strictupperbound_1' t_1 a (0 : ℤ) x_11 i → Memory.valid_rd t a_2 x_5 → Axiomatic.p_sorted_1' t_1 a_2 (0 : ℤ) x_5 → Cint.is_uint32 x_9 → Cint.is_uint32 x_12 → Cint.is_uint32 x_14 → Cint.is_sint32 x_10 → Memory.valid_rd t a_1 (1 : ℤ) → Memory.valid_rd t a_3 x_15 → Axiomatic.p_sorted_1' t_1 a_3 (0 : ℤ) x_15 → Axiomatic.p_strictupperbound_1' t_1 a_2 (0 : ℤ) i_1 x_10 → Axiomatic.p_strictlowerbound_1' t_1 a_3 x_14 x_15 x_10 → Axiomatic.p_lowerbound_1' t_1 a_2 i_1 x_5 x_10 → Axiomatic.p_upperbound_1' t_1 a_3 (0 : ℤ) x_14 x_10 → Axiomatic.p_strictupperbound_1' t_1 a (0 : ℤ) x_1 x_10
+  := sorry
+end equal_range_Why3_ide_VCequal_range_post_left_goal1

@@ -1,0 +1,7 @@
+session tortoise_and_hare = NTP4Verif +
+theories
+  "tortoise_and_hare_TortoiseAndHareAlgorithm_x0qtvc"
+  "tortoise_and_hare_TortoiseAndHareAlgorithm_periodicityqtvc"
+  "tortoise_and_hare_TortoiseAndHareAlgorithm_tortoise_and_hareqtvc"
+  "tortoise_and_hare_TortoiseAndHareAlgorithm_x_in_rangeqtvc"
+  "tortoise_and_hare_TortoiseAndHareAlgorithm_equalityqtvc"

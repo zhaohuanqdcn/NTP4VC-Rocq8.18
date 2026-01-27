@@ -1,0 +1,47 @@
+theory verifythis_2018_register_allocation_Top_replaceqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.ocaml_Exceptions"
+begin
+typedecl  var
+typedecl  set
+consts to_fset :: "set \<Rightarrow> var fset"
+consts mk :: "var fset \<Rightarrow> set"
+axiomatization where mk'spec:   "to_fset (mk s) = s"
+  for s :: "var fset"
+consts choose1 :: "set \<Rightarrow> var"
+axiomatization where choose'spec:   "choose1 s |\<in>| to_fset s"
+ if "\<not>to_fset s = fempty"
+  for s :: "set"
+typedecl 'v t
+consts to_fmap :: "'v t \<Rightarrow> (var, 'v) fmap"
+consts rem :: "var \<Rightarrow> set t \<Rightarrow> set t"
+axiomatization where rem'spec'2:   "\<not>v |\<in>| fmdom (to_fmap (rem v g))"
+ if "v |\<in>| fmdom (to_fmap g)"
+  for v :: "var"
+  and g :: "set t"
+axiomatization where rem'spec'1:   "k |\<in>| fmdom (to_fmap (rem v g)) \<longleftrightarrow> \<not>k = v \<and> k |\<in>| fmdom (to_fmap g)"
+ if "v |\<in>| fmdom (to_fmap g)"
+  for v :: "var"
+  and g :: "set t"
+  and k :: "var"
+axiomatization where rem'spec'0:   "to_fset (the (fmlookup (to_fmap (rem v g)) k)) = fset_remove v (to_fset (the (fmlookup (to_fmap g) k)))"
+ if "v |\<in>| fmdom (to_fmap g)"
+ and "k |\<in>| fmdom (to_fmap (rem v g))"
+  for v :: "var"
+  and g :: "set t"
+  and k :: "var"
+axiomatization where rem'spec:   "int (fcard (fset_of_fmap (to_fmap (rem v g)))) = int (fcard (fset_of_fmap (to_fmap g))) - (1 :: int)"
+ if "v |\<in>| fmdom (to_fmap g)"
+  for v :: "var"
+  and g :: "set t"
+theorem replace'vc:
+  fixes v :: "var"
+  fixes u :: "var"
+  fixes s :: "set"
+  fixes result :: "set"
+  assumes fact0: "\<not>v = u"
+  assumes fact1: "if v |\<in>| to_fset s then \<exists>(o1 :: set). (to_fset o1 = fset_remove v (to_fset s) \<and> (if v |\<in>| to_fset s then int (fcard (to_fset o1)) = int (fcard (to_fset s)) - (1 :: int) else fcard (to_fset o1) = fcard (to_fset s))) \<and> to_fset result = finsert u (to_fset o1) \<and> (if u |\<in>| to_fset o1 then fcard (to_fset result) = fcard (to_fset o1) else int (fcard (to_fset result)) = int (fcard (to_fset o1)) + (1 :: int)) else result = s"
+  shows "u |\<in>| to_fset result \<longleftrightarrow> u |\<in>| to_fset s \<or> v |\<in>| to_fset s"
+  and "\<not>v |\<in>| to_fset result"
+  and "\<forall>(w :: var). \<not>w = u \<longrightarrow> \<not>w = v \<longrightarrow> w |\<in>| to_fset result \<longleftrightarrow> w |\<in>| to_fset s"
+  sorry
+end

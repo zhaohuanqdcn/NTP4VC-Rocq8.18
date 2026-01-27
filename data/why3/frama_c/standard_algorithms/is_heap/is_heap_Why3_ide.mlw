@@ -1,0 +1,494 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'heap' in 'is_heap'                 --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_post_heap
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition 'heap' in 'is_heap'":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_heapparent i_2) in
+  let a_1 = (shift_sint32 a x) in
+  let a_2 = (shift_sint32 a i_2) in
+  (0 <= x) ->
+  (x < i_2) ->
+  (((region (a.base))) <= 0) ->
+  (i_2 <= (1 + i)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((p_isheap t_1 a i_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (if (i_2 < i)
+   then ((i_1 = 0) /\ (t_1[a_1] < t_1[a_2]) /\ ((valid_rd t a_2 1)) /\
+         ((valid_rd t a_1 1))) else (i_1 = 1)) ->
+  (((p_isheap t_1 a i)) <-> (i_1 <> 0))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file is_heap.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file is_heap.c, line 10)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_heapparent i_1) in
+  let a_1 = (shift_sint32 a i_1) in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint32 a x) in
+  let x_2 = t_1[a_2] in
+  (((mod i_1 2)) = 0) ->
+  (i_1 < i) ->
+  (0 <= x) ->
+  (x < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (x_1 <= x_2) ->
+  (i_1 <= 4294967294) ->
+  (x <= 4294967294) ->
+  (i_1 <= (1 + i)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((is_uint32 (1 + i_1))) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_uint32 (1 + x))) ->
+  ((is_sint32 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  ((-1) <= x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file is_heap.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file is_heap.c, line 10)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'heap' (file is_heap.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_loop_inv_heap_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant 'heap' (file is_heap.c, line 12)":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_heapparent i_2) in
+  let a_1 = (shift_sint32 a i_2) in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint32 a x) in
+  let x_2 = t_1[a_2] in
+  let x_3 = 1 + i_2 in
+  (i_2 < i_1) ->
+  (0 <= x) ->
+  (x < i_2) ->
+  (((region (a.base))) <= 0) ->
+  (x_1 <= x_2) ->
+  (i_2 <= 4294967294) ->
+  (i_2 <= (1 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 x)) ->
+  ((p_isheap t_1 a i_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_sint32 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  ((((mod i_2 2)) <> 0) \/ ((x = i) /\ (i <= 4294967294))) ->
+  ((p_isheap t_1 a x_3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'heap' (file is_heap.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_loop_inv_heap_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'heap' (file is_heap.c, line 12)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((p_isheap t_1 a 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'parent' (file is_heap.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_loop_inv_parent_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant 'parent' (file is_heap.c, line 11)":
+*)
+goal goal5:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_heapparent i_3) in
+  let a_1 = (shift_sint32 a i_3) in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint32 a x) in
+  let x_2 = t_1[a_2] in
+  let x_3 = 1 + i_3 in
+  (i_3 < i_2) ->
+  (0 <= x) ->
+  (x < i_3) ->
+  (((region (a.base))) <= 0) ->
+  (x_1 <= x_2) ->
+  (i_3 <= 4294967294) ->
+  (i_3 <= (1 + i_2)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 x)) ->
+  ((p_isheap t_1 a i_3)) ->
+  ((is_uint32 x_3)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_sint32 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  (if (((mod i_3 2)) = 0)
+   then ((x = i) /\ ((1 + i) = i_1) /\ (i <= 4294967294)) else (x = i_1)) ->
+  (((l_heapparent x_3)) = i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'parent' (file is_heap.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_loop_inv_parent_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'parent' (file is_heap.c, line 11)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (((l_heapparent 1)) = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file is_heap.c, line 18) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file is_heap.c, line 18)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_heapparent i_1) in
+  (i_1 < i) ->
+  (0 <= x) ->
+  (x < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (i_1 <= (1 + i)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a x)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file is_heap.c, line 18) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file is_heap.c, line 18)":
+*)
+goal goal8:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_heapparent i_1) in
+  (i_1 < i) ->
+  (0 <= x) ->
+  (x < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (i_1 <= (1 + i)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a i_1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file is_heap.c, line 23) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file is_heap.c, line 23)":
+*)
+goal goal9:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_heapparent i_1) in
+  let a_1 = (shift_sint32 a i_1) in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint32 a x) in
+  let x_2 = t_1[a_2] in
+  (((mod i_1 2)) = 0) ->
+  (i_1 < i) ->
+  (0 <= x) ->
+  (x < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (x_1 <= x_2) ->
+  (i_1 <= (1 + i)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_sint32 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  (x <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file is_heap.c, line 17) --- *)
+(* ---------------------------------------------------------- *)
+theory VCis_heap_assert_rte_unsigned_overflow_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file is_heap.c, line 17)":
+*)
+goal goal10:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_heapparent i_2) in
+  let a_1 = (shift_sint32 a i_2) in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint32 a x) in
+  let x_2 = t_1[a_2] in
+  (i_2 < i_1) ->
+  (0 <= x) ->
+  (x < i_2) ->
+  (((region (a.base))) <= 0) ->
+  (x_1 <= x_2) ->
+  (i_2 <= (1 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 x)) ->
+  ((p_isheap t_1 a i_2)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_sint32 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  ((((mod i_2 2)) <> 0) \/ ((x = i) /\ (i <= 4294967294))) ->
+  (i_2 <= 4294967294)
+
+end
+

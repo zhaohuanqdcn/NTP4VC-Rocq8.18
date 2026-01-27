@@ -1,0 +1,46 @@
+atoms:
+  Cfloat.Cfloat.Down: [Cfloat.rounding_mode.Down]
+  Cfloat.Cfloat.Float32: [Cfloat.float_kind.Float32]
+  Cfloat.Cfloat.Float64: [Cfloat.float_kind.Float64]
+  Cfloat.Cfloat.Inf_neg: [Cfloat.float_kind.Inf_neg]
+  Cfloat.Cfloat.Inf_pos: [Cfloat.float_kind.Inf_pos]
+  Cfloat.Cfloat.NaN: [Cfloat.float_kind.NaN]
+  Cfloat.Cfloat.NearestTiesToAway: [Cfloat.rounding_mode.NearestTiesToAway]
+  Cfloat.Cfloat.NearestTiesToEven: [Cfloat.rounding_mode.NearestTiesToEven]
+  Cfloat.Cfloat.Real: [Cfloat.float_kind.Real]
+  Cfloat.Cfloat.ToZero: [Cfloat.rounding_mode.ToZero]
+  Cfloat.Cfloat.Up: [Cfloat.rounding_mode.Up]
+  Cfloat.Cfloat.classify_float: [Cfloat.classify_float]
+  Cfloat.Cfloat.delta: [Cfloat.delta]
+  Cfloat.Cfloat.error: [Cfloat.error]
+  Cfloat.Cfloat.is_NaN: [Cfloat.is_NaN]
+  Cfloat.Cfloat.is_finite32: [Cfloat.is_finite32]
+  Cfloat.Cfloat.is_finite64: [Cfloat.is_finite64]
+  Cfloat.Cfloat.is_float32: [Cfloat.is_float32]
+  Cfloat.Cfloat.is_float64: [Cfloat.is_float64]
+  Cfloat.Cfloat.is_infinite: [Cfloat.is_infinite]
+  Cfloat.Cfloat.is_negative_infinite: [Cfloat.is_negative_infinite]
+  Cfloat.Cfloat.is_positive_infinite: [Cfloat.is_positive_infinite]
+  Cfloat.Cfloat.model: [Cfloat.model]
+  Cfloat.Cfloat.round_double: [Cfloat.round_double]
+  Cfloat.Cfloat.round_float: [Cfloat.round_float]
+axioms:
+  Cfloat.Cfloat.float_32: Cfloat.float_32
+  Cfloat.Cfloat.float_64: Cfloat.float_64
+  Cfloat.Cfloat.is_finite_to_float_32: Cfloat.is_finite_to_float_32
+  Cfloat.Cfloat.is_finite_to_float_64: Cfloat.is_finite_to_float_64
+  Cfloat.Cfloat.model_add: Cfloat.model_add
+  Cfloat.Cfloat.model_div: Cfloat.model_div
+  Cfloat.Cfloat.model_float_32: Cfloat.model_float_32
+  Cfloat.Cfloat.model_float_64: Cfloat.model_float_64
+  Cfloat.Cfloat.model_mul: Cfloat.model_mul
+  Cfloat.Cfloat.model_sqrt: Cfloat.model_sqrt
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.Cfloat.Cfloat
+prefix_ops: {}
+types:
+  Cfloat.Cfloat.float_kind: [Cfloat.float_kind]
+  Cfloat.Cfloat.rounding_mode: [Cfloat.rounding_mode]

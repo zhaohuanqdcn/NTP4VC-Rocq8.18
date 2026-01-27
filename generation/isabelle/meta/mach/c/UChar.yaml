@@ -1,0 +1,15 @@
+atoms:
+  mach.c.UChar.l: [l, c_UChar.l]
+  mach.c.UChar.ma: [ma, c_UChar.ma]
+  mach.c.UChar.mi: [mi, c_UChar.mi]
+  mach.c.UChar.ok: [ok, c_UChar.ok]
+  mach.c.UChar.z: [z, c_UChar.z]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: mach.c_UChar
+prefix_ops: {}
+types:
+  mach.c.UChar.cast_mem: [cast_mem, c_UChar.cast_mem]

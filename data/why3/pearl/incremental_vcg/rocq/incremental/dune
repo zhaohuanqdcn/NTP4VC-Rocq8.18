@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name incremental_vcg.incremental)
+(theories Why3 Why3.why3.Ref))

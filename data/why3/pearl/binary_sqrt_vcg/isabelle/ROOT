@@ -1,0 +1,7 @@
+session binary_sqrt = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "binary_sqrt_BinarySqrt"
+  "binary_sqrt_BinarySqrt_sqrt_mainqtvc"
+  "binary_sqrt_BinarySqrt_sqrtqtvc"

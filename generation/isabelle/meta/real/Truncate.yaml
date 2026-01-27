@@ -1,0 +1,12 @@
+atoms:
+  real.Truncate.ceil: [ceil, real_Truncate.ceil]
+  real.Truncate.floor: [floor, real_Truncate.floor]
+  real.Truncate.truncate: [truncate, real_Truncate.truncate]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.real_Truncate
+prefix_ops: {}
+types: {}

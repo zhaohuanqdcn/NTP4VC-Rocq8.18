@@ -1,0 +1,100 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'sinf'' in 'float_rates_of_euler_dot' at call 'sinf' (file math/pprz_algebra_float.c, line 47)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_rates_of_euler_dot_call_sinf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic15.Axiomatic15
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'sinf'' in 'float_rates_of_euler_dot' at call 'sinf' (file math/pprz_algebra_float.c, line 47)
+":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a_1 a : addr.
+  let r = t_1[(shiftfield_f6_floateulers_theta a_1)] in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((p_rvalid_floateulers t t_1 a)) ->
+  ((p_rvalid_floateulers t t_1 a_1)) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_phi a)])) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_phi a_1)])) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_psi a)])) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_theta a)])) ->
+  ((is_float32 r)) ->
+  ((is_finite32 r))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'cosf'' in 'float_rates_of_euler_dot' at call 'cosf' (file math/pprz_algebra_float.c, line 48)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_rates_of_euler_dot_call_cosf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Square.Square
+use import real.Square
+use import real.Trigonometry
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'cosf'' in 'float_rates_of_euler_dot' at call 'cosf' (file math/pprz_algebra_float.c, line 48)
+":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a_1 a : addr.
+  let r = t_1[(shiftfield_f6_floateulers_theta a_1)] in
+  let r_1 = (sin r) in
+  let r_2 = t_1[(shiftfield_f6_floateulers_phi a_1)] in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (r_1 <=. 1.0) ->
+  ((-.1.0) <=. r_1) ->
+  ((linked t)) ->
+  ((p_rvalid_floateulers t t_1 a)) ->
+  ((p_rvalid_floateulers t t_1 a_1)) ->
+  ((is_finite32 r)) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_phi a)])) ->
+  ((is_float32 r_2)) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_psi a)])) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_theta a)])) ->
+  ((is_float32 r)) ->
+  ((is_finite32 r_1)) ->
+  ((is_float32 r_1)) ->
+  ((is_finite32 r_2))
+
+end
+

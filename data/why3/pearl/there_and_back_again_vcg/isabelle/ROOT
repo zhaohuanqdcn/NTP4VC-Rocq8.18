@@ -1,0 +1,6 @@
+session there_and_back_again = NTP4Verif +
+theories
+  "there_and_back_again_Palindrome_palindrome_recqtvc"
+  "there_and_back_again_Convolution_convolutionqtvc"
+  "there_and_back_again_Convolution_convolution_recqtvc"
+  "there_and_back_again_Palindrome_palindromeqtvc"

@@ -1,0 +1,9 @@
+session zalloc_Why3_ide = NTP4Verif +
+theories
+  "zalloc_Why3_ide_VCzalloc_nonzero_post_part1_goal5"
+  "zalloc_Why3_ide_VCzalloc_disjoint_nonzero_zero_goal1"
+  "zalloc_Why3_ide_VCzalloc_complete_nonzero_zero_goal0"
+  "zalloc_Why3_ide_VCzalloc_assign_normal_part3_goal3"
+  "zalloc_Why3_ide_VCzalloc_call_memset_pre_2_goal4"
+  "zalloc_Why3_ide_VCzalloc_nonzero_post_2_part1_goal6"
+  "zalloc_Why3_ide_VCzalloc_assign_exit_part3_goal2"

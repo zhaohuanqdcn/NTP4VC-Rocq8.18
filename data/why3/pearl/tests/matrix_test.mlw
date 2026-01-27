@@ -1,0 +1,11 @@
+module TestMatrix
+
+  use int.Int
+  use matrix.Matrix
+
+  let test1 () =
+    let m1 = make 3 3 2 in
+    set m1 0 0 4;
+    ()
+
+end

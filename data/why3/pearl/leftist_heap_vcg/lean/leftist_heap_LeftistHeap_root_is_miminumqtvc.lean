@@ -1,0 +1,27 @@
+import Why3.Base
+import pearl.leftist_heap_vcg.lean.leftist_heap.TreeRank
+import pearl.leftist_heap_vcg.lean.leftist_heap.Size
+import pearl.leftist_heap_vcg.lean.leftist_heap.Occ
+open Classical
+open Lean4Why3
+namespace leftist_heap_LeftistHeap_root_is_miminumqtvc
+axiom elt : Type
+axiom inhabited_axiom_elt : Inhabited elt
+attribute [instance] inhabited_axiom_elt
+axiom le : elt -> elt -> Prop
+axiom Refl (x : elt) : le x x
+axiom Trans (x : elt) (y : elt) (z : elt) (fact0 : le x y) (fact1 : le y z) : le x z
+axiom Total (x : elt) (y : elt) : le x y ∨ le y x
+axiom t : Type
+axiom inhabited_axiom_t : Inhabited t
+attribute [instance] inhabited_axiom_t
+noncomputable def le_root (e : elt) (h : TreeRank.tree elt) := match h with | TreeRank.tree.E => True | TreeRank.tree.N _ _ x _ => le e x
+noncomputable def is_heap : TreeRank.tree elt -> Prop
+  | (TreeRank.tree.E : TreeRank.tree elt) => True
+  | (TreeRank.tree.N x0 l x r) => le_root x l ∧ is_heap l ∧ le_root x r ∧ is_heap r
+axiom minimum : TreeRank.tree elt -> elt
+axiom minimum_def (s : ℤ) (l : TreeRank.tree elt) (x : elt) (r : TreeRank.tree elt) : minimum (TreeRank.tree.N s l x r) = x
+noncomputable def is_minimum (x : elt) (h : TreeRank.tree elt) := Occ.mem x h ∧ (∀(e : elt), Occ.mem e h → le x e)
+theorem root_is_miminum'vc (h : TreeRank.tree elt) (fact0 : is_heap h) (fact1 : (0 : ℤ) < Size.size h) : is_minimum (minimum h) h
+  := sorry
+end leftist_heap_LeftistHeap_root_is_miminumqtvc

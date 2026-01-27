@@ -1,0 +1,13 @@
+session skew_heaps = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "skew_heaps_HeapSort_heapsortqtvc"
+  "skew_heaps_SkewHeaps"
+  "skew_heaps_SkewHeaps_get_minqtvc"
+  "skew_heaps_SkewHeaps_root_is_minqtvc"
+  "skew_heaps_Heap_emptyqtvc"
+  "skew_heaps_SkewHeaps_addqtvc"
+  "skew_heaps_SkewHeaps_remove_minqtvc"
+  "skew_heaps_SkewHeaps_emptyqtvc"
+  "skew_heaps_SkewHeaps_mergeqtvc"

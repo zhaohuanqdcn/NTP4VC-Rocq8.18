@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name WP_revisited.wp2_vcg)
+(theories WP_revisited.wp2 Why3 Why3.map))

@@ -1,0 +1,10 @@
+session accumulate_Why3_ide = NTP4Verif +
+theories
+  "accumulate_Why3_ide_VCaccumulate_assert_rte_signed_overflow_goal5"
+  "accumulate_Why3_ide_VCaccumulate_assert_rte_signed_overflow_2_goal6"
+  "accumulate_Why3_ide_VCaccumulate_assert_rte_unsigned_overflow_goal7"
+  "accumulate_Why3_ide_VCaccumulate_loop_inv_partial_preserved_goal2"
+  "accumulate_Why3_ide_VCaccumulate_loop_inv_index_established_goal1"
+  "accumulate_Why3_ide_VCaccumulate_loop_inv_index_preserved_goal0"
+  "accumulate_Why3_ide_VCaccumulate_loop_inv_partial_established_goal3"
+  "accumulate_Why3_ide_VCaccumulate_assert_rte_mem_access_goal4"

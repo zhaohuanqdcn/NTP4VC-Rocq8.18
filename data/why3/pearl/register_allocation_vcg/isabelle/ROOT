@@ -1,0 +1,18 @@
+session register_allocation = NTP4Verif +
+theories
+  "register_allocation_OptimalNumberOfRegisters_measure_nonnegqtvc"
+  "register_allocation_Spec"
+  "register_allocation_DWP"
+  "register_allocation_DWP_wrapqtvc"
+  "register_allocation_InfinityOfRegisters_compileqtvc"
+  "register_allocation_OptimalNumberOfRegisters_kqtvc"
+  "register_allocation_FiniteNumberOfRegisters_kqtvc"
+  "register_allocation_Spec_exec_appendqtvc"
+  "register_allocation_DWP_prefix_dlqtvc"
+  "register_allocation_DWP_consqtvc"
+  "register_allocation_DWP_infix_mnmnqtvc"
+  "register_allocation_FiniteNumberOfRegisters_compileqtvc"
+  "register_allocation_OptimalNumberOfRegisters_nqtvc"
+  "register_allocation_DWP_nilqtvc"
+  "register_allocation_InfinityOfRegisters_recoverqtvc"
+  "register_allocation_OptimalNumberOfRegisters_compileqtvc"

@@ -1,0 +1,30 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.prover.lib.lean.Unification.Types
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.BacktrackArray.Types
+import pearl.prover.lib.lean.Predicates.Pred
+import pearl.prover.lib.lean.BacktrackArray.Logic
+import pearl.prover.lib.lean.Choice.Choice
+import pearl.prover.lib.lean.BacktrackArray.Impl
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+import pearl.prover.lib.lean.Firstorder_term_impl.Impl
+import pearl.prover.lib.lean.Unification.Logic
+open Classical
+open Lean4Why3
+namespace Unification_Impl_conflictqtvc
+axiom unassigned_closure : Types.timestamp Types.sdata -> ℤ -> Bool
+axiom unassigned_closure_def (y : Types.timestamp Types.sdata) (y1 : ℤ) : (unassigned_closure y y1 = true) = Logic.unassigned y y1
+theorem conflict'vc (t1 : Types.nlimpl_fo_term_list) (t2 : Types.nlimpl_fo_term_list) (rhob : Types.t Types.sdata) (rho : Types.unifier_subst) (fact0 : Logic.sdata_inv (Types.sdata.PConflict t1 t2) = true) (fact1 : Logic.unifier_subst_ok rhob rho) : Logic.correct rhob ∧ (let t : Types.timestamp Types.sdata := Logic.current_timestamp rhob; let lp : ℤ -> Bool := unassigned_closure (Logic.current_timestamp rhob); (Logic.nlimpl_fo_term_list_ok t1 ∧ Logic.nlimpl_fo_term_list_ok t2 ∧ Logic.unifier_subst_ok rhob rho ∧ (∀(y : ℤ), Spec.is_fo_term_free_var_in_fo_term_list y (Types.nlimpl_fo_term_list.model_fo_term_list_field t1) → (0 : ℤ) ≤ y) ∧ (∀(y : ℤ), Spec.is_fo_term_free_var_in_fo_term_list y (Types.nlimpl_fo_term_list.model_fo_term_list_field t2) → (0 : ℤ) ≤ y) ∧ (∀(x : ℤ), x ∈ ([] : List ℤ) → lp x = true ∧ (0 : ℤ) ≤ x) ∧ (∀(x : ℤ), Logic.unassigned (Logic.current_timestamp rhob) x → lp x = true)) ∧ (∀(l : List ℤ) (rhob1 : Types.t Types.sdata), Types.t.inv rhob1 = Types.t.inv rhob → (∀(o1 : Types.unification_return), Logic.unifier_subst_ok rhob1 (Types.unification_return.final_unifier o1) ∧ Logic.precede rhob rhob1 ∧ (∀(x : ℤ), x ∈ l → lp x = true ∧ (0 : ℤ) ≤ x) ∧ (∀(x : ℤ), Logic.unassigned (Logic.current_timestamp rhob1) x → lp x = true) ∧ Spec.subst_compose_fo_term (Types.unifier_subst.unifier rho) Spec.subst_id_symbol (Types.unification_return.unifier_factor o1) = Types.unifier_subst.unifier (Types.unification_return.final_unifier o1) ∧ (∀(s : ℤ -> Spec.fo_term ℤ ℤ), let s' : ℤ -> Spec.fo_term ℤ ℤ := Spec.subst_compose_fo_term (Types.unifier_subst.unifier rho) Spec.subst_id_symbol s; Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field t1) Spec.subst_id_symbol s' = Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field t2) Spec.subst_id_symbol s' → s' = Spec.subst_compose_fo_term (Types.unifier_subst.unifier (Types.unification_return.final_unifier o1)) Spec.subst_id_symbol s) ∧ (let s0 : ℤ -> Spec.fo_term ℤ ℤ := Types.unifier_subst.unifier (Types.unification_return.final_unifier o1); Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field t1) Spec.subst_id_symbol s0 = Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field t2) Spec.subst_id_symbol s0) ∧ (let s0 : ℤ -> Spec.fo_term ℤ ℤ := Types.unifier_subst.unifier (Types.unification_return.final_unifier o1); let s1 : ℤ -> Spec.fo_term ℤ ℤ := Types.unifier_subst.unifier_base_model rho; Spec.subst_compose_fo_term s0 Spec.subst_id_symbol s1 = s0 ∧ s0 = Spec.subst_compose_fo_term s1 Spec.subst_id_symbol s0) ∧ (let s0 : ℤ -> Spec.fo_term ℤ ℤ := Types.unifier_subst.unifier (Types.unification_return.final_unifier o1); let s1 : ℤ -> Spec.fo_term ℤ ℤ := Types.unifier_subst.unifier rho; Spec.subst_compose_fo_term s0 Spec.subst_id_symbol s1 = s0 ∧ s0 = Spec.subst_compose_fo_term s1 Spec.subst_id_symbol s0) → (match l with | ([] : List ℤ) => Logic.precede rhob rhob1 ∧ Logic.correct rhob1 | List.cons v _ => (Logic.past_time t rhob1 ∧ Logic.correct rhob1) ∧ (∀(rhob2 : Types.t Types.sdata), Types.t.inv rhob2 = Types.t.inv rhob1 → Logic.correct rhob2 ∧ Logic.current_timestamp rhob2 = t ∧ Logic.past_time (Logic.current_timestamp rhob2) rhob2 ∧ (∀(t21 : Types.timestamp Types.sdata), Logic.before t21 t ∧ Logic.past_time t21 rhob1 → Logic.past_time t21 rhob2) ∧ Logic.precede rhob2 rhob1 → (let o2 : Types.sdata := Types.sdata.PConflict t1 t2; (Logic.correct rhob2 ∧ (0 : ℤ) ≤ v ∧ Types.t.inv rhob2 o2 = true) ∧ (∀(rhob3 : Types.t Types.sdata), Types.t.inv rhob3 = Types.t.inv rhob2 → Logic.past_time (Logic.current_timestamp rhob3) rhob3 ∧ Logic.correct rhob3 ∧ Logic.precede rhob2 rhob3 ∧ (let tb0 : ℤ -> List Types.sdata := Types.timestamp.table (Logic.current_timestamp rhob2); Types.timestamp.table (Logic.current_timestamp rhob3) = Func.update tb0 v (List.cons o2 (tb0 v))) → Logic.unifier_subst_ok rhob3 rho ∧ Logic.precede rhob rhob3))))) ∧ (Logic.precede rhob rhob1 ∧ Logic.correct rhob1 → (Logic.past_time t rhob1 ∧ Logic.correct rhob1) ∧ (∀(rhob2 : Types.t Types.sdata), Types.t.inv rhob2 = Types.t.inv rhob1 → Logic.correct rhob2 ∧ Logic.current_timestamp rhob2 = t ∧ Logic.past_time (Logic.current_timestamp rhob2) rhob2 ∧ (∀(t21 : Types.timestamp Types.sdata), Logic.before t21 t ∧ Logic.past_time t21 rhob1 → Logic.past_time t21 rhob2) ∧ Logic.precede rhob2 rhob1 → Logic.unifier_subst_ok rhob2 rho ∧ Logic.precede rhob rhob2))))
+  := sorry
+end Unification_Impl_conflictqtvc

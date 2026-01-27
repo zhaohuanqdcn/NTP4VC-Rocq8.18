@@ -1,0 +1,357 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file for_loops.c, line 147) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_bit_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file for_loops.c, line 147)":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_1) in
+  (t_1[a_1] = 0) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (i_2 < ((to_uint32 (1 + i_1)))) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t a_1 1)) ->
+  (forall i_3 : int. (0 <= i_3) -> (i_3 < i_1) ->
+   (t_1[(shift_uint8 a i_3)] = 0)) ->
+  (t_1[(shift_uint8 a i_2)] = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,bool_value' (file for_loops.c, line 152) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_bit_assert_rte_bool_value
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,bool_value' (file for_loops.c, line 152)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_1)] in
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint8 x)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i_1) ->
+   (t_1[(shift_uint8 a i_2)] = 0)) ->
+  ((x = 0) \/ (x = 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file for_loops.c, line 152) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_bit_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file for_loops.c, line 152)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_1) in
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint8 t_1[a_1])) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i_1) ->
+   (t_1[(shift_uint8 a i_2)] = 0)) ->
+  ((valid_rd t a_1 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file for_loops.c, line 151) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_bit_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file for_loops.c, line 151)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_1) in
+  (t_1[a_1] = 0) ->
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t a_1 1)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i_1) ->
+   (t_1[(shift_uint8 a i_2)] = 0)) ->
+  (i_1 < ((to_uint32 (1 + i_1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'above' (file for_loops.c, line 133) in 'find_first_bit' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_bit_above_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'above' (file for_loops.c, line 133) in 'find_first_bit'":
+*)
+goal goal4:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_3) in
+  (t_1[(shift_uint8 a i_1)] <> 0) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((is_uint8 t_1[(shift_uint8 a i_2)])) ->
+  ((is_uint8 t_1[(shift_uint8 a i_4)])) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (if (i_2 < i)
+   then ((i_3 = i_2) /\ (((to_sint32 i_3)) = i_4) /\ (t_1[a_1] = 1) /\
+         ((valid_rd t a_1 1))) else (((to_sint32 i)) = i_4)) ->
+  (forall i_5 : int. (0 <= i_5) -> (i_5 < i_2) ->
+   (t_1[(shift_uint8 a i_5)] = 0)) ->
+  ((0 <= i_4) /\ (i_4 < i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'above' (file for_loops.c, line 134) in 'find_first_bit' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_bit_above_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'above' (file for_loops.c, line 134) in 'find_first_bit'":
+*)
+goal goal5:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_4)] in
+  let a_1 = (shift_uint8 a i_3) in
+  (t_1[(shift_uint8 a i_1)] <> 0) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((is_uint8 t_1[(shift_uint8 a i_2)])) ->
+  ((is_uint8 x)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (if (i_2 < i)
+   then ((i_3 = i_2) /\ (((to_sint32 i_3)) = i_4) /\ (t_1[a_1] = 1) /\
+         ((valid_rd t a_1 1))) else (((to_sint32 i)) = i_4)) ->
+  (forall i_5 : int. (0 <= i_5) -> (i_5 < i_2) ->
+   (t_1[(shift_uint8 a i_5)] = 0)) ->
+  (x <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'above' (file for_loops.c, line 135) in 'find_first_bit' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_bit_above_post_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'above' (file for_loops.c, line 135) in 'find_first_bit'":
+*)
+goal goal6:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_3) in
+  (t_1[(shift_uint8 a i_1)] <> 0) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_4) ->
+  (i_4 < i_5) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_5)) ->
+  ((is_uint8 t_1[(shift_uint8 a i_2)])) ->
+  ((is_uint8 t_1[(shift_uint8 a i_5)])) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (if (i_2 < i)
+   then ((i_3 = i_2) /\ (((to_sint32 i_3)) = i_5) /\ (t_1[a_1] = 1) /\
+         ((valid_rd t a_1 1))) else (((to_sint32 i)) = i_5)) ->
+  (forall i_6 : int. (0 <= i_6) -> (i_6 < i_2) ->
+   (t_1[(shift_uint8 a i_6)] = 0)) ->
+  (t_1[(shift_uint8 a i_4)] = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'nowhere' (file for_loops.c, line 139) in 'find_first_bit' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_bit_nowhere_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'nowhere' (file for_loops.c, line 139) in 'find_first_bit'":
+*)
+goal goal7:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_2) in
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_uint8 t_1[(shift_uint8 a i_1)])) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (if (i_1 < i)
+   then ((i_2 = i_1) /\ (((to_sint32 i_2)) = i_3) /\ (t_1[a_1] = 1) /\
+         ((valid_rd t a_1 1))) else (((to_sint32 i)) = i_3)) ->
+  (forall i_4 : int. (0 <= i_4) -> (i_4 < i) ->
+   (t_1[(shift_uint8 a i_4)] = 0)) ->
+  (forall i_4 : int. (0 <= i_4) -> (i_4 < i_1) ->
+   (t_1[(shift_uint8 a i_4)] = 0)) ->
+  (i_3 = i)
+
+end
+

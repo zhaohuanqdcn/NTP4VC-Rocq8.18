@@ -1,0 +1,6 @@
+session addition = NTP4Verif +
+theories
+  "addition_AdditionDouble_addition_errors_basicqtvc"
+  "addition_AdditionSingle_addition_errors_basicqtvc"
+  "addition_AdditionSingle_addition_errorsqtvc"
+  "addition_AdditionDouble_addition_errorsqtvc"

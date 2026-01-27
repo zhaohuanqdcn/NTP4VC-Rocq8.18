@@ -1,0 +1,10 @@
+atoms:
+  map.MapExchange.exchange: [exchange, map_MapExchange.exchange]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.map_MapExchange
+prefix_ops: {}
+types: {}

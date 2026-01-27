@@ -1,0 +1,35 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'ToUpper'                                --- *)
+(* ---------------------------------------------------------- *)
+theory A_ToUpper
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function l_toupper int : int
+
+use import Cint.Cint
+
+axiom Q_TL_ToUpper:
+  forall c : int
+  [(l_toupper c)].
+  ((is_uint8 c)) -> ((is_sint8 ((l_toupper c))))
+
+use import Axiomatic2.Axiomatic2
+
+axiom Q_to_upper_char:
+  forall c : int.
+  ((is_uint8 c)) -> ((p_is_lower c)) ->
+    (((32 + ((l_toupper c))) = c) /\
+     (forall i : int. ((is_uint8 i)) -> ((p_is_upper i)) ->
+      ((((l_toupper i)) = i) /\
+       (forall i_1 : int. ((is_uint8 i_1)) -> (not (p_is_lower i_1)) ->
+        (not (p_is_upper i_1)) -> (((l_toupper i_1)) = i_1)))))
+
+end
+

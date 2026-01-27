@@ -1,0 +1,17 @@
+session memchr_Why3_ide = NTP4Verif +
+theories
+  "memchr_Why3_ide_VCmemchr_loop_inv_4_established_goal9"
+  "memchr_Why3_ide_VCmemchr_loop_inv_preserved_goal2"
+  "memchr_Why3_ide_VCmemchr_loop_inv_4_preserved_goal8"
+  "memchr_Why3_ide_VCmemchr_loop_inv_2_established_goal5"
+  "memchr_Why3_ide_VCmemchr_not_exists_post_goal14"
+  "memchr_Why3_ide_VCmemchr_loop_inv_3_established_goal7"
+  "memchr_Why3_ide_VCmemchr_found_post_3_goal13"
+  "memchr_Why3_ide_VCmemchr_found_post_goal11"
+  "memchr_Why3_ide_VCmemchr_loop_term_decrease_goal10"
+  "memchr_Why3_ide_VCmemchr_complete_not_exists_found_goal0"
+  "memchr_Why3_ide_VCmemchr_loop_inv_2_preserved_goal4"
+  "memchr_Why3_ide_VCmemchr_loop_inv_3_preserved_goal6"
+  "memchr_Why3_ide_VCmemchr_loop_inv_established_goal3"
+  "memchr_Why3_ide_VCmemchr_disjoint_not_exists_found_goal1"
+  "memchr_Why3_ide_VCmemchr_found_post_2_goal12"

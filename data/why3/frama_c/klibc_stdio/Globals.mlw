@@ -1,0 +1,39 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Variables                                   --- *)
+(* ---------------------------------------------------------- *)
+theory Globals
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function g___stdio_headnode_1722 : int = 1723
+
+function l___va_arg0_38234 : int = 38235
+
+function l_ch_20234 : int = 20235
+
+use import Memory.Memory
+
+axiom Q_G___stdio_headnode_1722_region:
+  ((region g___stdio_headnode_1722)) = 0
+
+axiom Q_G___stdio_headnode_1722_linked:
+  forall t : map int int. ((linked t)) -> (t[g___stdio_headnode_1722] = 11)
+
+axiom Q_L___va_arg0_38234_region: ((region l___va_arg0_38234)) = 2
+
+axiom Q_L___va_arg0_38234_linked:
+  forall t : map int int. ((linked t)) -> (t[l___va_arg0_38234] = 0)
+
+axiom Q_L_ch_20234_region: ((region l_ch_20234)) = 2
+
+axiom Q_L_ch_20234_linked:
+  forall t : map int int. ((linked t)) -> (t[l_ch_20234] = 0)
+
+end
+

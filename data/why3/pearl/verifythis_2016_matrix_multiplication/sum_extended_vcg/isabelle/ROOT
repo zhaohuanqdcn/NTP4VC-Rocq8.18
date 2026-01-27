@@ -1,0 +1,6 @@
+session sum_extended = NTP4Verif +
+theories
+  "sum_extended_Sum_extended_sum_addqtvc"
+  "sum_extended_Sum_extended_sum_multqtvc"
+  "sum_extended_Sum_extended_fubiniqtvc"
+  "sum_extended_Sum_extended_sum_extqtvc"

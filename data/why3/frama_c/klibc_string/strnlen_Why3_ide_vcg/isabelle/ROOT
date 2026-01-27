@@ -1,0 +1,12 @@
+session strnlen_Why3_ide = NTP4Verif +
+theories
+  "strnlen_Why3_ide_VCstrnlen_loop_term_decrease_goal7"
+  "strnlen_Why3_ide_VCstrnlen_loop_inv_4_preserved_part1_goal3"
+  "strnlen_Why3_ide_VCstrnlen_bigger_post_part1_goal8"
+  "strnlen_Why3_ide_VCstrnlen_loop_inv_4_preserved_part2_goal4"
+  "strnlen_Why3_ide_VCstrnlen_loop_inv_2_preserved_goal1"
+  "strnlen_Why3_ide_VCstrnlen_loop_inv_3_preserved_goal2"
+  "strnlen_Why3_ide_VCstrnlen_loop_inv_4_established_part2_goal6"
+  "strnlen_Why3_ide_VCstrnlen_loop_inv_4_established_part1_goal5"
+  "strnlen_Why3_ide_VCstrnlen_loop_inv_preserved_part1_goal0"
+  "strnlen_Why3_ide_VCstrnlen_smaller_post_part1_goal9"

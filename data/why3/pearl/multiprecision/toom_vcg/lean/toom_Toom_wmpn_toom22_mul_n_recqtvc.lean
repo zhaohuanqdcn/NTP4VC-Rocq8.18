@@ -1,0 +1,31 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.c.C
+import Why3.mach.int.Unsigned
+import pearl.multiprecision.lib.lean.valuation.Valuation
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.compare.Compare
+import pearl.multiprecision.lib.lean.util.Util
+import pearl.multiprecision.lib.lean.ptralias.Alias
+import pearl.multiprecision.lib.lean.util.UtilOld
+import pearl.multiprecision.lib.lean.add_1.Add_1
+import pearl.multiprecision.lib.lean.add.Add
+import pearl.multiprecision.lib.lean.add.AddOld
+import pearl.multiprecision.lib.lean.sub_1.Sub_1
+import pearl.multiprecision.lib.lean.sub.SubOld
+import pearl.multiprecision.lib.lean.mul.Mul
+import pearl.multiprecision.lib.lean.mul.Mul_basecase
+import pearl.multiprecision.lib.lean.logical.LogicalUtil
+import pearl.multiprecision.lib.lean.logical.Logical
+open Classical
+open Lean4Why3
+namespace toom_Toom_wmpn_toom22_mul_n_recqtvc
+theorem wmpn_toom22_mul_n_rec'vc (x : C.ptr (BitVec 64)) (sz : BitVec 32) (y : C.ptr (BitVec 64)) (r : C.ptr (BitVec 64)) (scratch : C.ptr (BitVec 64)) (k : ℤ) (fact0 : C.valid x (BitVec.toInt sz)) (fact1 : C.valid y (BitVec.toInt sz)) (fact2 : C.valid r (BitVec.toInt sz + BitVec.toInt sz)) (fact3 : C.writable r = true) (fact4 : C.writable scratch = true) (fact5 : (0 : ℤ) < BitVec.toInt sz) (fact6 : (8 : ℤ) * BitVec.toInt sz < (2147483647 : ℤ)) (fact7 : (0 : ℤ) ≤ k) (fact8 : k ≤ (64 : ℤ)) (fact9 : BitVec.toInt sz ≤ BitVec.toInt (29 : BitVec 32) * HPow.hPow (2 : ℤ) (Int.toNat k)) (fact10 : C.valid scratch ((2 : ℤ) * (BitVec.toInt sz + k))) : if BitVec.toInt sz ≤ BitVec.toInt (29 : BitVec 32) then (((0 : ℤ) < BitVec.toInt sz ∧ BitVec.toInt sz ≤ BitVec.toInt sz) ∧ C.valid x (BitVec.toInt sz) ∧ C.valid y (BitVec.toInt sz) ∧ C.valid r (BitVec.toInt sz + BitVec.toInt sz) ∧ C.writable r = true) ∧ (∀(r1 : C.ptr (BitVec 64)), List.length (C.data r1) = List.length (C.data r) ∧ C.offset r1 = C.offset r ∧ C.min r1 = C.min r ∧ C.max r1 = C.max r ∧ C.writable r1 = C.writable r ∧ C.zone1 r1 = C.zone1 r → Lemmas.value r1 (BitVec.toInt sz + BitVec.toInt sz) = Lemmas.value x (BitVec.toInt sz) * Lemmas.value y (BitVec.toInt sz) ∧ (∀(j : ℤ), j < C.offset r1 ∨ C.offset r1 + (BitVec.toInt sz + BitVec.toInt sz) ≤ j → C.pelts r1 j = C.pelts r j) → Lemmas.value r1 (BitVec.toInt sz + BitVec.toInt sz) = Lemmas.value x (BitVec.toInt sz) * Lemmas.value y (BitVec.toInt sz) ∧ (∀(j : ℤ), C.min r1 ≤ j ∧ j < C.offset r1 ∨ C.offset r1 + BitVec.toInt sz + BitVec.toInt sz ≤ j ∧ j < C.max r1 → C.pelts r1 j = C.pelts r j) ∧ C.min r1 = C.min r ∧ C.max r1 = C.max r ∧ C.plength r1 = C.plength r) else (((0 : ℤ) ≤ k + k + (1 : ℤ) ∧ k + k < k + k + (1 : ℤ)) ∧ C.valid x (BitVec.toInt sz) ∧ C.valid y (BitVec.toInt sz) ∧ C.valid r (BitVec.toInt sz + BitVec.toInt sz) ∧ BitVec.toInt (29 : BitVec 32) < BitVec.toInt sz ∧ ((0 : ℤ) < k ∧ k ≤ (64 : ℤ)) ∧ BitVec.toInt sz ≤ BitVec.toInt (29 : BitVec 32) * HPow.hPow (2 : ℤ) (Int.toNat k) ∧ C.valid scratch ((2 : ℤ) * (BitVec.toInt sz + k)) ∧ (C.writable r = true ∧ C.writable scratch = true) ∧ (8 : ℤ) * BitVec.toInt sz < (2147483647 : ℤ) ∧ ((2 : ℤ) < BitVec.toInt sz ∧ BitVec.toInt sz ≤ BitVec.toInt sz ∧ BitVec.toInt sz < BitVec.toInt sz + BitVec.toInt sz - (1 : ℤ)) ∧ (4 : ℤ) * BitVec.toInt sz < (5 : ℤ) * BitVec.toInt sz) ∧ (∀(scratch1 : C.ptr (BitVec 64)) (r1 : C.ptr (BitVec 64)), C.offset scratch1 = C.offset scratch ∧ C.writable scratch1 = C.writable scratch ∧ C.zone1 scratch1 = C.zone1 scratch → C.offset r1 = C.offset r ∧ C.writable r1 = C.writable r ∧ C.zone1 r1 = C.zone1 r → C.min r1 = C.min r ∧ C.max r1 = C.max r ∧ C.plength r1 = C.plength r ∧ C.min scratch1 = C.min scratch ∧ C.max scratch1 = C.max scratch ∧ C.plength scratch1 = C.plength scratch ∧ Lemmas.value r1 (BitVec.toInt sz + BitVec.toInt sz) = Lemmas.value x (BitVec.toInt sz) * Lemmas.value y (BitVec.toInt sz) ∧ (∀(j : ℤ), C.min r1 ≤ j ∧ j < C.offset r1 ∨ C.offset r1 + BitVec.toInt sz + BitVec.toInt sz ≤ j ∧ j < C.max r1 → C.pelts r1 j = C.pelts r j) ∧ (∀(j : ℤ), C.min scratch1 ≤ j ∧ j < C.offset scratch1 → C.pelts scratch1 j = C.pelts scratch j) → Lemmas.value r1 (BitVec.toInt sz + BitVec.toInt sz) = Lemmas.value x (BitVec.toInt sz) * Lemmas.value y (BitVec.toInt sz) ∧ (∀(j : ℤ), C.min r1 ≤ j ∧ j < C.offset r1 ∨ C.offset r1 + BitVec.toInt sz + BitVec.toInt sz ≤ j ∧ j < C.max r1 → C.pelts r1 j = C.pelts r j) ∧ (∀(j : ℤ), C.min scratch1 ≤ j ∧ j < C.offset scratch1 → C.pelts scratch1 j = C.pelts scratch j) ∧ C.min r1 = C.min r ∧ C.max r1 = C.max r ∧ C.plength r1 = C.plength r ∧ C.min scratch1 = C.min scratch ∧ C.max scratch1 = C.max scratch ∧ C.plength scratch1 = C.plength scratch)
+  := sorry
+end toom_Toom_wmpn_toom22_mul_n_recqtvc

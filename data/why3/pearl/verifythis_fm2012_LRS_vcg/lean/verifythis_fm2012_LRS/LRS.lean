@@ -1,0 +1,13 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.MapEq
+import Why3.map.MapExchange
+import Why3.map.MapPermut
+import Why3.map.MapInjection
+import pearl.verifythis_fm2012_LRS_vcg.lean.verifythis_fm2012_LRS.LCP
+import pearl.verifythis_fm2012_LRS_vcg.lean.verifythis_fm2012_LRS.SuffixSort
+import pearl.verifythis_fm2012_LRS_vcg.lean.verifythis_fm2012_LRS.SuffixArray
+open Classical
+open Lean4Why3
+namespace LRS
+end LRS

@@ -1,0 +1,624 @@
+(* ---------------------------------------------------------- *)
+(* --- calls parse_subjectpubkey_ec parse_subjectpubkey_rsa in 'parse_x509_subjectPublicKeyInfo' at instruction (file src/x509-parser.c, line 4443) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_subjectPublicKeyInfo_stmt_calls_parse_subjectp___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:calls parse_subjectpubkey_ec parse_subjectpubkey_rsa in 'parse_x509_subjectPublicKeyInfo' at instruction (file src/x509-parser.c, line 4443)":
+*)
+goal goal0:
+*)
+goal goal0:
+  let a = (global l_param_7105) in
+  let a_1 = (shiftfield_f19_curve_param a) in
+  let a_2 = (shiftfield_f19_null_param a) in
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_3 t_2 : map addr int.
+  forall t_5 t_4 : map addr addr.
+  forall a_4 a_3 : addr.
+  let x = a_4.base in
+  let x_1 = a_3.base in
+  let a_5 = (shift_uint8 a_4 i_3) in
+  let a_6 = t_1[i_2] in
+  let a_7 = (shiftfield_f20_parse_subjectpubkey a_6) in
+  let a_8 = ((havoc t_4 t_5[a_1 <- null][a_2 <- null] a 4))[a_7] in
+  let a_9 = (shiftfield_f20_alg_type a_6) in
+  let m = t[l_param_7105 <- 4] in
+  let a_10 = (shift_uint8 a_4 0) in
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (null <> a_4) ->
+  (x <> x_1) ->
+  (a_5 <> null) ->
+  (a_8 <> null) ->
+  (((havoc t_2
+      t_3[((shiftfield_f19_ecdsa_no_param a)) <- 0][((shiftfield_f19_unparsed_param
+                                                       a)) <- 0] a 4))[a_9] =
+   2) ->
+  (0 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_4 <= i_1) ->
+  (0 <= i_4) ->
+  (i <= i_4) ->
+  ((i_3 + i_4) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  (2 <= i_3) ->
+  (i <= (2147483648 + i_4)) ->
+  (i_4 <= (65535 + i)) ->
+  (i_4 <= (2147483647 + i)) ->
+  ((framed t_5)) ->
+  ((linked t)) ->
+  ((is_uint8 i_2)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((valid_rd m a_6 8)) ->
+  ((valid_rd m a_9 1)) ->
+  ((valid_rd m a_7 1)) ->
+  ((separated a_5 1 a 4)) ->
+  ((0 < i_1) -> ((valid_rd t a_10 i_1))) ->
+  ((0 < i_1) -> ((valid_rd m a_10 i_1))) ->
+  ((0 < i_4) -> ((valid_rd m a_5 i_4))) ->
+  ((a_8 = ((global g_parse_subjectpubkey_ec_8420))) \/
+   (a_8 = ((global g_parse_subjectpubkey_rsa_8421))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 4423) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_subjectPublicKeyInfo_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Globals.Globals
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 4423)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_3) in
+  let m = t[l_param_7105 <- 4] in
+  let a_3 = t_1[i_2] in
+  let a_4 = (shift_uint8 a_1 0) in
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (0 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_4 <= i_1) ->
+  (0 <= i_4) ->
+  (i <= i_4) ->
+  ((i_3 + i_4) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  (2 <= i_3) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint8 i_2)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rd m a_3 8)) ->
+  ((separated a_2 1 ((global l_param_7105)) 4)) ->
+  ((0 < i_1) -> ((valid_rd t a_4 i_1))) ->
+  ((0 < i_1) -> ((valid_rd m a_4 i_1))) ->
+  ((0 < i_4) -> ((valid_rd m a_2 i_4))) ->
+  ((valid_rd m ((shiftfield_f20_alg_type a_3)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 4449) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_subjectPublicKeyInfo_assert_rte_unsigned_downc___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Globals.Globals
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 4449) (1/2)":
+*)
+goal goal2:
+*)
+goal goal2:
+  let a = (global l_param_7105) in
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_3 t_2 : map addr int.
+  forall t_5 t_4 : map addr addr.
+  forall a_2 a_1 : addr.
+  let x = a_2.base in
+  let x_1 = a_1.base in
+  let a_3 = (shift_uint8 a_2 i_3) in
+  let x_2 = - i in
+  let a_4 = (shift_uint8 a_2 (i_3 + i_4 - i)) in
+  let a_5 = t_1[i_2] in
+  let a_6 = (shiftfield_f20_parse_subjectpubkey a_5) in
+  let a_7 = (shiftfield_f20_alg_type a_5) in
+  let x_3 = i_3 + i_4 in
+  let m = t[l_param_7105 <- 4] in
+  let a_8 = (shift_uint8 a_2 0) in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (g_parse_subjectpubkey_ec_8420 <> 0) ->
+  (null <> a_2) ->
+  (x <> x_1) ->
+  (a_3 <> null) ->
+  (a_4 <> null) ->
+  (((havoc t_4
+      t_5[((shiftfield_f19_curve_param a)) <- null][((shiftfield_f19_null_param
+                                                       a)) <- null] a 4))[a_6] =
+   ((global g_parse_subjectpubkey_ec_8420))) ->
+  (((havoc t_2
+      t_3[((shiftfield_f19_ecdsa_no_param a)) <- 0][((shiftfield_f19_unparsed_param
+                                                       a)) <- 0] a 4))[a_7] =
+   2) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_4 <= i_1) ->
+  (0 <= i_4) ->
+  (x_3 <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_3) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((2 + i) <= i_4) ->
+  ((framed t_5)) ->
+  ((linked t)) ->
+  ((is_uint8 i_2)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rd m a_5 8)) ->
+  ((is_uint16 (i_4 - i))) ->
+  ((valid_rd m a_7 1)) ->
+  ((valid_rd m a_6 1)) ->
+  ((separated a_3 1 a 4)) ->
+  ((0 < i_1) -> ((valid_rd t a_8 i_1))) ->
+  ((0 < i_1) -> ((valid_rd m a_8 i_1))) ->
+  ((0 < i_4) -> ((valid_rd m a_3 i_4))) ->
+  ((0 < i) -> ((valid_rd m a_4 i))) ->
+  (x_3 <= 65535)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 4449) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_subjectPublicKeyInfo_assert_rte_unsigned_downc____2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Globals.Globals
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 4449) (2/2)":
+*)
+goal goal3:
+*)
+goal goal3:
+  let a = (global l_param_7105) in
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_3 t_2 : map addr int.
+  forall t_5 t_4 : map addr addr.
+  forall a_2 a_1 : addr.
+  let x = a_2.base in
+  let x_1 = a_1.base in
+  let a_3 = (shift_uint8 a_2 i_3) in
+  let x_2 = - i in
+  let a_4 = (shift_uint8 a_2 (i_3 + i_4 - i)) in
+  let a_5 = t_1[i_2] in
+  let a_6 = (shiftfield_f20_parse_subjectpubkey a_5) in
+  let a_7 = (shiftfield_f20_alg_type a_5) in
+  let x_3 = i_3 + i_4 in
+  let m = t[l_param_7105 <- 4] in
+  let a_8 = (shift_uint8 a_2 0) in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (g_parse_subjectpubkey_rsa_8421 <> 0) ->
+  (null <> a_2) ->
+  (x <> x_1) ->
+  (a_3 <> null) ->
+  (a_4 <> null) ->
+  (((havoc t_4
+      t_5[((shiftfield_f19_curve_param a)) <- null][((shiftfield_f19_null_param
+                                                       a)) <- null] a 4))[a_6] =
+   ((global g_parse_subjectpubkey_rsa_8421))) ->
+  (((havoc t_2
+      t_3[((shiftfield_f19_ecdsa_no_param a)) <- 0][((shiftfield_f19_unparsed_param
+                                                       a)) <- 0] a 4))[a_7] =
+   2) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_4 <= i_1) ->
+  (0 <= i_4) ->
+  (x_3 <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_3) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((2 + i) <= i_4) ->
+  ((framed t_5)) ->
+  ((linked t)) ->
+  ((is_uint8 i_2)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rd m a_5 8)) ->
+  ((is_uint16 (i_4 - i))) ->
+  ((valid_rd m a_7 1)) ->
+  ((valid_rd m a_6 1)) ->
+  ((separated a_3 1 a 4)) ->
+  ((0 < i_1) -> ((valid_rd t a_8 i_1))) ->
+  ((0 < i_1) -> ((valid_rd m a_8 i_1))) ->
+  ((0 < i_4) -> ((valid_rd m a_3 i_4))) ->
+  ((0 < i) -> ((valid_rd m a_4 i))) ->
+  (x_3 <= 65535)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 485) in 'parse_id_len'' in 'parse_x509_subjectPublicKeyInfo' at call 'parse_id_len' (file src/x509-parser.c, line 4400)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_subjectPublicKeyInfo_call_parse_id_len_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Globals.Globals
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 485) in 'parse_id_len'' in 'parse_x509_subjectPublicKeyInfo' at call 'parse_id_len' (file src/x509-parser.c, line 4400)
+":
+*)
+goal goal4:
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 0) in
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 < i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rd t[l_param_7105 <- 4] a_2 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2363) in 'parse_x509_AlgorithmIdentifier'' in 'parse_x509_subjectPublicKeyInfo' at call 'parse_x509_AlgorithmIdentifier' (file src/x509-parser.c, line 4416)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_subjectPublicKeyInfo_call_parse_x509_Algorithm___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Globals.Globals
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2363) in 'parse_x509_AlgorithmIdentifier'' in 'parse_x509_subjectPublicKeyInfo' at call 'parse_x509_AlgorithmIdentifier' (file src/x509-parser.c, line 4416)
+":
+*)
+goal goal5:
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_2) in
+  let a_3 = (shift_uint8 a_1 0) in
+  let m = t[l_param_7105 <- 4] in
+  (i_1 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (0 < i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  ((i + i_2) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_2) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((0 < i_1) -> ((valid_rd t a_3 i_1))) ->
+  ((0 < i_1) -> ((valid_rd m a_3 i_1))) ->
+  ((valid_rd m a_2 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 1976) in 'parse_subjectpubkey_ec'' in 'parse_x509_subjectPublicKeyInfo' at instruction (file src/x509-parser.c, line 4443)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_subjectPublicKeyInfo_call_parse_subjectpubkey____
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Globals.Globals
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 1976) in 'parse_subjectpubkey_ec'' in 'parse_x509_subjectPublicKeyInfo' at instruction (file src/x509-parser.c, line 4443)
+":
+*)
+goal goal6:
+*)
+goal goal6:
+  let a = (global l_param_7105) in
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_3 t_2 : map addr int.
+  forall t_5 t_4 : map addr addr.
+  forall a_2 a_1 : addr.
+  let x = a_2.base in
+  let x_1 = a_1.base in
+  let a_3 = (shift_uint8 a_2 i_3) in
+  let a_4 = (shift_uint8 a_2 (i + i_3)) in
+  let a_5 = t_1[i_2] in
+  let a_6 = (shiftfield_f20_parse_subjectpubkey a_5) in
+  let a_7 = (shiftfield_f20_alg_type a_5) in
+  let m = t[l_param_7105 <- 4] in
+  let x_2 = i_4 - i in
+  let a_8 = (shift_uint8 a_2 0) in
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (g_parse_subjectpubkey_ec_8420 <> 0) ->
+  (null <> a_2) ->
+  (x <> x_1) ->
+  (a_3 <> null) ->
+  (a_4 <> null) ->
+  (((havoc t_4
+      t_5[((shiftfield_f19_curve_param a)) <- null][((shiftfield_f19_null_param
+                                                       a)) <- null] a 4))[a_6] =
+   ((global g_parse_subjectpubkey_ec_8420))) ->
+  (((havoc t_2
+      t_3[((shiftfield_f19_ecdsa_no_param a)) <- 0][((shiftfield_f19_unparsed_param
+                                                       a)) <- 0] a 4))[a_7] =
+   2) ->
+  (i < i_4) ->
+  (0 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_4 <= i_1) ->
+  (0 <= i_4) ->
+  ((i_3 + i_4) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  (2 <= i_3) ->
+  (i <= (2147483648 + i_4)) ->
+  (i_4 <= (65535 + i)) ->
+  (i_4 <= (2147483647 + i)) ->
+  ((framed t_5)) ->
+  ((linked t)) ->
+  ((is_uint8 i_2)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rd m a_5 8)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd m a_7 1)) ->
+  ((valid_rd m a_6 1)) ->
+  ((separated a_3 1 a 4)) ->
+  ((0 < i_1) -> ((valid_rd t a_8 i_1))) ->
+  ((0 < i_1) -> ((valid_rd m a_8 i_1))) ->
+  ((0 < i_4) -> ((valid_rd m a_3 i_4))) ->
+  ((valid_rd m a_4 x_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2197) in 'parse_subjectpubkey_rsa'' in 'parse_x509_subjectPublicKeyInfo' at instruction (file src/x509-parser.c, line 4443)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_subjectPublicKeyInfo_call_parse_subjectpubkey_____2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Globals.Globals
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2197) in 'parse_subjectpubkey_rsa'' in 'parse_x509_subjectPublicKeyInfo' at instruction (file src/x509-parser.c, line 4443)
+":
+*)
+goal goal7:
+*)
+goal goal7:
+  let a = (global l_param_7105) in
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_3 t_2 : map addr int.
+  forall t_5 t_4 : map addr addr.
+  forall a_2 a_1 : addr.
+  let x = a_2.base in
+  let x_1 = a_1.base in
+  let a_3 = (shift_uint8 a_2 i_3) in
+  let x_2 = - i in
+  let a_4 = (shift_uint8 a_2 (i_3 + i_4 - i)) in
+  let a_5 = t_1[i_2] in
+  let a_6 = (shiftfield_f20_parse_subjectpubkey a_5) in
+  let a_7 = (shiftfield_f20_alg_type a_5) in
+  let m = t[l_param_7105 <- 4] in
+  let a_8 = (shift_uint8 a_2 0) in
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (g_parse_subjectpubkey_rsa_8421 <> 0) ->
+  (null <> a_2) ->
+  (x <> x_1) ->
+  (a_3 <> null) ->
+  (a_4 <> null) ->
+  (((havoc t_4
+      t_5[((shiftfield_f19_curve_param a)) <- null][((shiftfield_f19_null_param
+                                                       a)) <- null] a 4))[a_6] =
+   ((global g_parse_subjectpubkey_rsa_8421))) ->
+  (((havoc t_2
+      t_3[((shiftfield_f19_ecdsa_no_param a)) <- 0][((shiftfield_f19_unparsed_param
+                                                       a)) <- 0] a 4))[a_7] =
+   2) ->
+  (0 < i) ->
+  (0 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_4 <= i_1) ->
+  (0 <= i_4) ->
+  ((i_3 + i_4) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_3) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((2 + i) <= i_4) ->
+  ((framed t_5)) ->
+  ((linked t)) ->
+  ((is_uint8 i_2)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rd m a_5 8)) ->
+  ((is_uint16 (i_4 - i))) ->
+  ((valid_rd m a_7 1)) ->
+  ((valid_rd m a_6 1)) ->
+  ((separated a_3 1 a 4)) ->
+  ((0 < i_1) -> ((valid_rd t a_8 i_1))) ->
+  ((0 < i_1) -> ((valid_rd m a_8 i_1))) ->
+  ((0 < i_4) -> ((valid_rd m a_3 i_4))) ->
+  ((valid_rd m a_4 i))
+
+end
+

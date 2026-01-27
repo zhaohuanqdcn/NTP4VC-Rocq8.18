@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name remove_duplicate_hash_vcg.remove_duplicate_hash)
+(theories Why3))

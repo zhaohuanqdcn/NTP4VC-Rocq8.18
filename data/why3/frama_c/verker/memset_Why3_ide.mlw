@@ -1,0 +1,448 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/memset.h, line 18) in 'memset' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file src/memset.h, line 18) in 'memset'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = (to_sint8 i) in
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((addr_le a a)) ->
+  ((addr_le a a_1)) ->
+  ((addr_lt a_1 a_2)) ->
+  ((addr_le a a_2)) ->
+  ((valid_rw t a_2 0)) ->
+  (forall a_3 : addr. ((addr_lt a_3 a)) -> ((addr_le a a_3)) ->
+   (t_1[a_3] = x)) ->
+  (t_1[a_1] = x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memset.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memset.c, line 8)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a a)) ->
+  ((addr_le a ((shift_sint8 a i)))) ->
+  ((valid_rw t a_1 i)) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a a_2)) ->
+   (((havoc t_1 t_2 a_1 i))[a_2] = ((to_sint8 i_1)))) ->
+  (((to_uint64 (i - 1))) <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memset.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memset.c, line 8)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint64 i)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memset.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memset.c, line 9)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a i) in
+  let a_2 = (shift_sint8 a 0) in
+  let a_3 = (shift_sint8 a 1) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a a)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a_2 i)) ->
+  (forall a_4 : addr. ((addr_lt a_4 a)) -> ((addr_le a a_4)) ->
+   (((havoc t_1 t_2 a_2 i))[a_4] = ((to_sint8 i_1)))) ->
+  (((addr_le a a_3)) /\ ((addr_le a_3 a_1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memset.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memset.c, line 9)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint64 i)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  (((addr_le a a)) /\ ((addr_le a ((shift_sint8 a i)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memset.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memset.c, line 10)":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a a)) ->
+  ((addr_le a ((shift_sint8 a i)))) ->
+  ((valid_rw t a_1 i)) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a a_2)) ->
+   (((havoc t_1 t_2 a_1 i))[a_2] = ((to_sint8 i_1)))) ->
+  ((1 + ((to_uint64 (i - 1)))) = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memset.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_4_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memset.c, line 11)":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let a_3 = (havoc t_1 t_2 a_2 i) in
+  let x = (to_sint8 i_1) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a a)) ->
+  ((addr_le a a_1)) ->
+  ((addr_lt a_1 ((shift_sint8 a 1)))) ->
+  ((addr_le a ((shift_sint8 a i)))) ->
+  ((valid_rw t a_2 i)) ->
+  (forall a_4 : addr. ((addr_lt a_4 a)) -> ((addr_le a a_4)) ->
+   (a_3[a_4] = x)) ->
+  (a_3[a <- x][a_1] = x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memset.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_4_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memset.c, line 11)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_lt a_1 a)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  (t_1[a_1] = ((to_sint8 i_1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file src/memset.c, line 12) (5/6)    --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_assign_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file src/memset.c, line 12) (5/6)":
+*)
+goal goal8:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a a)) ->
+  ((addr_le a ((shift_sint8 a i)))) ->
+  ((valid_rw t a_1 i)) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a a_2)) ->
+   (((havoc t_1 t_2 a_1 i))[a_2] = ((to_sint8 i_1)))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file src/memset.c, line 12) (6/6)    --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_assign_part6
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file src/memset.c, line 12) (6/6)":
+*)
+goal goal9:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a a)) ->
+  (not (invalid t a 1)) ->
+  ((addr_le a ((shift_sint8 a i)))) ->
+  ((valid_rw t a_1 i)) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a a_2)) ->
+   (((havoc t_1 t_2 a_1 i))[a_2] = ((to_sint8 i_1)))) ->
+  (0 < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file src/memset.c, line 15) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file src/memset.c, line 15)":
+*)
+goal goal10:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a a)) ->
+  ((addr_le a ((shift_sint8 a i)))) ->
+  ((valid_rw t a_1 i)) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a a_2)) ->
+   (((havoc t_1 t_2 a_1 i))[a_2] = ((to_sint8 i_1)))) ->
+  (((to_uint64 (i - 1))) < i)
+
+end
+

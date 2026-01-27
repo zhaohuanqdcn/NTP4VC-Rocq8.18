@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name pairing_heap_bin_vcg.pairing_heap_bin)
+(theories Why3.bintree Why3))

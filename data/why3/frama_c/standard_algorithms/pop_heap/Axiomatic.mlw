@@ -1,0 +1,45 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions                                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_unchanged_1_ (mint_0 : map addr int) (mint_1 : map addr int)
+    (a : addr) (m : int) (n : int) =
+    forall i : int. let a_1 = (shift_sint32 a i) in (m <= i) -> (i < n) ->
+    (mint_1[a_1] = mint_0[a_1])
+
+predicate p_upperbound_1_ (mint_0 : map addr int) (a : addr) (m : int)
+    (n : int) (v : int) =
+    forall i : int. (m <= i) -> (i < n) -> (mint_0[(shift_sint32 a i)] <= v)
+
+predicate p_upperbound_2_ (mint_0 : map addr int) (a : addr) (n : int)
+    (v : int) = (p_upperbound_1_ mint_0 a 0 n v)
+
+predicate p_maxelement (mint_0 : map addr int) (a : addr) (n : int)
+    (max_0 : int) =
+    (0 <= max_0) /\ (max_0 < n) /\
+    ((p_upperbound_2_ mint_0 a n mint_0[(shift_sint32 a max_0)]))
+
+function l_heapparent (i : int) : int = (div (i - 1) 2)
+
+predicate p_isheap (mint_0 : map addr int) (a : addr) (n : int) =
+    forall i : int. (0 < i) -> (i < n) ->
+    (mint_0[(shift_sint32 a i)]
+       <= mint_0[(shift_sint32 a ((l_heapparent i)))])
+
+function l_heapright (i : int) : int = 2 + (2 * i)
+
+function l_heapleft (i : int) : int = 1 + (2 * i)
+
+end
+

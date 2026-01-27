@@ -1,0 +1,202 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 14) in 'PositiveCountImpliesHasValue' --- *)
+(* ---------------------------------------------------------- *)
+theory VCPositiveCountImpliesHasValue_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Count.A_Count
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 14) in 'PositiveCountImpliesHasValue'":
+*)
+goal goal0:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_3 <= i_1) ->
+  (i_2 < i_1) ->
+  (i_1 <= i_3) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (0 < ((l_count_1_ t a i_2 i_1 i))) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((forall i_4 : int. (i_2 <= i_4) -> (i_4 < i_3) ->
+    (t[(shift_sint32 a i_4)] <> i)) -> (((l_count_1_ t a i_2 i_3 i)) = 0)) ->
+  ((p_hasvalue_1_ t a i_2 i_3 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 18) --- *)
+(* ---------------------------------------------------------- *)
+theory VCPositiveCountImpliesHasValue_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Count.A_Count
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 18)":
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  let x = 1 + i_3 in
+  (i_3 <= i_1) ->
+  (i_2 < i_1) ->
+  (i_3 < i_1) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (0 < ((l_count_1_ t a i_2 i_1 i))) ->
+  (i_3 <= 4294967294) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 x)) ->
+  ((forall i_4 : int. (i_2 <= i_4) -> (i_4 < i_3) ->
+    (t[(shift_sint32 a i_4)] <> i)) -> (((l_count_1_ t a i_2 i_3 i)) = 0)) ->
+  (i_2 <= x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VCPositiveCountImpliesHasValue_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Count.A_Count
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 20)":
+*)
+goal goal2:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  let x = 1 + i_3 in
+  (i_3 <= i_1) ->
+  (i_2 < i_1) ->
+  (i_3 < i_1) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (0 < ((l_count_1_ t a i_2 i_1 i))) ->
+  (i_3 <= 4294967294) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 x)) ->
+  ((forall i_4 : int. (i_2 <= i_4) -> (i_4 < i_3) ->
+    (t[(shift_sint32 a i_4)] <> i)) -> (((l_count_1_ t a i_2 i_3 i)) = 0)) ->
+  (forall i_4 : int. (i_2 <= i_4) -> (i_4 <= i_3) ->
+   (t[(shift_sint32 a i_4)] <> i)) ->
+  (((l_count_1_ t a i_2 x i)) = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VCPositiveCountImpliesHasValue_loop_inv_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Count.A_Count
+use import Cint.Cint
+
+(*
+goal WP "expl:Establishment of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 20)":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (0 < ((l_count_1_ t a i_2 i_1 i))) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  (((l_count_1_ t a i_2 i_2 i)) = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 25) --- *)
+(* ---------------------------------------------------------- *)
+theory VCPositiveCountImpliesHasValue_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Count.A_Count
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PositiveCountImpliesHasValue.h, line 25)":
+*)
+goal goal4:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_3 <= i_1) ->
+  (i_2 < i_1) ->
+  (i_3 < i_1) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (0 < ((l_count_1_ t a i_2 i_1 i))) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((forall i_4 : int. (i_2 <= i_4) -> (i_4 < i_3) ->
+    (t[(shift_sint32 a i_4)] <> i)) -> (((l_count_1_ t a i_2 i_3 i)) = 0)) ->
+  (i_3 <= 4294967294)
+
+end
+

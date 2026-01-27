@@ -1,0 +1,6 @@
+session Predicates = NTP4Verif +
+theories
+  "Predicates_Pred_pcompose_associativeqtvc"
+  "Predicates_Pred_identity_neutralqtvc"
+  "Predicates_Pred_pupdate_eqqtvc"
+  "Predicates_Pred_pupdate_neqqtvc"

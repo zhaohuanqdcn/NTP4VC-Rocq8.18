@@ -1,0 +1,17 @@
+session skip_spaces_Why3_ide = NTP4Verif +
+theories
+  "skip_spaces_Why3_ide_VCskip_spaces_loop_inv_3_preserved_goal9"
+  "skip_spaces_Why3_ide_VCskip_spaces_assign_normal_part2_goal13"
+  "skip_spaces_Why3_ide_VCskip_spaces_loop_inv_2_established_goal8"
+  "skip_spaces_Why3_ide_VCskip_spaces_post_6_goal5"
+  "skip_spaces_Why3_ide_VCskip_spaces_post_3_goal2"
+  "skip_spaces_Why3_ide_VCskip_spaces_assign_exit_part2_goal12"
+  "skip_spaces_Why3_ide_VCskip_spaces_post_2_goal1"
+  "skip_spaces_Why3_ide_VCskip_spaces_loop_inv_preserved_goal6"
+  "skip_spaces_Why3_ide_VCskip_spaces_loop_assign_part2_goal11"
+  "skip_spaces_Why3_ide_VCskip_spaces_post_4_goal3"
+  "skip_spaces_Why3_ide_VCskip_spaces_loop_inv_2_preserved_goal7"
+  "skip_spaces_Why3_ide_VCskip_spaces_post_goal0"
+  "skip_spaces_Why3_ide_VCskip_spaces_post_5_goal4"
+  "skip_spaces_Why3_ide_VCskip_spaces_loop_term_positive_goal14"
+  "skip_spaces_Why3_ide_VCskip_spaces_loop_inv_3_established_goal10"

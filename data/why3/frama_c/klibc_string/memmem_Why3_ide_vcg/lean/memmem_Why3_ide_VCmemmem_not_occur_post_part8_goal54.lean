@@ -1,0 +1,11 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import Why3.Cint.Cint
+import frama_c.klibc_string.lib.lean.Compound.Compound
+open Classical
+open Lean4Why3
+namespace memmem_Why3_ide_VCmemmem_not_occur_post_part8_goal54
+theorem goal54 (a_8 : Memory.addr) (a_10 : Memory.addr) (a_5 : Memory.addr) (i_1 : ℤ) (i : ℤ) (t_1 : Memory.addr -> ℤ) (a : Memory.addr) (t : ℤ -> ℤ) (a_6 : Memory.addr) (a_7 : Memory.addr) (a_4 : Memory.addr) (a_3 : Memory.addr) (a_2 : Memory.addr) (a_1 : Memory.addr) (a_9 : Memory.addr) : let x : ℤ := Memory.addr.base a_8; let x_1 : ℤ := Memory.addr.base a_10; let a_11 : Memory.addr := Memory.shift a_5 (i_1 - i); let x_2 : ℤ := t_1 a_11; let x_3 : ℤ := t_1 a; let a_12 : Memory.addr := Memory.shift a_8 (0 : ℤ); let a_13 : Memory.addr := Memory.shift a_10 (0 : ℤ); ¬i_1 = (0 : ℤ) → x = Memory.addr.base a → x_1 = Memory.addr.base a_5 → x_2 = x_3 → (0 : ℤ) < i → (0 : ℤ) < i_1 → (0 : ℤ) ≤ i_1 → i ≤ i_1 → Memory.region x ≤ (0 : ℤ) → Memory.region x_1 ≤ (0 : ℤ) → Memory.linked t → Cint.is_uint32 i → Cint.is_uint32 i_1 → Cint.is_uint8 x_3 → Memory.valid_rw t a_12 (1 : ℤ) → Memory.valid_rw t a_13 i_1 → Memory.separated a_13 i_1 a_12 (1 : ℤ) → Memory.addr_le a_6 a_11 → Memory.addr_le a_11 (Memory.shift a_7 i_1) → Cint.is_uint8 x_2 → (∀(i_2 : ℤ), (0 : ℤ) ≤ i_2 → i_2 + i < i_1 → ¬t_1 (Memory.shift a_4 (0 : ℤ)) = t_1 (Memory.shift a_3 i_2)) → (∀(i_2 : ℤ), (0 : ℤ) ≤ i_2 → i_2 < i_1 → (∃(i_3 : ℤ), ¬t_1 (Memory.shift a_2 (i_3 + i_2)) = t_1 (Memory.shift a_1 i_3) ∧ i_3 ≤ (0 : ℤ) ∧ (0 : ℤ) ≤ i_3)) → Memory.addr.mk (0 : ℤ) (0 : ℤ) = a_9
+  := sorry
+end memmem_Why3_ide_VCmemmem_not_occur_post_part8_goal54

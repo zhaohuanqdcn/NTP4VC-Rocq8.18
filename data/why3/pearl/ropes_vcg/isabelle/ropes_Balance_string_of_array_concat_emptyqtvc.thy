@@ -1,0 +1,29 @@
+theory ropes_Balance_string_of_array_concat_emptyqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.int_Fibonacci" "./ropes_MyString" "./ropes_Rope"
+begin
+consts max :: "int"
+axiomatization where max'def:   "(2 :: int) \<le> max"
+consts string_of_array :: "rope list \<Rightarrow> int \<Rightarrow> int \<Rightarrow> char_string"
+axiomatization where string_of_array_empty:   "infix_eqeq (string_of_array q l l) ropes_MyString.empty"
+ if "(0 :: int) \<le> l"
+ and "l \<le> int (List.length q)"
+  for l :: "int"
+  and q :: "rope list"
+axiomatization where string_of_array_concat_left:   "infix_eqeq (string_of_array q l u) (app (string_of_array q (l + (1 :: int)) u) (string (q ! nat l)))"
+ if "(0 :: int) \<le> l"
+ and "l < u"
+ and "u \<le> int (List.length q)"
+  for l :: "int"
+  and u :: "int"
+  and q :: "rope list"
+theorem string_of_array_concat_empty'vc:
+  fixes l :: "int"
+  fixes u :: "int"
+  fixes q :: "rope list"
+  assumes fact0: "(0 :: int) \<le> l"
+  assumes fact1: "l \<le> u"
+  assumes fact2: "u \<le> int (List.length q)"
+  assumes fact3: "\<forall>(j :: int). l \<le> j \<and> j < u \<longrightarrow> q ! nat j = Emp"
+  shows "infix_eqeq (string_of_array q l u) ropes_MyString.empty"
+  sorry
+end

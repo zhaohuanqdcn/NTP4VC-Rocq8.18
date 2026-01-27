@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name gnome_sort_vcg)
+(theories Why3.why3.Ref Why3.array Why3.map Why3.int Why3))

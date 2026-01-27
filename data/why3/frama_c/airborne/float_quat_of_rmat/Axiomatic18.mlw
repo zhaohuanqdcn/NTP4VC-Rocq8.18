@@ -1,0 +1,25 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #18)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic18
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import S11_RealQuat_s.S11_RealQuat_s
+use import Compound.Compound
+
+function l_l_quat_of_floatquat (mflt_0 : map addr real)
+    (q : addr) : s11_realquat_s =
+    { f11_realquat_s_qi = mflt_0[(shiftfield_f3_floatquat_qi q)] ;
+      f11_realquat_s_qx = mflt_0[(shiftfield_f3_floatquat_qx q)] ;
+      f11_realquat_s_qy = mflt_0[(shiftfield_f3_floatquat_qy q)] ;
+      f11_realquat_s_qz = mflt_0[(shiftfield_f3_floatquat_qz q)] }
+
+end
+

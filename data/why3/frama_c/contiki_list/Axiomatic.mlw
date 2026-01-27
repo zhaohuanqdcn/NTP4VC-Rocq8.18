@@ -1,0 +1,37 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions                                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+inductive p_linked_n (malloc_0 : map int int) (mptr_0 : map addr addr) 
+                     (root_0 : addr) (array_0 : addr) (index_0 : int) (n : int) (bound_0 : addr) =
+  | Q_linked_n_bound: forall array_0 bound_0 : addr.
+      forall mptr_0 : map addr addr.
+      forall malloc_0 : map int int.
+      forall index_0 : int.
+      (0 <= index_0) -> (index_0 <= 2147483646) ->
+      p_linked_n malloc_0 mptr_0 bound_0 array_0 index_0 0 bound_0
+  | Q_linked_n_cons: forall array_0 bound_0 root_0 : addr.
+      forall mptr_0 : map addr addr.
+      forall malloc_0 : map int int.
+      forall index_0 n : int.
+      let x = index_0 + n in
+      (mptr_0[(shift_ptr array_0 index_0)] = root_0) ->
+      (0 < n) -> (0 <= index_0) -> (0 <= x) -> (x <= 2147483646) ->
+      ((valid_rw malloc_0 root_0 4)) ->
+      (p_linked_n malloc_0 mptr_0 mptr_0[(shiftfield_f1_list_next root_0)]
+         array_0 (1 + index_0) (n - 1) bound_0) ->
+      p_linked_n malloc_0 mptr_0 root_0 array_0 index_0 n bound_0
+
+end
+

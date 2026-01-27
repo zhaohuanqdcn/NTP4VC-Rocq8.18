@@ -1,0 +1,34 @@
+theory verifythis_2019_cartesian_trees_Top_tailqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.exn_Exn"
+begin
+axiomatization where Trans:   "z \<le> x"
+ if "y \<le> x"
+ and "z \<le> y"
+  for y :: "int"
+  and x :: "int"
+  and z :: "int"
+inductive sorted :: "int list \<Rightarrow> bool" where
+   Sorted_Nil: "sorted (Nil :: int list)"
+ | Sorted_One: "sorted (Cons x (Nil :: int list))" for x :: "int"
+ | Sorted_Two: "y \<le> x \<Longrightarrow> sorted (Cons y l) \<Longrightarrow> sorted (Cons x (Cons y l))" for y :: "int" and x :: "int" and l :: "int list"
+axiomatization where sorted_mem:   "(\<forall>(y :: int). y \<in> set l \<longrightarrow> y \<le> x) \<and> sorted l \<longleftrightarrow> sorted (Cons x l)"
+  for l :: "int list"
+  and x :: "int"
+axiomatization where sorted_append:   "sorted l1 \<and> sorted l2 \<and> (\<forall>(x :: int) (y :: int). x \<in> set l1 \<longrightarrow> y \<in> set l2 \<longrightarrow> y \<le> x) \<longleftrightarrow> sorted (l1 @ l2)"
+  for l1 :: "int list"
+  and l2 :: "int list"
+consts destruct :: "'xi list \<Rightarrow> 'xi \<times> 'xi list"
+axiomatization where destruct'def:   "case l of Cons h t \<Rightarrow> destruct l = (h, t) | _ \<Rightarrow> False"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+consts peek :: "'xi list \<Rightarrow> 'xi"
+axiomatization where peek'def:   "case destruct l of (h, _) \<Rightarrow> peek l = h"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+axiomatization where peek'spec:   "peek l \<in> set l"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+theorem tail'vc:
+  shows "True"
+  sorry
+end

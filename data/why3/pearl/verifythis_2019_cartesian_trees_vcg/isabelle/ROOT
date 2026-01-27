@@ -1,0 +1,17 @@
+session verifythis_2019_cartesian_trees = NTP4Verif +
+theories
+  "verifythis_2019_cartesian_trees_Top_all_descendant_rootqtvc"
+  "verifythis_2019_cartesian_trees_Top_Trans1"
+  "verifythis_2019_cartesian_trees_Top_destruct_peek_tailqtvc"
+  "verifythis_2019_cartesian_trees_Top_smaller_leftqtvc"
+  "verifythis_2019_cartesian_trees_Top_other_descendantqtvc"
+  "verifythis_2019_cartesian_trees_Top_peekqtvc"
+  "verifythis_2019_cartesian_trees_Top_construct_dirsqtvc"
+  "verifythis_2019_cartesian_trees_Top_destructqtvc"
+  "verifythis_2019_cartesian_trees_Top_find_smallerqtvc"
+  "verifythis_2019_cartesian_trees_Top_inv_other_descendantqtvc"
+  "verifythis_2019_cartesian_trees_Top_parqtvc"
+  "verifythis_2019_cartesian_trees_Top_in_orderqtvc"
+  "verifythis_2019_cartesian_trees_Top_tailqtvc"
+  "verifythis_2019_cartesian_trees_Top_traversalqtvc"
+  "verifythis_2019_cartesian_trees_Top_Trans"

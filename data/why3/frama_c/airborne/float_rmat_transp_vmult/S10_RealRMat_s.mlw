@@ -1,0 +1,25 @@
+(* ---------------------------------------------------------- *)
+(* --- Struct 'RealRMat_s'                                --- *)
+(* ---------------------------------------------------------- *)
+theory S10_RealRMat_s
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+type s10_realrmat_s = {
+  f10_realrmat_s_a00 : real ;
+  f10_realrmat_s_a01 : real ;
+  f10_realrmat_s_a02 : real ;
+  f10_realrmat_s_a10 : real ;
+  f10_realrmat_s_a11 : real ;
+  f10_realrmat_s_a12 : real ;
+  f10_realrmat_s_a20 : real ;
+  f10_realrmat_s_a21 : real ;
+  f10_realrmat_s_a22 : real }
+
+end
+

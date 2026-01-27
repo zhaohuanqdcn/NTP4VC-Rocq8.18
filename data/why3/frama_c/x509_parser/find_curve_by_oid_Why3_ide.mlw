@@ -1,0 +1,108 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 1822) in 'find_curve_by_oid' (4/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_curve_by_oid_post_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 1822) in 'find_curve_by_oid' (4/5)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr int.
+  forall t_3 : map addr addr.
+  forall a : addr.
+  let a_1 = t_1[i] in
+  let a_2 = (shiftfield_f18_crv_der_oid_len a_1) in
+  let x = t_2[a_2] in
+  let a_3 = (shiftfield_f18_crv_der_oid a_1) in
+  (null <> a) ->
+  (a_1 <> null) ->
+  (x <> 0) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (0 <= x) ->
+  (i <= 5) ->
+  (i <= 6) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_uint8 i)) ->
+  ((is_uint8 x)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x)) ->
+  ((valid_rd t ((shift_uint8 t_3[a_3] 0)) x)) ->
+  (exists i_1 : int. (a_1 = t_1[i_1]) /\ (0 <= i_1) /\ (i_1 <= 5))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 50) in 'bufs_differ'' in 'find_curve_by_oid' at call 'bufs_differ' (file src/x509-parser.c, line 1854)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_curve_by_oid_call_bufs_differ_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 50) in 'bufs_differ'' in 'find_curve_by_oid' at call 'bufs_differ' (file src/x509-parser.c, line 1854)
+":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr int.
+  forall t_3 : map addr addr.
+  forall a : addr.
+  let a_1 = t_1[i] in
+  let a_2 = (shiftfield_f18_crv_der_oid_len a_1) in
+  let x = t_2[a_2] in
+  let a_3 = (shift_uint8 a 0) in
+  (null <> a) ->
+  (x <> 0) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (0 <= x) ->
+  (i <= 5) ->
+  (i <= 6) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_uint8 i)) ->
+  ((is_uint8 x)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t ((shiftfield_f18_crv_der_oid a_1)) 1)) ->
+  ((valid_rd t a_2 1)) ->
+  ((0 < x) -> ((valid_rd t a_3 x))) ->
+  ((valid_rd t a_3 x))
+
+end
+

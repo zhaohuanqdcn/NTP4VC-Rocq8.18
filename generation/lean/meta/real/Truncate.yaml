@@ -1,0 +1,25 @@
+atoms:
+  real.Truncate.ceil: [Truncate.ceil]
+  real.Truncate.floor: [Truncate.floor]
+  real.Truncate.truncate: [Truncate.truncate]
+axioms:
+  real.Truncate.Ceil_int: Truncate.Ceil_int
+  real.Truncate.Ceil_monotonic: Truncate.Ceil_monotonic
+  real.Truncate.Ceil_up: Truncate.Ceil_up
+  real.Truncate.Floor_down: Truncate.Floor_down
+  real.Truncate.Floor_int: Truncate.Floor_int
+  real.Truncate.Floor_monotonic: Truncate.Floor_monotonic
+  real.Truncate.Real_of_truncate: Truncate.Real_of_truncate
+  real.Truncate.Truncate_down_pos: Truncate.Truncate_down_pos
+  real.Truncate.Truncate_int: Truncate.Truncate_int
+  real.Truncate.Truncate_monotonic: Truncate.Truncate_monotonic
+  real.Truncate.Truncate_monotonic_int1: Truncate.Truncate_monotonic_int1
+  real.Truncate.Truncate_monotonic_int2: Truncate.Truncate_monotonic_int2
+  real.Truncate.Truncate_up_neg: Truncate.Truncate_up_neg
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.real.Truncate
+prefix_ops: {}
+types: {}

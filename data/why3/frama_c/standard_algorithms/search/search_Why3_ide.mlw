@@ -1,0 +1,544 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'result' in 'search'                --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'result' in 'search'":
+*)
+goal goal0:
+  forall p_1 p : bool.
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 + i_3 in
+  let a_2 = (shift_sint32 a_1 i) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_2)) ->
+  (if (i_1 <= i_2)
+   then ((p_1=False) /\ (i_2 <= (4294967295 + i_1)) /\ (x <= (1 + i_2)) /\
+         (not (p_hassubrange_1_ t_1 a_1 0 (i_1 + i_3 - 1) a i_1)) /\
+         (if (x <= i_2)
+          then ((p=False) /\ (i_3 = i) /\ (i_4 <> 0) /\
+                ((valid_rd t a_2 i_1)) /\
+                ((p_equalranges_1_ t_1 t_1 a_2 i_1 a))) else (i_2 = i)))
+   else (i_2 = i)) ->
+  ((0 <= i) /\ (i <= i_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file search.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file search.c, line 11)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  (i <= (1 + i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'not_found' (file search.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_loop_inv_not_found_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'not_found' (file search.c, line 12)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_2 in
+  let a_2 = (shift_sint32 a_1 i_2) in
+  (i <= i_1) ->
+  (x <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  (i_1 <= (4294967295 + i)) ->
+  (x <= (1 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 (1 + i_2))) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  (not (p_equalranges_1_ t_1 t_1 a_2 i a)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 (i + i_2 - 1) a i)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 x a i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'not_found' (file search.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_loop_inv_not_found_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'not_found' (file search.c, line 12)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 (i - 1) a i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file search.c, line 16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_assert_rte_unsigned_overflow_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file search.c, line 16)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((i + i_2) <= (1 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 (i + i_2 - 1) a i)) ->
+  (i_1 <= (4294967295 + i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file search.c, line 16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_assert_rte_unsigned_overflow_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file search.c, line 16)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_2 in
+  let a_2 = (shift_sint32 a_1 i_2) in
+  (i <= i_1) ->
+  (x <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_1 <= (4294967295 + i)) ->
+  (x <= (1 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  (not (p_equalranges_1_ t_1 t_1 a_2 i a)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 (i + i_2 - 1) a i)) ->
+  (i_2 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file search.c, line 16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_loop_term_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file search.c, line 16)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_2 in
+  let a_2 = (shift_sint32 a_1 i_2) in
+  (i <= i_1) ->
+  (x <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  (i_1 <= (4294967295 + i)) ->
+  (x <= (1 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  (not (p_equalranges_1_ t_1 t_1 a_2 i a)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 (i + i_2 - 1) a i)) ->
+  (i_2 <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'valid' in 'equal'' in 'search' at call 'equal' (file search.c, line 17)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_call_equal_pre_valid
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'valid' in 'equal'' in 'search' at call 'equal' (file search.c, line 17)
+":
+*)
+goal goal7:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_2 in
+  (i <= i_1) ->
+  (x <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_1 <= (4294967295 + i)) ->
+  (x <= (1 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 (i + i_2 - 1) a i)) ->
+  ((valid_rd t ((shift_sint32 a_1 i_2)) i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'has_match' 'bound' in 'search' --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_has_match_post_bound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'has_match' 'bound' in 'search'":
+*)
+goal goal8:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 + i_3 in
+  let a_2 = (shift_sint32 a_1 i) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_2)) ->
+  ((p_hassubrange_1_ t_1 a_1 0 i_2 a i_1)) ->
+  (if (i_1 <= i_2)
+   then ((i_2 <= (4294967295 + i_1)) /\ (x <= (1 + i_2)) /\
+         (not (p_hassubrange_1_ t_1 a_1 0 (i_1 + i_3 - 1) a i_1)) /\
+         (if (x <= i_2)
+          then ((i_3 = i) /\ (i_4 <> 0) /\ ((valid_rd t a_2 i_1)) /\
+                ((p_equalranges_1_ t_1 t_1 a_2 i_1 a))) else (i_2 = i)))
+   else (i_2 = i)) ->
+  ((0 <= i) /\ ((i + i_1) <= i_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'has_match' 'result' in 'search' --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_has_match_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'has_match' 'result' in 'search'":
+*)
+goal goal9:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 + i_3 in
+  let a_2 = (shift_sint32 a_1 i) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_2)) ->
+  ((p_hassubrange_1_ t_1 a_1 0 i_2 a i_1)) ->
+  (if (i_1 <= i_2)
+   then ((i_2 <= (4294967295 + i_1)) /\ (x <= (1 + i_2)) /\
+         (not (p_hassubrange_1_ t_1 a_1 0 (i_1 + i_3 - 1) a i_1)) /\
+         (if (x <= i_2)
+          then ((i_3 = i) /\ (i_4 <> 0) /\ ((valid_rd t a_2 i_1)) /\
+                ((p_equalranges_1_ t_1 t_1 a_2 i_1 a))) else (i_2 = i)))
+   else (i_2 = i)) ->
+  ((p_equalranges_1_ t_1 t_1 a_2 i_1 a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'has_match' 'first' in 'search' --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_has_match_post_first
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'has_match' 'first' in 'search'":
+*)
+goal goal10:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 + i_3 in
+  let a_2 = (shift_sint32 a_1 i) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_2)) ->
+  ((p_hassubrange_1_ t_1 a_1 0 i_2 a i_1)) ->
+  (if (i_1 <= i_2)
+   then ((i_2 <= (4294967295 + i_1)) /\ (x <= (1 + i_2)) /\
+         (not (p_hassubrange_1_ t_1 a_1 0 (i_1 + i_3 - 1) a i_1)) /\
+         (if (x <= i_2)
+          then ((i_3 = i) /\ (i_4 <> 0) /\ ((valid_rd t a_2 i_1)) /\
+                ((p_equalranges_1_ t_1 t_1 a_2 i_1 a))) else (i_2 = i)))
+   else (i_2 = i)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 (i + i_1 - 1) a i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'no_match' 'result' in 'search' --- *)
+(* ---------------------------------------------------------- *)
+theory VCsearch_no_match_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'no_match' 'result' in 'search'":
+*)
+goal goal11:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_1 in
+  let a_2 = (shift_sint32 a_1 i) in
+  (i_3 <> 0) ->
+  (i_1 <= i_2) ->
+  (x <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= (4294967295 + i_1)) ->
+  (x <= (1 + i_2)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_2)) ->
+  ((valid_rd t a_2 i_1)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 i_2 a i_1)) ->
+  ((p_equalranges_1_ t_1 t_1 a_2 i_1 a)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 (i + i_1 - 1) a i_1)) ->
+  (i_2 = i)
+
+end
+

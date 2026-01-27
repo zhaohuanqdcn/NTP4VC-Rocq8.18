@@ -1,0 +1,47 @@
+atoms:
+  ufloat.USingle.eps: [eps, ufloat_USingle.eps]
+  ufloat.USingle.eta: [eta, ufloat_USingle.eta]
+  ufloat.USingle.infix_slsldot: [infix_slsldot, ufloat_USingle.infix_slsldot]
+  ufloat.USingle.infix_slslsldot: [infix_slslsldot, ufloat_USingle.infix_slslsldot]
+  ufloat.USingle.is_exact: [is_exact, ufloat_USingle.is_exact]
+  ufloat.USingle.is_positive_power_of_2: [is_positive_power_of_2, ufloat_USingle.is_positive_power_of_2]
+  ufloat.USingle.of_int: [of_int, ufloat_USingle.of_int]
+  ufloat.USingle.to_real: [to_real, ufloat_USingle.to_real]
+  ufloat.USingle.u0: [u0, ufloat_USingle.u0]
+  ufloat.USingle.u1: [u1, ufloat_USingle.u1]
+  ufloat.USingle.u1024: [u1024, ufloat_USingle.u1024]
+  ufloat.USingle.u128: [u128, ufloat_USingle.u128]
+  ufloat.USingle.u16: [u16, ufloat_USingle.u16]
+  ufloat.USingle.u16384: [u16384, ufloat_USingle.u16384]
+  ufloat.USingle.u2: [u2, ufloat_USingle.u2]
+  ufloat.USingle.u2048: [u2048, ufloat_USingle.u2048]
+  ufloat.USingle.u256: [u256, ufloat_USingle.u256]
+  ufloat.USingle.u32: [u32, ufloat_USingle.u32]
+  ufloat.USingle.u32768: [u32768, ufloat_USingle.u32768]
+  ufloat.USingle.u4: [u4, ufloat_USingle.u4]
+  ufloat.USingle.u4096: [u4096, ufloat_USingle.u4096]
+  ufloat.USingle.u512: [u512, ufloat_USingle.u512]
+  ufloat.USingle.u64: [u64, ufloat_USingle.u64]
+  ufloat.USingle.u65536: [u65536, ufloat_USingle.u65536]
+  ufloat.USingle.u8: [u8, ufloat_USingle.u8]
+  ufloat.USingle.u8192: [u8192, ufloat_USingle.u8192]
+  ufloat.USingle.uadd: [uadd, ufloat_USingle.uadd]
+  ufloat.USingle.udiv: [udiv, ufloat_USingle.udiv]
+  ufloat.USingle.udiv_closure: [udiv_closure, ufloat_USingle.udiv_closure]
+  ufloat.USingle.udiv_exact: [udiv_exact, ufloat_USingle.udiv_exact]
+  ufloat.USingle.uminus: [uminus, ufloat_USingle.uminus]
+  ufloat.USingle.umul: [umul, ufloat_USingle.umul]
+  ufloat.USingle.uone: [uone, ufloat_USingle.uone]
+  ufloat.USingle.uround: [uround, ufloat_USingle.uround]
+  ufloat.USingle.usub: [usub, ufloat_USingle.usub]
+  ufloat.USingle.utwo: [utwo, ufloat_USingle.utwo]
+  ufloat.USingle.uzero: [uzero, ufloat_USingle.uzero]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.ufloat_USingle
+prefix_ops: {}
+types:
+  ufloat.USingle.usingle: [usingle, ufloat_USingle.usingle]

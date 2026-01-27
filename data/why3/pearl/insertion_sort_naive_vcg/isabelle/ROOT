@@ -1,0 +1,6 @@
+session insertion_sort_naive = NTP4Verif +
+theories
+  "insertion_sort_naive_InsertionSortParam_sortqtvc"
+  "insertion_sort_naive_InsertionSortNaive_sortqtvc"
+  "insertion_sort_naive_InsertionSortNaiveGen_sortqtvc"
+  "insertion_sort_naive_InsertionSortParamBad_sortqtvc"

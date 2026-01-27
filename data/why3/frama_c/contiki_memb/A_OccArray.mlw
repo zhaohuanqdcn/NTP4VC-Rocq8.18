@@ -1,0 +1,41 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'OccArray'                               --- *)
+(* ---------------------------------------------------------- *)
+theory A_OccArray
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_occ_a (map addr int) int addr int int : int
+
+axiom Q_end_occ_a:
+  forall t : addr.
+  forall mchar_0 : map addr int.
+  forall e from_0 to_0 : int.
+  (to_0 <= from_0) -> (((l_occ_a mchar_0 e t from_0 to_0)) = 0)
+
+use import Compound.Compound
+
+axiom Q_iter_occ_a_true:
+  forall t : addr.
+  forall mchar_0 : map addr int.
+  forall e from_0 to_0 : int.
+  let x = to_0 - 1 in (mchar_0[(shift_sint8 t x)] = e) -> (from_0 < to_0) ->
+    ((1 + ((l_occ_a mchar_0 e t from_0 x)))
+       = ((l_occ_a mchar_0 e t from_0 to_0)))
+
+axiom Q_iter_occ_a_false:
+  forall t : addr.
+  forall mchar_0 : map addr int.
+  forall e from_0 to_0 : int.
+  let x = to_0 - 1 in (mchar_0[(shift_sint8 t x)] <> e) -> (from_0 < to_0) ->
+    (((l_occ_a mchar_0 e t from_0 x)) = ((l_occ_a mchar_0 e t from_0 to_0)))
+
+end
+

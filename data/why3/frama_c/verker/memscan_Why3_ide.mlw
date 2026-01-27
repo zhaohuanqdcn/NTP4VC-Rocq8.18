@@ -1,0 +1,713 @@
+(* ---------------------------------------------------------- *)
+(* --- Complete behaviors 'not_exists', 'found'           --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_complete_not_exists_found
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Complete behaviors 'not_exists', 'found'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  (((region (a_4.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((forall i_2 : int. (0 <= i_2) -> (i_2 < i) ->
+    (t_1[(shift_uint8 a_2 i_2)] <> i_1)) \/
+   (exists i_2 : int. (t_1[(shift_uint8 a_3 i_2)] = i_1) /\ (0 <= i_2) /\
+    (i_2 < i)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Disjoint behaviors 'not_exists', 'found'           --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_disjoint_not_exists_found
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Disjoint behaviors 'not_exists', 'found'":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  (((region (a_4.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((exists i_2 : int. (t_1[(shift_uint8 a_2 i_2)] = i_1) /\ (0 <= i_2) /\
+    (i_2 < i)) \/
+   (forall i_2 : int. (t_1[(shift_uint8 a_3 i_2)] <> i_1) \/ (i_2 < 0) \/
+    (i <= i_2)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/memscan.h, line 19) in 'memscan' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file src/memscan.h, line 19) in 'memscan'":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_6.offset in
+  let x_1 = a_7.offset in
+  let x_2 = a_10.base in
+  let x_3 = t_1[a_8] in
+  let x_4 = i + x_1 - x in
+  ((a_7.base) = (a_5.base)) ->
+  (0 <= i) ->
+  (x <= x_1) ->
+  (((region x_2)) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_3 a_7)) ->
+  ((is_uint8 x_3)) ->
+  ((is_uint64 x_4)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_4)) ->
+  ((addr_le a_7 ((shift_uint8 a_4 x_4)))) ->
+  ((i = 0) \/ ((a_8 = a_7) /\ (x_3 = i_1))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x) < x_1) ->
+   (t_1[(shift_uint8 a_2 i_2)] <> i_1)) ->
+  (x_2 = (a_9.base))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/memscan.h, line 20) in 'memscan' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file src/memscan.h, line 20) in 'memscan'":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_6.offset in
+  let x_1 = a_7.offset in
+  let x_2 = i + x_1 - x in
+  ((a_7.base) = (a_5.base)) ->
+  (0 <= i) ->
+  (x <= x_1) ->
+  (((region (a_9.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_3 a_7)) ->
+  ((is_uint64 x_2)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_2)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_2)) ->
+  ((addr_le a_7 ((shift_uint8 a_4 x_2)))) ->
+  ((i = 0) \/ (t_1[a_7] = i_1)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x) < x_1) ->
+   (t_1[(shift_uint8 a_2 i_2)] <> i_1)) ->
+  (((addr_le a_9 a_8)) /\ ((addr_le a_8 ((shift_sint32 a_9 x_2)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memscan.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memscan.c, line 7)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_7] in
+  let x_1 = a_6.offset in
+  let x_2 = a_7.offset in
+  let x_3 = i + x_2 - x_1 in
+  (i <> 0) ->
+  (x <> i_1) ->
+  ((a_7.base) = (a_5.base)) ->
+  (0 <= i) ->
+  (x_1 <= x_2) ->
+  (((region (a_8.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_3 a_7)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_3)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_3)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_3)) ->
+  ((addr_le a_7 ((shift_uint8 a_4 x_3)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_1) < x_2) ->
+   (t_1[(shift_uint8 a_2 i_2)] <> i_1)) ->
+  ((x_1 + ((to_uint64 (i - 1)))) <= (i + x_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memscan.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memscan.c, line 7)":
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall a_2 a_1 a : addr.
+  (((region (a_2.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memscan.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memscan.c, line 8)":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_8] in
+  let x_1 = a_6.offset in
+  let x_2 = a_8.offset in
+  let x_3 = i + x_2 - x_1 in
+  (i <> 0) ->
+  (x <> i_1) ->
+  ((a_8.base) = (a_5.base)) ->
+  (0 <= i) ->
+  (x_1 <= x_2) ->
+  (((region (a_9.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_3 a_8)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_3)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_3)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_3)) ->
+  ((addr_le a_8 ((shift_uint8 a_4 x_3)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_1) < x_2) ->
+   (t_1[(shift_uint8 a_2 i_2)] <> i_1)) ->
+  ((1 + x_1 + ((to_uint64 (i - 1)))) = (i + (a_7.offset)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memscan.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_inv_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memscan.c, line 8)":
+*)
+goal goal7:
+  forall i : int.
+  forall t : map int int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  (((region (a_4.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((a_3.offset) = (a_2.offset))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memscan.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memscan.c, line 9)":
+*)
+goal goal8:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_8] in
+  let x_1 = a_8.base in
+  let x_2 = a_6.offset in
+  let x_3 = a_8.offset in
+  let x_4 = i + x_3 - x_2 in
+  (i <> 0) ->
+  (x <> i_1) ->
+  (x_1 = (a_5.base)) ->
+  (0 <= i) ->
+  (x_2 <= x_3) ->
+  (((region (a_9.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_3 a_8)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_4)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_4)) ->
+  ((addr_le a_8 ((shift_uint8 a_4 x_4)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_2) < x_3) ->
+   (t_1[(shift_uint8 a_2 i_2)] <> i_1)) ->
+  (x_1 = (a_7.base))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memscan.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_inv_3_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memscan.c, line 9)":
+*)
+goal goal9:
+  forall i : int.
+  forall t : map int int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  (((region (a_4.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((a_3.base) = (a_2.base))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memscan.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_inv_4_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memscan.c, line 10)":
+*)
+goal goal10:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_9] in
+  let x_1 = a_6.offset in
+  let x_2 = a_9.offset in
+  let x_3 = i + x_2 - x_1 in
+  let a_11 = (shift_uint8 a_9 1) in
+  (i <> 0) ->
+  (x <> i_1) ->
+  ((a_9.base) = (a_5.base)) ->
+  (0 <= i) ->
+  (x_1 <= x_2) ->
+  (((region (a_10.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_3 a_9)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_3)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_3)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_3)) ->
+  ((addr_le a_9 ((shift_uint8 a_4 x_3)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_1) < x_2) ->
+   (t_1[(shift_uint8 a_2 i_2)] <> i_1)) ->
+  (((addr_le a_7 a_11)) /\ ((addr_le a_11 ((shift_uint8 a_8 x_3)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memscan.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_inv_4_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memscan.c, line 10)":
+*)
+goal goal11:
+  forall i : int.
+  forall t : map int int.
+  forall a_5 a_4 a_3 a_2 a_1 a : addr.
+  (((region (a_5.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  (((addr_le a_2 a_4)) /\ ((addr_le a_4 ((shift_uint8 a_3 i)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memscan.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_inv_5_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memscan.c, line 11)":
+*)
+goal goal12:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[(shift_uint8 a_7 i_1)] in
+  let x_1 = t_1[a_8] in
+  let x_2 = a_6.offset in
+  let x_3 = a_8.offset in
+  let x_4 = i + x_3 - x_2 in
+  (i <> 0) ->
+  ((a_8.base) = (a_5.base)) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (x_2 <= x_3) ->
+  (((region (a_9.base))) <= 0) ->
+  ((i_1 + x_2 + ((to_uint64 (i - 1)))) < (i + x_3)) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_3 a_8)) ->
+  ((is_uint8 x_1)) ->
+  ((is_sint32 x)) ->
+  ((is_uint64 x_4)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_4)) ->
+  ((addr_le a_8 ((shift_uint8 a_4 x_4)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_2) < x_3) ->
+   (x <> t_1[(shift_uint8 a_2 i_2)])) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file src/memscan.c, line 16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file src/memscan.c, line 16)":
+*)
+goal goal13:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_7] in
+  let x_1 = a_6.offset in
+  let x_2 = a_7.offset in
+  let x_3 = i + x_2 - x_1 in
+  (i <> 0) ->
+  (x <> i_1) ->
+  ((a_7.base) = (a_5.base)) ->
+  (0 <= i) ->
+  (x_1 <= x_2) ->
+  (((region (a_8.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_3 a_7)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_3)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_3)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_3)) ->
+  ((addr_le a_7 ((shift_uint8 a_4 x_3)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_1) < x_2) ->
+   (t_1[(shift_uint8 a_2 i_2)] <> i_1)) ->
+  (((to_uint64 (i - 1))) < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file src/memscan.h, line 23) in 'memscan' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_found_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'found' (file src/memscan.h, line 23) in 'memscan'":
+*)
+goal goal14:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_7.offset in
+  let x_1 = a_10.offset in
+  let x_2 = i + x_1 in
+  let x_3 = t_1[(shift_uint8 a_2 i_1)] in
+  let x_4 = i + x_1 - x in
+  ((a_10.base) = (a_6.base)) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (x <= x_1) ->
+  (((region (a_12.base))) <= 0) ->
+  ((i_1 + x) < x_2) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_4 a_10)) ->
+  ((is_sint32 x_3)) ->
+  ((is_uint64 x_4)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_4)) ->
+  ((addr_le a_10 ((shift_uint8 a_5 x_4)))) ->
+  ((i = 0) \/ (x_3 = t_1[a_10])) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x) < x_1) ->
+   (t_1[(shift_uint8 a_3 i_2)] <> x_3)) ->
+  (exists i_2 : int. (((shift_sint32 a_12 i_2)) = a_11) /\
+   (t_1[(shift_uint8 a_9 i_2)] = x_3) /\ (0 <= i_2) /\ ((i_2 + x) < x_2) /\
+   (forall i_3 : int. (0 <= i_3) -> (i_3 < i_2) ->
+    (t_1[(shift_uint8 a_8 i_3)] <> x_3)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_exists' (file src/memscan.h, line 29) in 'memscan' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemscan_not_exists_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'not_exists' (file src/memscan.h, line 29) in 'memscan'":
+*)
+goal goal15:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_7.offset in
+  let x_1 = a_8.offset in
+  let x_2 = i + x_1 - x in
+  ((a_8.base) = (a_6.base)) ->
+  (0 <= i) ->
+  (x <= x_1) ->
+  (((region (a_10.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_4 a_8)) ->
+  ((is_uint64 x_2)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_2)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_2)) ->
+  ((addr_le a_8 ((shift_uint8 a_5 x_2)))) ->
+  ((i = 0) \/ (t_1[a_8] = i_1)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x) < (i + x_1)) ->
+   (t_1[(shift_uint8 a_2 i_2)] <> i_1)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x) < x_1) ->
+   (t_1[(shift_uint8 a_3 i_2)] <> i_1)) ->
+  (((shift_sint32 a_10 x_2)) = a_9)
+
+end
+

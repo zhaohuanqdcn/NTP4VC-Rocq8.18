@@ -1,0 +1,10 @@
+session list_removal = NTP4Verif +
+theories
+  "list_removal_Top_list_concatqtvc"
+  "list_removal_Top_no_cycle_to_nullqtvc"
+  "list_removal_Top_jump_overqtvc"
+  "list_removal_Top_path_extendqtvc"
+  "list_removal_Top_path_shortenqtvc"
+  "list_removal_Top_remove1qtvc"
+  "list_removal_Top_remove2qtvc"
+  "list_removal_Top_listqtvc"

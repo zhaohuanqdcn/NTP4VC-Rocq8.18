@@ -1,0 +1,13 @@
+session patience = NTP4Verif +
+theories
+  "patience_PatienceAbstract_play_gameqtvc"
+  "patience_PigeonHole"
+  "patience_PatienceAbstract_testqtvc"
+  "patience_PatienceAbstract_play_cardqtvc"
+  "patience_PatienceCode_push_cardqtvc"
+  "patience_PatienceCode_play_gameqtvc"
+  "patience_PigeonHole_pigeon_holeqtvc"
+  "patience_PatienceCode_play_cardsqtvc"
+  "patience_PatienceAbstract_play_cardsqtvc"
+  "patience_PatienceCode_wf_rev_append_stacksqtvc"
+  "patience_PatienceCode_testqtvc"

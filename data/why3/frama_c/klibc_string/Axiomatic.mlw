@@ -1,0 +1,24 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions                                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_length_of_str_is (malloc_0 : map int int)
+    (mchar_0 : map addr int) (s : addr) (n : int) =
+    (mchar_0[(shift_sint8 s n)] = 0) /\ (0 <= n) /\
+    ((valid_rw malloc_0 ((shift_sint8 s 0)) (1 + n))) /\
+    (forall i : int. (0 <= i) -> (i < n) ->
+     (mchar_0[(shift_sint8 s i)] <> 0))
+
+end
+

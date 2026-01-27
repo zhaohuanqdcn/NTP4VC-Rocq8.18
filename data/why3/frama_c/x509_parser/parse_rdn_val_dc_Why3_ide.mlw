@@ -1,0 +1,394 @@
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 3339) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_rdn_val_dc_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 3339)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (i <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((-2147483646) <= i) ->
+  (2 <= i) ->
+  (3 <= i) ->
+  (i <= 65) ->
+  (i <= 65537) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a 2)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 3356) (1/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_rdn_val_dc_assert_rte_mem_access_2_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 3356) (1/3)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  (i <> 0) ->
+  (i <> 3) ->
+  (i_1 <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((-2147483646) <= i) ->
+  ((-2147483645) <= i) ->
+  (2 <= i) ->
+  (3 <= i) ->
+  (i <= 65) ->
+  (i <= 65537) ->
+  (i <= 65538) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint16 (i - 3))) ->
+  ((is_uint16 (i - 2))) ->
+  ((valid_rd t ((shift_uint8 a 2)) 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a (3 + ((to_sint32 (i - 4)))))) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 3356) (2/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_rdn_val_dc_assert_rte_mem_access_2_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 3356) (2/3)":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  (i <> 0) ->
+  (i <> 3) ->
+  (i_1 <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((-2147483646) <= i) ->
+  ((-2147483645) <= i) ->
+  (2 <= i) ->
+  (3 <= i) ->
+  (i <= 65) ->
+  (i <= 65537) ->
+  (i <= 65538) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint16 (i - 3))) ->
+  ((is_uint16 (i - 2))) ->
+  ((valid_rd t ((shift_uint8 a 2)) 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a (3 + ((to_sint32 (i - 4)))))) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 3374) (1/9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_rdn_val_dc_assert_rte_mem_access_3_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 3374) (1/9)":
+*)
+goal goal3:
+*)
+goal goal3:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let x = 4 + i_1 in
+  let x_1 = i - 4 in
+  (i <> 0) ->
+  (i <> 3) ->
+  (i_2 <> 0) ->
+  (i_3 <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-2147483646) <= i) ->
+  ((-2147483645) <= i) ->
+  ((-2147483644) <= i) ->
+  (2 <= i) ->
+  (3 <= i) ->
+  (4 <= i) ->
+  (i <= 65) ->
+  (i <= 65537) ->
+  (i <= 65538) ->
+  (i <= 65539) ->
+  (x <= i) ->
+  ((5 + i_1) <= i) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_uint16 x_1)) ->
+  ((is_uint16 (i - 3))) ->
+  ((is_uint16 (i - 2))) ->
+  ((valid_rd t ((shift_uint8 a 2)) 1)) ->
+  ((valid_rd t ((shift_uint8 a (3 + ((to_sint32 x_1))))) 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a x)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 3374) (2/9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_rdn_val_dc_assert_rte_mem_access_3_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 3374) (2/9)":
+*)
+goal goal4:
+*)
+goal goal4:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let x = 4 + i_1 in
+  let x_1 = i - 4 in
+  (i <> 0) ->
+  (i <> 3) ->
+  (i_2 <> 0) ->
+  (i_3 <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-2147483646) <= i) ->
+  ((-2147483645) <= i) ->
+  ((-2147483644) <= i) ->
+  (2 <= i) ->
+  (3 <= i) ->
+  (4 <= i) ->
+  (i <= 65) ->
+  (i <= 65537) ->
+  (i <= 65538) ->
+  (i <= 65539) ->
+  (x <= i) ->
+  ((5 + i_1) <= i) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_uint16 x_1)) ->
+  ((is_uint16 (i - 3))) ->
+  ((is_uint16 (i - 2))) ->
+  ((valid_rd t ((shift_uint8 a 2)) 1)) ->
+  ((valid_rd t ((shift_uint8 a (3 + ((to_sint32 x_1))))) 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a x)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 3374) (4/9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_rdn_val_dc_assert_rte_mem_access_3_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 3374) (4/9)":
+*)
+goal goal5:
+*)
+goal goal5:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let x = 4 + i_1 in
+  let x_1 = i - 4 in
+  (i <> 0) ->
+  (i <> 3) ->
+  (i_2 <> 0) ->
+  (i_3 <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-2147483646) <= i) ->
+  ((-2147483645) <= i) ->
+  ((-2147483644) <= i) ->
+  (2 <= i) ->
+  (3 <= i) ->
+  (4 <= i) ->
+  (i <= 65) ->
+  (i <= 65537) ->
+  (i <= 65538) ->
+  (i <= 65539) ->
+  (x <= i) ->
+  ((5 + i_1) <= i) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_uint16 x_1)) ->
+  ((is_uint16 (i - 3))) ->
+  ((is_uint16 (i - 2))) ->
+  ((valid_rd t ((shift_uint8 a 2)) 1)) ->
+  ((valid_rd t ((shift_uint8 a (3 + ((to_sint32 x_1))))) 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a x)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 3374) (5/9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_rdn_val_dc_assert_rte_mem_access_3_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 3374) (5/9)":
+*)
+goal goal6:
+*)
+goal goal6:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let x = 4 + i_1 in
+  let x_1 = i - 4 in
+  (i <> 0) ->
+  (i <> 3) ->
+  (i_2 <> 0) ->
+  (i_3 <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-2147483646) <= i) ->
+  ((-2147483645) <= i) ->
+  ((-2147483644) <= i) ->
+  (2 <= i) ->
+  (3 <= i) ->
+  (4 <= i) ->
+  (i <= 65) ->
+  (i <= 65537) ->
+  (i <= 65538) ->
+  (i <= 65539) ->
+  (x <= i) ->
+  ((5 + i_1) <= i) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_uint16 x_1)) ->
+  ((is_uint16 (i - 3))) ->
+  ((is_uint16 (i - 2))) ->
+  ((valid_rd t ((shift_uint8 a 2)) 1)) ->
+  ((valid_rd t ((shift_uint8 a (3 + ((to_sint32 x_1))))) 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a x)) 1))
+
+end
+

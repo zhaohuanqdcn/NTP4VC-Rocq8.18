@@ -1,0 +1,27 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.avl.lib.lean.avl.SelectionTypes
+open Classical
+open Lean4Why3
+namespace ral_RAL_agg_measure_is_lengthqtvc
+axiom balancing : ℕ
+axiom balancing'def : (0 : ℤ) < Int.ofNat balancing
+axiom m : Type
+axiom inhabited_axiom_m : Inhabited m
+attribute [instance] inhabited_axiom_m
+axiom t : Type
+axiom inhabited_axiom_t : Inhabited t
+attribute [instance] inhabited_axiom_t
+axiom assoc (a : ℤ) (b : ℤ) (c : ℤ) : a + (b + c) = a + b + c
+axiom neutral (x : ℤ) : x + (0 : ℤ) = x ∧ x = (0 : ℤ) + x
+axiom agg :  {α : Type} -> [Inhabited α] -> (α -> ℤ) -> List α -> ℤ
+axiom agg'def {α : Type} [Inhabited α] (s : List α) (f : α -> ℤ) : if Int.ofNat (List.length s) = (0 : ℤ) then agg f s = (0 : ℤ) else agg f s = f (s[(0 : ℕ)]!) + agg f (List.drop (1 : ℕ) s)
+axiom t1 : Type -> Type
+axiom inhabited_axiom_t1 {α : Type} [Inhabited α] : Inhabited (t1 α)
+attribute [instance] inhabited_axiom_t1
+noncomputable def measure {α : Type} [Inhabited α] (x : α) := (1 : ℤ)
+axiom measure_closure :  {α : Type} -> [Inhabited α] -> α -> ℤ
+axiom measure_closure_def {α : Type} [Inhabited α] (y : α) : measure_closure y = measure y
+theorem agg_measure_is_length'vc {α : Type} [Inhabited α] (s : List α) : agg measure_closure s = Int.ofNat (List.length s)
+  := sorry
+end ral_RAL_agg_measure_is_lengthqtvc

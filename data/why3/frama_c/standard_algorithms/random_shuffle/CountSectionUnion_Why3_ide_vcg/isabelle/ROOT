@@ -1,0 +1,7 @@
+session CountSectionUnion_Why3_ide = NTP4Verif +
+theories
+  "CountSectionUnion_Why3_ide_VCCountSectionUnion_loop_term_decrease_goal4"
+  "CountSectionUnion_Why3_ide_VCCountSectionUnion_post_goal0"
+  "CountSectionUnion_Why3_ide_VCCountSectionUnion_loop_inv_2_preserved_goal2"
+  "CountSectionUnion_Why3_ide_VCCountSectionUnion_loop_inv_preserved_goal1"
+  "CountSectionUnion_Why3_ide_VCCountSectionUnion_loop_inv_2_established_goal3"

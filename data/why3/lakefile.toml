@@ -1,0 +1,23 @@
+name = "Why3Benchmark"
+version = "0.2.0"
+keywords = ["math"]
+defaultTargets = ["pearl", "frama_c"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+autoImplicit = false
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "Why3"
+path = "../../generation/lean/"
+
+[[lean_lib]]
+name = "pearl"
+srcDir = "."
+
+[[lean_lib]]
+name = "frama_c"
+srcDir = "."

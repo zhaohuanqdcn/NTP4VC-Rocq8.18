@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name skew_heaps_vcg.skew_heaps)
+(theories Why3.bintree Why3))

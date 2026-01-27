@@ -1,0 +1,395 @@
+(** {1 Examples from Hacker's Delight book*}
+
+    *second edition *)
+
+(** {2 Utilitaries}
+    We introduce in this theory two functions that will help us
+    write properties on bit-manipulating procedures *)
+
+theory Utils
+
+  use bv.BV32
+
+  let constant one : t = (1:t)
+  let constant two : t = (2:t)
+  let constant lastbit : t = (31:t)
+
+  function max (x y : t) : t = (if ult x y then y else x)
+  function min (x y : t) : t = (if ult x y then x else y)
+
+  (** We start by introducing a function that returns the number of
+      1-bit in a bitvector (p.82) *)
+
+  let function count (bv : t) : t =
+    let x = sub bv (bw_and (lsr_bv bv one) (0x55555555:t)) in
+    let x = add (bw_and x (0x33333333:t))
+                (bw_and (lsr_bv x two) (0x33333333:t)) in
+    let x = bw_and (add x (lsr_bv x (4:t)))
+                   (0x0F0F0F0F:t) in
+    let x = add x (lsr_bv x (8:t)) in
+    let x = add x (lsr_bv x (16:t)) in
+    bw_and x (0x0000003F:t)
+
+  (** We then define the associated notion of distance, namely
+      "Hamming distance", that counts the number of bits that differ
+      between two bitvectors. *)
+
+  function hammingD (a b : t) : t = count (bw_xor a b)
+
+end
+
+(** {2 Correctness of Utils}
+    Before using our two functions let's first check that they are correct !
+*)
+
+module Utils_Spec
+  use int.Int
+  use int.NumOf
+  use bv.BV32
+  use Utils
+
+  (** {6 count correctness } *)
+
+  (** Let's start by checking that there are no 1-bits in the
+      bitvector "zeros": *)
+
+  let ghost countZero () : unit
+    ensures { count zeros = zeros }
+  = ()
+
+  let ghost numOfZero () : unit
+    ensures { NumOf.numof (fun i -> nth zeros i) 0 32 = 0 }
+  = ()
+
+  (** Now, for b a bitvector with n 1-bits, we check that if its
+      first bit is 0 then shifting b by one on the right doesn't
+      change the number of 1-bit. And if its first bit is one, then
+      there are n-1 1-bits in the shifting of b by one on the right. *)
+
+  let ghost countStep (b : t) : unit
+    ensures { (not (nth_bv b zeros) <-> count (lsr_bv b one) = count b) /\
+    (nth_bv b zeros <-> count (lsr_bv b one) = sub (count b) one) }
+  = ()
+
+  let ghost numof_shift (p q : int -> bool) (a b k: int) : unit
+    requires {forall i. q i = p (i + k)}
+    ensures {numof p (a+k) (b+k) = numof q a b}
+  = ()
+
+  let ghost countSpec_Aux (bv : t) : unit
+  ensures {t'int (count bv) = NumOf.numof (nth bv) 0 32}
+  = ()
+
+  (** With these lemmas, we can now prove the correctness property of
+  count: *)
+
+  let ghost countSpec (b : t) : unit
+    ensures { t'int (count b) = NumOf.numof (nth b) 0 32 }
+  = ()
+
+  (** {6 hammingD correctness } *)
+
+  predicate nth_diff (a b : t) (i : int) = nth a i <> nth b i
+
+  (** The correctness property can be express as the following: *)
+  let ghost hamming_spec (a b : t) : unit
+  ensures {t'int (hammingD a b) = NumOf.numof (nth_diff a b) 0 32}
+  = ()
+
+  (** In addition we can prove that it is indeed a distance in the
+      algebraic sens: *)
+
+  let ghost symmetric (a b : t) : unit
+    ensures { hammingD a b = hammingD b a }
+  = ()
+
+  let ghost separation (a b : t) : unit
+    ensures { hammingD a b = zeros <-> a = b }
+  = ()
+
+  function fun_or (f g : 'a -> bool) : 'a -> bool = fun x -> f x \/ g x
+
+  let ghost numof_or (p q : int -> bool) (a b: int) : unit
+    ensures {numof (fun_or p q) a b <= numof p a b + numof q a b}
+  = ()
+
+  let ghost triangleInequalityInt (a b c : t) : unit
+    ensures {t'int (hammingD a b) + t'int (hammingD b c) >= t'int (hammingD a c)}
+  = ()
+
+  let ghost triangleInequality (a b c : t) : unit
+    ensures { uge (add (hammingD a b) (hammingD b c)) (hammingD a c) }
+  = ()
+
+end
+
+module Hackers_delight
+  use int.Int
+  use int.NumOf
+  use bool.Bool
+  use bv.BV32
+  use Utils
+
+  (** {2 ASCII checksum }
+    In the beginning the encoding of an ascii character was done on 8
+    bits: the first 7 bits were used for the carracter itself while
+    the 8th bit was used as a checksum: a mean to detect errors. The
+    checksum value was the binary sum of the 7 other bits, allowing the
+    detections of any change of an odd number of bits in the initial
+    value. Let's prove it! *)
+
+  (** {6 Checksum computation and correctness } *)
+
+  (** A ascii character is valid if its number of bits is even.
+      (Remember that a binary number is odd if and only if its first
+      bit is 1) *)
+  predicate validAscii (b : t) = (nth_bv (count b) zeros) = False
+
+  (** The ascii checksum aim is to make any character valid in the
+      sens that we just defined. One way to implement it is to count
+      the number of bit of a character encoded in 7 bits, and if this
+      number is odd, set the 8th bit to 1 if not, do nothing:*)
+  let ascii (b : t) =
+    requires { not (nth_bv b lastbit) }
+    ensures  { validAscii result }
+    let c = count b in
+    bw_or b (lsl_bv c lastbit)
+
+  (** Now, for the correctness of the checksum :
+
+      We prove that two numbers differ by an odd number of bits,
+      i.e. are of odd hamming distance, iff one is a valid ascii
+      character while the other is not. This imply that if there is an
+      odd number of changes on a valid ascii character, the result
+      will be invalid, hence the validity of the encoding. *)
+  let ghost asciiProp (a b : t) : unit
+    ensures { ((validAscii a /\ not validAscii b) \/ (validAscii b /\ not
+      validAscii a)) <-> nth_bv (hammingD a b) zeros }
+  = ()
+
+  (** {2 Gray code}
+    Gray codes are bit-wise representations of integers with the
+    property that every integer differs from its predecessor by only
+    one bit.
+
+    In this section we look at the "reflected binary Gray code"
+    discussed in Chapter 13, p.311.
+  *)
+
+  (** {4 the two transformations, to and from Gray-coded integer } *)
+
+  function toGray (bv : t) : t =
+    bw_xor bv (lsr_bv bv one)
+
+  function fromGray (gr : t) : t =
+    let b = bw_xor gr (lsr_bv gr one) in
+    let b = bw_xor b (lsr_bv b (2:t)) in
+    let b = bw_xor b (lsr_bv b (4:t)) in
+    let b = bw_xor b (lsr_bv b (8:t)) in
+      bw_xor b (lsr_bv b (16:t))
+
+  (** Which define an isomorphism. *)
+
+  let ghost iso (b : t) : unit
+    ensures { toGray (fromGray b) = b /\ fromGray (toGray b) = b }
+  = ()
+
+  (** {4 Some properties of the reflected binary Gray code } *)
+
+  (** The first property that we want to check is that the reflected
+     binary Gray code is indeed a Gray code. *)
+
+  let ghost grayIsGray (b : t) : unit
+    requires { ult b ones }
+    ensures { hammingD (toGray b) (toGray (add b one)) = one }
+  = ()
+
+  (** Now, a couple of property between the Gray code and the binary
+      representation.
+
+      Bit i of a Gray coded integer is the parity of the bit i and the
+      bit to the left of i in the corresponding binary integer *)
+
+  let ghost nthGray (b i : t) : unit
+    requires { ult i lastbit }
+    ensures { xorb (nth_bv b i) (nth_bv b (add i one)) <-> nth_bv (toGray b) i }
+  = ()
+
+  (** (using 0 if there is no bit to the left of i) *)
+
+  let ghost lastNthGray (b : t) : unit
+    ensures { nth_bv (toGray b) lastbit <-> nth_bv b lastbit }
+  = ()
+
+  (** Bit i of a binary integer is the parity of all the bits at and
+      to the left of position i in the corresponding Gray coded
+      integer *)
+
+  let ghost nthBinary (b i : t) : unit
+    requires { ult i size_bv }
+    ensures { nth_bv (fromGray b) i <-> nth_bv (count (lsr_bv b i)) zeros }
+  = ()
+
+  (** The last property that we check is that if an integer is even
+      its encoding has an even number of 1-bits, and if it is odd, its
+      encoding has an odd number of 1-bits. *)
+
+  let ghost evenOdd (b : t) : unit
+    ensures { nth_bv b zeros <-> nth_bv (count (toGray b)) zeros }
+  = ()
+
+  (** {2 Various (in)equalities between bitvectors. } *)
+
+  (** {6 De Morgan's laws (p.13)}
+
+  Some variations on De Morgan's laws on bitvectors. *)
+
+  let ghost dM1 (x y : t) : unit
+    ensures { bw_not( bw_and x y ) = bw_or (bw_not x) (bw_not y) }
+  = ()
+
+  let ghost dM2 (x y : t) : unit
+    ensures { bw_not( bw_or x y ) = bw_and (bw_not x) (bw_not y) }
+  = ()
+
+  let ghost dM3 (x : t) : unit
+    ensures { bw_not (add x one) = sub (bw_not x) one }
+  = ()
+
+  let ghost dM4 (x : t) : unit
+    ensures { bw_not( sub x one) = add (bw_not x) one }
+  = ()
+
+  let ghost dM5 (x : t) : unit
+    ensures { bw_not( neg x ) = sub x one }
+  = ()
+
+  let ghost dM6 (x y : t) : unit
+    ensures { bw_not( bw_xor x y ) = bw_xor (bw_not x) y }
+  = ()
+
+  let ghost dM7 (x y : t) : unit
+    ensures { bw_not( add x y ) = sub (bw_not x) y }
+  = ()
+
+  let ghost dM8 (x y : t) : unit
+    ensures { bw_not( sub x y ) = add (bw_not x) y }
+  = ()
+
+  let ghost dMtest (x : t) : unit
+    ensures { zeros = bw_not( bw_or x (neg(add x one))) }
+  = ()
+
+  (** {6 Addition Combined with Logical Operations (p.16)} *)
+
+  let ghost aa (x : t) : unit
+    ensures { neg x = add (bw_not x) one }
+  = ()
+
+  let ghost ac (x : t) : unit
+    ensures { bw_not x = sub (neg x) one }
+  = ()
+
+  let ghost ad (x : t) : unit
+    ensures { neg (bw_not x) = add x one }
+  = ()
+
+  let ghost ae (x : t) : unit
+    ensures { bw_not (neg x) = sub x one }
+  = ()
+
+  let ghost af (x y : t) : unit
+    ensures { add x y = sub x (add (bw_not y) one) }
+  = ()
+
+  let ghost aj (x y : t) : unit
+    ensures { sub x y = add x (add (bw_not y) one) }
+  = ()
+
+  let ghost an (x y : t) : unit
+    ensures { bw_xor x y = sub (bw_or x y) (bw_and x y) }
+  = ()
+
+  let ghost ao (x y : t) : unit
+    ensures { bw_and x (bw_not y) = sub (bw_or x y) y }
+  = ()
+
+  let ghost aq (x y : t) : unit
+    ensures { bw_not (sub x y) = sub y (add x one) }
+  = ()
+
+  let ghost aat (x y : t) : unit
+    ensures { not (bw_xor x y) = add (bw_and x y) (bw_not (bw_or x y)) }
+  = ()
+
+  let ghost au (x y : t) : unit
+    ensures { bw_or x y = add (bw_and x (bw_not y)) y }
+  = ()
+
+  let ghost av (x y : t) : unit
+    ensures { bw_and x y = sub (bw_or (bw_not x) y) (bw_not x) }
+  = ()
+
+  (** {6 Inequalities (p. 17, 18)} *)
+
+  let ghost ie1 (x y : t) : unit
+    ensures { ule (bw_xor x y) (bw_or x y) }
+  = ()
+
+  let ghost ie2 (x y : t) : unit
+    ensures { ule (bw_and x y) (bw_not( bw_xor x y )) }
+  = ()
+
+  let ghost ie3 (x y : t) : unit
+    ensures { uge (bw_or x y) (max x y) }
+  = ()
+
+  let ghost ie4 (x y : t) : unit
+    ensures { ule (bw_and x y) (min x y) }
+  = ()
+
+  let ghost ie5 (x y : t) : unit
+    requires { ule x (add x y) /\ ule y (add x y) }
+    ensures { ule (bw_or x y) (add x y) }
+  = ()
+
+  let ghost ie6 (x y : t) : unit
+    requires { not ( ule x (add x y) /\ ule y (add x y) ) }
+    ensures { ugt (bw_or x y) (add x y) }
+  = ()
+
+  (** {6 Shifts and rotates} *)
+  (** shift right and arithmetic shift right (p.20)*)
+
+  let ghost sr1 (x n : t) : unit
+    requires { ult n size_bv }
+    ensures { bw_or (lsr_bv x n) (lsl_bv (neg( lsr_bv x (31:t) )) (sub (31:t) n))
+  = asr_bv x n }
+  = ()
+
+  (** rotate vs shift (p.37)*)
+
+  let ghost rs_left (x : t) : unit
+    ensures { bw_or (lsl_bv x one) (lsr_bv x (31:t)) = rotate_left_bv x one }
+  = ()
+
+  let ghost rs_right (x : t) : unit
+    ensures { bw_or (lsr_bv x one) (lsl_bv x (31:t)) = rotate_right_bv x one }
+  = ()
+
+  (** {6 bound propagation (p.73)} *)
+
+  (** Using a predicate to check if an addition of bitvector overflowed *)
+  predicate addDontOverflow (a b : t) = ule b (add b a) /\ ule a (add b a)
+
+  (** We have that. *)
+  let ghost bp (a b c d x y : t) : unit
+    requires { ule a x /\ ule x b /\ ule c y /\ ule y d }
+    requires { addDontOverflow b d }
+    ensures { ule (max a c) (bw_or x y) /\ ule (bw_or x y) (add b d) /\
+      ule zeros (bw_and x y) /\ ule (bw_and x y) (min b d) /\
+      ule zeros (bw_xor x y) /\ ule (bw_xor x y) (add b d) /\
+      ule (bw_not b) (bw_not x) /\ ule (bw_not x) (bw_not a) }
+  = ()
+
+end

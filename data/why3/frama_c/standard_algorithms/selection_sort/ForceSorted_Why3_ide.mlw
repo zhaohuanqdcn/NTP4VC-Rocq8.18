@@ -1,0 +1,32 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/ShiftLemmas.h, line 15) in 'ForceSorted' --- *)
+(* ---------------------------------------------------------- *)
+theory VCForceSorted_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/ShiftLemmas.h, line 15) in 'ForceSorted'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  (forall i_2 i_1 : int. (i_1 < i) -> (0 <= i_2) -> (i_2 < i_1) ->
+   (t[(shift_sint32 a i_2)] <= t[(shift_sint32 a i_1)])) ->
+  ((p_sorted_2_ t a i))
+
+end
+

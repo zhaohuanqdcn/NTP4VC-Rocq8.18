@@ -1,0 +1,10 @@
+atoms: {}
+axioms:
+  mach.bv.BVCheck64.not_greater_than_64: [not_greater_than_64, BVCheck64.not_greater_than_64]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.mach.bv.BVCheck64
+prefix_ops: {}
+types: {}

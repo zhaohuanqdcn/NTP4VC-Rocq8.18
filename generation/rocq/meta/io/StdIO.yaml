@@ -1,0 +1,11 @@
+atoms:
+  io.StdIO.foo: [foo, StdIO.foo]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.io.StdIO
+prefix_ops: {}
+types:
+  io.StdIO.t: [t, StdIO.t]

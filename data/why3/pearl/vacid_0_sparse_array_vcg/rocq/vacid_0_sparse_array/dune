@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name vacid_0_sparse_array_vcg.vacid_0_sparse_array)
+(theories Why3 Why3.map))

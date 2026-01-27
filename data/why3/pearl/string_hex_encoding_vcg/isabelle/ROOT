@@ -1,0 +1,8 @@
+session string_hex_encoding = NTP4Verif +
+theories
+  "string_hex_encoding_Top_hexqtvc"
+  "string_hex_encoding_Top_decode_encodeqtvc"
+  "string_hex_encoding_Top_xehqtvc"
+  "string_hex_encoding_Top_decode_uniqueqtvc"
+  "string_hex_encoding_Top_encodeqtvc"
+  "string_hex_encoding_Top_decodeqtvc"

@@ -1,0 +1,122 @@
+(* For the background behind these two functions (LSE and SLSE), see
+  https://inria.hal.science/hal-0434315 *)
+
+(* Preliminary definitions and lemmas *)
+module Helpers
+  use real.RealInfix
+  use real.Abs
+  use real.ExpLog
+  use ufloat.USingle
+  use ufloat.USingleLemmas
+  use int.Int
+  use real.Sum
+  use real.FromInt
+
+  function abs_fun (f:int -> real) : int -> real =
+     fun i -> abs (f i)
+  function abs_real_fun (f:int -> usingle) : int -> real =
+    fun i -> abs_fun (real_fun f) i
+
+  let rec lemma sum_of_fun_le_sum_of_abs_fun (f : int -> usingle) (a b:int)
+    requires { 0 <= b-a }
+    variant { b-a }
+    ensures { abs (sum (real_fun f) a b) <=. sum (abs_real_fun f) a b }
+  = if b-a > 0 then sum_of_fun_le_sum_of_abs_fun f a (b-1)
+
+  let rec function usum_rec (f : int -> usingle) (a b:int) : usingle
+    requires { 0 <= b - a }
+    variant { b - a }
+    ensures {
+      abs (to_real result -. sum (real_fun f) a b)
+       <=. sum (abs_real_fun f) a b *. (eps *. from_int (b-a))
+    }
+  = if b - a <= 0 then uzero else if b - a = 1 then f (b-1) else usum_rec f a (b-1) ++. f (b-1)
+
+  constant log_error:real
+  axiom log_error_bounds : 0. <=. log_error <=. 1.
+  val function log_approx (x:usingle) : usingle
+    requires { 0. <. to_real x }
+    ensures {
+      abs (to_real result -. log (to_real x)) <=. abs (log (to_real x)) *. log_error
+    }
+
+  constant log2_error:real
+  axiom log2_error_bounds : 0. <=. log2_error <=. 1.
+  val function log2_approx (x:usingle) : usingle
+    requires { 0. <. to_real x }
+    ensures {
+      abs (to_real result -. log2 (to_real x)) <=. abs (log2 (to_real x)) *. log2_error
+    }
+
+  constant exp_error:real
+  axiom exp_error_bounds : 0. <=. exp_error <=. 0x1p-3
+  val function exp_approx (x:usingle) : usingle
+    ensures {
+      abs (to_real result -. exp (to_real x)) <=. exp_error *. exp (to_real x)
+    }
+
+  lemma exp_approx_pos : forall x. to_real (exp_approx x) >. 0.
+
+  let rec ghost sum_strictly_pos (f: int -> real) (a b:int)
+    variant { b - a }
+    requires { a < b }
+    requires { forall i. a <= i < b -> 0. <. f i }
+    ensures { 0. <. sum f a b = sum (abs_fun f) a b }
+  = if a < (b-1) then sum_strictly_pos f a (b - 1)
+
+  let rec ghost usum_strictly_pos (f: int -> usingle) (a b:int)
+    variant { b - a }
+    requires { a < b }
+    requires { forall i. a <= i < b -> 0. <. to_real (f i) }
+    ensures { 0. <. to_real (usum_rec f a b) }
+  = if a < (b-1) then usum_strictly_pos f a (b - 1)
+
+
+  lemma lt_compat_order_mult_l : forall x y z. 0. <. z -> x <. y -> z *. x <. z *. y
+end
+
+module LSE
+  use real.RealInfix
+  use real.Abs
+  use real.ExpLog
+  use ufloat.USingle
+  use ufloat.USingleLemmas
+  use ref.Ref
+  use int.Int
+  use real.Sum
+  use real.FromInt
+  use Helpers
+
+  use ufloat.HelperLemmas
+
+  let ghost function exp_of_f (f: int -> usingle) = (fun i -> exp ((real_fun f) i))
+
+
+  let lse (f : int -> usingle) (n:int) : usingle
+    requires { 0 < n < 8388608 }
+    ensures {
+      let exact = log(sum (exp_of_f f) 0 n) in
+      abs (to_real result -. exact) <=. abs(log(sum (exp_of_f f) 0 n)) *. log_error
+      -. (log (1. -. (exp_error +. from_int n *. eps *. (1. +. exp_error)))) *. (1. +. log_error)
+    }
+  =
+  let function f' = (fun i -> exp_approx (f i)) in
+  let function exact_f' = (fun i -> (exp_of_f f) i) in
+  assert {
+   forall i. 0 <= i < n -> abs (to_real (f' i) -. (exact_f') i)
+     <=. exp_error *. exact_f' i
+  };
+  let s = usum_rec f' 0 n in
+  sum_single_error_propagation s f' exact_f' exact_f' (abs_real_fun f') n (eps *. from_int n) 0. exp_error 0.;
+  assert {
+    abs (to_real s -. sum (exact_f') 0 n)
+    <=. (exp_error +. (from_int n *. eps) *. (1.0 +. exp_error)) *.
+      (sum (exact_f') 0 n)
+  };
+  usum_strictly_pos f' 0 n;
+  sum_strictly_pos (exp_of_f f) 0 n;
+  lt_compat_order_mult_l (exp_error +. from_int n *. eps *. (1.0 +. exp_error)) 1. (sum exact_f' 0 n);
+  log_approx s
+end
+
+

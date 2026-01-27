@@ -1,0 +1,18 @@
+session fclose_Why3_ide = NTP4Verif +
+theories
+  "fclose_Why3_ide_VCfclose_assign_exit_part2_goal1"
+  "fclose_Why3_ide_VCfclose_assign_exit_part3_goal2"
+  "fclose_Why3_ide_VCfclose_assign_exit_part5_goal4"
+  "fclose_Why3_ide_VCfclose_assign_exit_part8_goal6"
+  "fclose_Why3_ide_VCfclose_assign_normal_part2_goal7"
+  "fclose_Why3_ide_VCfclose_call_fflush_pre_2_goal14"
+  "fclose_Why3_ide_VCfclose_assign_normal_part8_goal12"
+  "fclose_Why3_ide_VCfclose_call_fflush_pre_goal13"
+  "fclose_Why3_ide_VCfclose_call_close_pre_goal15"
+  "fclose_Why3_ide_VCfclose_assign_normal_part7_goal11"
+  "fclose_Why3_ide_VCfclose_assign_normal_part3_goal8"
+  "fclose_Why3_ide_VCfclose_post_goal0"
+  "fclose_Why3_ide_VCfclose_assign_normal_part4_goal9"
+  "fclose_Why3_ide_VCfclose_assign_exit_part4_goal3"
+  "fclose_Why3_ide_VCfclose_assign_exit_part7_goal5"
+  "fclose_Why3_ide_VCfclose_assign_normal_part5_goal10"

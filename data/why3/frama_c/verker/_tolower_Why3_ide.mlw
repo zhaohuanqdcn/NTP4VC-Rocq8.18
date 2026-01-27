@@ -1,0 +1,27 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/ctype.h, line 122) in '_tolower' --- *)
+(* ---------------------------------------------------------- *)
+theory VC_tolower_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Cint.Cint
+use import Cbits.Cbits
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Post-condition (file src/ctype.h, line 122) in '_tolower'":
+*)
+goal goal0:
+  forall i : int.
+  ((is_sint8 i)) ->
+  (((to_sint8 ((lor 32 i)))) = ((l_tolower i)))
+
+end
+

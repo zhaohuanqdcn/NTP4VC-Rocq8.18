@@ -1,0 +1,32 @@
+theory verifythis_2021_shearsort_ShearSort_permut_numoffqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.int_NumOf" "Why3STD.int_Sum" "Why3STD.map_MapExt" "Why3STD.map_MapPermut" "Why3STD.matrix_Matrix"
+begin
+consts column :: "'a matrix \<Rightarrow> int \<Rightarrow> int \<Rightarrow> 'a"
+axiomatization where column'def:   "column m j i = elts m i j"
+  for m :: "'a matrix"
+  and j :: "int"
+  and i :: "int"
+consts moccf :: "'a \<Rightarrow> (int \<Rightarrow> int \<Rightarrow> 'a) \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int"
+axiomatization where moccf'def:   "moccf x e c i = int (map_occ x (e i) (0 :: int) c)"
+  for x :: "'a"
+  and e :: "int \<Rightarrow> int \<Rightarrow> 'a"
+  and c :: "int"
+  and i :: "int"
+definition mocc :: "'a \<Rightarrow> (int \<Rightarrow> int \<Rightarrow> 'a) \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int"
+  where "mocc x e r c = sum (moccf x e c) (0 :: int) r" for x e r c
+consts compose :: "('b \<Rightarrow> 'c) \<Rightarrow> ('a \<Rightarrow> 'b) \<Rightarrow> 'a \<Rightarrow> 'c"
+axiomatization where compose'def:   "compose g f x = g (f x)"
+  for g :: "'b \<Rightarrow> 'c"
+  and f :: "'a \<Rightarrow> 'b"
+  and x :: "'a"
+theorem permut_numoff'vc:
+  fixes l :: "int"
+  fixes u :: "int"
+  fixes a :: "int \<Rightarrow> 'a"
+  fixes b :: "int \<Rightarrow> 'a"
+  fixes p :: "'a \<Rightarrow> bool"
+  assumes fact0: "l \<le> u"
+  assumes fact1: "permut a b l u"
+  shows "numof (compose p a) l u = numof (compose p b) l u"
+  sorry
+end

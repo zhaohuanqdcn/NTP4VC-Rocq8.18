@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name maximum_subarray_vcg.maximum_subarray)
+(theories Why3 Why3.int))

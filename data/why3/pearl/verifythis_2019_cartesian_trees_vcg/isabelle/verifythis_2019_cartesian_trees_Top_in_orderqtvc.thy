@@ -1,0 +1,66 @@
+theory verifythis_2019_cartesian_trees_Top_in_orderqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.exn_Exn"
+begin
+axiomatization where Trans:   "z \<le> x"
+ if "y \<le> x"
+ and "z \<le> y"
+  for y :: "int"
+  and x :: "int"
+  and z :: "int"
+inductive sorted :: "int list \<Rightarrow> bool" where
+   Sorted_Nil: "sorted (Nil :: int list)"
+ | Sorted_One: "sorted (Cons x (Nil :: int list))" for x :: "int"
+ | Sorted_Two: "y \<le> x \<Longrightarrow> sorted (Cons y l) \<Longrightarrow> sorted (Cons x (Cons y l))" for y :: "int" and x :: "int" and l :: "int list"
+axiomatization where sorted_mem:   "(\<forall>(y :: int). y \<in> set l \<longrightarrow> y \<le> x) \<and> sorted l \<longleftrightarrow> sorted (Cons x l)"
+  for l :: "int list"
+  and x :: "int"
+axiomatization where sorted_append:   "sorted l1 \<and> sorted l2 \<and> (\<forall>(x :: int) (y :: int). x \<in> set l1 \<longrightarrow> y \<in> set l2 \<longrightarrow> y \<le> x) \<longleftrightarrow> sorted (l1 @ l2)"
+  for l1 :: "int list"
+  and l2 :: "int list"
+consts destruct :: "'xi list \<Rightarrow> 'xi \<times> 'xi list"
+axiomatization where destruct'def:   "case l of Cons h t \<Rightarrow> destruct l = (h, t) | _ \<Rightarrow> False"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+consts peek :: "'xi list \<Rightarrow> 'xi"
+axiomatization where peek'def:   "case destruct l of (h, _) \<Rightarrow> peek l = h"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+axiomatization where peek'spec:   "peek l \<in> set l"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+consts tail :: "'xi list \<Rightarrow> 'xi list"
+axiomatization where tail'def:   "case destruct l of (_, t) \<Rightarrow> tail l = t"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+datatype  dir = dir'mk (left1: "int option") (right1: "int option")
+typedecl  dirs
+definition parent :: "dir list \<Rightarrow> int \<Rightarrow> int \<Rightarrow> _"
+  where "parent t p s \<longleftrightarrow> left1 (t ! nat p) = Some s \<or> right1 (t ! nat p) = Some s" for t p s
+inductive descendant :: "dir list \<Rightarrow> int \<Rightarrow> int \<Rightarrow> bool" where
+   Self: "p = s \<Longrightarrow> descendant t p s" for p :: "int" and s :: "int" and t :: "dir list"
+ | Son_left: "descendant t p s1 \<Longrightarrow> left1 (t ! nat s1) = Some s2 \<Longrightarrow> descendant t p s2" for t :: "dir list" and p :: "int" and s1 :: "int" and s2 :: "int"
+ | Son_right: "descendant t p s1 \<Longrightarrow> right1 (t ! nat s1) = Some s2 \<Longrightarrow> descendant t p s2" for t :: "dir list" and p :: "int" and s1 :: "int" and s2 :: "int"
+definition is_smallest :: "int list \<Rightarrow> int \<Rightarrow> _"
+  where "is_smallest a i \<longleftrightarrow> ((0 :: int) \<le> i \<and> i < int (length a)) \<and> (\<forall>(j :: int). (0 :: int) \<le> j \<and> j < int (length a) \<longrightarrow> a ! nat i \<le> a ! nat j)" for a i
+axiomatization where Trans1:   "x < z"
+ if "x < y"
+ and "y < z"
+  for x :: "int"
+  and y :: "int"
+  and z :: "int"
+inductive sorted1 :: "int list \<Rightarrow> bool" where
+   Sorted_Nil1: "sorted1 (Nil :: int list)"
+ | Sorted_One1: "sorted1 (Cons x (Nil :: int list))" for x :: "int"
+ | Sorted_Two1: "x < y \<Longrightarrow> sorted1 (Cons y l) \<Longrightarrow> sorted1 (Cons x (Cons y l))" for x :: "int" and y :: "int" and l :: "int list"
+axiomatization where sorted_mem1:   "(\<forall>(y :: int). y \<in> set l \<longrightarrow> x < y) \<and> sorted1 l \<longleftrightarrow> sorted1 (Cons x l)"
+  for l :: "int list"
+  and x :: "int"
+axiomatization where sorted_append1:   "sorted1 l1 \<and> sorted1 l2 \<and> (\<forall>(x :: int) (y :: int). x \<in> set l1 \<longrightarrow> y \<in> set l2 \<longrightarrow> x < y) \<longleftrightarrow> sorted1 (l1 @ l2)"
+  for l1 :: "int list"
+  and l2 :: "int list"
+theorem in_order'vc:
+  fixes a :: "int list"
+  assumes fact0: "\<forall>(i :: int) (j :: int). (0 :: int) \<le> i \<and> i < j \<and> j < int (length a) \<longrightarrow> \<not>a ! nat i = a ! nat j"
+  shows "let o1 :: int = int (length a) in \<forall>(o2 :: int option). (case o2 of Some mv \<Rightarrow> is_smallest a mv | None \<Rightarrow> int (length a) = (0 :: int)) \<longrightarrow> (\<forall>(i :: int) (j :: int). (0 :: int) \<le> i \<and> i < j \<and> j < int (length a) \<longrightarrow> \<not>a ! nat i = a ! nat j) \<and> (\<forall>(o3 :: dir list). length o3 = length a \<and> (\<forall>(j :: int) (v :: int). (0 :: int) \<le> j \<and> j < int (length a) \<longrightarrow> (left1 (o3 ! nat j) = Some v \<longrightarrow> a ! nat j < a ! nat v \<and> ((0 :: int) \<le> v \<and> v < j) \<and> (\<forall>(x :: int). v < x \<and> x < j \<longrightarrow> a ! nat j < a ! nat x)) \<and> (right1 (o3 ! nat j) = Some v \<longrightarrow> a ! nat j < a ! nat v \<and> (j < v \<and> v < int (length a)) \<and> (\<forall>(x :: int). j < x \<and> x < v \<longrightarrow> a ! nat j < a ! nat x))) \<and> (\<forall>(p :: int) (s :: int). (0 :: int) \<le> p \<and> p < int (length a) \<longrightarrow> descendant o3 p s \<longrightarrow> ((0 :: int) \<le> s \<and> s < int (length a)) \<and> a ! nat p \<le> a ! nat s) \<and> (\<forall>(p1 :: int) (p2 :: int) (s :: int). (0 :: int) \<le> p1 \<and> p1 < int (length a) \<longrightarrow> descendant o3 p2 s \<longrightarrow> (left1 (o3 ! nat p1) = Some p2 \<longrightarrow> s < p1) \<and> (right1 (o3 ! nat p1) = Some p2 \<longrightarrow> p1 < s)) \<and> (\<forall>(i :: int) (k :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> (0 :: int) \<le> k \<and> k < int (length a) \<longrightarrow> a ! nat k < a ! nat i \<longrightarrow> (\<exists>(sm :: int). ((0 :: int) \<le> sm \<and> sm < int (length a)) \<and> parent o3 sm i)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> is_smallest a i \<or> (\<exists>(sm :: int). ((0 :: int) \<le> sm \<and> sm < int (length a)) \<and> parent o3 sm i)) \<and> (\<forall>(p1 :: int) (p2 :: int) (s :: int). (0 :: int) \<le> p1 \<and> p1 < int (length a) \<longrightarrow> (0 :: int) \<le> p2 \<and> p2 < int (length a) \<longrightarrow> (0 :: int) \<le> s \<and> s < int (length a) \<longrightarrow> parent o3 p1 s \<longrightarrow> parent o3 p2 s \<longrightarrow> p1 = p2) \<and> (\<forall>(p1 :: int) (p2 :: int). (0 :: int) \<le> p1 \<and> p1 < int (length a) \<longrightarrow> (0 :: int) \<le> p2 \<and> p2 < int (length a) \<longrightarrow> (0 :: int) \<le> p1 \<and> p1 < int (length a) \<longrightarrow> parent o3 p1 p2 \<longrightarrow> descendant o3 p2 p1 \<longrightarrow> \<not>True) \<longrightarrow> (length o3 = length a \<and> ((0 :: int) \<le> (0 :: int) \<and> (0 :: int) \<le> o1 \<and> o1 \<le> int (length a)) \<and> (\<forall>(p1 :: int) (p2 :: int) (s :: int). (0 :: int) \<le> p1 \<and> p1 < int (length a) \<longrightarrow> descendant o3 p2 s \<longrightarrow> (left1 (o3 ! nat p1) = Some p2 \<longrightarrow> s < p1) \<and> (right1 (o3 ! nat p1) = Some p2 \<longrightarrow> p1 < s)) \<and> (\<forall>(i :: int) (j :: int). (0 :: int) \<le> i \<and> i < j \<and> j < int (length a) \<longrightarrow> \<not>a ! nat i = a ! nat j) \<and> (case o2 of Some top' \<Rightarrow> (\<forall>(son :: int). descendant o3 top' son \<longleftrightarrow> (0 :: int) \<le> son \<and> son < o1) | None \<Rightarrow> (0 :: int) = o1)) \<and> (\<forall>(result :: int list). (\<forall>(x :: int). x \<in> set result \<longleftrightarrow> (0 :: int) \<le> x \<and> x < o1) \<and> sorted1 result \<longrightarrow> (\<forall>(x :: int). x \<in> set result \<longleftrightarrow> (0 :: int) \<le> x \<and> x < int (length a)) \<and> sorted1 result))"
+  sorry
+end

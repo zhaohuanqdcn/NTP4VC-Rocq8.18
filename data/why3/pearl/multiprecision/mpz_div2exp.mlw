@@ -1,0 +1,95 @@
+module Zdiv2exp
+
+use int.Int
+use int.ComputerDivision
+use int.Power
+use map.Map
+use mach.int.Int32GMP
+use ref.Ref
+use mach.c.C
+use lemmas.Lemmas
+use util.Util
+use util.UtilOld as OU
+use ptralias.Alias
+use compare.Compare
+use import mach.int.UInt64GMP as Limb
+use types.Types
+use types.Int32Eq
+use types.UInt64Eq
+use logical.LogicalUtil
+use logical.Logical
+use logical.LogicalOld as OL
+use int.Abs
+use mpz.Z
+use mpz.Zutil
+
+let ghost div_unique (x y q:int) : unit
+  requires { y > 0 }
+  requires { x >= 0 }
+  requires { q * y <= x < q * y + y }
+  ensures  { div x y = q }
+= ()
+
+let ghost div_minus (x y:int) : unit
+  requires { y > 0 }
+  requires { x >= 0 }
+  ensures  { div (-x) y = - div x y }
+= ()
+
+let partial wmpz_tdiv_q_2exp (r u:mpz_ptr) (cnt:limb) : unit
+  requires { mpz.alloc[r] >= 1 /\ mpz.alloc[u] >= 1 }
+  requires { mpz.readers[r] = 0 /\ mpz.readers[u] = 0 }
+  requires { mpz.abs_size[u] + div cnt 64 + 1 <= max_int32 }
+  ensures  { value_of r mpz = div (old (value_of u mpz)) (power 2 cnt) }
+  ensures  { forall x. x <> r -> mpz_unchanged x mpz (old mpz) }
+  ensures  { mpz.readers[r] = 0 /\ mpz.readers[u] = 0 }
+=
+  let ghost ompz = pure { mpz } in
+  let ghost ovu = value_of u in
+  let un = size_of u in
+  let limb_cnt = Limb.to_int32 (cnt / 64) in
+  let ref rn = abs un - limb_cnt in
+  if rn <= 0
+  then begin
+    set_size_0 r;
+  end else begin
+    let rp = wmpz_realloc r rn in
+    let c = cnt % 64 in
+    if mpz_eq u r
+    then begin
+      let up = C.incr rp limb_cnt in
+      let ghost orp = pure { rp } in
+      let ghost oup = pure { up } in
+      if c <> 0 then begin
+        label Shift in
+        let (ghost _m) = wmpn_rshift rp up rn c in
+        let ghost d = div (power 2 (uint64'int c) * uint64'int _m) radix in
+        label Size in
+        rn <- rn - (if C.get_ofs rp (rn - 1) = 0 then 1 else 0);
+      end else begin
+        wmpn_copyi rp up rn;
+      end end
+    else begin
+      unchanged u mpz ompz;
+      let up0 = get_read_ptr u in
+      let up = C.incr up0 limb_cnt in
+      let ghost oup0 = pure { up0 } in
+      let ghost oup = pure { up } in
+      if c <> 0 then begin
+        label Shift in
+        let (ghost _m) = OL.wmpn_rshift rp up rn c in
+        let ghost d = div (power 2 (uint64'int c) * uint64'int _m) radix in
+        label Size in
+        rn <- rn - (if C.get_ofs rp (rn - 1) = 0 then 1 else 0);
+      end else begin
+        OU.wmpn_copyi rp up rn;
+      end;
+      release_reader u up0;
+    end;
+    let ghost nrn = if size_of u >= 0 then rn else -rn in
+    label Size in
+    set_size r (if size_of u >= 0 then rn else -rn) rp;
+    release_writer r rp;
+  end
+
+end

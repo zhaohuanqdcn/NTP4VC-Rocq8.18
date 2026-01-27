@@ -1,0 +1,10 @@
+
+#ifndef LESSTHANCOMPARABLE_H_INCLUDED
+#define LESSTHANCOMPARABLE_H_INCLUDED
+
+#include "typedefs.h"
+
+
+
+#endif /* LESSTHANCOMPARABLE_H_INCLUDED */
+

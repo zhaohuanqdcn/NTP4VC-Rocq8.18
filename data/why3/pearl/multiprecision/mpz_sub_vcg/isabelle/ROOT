@@ -1,0 +1,5 @@
+session mpz_sub = NTP4Verif +
+theories
+  "mpz_sub_Zsub_wmpz_ui_subqtvc"
+  "mpz_sub_Zsub_wmpz_sub_uiqtvc"
+  "mpz_sub_Zsub_wmpz_subqtvc"

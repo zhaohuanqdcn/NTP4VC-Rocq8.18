@@ -1,0 +1,38 @@
+theory verifythis_2018_array_based_queuing_lock_2_ABQL_last_pushqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref"
+begin
+consts n :: "int"
+axiomatization where N_val:   "(2 :: int) \<le> n"
+consts k :: "int"
+axiomatization where K_val:   "(2 :: int) \<le> k"
+typedecl  tick
+consts b :: "tick \<Rightarrow> int"
+consts v :: "tick \<Rightarrow> int"
+axiomatization where tick'invariant'0:   "(0 :: int) \<le> v self"
+  for self :: "tick"
+axiomatization where tick'invariant'1:   "(0 :: int) \<le> b self"
+  for self :: "tick"
+axiomatization where tick'invariant'2:   "b self < k * n"
+  for self :: "tick"
+axiomatization where tick'invariant'3:   "b self = v self emod (k * n)"
+  for self :: "tick"
+definition tick'eq :: "tick \<Rightarrow> tick \<Rightarrow> _"
+  where "tick'eq a b1 \<longleftrightarrow> b a = b b1 \<and> v a = v b1" for a b1
+axiomatization where tick'inj:   "a = b1"
+ if "tick'eq a b1"
+  for a :: "tick"
+  and b1 :: "tick"
+definition lt :: "tick \<Rightarrow> tick \<Rightarrow> _"
+  where "lt tick1 tick2 \<longleftrightarrow> v tick1 < v tick2" for tick1 tick2
+definition sorted :: "tick list \<Rightarrow> _"
+  where "sorted s \<longleftrightarrow> (\<forall>(i :: int) (j :: int). (0 :: int) \<le> i \<and> i < j \<and> j < int (length s) \<longrightarrow> lt (s ! nat i) (s ! nat j))" for s
+definition consecutive :: "tick list \<Rightarrow> _"
+  where "consecutive l \<longleftrightarrow> (\<forall>(i :: int). (0 :: int) < i \<and> i < int (length l) \<longrightarrow> v (l ! nat i) = v (l ! nat (i - (1 :: int))) + (1 :: int))" for l
+definition last :: "tick list \<Rightarrow> tick option"
+  where "last l = (if int (length l) = (0 :: int) then None else Some (l ! nat (int (length l) - (1 :: int))))" for l
+theorem last_push'vc:
+  fixes l :: "tick list"
+  fixes x :: "tick"
+  shows "last (l @ Cons x []) = Some x"
+  sorry
+end

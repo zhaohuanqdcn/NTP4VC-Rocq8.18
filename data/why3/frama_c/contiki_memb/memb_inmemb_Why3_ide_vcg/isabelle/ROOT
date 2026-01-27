@@ -1,0 +1,7 @@
+session memb_inmemb_Why3_ide = NTP4Verif +
+theories
+  "memb_inmemb_Why3_ide_VCmemb_inmemb_assert_rte_signed_overflow_goal3"
+  "memb_inmemb_Why3_ide_VCmemb_inmemb_assert_rte_mem_access_goal0"
+  "memb_inmemb_Why3_ide_VCmemb_inmemb_assert_rte_mem_access_4_goal2"
+  "memb_inmemb_Why3_ide_VCmemb_inmemb_assert_rte_signed_overflow_2_goal4"
+  "memb_inmemb_Why3_ide_VCmemb_inmemb_assert_rte_mem_access_3_goal1"

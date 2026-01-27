@@ -1,0 +1,9 @@
+session vstte10_max_sum = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "vstte10_max_sum_TestCase_testqtvc"
+  "vstte10_max_sum_MaxAndSum2"
+  "vstte10_max_sum_MaxAndSum_max_sumqtvc"
+  "vstte10_max_sum_MaxAndSum2_max_sumqtvc"
+  "vstte10_max_sum_TestCase_test_caseqtvc"

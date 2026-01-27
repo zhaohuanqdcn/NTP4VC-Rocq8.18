@@ -1,0 +1,31 @@
+theory valuation_Valuation_valuation_zero_prodqtvc
+  imports "NTP4Verif.NTP4Verif"
+begin
+consts valuation :: "int \<Rightarrow> int \<Rightarrow> int"
+axiomatization where valuation'def:   "if n cmod p = (0 :: int) then valuation n p = valuation (n cdiv p) p + (1 :: int) else valuation n p = (0 :: int)"
+ if "(1 :: int) < p"
+ and "(1 :: int) \<le> n"
+  for p :: "int"
+  and n :: "int"
+axiomatization where valuation'spec'0:   "(0 :: int) \<le> valuation n p"
+ if "(1 :: int) < p"
+ and "(1 :: int) \<le> n"
+  for p :: "int"
+  and n :: "int"
+axiomatization where valuation'spec:   "p ^\<^sub>i valuation n p dvd n"
+ if "(1 :: int) < p"
+ and "(1 :: int) \<le> n"
+  for p :: "int"
+  and n :: "int"
+theorem valuation_zero_prod'vc:
+  fixes c1 :: "int"
+  fixes c2 :: "int"
+  fixes p :: "int"
+  assumes fact0: "(1 :: int) \<le> c1"
+  assumes fact1: "(1 :: int) \<le> c2"
+  assumes fact2: "prime p"
+  assumes fact3: "valuation c1 p = (0 :: int)"
+  assumes fact4: "valuation c2 p = (0 :: int)"
+  shows "valuation (c1 * c2) p = (0 :: int)"
+  sorry
+end

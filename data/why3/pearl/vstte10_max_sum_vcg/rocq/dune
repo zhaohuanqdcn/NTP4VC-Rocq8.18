@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name vstte10_max_sum_vcg)
+(theories vstte10_max_sum_vcg.vstte10_max_sum Why3 Why3.why3.Ref Why3.int))

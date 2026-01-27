@@ -1,0 +1,29 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'IntBase'                                --- *)
+(* ---------------------------------------------------------- *)
+theory A_IntBase
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Ctype.A_Ctype
+
+predicate p_is_hex (mchar_0 : map addr int) (s : addr) =
+    (mchar_0[(shift_sint8 s 0)] = 48) /\
+    (((l_tolower mchar_0[(shift_sint8 s 1)])) = 120) /\
+    ((p_isxdigit mchar_0[(shift_sint8 s 2)]))
+
+predicate p_is_oct (mchar_0 : map addr int) (s : addr) =
+    (mchar_0[(shift_sint8 s 0)] = 48) /\ (not (p_is_hex mchar_0 s))
+
+predicate p_is_dec (mchar_0 : map addr int) (s : addr) =
+    (not (p_is_hex mchar_0 s)) /\ (not (p_is_oct mchar_0 s))
+
+end
+

@@ -1,0 +1,11 @@
+atoms:
+  bintree.Height.height: [height, Height.height]
+axioms:
+  bintree.Height.height_nonneg: [height_nonneg, Height.height_nonneg]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.bintree.Height
+prefix_ops: {}
+types: {}

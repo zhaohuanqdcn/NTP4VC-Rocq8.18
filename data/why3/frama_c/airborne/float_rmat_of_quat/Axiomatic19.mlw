@@ -1,0 +1,51 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #19)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic19
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import S10_RealRMat_s.S10_RealRMat_s
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+function l_l_rmat_of_floatquat_1_ (mflt_0 : map addr real)
+    (q : addr) : s10_realrmat_s =
+    let r = mflt_0[(shiftfield_f3_floatquat_qy q)] in let r_1 = r *. r in
+    let r_2 = -. r_1 in let r_3 = mflt_0[(shiftfield_f3_floatquat_qz q)] in
+    let r_4 = r_3 *. r_3 in let r_5 = -. r_4 in
+    let r_6 = mflt_0[(shiftfield_f3_floatquat_qi q)] in
+    let r_7 = r_6 *. r_6 in
+    let r_8 = mflt_0[(shiftfield_f3_floatquat_qx q)] in
+    let r_9 = r_8 *. r_8 in let r_10 = r_6 *. r_3 in let r_11 = r_8 *. r in
+    let r_12 = r_6 *. r in let r_13 = r_8 *. r_3 in let r_14 = -. r_9 in
+    let r_15 = r_6 *. r_8 in let r_16 = r *. r_3 in
+    { f10_realrmat_s_a00 = (to_float32 (r_7 +. r_9 -. r_1 -. r_4)) ;
+      f10_realrmat_s_a01 = (mul_float32 2.0 (r_11 -. r_10)) ;
+      f10_realrmat_s_a02 = (mul_float32 2.0 (r_12 +. r_13)) ;
+      f10_realrmat_s_a10 = (mul_float32 2.0 (r_10 +. r_11)) ;
+      f10_realrmat_s_a11 = (to_float32 (r_7 +. r_1 -. r_9 -. r_4)) ;
+      f10_realrmat_s_a12 = (mul_float32 2.0 (r_16 -. r_15)) ;
+      f10_realrmat_s_a20 = (mul_float32 2.0 (r_13 -. r_12)) ;
+      f10_realrmat_s_a21 = (mul_float32 2.0 (r_15 +. r_16)) ;
+      f10_realrmat_s_a22 = (to_float32 (r_7 +. r_4 -. r_9 -. r_1)) }
+
+predicate p_unitary_quaternion_1_ (mflt_0 : map addr real) (q : addr) =
+    let r = mflt_0[(shiftfield_f3_floatquat_qi q)] in
+    let r_1 = mflt_0[(shiftfield_f3_floatquat_qx q)] in
+    let r_2 = mflt_0[(shiftfield_f3_floatquat_qy q)] in
+    let r_3 = mflt_0[(shiftfield_f3_floatquat_qz q)] in
+    ((r *. r) +. (r_1 *. r_1) +. (r_2 *. r_2) +. (r_3 *. r_3)) = 1.0
+
+end
+

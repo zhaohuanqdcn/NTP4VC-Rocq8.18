@@ -1,0 +1,30 @@
+theory index_of_not_in_subrange_Why3_ide_VCindex_of_not_in_subrange_assert_rte_signed_overflow_goal5
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/S1_list_S1_list" "../../lib/isabelle/A_Index_of_item_A_Index_of_item"
+begin
+theorem goal5:
+  fixes t :: "addr \<Rightarrow> addr"
+  fixes a_1 :: "addr"
+  fixes i_2 :: "int"
+  fixes a :: "addr"
+  fixes i :: "int"
+  fixes i_1 :: "int"
+  fixes i_3 :: "int"
+  assumes fact0: "\<not>t (shift a_1 i_2) = a"
+  assumes fact1: "(0 :: int) \<le> i"
+  assumes fact2: "i_2 \<le> i_1"
+  assumes fact3: "i_3 \<le> i_1"
+  assumes fact4: "i_2 < i_1"
+  assumes fact5: "i_3 \<le> i_2"
+  assumes fact6: "(0 :: int) \<le> i_3"
+  assumes fact7: "region (base a) \<le> (0 :: int)"
+  assumes fact8: "region (base a_1) \<le> (0 :: int)"
+  assumes fact9: "framed t"
+  assumes fact10: "is_sint32 i"
+  assumes fact11: "is_sint32 i_1"
+  assumes fact12: "is_sint32 i_2"
+  assumes fact13: "is_sint32 i_3"
+  assumes fact14: "\<forall>(i_4 :: int). i_4 < i_1 \<longrightarrow> i_3 \<le> i_4 \<longrightarrow> \<not>t (shift a_1 i_4) = a"
+  assumes fact15: "\<forall>(i_4 :: int). i_4 < i_2 \<longrightarrow> i_3 \<le> i_4 \<longrightarrow> l_index_of t a a_1 i_3 i = l_index_of t a a_1 i_2 i"
+  shows "i_2 \<le> (2147483646 :: int)"
+  sorry
+end

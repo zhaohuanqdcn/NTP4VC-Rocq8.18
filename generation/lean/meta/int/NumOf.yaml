@@ -1,0 +1,22 @@
+atoms:
+  int.NumOf.numof: [NumOf.numof]
+axioms:
+  int.NumOf.Empty: NumOf.Empty
+  int.NumOf.Full: NumOf.Full
+  int.NumOf.Numof_append: NumOf.Numof_append
+  int.NumOf.Numof_bounds: NumOf.Numof_bounds
+  int.NumOf.Numof_left_add: NumOf.Numof_left_add
+  int.NumOf.Numof_left_no_add: NumOf.Numof_left_no_add
+  int.NumOf.numof'def: NumOf.numof'def
+  int.NumOf.numof_change_any: NumOf.numof_change_any
+  int.NumOf.numof_change_equiv: NumOf.numof_change_equiv
+  int.NumOf.numof_change_some: NumOf.numof_change_some
+  int.NumOf.numof_increasing: NumOf.numof_increasing
+  int.NumOf.numof_strictly_increasing: NumOf.numof_strictly_increasing
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.int.NumOf
+prefix_ops: {}
+types: {}

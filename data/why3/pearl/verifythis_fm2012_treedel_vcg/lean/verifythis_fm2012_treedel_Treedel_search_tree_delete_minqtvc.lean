@@ -1,0 +1,26 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.verifythis_fm2012_treedel_vcg.lean.verifythis_fm2012_treedel.Memory
+import Why3.bintree.Tree
+import Why3.bintree.Inorder
+open Classical
+open Lean4Why3
+namespace verifythis_fm2012_treedel_Treedel_search_tree_delete_minqtvc
+noncomputable def root (t : Tree.tree Memory.loc) := match t with | (Tree.tree.Empty : Tree.tree Memory.loc) => Memory.null | Tree.tree.Node _ p _ => p
+noncomputable def istree : (Memory.loc -> Memory.node) -> Tree.tree Memory.loc -> Prop
+  | m, (Tree.tree.Empty : Tree.tree Memory.loc) => True
+  | m, (Tree.tree.Node l p r) => ¬p = Memory.null ∧ istree m l ∧ istree m r ∧ root l = Memory.node.left1 (m p) ∧ root r = Memory.node.right1 (m p)
+inductive zipper (α : Type) where
+  | Top : zipper α
+  | Left : zipper α -> α -> Tree.tree α -> zipper α
+axiom inhabited_axiom_zipper {α : Type} [Inhabited α] : Inhabited (zipper α)
+attribute [instance] inhabited_axiom_zipper
+noncomputable def zip {α : Type} [Inhabited α] : Tree.tree α -> zipper α -> Tree.tree α
+  | t, (zipper.Top : zipper α) => t
+  | t, (zipper.Left z1 x r) => zip (Tree.tree.Node t x r) z1
+noncomputable def inorderz {α : Type} [Inhabited α] : zipper α -> List α
+  | (zipper.Top : zipper α) => ([] : List α)
+  | (zipper.Left z1 x r) => List.cons x (Inorder.inorder r) ++ inorderz z1
+theorem search_tree_delete_min'vc (it : Tree.tree Memory.loc) (mem : Memory.loc -> Memory.node) (fact0 : ¬root it = Memory.null) (fact1 : istree mem it) (fact2 : List.Nodup (Inorder.inorder it)) : ¬root it = Memory.null ∧ (let o1 : Memory.loc := Memory.node.left1 (mem (root it)); let o2 : Memory.loc := Memory.null; Memory.eq_loc o1 o2 = (o1 = o2) → (if Memory.eq_loc o1 o2 then ¬root it = Memory.null ∧ ¬root it = Memory.null ∧ (match it with | (Tree.tree.Empty : Tree.tree Memory.loc) => False | Tree.tree.Node l _ r => istree mem r ∧ root r = Memory.node.right1 (mem (root it)) ∧ (match Inorder.inorder it with | ([] : List Memory.loc) => False | List.cons p l1 => Memory.node.data (mem (root it)) = Memory.node.data (mem p) ∧ Inorder.inorder r = l1)) else ¬o1 = Memory.null ∧ ¬it = (Tree.tree.Empty : Tree.tree Memory.loc) ∧ (∀(o3 : Tree.tree Memory.loc), (match it with | (Tree.tree.Empty : Tree.tree Memory.loc) => False | Tree.tree.Node _ _ r => o3 = r) → ¬it = (Tree.tree.Empty : Tree.tree Memory.loc) ∧ (∀(o4 : Tree.tree Memory.loc), (match it with | (Tree.tree.Empty : Tree.tree Memory.loc) => False | Tree.tree.Node l _ _ => o4 = l) → ((¬root it = Memory.null ∧ Memory.node.left1 (mem (root it)) = o1) ∧ ¬o1 = Memory.null ∧ (let pt : Tree.tree Memory.loc := Tree.tree.Node o4 (root it) o3; istree mem pt ∧ zip pt zipper.Top = it)) ∧ (∀(subtree : Tree.tree Memory.loc) (ppr : Tree.tree Memory.loc) (zipper1 : zipper Memory.loc) (pp : Memory.loc), ¬pp = Memory.null ∧ ¬Memory.node.left1 (mem pp) = Memory.null ∧ (let pt : Tree.tree Memory.loc := Tree.tree.Node subtree pp ppr; istree mem pt ∧ zip pt zipper1 = it) → (let o5 : Memory.loc := Memory.null; Memory.eq_loc (Memory.node.left1 (mem (Memory.node.left1 (mem pp)))) o5 = (Memory.node.left1 (mem (Memory.node.left1 (mem pp))) = o5) → (if ¬Memory.eq_loc (Memory.node.left1 (mem (Memory.node.left1 (mem pp)))) o5 then ¬subtree = (Tree.tree.Empty : Tree.tree Memory.loc) ∧ (∀(o6 : Tree.tree Memory.loc), (match subtree with | (Tree.tree.Empty : Tree.tree Memory.loc) => False | Tree.tree.Node _ _ r => o6 = r) → ¬subtree = (Tree.tree.Empty : Tree.tree Memory.loc) ∧ (∀(o7 : Tree.tree Memory.loc), (match subtree with | (Tree.tree.Empty : Tree.tree Memory.loc) => False | Tree.tree.Node l _ _ => o7 = l) → ¬Memory.node.left1 (mem (Memory.node.left1 (mem pp))) = Memory.null ∧ (match subtree with | (Tree.tree.Empty : Tree.tree Memory.loc) => False | Tree.tree.Node f _ f1 => f = o7 ∨ f1 = o7) ∧ ¬Memory.node.left1 (mem pp) = Memory.null ∧ ¬Memory.node.left1 (mem (Memory.node.left1 (mem pp))) = Memory.null ∧ (let pt : Tree.tree Memory.loc := Tree.tree.Node o7 (Memory.node.left1 (mem pp)) o6; istree mem pt ∧ zip pt (zipper.Left zipper1 pp ppr) = it))) else ¬Memory.node.left1 (mem pp) = Memory.null ∧ ¬Memory.node.left1 (mem pp) = Memory.null ∧ ¬pp = Memory.null ∧ (∀(mem1 : Memory.loc -> Memory.node), mem1 pp = (let x_q' : Memory.node := mem pp; Memory.node.mk (Memory.node.right1 (mem (Memory.node.left1 (mem pp)))) (Memory.node.right1 x_q') (Memory.node.data x_q')) ∧ (∀(q : Memory.loc), ¬q = pp → mem1 q = mem q) → ¬subtree = (Tree.tree.Empty : Tree.tree Memory.loc) ∧ (∀(pl : Tree.tree Memory.loc), (match subtree with | (Tree.tree.Empty : Tree.tree Memory.loc) => False | Tree.tree.Node l _ _ => pl = l) → ¬subtree = (Tree.tree.Empty : Tree.tree Memory.loc) ∧ (∀(o6 : Tree.tree Memory.loc), (match subtree with | (Tree.tree.Empty : Tree.tree Memory.loc) => False | Tree.tree.Node _ _ r => o6 = r) → (∀(p : Memory.loc), Memory.node.data (mem1 p) = Memory.node.data (mem p)) ∧ istree mem1 (zip o6 (zipper.Left zipper1 pp ppr)) ∧ root (zip o6 (zipper.Left zipper1 pp ppr)) = root it ∧ (match Inorder.inorder it with | ([] : List Memory.loc) => False | List.cons p l => Memory.node.data (mem (Memory.node.left1 (mem pp))) = Memory.node.data (mem1 p) ∧ Inorder.inorder (zip o6 (zipper.Left zipper1 pp ppr)) = l)))))))))))
+  := sorry
+end verifythis_fm2012_treedel_Treedel_search_tree_delete_minqtvc

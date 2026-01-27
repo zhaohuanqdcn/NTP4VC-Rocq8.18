@@ -1,0 +1,67 @@
+module RelaxedPrefix
+
+  use int.Int
+  use ref.Ref
+  use array.Array
+
+  type char
+  val eq (x y : char) : bool ensures { result = True <-> x = y }
+
+  (** `a1[ofs1..ofs1+len]` and `a2[ofs2..ofs2+len]` are valid sub-arrays
+      and they are equal *)
+  predicate eq_array (a1: array char) (ofs1: int)
+                     (a2: array char) (ofs2: int) (len: int) =
+    0 <= len /\ 0 <= ofs1 /\ 0 <= ofs2 /\
+    ofs1 + len <= length a1 /\ ofs2 + len <= length a2 /\
+    forall i: int. 0 <= i < len -> a1[ofs1 + i] = a2[ofs2 + i]
+
+  (** The target property. *)
+
+  predicate is_relaxed_prefix (pat a: array char) =
+    let n = length pat in
+       eq_array pat 0 a 0 n
+    \/ exists i: int. 0 <= i < n /\
+                      eq_array pat 0 a 0 i /\
+                      eq_array pat (i+1) a i (n - i - 1)
+
+  (** This exception is used to exit the loop as soon as the target
+      property is no more possible. *)
+
+  exception NoPrefix
+
+  (** Note regarding the code: the suggested pseudo-code is buggy, as it
+      may access `a` out of bounds. We fix it by strengthening the
+      test in the conditional. *)
+
+  let is_relaxed_prefix (pat a: array char) : bool
+    ensures { result <-> is_relaxed_prefix pat a }
+  =
+    let n = length pat in
+    let m = length a in
+    try
+      let shift = ref 0 in
+      let ghost ignored = ref 0 in
+      for i = 0 to n - 1 do
+        invariant { 0 <= !shift <= 1 }
+        invariant { !shift = 1 -> 0 <= !ignored < i }
+        invariant { m + !shift >= i }
+        invariant {
+          if !shift = 0 then eq_array pat 0 a 0 i
+          else eq_array pat 0 a 0 !ignored /\
+               eq_array pat (!ignored + 1) a !ignored (i - !ignored - 1) /\
+               not (eq_array pat 0 a 0 i) /\
+               (!ignored < m -> pat[!ignored] <> a[!ignored]) }
+        if i - !shift >= m || not (eq pat[i] a[i - !shift]) then begin
+          if !shift = 1 then begin
+            raise NoPrefix
+          end;
+          ignored := i;
+          shift := 1;
+        end;
+      done;
+      True
+    with NoPrefix ->
+      False
+    end
+
+end

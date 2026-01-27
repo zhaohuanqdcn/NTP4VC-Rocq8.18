@@ -1,0 +1,7 @@
+session esterel = NTP4Verif +
+theories
+  "esterel_Esterel_maxUnionqtvc"
+  "esterel_Esterel_intersectionqtvc"
+  "esterel_Esterel_unionqtvc"
+  "esterel_Esterel_aboveMinqtvc"
+  "esterel_Esterel_sqtvc"

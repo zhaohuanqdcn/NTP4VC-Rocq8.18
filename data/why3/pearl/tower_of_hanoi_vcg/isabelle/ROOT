@@ -1,0 +1,12 @@
+session tower_of_hanoi = NTP4Verif +
+theories
+  "tower_of_hanoi_Hanoi"
+  "tower_of_hanoi_Hanoi_hanoi_recqtvc"
+  "tower_of_hanoi_Tower_of_Hanoi_hanoi_recqtvc"
+  "tower_of_hanoi_Tower_of_Hanoi_towerqtvc"
+  "tower_of_hanoi_Tower_of_Hanoi_moveqtvc"
+  "tower_of_hanoi_Hanoi_tower_of_hanoiqtvc"
+  "tower_of_hanoi_Tower_of_Hanoi_Trans"
+  "tower_of_hanoi_Hanoi_towerqtvc"
+  "tower_of_hanoi_Hanoi_moveqtvc"
+  "tower_of_hanoi_Tower_of_Hanoi_tower_of_hanoiqtvc"

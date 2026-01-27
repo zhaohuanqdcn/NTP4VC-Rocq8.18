@@ -1,0 +1,6 @@
+session foveoos11_challenge3 = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "foveoos11_challenge3_TwoEqualElements"
+  "foveoos11_challenge3_TwoEqualElements_two_equal_elementsqtvc"

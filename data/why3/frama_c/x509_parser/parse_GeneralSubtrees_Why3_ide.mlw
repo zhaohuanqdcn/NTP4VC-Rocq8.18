@@ -1,0 +1,111 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 4569) in 'parse_GeneralName'' in 'parse_GeneralSubtrees' at call 'parse_GeneralName' (file src/x509-parser.c, line 6865)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_GeneralSubtrees_call_parse_GeneralName_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 4569) in 'parse_GeneralName'' in 'parse_GeneralSubtrees' at call 'parse_GeneralName' (file src/x509-parser.c, line 6865)
+":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_2) in
+  (i_1 <> 0) ->
+  (null <> a) ->
+  (a_1 <> null) ->
+  (0 < i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  ((i + i_2) <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a 0)) i_1))) ->
+  ((valid_rd t a_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 485) in 'parse_id_len'' in 'parse_GeneralSubtrees' at call 'parse_id_len' (file src/x509-parser.c, line 6885)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_GeneralSubtrees_call_parse_id_len_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 485) in 'parse_id_len'' in 'parse_GeneralSubtrees' at call 'parse_id_len' (file src/x509-parser.c, line 6885)
+":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_2) in
+  let a_2 = (shift_uint8 a (i_2 + i_3)) in
+  let x = i_4 - i_3 in
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (null <> a) ->
+  (a_1 <> null) ->
+  (a_2 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_2 <= i_1) ->
+  (i_4 <= i_1) ->
+  (i_3 < i_4) ->
+  (0 <= i_4) ->
+  ((i_2 + i_4) <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (i <= 1) ->
+  (2 <= i_2) ->
+  (2 <= i_3) ->
+  (i_3 <= (2147483648 + i_4)) ->
+  (i_4 <= (65535 + i_3)) ->
+  (i_4 <= (2147483647 + i_3)) ->
+  ((linked t)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 i_4)) ->
+  ((is_sint32 i)) ->
+  ((is_uint16 x)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a 0)) i_1))) ->
+  ((0 < i_4) -> ((valid_rd t a_1 i_4))) ->
+  ((valid_rd t a_2 x))
+
+end
+

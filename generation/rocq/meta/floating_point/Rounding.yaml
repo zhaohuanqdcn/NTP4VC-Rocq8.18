@@ -1,0 +1,15 @@
+atoms:
+  floating_point.Rounding.Down: [Down, Rounding.Down]
+  floating_point.Rounding.NearestTiesToAway: [NearestTiesToAway, Rounding.NearestTiesToAway]
+  floating_point.Rounding.NearestTiesToEven: [NearestTiesToEven, Rounding.NearestTiesToEven]
+  floating_point.Rounding.ToZero: [ToZero, Rounding.ToZero]
+  floating_point.Rounding.Up: [Up, Rounding.Up]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.floating_point.Rounding
+prefix_ops: {}
+types:
+  floating_point.Rounding.mode: [mode, Rounding.mode]

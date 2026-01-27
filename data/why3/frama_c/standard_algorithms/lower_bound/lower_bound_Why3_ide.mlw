@@ -1,0 +1,662 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'result' in 'lower_bound'           --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition 'result' in 'lower_bound'":
+*)
+goal goal0:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (i_3 <= i_1) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i_1 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_2 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_3 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  (i_3 <= i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'right' in 'lower_bound'            --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_post_right
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition 'right' in 'lower_bound'":
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (i_3 <= i_1) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i_1 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_2 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_3 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_3 i_2 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file lower_bound.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file lower_bound.c, line 10)":
+*)
+goal goal2:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = - i_4 in
+  let x_1 = i_1 - i_4 in
+  let x_2 = i_4 + ((to_uint32 ((div ((to_uint32 x_1)) 2)))) in
+  let x_3 = i_4 + ((div x_1 2)) in
+  let a_1 = (shift_sint32 a x_3) in
+  let x_4 = t_1[a_1] in
+  let x_5 = (div (i_2 - i_4) 2) in
+  (i_4 <= i_1) ->
+  (i_1 <= i_3) ->
+  (0 <= i_4) ->
+  (i_4 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (0 <= x_2) ->
+  (i_1 <= (4294967295 + i_4)) ->
+  (x_2 <= 4294967295) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 i_4)) ->
+  ((is_uint32 i_5)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_3)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_3 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_4 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_3)) ->
+  ((is_uint32 x_3)) ->
+  ((is_sint32 x_4)) ->
+  ((valid_rd t a_1 1)) ->
+  (if (x_4 < i)
+   then ((i_2 = i_1) /\ ((1 + i_4 + x_5) = i_5) /\
+         ((i_4 + x_5) <= 4294967294))
+   else ((i_5 = i_4) /\ ((i_5 + ((div (i_1 - i_5) 2))) = i_2))) ->
+  ((i_5 <= i_2) /\ (i_2 <= i_3) /\ (0 <= i_5))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file lower_bound.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file lower_bound.c, line 10)":
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((p_sorted_2_ t_1 a i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'left' (file lower_bound.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_loop_inv_left_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'left' (file lower_bound.c, line 11)":
+*)
+goal goal4:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = i_1 - i_3 in
+  let x_1 = i_3 + ((to_uint32 ((div ((to_uint32 x)) 2)))) in
+  let x_2 = (div x 2) in
+  let x_3 = i_3 + x_2 in
+  let a_1 = (shift_sint32 a x_3) in
+  let x_4 = t_1[a_1] in
+  let x_5 = 1 + i_3 + x_2 in
+  (i_3 <= i_1) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (0 <= x_1) ->
+  (x_4 < i) ->
+  (i_1 <= (4294967295 + i_3)) ->
+  (x_3 <= 4294967294) ->
+  (x_1 <= 4294967295) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_2 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_3 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_4)) ->
+  ((valid_rd t a_1 1)) ->
+  ((p_strictupperbound_1_ t_1 a 0 x_5 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'left' (file lower_bound.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_loop_inv_left_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'left' (file lower_bound.c, line 11)":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((p_strictupperbound_1_ t_1 a 0 0 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'right' (file lower_bound.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_loop_inv_right_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'right' (file lower_bound.c, line 12)":
+*)
+goal goal6:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = i_1 - i_3 in
+  let x_1 = i_3 + ((to_uint32 ((div ((to_uint32 x)) 2)))) in
+  let x_2 = i_3 + ((div x 2)) in
+  let a_1 = (shift_sint32 a x_2) in
+  let x_3 = t_1[a_1] in
+  (i_3 <= i_1) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (0 <= x_1) ->
+  (i <= x_3) ->
+  (i_1 <= (4294967295 + i_3)) ->
+  (x_1 <= 4294967295) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_2 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_3 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((is_uint32 x_2)) ->
+  ((is_sint32 x_3)) ->
+  ((valid_rd t a_1 1)) ->
+  ((p_lowerbound_1_ t_1 a x_2 i_2 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'right' (file lower_bound.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_loop_inv_right_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'right' (file lower_bound.c, line 12)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file lower_bound.c, line 18) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_assert_rte_unsigned_overflow_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file lower_bound.c, line 18)":
+*)
+goal goal8:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (i_3 <= i_1) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_2 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_3 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  (i_1 <= (4294967295 + i_3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file lower_bound.c, line 18) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_assert_rte_unsigned_overflow_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file lower_bound.c, line 18)":
+*)
+goal goal9:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (i_3 <= i_1) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_2 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_3 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  (0 <= (i_3 + ((to_uint32 ((div ((to_uint32 (i_1 - i_3))) 2))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file lower_bound.c, line 18) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_assert_rte_unsigned_overflow_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file lower_bound.c, line 18)":
+*)
+goal goal10:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (i_3 <= i_1) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_2 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_3 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((i_3 + ((to_uint32 ((div ((to_uint32 (i_1 - i_3))) 2))))) <= 4294967295)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file lower_bound.c, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file lower_bound.c, line 20)":
+*)
+goal goal11:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = i_1 - i_3 in
+  let x_1 = i_3 + ((to_uint32 ((div ((to_uint32 x)) 2)))) in
+  let x_2 = i_3 + ((div x 2)) in
+  (i_3 <= i_1) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (0 <= x_1) ->
+  (i_1 <= (4294967295 + i_3)) ->
+  (x_1 <= 4294967295) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_2 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_3 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((is_uint32 x_2)) ->
+  ((valid_rd t ((shift_sint32 a x_2)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file lower_bound.c, line 21) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_assert_rte_unsigned_overflow_5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file lower_bound.c, line 21)":
+*)
+goal goal12:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = i_1 - i_3 in
+  let x_1 = i_3 + ((to_uint32 ((div ((to_uint32 x)) 2)))) in
+  let x_2 = i_3 + ((div x 2)) in
+  let a_1 = (shift_sint32 a x_2) in
+  let x_3 = t_1[a_1] in
+  (i_3 <= i_1) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (0 <= x_1) ->
+  (x_3 < i) ->
+  (i_1 <= (4294967295 + i_3)) ->
+  (x_1 <= 4294967295) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_2)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_2 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_3 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((is_uint32 x_2)) ->
+  ((is_sint32 x_3)) ->
+  ((valid_rd t a_1 1)) ->
+  (x_2 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file lower_bound.c, line 17) --- *)
+(* ---------------------------------------------------------- *)
+theory VClower_bound_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file lower_bound.c, line 17)":
+*)
+goal goal13:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = - i_4 in
+  let x_1 = i_1 - i_4 in
+  let x_2 = i_4 + ((to_uint32 ((div ((to_uint32 x_1)) 2)))) in
+  let x_3 = i_4 + ((div x_1 2)) in
+  let a_1 = (shift_sint32 a x_3) in
+  let x_4 = t_1[a_1] in
+  let x_5 = (div (i_2 - i_4) 2) in
+  (i_4 <= i_1) ->
+  (i_1 <= i_3) ->
+  (0 <= i_4) ->
+  (i_4 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (0 <= x_2) ->
+  (i_1 <= (4294967295 + i_4)) ->
+  (x_2 <= 4294967295) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 i_4)) ->
+  ((is_uint32 i_5)) ->
+  ((is_sint32 i)) ->
+  ((p_sorted_2_ t_1 a i_3)) ->
+  ((p_lowerbound_1_ t_1 a i_1 i_3 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 i_4 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_3)) ->
+  ((is_uint32 x_3)) ->
+  ((is_sint32 x_4)) ->
+  ((valid_rd t a_1 1)) ->
+  (if (x_4 < i)
+   then ((i_2 = i_1) /\ ((1 + i_4 + x_5) = i_5) /\
+         ((i_4 + x_5) <= 4294967294))
+   else ((i_5 = i_4) /\ ((i_5 + ((div (i_1 - i_5) 2))) = i_2))) ->
+  ((i_2 + i_4) < (i_1 + i_5))
+
+end
+

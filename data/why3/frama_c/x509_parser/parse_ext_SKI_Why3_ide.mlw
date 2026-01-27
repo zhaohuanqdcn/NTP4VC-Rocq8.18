@@ -1,0 +1,50 @@
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 5260) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_ext_SKI_assert_rte_unsigned_downcast
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 5260)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  (i <> 0) ->
+  (i_1 <> i) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_1) ->
+  (i <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((valid_rw t a 15)) ->
+  ((is_uint16 (i - i_1))) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  (((to_sint32 i)) <= i)
+
+end
+

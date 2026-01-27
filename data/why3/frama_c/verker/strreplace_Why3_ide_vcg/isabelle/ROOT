@@ -1,0 +1,18 @@
+session strreplace_Why3_ide = NTP4Verif +
+theories
+  "strreplace_Why3_ide_VCstrreplace_post_3_goal2"
+  "strreplace_Why3_ide_VCstrreplace_loop_inv_4_preserved_goal8"
+  "strreplace_Why3_ide_VCstrreplace_assert_goal12"
+  "strreplace_Why3_ide_VCstrreplace_loop_inv_3_preserved_goal6"
+  "strreplace_Why3_ide_VCstrreplace_loop_inv_5_preserved_goal9"
+  "strreplace_Why3_ide_VCstrreplace_post_2_goal1"
+  "strreplace_Why3_ide_VCstrreplace_loop_inv_6_preserved_goal11"
+  "strreplace_Why3_ide_VCstrreplace_assert_2_goal13"
+  "strreplace_Why3_ide_VCstrreplace_loop_inv_2_preserved_goal5"
+  "strreplace_Why3_ide_VCstrreplace_post_goal0"
+  "strreplace_Why3_ide_VCstrreplace_loop_inv_5_established_goal10"
+  "strreplace_Why3_ide_VCstrreplace_loop_term_positive_goal15"
+  "strreplace_Why3_ide_VCstrreplace_loop_inv_3_established_goal7"
+  "strreplace_Why3_ide_VCstrreplace_post_5_goal3"
+  "strreplace_Why3_ide_VCstrreplace_loop_assign_part3_goal14"
+  "strreplace_Why3_ide_VCstrreplace_loop_inv_preserved_goal4"

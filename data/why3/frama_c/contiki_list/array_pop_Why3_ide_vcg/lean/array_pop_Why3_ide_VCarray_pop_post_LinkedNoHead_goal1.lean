@@ -1,0 +1,14 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import frama_c.contiki_list.lib.lean.Compound.Compound
+import frama_c.contiki_list.lib.lean.S1_list.S1_list
+import Why3.Cint.Cint
+import frama_c.contiki_list.lib.lean.Axiomatic.Axiomatic
+import frama_c.contiki_list.lib.lean.Axiomatic1.Axiomatic1
+open Classical
+open Lean4Why3
+namespace array_pop_Why3_ide_VCarray_pop_post_LinkedNoHead_goal1
+theorem goal1 (i : ℤ) (t_2 : Memory.addr -> Memory.addr) (t_3 : Memory.addr -> Memory.addr) (a_4 : Memory.addr) (i_2 : ℤ) (a_1 : Memory.addr) (i_3 : ℤ) (i_1 : ℤ) (a : Memory.addr) (a_3 : Memory.addr) (t : ℤ -> ℤ) (a_2 : Memory.addr) (t_1 : Memory.addr -> ℝ) : let x : ℤ := i - (1 : ℤ); let a_5 : Memory.addr -> Memory.addr := Memory.havoc t_2 t_3 (Memory.shift a_4 i_2) x; let a_6 : Memory.addr := t_3 a_1; let x_1 : ℤ := i + i_2; let x_2 : ℤ := (1 : ℤ) + i_3; let a_7 : Memory.addr := Memory.shift a_4 (0 : ℤ); let a_8 : Memory.addr := t_3 (Memory.shift a_4 i_1); let x_3 : ℤ := i_2 - i_1; let a_9 : Memory.addr := a_5 (Memory.shift a (0 : ℤ)); a_5 a_1 = a_6 → (0 : ℤ) < i → (0 : ℤ) ≤ i_1 → i_1 ≤ i_2 → i_2 ≤ i_3 → i_3 < x_1 → Memory.region (Memory.addr.base a) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_1) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_3) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_4) ≤ (0 : ℤ) → x_1 ≤ x_2 → Memory.framed t_3 → Memory.linked t → Cint.is_sint32 i → Cint.is_sint32 i_1 → Cint.is_sint32 i_2 → Cint.is_sint32 i_3 → Memory.valid_rw t a_7 (2147483646 : ℤ) → Memory.separated a_1 (1 : ℤ) a_7 (2147483646 : ℤ) → Memory.separated a_6 (4 : ℤ) a_7 (2147483646 : ℤ) → Axiomatic.p_linked_n t t_3 a a_4 i_2 i a_3 → Axiomatic.p_linked_n t t_3 a_8 a_4 i_1 x_3 a → Axiomatic1.p_array_swipe_left a_5 t_3 a_4 i_2 i_3 → Axiomatic.p_linked_n t a_5 a_2 a_4 x_2 (i + i_2 - (1 : ℤ) - i_3) a_3 → Axiomatic.p_linked_n t a_5 a_8 a_4 i_1 x_3 a → Axiomatic.p_linked_n t a_5 a_9 a_4 i_2 (i_3 - i_2) a_2 → Axiomatic1.p_unchanged t a_5 t_1 t t_3 t_1 a_4 i_1 i_2 → Axiomatic1.p_unchanged t a_5 t_1 t t_3 t_1 a_4 i_3 x_1 → (∀(i_4 : ℤ), i_1 ≤ i_4 → i_4 < x_1 → Memory.separated a_1 (1 : ℤ) (t_3 (Memory.shift a_4 i_4)) (4 : ℤ)) → (∀(i_4 : ℤ), i_1 ≤ i_4 → i_4 < x_1 → Memory.separated (t_3 (Memory.shift a_4 i_4)) (4 : ℤ) a_7 (2147483646 : ℤ)) → (∀(i_5 : ℤ) (i_4 : ℤ), ¬i_5 = i_4 → i_1 ≤ i_4 → i_1 ≤ i_5 → i_4 < x_1 → i_5 < x_1 → ¬t_3 (Memory.shift a_4 i_5) = t_3 (Memory.shift a_4 i_4)) → (∀(i_5 : ℤ) (i_4 : ℤ), ¬i_5 = i_4 → i_1 ≤ i_4 → i_1 ≤ i_5 → i_4 < x_1 → i_5 < x_1 → Memory.separated (t_3 (Memory.shift a_4 i_5)) (4 : ℤ) (t_3 (Memory.shift a_4 i_4)) (4 : ℤ)) → Axiomatic.p_linked_n t a_5 a_9 a_4 i_2 x a_3
+  := sorry
+end array_pop_Why3_ide_VCarray_pop_post_LinkedNoHead_goal1

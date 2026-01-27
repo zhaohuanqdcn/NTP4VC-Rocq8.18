@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name lse.my_exp_log_vcg)
+(theories Why3 lse.my_exp_log lse.udouble Why3.ieee_float))

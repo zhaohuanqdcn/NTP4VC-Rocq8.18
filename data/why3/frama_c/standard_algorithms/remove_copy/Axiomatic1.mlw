@@ -1,0 +1,33 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #1)                  --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Count.A_Count
+
+function l_count_2_ (mint_0 : map addr int) (a : addr) (n : int)
+    (v : int) : int = (l_count_1_ mint_0 a 0 n v)
+
+use import Cint.Cint
+
+predicate p_multisetretainrest_1_ (mint_0 : map addr int)
+    (mint_1 : map addr int) (a : addr) (m1_0 : int) (m2_0 : int) (b : addr)
+    (n1_0 : int) (n2_0 : int) (v : int) =
+    forall i : int. (i <> v) -> ((is_sint32 i)) ->
+    (((l_count_1_ mint_1 a m1_0 m2_0 i))
+       = ((l_count_1_ mint_0 b n1_0 n2_0 i)))
+
+predicate p_multisetretainrest_2_ (mint_0 : map addr int)
+    (mint_1 : map addr int) (a : addr) (m : int) (b : addr) (n : int)
+    (v : int) = (p_multisetretainrest_1_ mint_0 mint_1 a 0 m b 0 n v)
+
+end
+

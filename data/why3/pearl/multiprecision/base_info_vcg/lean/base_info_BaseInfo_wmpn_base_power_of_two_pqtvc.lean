@@ -1,0 +1,20 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.int.Unsigned
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.logical.LogicalUtil
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.logical.Logical
+import pearl.multiprecision.lib.lean.ptralias.Alias
+open Classical
+open Lean4Why3
+namespace base_info_BaseInfo_wmpn_base_power_of_two_pqtvc
+theorem wmpn_base_power_of_two_p'vc (b : BitVec 64) (o1 : Bool) (result : BitVec 32) (fact0 : (2 : ℤ) ≤ BitVec.toUInt b) (fact1 : BitVec.toUInt b ≤ (256 : ℤ)) (fact2 : BitVec.toUInt b = BitVec.toUInt (2 : BitVec 64) → o1 = true) (fact3 : o1 = true → b = (2 : BitVec 64)) (fact4 : if o1 = true then result = (1 : BitVec 32) else ∃(o2 : Bool), ((BitVec.toUInt b = BitVec.toUInt (4 : BitVec 64) → o2 = true) ∧ (o2 = true → b = (4 : BitVec 64))) ∧ (if o2 = true then result = (2 : BitVec 32) else ∃(o3 : Bool), ((BitVec.toUInt b = BitVec.toUInt (8 : BitVec 64) → o3 = true) ∧ (o3 = true → b = (8 : BitVec 64))) ∧ (if o3 = true then result = (3 : BitVec 32) else ∃(o4 : Bool), ((BitVec.toUInt b = BitVec.toUInt (16 : BitVec 64) → o4 = true) ∧ (o4 = true → b = (16 : BitVec 64))) ∧ (if o4 = true then result = (4 : BitVec 32) else ∃(o5 : Bool), ((BitVec.toUInt b = BitVec.toUInt (32 : BitVec 64) → o5 = true) ∧ (o5 = true → b = (32 : BitVec 64))) ∧ (if o5 = true then result = (5 : BitVec 32) else ∃(o6 : Bool), ((BitVec.toUInt b = BitVec.toUInt (64 : BitVec 64) → o6 = true) ∧ (o6 = true → b = (64 : BitVec 64))) ∧ (if o6 = true then result = (6 : BitVec 32) else ∃(o7 : Bool), ((BitVec.toUInt b = BitVec.toUInt (128 : BitVec 64) → o7 = true) ∧ (o7 = true → b = (128 : BitVec 64))) ∧ (if o7 = true then result = (7 : BitVec 32) else ∃(o8 : Bool), ((BitVec.toUInt b = BitVec.toUInt (256 : BitVec 64) → o8 = true) ∧ (o8 = true → b = (256 : BitVec 64))) ∧ (if o8 = true then result = (8 : BitVec 32) else result = (0 : BitVec 32))))))))) : (0 : ℤ) ≤ BitVec.toUInt result ∧ BitVec.toUInt result ≤ (8 : ℤ) ∧ (¬BitVec.toUInt result = (0 : ℤ) → HPow.hPow (2 : ℤ) (Int.toNat (BitVec.toUInt result)) = BitVec.toUInt b) ∧ (BitVec.toUInt result = (0 : ℤ) → (∀(n : ℤ), (0 : ℤ) ≤ n → ¬HPow.hPow (2 : ℤ) (Int.toNat n) = BitVec.toUInt b))
+  := sorry
+end base_info_BaseInfo_wmpn_base_power_of_two_pqtvc

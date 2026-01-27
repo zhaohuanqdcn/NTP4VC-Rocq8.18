@@ -1,0 +1,104 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.avl.lib.lean.avl.SelectionTypes
+open Classical
+open Lean4Why3
+namespace tables_IMapAndSet_eq_def1
+axiom t : Type
+axiom inhabited_axiom_t : Inhabited t
+attribute [instance] inhabited_axiom_t
+axiom balancing : ℕ
+axiom balancing'def : Int.ofNat balancing = Int.ofNat (0 : ℕ) + (1 : ℤ)
+axiom t1 : Type -> Type
+axiom inhabited_axiom_t1 {α : Type} [Inhabited α] : Inhabited (t1 α)
+attribute [instance] inhabited_axiom_t1
+noncomputable def key {α : Type} [Inhabited α] (t2 : ℤ × α) := match t2 with | (a, _) => a
+axiom t2 : Type
+axiom inhabited_axiom_t2 : Inhabited t2
+attribute [instance] inhabited_axiom_t2
+axiom assoc : True
+axiom neutral (x : Unit) : () = x ∧ x = ()
+axiom selector : Type
+axiom inhabited_axiom_selector : Inhabited selector
+attribute [instance] inhabited_axiom_selector
+noncomputable def selection_possible {β : Type} {α : Type} [Inhabited β] [Inhabited α] (x : β) (s : List (ℤ × α)) := ∀(i : ℤ) (j : ℤ), (0 : ℤ) ≤ i ∧ i < j ∧ j < Int.ofNat (List.length s) → key (s[Int.toNat i]!) < key (s[Int.toNat j]!)
+noncomputable def upper_bound_s {α : Type} [Inhabited α] (k : ℤ) (s : List (ℤ × α)) := ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length s) → key (s[Int.toNat i]!) < k
+noncomputable def lower_bound_s {α : Type} [Inhabited α] (k : ℤ) (s : List (ℤ × α)) := ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length s) → k < key (s[Int.toNat i]!)
+noncomputable def selected {α : Type} [Inhabited α] (k : ℤ) (e : SelectionTypes.split (ℤ × α)) := upper_bound_s k (SelectionTypes.split.left1 e) ∧ lower_bound_s k (SelectionTypes.split.right1 e) ∧ (match SelectionTypes.split.middle e with | (Option.none : Option (ℤ × α)) => True | Option.some d => k = key d)
+inductive tree (α : Type) where
+  | Empty : tree α
+  | Node : tree α -> ℤ × α -> tree α -> ℕ -> Unit -> tree α
+axiom inhabited_axiom_tree {α : Type} [Inhabited α] : Inhabited (tree α)
+attribute [instance] inhabited_axiom_tree
+structure m (α : Type) where
+  seq : List (ℤ × α)
+  hgt : ℤ
+axiom inhabited_axiom_m {α : Type} [Inhabited α] : Inhabited (m α)
+attribute [instance] inhabited_axiom_m
+noncomputable def node_model {α : Type} [Inhabited α] (l : List α) (d : α) (r : List α) := l ++ List.cons d r
+noncomputable def seq_model {α : Type} [Inhabited α] : tree α -> List (ℤ × α)
+  | (tree.Empty : tree α) => ([] : List (ℤ × α))
+  | (tree.Node l d r x x0) => node_model (seq_model l) d (seq_model r)
+noncomputable def real_height {α : Type} [Inhabited α] : tree α -> ℤ
+  | (tree.Empty : tree α) => (0 : ℤ)
+  | (tree.Node l x r x0 x1) => let hl : ℤ := real_height l; let hr : ℤ := real_height r; (1 : ℤ) + (if hl < hr then hr else hl)
+noncomputable def balanced {α : Type} [Inhabited α] : tree α -> Prop
+  | (tree.Empty : tree α) => True
+  | (tree.Node l x r h m1) => Int.ofNat h = real_height (tree.Node l x r h m1) ∧ m1 = () ∧ (-Int.ofNat balancing ≤ real_height r - real_height l ∧ real_height r - real_height l ≤ Int.ofNat balancing) ∧ balanced l ∧ balanced r
+axiom t3 : Type -> Type
+axiom inhabited_axiom_t3 {α : Type} [Inhabited α] : Inhabited (t3 α)
+attribute [instance] inhabited_axiom_t3
+axiom repr :  {α : Type} -> [Inhabited α] -> t3 α -> tree α
+axiom m1 :  {α : Type} -> [Inhabited α] -> t3 α -> m α
+axiom t'invariant {α : Type} [Inhabited α] (self : t3 α) : balanced (repr self) ∧ m.seq (m1 self) = seq_model (repr self) ∧ m.hgt (m1 self) = real_height (repr self)
+noncomputable def t'eq {α : Type} [Inhabited α] (a : t3 α) (b : t3 α) := repr a = repr b ∧ m1 a = m1 b
+axiom t'inj {α : Type} [Inhabited α] (a : t3 α) (b : t3 α) (fact0 : t'eq a b) : a = b
+inductive view (α : Type) where
+  | AEmpty : view α
+  | ANode : t3 α -> ℤ × α -> t3 α -> ℕ -> Unit -> view α
+axiom inhabited_axiom_view {α : Type} [Inhabited α] : Inhabited (view α)
+attribute [instance] inhabited_axiom_view
+axiom part : Type
+axiom inhabited_axiom_part : Inhabited part
+attribute [instance] inhabited_axiom_part
+axiom t4 : Type -> Type
+axiom inhabited_axiom_t4 {α : Type} [Inhabited α] : Inhabited (t4 α)
+attribute [instance] inhabited_axiom_t4
+axiom field :  {α : Type} -> [Inhabited α] -> t4 α -> t3 α
+axiom t'invariant1 {α : Type} [Inhabited α] (self : t4 α) : selection_possible () (m.seq (m1 (field self)))
+noncomputable def t'eq1 {α : Type} [Inhabited α] (a : t4 α) (b : t4 α) := field a = field b
+axiom t'inj1 {α : Type} [Inhabited α] (a : t4 α) (b : t4 α) (fact0 : t'eq1 a b) : a = b
+structure m2 (α : Type) where
+  domn : ℤ -> Bool
+  func : ℤ -> ℤ × α
+  card : ℤ
+axiom inhabited_axiom_m2 {α : Type} [Inhabited α] : Inhabited (m2 α)
+attribute [instance] inhabited_axiom_m2
+noncomputable def domain {α : Type} [Inhabited α] (s : List (ℤ × α)) (k : ℤ) := ∃(i : ℤ), ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length s)) ∧ key (s[Int.toNat i]!) = k
+axiom make_func :  {α : Type} -> [Inhabited α] -> List (ℤ × α) -> ℤ -> ℤ × α
+axiom make_func'spec {α : Type} [Inhabited α] (s : List (ℤ × α)) (k : ℤ) (i : ℤ) (fact0 : selection_possible () s) (fact1 : domain s k) (fact2 : (0 : ℤ) ≤ i) (fact3 : i < Int.ofNat (List.length s)) (fact4 : key (s[Int.toNat i]!) = k) : make_func s k = s[Int.toNat i]!
+axiom domain_closure :  {α : Type} -> [Inhabited α] -> List (ℤ × α) -> ℤ -> Bool
+axiom make_func_closure :  {α : Type} -> [Inhabited α] -> List (ℤ × α) -> ℤ -> ℤ × α
+axiom domain_closure_def {α : Type} [Inhabited α] (y : List (ℤ × α)) (y1 : ℤ) : (domain_closure y y1 = true) = domain y y1
+axiom make_func_closure_def {α : Type} [Inhabited α] (y : List (ℤ × α)) (y1 : ℤ) : make_func_closure y y1 = make_func y y1
+noncomputable def m3 {α : Type} [Inhabited α] (t5 : t4 α) := (m2.mk : (ℤ -> Bool) -> (ℤ -> ℤ × α) -> ℤ -> m2 α) (domain_closure (m.seq (m1 (field t5)))) (make_func_closure (m.seq (m1 (field t5)))) (Int.ofNat (List.length (m.seq (m1 (field t5)))))
+inductive view1 (α : Type) where
+  | AEmpty1 : view1 α
+  | ANode1 : t4 α -> ℤ × α -> t4 α -> ℕ -> view1 α
+axiom inhabited_axiom_view1 {α : Type} [Inhabited α] : Inhabited (view1 α)
+attribute [instance] inhabited_axiom_view1
+axiom t5 : Type -> Type
+axiom inhabited_axiom_t5 {α : Type} [Inhabited α] : Inhabited (t5 α)
+attribute [instance] inhabited_axiom_t5
+structure m4 (α : Type) where
+  domn1 : ℤ -> Bool
+  func1 : ℤ -> α
+  card1 : ℤ
+axiom inhabited_axiom_m4 {α : Type} [Inhabited α] : Inhabited (m4 α)
+attribute [instance] inhabited_axiom_m4
+axiom fc :  {α : Type} -> [Inhabited α] -> t4 α -> ℤ -> α
+axiom fc'def {α : Type} [Inhabited α] (t6 : t4 α) (k : ℤ) : fc t6 k = (match m2.func (m3 t6) k with | (_, v) => v)
+noncomputable def m5 {α : Type} [Inhabited α] (t6 : t4 α) := m4.mk (m2.domn (m3 t6)) (fc t6) (m2.card (m3 t6))
+theorem eq_def (x : ℤ) (y : ℤ) : (x = y) = (x ≤ y ∧ y ≤ x)
+  := sorry
+end tables_IMapAndSet_eq_def1

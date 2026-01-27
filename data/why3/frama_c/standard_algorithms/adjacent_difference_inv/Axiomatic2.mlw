@@ -1,0 +1,29 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #2)                  --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_DifferenceAxiomatic.A_DifferenceAxiomatic
+
+predicate p_adjacentdifferencebounds (mint_0 : map addr int) (a : addr)
+    (n : int) =
+    forall i : int. let x = (l_difference mint_0 a i) in (0 < i) ->
+    (i < n) -> (((-2147483648) <= x) /\ (x <= 2147483647))
+
+use import Compound.Compound
+
+predicate p_adjacentdifference (mint_0 : map addr int) (a : addr) (n : int)
+    (b : addr) =
+    forall i : int. (0 <= i) -> (i < n) ->
+    (mint_0[(shift_sint32 b i)] = ((l_difference mint_0 a i)))
+
+end
+

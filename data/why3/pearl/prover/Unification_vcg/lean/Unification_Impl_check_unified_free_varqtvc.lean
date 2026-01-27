@@ -1,0 +1,28 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.prover.lib.lean.Unification.Types
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.BacktrackArray.Types
+import pearl.prover.lib.lean.Predicates.Pred
+import pearl.prover.lib.lean.BacktrackArray.Logic
+import pearl.prover.lib.lean.Choice.Choice
+import pearl.prover.lib.lean.BacktrackArray.Impl
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+import pearl.prover.lib.lean.Firstorder_term_impl.Impl
+import pearl.prover.lib.lean.Unification.Logic
+open Classical
+open Lean4Why3
+namespace Unification_Impl_check_unified_free_varqtvc
+theorem check_unified_free_var'vc (rhob : Types.t Types.sdata) (rho : Types.unifier_subst) (t : Types.nlimpl_fo_term) (x : ℤ) (fact0 : Logic.unifier_subst_ok rhob rho) (fact1 : Logic.nlimpl_fo_term_ok t) (fact2 : ∀(y : ℤ), Spec.is_fo_term_free_var_in_fo_term y (Types.nlimpl_fo_term.model_fo_term_field t) → (0 : ℤ) ≤ y) : Logic.nlimpl_fo_term_ok t ∧ (∀(o1 : Types.cons_fo_term), Logic.cons_ok_fo_term o1 ∧ Logic.cons_rel_fo_term o1 t ∧ Logic.cons_open_rel_fo_term o1 t → (match o1 with | Types.cons_fo_term.NLCVar_fo_term y => (Logic.correct rhob ∧ (0 : ℤ) ≤ y) ∧ (let by' : List Types.sdata := Types.timestamp.table (Logic.current_timestamp rhob) y; Logic.list_forall (Types.t.inv rhob) by' → (match by' with | ([] : List Types.sdata) => (Logic.unifier_subst_ok rhob rho ∧ Logic.unassigned (Logic.current_timestamp rhob) y) ∧ ((let tm : Spec.fo_term ℤ ℤ := Spec.fo_term.Var_fo_term y; tm = Spec.subst_fo_term tm Spec.subst_id_symbol (Types.unifier_subst.unifier_base_model rho) ∧ tm = Spec.subst_fo_term tm Spec.subst_id_symbol (Types.unifier_subst.unifier rho)) → ¬x = y → ¬Spec.is_fo_term_free_var_in_fo_term x (Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field t) Spec.subst_id_symbol (Types.unifier_subst.unifier rho))) | List.cons (Types.sdata.PConflict _ _) _ => (Logic.unifier_subst_ok rhob rho ∧ Logic.unassigned (Logic.current_timestamp rhob) y) ∧ ((let tm : Spec.fo_term ℤ ℤ := Spec.fo_term.Var_fo_term y; tm = Spec.subst_fo_term tm Spec.subst_id_symbol (Types.unifier_subst.unifier_base_model rho) ∧ tm = Spec.subst_fo_term tm Spec.subst_id_symbol (Types.unifier_subst.unifier rho)) → ¬x = y → ¬Spec.is_fo_term_free_var_in_fo_term x (Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field t) Spec.subst_id_symbol (Types.unifier_subst.unifier rho))) | List.cons (Types.sdata.Assign t2) _ => (Logic.unifier_subst_ok rhob rho ∧ Logic.nlimpl_fo_term_ok t2 ∧ (∀(y1 : ℤ), Spec.is_fo_term_free_var_in_fo_term y1 (Types.nlimpl_fo_term.model_fo_term_field t2) → (0 : ℤ) ≤ y1)) ∧ (¬Spec.is_fo_term_free_var_in_fo_term x (Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field t2) Spec.subst_id_symbol (Types.unifier_subst.unifier rho)) → ¬Spec.is_fo_term_free_var_in_fo_term x (Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field t) Spec.subst_id_symbol (Types.unifier_subst.unifier rho))))) | Types.cons_fo_term.NLC_App f l => (Logic.nlimpl_fo_term_list_ok l ∧ Logic.unifier_subst_ok rhob rho ∧ (∀(y : ℤ), Spec.is_fo_term_free_var_in_fo_term_list y (Types.nlimpl_fo_term_list.model_fo_term_list_field l) → (0 : ℤ) ≤ y)) ∧ (¬Spec.is_fo_term_free_var_in_fo_term_list x (Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field l) Spec.subst_id_symbol (Types.unifier_subst.unifier rho)) → ¬Spec.is_fo_term_free_var_in_fo_term x (Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field t) Spec.subst_id_symbol (Types.unifier_subst.unifier rho)))))
+  := sorry
+end Unification_Impl_check_unified_free_varqtvc

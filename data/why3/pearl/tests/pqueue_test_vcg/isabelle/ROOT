@@ -1,0 +1,6 @@
+session pqueue_test = NTP4Verif +
+theories
+  "pqueue_test_Test_test1qtvc"
+  "pqueue_test_Test_test0qtvc"
+  "pqueue_test_TestNoDup_test0qtvc"
+  "pqueue_test_TestNoDup_test1qtvc"

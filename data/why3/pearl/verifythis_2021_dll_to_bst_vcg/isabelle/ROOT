@@ -1,0 +1,12 @@
+session verifythis_2021_dll_to_bst = NTP4Verif +
+theories
+  "verifythis_2021_dll_to_bst_Top_dll_to_bstqtvc"
+  "verifythis_2021_dll_to_bst_Top_size_altqtvc"
+  "verifythis_2021_dll_to_bst_Top_tree_frameqtvc"
+  "verifythis_2021_dll_to_bst_Top_tree_sizeqtvc"
+  "verifythis_2021_dll_to_bst_Top_mixfix_lbrblsmnqtvc"
+  "verifythis_2021_dll_to_bst_Top_dll_to_bst_recqtvc"
+  "verifythis_2021_dll_to_bst_Top_tree_inorderqtvc"
+  "verifythis_2021_dll_to_bst_Top_dll_to_bst_altqtvc"
+  "verifythis_2021_dll_to_bst_Top_sizeqtvc"
+  "verifythis_2021_dll_to_bst_Top_eqqtrefnqtvc"

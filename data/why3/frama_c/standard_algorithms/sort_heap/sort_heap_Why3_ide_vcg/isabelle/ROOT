@@ -1,0 +1,17 @@
+session sort_heap_Why3_ide = NTP4Verif +
+theories
+  "sort_heap_Why3_ide_VCsort_heap_post_reorder_goal1"
+  "sort_heap_Why3_ide_VCsort_heap_loop_inv_bound_preserved_goal2"
+  "sort_heap_Why3_ide_VCsort_heap_call_pop_heap_pre_valid_goal12"
+  "sort_heap_Why3_ide_VCsort_heap_loop_inv_reorder_established_goal7"
+  "sort_heap_Why3_ide_VCsort_heap_stmt_post_reorder_goal13"
+  "sort_heap_Why3_ide_VCsort_heap_stmt_post_reorder_2_goal14"
+  "sort_heap_Why3_ide_VCsort_heap_loop_inv_lower_preserved_goal4"
+  "sort_heap_Why3_ide_VCsort_heap_post_sorted_goal0"
+  "sort_heap_Why3_ide_VCsort_heap_assert_rte_unsigned_overflow_goal10"
+  "sort_heap_Why3_ide_VCsort_heap_loop_inv_sorted_preserved_goal8"
+  "sort_heap_Why3_ide_VCsort_heap_loop_inv_reorder_preserved_goal6"
+  "sort_heap_Why3_ide_VCsort_heap_loop_inv_bound_established_goal3"
+  "sort_heap_Why3_ide_VCsort_heap_call_pop_heap_pre_bounds_goal11"
+  "sort_heap_Why3_ide_VCsort_heap_loop_inv_lower_established_goal5"
+  "sort_heap_Why3_ide_VCsort_heap_loop_inv_sorted_established_goal9"

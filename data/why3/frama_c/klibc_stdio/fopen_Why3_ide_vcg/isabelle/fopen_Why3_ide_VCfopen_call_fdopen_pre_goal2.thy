@@ -1,0 +1,30 @@
+theory fopen_Why3_ide_VCfopen_call_fdopen_pre_goal2
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/Globals_Globals" "Why3STD.Cint_Cint" "../../lib/isabelle/Axiomatic_Axiomatic"
+begin
+theorem goal2:
+  fixes i_5 :: "int"
+  fixes a :: "addr"
+  fixes a_1 :: "addr"
+  fixes t_2 :: "addr \<Rightarrow> addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes i :: "int"
+  fixes i_3 :: "int"
+  fixes i_4 :: "int"
+  fixes i_1 :: "int"
+  fixes i_2 :: "int"
+  assumes fact0: "(0 :: int) \<le> i_5"
+  assumes fact1: "region (base a) \<le> (0 :: int)"
+  assumes fact2: "region (base a_1) \<le> (0 :: int)"
+  assumes fact3: "framed t_2"
+  assumes fact4: "linked t"
+  assumes fact5: "sconst t_1"
+  assumes fact6: "is_sint32 i_5"
+  assumes fact7: "p_length_of_str_is t t_1 a i"
+  assumes fact8: "p_length_of_str_is t t_1 a i_3"
+  assumes fact9: "p_length_of_str_is t t_1 a i_4"
+  assumes fact10: "p_length_of_str_is t t_1 a_1 i_1"
+  assumes fact11: "p_length_of_str_is t t_1 a_1 i_2"
+  shows "Mk_addr (0 :: int) (0 :: int) = a \<or> (\<exists>(i_6 :: int). p_length_of_str_is (t(38235 :: int := 1 :: int)) t_1 a i_6)"
+  sorry
+end

@@ -1,0 +1,11 @@
+session counting_sort = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "counting_sort_CountingSort_counting_sortqtvc"
+  "counting_sort_Spec"
+  "counting_sort_Spec_kqtvc"
+  "counting_sort_Harness_harnessqtvc"
+  "counting_sort_InPlaceCountingSort"
+  "counting_sort_Spec_eqltqtvc"
+  "counting_sort_InPlaceCountingSort_in_place_counting_sortqtvc"

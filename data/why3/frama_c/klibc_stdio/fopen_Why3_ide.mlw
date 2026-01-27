@@ -1,0 +1,141 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file fopen.c, line 60) in 'fopen' (3/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfopen_post_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition (file fopen.c, line 60) in 'fopen' (3/3)":
+*)
+goal goal0:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_7 = (shiftfield_f16__io_file_pvt_pub a_1) in
+  let x = t_1[(shiftfield_f12__io_file__io_fileno a_7)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let m = t[l___va_arg0_38234 <- 1] in
+  (a_7 <> null) ->
+  (t_1[(global l___va_arg0_38234)] = 438) ->
+  (((region (a_5.base))) <= 0) ->
+  (((region (a_6.base))) <= 0) ->
+  (0 <= x) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((p_length_of_str_is t t_2 a_5 i)) ->
+  ((p_length_of_str_is t t_2 a_5 i_3)) ->
+  ((p_length_of_str_is t t_2 a_5 i_4)) ->
+  ((p_length_of_str_is t t_2 a_6 i_1)) ->
+  ((p_length_of_str_is t t_2 a_6 i_2)) ->
+  ((p_valid_io_file_pvt m t_3 t_1 a)) ->
+  ((is_sint32 x)) ->
+  ((x_1 = 1) \/ (x_2 = 2)) ->
+  ((null = a_5) \/ (exists i_5 : int. (p_length_of_str_is m t_2 a_5 i_5))) ->
+  (((p_valid_file m t_1 a_7)) /\ ((p_valid_io_file_pvt m t_3 t_1 a_4)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file fopen.c, line 8) in '__parse_open_mode'' in 'fopen' at initialization of 'flags' (file fopen.c, line 65)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfopen_call___parse_open_mode_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file fopen.c, line 8) in '__parse_open_mode'' in 'fopen' at initialization of 'flags' (file fopen.c, line 65)
+":
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_3)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  (exists i_4 : int. (p_length_of_str_is t t_1 a i_4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file fdopen.c, line 19) in 'fdopen'' in 'fopen' at call 'fdopen' (file fopen.c, line 73)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfopen_call_fdopen_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Globals.Globals
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file fdopen.c, line 19) in 'fdopen'' in 'fopen' at call 'fdopen' (file fopen.c, line 73)
+":
+*)
+goal goal2:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  (0 <= i_5) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i_5)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_3)) ->
+  ((p_length_of_str_is t t_1 a i_4)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((null = a) \/
+   (exists i_6 : int.
+    (p_length_of_str_is t[l___va_arg0_38234 <- 1] t_1 a i_6)))
+
+end
+

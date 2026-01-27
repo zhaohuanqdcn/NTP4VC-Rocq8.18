@@ -1,0 +1,25 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #12)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic12
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+predicate p_empty_block (malloc_0 : map int int) (s : addr) =
+    (malloc_0[s.base] = 0) /\ (((base_offset (s.offset))) = 0)
+
+use import Compound.Compound
+
+predicate p_valid_or_empty (malloc_0 : map int int) (s : addr) (n : int) =
+    ((valid_rw malloc_0 ((shift_sint8 s 0)) n)) /\
+    (((p_empty_block malloc_0 s)) \/ ((valid_rd malloc_0 s 1)))
+
+end
+

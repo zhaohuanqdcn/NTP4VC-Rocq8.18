@@ -1,0 +1,7 @@
+session binomial = NTP4Verif +
+theories
+  "binomial_Top_computeqtvc"
+  "binomial_Top_combqtvc"
+  "binomial_Top_prop2qtvc"
+  "binomial_Top_infix_slqtvc"
+  "binomial_Top_prop1qtvc"

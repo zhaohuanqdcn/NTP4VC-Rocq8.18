@@ -1,0 +1,11 @@
+session find_first_of_Why3_ide = NTP4Verif +
+theories
+  "find_first_of_Why3_ide_VCfind_first_of_loop_inv_bound_established_goal1"
+  "find_first_of_Why3_ide_VCfind_first_of_loop_inv_not_found_preserved_goal2"
+  "find_first_of_Why3_ide_VCfind_first_of_assert_rte_unsigned_overflow_goal5"
+  "find_first_of_Why3_ide_VCfind_first_of_loop_inv_bound_preserved_goal0"
+  "find_first_of_Why3_ide_VCfind_first_of_found_post_bound_goal6"
+  "find_first_of_Why3_ide_VCfind_first_of_assert_rte_mem_access_goal4"
+  "find_first_of_Why3_ide_VCfind_first_of_not_found_post_result_goal8"
+  "find_first_of_Why3_ide_VCfind_first_of_loop_inv_not_found_established_goal3"
+  "find_first_of_Why3_ide_VCfind_first_of_found_post_result_goal7"

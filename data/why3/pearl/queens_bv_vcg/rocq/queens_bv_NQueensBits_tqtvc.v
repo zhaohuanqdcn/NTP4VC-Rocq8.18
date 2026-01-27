@@ -1,0 +1,32 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.why3.WellFounded.WellFounded.
+Require Import Why3.why3.Ref.Ref.
+Require Import queens_bv_vcg.queens_bv.S.
+Require Import queens_bv_vcg.queens_bv.Solution.
+Require Import queens_bv_vcg.queens_bv.BitsSpec.
+Open Scope Z_scope.
+Theorem t'vc (k : Z) (a : t) (s : Z) (col : Z -> Z) (b : t) (c : t) (sol : Z -> Z -> Z) (fact0 : n ≤ 32%Z) (fact1 : 0%Z ≤ k) (fact2 : k + Z.of_nat (size (mdl a)) = n) (fact3 : 0%Z ≤ s) (fact4 : ∀(i : Z), (i ∈ mdl a) = ((0%Z ≤ i ∧ i < n) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < k -> ¬ col j = i))) (fact5 : ∀(i : Z), 0%Z ≤ i ∧ i < 32%Z -> (¬ i ∈ mdl b) = (∀(j : Z), 0%Z ≤ j ∧ j < k -> ¬ i - col j = k - j)) (fact6 : ∀(i : Z), 0%Z ≤ i ∧ i < 32%Z -> (¬ i ∈ mdl c) = (∀(j : Z), 0%Z ≤ j ∧ j < k -> ¬ i - col j = j - k)) (fact7 : partial_solution k col) : if decide (¬ mdl a = ∅) then ∀(o1 : t), mdl o1 = mdl a ∖ mdl b -> (∀(o2 : t), mdl o2 = mdl o1 ∖ mdl c -> ((¬ mdl o2 = ∅ -> - 1%Z < gset_min (mdl o2)) ∧ (0%Z = s - s ∧ 0%Z ≤ s - s) ∧ mdl o2 ⊆ mdl a ∖ mdl b ∖ mdl c ∧ partial_solution k col ∧ sorted sol s s ∧ (∀(i : Z), i ∈ mdl o2 ∧ ¬ i ∈ mdl o2 -> i ≤ - 1%Z) ∧ (∀(i : Z), s ≤ i ∧ i < s -> partial_solution n (sol i) ∧ eq_prefix col (sol i) k ∧ 0%Z ≤ sol i k ∧ sol i k ≤ - 1%Z) ∧ (∀(u : Z -> Z), partial_solution n u ∧ eq_prefix col u k ∧ 0%Z ≤ u k ∧ u k ≤ - 1%Z -> u k ∈ mdl o2 ∧ ¬ u k ∈ mdl o2 ∧ (∃(i : Z), (s ≤ i ∧ i < s) ∧ eq_prefix u (sol i) n)) ∧ eq_prefix col col k ∧ eq_prefix sol sol s) ∧ (∀(min : Z) (e : t) (s1 : Z) (sol1 : Z -> Z -> Z) (col1 : Z -> Z), (¬ mdl e = ∅ -> min < gset_min (mdl e)) ∧ 0%Z ≤ s1 - s ∧ mdl e ⊆ mdl a ∖ mdl b ∖ mdl c ∧ partial_solution k col1 ∧ sorted sol1 s s1 ∧ (∀(i : Z), i ∈ mdl o2 ∧ ¬ i ∈ mdl e -> i ≤ min) ∧ (∀(i : Z), s ≤ i ∧ i < s1 -> partial_solution n (sol1 i) ∧ eq_prefix col1 (sol1 i) k ∧ 0%Z ≤ sol1 i k ∧ sol1 i k ≤ min) ∧ (∀(u : Z -> Z), partial_solution n u ∧ eq_prefix col1 u k ∧ 0%Z ≤ u k ∧ u k ≤ min -> u k ∈ mdl o2 ∧ ¬ u k ∈ mdl e ∧ (∃(i : Z), (s ≤ i ∧ i < s1) ∧ eq_prefix u (sol1 i) n)) ∧ eq_prefix col col1 k ∧ eq_prefix sol sol1 s -> (if decide (¬ mdl e = ∅) then ¬ mdl e = ∅ ∧ (∀(d : t), mdl d = ({[gset_min (mdl e)]} : gset _) -> mdl d = ({[gset_min (mdl d)]} : gset _) ∧ (∀(o3 : t), mdl o3 = insert_set (gset_min (mdl d)) (mdl b) -> (∀(b' : t), mdl b' = remove_set 32%Z (succ (mdl o3)) -> mdl d = ({[gset_min (mdl d)]} : gset _) ∧ (∀(o4 : t), mdl o4 = insert_set (gset_min (mdl d)) (mdl c) -> (∀(c' : t), mdl c' = pred (mdl o4) -> (let o5 : Z := k + 1%Z in mdl d = ({[gset_min (mdl d)]} : gset _) ∧ (∀(o6 : t), mdl o6 = insert_set (gset_min (mdl d)) (mdl c) -> (∀(o7 : t), mdl o7 = pred (mdl o6) -> mdl d = ({[gset_min (mdl d)]} : gset _) ∧ (∀(o8 : t), mdl o8 = insert_set (gset_min (mdl d)) (mdl b) -> (∀(o9 : t), mdl o9 = remove_set 32%Z (succ (mdl o8)) -> (mdl d = ({[gset_min (mdl d)]} : gset _) ∧ gset_min (mdl d) ∈ mdl a) ∧ (∀(o10 : t), mdl o10 = remove_set (gset_min (mdl d)) (mdl a) -> ((0%Z ≤ Z.of_nat (size (mdl a)) ∧ Z.of_nat (size (mdl o10)) < Z.of_nat (size (mdl a))) ∧ n ≤ 32%Z ∧ 0%Z ≤ o5 ∧ o5 + Z.of_nat (size (mdl o10)) = n ∧ 0%Z ≤ s1 ∧ (∀(i : Z), (i ∈ mdl o10) = ((0%Z ≤ i ∧ i < n) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < o5 -> ¬ fun_updt col1 k (gset_min (mdl e)) j = i))) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < 32%Z -> (¬ i ∈ mdl o9) = (∀(j : Z), 0%Z ≤ j ∧ j < o5 -> ¬ i - fun_updt col1 k (gset_min (mdl e)) j = o5 - j)) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < 32%Z -> (¬ i ∈ mdl o7) = (∀(j : Z), 0%Z ≤ j ∧ j < o5 -> ¬ i - fun_updt col1 k (gset_min (mdl e)) j = j - o5)) ∧ partial_solution o5 (fun_updt col1 k (gset_min (mdl e)))) ∧ (∀(s2 : Z) (sol2 : Z -> Z -> Z) (col2 : Z -> Z), 0%Z ≤ s2 - s1 ∧ sorted sol2 s1 s2 ∧ (∀(i : Z), s1 ≤ i ∧ i < s2 -> partial_solution n (sol2 i) ∧ eq_prefix col2 (sol2 i) o5) ∧ (∀(u : Z -> Z), partial_solution n u ∧ eq_prefix col2 u o5 -> (∃(i : Z), (s1 ≤ i ∧ i < s2) ∧ eq_prefix u (sol2 i) n)) ∧ eq_prefix (fun_updt col1 k (gset_min (mdl e))) col2 o5 ∧ eq_prefix sol1 sol2 s1 -> (mdl d = ({[gset_min (mdl d)]} : gset _) ∧ gset_min (mdl d) ∈ mdl e) ∧ (∀(o11 : t), mdl o11 = remove_set (gset_min (mdl d)) (mdl e) -> (0%Z ≤ Z.of_nat (size (mdl e)) ∧ Z.of_nat (size (mdl o11)) < Z.of_nat (size (mdl e))) ∧ (¬ mdl o11 = ∅ -> gset_min (mdl e) < gset_min (mdl o11)) ∧ (s1 - s + (s2 - s1) = s2 - s ∧ 0%Z ≤ s2 - s) ∧ mdl o11 ⊆ mdl a ∖ mdl b ∖ mdl c ∧ partial_solution k col2 ∧ sorted sol2 s s2 ∧ (∀(i : Z), i ∈ mdl o2 ∧ ¬ i ∈ mdl o11 -> i ≤ gset_min (mdl e)) ∧ (∀(i : Z), s ≤ i ∧ i < s2 -> partial_solution n (sol2 i) ∧ eq_prefix col2 (sol2 i) k ∧ 0%Z ≤ sol2 i k ∧ sol2 i k ≤ gset_min (mdl e)) ∧ (∀(u : Z -> Z), partial_solution n u ∧ eq_prefix col2 u k ∧ 0%Z ≤ u k ∧ u k ≤ gset_min (mdl e) -> u k ∈ mdl o2 ∧ ¬ u k ∈ mdl o11 ∧ (∃(i : Z), (s ≤ i ∧ i < s2) ∧ eq_prefix u (sol2 i) n)) ∧ eq_prefix col col2 k ∧ eq_prefix sol sol2 s))))))))))))) else 0%Z ≤ s1 - s ∧ sorted sol1 s s1 ∧ (∀(i : Z), s ≤ i ∧ i < s1 -> partial_solution n (sol1 i) ∧ eq_prefix col1 (sol1 i) k) ∧ (∀(u : Z -> Z), partial_solution n u ∧ eq_prefix col1 u k -> (∃(i : Z), (s ≤ i ∧ i < s1) ∧ eq_prefix u (sol1 i) n)) ∧ eq_prefix col col1 k ∧ eq_prefix sol sol1 s))) else (1%Z = s + 1%Z - s ∧ 0%Z ≤ s + 1%Z - s) ∧ sorted (fun_updt sol s col) s (s + 1%Z) ∧ (∀(i : Z), s ≤ i ∧ i < s + 1%Z -> partial_solution n (fun_updt sol s col i) ∧ eq_prefix col (fun_updt sol s col i) k) ∧ (∀(u : Z -> Z), partial_solution n u ∧ eq_prefix col u k -> (∃(i : Z), (s ≤ i ∧ i < s + 1%Z) ∧ eq_prefix u (fun_updt sol s col i) n)) ∧ eq_prefix col col k ∧ eq_prefix sol (fun_updt sol s col) s.
+Admitted.

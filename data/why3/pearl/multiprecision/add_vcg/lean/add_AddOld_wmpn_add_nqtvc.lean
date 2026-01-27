@@ -1,0 +1,18 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.c.C
+import Why3.mach.int.Unsigned
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.ptralias.Alias
+open Classical
+open Lean4Why3
+namespace add_AddOld_wmpn_add_nqtvc
+theorem wmpn_add_n'vc (x : C.ptr (BitVec 64)) (sz : BitVec 32) (y : C.ptr (BitVec 64)) (r : C.ptr (BitVec 64)) (fact0 : C.valid x (BitVec.toInt sz)) (fact1 : C.valid y (BitVec.toInt sz)) (fact2 : C.valid r (BitVec.toInt sz)) (fact3 : C.writable r = true) : (0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) ≤ BitVec.toInt sz ∧ Lemmas.value r (0 : ℤ) + HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (0 : ℕ) * (0 : ℤ) = Lemmas.value x (0 : ℤ) + Lemmas.value y (0 : ℤ) ∧ (0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) ≤ (1 : ℤ) ∧ (∀(i : BitVec 32) (c : BitVec 64) (r1 : C.ptr (BitVec 64)), List.length (C.data r1) = List.length (C.data r) ∧ C.offset r1 = C.offset r ∧ C.min r1 = C.min r ∧ C.max r1 = C.max r ∧ C.writable r1 = C.writable r ∧ C.zone1 r1 = C.zone1 r → ((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i ≤ BitVec.toInt sz) ∧ Lemmas.value r1 (BitVec.toInt i) + HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt i)) * BitVec.toUInt c = Lemmas.value x (BitVec.toInt i) + Lemmas.value y (BitVec.toInt i) ∧ ((0 : ℤ) ≤ BitVec.toUInt c ∧ BitVec.toUInt c ≤ (1 : ℤ)) ∧ (∀(j : ℤ), j < C.offset r1 ∨ C.offset r1 + BitVec.toInt sz ≤ j → C.pelts r1 j = C.pelts r j) → (if BitVec.toInt i < BitVec.toInt sz then (C.min x ≤ C.offset x + BitVec.toInt i ∧ C.offset x + BitVec.toInt i < C.max x) ∧ (C.min y ≤ C.offset y + BitVec.toInt i ∧ C.offset y + BitVec.toInt i < C.max y) ∧ ((0 : ℤ) ≤ BitVec.toUInt c ∧ BitVec.toUInt c ≤ (1 : ℤ)) ∧ (∀(res : BitVec 64) (carry : BitVec 64), BitVec.toUInt res + ((18446744073709551615 : ℤ) + (1 : ℤ)) * BitVec.toUInt carry = BitVec.toUInt (C.pelts x (C.offset x + BitVec.toInt i)) + BitVec.toUInt (C.pelts y (C.offset y + BitVec.toInt i)) + BitVec.toUInt c ∧ (0 : ℤ) ≤ BitVec.toUInt carry ∧ BitVec.toUInt carry ≤ (1 : ℤ) → ((C.min r1 ≤ C.offset r1 + BitVec.toInt i ∧ C.offset r1 + BitVec.toInt i < C.max r1) ∧ C.writable r1 = true) ∧ (∀(r2 : C.ptr (BitVec 64)), List.length (C.data r2) = List.length (C.data r1) ∧ C.offset r2 = C.offset r1 ∧ C.min r2 = C.min r1 ∧ C.max r2 = C.max r1 ∧ C.writable r2 = C.writable r1 ∧ C.zone1 r2 = C.zone1 r1 → C.pelts r2 = Function.update (C.pelts r1) (C.offset r2 + BitVec.toInt i) res ∧ C.pelts r2 (C.offset r2 + BitVec.toInt i) = res → int'32_in_bounds (BitVec.toInt i + (1 : ℤ)) ∧ (∀(o1 : BitVec 32), BitVec.toInt o1 = BitVec.toInt i + (1 : ℤ) → ((0 : ℤ) ≤ BitVec.toInt sz - BitVec.toInt i ∧ BitVec.toInt sz - BitVec.toInt o1 < BitVec.toInt sz - BitVec.toInt i) ∧ ((0 : ℤ) ≤ BitVec.toInt o1 ∧ BitVec.toInt o1 ≤ BitVec.toInt sz) ∧ Lemmas.value r2 (BitVec.toInt o1) + HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt o1)) * BitVec.toUInt carry = Lemmas.value x (BitVec.toInt o1) + Lemmas.value y (BitVec.toInt o1) ∧ ((0 : ℤ) ≤ BitVec.toUInt carry ∧ BitVec.toUInt carry ≤ (1 : ℤ)) ∧ (∀(j : ℤ), j < C.offset r2 ∨ C.offset r2 + BitVec.toInt sz ≤ j → C.pelts r2 j = C.pelts r j)))) else ((0 : ℤ) ≤ BitVec.toUInt c ∧ BitVec.toUInt c ≤ (1 : ℤ)) ∧ Lemmas.value r1 (BitVec.toInt sz) + HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt sz)) * BitVec.toUInt c = Lemmas.value x (BitVec.toInt sz) + Lemmas.value y (BitVec.toInt sz) ∧ (∀(j : ℤ), j < C.offset r1 ∨ C.offset r1 + BitVec.toInt sz ≤ j → C.pelts r1 j = C.pelts r j)))
+  := sorry
+end add_AddOld_wmpn_add_nqtvc

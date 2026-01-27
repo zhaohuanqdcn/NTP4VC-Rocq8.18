@@ -1,0 +1,3 @@
+session Axiomatic13 = NTP4Verif +
+theories
+  "Axiomatic13_Axiomatic13_Q_mult_simplification"

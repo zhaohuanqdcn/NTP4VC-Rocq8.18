@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name vstte10_inverting_vcg.vstte10_inverting)
+(theories Why3 Why3.map))

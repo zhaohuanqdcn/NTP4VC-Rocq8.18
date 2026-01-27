@@ -1,0 +1,15 @@
+session kmp = NTP4Verif +
+theories
+  "kmp_KnuthMorrisPratt_matches_transqtvc"
+  "kmp_KnuthMorrisPratt_kmpqtvc"
+  "kmp_KnuthMorrisPratt_matches_emptyqtvc"
+  "kmp_KnuthMorrisPratt_initnextqtvc"
+  "kmp_KnuthMorrisPratt_matches_right_extensionqtvc"
+  "kmp_KnuthMorrisPratt_next_iterationqtvc"
+  "kmp_KnuthMorrisPratt_matches_left_weakeningqtvc"
+  "kmp_KnuthMorrisPratt_matches_symqtvc"
+  "kmp_KnuthMorrisPratt_next_is_maximalqtvc"
+  "kmp_KnuthMorrisPratt_matches_contradiction_at_firstqtvc"
+  "kmp_KnuthMorrisPratt_matches_right_weakeningqtvc"
+  "kmp_KnuthMorrisPratt_next_1_0qtvc"
+  "kmp_KnuthMorrisPratt_matches_contradiction_at_iqtvc"

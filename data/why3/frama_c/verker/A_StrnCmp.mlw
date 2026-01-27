@@ -1,0 +1,45 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'StrnCmp'                                --- *)
+(* ---------------------------------------------------------- *)
+theory A_StrnCmp
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+function l_strncmp_2_ (map addr int) addr addr int : int
+axiom fix_l_strncmp_2_:
+  forall s1_0 s2_0 : addr.
+  forall mchar_0 : map addr int.
+  forall n : int.
+  let x = (l_strncmp_2_ mchar_0 s1_0 s2_0 n) in
+    let x_1 = mchar_0[(shift_sint8 s2_0 0)] in
+    let x_2 = mchar_0[(shift_sint8 s1_0 0)] in
+    if (n = 0) then (x = 0)
+    else (if (x_1 = x_2)
+          then (if (x_2 = 0) then (x = 0)
+                else (((l_strncmp_2_ mchar_0 ((shift_sint8 s1_0 1))
+                         ((shift_sint8 s2_0 1)) ((to_uint64 (n - 1))))) = x))
+          else (((to_sint32 (x_2 - x_1))) = x))
+
+predicate p_strnequal (mchar_0 : map addr int) (s1_0 : addr) (s2_0 : addr)
+    (n : int) = ((l_strncmp_2_ mchar_0 s1_0 s2_0 n)) = 0
+
+axiom Q_TL_strncmp_2_:
+  forall s1_0 s2_0 : addr.
+  forall mchar_0 : map addr int.
+  forall n : int
+  [(l_strncmp_2_ mchar_0 s1_0 s2_0 n)].
+  (is_sint32 ((l_strncmp_2_ mchar_0 s1_0 s2_0 n)))
+
+use import A_Strnlen.A_Strnlen
+
+end
+

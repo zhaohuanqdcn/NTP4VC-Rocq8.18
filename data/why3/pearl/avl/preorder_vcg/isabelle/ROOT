@@ -1,0 +1,9 @@
+session preorder = NTP4Verif +
+theories
+  "preorder_TotalFull_Total"
+  "preorder_Full_Trans1"
+  "preorder_Full_Symm"
+  "preorder_Full_Refl"
+  "preorder_Full_Asymm"
+  "preorder_Full_Trans"
+  "preorder_TotalFull_lt_def2qtvc"

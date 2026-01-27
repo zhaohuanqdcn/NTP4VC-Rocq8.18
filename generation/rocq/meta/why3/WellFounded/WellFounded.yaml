@@ -1,0 +1,11 @@
+atoms:
+  why3.WellFounded.WellFounded.acc: [acc, WellFounded.acc]
+  why3.WellFounded.WellFounded.well_founded: [well_founded, WellFounded.well_founded]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.why3.WellFounded.WellFounded
+prefix_ops: {}
+types: {}

@@ -1,0 +1,32 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.Qed.Qed.
+Require Import Why3.Memory.Memory.
+Require Import Why3.Cint.Cint.
+Require Import is_sorted.Axiomatic.Axiomatic.
+Require Import is_sorted.Compound.Compound.
+Open Scope Z_scope.
+Theorem goal4 (i_2 : Z) (i_1 : Z) (i : Z) (i_3 : Z) (a : addr) (t : addr -> Z) (fact0 : 0%Z < i_2) (fact1 : i_1 ≤ i) (fact2 : i_3 ≤ i) (fact3 : i_1 < i_2) (fact4 : i_1 ≤ i_2) (fact5 : i_3 < i) (fact6 : i_1 ≤ i_3) (fact7 : i_2 ≤ i_3) (fact8 : region (base a) ≤ 0%Z) (fact9 : is_uint32 i) (fact10 : is_uint32 i_1) (fact11 : is_uint32 i_2) (fact12 : is_uint32 i_3) (fact13 : is_uint32 (i_2 - 1%Z)) (fact14 : p_sorted_1' t a i_1 i_3) (fact15 : p_weaklysorted_1' t a i_1 i) (fact16 : ∀(i_4 : Z), i_2 ≤ i_4 -> i_4 < i_3 -> t (shift a i_4) ≤ t (shift a i_3)) : i_2 ≤ 1%Z + i_3.
+Admitted.

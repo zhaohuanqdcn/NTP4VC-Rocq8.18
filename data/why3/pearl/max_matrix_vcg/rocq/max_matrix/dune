@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name max_matrix_vcg.max_matrix)
+(theories Why3))

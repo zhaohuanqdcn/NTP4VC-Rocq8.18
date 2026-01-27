@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name sudoku_vcg)
+(theories sudoku_vcg.sudoku Why3))

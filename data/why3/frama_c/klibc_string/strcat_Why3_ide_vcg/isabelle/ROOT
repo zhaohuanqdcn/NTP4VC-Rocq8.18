@@ -1,0 +1,12 @@
+session strcat_Why3_ide = NTP4Verif +
+theories
+  "strcat_Why3_ide_VCstrcat_call_strcpy_pre_4_goal7"
+  "strcat_Why3_ide_VCstrcat_post_goal0"
+  "strcat_Why3_ide_VCstrcat_call_strcpy_pre_2_goal5"
+  "strcat_Why3_ide_VCstrcat_call_strcpy_pre_5_goal8"
+  "strcat_Why3_ide_VCstrcat_call_strcpy_pre_3_goal6"
+  "strcat_Why3_ide_VCstrcat_assign_normal_part3_goal2"
+  "strcat_Why3_ide_VCstrcat_call_strcpy_pre_goal4"
+  "strcat_Why3_ide_VCstrcat_call_strchr_pre_goal3"
+  "strcat_Why3_ide_VCstrcat_assign_exit_part3_goal1"
+  "strcat_Why3_ide_VCstrcat_call_strcpy_pre_6_goal9"

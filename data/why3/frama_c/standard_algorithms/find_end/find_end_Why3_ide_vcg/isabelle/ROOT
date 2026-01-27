@@ -1,0 +1,14 @@
+session find_end_Why3_ide = NTP4Verif +
+theories
+  "find_end_Why3_ide_VCfind_end_post_result_goal0"
+  "find_end_Why3_ide_VCfind_end_assert_rte_unsigned_overflow_2_goal4"
+  "find_end_Why3_ide_VCfind_end_call_equal_pre_valid_goal7"
+  "find_end_Why3_ide_VCfind_end_loop_term_positive_goal6"
+  "find_end_Why3_ide_VCfind_end_has_match_post_bound_goal8"
+  "find_end_Why3_ide_VCfind_end_loop_inv_result_established_goal3"
+  "find_end_Why3_ide_VCfind_end_no_match_post_result_goal11"
+  "find_end_Why3_ide_VCfind_end_has_match_post_result_goal9"
+  "find_end_Why3_ide_VCfind_end_assert_rte_unsigned_overflow_3_goal5"
+  "find_end_Why3_ide_VCfind_end_has_match_post_last_goal10"
+  "find_end_Why3_ide_VCfind_end_loop_inv_result_preserved_goal2"
+  "find_end_Why3_ide_VCfind_end_loop_inv_last_preserved_goal1"

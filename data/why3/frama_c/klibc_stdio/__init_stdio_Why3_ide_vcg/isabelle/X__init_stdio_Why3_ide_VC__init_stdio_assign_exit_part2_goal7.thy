@@ -1,0 +1,32 @@
+theory X__init_stdio_Why3_ide_VC__init_stdio_assign_exit_part2_goal7
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal7:
+  fixes a_2 :: "addr"
+  fixes a_3 :: "addr"
+  fixes a_4 :: "addr"
+  fixes t_3 :: "addr \<Rightarrow> addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes i :: "int"
+  fixes i_1 :: "int"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes a :: "addr"
+  fixes a_1 :: "addr"
+  fixes a_5 :: "addr"
+  assumes fact0: "region (base a_2) \<le> (0 :: int)"
+  assumes fact1: "region (base a_3) \<le> (0 :: int)"
+  assumes fact2: "region (base a_4) \<le> (0 :: int)"
+  assumes fact3: "framed t_3"
+  assumes fact4: "linked t"
+  assumes fact5: "sconst t_2"
+  assumes fact6: "is_sint32 i"
+  assumes fact7: "is_sint32 i_1"
+  assumes fact8: "valid_rw t a_2 (3 :: int)"
+  assumes fact9: "valid_rw t a_3 (3 :: int)"
+  assumes fact10: "valid_rw t a_4 (3 :: int)"
+  assumes fact11: "is_uint32 (t_1 (shift a (10 :: int)))"
+  assumes fact12: "is_uint32 (t_1 (shift a_1 (10 :: int)))"
+  shows "\<not>is_sint32 (t_1 (shift a_5 (0 :: int)))"
+  sorry
+end

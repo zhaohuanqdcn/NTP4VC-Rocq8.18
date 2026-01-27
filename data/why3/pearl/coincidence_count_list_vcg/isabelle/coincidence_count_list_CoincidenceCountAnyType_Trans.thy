@@ -1,0 +1,40 @@
+theory coincidence_count_list_CoincidenceCountAnyType_Trans
+  imports "NTP4Verif.NTP4Verif"
+begin
+typedecl  t
+consts eq :: "t \<Rightarrow> t \<Rightarrow> bool"
+axiomatization where eq'spec:   "eq x y \<longleftrightarrow> x = y"
+  for x :: "t"
+  and y :: "t"
+typedecl  set
+consts to_fset :: "set \<Rightarrow> t fset"
+consts mk :: "t fset \<Rightarrow> set"
+axiomatization where mk'spec:   "to_fset (mk s) = s"
+  for s :: "t fset"
+consts choose1 :: "set \<Rightarrow> t"
+axiomatization where choose'spec:   "choose1 s |\<in>| to_fset s"
+ if "\<not>to_fset s = fempty"
+  for s :: "set"
+consts rel :: "t \<Rightarrow> t \<Rightarrow> bool"
+axiomatization where Trans:   "rel x z"
+ if "rel x y"
+ and "rel y z"
+  for x :: "t"
+  and y :: "t"
+  and z :: "t"
+axiomatization where Asymm:   "\<not>rel y x"
+ if "rel x y"
+  for x :: "t"
+  and y :: "t"
+axiomatization where Trichotomy:   "rel x y \<or> rel y x \<or> x = y"
+  for x :: "t"
+  and y :: "t"
+theorem Trans1:
+  fixes x :: "t"
+  fixes y :: "t"
+  fixes z :: "t"
+  assumes fact0: "rel x y"
+  assumes fact1: "rel y z"
+  shows "rel x z"
+  sorry
+end

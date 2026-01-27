@@ -1,0 +1,201 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file lemma_functions_index_of.c, line 118) in 'index_of_existing_item_weak' (2/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_existing_item_weak_post_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition (file lemma_functions_index_of.c, line 118) in 'index_of_existing_item_weak' (2/4)":
+*)
+goal goal0:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  let a_1 = t_1[(shift_ptr a i_2)] in
+  (a_1 = t_1[(shift_ptr a i_1)]) ->
+  (((l_index_of t_1 a_1 a i_3 i)) = i) ->
+  (0 <= i) ->
+  (i_3 <= i) ->
+  (i_1 < i) ->
+  (i_3 <= i_1) ->
+  (i_2 < i) ->
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rw t ((shift_ptr a i_3)) (i - i_3))) ->
+  (forall i_4 : int. (i_4 < i) -> (i_3 <= i_4) ->
+   (a_1 <> t_1[(shift_ptr a i_4)])) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file lemma_functions_index_of.c, line 118) in 'index_of_existing_item_weak' (3/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_existing_item_weak_post_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition (file lemma_functions_index_of.c, line 118) in 'index_of_existing_item_weak' (3/4)":
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  let a_1 = t_1[(shift_ptr a i_2)] in
+  let x = (l_index_of t_1 a_1 a i_3 i) in
+  (a_1 = t_1[(shift_ptr a i_1)]) ->
+  (x <> i) ->
+  (0 <= i) ->
+  (i_1 < i) ->
+  (i_3 <= i_1) ->
+  (i_2 < i) ->
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rw t ((shift_ptr a i_3)) (i - i_3))) ->
+  ((is_sint32 x)) ->
+  ((i_3 <= i) -> ((x <= i) /\ (i_3 <= x))) ->
+  ((x < i) -> (t_1[(shift_ptr a x)] = a_1)) ->
+  (i_3 <= x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file lemma_functions_index_of.c, line 118) in 'index_of_existing_item_weak' (4/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_existing_item_weak_post_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition (file lemma_functions_index_of.c, line 118) in 'index_of_existing_item_weak' (4/4)":
+*)
+goal goal2:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  let a_1 = t_1[(shift_ptr a i_2)] in
+  let x = (l_index_of t_1 a_1 a i_3 i) in
+  (a_1 = t_1[(shift_ptr a i_1)]) ->
+  (x <> i) ->
+  (0 <= i) ->
+  (i_1 < i) ->
+  (i_3 <= i_1) ->
+  (i_2 < i) ->
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rw t ((shift_ptr a i_3)) (i - i_3))) ->
+  ((is_sint32 x)) ->
+  ((i_3 <= i) -> ((x <= i) /\ (i_3 <= x))) ->
+  ((x < i) -> (t_1[(shift_ptr a x)] = a_1)) ->
+  (x < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file lemma_functions_index_of.c, line 39) in 'index_of_up_unexisting_item'' in 'index_of_existing_item_weak' at call 'index_of_up_unexisting_item' (file lemma_functions_index_of.c, line 126)
+ (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_existing_item_weak_call_index_of_up_unexisting_i____2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file lemma_functions_index_of.c, line 39) in 'index_of_up_unexisting_item'' in 'index_of_existing_item_weak' at call 'index_of_up_unexisting_item' (file lemma_functions_index_of.c, line 126)
+ (2/2)":
+*)
+goal goal3:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  let a_1 = t_1[(shift_ptr a i_2)] in
+  (a_1 = t_1[(shift_ptr a i_1)]) ->
+  (((l_index_of t_1 a_1 a i_3 i)) = i) ->
+  (0 <= i) ->
+  (i_1 < i) ->
+  (i_3 <= i_1) ->
+  (i_2 < i) ->
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rw t ((shift_ptr a i_3)) (i - i_3))) ->
+  (i_3 <= i)
+
+end
+

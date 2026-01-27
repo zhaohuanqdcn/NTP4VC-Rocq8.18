@@ -1,0 +1,19 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.real.Truncate
+import Why3.mach.int.Unsigned
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import Why3.mach.fxp.Fxp
+open Classical
+open Lean4Why3
+namespace sqrt_Sqrt1_trunc_lower_boundqtvc
+theorem trunc_lower_bound'vc (x : ℝ) (k : ℤ) : x < Fxp.trunc_at x k + Fxp.pow2 k
+  := sorry
+end sqrt_Sqrt1_trunc_lower_boundqtvc

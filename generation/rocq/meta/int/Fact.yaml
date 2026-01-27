@@ -1,0 +1,11 @@
+atoms:
+  int.Fact.fact: [fact, Fact.fact]
+axioms:
+  int.Fact.fact'def: [fact'def, Fact.fact'def]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.int.Fact
+prefix_ops: {}
+types: {}

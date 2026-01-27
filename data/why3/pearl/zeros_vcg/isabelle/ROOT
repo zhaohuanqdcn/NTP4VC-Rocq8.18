@@ -1,0 +1,9 @@
+session zeros = NTP4Verif +
+theories
+  "zeros_AllZeros_all_zeros2qtvc"
+  "zeros_AllZeros_all_zeros5qtvc"
+  "zeros_SetZeros_set_zerosqtvc"
+  "zeros_SetZeros_harnessqtvc"
+  "zeros_AllZeros_all_zeros1qtvc"
+  "zeros_AllZeros_all_zeros3qtvc"
+  "zeros_AllZeros_all_zeros4qtvc"

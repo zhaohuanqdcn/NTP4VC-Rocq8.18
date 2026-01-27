@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name vacid_0_red_black_trees_vcg)
+(theories Why3 vacid_0_red_black_trees_vcg.vacid_0_red_black_trees Why3.why3.Ref))

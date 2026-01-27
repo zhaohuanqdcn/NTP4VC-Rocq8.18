@@ -1,0 +1,54 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'AccumulateAxiomatic'                    --- *)
+(* ---------------------------------------------------------- *)
+theory A_AccumulateAxiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_accumulate_1_ (map addr int) addr int int : int
+
+use import Cint.Cint
+
+axiom Q_TL_Accumulate_1_:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall init_0 n : int
+  [(l_accumulate_1_ mint_0 a n init_0)].
+  (is_sint32 ((l_accumulate_1_ mint_0 a n init_0)))
+
+axiom Q_AccumulateEmpty:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall init_0 n : int.
+  (n <= 0) -> ((is_sint32 init_0)) ->
+    (((l_accumulate_1_ mint_0 a n init_0)) = init_0)
+
+use import Compound.Compound
+
+axiom Q_AccumulateNext:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall init_0 n : int.
+  let x = n - 1 in (0 < n) -> ((is_sint32 init_0)) ->
+    ((mint_0[(shift_sint32 a x)] + ((l_accumulate_1_ mint_0 a x init_0)))
+       = ((l_accumulate_1_ mint_0 a n init_0)))
+
+use import Axiomatic.Axiomatic
+
+axiom Q_AccumulateRead:
+  forall a : addr.
+  forall mint_0 mint_1 : map addr int.
+  forall init_0 n : int.
+  ((is_sint32 init_0)) -> ((p_unchanged_2_ mint_0 mint_1 a n)) ->
+    (((l_accumulate_1_ mint_1 a n init_0))
+       = ((l_accumulate_1_ mint_0 a n init_0)))
+
+end
+

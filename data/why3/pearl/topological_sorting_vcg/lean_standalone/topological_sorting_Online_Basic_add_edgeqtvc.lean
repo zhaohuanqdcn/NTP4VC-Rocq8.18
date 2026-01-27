@@ -1,0 +1,286 @@
+import Mathlib
+
+open Classical
+
+namespace Lean4Why3
+
+instance {n : Nat} : HShiftLeft (BitVec n) Int (BitVec n) where
+  hShiftLeft x k := x <<< k.toNat
+
+instance {n : Nat} : HShiftRight (BitVec n) Int (BitVec n) where
+  hShiftRight x k := x >>> k.toNat
+
+abbrev sshiftRight'i {n : ℕ} (a : BitVec n) (s : Int) : BitVec n := a.sshiftRight s.toNat
+
+abbrev make_str_i (size : Int) := String.mk (List.replicate (Int.toNat size) 'a')
+abbrev _root_.List.create_i {α} (n : ℤ) (f : ℤ -> α) := (List.range n.toNat).map f
+abbrev _root_.List.create {α} (n : ℕ) (f : ℕ -> α) := (List.range n).map f
+
+abbrev _root_.Bool.imp (a b : Bool) : Bool := !a || b
+
+abbrev _root_.List.replicate_i {α} (n : ℤ) (x : α) := List.replicate (Int.toNat n) x
+
+abbrev take_i {α : Type} (n : ℤ) (l : List α) := List.take n.toNat l
+abbrev drop_i {α : Type} (n : ℤ) (l : List α) := List.drop n.toNat l
+
+abbrev getElem_i! {α : Type} [Inhabited α] (l : List α) (i : Int) := l[i.toNat]!
+abbrev getElem_i? {α : Type} (l : List α) (i : Int) := l[i.toNat]?
+
+abbrev length_i {α : Type} (l : List α) := Int.ofNat l.length
+abbrev slice {α : Type} (l : List α) (i j : Nat) : List α :=
+  (l.drop i).take (j - i)
+abbrev slice_i {α : Type} (l : List α) (i j : Int) : List α :=
+  (l.drop i.toNat).take (j.toNat - i.toNat)
+
+abbrev Sorted {α : Type} [LE α] (l : List α) := List.Sorted LE.le l
+abbrev _root_.List.set_i {α : Type} (l : List α) (n : ℤ) (a : α) :=
+  List.set l n.toNat a
+
+abbrev implication (P : Prop) (Q : Prop) := P -> Q
+
+noncomputable def map_occ {α : Type} (v : α) (m : Int -> α) (l u : Int)
+  := {n | l ≤ n ∧ n < u ∧ m n = v }.ncard
+noncomputable abbrev map_occ_i {α : Type} (v : α) (m : Int -> α) (l u : Int)
+  := Int.ofNat (map_occ (v : α) (m : Int -> α) (l : Int) u)
+
+abbrev _root_.BitVec.toUInt {n : Nat} (x : BitVec n) := Int.ofNat x.toNat
+
+abbrev int'16_max : BitVec 16 := 32767
+abbrev int'16_min : BitVec 16 := -32768
+abbrev int'31_max : BitVec 31 := 1073741823
+abbrev int'31_min : BitVec 31 := -1073741824
+abbrev int'32_max : BitVec 32 := 2147483647
+abbrev int'32_min : BitVec 32 := -2147483648
+abbrev int'63_max : BitVec 63 := 4611686018427387903
+abbrev int'63_min : BitVec 63 := -4611686018427387904
+abbrev int'64_max : BitVec 64 := 9223372036854775807
+abbrev int'64_min : BitVec 64 := -9223372036854775808
+abbrev uint'16_max : BitVec 16 := 65535
+abbrev uint'16_min : BitVec 16 := 0
+abbrev uint'31_max : BitVec 31 := 2147483647
+abbrev uint'31_min : BitVec 31 := 0
+abbrev uint'32_max : BitVec 32 := 4294967295
+abbrev uint'32_min : BitVec 32 := 0
+abbrev uint'63_max : BitVec 63 := 9223372036854775807
+abbrev uint'63_min : BitVec 63 := 0
+abbrev uint'64_max : BitVec 64 := 18446744073709551615
+abbrev uint'64_min : BitVec 64 := 0
+
+abbrev int'16_in_bounds (x : Int) := int'16_min.toInt ≤ x ∧ x ≤ int'16_max.toInt
+abbrev int'31_in_bounds (x : Int) := int'31_min.toInt ≤ x ∧ x ≤ int'31_max.toInt
+abbrev int'32_in_bounds (x : Int) := int'32_min.toInt ≤ x ∧ x ≤ int'32_max.toInt
+abbrev int'63_in_bounds (x : Int) := int'63_min.toInt ≤ x ∧ x ≤ int'63_max.toInt
+abbrev int'64_in_bounds (x : Int) := int'64_min.toInt ≤ x ∧ x ≤ int'64_max.toInt
+abbrev uint'8_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ 256
+abbrev uint'16_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'16_max.toUInt
+abbrev uint'31_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'31_max.toUInt
+abbrev uint'32_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'32_max.toUInt
+abbrev uint'63_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'63_max.toUInt
+abbrev uint'64_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'64_max.toUInt
+
+axiom array31 : Type -> Type
+axiom array32 : Type -> Type
+axiom array63 : Type -> Type
+
+axiom array31_elts : {α : Type} -> array31 α -> Int -> α
+axiom array32_elts : {α : Type} -> array32 α -> Int -> α
+axiom array63_elts : {α : Type} -> array63 α -> List α
+
+noncomputable abbrev array63_nth {α : Type} [Inhabited α] (a : array63 α) (i : Int) := (array63_elts a)[i.toNat]!
+
+axiom array31_length : {α : Type} -> array31 α -> BitVec 31
+axiom array32_length : {α : Type} -> array32 α -> BitVec 32
+axiom array63_length : {α : Type} -> array63 α -> BitVec 63
+
+abbrev is_none {α : Type} (x : Option α) := x = none
+abbrev is_nil {α : Type} (x : List α) := x = []
+
+abbrev _root_.List.rev_append {α : Type} (a : List α) (b : List α) := a.reverse ++ b
+abbrev _root_.Finset.is_empty {α : Type} (s : Finset α) := s = ∅
+abbrev _root_.Finset.filter' {α : Type} (s : Finset α) (p : α → Prop) [DecidablePred p] : Finset α
+  := Finset.filter p s
+
+abbrev _root_.Finset.card_i {α : Type} (s : Finset α) := Int.ofNat s.card
+
+abbrev int_power (x : Int) (n : Int) := x ^ n.toNat
+abbrev bv2_power (n : Int) := Int.ofNat (2 ^ n.toNat)
+
+abbrev take_bit_i {n : Nat} (x : BitVec n) (i : Int) := x[i.toNat]!
+abbrev take_bit_bv {n m : Nat} (x : BitVec n) (i : BitVec m) := x[i.toNat]!
+
+noncomputable def _root_.Finset.pick! {α} [Inhabited α] (s : Finset α) : α :=
+  if h : s.Nonempty then Classical.choose h else default
+noncomputable def _root_.Set.pick! {α} [Inhabited α] (s : Finset α) : α :=
+  if h : s.Nonempty then Classical.choose h else default
+
+noncomputable abbrev _root_.BitVec.eq_sub {m : Nat} (a b : BitVec m) (i n : Nat) :=
+  BitVec.extractLsb (i+n-1) i a = BitVec.extractLsb (i+n-1) i b
+
+noncomputable abbrev _root_.BitVec.eq_sub_i {m : Nat} (a b : BitVec m) (i n : Int) :=
+  BitVec.eq_sub a b i.toNat n.toNat
+
+noncomputable abbrev _root_.BitVec.eq_sub_bv {m : Nat} {m1 : Nat} {m2 : Nat} (a b : BitVec m) (i : BitVec m1) (n : BitVec m2) :=
+  BitVec.eq_sub a b i.toNat n.toNat
+
+abbrev w8_size_bv := (8 : BitVec 8)
+abbrev w16_size_bv := (16 : BitVec 16)
+abbrev w32_size_bv := (32 : BitVec 32)
+abbrev w64_size_bv := (64 : BitVec 64)
+abbrev w128_size_bv := (128 : BitVec 128)
+abbrev w256_size_bv := (256 : BitVec 256)
+abbrev w8_size_i := (8 : Int)
+abbrev w16_size_i := (16 : Int)
+abbrev w32_size_i := (32 : Int)
+abbrev w64_size_i := (64 : Int)
+abbrev w128_size_i := (128 : Int)
+abbrev w256_size_i := (256 : Int)
+
+abbrev _root_.Finset.erase' {α : Type} [DecidableEq α] (a : α) (s : Finset α) : Finset α
+  := Finset.erase s a
+
+abbrev _root_.BitVec.sge {n : ℕ} (x y : BitVec n) := BitVec.sle y x
+abbrev _root_.BitVec.sgt {n : ℕ} (x y : BitVec n) := BitVec.slt y x
+
+abbrev _root_.BitVec.sshiftRight_i {n : ℕ} (x : BitVec n) (s : ℤ) := BitVec.sshiftRight x s.toNat
+abbrev _root_.BitVec.sshiftRight_bv {n m : ℕ} (x : BitVec n) (s : BitVec m)
+  := BitVec.sshiftRight x s.toNat
+
+abbrev _root_.BitVec.rotateLeft_i {w : ℕ} (x : BitVec w) (n : ℤ) := BitVec.rotateLeft x n.toNat
+abbrev _root_.BitVec.rotateLeft_nv {w w2 : ℕ} (x : BitVec w) (n : BitVec w2)
+  := BitVec.rotateLeft x n.toNat
+
+abbrev _root_.BitVec.rotateRight_i {w : ℕ} (x : BitVec w) (n : ℤ) := BitVec.rotateRight x n.toNat
+abbrev _root_.BitVec.rotateRight_nv {w w2 : ℕ} (x : BitVec w) (n : BitVec w2)
+  := BitVec.rotateRight x n.toNat
+
+abbrev _root_.Multiset.count_i {α : Type} [DecidableEq α] (a : α) (s : Multiset α)
+  := Int.ofNat (s.count a)
+
+abbrev _root_.Multiset.card_i {α : Type} (S : Multiset α) := Int.ofNat S.card
+
+abbrev _root_.Int.gcd_i (a : ℤ) (b : ℤ) := Int.ofNat (Int.gcd a b)
+
+abbrev _root_.Int.Prime (p : ℤ) := Nat.Prime p.toNat
+abbrev _root_.Int.Coprime (a b : ℤ) := Nat.Coprime a.toNat b.toNat
+
+abbrev _root_.Set.remove {α : Type} (x : α) (A : Set α) := A \ {x}
+abbrev _root_.Set.filter {α : Type} (S : Set α) (P : α -> Bool) := {x ∈ S | P x }
+
+abbrev _root_.Option.the {α : Type} [Inhabited α] (opt : Option α) := opt.getD default
+
+noncomputable abbrev _root_.Finmap.lookup! {K : Type} {V : Type} [Inhabited V] (m : Finmap (fun _ : K => V)) (k : K) :=
+  (Finmap.lookup k m).getD default
+
+noncomputable abbrev _root_.Finmap.mapsto {K V : Type} (k : K) (v : V) (m : Finmap (fun _ : K => V))
+  := Finmap.lookup k m = some v
+
+abbrev _root_.Finmap.is_empty {K V : Type} (m : Finmap (fun _ : K => V)) := m = ∅
+abbrev _root_.Finmap.size {K V : Type} (m : Finmap (fun _ : K => V)) := m.keys.card
+
+abbrev _root_.Finset.min'' {α} [Inhabited α] [LinearOrder α] (s : Finset α) : α :=
+  match s.min with
+  | ⊤        => default
+  | .some a  => a
+
+abbrev _root_.Finset.max'' {α} [Inhabited α] [LinearOrder α] (s : Finset α) : α :=
+  match s.max with
+  | ⊥        => default
+  | .some a  => a
+
+abbrev arrayExchange {α} [Inhabited α] (a1 a2 : List α) (i j : Int) : Prop :=
+  let i' := i.toNat
+  let j' := j.toNat
+  a1 = (a2.set i' a1[j']!).set j' (a1[i']!)
+
+abbrev _root_.List.permut_sub {α} (a1 a2 : List α) (l u : ℕ) : Prop :=
+  a1.length = a2.length ∧ (0 ≤ l ∧ l ≤ a1.length) ∧ (0 ≤ u ∧ u ≤ a1.length) ∧
+  List.Perm (slice a1 l u) (slice a2 l u)
+
+abbrev _root_.List.permut_sub' {α} (a1 a2 : List α) (l u : ℕ) : Prop :=
+  a1.length = a2.length ∧ slice a1 0 l = slice a2 0 l ∧
+  slice a1 u a1.length = slice a2 u a1.length ∧
+  List.Perm (slice a1 l u) (slice a2 l u)
+
+abbrev _root_.List.foldr' {α β} (f : α -> β -> β) (l : List α) (x : β) := List.foldr f x l
+
+abbrev _root_.Int.to_Real (z : ℤ) : ℝ := z
+
+abbrev _root_.List.mem' {α} (eq : α -> α -> Bool) (x : α) (l : List α) := List.all l (eq x)
+
+noncomputable abbrev _root_.Real.truncate (x : ℝ) : ℤ := if 0 ≤ x then Int.floor x  else Int.ceil x
+
+alias _root_.Math.abs := abs
+
+end Lean4Why3
+
+open Classical
+open Lean4Why3
+
+namespace Ref
+structure ref (α : Type) where
+  contents : α
+axiom inhabited_axiom_ref {α : Type} [Inhabited α] : Inhabited (ref α)
+attribute [instance] inhabited_axiom_ref
+end Ref
+namespace Const
+axiom const :  {β : Type} -> [Inhabited β] ->  {α : Type} -> [Inhabited α] -> β -> α -> β
+axiom const'def {β : Type} {α : Type} [Inhabited β] [Inhabited α] (v : β) (x : α) : (const : β -> α -> β) v x = v
+end Const
+namespace Graph
+axiom vertex : Type
+axiom inhabited_axiom_vertex : Inhabited vertex
+attribute [instance] inhabited_axiom_vertex
+axiom graph : Type
+axiom inhabited_axiom_graph : Inhabited graph
+attribute [instance] inhabited_axiom_graph
+axiom vertices : graph -> Finset vertex
+axiom edges : graph -> Finset (vertex × vertex)
+axiom edges_use_vertices (x : vertex) (y : vertex) (g : graph) (fact0 : (x, y) ∈ edges g) : x ∈ vertices g ∧ y ∈ vertices g
+axiom preds : graph -> vertex -> Finset vertex
+axiom preds_def (u : vertex) (v : vertex) (g : graph) : ((u, v) ∈ edges g) = (u ∈ preds g v)
+axiom succs : graph -> vertex -> Finset vertex
+axiom succs_def (u : vertex) (v : vertex) (g : graph) : ((u, v) ∈ edges g) = (v ∈ succs g u)
+axiom msort : Type
+axiom inhabited_axiom_msort : Inhabited msort
+attribute [instance] inhabited_axiom_msort
+noncomputable def sort (g : graph) (m : vertex -> ℤ) := ∀(v : vertex) (u : vertex), (u, v) ∈ edges g → m u < m v
+end Graph
+namespace Online_graph
+axiom add_edge : Graph.graph -> Graph.vertex -> Graph.vertex -> Graph.graph
+axiom add_edge'spec'0 (g : Graph.graph) (u : Graph.vertex) (v : Graph.vertex) (x : Graph.vertex) : Graph.preds (add_edge g u v) x = (if x = v then insert u (Graph.preds g v) else Graph.preds g x)
+axiom add_edge'spec (g : Graph.graph) (u : Graph.vertex) (v : Graph.vertex) (x : Graph.vertex) : Graph.succs (add_edge g u v) x = (if x = u then insert v (Graph.succs g u) else Graph.succs g x)
+end Online_graph
+namespace topological_sorting_Online_Basic_add_edgeqtvc
+axiom set : Type
+axiom inhabited_axiom_set : Inhabited set
+attribute [instance] inhabited_axiom_set
+axiom to_fset : set -> Finset Graph.vertex
+axiom choose1 : set -> Graph.vertex
+axiom choose'spec (s : set) (fact0 : ¬to_fset s = ∅) : choose1 s ∈ to_fset s
+axiom set1 : Type
+axiom inhabited_axiom_set1 : Inhabited set1
+attribute [instance] inhabited_axiom_set1
+axiom to_fset1 : set1 -> Finset Graph.vertex
+axiom mk : Finset Graph.vertex -> set1
+axiom mk'spec (s : Finset Graph.vertex) : to_fset1 (mk s) = s
+axiom choose2 : set1 -> Graph.vertex
+axiom choose'spec1 (s : set1) (fact0 : ¬to_fset1 s = ∅) : choose2 s ∈ to_fset1 s
+axiom t : Type -> Type
+axiom inhabited_axiom_t {α : Type} [Inhabited α] : Inhabited (t α)
+attribute [instance] inhabited_axiom_t
+axiom contents :  {α : Type} -> [Inhabited α] -> t α -> Graph.vertex -> α
+axiom create :  {α : Type} -> [Inhabited α] -> α -> t α
+axiom create'spec {α : Type} [Inhabited α] (x : α) : contents (create x) = Const.const x
+axiom mixfix_lbrb :  {α : Type} -> [Inhabited α] -> t α -> Graph.vertex -> α
+axiom mixfix_lbrb'spec {α : Type} [Inhabited α] (m : t α) (k : Graph.vertex) : mixfix_lbrb m k = contents m k
+axiom mixfix_lblsmnrb :  {α : Type} -> [Inhabited α] -> t α -> Graph.vertex -> α -> t α
+axiom mixfix_lblsmnrb'spec {α : Type} [Inhabited α] (m : t α) (k : Graph.vertex) (v : α) : contents (mixfix_lblsmnrb m k v) = Function.update (contents m) k v
+structure t1 where
+  graph : Graph.graph
+  values : t ℤ
+axiom inhabited_axiom_t1 : Inhabited t1
+attribute [instance] inhabited_axiom_t1
+noncomputable def inv (g : t1) := Graph.sort (t1.graph g) (contents (t1.values g))
+theorem add_edge'vc (g : t1) (x : Graph.vertex) (y : Graph.vertex) (seen : set1) (seen1 : set1) (fact0 : inv g) (fact1 : x ∈ Graph.vertices (t1.graph g)) (fact2 : y ∈ Graph.vertices (t1.graph g)) (fact3 : to_fset1 seen = (∅ : Finset Graph.vertex)) (fact4 : Int.ofNat (Finset.card (to_fset1 seen)) = (0 : ℤ)) (fact5 : to_fset1 seen1 = insert x (to_fset1 seen)) (fact6 : if x ∈ to_fset1 seen then Finset.card (to_fset1 seen1) = Finset.card (to_fset1 seen) else Int.ofNat (Finset.card (to_fset1 seen1)) = Int.ofNat (Finset.card (to_fset1 seen)) + (1 : ℤ)) : let o1 : t ℤ := t1.values g; let o2 : ℤ := mixfix_lbrb o1 x; o2 = contents o1 x → (inv g ∧ y ∈ Graph.vertices (t1.graph g) ∧ to_fset1 seen1 ⊆ Graph.vertices (t1.graph g)) ∧ (∀(g1 : t1), g1 = t1.mk (t1.graph g) (t1.values g1) → o2 + (1 : ℤ) ≤ mixfix_lbrb (t1.values g1) y ∧ inv g1 ∧ (∀(x1 : Graph.vertex), x1 ∈ to_fset1 seen1 → mixfix_lbrb (t1.values g1) x1 = mixfix_lbrb (t1.values g) x1) ∧ (∀(x1 : Graph.vertex), mixfix_lbrb (t1.values g) x1 ≤ mixfix_lbrb (t1.values g1) x1) → (let o3 : Graph.graph := t1.graph g1; let o4 : Graph.graph := Online_graph.add_edge o3 x y; (∀(x1 : Graph.vertex), Graph.preds o4 x1 = (if x1 = y then insert x (Graph.preds o3 y) else Graph.preds o3 x1)) ∧ (∀(x1 : Graph.vertex), Graph.succs o4 x1 = (if x1 = x then insert y (Graph.succs o3 x) else Graph.succs o3 x1)) → (∀(g2 : t1), t1.graph g2 = o4 ∧ t1.values g2 = t1.values g1 → inv g2 ∧ t1.graph g2 = Online_graph.add_edge (t1.graph g) x y)))
+  := sorry
+end topological_sorting_Online_Basic_add_edgeqtvc

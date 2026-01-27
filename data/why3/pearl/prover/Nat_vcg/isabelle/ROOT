@@ -1,0 +1,5 @@
+session Nat = NTP4Verif +
+theories
+  "Nat_Nat_one_nat_valueqtvc"
+  "Nat_Nat_add_nat_simulate_add_intqtvc"
+  "Nat_Nat_nat_to_int_nonnegativeqtvc"

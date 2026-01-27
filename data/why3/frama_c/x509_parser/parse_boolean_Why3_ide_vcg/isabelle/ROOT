@@ -1,0 +1,5 @@
+session parse_boolean_Why3_ide = NTP4Verif +
+theories
+  "parse_boolean_Why3_ide_VCparse_boolean_assert_rte_mem_access_goal0"
+  "parse_boolean_Why3_ide_VCparse_boolean_assert_rte_mem_access_2_goal1"
+  "parse_boolean_Why3_ide_VCparse_boolean_assert_rte_mem_access_3_goal2"

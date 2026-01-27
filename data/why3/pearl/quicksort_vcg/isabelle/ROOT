@@ -1,0 +1,18 @@
+session quicksort = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "quicksort_Quicksort3way_quick_recqtvc"
+  "quicksort_Quicksort3way_quicksortqtvc"
+  "quicksort_Test_test2qtvc"
+  "quicksort_Quicksort"
+  "quicksort_Shuffle_shuffleqtvc"
+  "quicksort_Quicksort3way_qsqtvc"
+  "quicksort_Shuffle"
+  "quicksort_Traditional_quicksortqtvc"
+  "quicksort_Quicksort_quick_recqtvc"
+  "quicksort_Test_benchqtvc"
+  "quicksort_Test_test1qtvc"
+  "quicksort_Traditional_quick_recqtvc"
+  "quicksort_Quicksort_quicksortqtvc"
+  "quicksort_QuicksortWithShuffle_qsqtvc"

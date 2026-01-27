@@ -1,0 +1,46 @@
+atoms:
+  Cfloat.Cfloat.Down: [Down, Cfloat.Down]
+  Cfloat.Cfloat.Float32: [Float32, Cfloat.Float32]
+  Cfloat.Cfloat.Float64: [Float64, Cfloat.Float64]
+  Cfloat.Cfloat.Inf_neg: [Inf_neg, Cfloat.Inf_neg]
+  Cfloat.Cfloat.Inf_pos: [Inf_pos, Cfloat.Inf_pos]
+  Cfloat.Cfloat.NaN: [NaN, Cfloat.NaN]
+  Cfloat.Cfloat.NearestTiesToAway: [NearestTiesToAway, Cfloat.NearestTiesToAway]
+  Cfloat.Cfloat.NearestTiesToEven: [NearestTiesToEven, Cfloat.NearestTiesToEven]
+  Cfloat.Cfloat.Real: [Real, Cfloat.Real]
+  Cfloat.Cfloat.ToZero: [ToZero, Cfloat.ToZero]
+  Cfloat.Cfloat.Up: [Up, Cfloat.Up]
+  Cfloat.Cfloat.classify_float: [classify_float, Cfloat.classify_float]
+  Cfloat.Cfloat.delta: [delta, Cfloat.delta]
+  Cfloat.Cfloat.error: [error, Cfloat.error]
+  Cfloat.Cfloat.is_NaN: [is_NaN, Cfloat.is_NaN]
+  Cfloat.Cfloat.is_finite32: [is_finite32, Cfloat.is_finite32]
+  Cfloat.Cfloat.is_finite64: [is_finite64, Cfloat.is_finite64]
+  Cfloat.Cfloat.is_float32: [is_float32, Cfloat.is_float32]
+  Cfloat.Cfloat.is_float64: [is_float64, Cfloat.is_float64]
+  Cfloat.Cfloat.is_infinite: [is_infinite, Cfloat.is_infinite]
+  Cfloat.Cfloat.is_negative_infinite: [is_negative_infinite, Cfloat.is_negative_infinite]
+  Cfloat.Cfloat.is_positive_infinite: [is_positive_infinite, Cfloat.is_positive_infinite]
+  Cfloat.Cfloat.model: [model, Cfloat.model]
+  Cfloat.Cfloat.round_double: [round_double, Cfloat.round_double]
+  Cfloat.Cfloat.round_float: [round_float, Cfloat.round_float]
+axioms:
+  Cfloat.Cfloat.float_32: [float_32, Cfloat.float_32]
+  Cfloat.Cfloat.float_64: [float_64, Cfloat.float_64]
+  Cfloat.Cfloat.is_finite_to_float_32: [is_finite_to_float_32, Cfloat.is_finite_to_float_32]
+  Cfloat.Cfloat.is_finite_to_float_64: [is_finite_to_float_64, Cfloat.is_finite_to_float_64]
+  Cfloat.Cfloat.model_add: [model_add, Cfloat.model_add]
+  Cfloat.Cfloat.model_div: [model_div, Cfloat.model_div]
+  Cfloat.Cfloat.model_float_32: [model_float_32, Cfloat.model_float_32]
+  Cfloat.Cfloat.model_float_64: [model_float_64, Cfloat.model_float_64]
+  Cfloat.Cfloat.model_mul: [model_mul, Cfloat.model_mul]
+  Cfloat.Cfloat.model_sqrt: [model_sqrt, Cfloat.model_sqrt]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.Cfloat.Cfloat
+prefix_ops: {}
+types:
+  Cfloat.Cfloat.float_kind: [float_kind, Cfloat.float_kind]
+  Cfloat.Cfloat.rounding_mode: [rounding_mode, Cfloat.rounding_mode]

@@ -1,0 +1,32 @@
+theory float_mat_norm_li_Why3_ide_VCfloat_mat_norm_li_loop_inv_preserved_goal0
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "Why3STD.Cmath_Cmath" "Why3STD.Cfloat_Cfloat" "../../lib/isabelle/Axiomatic15_Axiomatic15" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal0:
+  fixes r :: "real"
+  fixes i_2 :: "int"
+  fixes i :: "int"
+  fixes i_3 :: "int"
+  fixes i_1 :: "int"
+  fixes a :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> addr"
+  fixes t :: "int \<Rightarrow> int"
+  assumes fact0: "(0 :: Real.real) \<le> r"
+  assumes fact1: "i_2 \<le> i"
+  assumes fact2: "i_3 \<le> i_1"
+  assumes fact3: "(0 :: int) \<le> i_2"
+  assumes fact4: "i \<le> i_2"
+  assumes fact5: "(0 :: int) \<le> i_3"
+  assumes fact6: "i_3 < i_1"
+  assumes fact7: "region (base a) \<le> (0 :: int)"
+  assumes fact8: "framed t_1"
+  assumes fact9: "linked t"
+  assumes fact10: "is_sint32 i"
+  assumes fact11: "is_sint32 i_1"
+  assumes fact12: "is_sint32 i_2"
+  assumes fact13: "is_sint32 i_3"
+  assumes fact14: "is_float32 r"
+  assumes fact15: "is_sint32 ((1 :: int) + i_3)"
+  assumes fact16: "p_rvalid_float_mat_2' t t_1 a i_1 i"
+  shows "-(1 :: int) \<le> i_3"
+  sorry
+end

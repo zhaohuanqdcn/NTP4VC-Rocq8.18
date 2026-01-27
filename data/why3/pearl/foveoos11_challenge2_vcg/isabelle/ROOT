@@ -1,0 +1,5 @@
+session foveoos11_challenge2 = NTP4Verif +
+theories
+  "foveoos11_challenge2_MaximumTree"
+  "foveoos11_challenge2_MaximumTree_maximumqtvc"
+  "foveoos11_challenge2_MaximumTree_size_nonnegqtvc"

@@ -1,0 +1,31 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #15)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+predicate p_finite_floateulers (mflt_0 : map addr real) (e : addr) =
+    ((is_finite32 mflt_0[(shiftfield_f6_floateulers_phi e)])) /\
+    ((is_finite32 mflt_0[(shiftfield_f6_floateulers_psi e)])) /\
+    ((is_finite32 mflt_0[(shiftfield_f6_floateulers_theta e)]))
+
+predicate p_rvalid_floateulers (malloc_0 : map int int)
+    (mflt_0 : map addr real) (e : addr) =
+    ((p_finite_floateulers mflt_0 e)) /\ ((valid_rd malloc_0 e 3))
+
+end
+

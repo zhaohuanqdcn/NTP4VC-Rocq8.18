@@ -1,0 +1,7 @@
+session unraveling_a_card_trick = NTP4Verif +
+theories
+  "unraveling_a_card_trick_GilbreathCardTrickPure_shuffle_symqtvc"
+  "unraveling_a_card_trick_GilbreathCardTrick_shuffleqtvc"
+  "unraveling_a_card_trick_GilbreathCardTrickPure"
+  "unraveling_a_card_trick_GilbreathCardTrickPure_shuffle_lengthqtvc"
+  "unraveling_a_card_trick_GilbreathCardTrick_card_trickqtvc"

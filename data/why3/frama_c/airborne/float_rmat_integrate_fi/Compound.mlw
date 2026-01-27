@@ -1,0 +1,99 @@
+(* ---------------------------------------------------------- *)
+(* --- Memory Compound Updates                            --- *)
+(* ---------------------------------------------------------- *)
+theory Compound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function shift_sint8 (p : addr) (k : int) : addr = (shift p k)
+
+function shift_sint32 (p : addr) (k : int) : addr = (shift p k)
+
+function shiftfield_f5_floatrmat_m (p : addr) : addr = (shift p 0)
+
+function shift_float32 (p : addr) (k : int) : addr = (shift p k)
+
+function array1_float addr int (map addr real) : map int real
+
+use import S5_FloatRMat.S5_FloatRMat
+
+function load_s5_floatrmat (p : addr)
+    (mflt_0 : map addr real) : s5_floatrmat =
+    {
+      f5_floatrmat_m = (array1_float ((shiftfield_f5_floatrmat_m p)) 9
+                         mflt_0) }
+
+function shiftfield_f7_floatrates_p (p : addr) : addr = (shift p 0)
+
+function shiftfield_f7_floatrates_q (p : addr) : addr = (shift p 1)
+
+function shiftfield_f7_floatrates_r (p : addr) : addr = (shift p 2)
+
+axiom Q_Array1_float_access:
+  forall p : addr.
+  forall mflt_0 : map addr real.
+  forall i n : int
+  [(array1_float p n mflt_0)[i]].
+  (0 <= i) -> (i < n) ->
+    (((array1_float p n mflt_0))[i] = mflt_0[(shift_float32 p i)])
+
+axiom Q_Array1_float_update_Mflt:
+  forall p q : addr.
+  forall mflt_0 : map addr real.
+  forall v : real.
+  forall n : int
+  [(array1_float p n mflt_0[q <- v])].
+  ((separated p n q 1)) ->
+    (((array1_float p n mflt_0[q <- v])) = ((array1_float p n mflt_0)))
+
+axiom Q_Array1_float_eqmem_Mflt:
+  forall p q : addr.
+  forall mflt_0 mflt_1 : map addr real.
+  forall k n : int
+  [(eqmem mflt_0 mflt_1 q k),(array1_float p n mflt_0)|
+    (eqmem mflt_0 mflt_1 q k),(array1_float p n mflt_1)].
+  ((included p n q k)) -> ((eqmem mflt_0 mflt_1 q k)) ->
+    (((array1_float p n mflt_1)) = ((array1_float p n mflt_0)))
+
+axiom Q_Array1_float_havoc_Mflt:
+  forall p q : addr.
+  forall mflt_0 mflt_1 mflt_2 : map addr real.
+  forall k n : int
+  [(array1_float p n mflt_0)|(array1_float p n mflt_1)].
+  (((havoc mflt_2 mflt_0 q k)) = mflt_1) -> ((separated p n q k)) ->
+    (((array1_float p n mflt_1)) = ((array1_float p n mflt_0)))
+
+axiom Q_Load_S5_FloatRMat_update_Mflt:
+  forall p q : addr.
+  forall mflt_0 : map addr real.
+  forall v : real
+  [(load_s5_floatrmat p mflt_0[q <- v])].
+  ((separated p 9 q 1)) ->
+    (((load_s5_floatrmat p mflt_0[q <- v])) = ((load_s5_floatrmat p mflt_0)))
+
+axiom Q_Load_S5_FloatRMat_eqmem_Mflt:
+  forall p q : addr.
+  forall mflt_0 mflt_1 : map addr real.
+  forall k : int
+  [(eqmem mflt_0 mflt_1 q k),(load_s5_floatrmat p mflt_0)|
+    (eqmem mflt_0 mflt_1 q k),(load_s5_floatrmat p mflt_1)].
+  ((included p 9 q k)) -> ((eqmem mflt_0 mflt_1 q k)) ->
+    (((load_s5_floatrmat p mflt_1)) = ((load_s5_floatrmat p mflt_0)))
+
+axiom Q_Load_S5_FloatRMat_havoc_Mflt:
+  forall p q : addr.
+  forall mflt_0 mflt_1 mflt_2 : map addr real.
+  forall k : int
+  [(load_s5_floatrmat p mflt_0)|(load_s5_floatrmat p mflt_1)].
+  (((havoc mflt_2 mflt_0 q k)) = mflt_1) -> ((separated p 9 q k)) ->
+    (((load_s5_floatrmat p mflt_1)) = ((load_s5_floatrmat p mflt_0)))
+
+end
+

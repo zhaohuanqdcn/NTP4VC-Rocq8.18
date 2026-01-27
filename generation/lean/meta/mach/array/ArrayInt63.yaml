@@ -1,0 +1,13 @@
+atoms:
+  mach.array.ArrayInt63.elts: [ArrayInt63.elts]
+  mach.array.ArrayInt63.size: [ArrayInt63.size]
+axioms:
+  mach.array.ArrayInt63.array63'invariant: ArrayInt63.array63'invariant
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.mach.array.ArrayInt63
+prefix_ops: {}
+types:
+  mach.array.ArrayInt63.array63: [ArrayInt63.array63]

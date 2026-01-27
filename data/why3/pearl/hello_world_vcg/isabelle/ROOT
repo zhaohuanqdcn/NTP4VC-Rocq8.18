@@ -1,0 +1,5 @@
+session hello_world = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "hello_world_Test"

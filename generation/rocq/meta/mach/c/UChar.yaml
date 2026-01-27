@@ -1,0 +1,15 @@
+atoms:
+  mach.c.UChar.l: [UChar.l]
+  mach.c.UChar.ma: [UChar.ma]
+  mach.c.UChar.mi: [UChar.mi]
+  mach.c.UChar.ok: [UChar.ok]
+  mach.c.UChar.z: [UChar.z]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.mach.c.UChar
+prefix_ops: {}
+types:
+  mach.c.UChar.cast_mem: [UChar.cast_mem]

@@ -1,0 +1,14 @@
+session OptionFuncs = NTP4Verif +
+theories
+  "OptionFuncs_Funcs_ocase_noneqtvc"
+  "OptionFuncs_Funcs_olift_defqtvc"
+  "OptionFuncs_Funcs_olift_someqtvc"
+  "OptionFuncs_Funcs_olift_some_inversionqtvc"
+  "OptionFuncs_Funcs_olift_none_inversionqtvc"
+  "OptionFuncs_Funcs_olift_some_commutationqtvc"
+  "OptionFuncs_Funcs_olift_identityqtvc"
+  "OptionFuncs_Funcs_olift_updateqtvc"
+  "OptionFuncs_Funcs_olift_compositionqtvc"
+  "OptionFuncs_Funcs_compose_ocase_someqtvc"
+  "OptionFuncs_Funcs_olift_noneqtvc"
+  "OptionFuncs_Funcs_ocase_someqtvc"

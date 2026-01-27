@@ -1,0 +1,17 @@
+session verifythis_2021_shearsort = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "verifythis_2021_shearsort_ShearSort_sort_columnqtvc"
+  "verifythis_2021_shearsort_ShearSort_shear_sortqtvc"
+  "verifythis_2021_shearsort_ShearSort_numoff_occqtvc"
+  "verifythis_2021_shearsort_Quicksort_quicksortqtvc"
+  "verifythis_2021_shearsort_ShearSort_transpose_countqtvc"
+  "verifythis_2021_shearsort_ShearSortComplete_sortqtrefnqtvc"
+  "verifythis_2021_shearsort_Quicksort"
+  "verifythis_2021_shearsort_ShearSort_sort_rowqtvc"
+  "verifythis_2021_shearsort_Quicksort_quick_recqtvc"
+  "verifythis_2021_shearsort_ShearSort_permut_swapqtvc"
+  "verifythis_2021_shearsort_ShearSort_sort_all_rowsqtvc"
+  "verifythis_2021_shearsort_ShearSort_sort_all_columnsqtvc"
+  "verifythis_2021_shearsort_ShearSort_permut_numoffqtvc"

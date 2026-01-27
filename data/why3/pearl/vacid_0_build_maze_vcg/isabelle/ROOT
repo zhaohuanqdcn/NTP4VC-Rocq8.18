@@ -1,0 +1,10 @@
+session vacid_0_build_maze = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "vacid_0_build_maze_BuildMaze_add_edge_and_unionqtvc"
+  "vacid_0_build_maze_UnionFind_pure"
+  "vacid_0_build_maze_UnionFind_sig"
+  "vacid_0_build_maze_Graph_sig"
+  "vacid_0_build_maze_BuildMaze_build_mazeqtvc"
+  "vacid_0_build_maze_BuildMaze_ineq1qtvc"

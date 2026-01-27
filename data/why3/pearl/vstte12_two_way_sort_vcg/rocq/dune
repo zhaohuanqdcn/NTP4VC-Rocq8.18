@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name vstte12_two_way_sort_vcg)
+(theories Why3 Why3.why3.Ref Why3.map))

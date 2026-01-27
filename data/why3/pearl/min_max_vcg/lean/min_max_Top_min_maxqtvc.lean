@@ -1,0 +1,10 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+open Classical
+open Lean4Why3
+namespace min_max_Top_min_maxqtvc
+noncomputable def is_min (m : ℤ) (a : List ℤ) (lo : ℤ) (hi : ℤ) := (∃(i : ℤ), (lo ≤ i ∧ i < hi ∧ hi ≤ Int.ofNat (List.length a)) ∧ a[Int.toNat i]! = m) ∧ (∀(i : ℤ), lo ≤ i ∧ i < hi → m ≤ a[Int.toNat i]!)
+noncomputable def is_max (m : ℤ) (a : List ℤ) (lo : ℤ) (hi : ℤ) := (∃(i : ℤ), (lo ≤ i ∧ i < hi ∧ hi ≤ Int.ofNat (List.length a)) ∧ a[Int.toNat i]! = m) ∧ (∀(i : ℤ), lo ≤ i ∧ i < hi → a[Int.toNat i]! ≤ m)
+theorem min_max'vc (a : List ℤ) (fact0 : (1 : ℤ) ≤ Int.ofNat (List.length a)) : (0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) < Int.ofNat (List.length a) ∧ (let o1 : ℤ := a[(0 : ℕ)]!; ((0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) < Int.ofNat (List.length a)) ∧ (let o2 : ℤ := a[(0 : ℕ)]!; let o3 : ℤ := Int.ofNat (List.length a) - (1 : ℤ); ((1 : ℤ) ≤ o3 + (1 : ℤ) → (is_min o1 a (0 : ℤ) (1 : ℤ) ∧ is_max o2 a (0 : ℤ) (1 : ℤ)) ∧ (∀(max : ℤ) (min : ℤ), (∀(i : ℤ), ((1 : ℤ) ≤ i ∧ i ≤ o3) ∧ is_min min a (0 : ℤ) i ∧ is_max max a (0 : ℤ) i → ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ (if a[Int.toNat i]! < min then ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ (if max < a[Int.toNat i]! then ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ is_min (a[Int.toNat i]!) a (0 : ℤ) (i + (1 : ℤ)) ∧ is_max (a[Int.toNat i]!) a (0 : ℤ) (i + (1 : ℤ)) else is_min (a[Int.toNat i]!) a (0 : ℤ) (i + (1 : ℤ)) ∧ is_max max a (0 : ℤ) (i + (1 : ℤ))) else ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ (if max < a[Int.toNat i]! then ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ is_min min a (0 : ℤ) (i + (1 : ℤ)) ∧ is_max (a[Int.toNat i]!) a (0 : ℤ) (i + (1 : ℤ)) else is_min min a (0 : ℤ) (i + (1 : ℤ)) ∧ is_max max a (0 : ℤ) (i + (1 : ℤ))))) ∧ (is_min min a (0 : ℤ) (o3 + (1 : ℤ)) ∧ is_max max a (0 : ℤ) (o3 + (1 : ℤ)) → is_min min a (0 : ℤ) (Int.ofNat (List.length a)) ∧ is_max max a (0 : ℤ) (Int.ofNat (List.length a))))) ∧ (o3 + (1 : ℤ) < (1 : ℤ) → is_min o1 a (0 : ℤ) (Int.ofNat (List.length a)) ∧ is_max o2 a (0 : ℤ) (Int.ofNat (List.length a)))))
+  := sorry
+end min_max_Top_min_maxqtvc

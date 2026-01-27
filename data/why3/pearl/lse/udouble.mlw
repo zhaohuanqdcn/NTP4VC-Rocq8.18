@@ -1,0 +1,128 @@
+(** {1 A theory of floating-point numbers with unbounded exponent}
+
+  This version is specific to the double format, that is a binary
+  format with 53 bits of mantissa, exponent at least -1023 but
+  arbitrary large.
+
+  With that setting there is no overflow ever.
+
+  This theory should be generalized, and realized using Coq/Flocq.
+
+*)
+
+(* BEGIN{base} *)
+module UDouble
+
+  use real.RealInfix
+  use real.Abs
+  use ieee_float.RoundingMode
+
+  (**  The type of unbounded floats in "double" format *)
+  type udouble
+
+  (** injection of udouble to real numbers *)
+  function to_real udouble : real
+
+  (** The rounding function *)
+  function uround mode real : udouble
+
+  axiom uround_exact: forall m:mode, x: udouble. uround m (to_real x) = x
+
+  constant uzero:udouble
+  axiom to_real_uzero : to_real uzero = 0.0
+
+  constant utwo:udouble
+  axiom to_real_utwo : to_real utwo = 2.0
+(* END{base} *)
+
+(* BEGIN{operations} *)
+  (** {2 operations in RNE mode} *)
+
+  function uadd (x y:udouble) : udouble = uround RNE (to_real x +. to_real y)
+
+  val uadd (x y:udouble) : udouble
+    ensures { result = uadd x y }
+
+  function usub (x y:udouble) : udouble = uround RNE (to_real x -. to_real y)
+
+  val usub (x y:udouble) : udouble
+    ensures { result = usub x y }
+
+  function umul (x y:udouble) : udouble = uround RNE (to_real x *. to_real y)
+
+  val umul (x y:udouble) : udouble
+    ensures { result = umul x y }
+
+  function udiv (x y:udouble) : udouble = uround RNE (to_real x /. to_real y)
+
+  val udiv (x y:udouble) : udouble
+    requires { y <> uzero }
+    ensures { result = udiv x y }
+
+  function uminus (x:udouble) : udouble = uround RNE (-. (to_real x))
+
+  val uminus (x:udouble) : udouble
+    ensures { result = uminus x }
+(* END{operations} *)
+
+
+(* BEGIN{accuracy} *)
+(** {2 Lemmas on rounding} *)
+
+  constant eps:real = 0x1p-53 /. (1. +. 0x1p-53)
+  constant eta:real = 0x1p-1075
+
+(** addition *)
+
+  let ghost add_rounding (x y:udouble) : unit
+    ensures { abs (to_real (uadd x y) -. (to_real x +. to_real y))
+        <=. abs (to_real x +. to_real y) *. eps }
+  = ()
+
+  let ghost add_bound_left (x y:udouble) : unit
+    ensures { abs (to_real (uadd x y) -. (to_real x +. to_real y)) <=. abs (to_real x) }
+  = ()
+
+  let ghost add_bound_right (x y:udouble) : unit
+    ensures { abs (to_real (uadd x y) -. (to_real x +. to_real y)) <=. abs (to_real y) }
+  = ()
+(* END{accuracy} *)
+
+(** subtraction *)
+
+  let ghost sub_rounding (x y:udouble) : unit
+    ensures { abs (to_real (usub x y) -. (to_real x -. to_real y))
+        <=. abs (to_real x -. to_real y) *. eps }
+  = ()
+
+  let ghost sub_bound_left (x y:udouble) : unit
+    ensures { abs (to_real (usub x y) -. (to_real x -. to_real y)) <=. abs (to_real x) }
+  = ()
+
+  let ghost sub_bound_right (x y:udouble) : unit
+    ensures { abs (to_real (usub x y) -. (to_real x -. to_real y)) <=. abs (to_real y) }
+  = ()
+
+(** multiplication *)
+
+  let ghost mul_rounding (x y:udouble) : unit
+    ensures { abs (to_real (umul x y) -. (to_real x *. to_real y))
+        <=. abs (to_real x *. to_real y) *. eps +. eta }
+  = ()
+
+(** division *)
+
+  let ghost udiv_rounding (x y:udouble) : unit
+    requires { y <> uzero }
+    ensures { abs (to_real (udiv x y) -. (to_real x /. to_real y))
+      <=. abs (to_real x /. to_real y) *. eps +. eta }
+  = ()
+
+(** unary minus *)
+
+  let ghost uminus_rounding (x:udouble) : unit
+    ensures { to_real (uminus x) = -. (to_real x) }
+  = ()
+
+
+end

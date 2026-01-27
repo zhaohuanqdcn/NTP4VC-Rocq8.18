@@ -1,0 +1,17 @@
+atoms:
+  pqueue.Pqueue.elts: [elts, Pqueue.elts]
+  pqueue.Pqueue.le: [le, Pqueue.le]
+axioms:
+  pqueue.Pqueue.Refl: [Refl, Pqueue.Refl]
+  pqueue.Pqueue.Total: [Total, Pqueue.Total]
+  pqueue.Pqueue.Trans: [Trans, Pqueue.Trans]
+  pqueue.Pqueue.t'invariant: [t'invariant, Pqueue.t'invariant]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.pqueue.Pqueue
+prefix_ops: {}
+types:
+  pqueue.Pqueue.elt: [elt, Pqueue.elt]
+  pqueue.Pqueue.t: [t, Pqueue.t]

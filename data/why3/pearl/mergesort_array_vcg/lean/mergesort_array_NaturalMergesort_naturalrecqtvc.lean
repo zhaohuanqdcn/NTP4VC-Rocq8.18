@@ -1,0 +1,20 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.MapEq
+import Why3.map.MapExchange
+import Why3.map.MapPermut
+open Classical
+open Lean4Why3
+namespace mergesort_array_NaturalMergesort_naturalrecqtvc
+axiom elt : Type
+axiom inhabited_axiom_elt : Inhabited elt
+attribute [instance] inhabited_axiom_elt
+axiom le : elt -> elt -> Prop
+axiom Refl (x : elt) : le x x
+axiom Trans (x : elt) (y : elt) (z : elt) (fact0 : le x y) (fact1 : le y z) : le x z
+axiom Total (x : elt) (y : elt) : le x y ∨ le y x
+noncomputable def sorted_sub (a : List elt) (l : ℤ) (u : ℤ) := ∀(i1 : ℤ) (i2 : ℤ), l ≤ i1 ∧ i1 < i2 ∧ i2 < u → le (a[Int.toNat i1]!) (a[Int.toNat i2]!)
+noncomputable def sorted (a : List elt) := ∀(i1 : ℤ) (i2 : ℤ), (0 : ℤ) ≤ i1 ∧ i1 < i2 ∧ i2 < Int.ofNat (List.length a) → le (a[Int.toNat i1]!) (a[Int.toNat i2]!)
+theorem naturalrec'vc (lo : ℤ) (a : List elt) (tmp : List elt) (k : ℤ) (fact0 : (0 : ℤ) ≤ lo) (fact1 : lo ≤ Int.ofNat (List.length a)) (fact2 : List.length a = List.length tmp) (fact3 : (0 : ℤ) ≤ k) : let n : ℤ := Int.ofNat (List.length a); if n - (1 : ℤ) ≤ lo then (n = Int.ofNat (List.length a) ∨ lo + k < n ∧ n < Int.ofNat (List.length a)) ∧ sorted_sub a lo n ∧ List.permut_sub' a a (Int.toNat lo) (List.length a) else ((0 : ℤ) ≤ lo ∧ lo < Int.ofNat (List.length a)) ∧ (∀(o1 : ℤ), (lo < o1 ∧ o1 ≤ Int.ofNat (List.length a)) ∧ sorted_sub a lo o1 ∧ (o1 < Int.ofNat (List.length a) → ¬le (a[Int.toNat (o1 - (1 : ℤ))]!) (a[Int.toNat o1]!)) → (if o1 = n then (n = Int.ofNat (List.length a) ∨ lo + k < n ∧ n < Int.ofNat (List.length a)) ∧ sorted_sub a lo n ∧ List.permut_sub' a a (Int.toNat lo) (List.length a) else let o2 : ℤ := k - (1 : ℤ); ((0 : ℤ) ≤ o2 + (1 : ℤ) → ((lo + (0 : ℤ) < o1 ∧ o1 < n) ∧ sorted_sub a lo o1 ∧ List.permut_sub' a a (Int.toNat lo) (List.length a)) ∧ (∀(mid : ℤ) (a1 : List elt) (tmp1 : List elt), List.length a1 = List.length a → List.length tmp1 = List.length tmp → (∀(i : ℤ), ((0 : ℤ) ≤ i ∧ i ≤ o2) ∧ (lo + i < mid ∧ mid < n) ∧ sorted_sub a1 lo mid ∧ List.permut_sub' a a1 (Int.toNat lo) (List.length a1) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < lo → a1[Int.toNat j]! = a[Int.toNat j]!) → (((0 : ℤ) ≤ k ∧ i < k) ∧ ((0 : ℤ) ≤ mid ∧ mid ≤ Int.ofNat (List.length a1) ∧ List.length a1 = List.length tmp1) ∧ (0 : ℤ) ≤ i) ∧ (∀(a2 : List elt) (tmp2 : List elt), List.length a2 = List.length a1 → List.length tmp2 = List.length tmp1 → (∀(hi : ℤ), (hi = Int.ofNat (List.length a2) ∨ mid + i < hi ∧ hi < Int.ofNat (List.length a2)) ∧ sorted_sub a2 mid hi ∧ List.permut_sub' a1 a2 (Int.toNat mid) (List.length a2) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < mid → a2[Int.toNat j]! = a1[Int.toNat j]!) → (((0 : ℤ) ≤ lo ∧ lo ≤ mid ∧ mid ≤ hi ∧ hi ≤ Int.ofNat (List.length tmp2) ∧ List.length tmp2 = List.length a2) ∧ sorted_sub a2 lo mid ∧ sorted_sub a2 mid hi) ∧ (∀(a3 : List elt), List.length a3 = List.length a2 → sorted_sub a3 lo hi ∧ List.permut_sub a2 a3 (Int.toNat lo) (Int.toNat hi) ∧ (∀(i1 : ℤ), (0 : ℤ) ≤ i1 ∧ i1 < lo ∨ hi ≤ i1 ∧ i1 < Int.ofNat (List.length a3) → a3[Int.toNat i1]! = a2[Int.toNat i1]!) → (if hi = n then (n = Int.ofNat (List.length a3) ∨ lo + k < n ∧ n < Int.ofNat (List.length a3)) ∧ sorted_sub a3 lo n ∧ List.permut_sub' a a3 (Int.toNat lo) (List.length a3) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < lo → a3[Int.toNat j]! = a[Int.toNat j]!) else (lo + (i + (1 : ℤ)) < hi ∧ hi < n) ∧ sorted_sub a3 lo hi ∧ List.permut_sub' a a3 (Int.toNat lo) (List.length a3) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < lo → a3[Int.toNat j]! = a[Int.toNat j]!)))))) ∧ ((lo + (o2 + (1 : ℤ)) < mid ∧ mid < n) ∧ sorted_sub a1 lo mid ∧ List.permut_sub' a a1 (Int.toNat lo) (List.length a1) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < lo → a1[Int.toNat j]! = a[Int.toNat j]!) → (mid = Int.ofNat (List.length a1) ∨ lo + k < mid ∧ mid < Int.ofNat (List.length a1)) ∧ sorted_sub a1 lo mid ∧ List.permut_sub' a a1 (Int.toNat lo) (List.length a1) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < lo → a1[Int.toNat j]! = a[Int.toNat j]!)))) ∧ (o2 + (1 : ℤ) < (0 : ℤ) → (o1 = Int.ofNat (List.length a) ∨ lo + k < o1 ∧ o1 < Int.ofNat (List.length a)) ∧ sorted_sub a lo o1 ∧ List.permut_sub' a a (Int.toNat lo) (List.length a))))
+  := sorry
+end mergesort_array_NaturalMergesort_naturalrecqtvc

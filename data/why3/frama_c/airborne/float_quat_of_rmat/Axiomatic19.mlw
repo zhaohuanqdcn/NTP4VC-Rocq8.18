@@ -1,0 +1,123 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #19)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic19
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import S10_RealRMat_s.S10_RealRMat_s
+
+function l_trace_1_ (rmat_0 : s10_realrmat_s) : real =
+    (rmat_0.f10_realrmat_s_a00) +. (rmat_0.f10_realrmat_s_a11)
+    +. (rmat_0.f10_realrmat_s_a22)
+
+use import Memory.Memory
+use import Axiomatic17.Axiomatic17
+
+function l_trace_2_ (mflt_0 : map addr real) (rmat_0 : addr) : real =
+    (l_trace_1_ ((l_l_rmat_of_floatrmat mflt_0 rmat_0)))
+
+use import S11_RealQuat_s.S11_RealQuat_s
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Square.Square
+use import real.Square
+
+function l_l_floatquat_of_rmat_trace_pos_1_
+    (rmat_0 : s10_realrmat_s) : s11_realquat_s =
+    let r = (1.0 /. 2.0) /. ((sqrt (1.0 +. ((l_trace_1_ rmat_0))))) in
+    { f11_realquat_s_qi = (div_float32 (1.0 /. 4.0) r) ;
+      f11_realquat_s_qx = (mul_float32
+                            ((rmat_0.f10_realrmat_s_a21)
+                             -. (rmat_0.f10_realrmat_s_a12)) r) ;
+      f11_realquat_s_qy = (mul_float32
+                            ((rmat_0.f10_realrmat_s_a02)
+                             -. (rmat_0.f10_realrmat_s_a20)) r) ;
+      f11_realquat_s_qz = (mul_float32
+                            ((rmat_0.f10_realrmat_s_a10)
+                             -. (rmat_0.f10_realrmat_s_a01)) r) }
+
+function l_l_floatquat_of_rmat_trace_pos_t (mflt_0 : map addr real)
+    (rmat_0 : addr) : s11_realquat_s =
+    (l_l_floatquat_of_rmat_trace_pos_1_
+      ((l_transpose ((l_l_rmat_of_floatrmat mflt_0 rmat_0)))))
+
+function l_l_floatquat_of_rmat_0_max_1_
+    (rmat_0 : s10_realrmat_s) : s11_realquat_s =
+    let r = (sqrt
+              (1.0 +. (rmat_0.f10_realrmat_s_a00)
+               -. (rmat_0.f10_realrmat_s_a11) -. (rmat_0.f10_realrmat_s_a22))) in
+    let r_1 = 2.0 *. r in
+    {
+      f11_realquat_s_qi = (div_float32
+                            ((rmat_0.f10_realrmat_s_a21)
+                             -. (rmat_0.f10_realrmat_s_a12)) r_1) ;
+      f11_realquat_s_qx = (mul_float32 (1.0 /. 2.0) r) ;
+      f11_realquat_s_qy = (div_float32
+                            ((rmat_0.f10_realrmat_s_a01)
+                             +. (rmat_0.f10_realrmat_s_a10)) r_1) ;
+      f11_realquat_s_qz = (div_float32
+                            ((rmat_0.f10_realrmat_s_a02)
+                             +. (rmat_0.f10_realrmat_s_a20)) r_1) }
+
+function l_l_floatquat_of_rmat_0_max_t (mflt_0 : map addr real)
+    (rmat_0 : addr) : s11_realquat_s =
+    (l_l_floatquat_of_rmat_0_max_1_
+      ((l_transpose ((l_l_rmat_of_floatrmat mflt_0 rmat_0)))))
+
+function l_l_floatquat_of_rmat_1_max_1_
+    (rmat_0 : s10_realrmat_s) : s11_realquat_s =
+    let r = (sqrt
+              (1.0 +. (rmat_0.f10_realrmat_s_a11)
+               -. (rmat_0.f10_realrmat_s_a00) -. (rmat_0.f10_realrmat_s_a22))) in
+    let r_1 = 2.0 *. r in
+    {
+      f11_realquat_s_qi = (div_float32
+                            ((rmat_0.f10_realrmat_s_a02)
+                             -. (rmat_0.f10_realrmat_s_a20)) r_1) ;
+      f11_realquat_s_qx = (div_float32
+                            ((rmat_0.f10_realrmat_s_a01)
+                             +. (rmat_0.f10_realrmat_s_a10)) r_1) ;
+      f11_realquat_s_qy = (mul_float32 (1.0 /. 2.0) r) ;
+      f11_realquat_s_qz = (div_float32
+                            ((rmat_0.f10_realrmat_s_a12)
+                             +. (rmat_0.f10_realrmat_s_a21)) r_1) }
+
+function l_l_floatquat_of_rmat_1_max_t (mflt_0 : map addr real)
+    (rmat_0 : addr) : s11_realquat_s =
+    (l_l_floatquat_of_rmat_1_max_1_
+      ((l_transpose ((l_l_rmat_of_floatrmat mflt_0 rmat_0)))))
+
+function l_l_floatquat_of_rmat_2_max_1_
+    (rmat_0 : s10_realrmat_s) : s11_realquat_s =
+    let r = (sqrt
+              (1.0 +. (rmat_0.f10_realrmat_s_a22)
+               -. (rmat_0.f10_realrmat_s_a00) -. (rmat_0.f10_realrmat_s_a11))) in
+    let r_1 = 2.0 *. r in
+    {
+      f11_realquat_s_qi = (div_float32
+                            ((rmat_0.f10_realrmat_s_a10)
+                             -. (rmat_0.f10_realrmat_s_a01)) r_1) ;
+      f11_realquat_s_qx = (div_float32
+                            ((rmat_0.f10_realrmat_s_a02)
+                             +. (rmat_0.f10_realrmat_s_a20)) r_1) ;
+      f11_realquat_s_qy = (div_float32
+                            ((rmat_0.f10_realrmat_s_a12)
+                             +. (rmat_0.f10_realrmat_s_a21)) r_1) ;
+      f11_realquat_s_qz = (mul_float32 (1.0 /. 2.0) r) }
+
+function l_l_floatquat_of_rmat_2_max_t (mflt_0 : map addr real)
+    (rmat_0 : addr) : s11_realquat_s =
+    (l_l_floatquat_of_rmat_2_max_1_
+      ((l_transpose ((l_l_rmat_of_floatrmat mflt_0 rmat_0)))))
+
+end
+

@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name euler001_vcg)
+(theories Why3 euler001_vcg.euler001 Why3.int))

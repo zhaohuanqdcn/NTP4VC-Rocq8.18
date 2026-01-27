@@ -1,0 +1,13 @@
+atoms:
+  hashtbl.Hashtbl.contents: [contents, hashtbl_Hashtbl.contents]
+  hashtbl.Hashtbl.mixfix_lbrb: [mixfix_lbrb, hashtbl_Hashtbl.mixfix_lbrb]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.hashtbl_Hashtbl
+prefix_ops: {}
+types:
+  hashtbl.Hashtbl.key: [key, hashtbl_Hashtbl.key]
+  hashtbl.Hashtbl.t: [t, hashtbl_Hashtbl.t]

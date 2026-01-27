@@ -1,0 +1,16 @@
+theory find_end_Why3_ide_VCfind_end_has_match_post_result_goal9
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/Axiomatic_Axiomatic"
+begin
+theorem goal9:
+  fixes a_1 :: "addr"
+  fixes i_4 :: "int"
+  fixes i :: "int"
+  fixes i_3 :: "int"
+  fixes a :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes i_1 :: "int"
+  fixes i_2 :: "int"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  shows "let a_2 :: addr = shift a_1 i_4; x :: int = i + i_3 - (1 :: int) in region (base a) \<le> (0 :: int) \<longrightarrow> region (base a_1) \<le> (0 :: int) \<longrightarrow> linked t \<longrightarrow> is_uint32 i \<longrightarrow> is_uint32 i_1 \<longrightarrow> is_uint32 i_2 \<longrightarrow> is_uint32 i_3 \<longrightarrow> is_uint32 i_4 \<longrightarrow> valid_rd t (shift a (0 :: int)) i \<longrightarrow> valid_rd t (shift a_1 (0 :: int)) i_1 \<longrightarrow> p_hassubrange_1' t_1 a_1 (0 :: int) i_1 a i \<longrightarrow> (if (0 :: int) < i then if i \<le> i_1 then i_2 = i_1 \<and> i_2 < i + i_3 \<and> i_2 \<le> (4294967295 :: int) + i \<and> (i_4 < i_2 \<longrightarrow> p_equalranges_1' t_1 t_1 a_2 i a) \<and> (i_4 = i_2 \<longrightarrow> \<not>p_hassubrange_1' t_1 a_1 (0 :: int) x a i) \<and> (i_4 < i_2 \<longrightarrow> \<not>p_hassubrange_1' t_1 a_1 ((1 :: int) + i_4) x a i) \<and> (i_4 = i_2 \<or> i + i_4 \<le> i_2) else i_4 = i_1 else i_4 = i_1) \<longrightarrow> p_equalranges_1' t_1 t_1 a_2 i a"
+  sorry
+end

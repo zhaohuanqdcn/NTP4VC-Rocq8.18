@@ -1,0 +1,121 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 849) in 'parse_integer'' in 'parse_ext_policyConstraints' at call 'parse_integer' (file src/x509-parser.c, line 7083)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_ext_policyConstraints_call_parse_integer_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 849) in 'parse_integer'' in 'parse_ext_policyConstraints' at call 'parse_integer' (file src/x509-parser.c, line 7083)
+":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_2) in
+  (i_1 <> 0) ->
+  (i_3 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (0 < i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  ((i + i_2) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rw t a 15)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_1 0)) i_1))) ->
+  ((valid_rd t a_2 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 849) in 'parse_integer'' in 'parse_ext_policyConstraints' at call 'parse_integer' (file src/x509-parser.c, line 7102)
+ (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_ext_policyConstraints_call_parse_integer_pre_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 849) in 'parse_integer'' in 'parse_ext_policyConstraints' at call 'parse_integer' (file src/x509-parser.c, line 7102)
+ (1/2)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_2) in
+  let a_3 = (shift_uint8 a_1 (3 + i_2)) in
+  let x_2 = i - 3 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_3 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (a_3 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  ((i + i_2) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483645) <= i) ->
+  (2 <= i_2) ->
+  (3 <= i) ->
+  (4 <= i) ->
+  (i <= 65538) ->
+  (i <= 2147483650) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rw t a 15)) ->
+  ((is_uint16 x_2)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_1 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_2 i))) ->
+  ((valid_rd t a_3 x_2))
+
+end
+

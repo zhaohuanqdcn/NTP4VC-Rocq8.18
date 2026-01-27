@@ -1,0 +1,79 @@
+atoms:
+  Cint.Cint.is_bool: [is_bool, Cint_Cint.is_bool]
+  Cint.Cint.is_sint: [is_sint, Cint_Cint.is_sint]
+  Cint.Cint.is_sint16: [is_sint16, Cint_Cint.is_sint16]
+  Cint.Cint.is_sint32: [is_sint32, Cint_Cint.is_sint32]
+  Cint.Cint.is_sint64: [is_sint64, Cint_Cint.is_sint64]
+  Cint.Cint.is_sint8: [is_sint8, Cint_Cint.is_sint8]
+  Cint.Cint.is_uint: [is_uint, Cint_Cint.is_uint]
+  Cint.Cint.is_uint16: [is_uint16, Cint_Cint.is_uint16]
+  Cint.Cint.is_uint32: [is_uint32, Cint_Cint.is_uint32]
+  Cint.Cint.is_uint64: [is_uint64, Cint_Cint.is_uint64]
+  Cint.Cint.is_uint8: [is_uint8, Cint_Cint.is_uint8]
+  Cint.Cint.to_bool: [to_bool, Cint_Cint.to_bool]
+  Cint.Cint.to_sint: [to_sint, Cint_Cint.to_sint]
+  Cint.Cint.to_sint16: [to_sint16, Cint_Cint.to_sint16]
+  Cint.Cint.to_sint32: [to_sint32, Cint_Cint.to_sint32]
+  Cint.Cint.to_sint64: [to_sint64, Cint_Cint.to_sint64]
+  Cint.Cint.to_sint8: [to_sint8, Cint_Cint.to_sint8]
+  Cint.Cint.to_uint: [to_uint, Cint_Cint.to_uint]
+  Cint.Cint.to_uint16: [to_uint16, Cint_Cint.to_uint16]
+  Cint.Cint.to_uint32: [to_uint32, Cint_Cint.to_uint32]
+  Cint.Cint.to_uint64: [to_uint64, Cint_Cint.to_uint64]
+  Cint.Cint.to_uint8: [to_uint8, Cint_Cint.to_uint8]
+  Cint.Cint.two_power_abs: [two_power_abs, Cint_Cint.two_power_abs]
+axioms:
+  Cint.Cint.id_sint: Cint_Cint.id_sint
+  Cint.Cint.id_sint16: Cint_Cint.id_sint16
+  Cint.Cint.id_sint32: Cint_Cint.id_sint32
+  Cint.Cint.id_sint64: Cint_Cint.id_sint64
+  Cint.Cint.id_sint8: Cint_Cint.id_sint8
+  Cint.Cint.id_uint: Cint_Cint.id_uint
+  Cint.Cint.id_uint16: Cint_Cint.id_uint16
+  Cint.Cint.id_uint32: Cint_Cint.id_uint32
+  Cint.Cint.id_uint64: Cint_Cint.id_uint64
+  Cint.Cint.id_uint8: Cint_Cint.id_uint8
+  Cint.Cint.incl_int: Cint_Cint.incl_int
+  Cint.Cint.incl_sint: Cint_Cint.incl_sint
+  Cint.Cint.incl_su: Cint_Cint.incl_su
+  Cint.Cint.incl_uint: Cint_Cint.incl_uint
+  Cint.Cint.is_bool0: Cint_Cint.is_bool0
+  Cint.Cint.is_bool1: Cint_Cint.is_bool1
+  Cint.Cint.is_to_sint: Cint_Cint.is_to_sint
+  Cint.Cint.is_to_sint16: Cint_Cint.is_to_sint16
+  Cint.Cint.is_to_sint32: Cint_Cint.is_to_sint32
+  Cint.Cint.is_to_sint64: Cint_Cint.is_to_sint64
+  Cint.Cint.is_to_sint8: Cint_Cint.is_to_sint8
+  Cint.Cint.is_to_uint: Cint_Cint.is_to_uint
+  Cint.Cint.is_to_uint16: Cint_Cint.is_to_uint16
+  Cint.Cint.is_to_uint32: Cint_Cint.is_to_uint32
+  Cint.Cint.is_to_uint64: Cint_Cint.is_to_uint64
+  Cint.Cint.is_to_uint8: Cint_Cint.is_to_uint8
+  Cint.Cint.proj_int16: Cint_Cint.proj_int16
+  Cint.Cint.proj_int32: Cint_Cint.proj_int32
+  Cint.Cint.proj_int64: Cint_Cint.proj_int64
+  Cint.Cint.proj_int8: Cint_Cint.proj_int8
+  Cint.Cint.proj_sint: Cint_Cint.proj_sint
+  Cint.Cint.proj_sint16: Cint_Cint.proj_sint16
+  Cint.Cint.proj_sint32: Cint_Cint.proj_sint32
+  Cint.Cint.proj_sint64: Cint_Cint.proj_sint64
+  Cint.Cint.proj_sint8: Cint_Cint.proj_sint8
+  Cint.Cint.proj_su: Cint_Cint.proj_su
+  Cint.Cint.proj_su_sint: Cint_Cint.proj_su_sint
+  Cint.Cint.proj_su_uint: Cint_Cint.proj_su_uint
+  Cint.Cint.proj_uint: Cint_Cint.proj_uint
+  Cint.Cint.proj_uint16: Cint_Cint.proj_uint16
+  Cint.Cint.proj_uint32: Cint_Cint.proj_uint32
+  Cint.Cint.proj_uint64: Cint_Cint.proj_uint64
+  Cint.Cint.proj_uint8: Cint_Cint.proj_uint8
+  Cint.Cint.proj_us_uint: Cint_Cint.proj_us_uint
+  Cint.Cint.two_power_abs_is_positive: Cint_Cint.two_power_abs_is_positive
+  Cint.Cint.two_power_abs_plus_one: Cint_Cint.two_power_abs_plus_one
+  Cint.Cint.two_power_abs_plus_pos: Cint_Cint.two_power_abs_plus_pos
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.Cint_Cint
+prefix_ops: {}
+types: {}

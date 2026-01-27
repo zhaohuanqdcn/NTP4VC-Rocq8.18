@@ -1,0 +1,37 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'SysfsStr'                               --- *)
+(* ---------------------------------------------------------- *)
+theory A_SysfsStr
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+function l_sysfs_strlen (map addr int) addr : int
+axiom fix_l_sysfs_strlen:
+  forall s : addr.
+  forall mchar_0 : map addr int.
+  let x = mchar_0[(shift_sint8 s 0)] in let a = (shift_sint8 s 1) in
+    let x_1 = (l_sysfs_strlen mchar_0 s) in
+    if ((x = 0) \/ ((x = 10) /\ (mchar_0[a] = 0))) then (x_1 = 0)
+    else (((to_uint64 (1 + ((l_sysfs_strlen mchar_0 a))))) = x_1)
+
+axiom Q_TL_sysfs_strlen:
+  forall s : addr.
+  forall mchar_0 : map addr int
+  [(l_sysfs_strlen mchar_0 s)].
+  (is_uint64 ((l_sysfs_strlen mchar_0 s)))
+
+use import A_Strlen.A_Strlen
+use import int.MinMax as Ig
+use import A_StrnCmp.A_StrnCmp
+
+end
+

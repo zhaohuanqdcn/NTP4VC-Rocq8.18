@@ -1,0 +1,6 @@
+session find = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "find_FIND"
+  "find_FIND_findqtvc"

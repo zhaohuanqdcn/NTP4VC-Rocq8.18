@@ -1,0 +1,3 @@
+session naive = NTP4Verif +
+theories
+  "naive_MatrixMultiplication_mult_naiveqtvc"

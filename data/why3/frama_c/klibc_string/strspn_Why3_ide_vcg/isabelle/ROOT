@@ -1,0 +1,5 @@
+session strspn_Why3_ide = NTP4Verif +
+theories
+  "strspn_Why3_ide_VCstrspn_call___strxspn_pre_2_goal1"
+  "strspn_Why3_ide_VCstrspn_post_goal0"
+  "strspn_Why3_ide_VCstrspn_call___strxspn_pre_3_goal2"

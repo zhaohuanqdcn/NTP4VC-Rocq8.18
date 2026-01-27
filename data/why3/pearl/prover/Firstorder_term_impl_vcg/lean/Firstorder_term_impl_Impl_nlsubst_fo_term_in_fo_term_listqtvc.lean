@@ -1,0 +1,19 @@
+import Why3.Base
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+open Classical
+open Lean4Why3
+namespace Firstorder_term_impl_Impl_nlsubst_fo_term_in_fo_term_listqtvc
+theorem nlsubst_fo_term_in_fo_term_list'vc (t : Types.nlimpl_fo_term_list) (u : Types.nlimpl_fo_term) (x : ℤ) (fact0 : Logic.nlimpl_fo_term_list_ok t) (fact1 : Logic.nlimpl_fo_term_ok u) : let o1 : Spec.fo_term_list ℤ ℤ := Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field t) Spec.subst_id_symbol (Func.update Spec.subst_id_fo_term x (Types.nlimpl_fo_term.model_fo_term_field u)); (∀(a : ℤ) (b : ℤ) (result : ℤ), (if a < b then result = b else result = a) → a ≤ result ∧ b ≤ result) ∧ (∀(o2 : ℤ), Types.nlimpl_fo_term_list.nlfree_var_fo_term_set_abstraction_fo_term_list_field t ≤ o2 ∧ Types.nlimpl_fo_term.nlfree_var_fo_term_set_abstraction_fo_term_field u ≤ o2 → (∀(a : ℤ) (b : ℤ) (result : ℤ), (if a < b then result = b else result = a) → a ≤ result ∧ b ≤ result) ∧ (∀(o3 : ℤ), Types.nlimpl_fo_term_list.nlfree_var_symbol_set_abstraction_fo_term_list_field t ≤ o3 ∧ Types.nlimpl_fo_term.nlfree_var_symbol_set_abstraction_fo_term_field u ≤ o3 → (let o4 : ℤ -> Spec.fo_term ℤ ℤ := Func.const (Spec.fo_term.Var_fo_term (-(1 : ℤ))); let o5 : ℤ -> Spec.fo_term ℤ ℤ := Spec.subst_id_fo_term; let o6 : ℤ -> Spec.symbol ℤ := Func.const (Spec.symbol.Var_symbol (-(1 : ℤ))); let o7 : ℤ -> Spec.symbol ℤ := Spec.subst_id_symbol; let o8 : Types.nl_fo_term ℤ ℤ := Types.nlimpl_fo_term.nlrepr_fo_term_field u; let o9 : Types.nl_fo_term_list ℤ ℤ := Types.nlimpl_fo_term_list.nlrepr_fo_term_list_field t; (Logic.correct_indexes_fo_term_list o9 ∧ Logic.correct_indexes_fo_term o8 ∧ Logic.bound_depth_of_symbol_in_fo_term o8 = (0 : ℤ) ∧ Logic.bound_depth_of_fo_term_in_fo_term o8 = (0 : ℤ)) ∧ (∀(o10 : Types.nl_fo_term_list ℤ ℤ), Logic.correct_indexes_fo_term_list o10 ∧ Logic.bound_depth_of_symbol_in_fo_term_list o10 = Logic.bound_depth_of_symbol_in_fo_term_list o9 ∧ Logic.bound_depth_of_fo_term_in_fo_term_list o10 = Logic.bound_depth_of_fo_term_in_fo_term_list o9 ∧ Logic.nlmodel_fo_term_list o10 o7 o6 o5 o4 = Logic.nlmodel_fo_term_list o9 o7 o6 (Func.update o5 x (Logic.nlmodel_fo_term o8 o7 (Func.const (Spec.symbol.Var_symbol (-(1 : ℤ)))) o5 (Func.const (Spec.fo_term.Var_fo_term (-(1 : ℤ)))))) o4 → Logic.nlimpl_fo_term_list_ok (Types.nlimpl_fo_term_list.mk o10 o3 o2 o1) ∧ o1 = Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field t) Spec.subst_id_symbol (Func.update Spec.subst_id_fo_term x (Types.nlimpl_fo_term.model_fo_term_field u))))))
+  := sorry
+end Firstorder_term_impl_Impl_nlsubst_fo_term_in_fo_term_listqtvc

@@ -1,0 +1,10 @@
+session get_identifier_Why3_ide = NTP4Verif +
+theories
+  "get_identifier_Why3_ide_VCget_identifier_post_2_part5_goal2"
+  "get_identifier_Why3_ide_VCget_identifier_assert_part1_goal5"
+  "get_identifier_Why3_ide_VCget_identifier_assert_part3_goal7"
+  "get_identifier_Why3_ide_VCget_identifier_assert_rte_mem_access_goal3"
+  "get_identifier_Why3_ide_VCget_identifier_post_part10_goal0"
+  "get_identifier_Why3_ide_VCget_identifier_assert_part2_goal6"
+  "get_identifier_Why3_ide_VCget_identifier_assert_rte_shift_goal4"
+  "get_identifier_Why3_ide_VCget_identifier_post_2_part4_goal1"

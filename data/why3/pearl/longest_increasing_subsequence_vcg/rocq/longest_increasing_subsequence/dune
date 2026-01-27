@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name longest_increasing_subsequence_vcg.longest_increasing_subsequence)
+(theories Why3))

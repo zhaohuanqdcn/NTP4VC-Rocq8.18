@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name remove_duplicate_vcg)
+(theories remove_duplicate_vcg.remove_duplicate Why3 Why3.why3.Ref))

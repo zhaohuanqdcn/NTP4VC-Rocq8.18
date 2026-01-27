@@ -1,0 +1,138 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 732) in 'float_quat_wrap_shortest'' in 'float_quat_inv_comp_norm_shortest' at call 'float_quat_wrap_shortest' (file math/pprz_algebra_float.c, line 398)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_inv_comp_norm_shortest_call_float_quat_wrap_sh____2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import S3_FloatQuat.S3_FloatQuat
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 732) in 'float_quat_wrap_shortest'' in 'float_quat_inv_comp_norm_shortest' at call 'float_quat_wrap_shortest' (file math/pprz_algebra_float.c, line 398)
+":
+*)
+goal goal0:
+  forall f_2 f_1 f : s3_floatquat.
+  let r = f_1.f3_floatquat_qi in
+  let r_1 = f_1.f3_floatquat_qx in
+  let r_2 = f_1.f3_floatquat_qy in
+  let r_3 = f_1.f3_floatquat_qz in
+  let r_4 = f_2.f3_floatquat_qi in
+  let r_5 = f_2.f3_floatquat_qx in
+  let r_6 = f_2.f3_floatquat_qy in
+  let r_7 = f_2.f3_floatquat_qz in
+  let r_8 = f.f3_floatquat_qi in
+  let r_9 = f.f3_floatquat_qx in
+  let r_10 = f.f3_floatquat_qy in
+  let r_11 = f.f3_floatquat_qz in
+  ((is_finite32 r)) ->
+  ((is_finite32 r_1)) ->
+  ((is_finite32 r_2)) ->
+  ((is_finite32 r_3)) ->
+  ((is_finite32 r_4)) ->
+  ((is_finite32 r_5)) ->
+  ((is_finite32 r_6)) ->
+  ((is_finite32 r_7)) ->
+  ((is_float32 r_8)) ->
+  ((is_float32 r_9)) ->
+  ((is_float32 r_10)) ->
+  ((is_float32 r_11)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_float32 r_2)) ->
+  ((is_float32 r_3)) ->
+  ((is_float32 r_4)) ->
+  ((is_float32 r_5)) ->
+  ((is_float32 r_6)) ->
+  ((is_float32 r_7)) ->
+  (((is_finite32 r_8)) /\ ((is_finite32 r_9)) /\ ((is_finite32 r_10)) /\
+   ((is_finite32 r_11)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 706) in 'float_quat_normalize'' in 'float_quat_inv_comp_norm_shortest' at call 'float_quat_normalize' (file math/pprz_algebra_float.c, line 399)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_inv_comp_norm_shortest_call_float_quat_normali____2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import S3_FloatQuat.S3_FloatQuat
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_float.h, line 706) in 'float_quat_normalize'' in 'float_quat_inv_comp_norm_shortest' at call 'float_quat_normalize' (file math/pprz_algebra_float.c, line 399)
+":
+*)
+goal goal1:
+  forall f_3 f_2 f_1 f : s3_floatquat.
+  let r = f.f3_floatquat_qi in
+  let r_1 = f.f3_floatquat_qx in
+  let r_2 = f.f3_floatquat_qy in
+  let r_3 = f.f3_floatquat_qz in
+  let r_4 = f_2.f3_floatquat_qi in
+  let r_5 = f_2.f3_floatquat_qx in
+  let r_6 = f_2.f3_floatquat_qy in
+  let r_7 = f_2.f3_floatquat_qz in
+  let r_8 = f_3.f3_floatquat_qi in
+  let r_9 = f_3.f3_floatquat_qx in
+  let r_10 = f_3.f3_floatquat_qy in
+  let r_11 = f_3.f3_floatquat_qz in
+  let r_12 = f_1.f3_floatquat_qi in
+  let r_13 = f_1.f3_floatquat_qx in
+  let r_14 = f_1.f3_floatquat_qy in
+  let r_15 = f_1.f3_floatquat_qz in
+  ((is_finite32 r)) ->
+  ((is_finite32 r_1)) ->
+  ((is_finite32 r_2)) ->
+  ((is_finite32 r_3)) ->
+  ((is_finite32 r_4)) ->
+  ((is_finite32 r_5)) ->
+  ((is_finite32 r_6)) ->
+  ((is_finite32 r_7)) ->
+  ((is_finite32 r_8)) ->
+  ((is_finite32 r_9)) ->
+  ((is_finite32 r_10)) ->
+  ((is_finite32 r_11)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_float32 r_2)) ->
+  ((is_float32 r_3)) ->
+  ((is_float32 r_12)) ->
+  ((is_float32 r_13)) ->
+  ((is_float32 r_14)) ->
+  ((is_float32 r_15)) ->
+  ((is_float32 r_4)) ->
+  ((is_float32 r_5)) ->
+  ((is_float32 r_6)) ->
+  ((is_float32 r_7)) ->
+  ((is_float32 r_8)) ->
+  ((is_float32 r_9)) ->
+  ((is_float32 r_10)) ->
+  ((is_float32 r_11)) ->
+  (((is_finite32 r_12)) /\ ((is_finite32 r_13)) /\ ((is_finite32 r_14)) /\
+   ((is_finite32 r_15)))
+
+end
+

@@ -1,0 +1,28 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.prover.lib.lean.Unification.Types
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.BacktrackArray.Types
+import pearl.prover.lib.lean.Predicates.Pred
+import pearl.prover.lib.lean.BacktrackArray.Logic
+import pearl.prover.lib.lean.Choice.Choice
+import pearl.prover.lib.lean.BacktrackArray.Impl
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+import pearl.prover.lib.lean.Firstorder_term_impl.Impl
+import pearl.prover.lib.lean.Unification.Logic
+open Classical
+open Lean4Why3
+namespace Unification_Impl_unif_conflictsqtvc
+theorem unif_conflicts'vc (lv : List ℤ) (rhob : Types.t Types.sdata) (rho : Types.unifier_subst) (fact0 : ∀(x : ℤ), x ∈ lv → (0 : ℤ) ≤ x) (fact1 : Logic.unifier_subst_ok rhob rho) : match lv with | ([] : List ℤ) => Logic.unifier_subst_ok rhob rho ∧ Logic.precede rhob rhob | List.cons v0 q => (Logic.correct rhob ∧ (0 : ℤ) ≤ v0) ∧ (let o1 : List Types.sdata := Types.timestamp.table (Logic.current_timestamp rhob) v0; Logic.list_forall (Types.t.inv rhob) o1 → (Logic.list_forall Logic.sdata_inv o1 ∧ Logic.unifier_subst_ok rhob rho) ∧ (∀(rhob1 : Types.t Types.sdata), Types.t.inv rhob1 = Types.t.inv rhob → Logic.unifier_subst_ok rhob1 rho ∧ Logic.precede rhob rhob1 → ((∀(x : ℤ), x ∈ q → (0 : ℤ) ≤ x) ∧ Logic.unifier_subst_ok rhob1 rho) ∧ (∀(rhob2 : Types.t Types.sdata), Types.t.inv rhob2 = Types.t.inv rhob1 → (Logic.unifier_subst_ok rhob2 rho ∧ Logic.precede rhob1 rhob2 → Logic.unifier_subst_ok rhob2 rho ∧ Logic.precede rhob rhob2) ∧ (Logic.correct rhob2 ∧ Logic.precede rhob1 rhob2 → Logic.correct rhob2 ∧ Logic.precede rhob rhob2))))
+  := sorry
+end Unification_Impl_unif_conflictsqtvc

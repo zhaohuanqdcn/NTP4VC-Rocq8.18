@@ -1,0 +1,40 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #15)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+predicate p_finite_floatrates (mflt_0 : map addr real) (r : addr) =
+    ((is_finite32 mflt_0[(shiftfield_f7_floatrates_p r)])) /\
+    ((is_finite32 mflt_0[(shiftfield_f7_floatrates_q r)])) /\
+    ((is_finite32 mflt_0[(shiftfield_f7_floatrates_r r)]))
+
+predicate p_rvalid_floatrates (malloc_0 : map int int)
+    (mflt_0 : map addr real) (r : addr) =
+    ((p_finite_floatrates mflt_0 r)) /\ ((valid_rd malloc_0 r 3))
+
+predicate p_finite_floatquat (mflt_0 : map addr real) (q : addr) =
+    ((is_finite32 mflt_0[(shiftfield_f3_floatquat_qi q)])) /\
+    ((is_finite32 mflt_0[(shiftfield_f3_floatquat_qx q)])) /\
+    ((is_finite32 mflt_0[(shiftfield_f3_floatquat_qy q)])) /\
+    ((is_finite32 mflt_0[(shiftfield_f3_floatquat_qz q)]))
+
+predicate p_valid_floatquat (malloc_0 : map int int) (mflt_0 : map addr real)
+    (q : addr) = ((p_finite_floatquat mflt_0 q)) /\ ((valid_rw malloc_0 q 4))
+
+end
+

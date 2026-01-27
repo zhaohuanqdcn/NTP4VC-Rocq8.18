@@ -1,0 +1,23 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.string_search_vcg.lean.string_search.Spec
+import pearl.string_search_vcg.lean.string_search.Occurs
+import Why3.ocaml.Exceptions
+open Classical
+open Lean4Why3
+namespace string_search_BadShiftTable_searchqtvc
+axiom t : Type -> Type
+axiom inhabited_axiom_t {χ : Type} [Inhabited χ] : Inhabited (t χ)
+attribute [instance] inhabited_axiom_t
+axiom to_fmap :  {χ : Type} -> [Inhabited χ] -> t χ -> Finmap (fun (_ : (BitVec 8)) => χ)
+axiom bad_shift_table : Type
+axiom inhabited_axiom_bad_shift_table : Inhabited bad_shift_table
+attribute [instance] inhabited_axiom_bad_shift_table
+axiom pat : bad_shift_table -> List (BitVec 8)
+axiom sht : bad_shift_table -> t (BitVec 63)
+axiom bad_shift_table'invariant (self : bad_shift_table) : (∀(j : ℤ) (c : BitVec 8), (0 : ℤ) ≤ j ∧ j < Int.ofNat (List.length (pat self)) → c = (pat self)[Int.toNat j]! → c ∈ to_fmap (sht self)) ∧ (∀(c : BitVec 8), c ∈ to_fmap (sht self) → (1 : ℤ) ≤ BitVec.toInt (Finmap.lookup! (to_fmap (sht self)) c) ∧ BitVec.toInt (Finmap.lookup! (to_fmap (sht self)) c) ≤ Int.ofNat (List.length (pat self)) + (1 : ℤ)) ∧ (∀(c : BitVec 8), c ∈ to_fmap (sht self) → (∀(j : ℤ), (1 : ℤ) ≤ j ∧ j < BitVec.toInt (Finmap.lookup! (to_fmap (sht self)) c) → ¬(pat self)[Int.toNat (Int.ofNat (List.length (pat self)) - j)]! = c))
+noncomputable def bad_shift_table'eq (a : bad_shift_table) (b : bad_shift_table) := pat a = pat b ∧ sht a = sht b
+axiom bad_shift_table'inj (a : bad_shift_table) (b : bad_shift_table) (fact0 : bad_shift_table'eq a b) : a = b
+theorem search'vc (bst : bad_shift_table) (text : List (BitVec 8)) (fact0 : List.length (pat bst) ≤ List.length text) : let pat1 : List (BitVec 8) := pat bst; ∀(m : BitVec 63), BitVec.toInt m = Int.ofNat (List.length pat1) ∧ (0 : ℤ) ≤ Int.ofNat (List.length pat1) → (∀(n : BitVec 63), BitVec.toInt n = Int.ofNat (List.length text) ∧ (0 : ℤ) ≤ Int.ofNat (List.length text) → (((0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) ≤ BitVec.toInt n) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < (0 : ℤ) → j ≤ BitVec.toInt n - BitVec.toInt m → ¬List.drop (Int.toNat j) (List.take (Int.toNat (BitVec.toInt m) - Int.toNat j) text) = pat1)) ∧ (∀(i : BitVec 63), ((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i ≤ BitVec.toInt n) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < BitVec.toInt i → j ≤ BitVec.toInt n - BitVec.toInt m → ¬List.drop (Int.toNat j) (List.take (Int.toNat (BitVec.toInt m) - Int.toNat j) text) = pat1) → int'63_in_bounds (BitVec.toInt n - BitVec.toInt m) ∧ (∀(o1 : BitVec 63), BitVec.toInt o1 = BitVec.toInt n - BitVec.toInt m → (if BitVec.toInt i ≤ BitVec.toInt o1 then ((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i ≤ Int.ofNat (List.length text) - Int.ofNat (List.length pat1)) ∧ (if Spec.matches1 pat1 text (BitVec.toInt i) then (-(1 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i ≤ Int.ofNat (List.length text) - Int.ofNat (List.length (pat bst))) ∧ (if BitVec.toInt i = -(1 : ℤ) then ∀(j : ℤ), ¬Spec.matches1 (pat bst) text j else Spec.matches1 (pat bst) text (BitVec.toInt i)) else int'63_in_bounds (BitVec.toInt n - BitVec.toInt m) ∧ (∀(o2 : BitVec 63), BitVec.toInt o2 = BitVec.toInt n - BitVec.toInt m → (BitVec.toInt i = BitVec.toInt o2 → i = o2) → (if i = o2 then (-(1 : ℤ) ≤ -(1 : ℤ) ∧ -(1 : ℤ) ≤ Int.ofNat (List.length text) - Int.ofNat (List.length (pat bst))) ∧ (∀(j : ℤ), ¬Spec.matches1 (pat bst) text j) else int'63_in_bounds (BitVec.toInt i + BitVec.toInt m) ∧ (∀(o3 : BitVec 63), BitVec.toInt o3 = BitVec.toInt i + BitVec.toInt m → ((0 : ℤ) ≤ BitVec.toInt o3 ∧ BitVec.toInt o3 < Int.ofNat (List.length text)) ∧ (let c : BitVec 8 := text[Int.toNat (BitVec.toInt o3)]!; (if c ∈ to_fmap (sht bst) then c ∈ to_fmap (sht bst) else int'63_in_bounds (BitVec.toInt m + (1 : ℤ))) ∧ (∀(o4 : BitVec 63), (if c ∈ to_fmap (sht bst) then let o5 : t (BitVec 63) := sht bst; o4 = Finmap.lookup! (to_fmap o5) c ∧ o4 = Option.the (Finmap.lookup c (to_fmap o5)) else BitVec.toInt o4 = BitVec.toInt m + (1 : ℤ)) → int'63_in_bounds (BitVec.toInt i + BitVec.toInt o4) ∧ (∀(o5 : BitVec 63), BitVec.toInt o5 = BitVec.toInt i + BitVec.toInt o4 → ((0 : ℤ) ≤ BitVec.toInt n - BitVec.toInt m - BitVec.toInt i ∧ BitVec.toInt n - BitVec.toInt m - BitVec.toInt o5 < BitVec.toInt n - BitVec.toInt m - BitVec.toInt i) ∧ ((0 : ℤ) ≤ BitVec.toInt o5 ∧ BitVec.toInt o5 ≤ BitVec.toInt n) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < BitVec.toInt o5 → j ≤ BitVec.toInt n - BitVec.toInt m → ¬List.drop (Int.toNat j) (List.take (Int.toNat (BitVec.toInt m) - Int.toNat j) text) = pat1)))))))) else (-(1 : ℤ) ≤ -(1 : ℤ) ∧ -(1 : ℤ) ≤ Int.ofNat (List.length text) - Int.ofNat (List.length (pat bst))) ∧ (∀(j : ℤ), ¬Spec.matches1 (pat bst) text j)))))
+  := sorry
+end string_search_BadShiftTable_searchqtvc

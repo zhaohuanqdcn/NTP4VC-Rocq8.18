@@ -1,0 +1,16 @@
+session my_strassen = NTP4Verif +
+theories
+  "my_strassen_MatrixMultiplication_blitqtvc"
+  "my_strassen_MatrixMultiplication_sub_wsqtvc"
+  "my_strassen_MatrixMultiplication_block_wsqtvc"
+  "my_strassen_MatrixMultiplication_mult_ikjqtvc"
+  "my_strassen_MatrixMultiplication_blockqtvc"
+  "my_strassen_MatrixMultiplication_addqtvc"
+  "my_strassen_MatrixMultiplication_mul_naiveqtvc"
+  "my_strassen_MatrixMultiplication_strassenqtvc"
+  "my_strassen_MatrixMultiplication_paddingqtvc"
+  "my_strassen_MatrixMultiplication_subqtvc"
+  "my_strassen_MatrixMultiplication_assoc_proofqtvc"
+  "my_strassen_MatrixMultiplication_mult_ijkqtvc"
+  "my_strassen_MatrixMultiplication_double_blockqtvc"
+  "my_strassen_MatrixMultiplication_add_wsqtvc"

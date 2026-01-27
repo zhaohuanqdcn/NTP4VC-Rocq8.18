@@ -1,0 +1,887 @@
+(* ---------------------------------------------------------- *)
+(* --- Complete behaviors 'CORRECT', 'INVAL'              --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_complete_CORRECT_INVAL
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic5.Axiomatic5
+
+(*
+goal WP "expl:Complete behaviors 'CORRECT', 'INVAL'":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 t_1[a_2])) ->
+  ((null = a) \/ ((valid_rd t a_2 2))) ->
+  ((null = a) \/ (not (p_kstrtobool_fmt t_1 a)) \/
+   ((null <> a) /\ ((p_kstrtobool_fmt t_1 a))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Disjoint behaviors 'CORRECT', 'INVAL'              --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_disjoint_CORRECT_INVAL
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic5.Axiomatic5
+
+(*
+goal WP "expl:Disjoint behaviors 'CORRECT', 'INVAL'":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 t_1[a_2])) ->
+  ((null = a) \/ ((valid_rd t a_2 2))) ->
+  ((null = a) \/ (not (p_kstrtobool_fmt t_1 a)) \/
+   ((null <> a) /\ ((p_kstrtobool_fmt t_1 a))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 44) in 'kstrtobool' (2/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic5.Axiomatic5
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 44) in 'kstrtobool' (2/7)":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_2[a_2] in
+  let x_1 = t_1[a_1] in
+  (null <> a) ->
+  (x <> 48) ->
+  (x <> 49) ->
+  (x <> 78) ->
+  (x <> 79) ->
+  (x <> 89) ->
+  (x <> 110) ->
+  (x <> 111) ->
+  (x <> 121) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint8 x_1)) ->
+  ((p_kstrtobool_fmt_true t_2 a)) ->
+  ((p_kstrtobool_fmt t_2 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  (x_1 = 1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 44) in 'kstrtobool' (3/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic5.Axiomatic5
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 44) in 'kstrtobool' (3/7)":
+*)
+goal goal3:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_2[(shift_sint8 a 1)] in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint8 a 0) in
+  let x_2 = t_2[a_2] in
+  (null <> a) ->
+  (x <> 70) ->
+  (x <> 78) ->
+  (x <> 102) ->
+  (x <> 110) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint8 x_1)) ->
+  ((p_kstrtobool_fmt_true t_2 a)) ->
+  ((p_kstrtobool_fmt t_2 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_2)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x_2 = 79) \/ (x_2 = 111)) ->
+  (x_1 = 1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 44) in 'kstrtobool' (5/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 44) in 'kstrtobool' (5/7)":
+*)
+goal goal4:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  let x_1 = t_1[(shift_sint8 a 1)] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_kstrtobool_fmt_true t_1 a)) ->
+  ((p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 79) \/ (x = 111)) ->
+  ((x_1 = 70) \/ (x_1 = 102)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 44) in 'kstrtobool' (7/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_part7
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 44) in 'kstrtobool' (7/7)":
+*)
+goal goal5:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_kstrtobool_fmt_true t_1 a)) ->
+  ((p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 48) \/ (x = 78) \/ (x = 110)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 45) in 'kstrtobool' (2/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_2_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic5.Axiomatic5
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 45) in 'kstrtobool' (2/7)":
+*)
+goal goal6:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_2[a_2] in
+  let x_1 = t_1[a_1] in
+  (null <> a) ->
+  (x <> 48) ->
+  (x <> 49) ->
+  (x <> 78) ->
+  (x <> 79) ->
+  (x <> 89) ->
+  (x <> 110) ->
+  (x <> 111) ->
+  (x <> 121) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint8 x_1)) ->
+  ((p_kstrtobool_fmt_false t_2 a)) ->
+  ((p_kstrtobool_fmt t_2 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  (x_1 = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 45) in 'kstrtobool' (3/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_2_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic5.Axiomatic5
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 45) in 'kstrtobool' (3/7)":
+*)
+goal goal7:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_2[(shift_sint8 a 1)] in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint8 a 0) in
+  let x_2 = t_2[a_2] in
+  (null <> a) ->
+  (x <> 70) ->
+  (x <> 78) ->
+  (x <> 102) ->
+  (x <> 110) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint8 x_1)) ->
+  ((p_kstrtobool_fmt_false t_2 a)) ->
+  ((p_kstrtobool_fmt t_2 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_2)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x_2 = 79) \/ (x_2 = 111)) ->
+  (x_1 = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 45) in 'kstrtobool' (4/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_2_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 45) in 'kstrtobool' (4/7)":
+*)
+goal goal8:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  let x_1 = t_1[(shift_sint8 a 1)] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_kstrtobool_fmt_false t_1 a)) ->
+  ((p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 79) \/ (x = 111)) ->
+  ((x_1 = 78) \/ (x_1 = 110)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 45) in 'kstrtobool' (6/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_2_part6
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 45) in 'kstrtobool' (6/7)":
+*)
+goal goal9:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_kstrtobool_fmt_false t_1 a)) ->
+  ((p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 49) \/ (x = 89) \/ (x = 121)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 46) in 'kstrtobool' (2/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_3_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 46) in 'kstrtobool' (2/7)":
+*)
+goal goal10:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  (null <> a) ->
+  (x <> 48) ->
+  (x <> 49) ->
+  (x <> 78) ->
+  (x <> 79) ->
+  (x <> 89) ->
+  (x <> 110) ->
+  (x <> 111) ->
+  (x <> 121) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'CORRECT' (file src/kstrtobool.h, line 46) in 'kstrtobool' (3/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_CORRECT_post_3_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'CORRECT' (file src/kstrtobool.h, line 46) in 'kstrtobool' (3/7)":
+*)
+goal goal11:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[(shift_sint8 a 1)] in
+  let a_2 = (shift_sint8 a 0) in
+  let x_1 = t_1[a_2] in
+  (null <> a) ->
+  (x <> 70) ->
+  (x <> 78) ->
+  (x <> 102) ->
+  (x <> 110) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x_1 = 79) \/ (x_1 = 111)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'INVAL' (file src/kstrtobool.h, line 40) in 'kstrtobool' (4/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_INVAL_post_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'INVAL' (file src/kstrtobool.h, line 40) in 'kstrtobool' (4/7)":
+*)
+goal goal12:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  let x_1 = t_1[(shift_sint8 a 1)] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (not (p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 79) \/ (x = 111)) ->
+  ((x_1 = 78) \/ (x_1 = 110)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'INVAL' (file src/kstrtobool.h, line 40) in 'kstrtobool' (5/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_INVAL_post_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'INVAL' (file src/kstrtobool.h, line 40) in 'kstrtobool' (5/7)":
+*)
+goal goal13:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  let x_1 = t_1[(shift_sint8 a 1)] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (not (p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 79) \/ (x = 111)) ->
+  ((x_1 = 70) \/ (x_1 = 102)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'INVAL' (file src/kstrtobool.h, line 40) in 'kstrtobool' (6/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_INVAL_post_part6
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'INVAL' (file src/kstrtobool.h, line 40) in 'kstrtobool' (6/7)":
+*)
+goal goal14:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (not (p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 49) \/ (x = 89) \/ (x = 121)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'INVAL' (file src/kstrtobool.h, line 40) in 'kstrtobool' (7/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_INVAL_post_part7
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'INVAL' (file src/kstrtobool.h, line 40) in 'kstrtobool' (7/7)":
+*)
+goal goal15:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (not (p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 48) \/ (x = 78) \/ (x = 110)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'INVAL' nothing in 'kstrtobool' (2/11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_INVAL_assign_part02
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns for 'INVAL' nothing in 'kstrtobool' (2/11)":
+*)
+goal goal16:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (not (p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 49) \/ (x = 89) \/ (x = 121)) ->
+  ((invalid t a_1 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'INVAL' nothing in 'kstrtobool' (4/11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_INVAL_assign_part04
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns for 'INVAL' nothing in 'kstrtobool' (4/11)":
+*)
+goal goal17:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (not (p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 48) \/ (x = 78) \/ (x = 110)) ->
+  ((invalid t a_1 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'INVAL' nothing in 'kstrtobool' (6/11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_INVAL_assign_part06
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns for 'INVAL' nothing in 'kstrtobool' (6/11)":
+*)
+goal goal18:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  let x_1 = t_1[(shift_sint8 a 1)] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (not (p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 79) \/ (x = 111)) ->
+  ((x_1 = 78) \/ (x_1 = 110)) ->
+  ((invalid t a_1 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'INVAL' nothing in 'kstrtobool' (8/11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCkstrtobool_INVAL_assign_part08
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Axiomatic5.Axiomatic5
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns for 'INVAL' nothing in 'kstrtobool' (8/11)":
+*)
+goal goal19:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_2] in
+  let x_1 = t_1[(shift_sint8 a 1)] in
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (not (p_kstrtobool_fmt t_1 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rd t a_2 2)) ->
+  ((x = 79) \/ (x = 111)) ->
+  ((x_1 = 70) \/ (x_1 = 102)) ->
+  ((invalid t a_1 1))
+
+end
+

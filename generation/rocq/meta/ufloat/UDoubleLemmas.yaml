@@ -1,0 +1,34 @@
+atoms:
+  ufloat.UDoubleLemmas.real_fun: [real_fun, UDoubleLemmas.real_fun]
+  ufloat.UDoubleLemmas.udiv_closure: [udiv_closure, UDoubleLemmas.udiv_closure]
+axioms:
+  ufloat.UDoubleLemmas.cos_double_error_propagation: [cos_double_error_propagation,
+    UDoubleLemmas.cos_double_error_propagation]
+  ufloat.UDoubleLemmas.exp_double_error_propagation: [exp_double_error_propagation,
+    UDoubleLemmas.exp_double_error_propagation]
+  ufloat.UDoubleLemmas.log10_double_error_propagation: [log10_double_error_propagation,
+    UDoubleLemmas.log10_double_error_propagation]
+  ufloat.UDoubleLemmas.log2_double_error_propagation: [log2_double_error_propagation,
+    UDoubleLemmas.log2_double_error_propagation]
+  ufloat.UDoubleLemmas.log_double_error_propagation: [log_double_error_propagation,
+    UDoubleLemmas.log_double_error_propagation]
+  ufloat.UDoubleLemmas.real_fun'def: [real_fun'def, UDoubleLemmas.real_fun'def]
+  ufloat.UDoubleLemmas.sin_double_error_propagation: [sin_double_error_propagation,
+    UDoubleLemmas.sin_double_error_propagation]
+  ufloat.UDoubleLemmas.sum_double_error_propagation: [sum_double_error_propagation,
+    UDoubleLemmas.sum_double_error_propagation]
+  ufloat.UDoubleLemmas.uadd_double_error_propagation: [uadd_double_error_propagation,
+    UDoubleLemmas.uadd_double_error_propagation]
+  ufloat.UDoubleLemmas.udiv_exact_single_error_propagation: [udiv_exact_single_error_propagation,
+    UDoubleLemmas.udiv_exact_single_error_propagation]
+  ufloat.UDoubleLemmas.umul_double_error_propagation: [umul_double_error_propagation,
+    UDoubleLemmas.umul_double_error_propagation]
+  ufloat.UDoubleLemmas.usub_double_error_propagation: [usub_double_error_propagation,
+    UDoubleLemmas.usub_double_error_propagation]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.ufloat.UDoubleLemmas
+prefix_ops: {}
+types: {}

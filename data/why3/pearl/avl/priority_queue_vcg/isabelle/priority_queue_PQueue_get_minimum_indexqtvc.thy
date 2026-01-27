@@ -1,0 +1,99 @@
+theory priority_queue_PQueue_get_minimum_indexqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.int_NumOf" "../../lib/isabelle/avl_SelectionTypes"
+begin
+consts balancing :: "nat"
+axiomatization where balancing'def:   "(0 :: int) < int balancing"
+typedecl 'a t
+typedecl  t1
+consts key :: "'a t \<Rightarrow> t1"
+consts le :: "t1 \<Rightarrow> t1 \<Rightarrow> bool"
+axiomatization where Refl:   "le x x"
+  for x :: "t1"
+axiomatization where Trans:   "le x z"
+ if "le x y"
+ and "le y z"
+  for x :: "t1"
+  and y :: "t1"
+  and z :: "t1"
+consts eq :: "t1 \<Rightarrow> t1 \<Rightarrow> bool"
+axiomatization where eq_def:   "eq x y \<longleftrightarrow> le x y \<and> le y x"
+  for x :: "t1"
+  and y :: "t1"
+consts lt :: "t1 \<Rightarrow> t1 \<Rightarrow> bool"
+axiomatization where lt_def:   "lt x y \<longleftrightarrow> le x y \<and> \<not>le y x"
+  for x :: "t1"
+  and y :: "t1"
+axiomatization where Total:   "le x y \<or> le y x"
+  for x :: "t1"
+  and y :: "t1"
+typedecl  t2
+definition op :: "t1 option \<Rightarrow> t1 option \<Rightarrow> t1 option"
+  where "op x y = (case x of None \<Rightarrow> y | Some a \<Rightarrow> (case y of None \<Rightarrow> x | Some b \<Rightarrow> (if lt b a then y else x)))" for x y
+axiomatization where assoc:   "op a (op b c) = op (op a b) c"
+  for a :: "t1 option"
+  and b :: "t1 option"
+  and c :: "t1 option"
+axiomatization where neutral'0:   "op x None = x"
+  for x :: "t1 option"
+axiomatization where neutral'1:   "x = op None x"
+  for x :: "t1 option"
+consts agg :: "('a \<Rightarrow> t1 option) \<Rightarrow> 'a list \<Rightarrow> t1 option"
+axiomatization where agg'def:   "if int (length s) = (0 :: int) then agg f s = None else agg f s = op (f (s ! (0 :: nat))) (agg f (drop (1 :: nat) s))"
+  for s :: "'a list"
+  and f :: "'a \<Rightarrow> t1 option"
+definition measure :: "'a t \<Rightarrow> t1 option"
+  where "measure d = Some (key d)" for d
+typedecl  selector
+definition selection_possible :: "'e \<Rightarrow> 'g list \<Rightarrow> _"
+  where "selection_possible x s \<longleftrightarrow> \<not>int (length s) = (0 :: int)" for x s
+definition lower_bound :: "t1 \<Rightarrow> 'a t list \<Rightarrow> _"
+  where "lower_bound x s \<longleftrightarrow> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length s) \<longrightarrow> le x (key (s ! nat i)))" for x s
+definition lower_bound_strict :: "t1 \<Rightarrow> 'a t list \<Rightarrow> _"
+  where "lower_bound_strict x s \<longleftrightarrow> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length s) \<longrightarrow> lt x (key (s ! nat i)))" for x s
+definition selected :: "'e \<Rightarrow> 'a t split \<Rightarrow> _"
+  where "selected x e \<longleftrightarrow> (case middle e of (None :: 'a t option) \<Rightarrow> False | Some d \<Rightarrow> lower_bound (key d) (right1 e) \<and> lower_bound_strict (key d) (left1 e))" for x e
+datatype 'a tree = Empty | Node "'a tree" "'a t" "'a tree" "nat" "t1 option"
+datatype 'a m = m'mk (seq: "'a t list") (hgt: "int")
+definition node_model :: "'a list \<Rightarrow> 'a \<Rightarrow> 'a list \<Rightarrow> 'a list"
+  where "node_model l d r = l @ Cons d r" for l d r
+fun seq_model :: "'a tree \<Rightarrow> 'a t list"
+  where "seq_model (Empty :: 'a tree) = ([] :: 'a t list)"
+      | "seq_model (Node l d r x x0) = node_model (seq_model l) d (seq_model r)" for l d r x x0
+fun real_height :: "'a tree \<Rightarrow> int"
+  where "real_height (Empty :: 'a tree) = (0 :: int)"
+      | "real_height (Node l x r x0 x1) = (let hl :: int = real_height l; hr :: int = real_height r in (1 :: int) + (if hl < hr then hr else hl))" for l x r x0 x1
+consts measure_closure :: "'a t \<Rightarrow> t1 option"
+axiomatization where measure_closure_def:   "measure_closure y = measure y"
+  for y :: "'a t"
+fun balanced :: "'a tree \<Rightarrow> _"
+  where "balanced (Empty :: 'a tree) = True"
+      | "balanced (Node l x r h m1) = (int h = real_height (Node l x r h m1) \<and> m1 = agg measure_closure (seq_model (Node l x r h m1)) \<and> (-int balancing \<le> real_height r - real_height l \<and> real_height r - real_height l \<le> int balancing) \<and> balanced l \<and> balanced r)" for l x r h m1
+typedecl 'a t3
+consts repr :: "'a t3 \<Rightarrow> 'a tree"
+consts m1 :: "'a t3 \<Rightarrow> 'a m"
+axiomatization where t'invariant'0:   "balanced (repr self)"
+  for self :: "'a t3"
+axiomatization where t'invariant'1:   "seq (m1 self) = seq_model (repr self)"
+  for self :: "'a t3"
+axiomatization where t'invariant'2:   "hgt (m1 self) = real_height (repr self)"
+  for self :: "'a t3"
+definition t'eq :: "'a t3 \<Rightarrow> 'a t3 \<Rightarrow> _"
+  where "t'eq a b \<longleftrightarrow> repr a = repr b \<and> m1 a = m1 b" for a b
+axiomatization where t'inj:   "a = b"
+ if "t'eq a b"
+  for a :: "'a t3"
+  and b :: "'a t3"
+datatype 'a view = AEmpty | ANode "'a t3" "'a t" "'a t3" "nat" "t1 option"
+typedecl  part
+typedecl 'a t4
+datatype 'a m2 = m'mk1 (bag: "'a t \<Rightarrow> int") (minimum: "'a t") (card: "int")
+consts to_bag :: "'a list \<Rightarrow> 'a \<Rightarrow> int"
+axiomatization where to_bag'def:   "to_bag s x = int (count_list (drop (0 :: nat) (take (length s - (0 :: nat)) s)) x)"
+  for s :: "'a list"
+  and x :: "'a"
+theorem get_minimum_index'vc:
+  fixes s :: "'a t list"
+  assumes fact0: "\<not>int (length s) = (0 :: int)"
+  shows "let o1 :: int = int (length s) - (1 :: int) in ((0 :: int) \<le> o1 + (1 :: int) \<longrightarrow> (lower_bound_strict (key (s ! (0 :: nat))) (take (0 :: nat) s) \<and> lower_bound (key (s ! (0 :: nat))) (drop (0 :: nat) (take ((0 :: nat) - (0 :: nat)) s)) \<and> (0 :: int) \<le> (0 :: int) \<and> (0 :: int) < int (length s)) \<and> (\<forall>(r :: int). (\<forall>(i :: int). ((0 :: int) \<le> i \<and> i \<le> o1) \<and> lower_bound_strict (key (s ! nat r)) (take (nat r) s) \<and> lower_bound (key (s ! nat r)) (drop (nat r) (take (nat i - nat r) s)) \<and> ((0 :: int) \<le> r \<and> r \<le> i) \<and> r < int (length s) \<longrightarrow> (let o2 :: t1 = key (s ! nat r); o3 :: t1 = key (s ! nat i) in \<forall>(o4 :: int). ((0 :: int) < o4 \<longleftrightarrow> lt o2 o3) \<and> (o4 < (0 :: int) \<longleftrightarrow> lt o3 o2) \<and> (o4 = (0 :: int) \<longleftrightarrow> eq o3 o2) \<longrightarrow> (if o4 < (0 :: int) then lower_bound_strict (key (s ! nat i)) (take (nat i) s) \<and> lower_bound (key (s ! nat i)) (drop (nat i) (take (nat (i + (1 :: int)) - nat i) s)) \<and> ((0 :: int) \<le> i \<and> i \<le> i + (1 :: int)) \<and> i < int (length s) else lower_bound_strict (key (s ! nat r)) (take (nat r) s) \<and> lower_bound (key (s ! nat r)) (drop (nat r) (take (nat (i + (1 :: int)) - nat r) s)) \<and> ((0 :: int) \<le> r \<and> r \<le> i + (1 :: int)) \<and> r < int (length s)))) \<and> (lower_bound_strict (key (s ! nat r)) (take (nat r) s) \<and> lower_bound (key (s ! nat r)) (drop (nat r) (take (nat (o1 + (1 :: int)) - nat r) s)) \<and> ((0 :: int) \<le> r \<and> r \<le> o1 + (1 :: int)) \<and> r < int (length s) \<longrightarrow> ((0 :: int) \<le> r \<and> r < int (length s)) \<and> agg measure_closure s = Some (key (s ! nat r)) \<and> lower_bound_strict (key (s ! nat r)) (take (nat r) s) \<and> lower_bound (key (s ! nat r)) (drop (nat r) s)))) \<and> (o1 + (1 :: int) < (0 :: int) \<longrightarrow> ((0 :: int) \<le> (0 :: int) \<and> (0 :: int) < int (length s)) \<and> agg measure_closure s = Some (key (s ! (0 :: nat))) \<and> lower_bound_strict (key (s ! (0 :: nat))) (take (0 :: nat) s) \<and> lower_bound (key (s ! (0 :: nat))) (drop (0 :: nat) s))"
+  sorry
+end

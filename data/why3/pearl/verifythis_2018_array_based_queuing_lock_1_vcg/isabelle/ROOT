@@ -1,0 +1,13 @@
+session verifythis_2018_array_based_queuing_lock_1 = NTP4Verif +
+theories
+  "verifythis_2018_array_based_queuing_lock_1_Top_incrementqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_mainqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_bounded_intqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_kqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_zeroqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_bzeroqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_modnqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_ticketqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_tincqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_nqtvc"
+  "verifythis_2018_array_based_queuing_lock_1_Top_bounded_int2qtvc"

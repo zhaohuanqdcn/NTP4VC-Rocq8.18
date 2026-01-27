@@ -1,0 +1,32 @@
+theory X_fwrite_Why3_ide_VC_fwrite_call_fwrite_noflush_pre_3_part3_2_goal19
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "../../lib/isabelle/Compound_Compound" "Why3STD.Cint_Cint" "../../lib/isabelle/Axiomatic3_Axiomatic3"
+begin
+theorem goal19:
+  fixes i :: "int"
+  fixes a_2 :: "addr"
+  fixes a :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes a_5 :: "addr"
+  fixes a_4 :: "addr"
+  fixes t_3 :: "addr \<Rightarrow> addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes a_1 :: "addr"
+  fixes a_3 :: "addr"
+  assumes fact0: "\<not>i = (0 :: int)"
+  assumes fact1: "shift a_2 (0 :: int) = shift a (0 :: int)"
+  assumes fact2: "t_1 (shift a_5 (10 :: int)) = (1 :: int)"
+  assumes fact3: "(0 :: int) \<le> i"
+  assumes fact4: "region (base a_2) \<le> (0 :: int)"
+  assumes fact5: "region (base a_4) \<le> (0 :: int)"
+  assumes fact6: "framed t_3"
+  assumes fact7: "linked t"
+  assumes fact8: "sconst t_2"
+  assumes fact9: "is_uint32 i"
+  assumes fact10: "p_valid_io_file_pvt t t_3 t_1 a_1"
+  assumes fact11: "p_valid_io_file_pvt t t_3 t_1 a_3"
+  assumes fact12: "valid_rw t (shift a_4 (0 :: int)) i"
+  assumes fact13: "\<forall>(i_1 :: int). (0 :: int) < i_1 \<longrightarrow> i_1 \<le> i \<longrightarrow> \<not>t_2 (shift a_4 (i_1 - (1 :: int))) = (10 :: int)"
+  shows "p_valid_io_file_pvt t t_3 t_1 a_5"
+  sorry
+end

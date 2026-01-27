@@ -1,0 +1,30 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'CheckBytes8'                            --- *)
+(* ---------------------------------------------------------- *)
+theory A_CheckBytes8
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+function l_check_bytes8 (map addr int) addr int int : addr
+axiom fix_l_check_bytes8:
+  forall start_0 : addr.
+  forall mint_0 : map addr int.
+  forall bytes_0 value_0 : int.
+  let a = (l_check_bytes8 mint_0 start_0 value_0 bytes_0) in
+    if (bytes_0 = 0) then (a = null)
+    else (if (mint_0[start_0] = value_0)
+          then (((l_check_bytes8 mint_0 ((shift_uint8 start_0 1)) value_0
+                   (bytes_0 - 1))) = a) else (a = start_0))
+
+use import Cint.Cint
+
+end
+

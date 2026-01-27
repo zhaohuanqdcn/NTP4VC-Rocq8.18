@@ -1,0 +1,7 @@
+session mergesort_queue = NTP4Verif +
+theories
+  "mergesort_queue_MergesortQueue_Trans"
+  "mergesort_queue_MergesortQueue_Refl"
+  "mergesort_queue_MergesortQueue_Total"
+  "mergesort_queue_MergesortQueue_mergesortqtvc"
+  "mergesort_queue_MergesortQueue_mergeqtvc"

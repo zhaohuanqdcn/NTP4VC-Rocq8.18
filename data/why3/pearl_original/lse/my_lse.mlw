@@ -1,0 +1,161 @@
+module LSE
+
+  (* from Why3 standard library *)
+  use int.Int
+  use real.RealInfix
+  use real.Abs
+  use real.FromInt
+  use real.ExpLog
+
+
+  (* from this development *)
+  use udouble.UDouble  (* unbounded doubles *)
+
+  use exp_log.ExpLogApprox
+  use exp_log.ExpLogLemmas
+
+  use sum_real.Sum as SumReal
+  use sum.Sum as USum
+
+  (** [exp_fun a i = exp (a i)] *)
+  let ghost function exp_fun (a:int -> udouble) : int -> real =
+    fun i -> exp ((USum.real_fun a) i)
+
+  (** [u_exp_fun a i = exp (a i)] in unbound floating-point *)
+  let ghost function u_exp_fun (a: int -> udouble) : int -> udouble =
+    fun i -> u_exp (a i)
+
+  (** Sum of approximate exponentials
+      [u_sum_of_u_exp(a,n) = exp a(m) + ... + exp a(n-1)] *)
+  let ghost function u_sum_of_u_exp (a: int -> udouble) (m n:int) : udouble =
+    USum.u_sum (u_exp_fun a) m n
+
+  (** The LSE function itself, exact computation
+      [lse(a,n) = log (exp a(0) + ... + exp a(size-1))] *)
+  let ghost function lse_exact (f : int -> udouble) (size : int) =
+    log (SumReal.sum (exp_fun f) 0 size)
+
+  (** The LSE function, floating-point approximation *)
+  function u_lse [@inline:trivial] (a: int -> udouble) (size:int) : udouble
+    = u_log (u_sum_of_u_exp a 0 size)
+
+(*
+  val u_lse (a:int -> udouble) (size:int) : udouble
+    ensures { result = u_lse a size }
+*)
+
+  (* use sum_real.Extras as Extras (\* need exp > 0, err_compose *\) *)
+  use sum.Combine as Combine (* need for u_sum_accuracy_combine_pos *)
+  use sum.Bound as B (* needed for u_sum_constant_bounds *)
+
+  (* BEGIN{th_lse_accuracy} *)
+  let lemma lse_accuracy (a:int -> udouble) (size:int)
+    requires { 1 <= size }
+    requires { from_int (size - 1) <=. 0x1p51 }
+    requires { forall i. 0 <= i < size -> abs (to_real (a i)) <=. exp_max_value }
+    requires { exp exp_max_value *. (1.0 +. exp_error) *. from_int size *. (1.0 +. eps *. from_int (size - 1))
+               <=. log_max_value }
+    ensures {
+      let err = exp_error +. eps *. from_int (size - 1) *. (1. +. exp_error) in
+      abs (to_real (u_lse a size) -. lse_exact a size) <=.
+      log_error *. abs (lse_exact a size) -. log (1. -. err) *. (1. +. log_error)
+    }
+  (* END{th_lse_accuracy} *)
+  =
+  (* BEGIN{pr_lse_accuracy} *)
+  let ghost s = USum.u_sum (u_exp_fun a) 0 size in
+  let ghost sum_exps = SumReal.sum (exp_fun a) 0 size in
+  begin (* statement corresponding to invocation of Lemma 3.2 *)
+    ensures {
+      abs ((to_real s) -. sum_exps) <=.
+        sum_exps *. (exp_error +. eps *. from_int (size - 1) *. (1. +. exp_error))
+    }
+    Combine.u_sum_accuracy_combine_pos (* this is Lemma 3.2 *)
+      exp_error 0.0 (exp_fun a) (u_exp_fun a) 0 size;
+  end;
+  begin
+    ensures { sum_exps >. 0.0 }
+    SumReal.sum_strictly_pos (exp_fun a) 0 size;
+  end;
+  begin (* required domain for u_log *)
+    ensures { 0. <. (to_real s) <=. log_max_value }
+    (* assert { s = USum.u_sum (u_exp_fun a) 0 size}; *)
+    assert { forall i. 0 <= i < size ->
+      0.0 <=. to_real (u_exp (a i)) <=. exp exp_max_value *. (1.0 +. exp_error)
+      by abs (to_real (u_exp (a i)) -. exp (to_real (a i))) <=. exp (to_real (a i)) *. exp_error
+      so to_real (u_exp (a i)) <=. exp (to_real (a i)) *. (1.0 +. exp_error) };
+    B.u_sum_constant_bounds (exp exp_max_value *. (1.0 +. exp_error)) (u_exp_fun a) size 0 size;
+  end;
+  let ghost r = u_log s in
+  assert { r = u_lse a size };
+  let ghost err = exp_error +. eps *. from_int (size - 1) *. (1. +. exp_error) in
+  assert { err <. 1.0 };
+  begin
+    ensures { abs (log (to_real s) -. log sum_exps) <=. -. log (1. -. err) }
+    log_combine_err sum_exps (to_real s) err 0.; (* invocation of Lemma 3.3 *)
+  end;
+  assert { (log_error +. 1.0) *. (abs (log (to_real s) -. log sum_exps)) <=. -. log (1. -. err) *. (log_error +. 1.0)
+           by (log_error +. 1.0 >=. 0.0)
+  };
+  assert {
+    abs (to_real r -. lse_exact a size)
+    <=. abs (to_real r -. log (to_real s)) +.
+        abs (log (to_real s) -. log sum_exps)
+    <=. (log_error +. 1.0) *. (abs (log (to_real s) -. log sum_exps))
+        +. log_error *. abs (lse_exact a size)
+    <=. log_error *. abs (lse_exact a size) -. log (1. -. err) *. (log_error +. 1.0)
+
+    }
+  (* END{pr_lse_accuracy} *)
+
+
+end
+
+
+(*
+
+module LSEJ3Axiomatic
+  use int.Int
+  use ufloat.UDouble
+  use cfloat.Safe64
+  use u_sum.SumUDouble
+  use u_sum.J3Axiomatic
+  use exp_log_approx.ExpLogApprox
+  use LSE
+  use real.Abs
+  use real.RealInfix
+  use real.ExpLog
+  use real.FromInt
+
+  type double = Safe64.t
+
+  (* These additionnal constructions have to be used because of the lack of higher order support in ACSL logic types *)
+  let ghost function u_sum_of_u_exp [@inline:trivial] (f: int -> double) (a b :int) : udouble
+  = u_sum_of_u_exp (ufun f) a b
+  let ghost function lse_exact' [@inline:trivial] (f:int -> double) (size:int) : real = lse_exact (ufun f) size
+  let ghost function lse_udouble [@inline:trivial] (f: int -> double) (size:int) : udouble
+    = u_lse (ufun f) size
+
+  predicate no_overflow_pre [@inline:trivial] (s:double) (f:int -> double) (size_ub a b:int)
+  =
+    0 <= b - a <= size_ub /\
+    to_udouble s = (u_sum_of_u_exp f a b) /\
+    forall i. a <= i < b -> abs (to_real (f i)) <=. 708.
+
+  predicate no_overflow_post [@inline:trivial] (s:double) (size_ub:int)
+  = abs (to_real s) <=. (u_exp_ub *. from_int size_ub) *. (1. +. eps *. from_int (size_ub - 1))
+
+  let lemma no_overflow (s : double) (f: int -> double) (size_ub a b : int)
+    requires { no_overflow_pre s f size_ub a b }
+    ensures { no_overflow_post s size_ub }
+  =
+    assert { forall i. a <= i < b -> u_exp_lb <=. UDouble.to_real (u_exp ((ufun f) i)) <=. u_exp_ub };
+    u_sum_constant_bounds u_exp_ub (fun i -> u_exp ((ufun f) i)) size_ub a b
+
+  lemma lse_udouble_err : forall a size.
+    let err = exp_error +. eps *. from_int (size - 1) *. (1. +. exp_error) in
+    1 <= size <= max_size ->
+    abs (UDouble.to_real (lse_udouble a size) -. lse_exact (ufun a) size) <=.
+    log_error *. abs (lse_exact (ufun a) size) -. log (1. -. err) *. (1. +. log_error)
+end
+*)

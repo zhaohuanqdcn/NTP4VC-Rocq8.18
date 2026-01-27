@@ -1,0 +1,713 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file fgets.c, line 15) in 'fgets' (1/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_post_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition (file fgets.c, line 15) in 'fgets' (1/6)":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_4 t_3 t_2 t_1 : map addr int.
+  forall t_6 t_5 : map addr addr.
+  forall a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a
+    : addr.
+  let a_16 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_17 = (shiftfield_f16__io_file_pvt_pub a_13) in
+  let x = a_14.base in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  let x_2 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_3 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  let x_4 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_7)] in
+  let x_5 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_10)] in
+  let x_6 = t_4[t_6[(shiftfield_f16__io_file_pvt_data a_11)]] in
+  (i_1 <> 0) ->
+  (a_16 <> null) ->
+  (a_16 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_17 <> null) ->
+  (a_17 = a_16) ->
+  ((a_15.base) = x) ->
+  (((region (a_13.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  ((framed t_6)) ->
+  ((linked t)) ->
+  ((sconst t_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((addr_le a_15 a_14)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_3)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_12)) ->
+  ((addr_le a_14 ((shift_sint8 a_15 i)))) ->
+  ((is_sint8 x_6)) ->
+  ((p_valid_file t t_2 a_16)) ->
+  ((0 < x_5) -> (x_6 = (-1))) ->
+  ((0 < x_4) ->
+   (t_5[(shiftfield_f16__io_file_pvt_data a_9)] =
+    ((shift_sint8 t_6[(shiftfield_f16__io_file_pvt_data a_8)] 1)))) ->
+  ((0 < x_2) -> (x_3 = (1 + x_1))) ->
+  (null = a_14)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fgets.c, line 24) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_loop_inv_2_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Preservation of Invariant (file fgets.c, line 24) (1/2)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_4 t_3 t_2 t_1 : map addr int.
+  forall t_6 t_5 : map addr addr.
+  forall a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2
+    a_1 a : addr.
+  let a_17 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_18 = (shiftfield_f16__io_file_pvt_pub a_14) in
+  let x = a_15.base in
+  let x_1 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_12)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  let x_3 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_4 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  let x_5 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_7)] in
+  let x_6 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_10)] in
+  let x_7 = t_4[t_6[(shiftfield_f16__io_file_pvt_data a_11)]] in
+  (i_2 <> (-1)) ->
+  (i_2 <> 10) ->
+  (a_17 <> null) ->
+  (a_17 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_18 <> null) ->
+  (a_18 = a_17) ->
+  ((a_16.base) = x) ->
+  (x_1 <> 0) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  ((framed t_6)) ->
+  ((linked t)) ->
+  ((sconst t_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((addr_le a_16 a_15)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_uint32 x_6)) ->
+  ((is_uint32 x_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_3)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_13)) ->
+  ((addr_le a_15 ((shift_sint8 a_16 i_1)))) ->
+  ((is_sint8 x_7)) ->
+  ((p_valid_file t t_2 a_17)) ->
+  ((0 < x_6) -> (x_7 = i_2)) ->
+  ((0 < x_5) ->
+   (t_5[(shiftfield_f16__io_file_pvt_data a_9)] =
+    ((shift_sint8 t_6[(shiftfield_f16__io_file_pvt_data a_8)] 1)))) ->
+  ((0 < x_3) -> (x_4 = (1 + x_2))) ->
+  ((addr_le ((shift_sint8 a_16 1)) a_15))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fgets.c, line 24) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_loop_inv_2_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Preservation of Invariant (file fgets.c, line 24) (2/2)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_4 t_3 t_2 t_1 : map addr int.
+  forall t_6 t_5 : map addr addr.
+  forall a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2
+    a_1 a : addr.
+  let a_17 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_18 = (shiftfield_f16__io_file_pvt_pub a_14) in
+  let x = a_15.base in
+  let x_1 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_12)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  let x_3 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_4 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  let x_5 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_7)] in
+  let x_6 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_10)] in
+  let x_7 = t_4[t_6[(shiftfield_f16__io_file_pvt_data a_11)]] in
+  (i_2 <> (-1)) ->
+  (i_2 <> 10) ->
+  (a_17 <> null) ->
+  (a_17 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_18 <> null) ->
+  (a_18 = a_17) ->
+  ((a_16.base) = x) ->
+  (x_1 <> 0) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  ((framed t_6)) ->
+  ((linked t)) ->
+  ((sconst t_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((addr_le a_16 a_15)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_uint32 x_6)) ->
+  ((is_uint32 x_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_3)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_13)) ->
+  ((addr_le a_15 ((shift_sint8 a_16 i_1)))) ->
+  ((is_sint8 x_7)) ->
+  ((p_valid_file t t_2 a_17)) ->
+  ((0 < x_6) -> (x_7 = i_2)) ->
+  ((0 < x_5) ->
+   (t_5[(shiftfield_f16__io_file_pvt_data a_9)] =
+    ((shift_sint8 t_6[(shiftfield_f16__io_file_pvt_data a_8)] 1)))) ->
+  ((0 < x_3) -> (x_4 = (1 + x_2))) ->
+  ((addr_le a_15 ((shift_sint8 a_16 (1 + i_1)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file fgets.c, line 24) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_loop_inv_2_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Establishment of Invariant (file fgets.c, line 24) (1/2)":
+*)
+goal goal3:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let a_5 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  (a_5 <> null) ->
+  (a_5 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_4.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((p_valid_file t t_1 a_5)) ->
+  ((addr_le a_4 a_4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file fgets.c, line 24) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_loop_inv_2_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Establishment of Invariant (file fgets.c, line 24) (2/2)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let a_5 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  (a_5 <> null) ->
+  (a_5 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_4.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((p_valid_file t t_1 a_5)) ->
+  ((addr_le a_4 ((shift_sint8 a_4 i))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file fgets.c, line 25) (2/5)         --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_loop_assign_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Loop assigns (file fgets.c, line 25) (2/5)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_4 t_3 t_2 t_1 : map addr int.
+  forall t_6 t_5 : map addr addr.
+  forall a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2
+    a_1 a : addr.
+  let a_17 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_18 = (shiftfield_f16__io_file_pvt_pub a_14) in
+  let x = a_15.base in
+  let x_1 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_12)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  let x_3 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_4 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  let x_5 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_7)] in
+  let x_6 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_10)] in
+  let x_7 = t_4[t_6[(shiftfield_f16__io_file_pvt_data a_11)]] in
+  let a_19 = (shift_sint8 a_16 0) in
+  let x_8 = - i in
+  let x_9 = i_1 - 1 - i in
+  (i_2 <> (-1)) ->
+  (i_2 <> 10) ->
+  (a_17 <> null) ->
+  (a_17 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_18 <> null) ->
+  (a_18 = a_17) ->
+  ((a_16.base) = x) ->
+  (x_1 <> 0) ->
+  (0 < i) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  ((framed t_6)) ->
+  ((linked t)) ->
+  ((sconst t_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((addr_le a_16 a_15)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_uint32 x_6)) ->
+  ((is_uint32 x_1)) ->
+  ((is_sint32 (1 + i))) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_3)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_13)) ->
+  ((addr_le a_15 ((shift_sint8 a_16 i_1)))) ->
+  ((is_sint8 x_7)) ->
+  ((p_valid_file t t_2 a_17)) ->
+  (not (invalid t a_19 x_9)) ->
+  ((0 < x_6) -> (x_7 = i_2)) ->
+  ((0 < x_5) ->
+   (t_5[(shiftfield_f16__io_file_pvt_data a_9)] =
+    ((shift_sint8 t_6[(shiftfield_f16__io_file_pvt_data a_8)] 1)))) ->
+  ((0 < x_3) -> (x_4 = (1 + x_2))) ->
+  ((included a_19 x_9 ((shift_sint8 a_16 1)) (i_1 - i)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file fgets.c, line 25) (3/5)         --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_loop_assign_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Loop assigns (file fgets.c, line 25) (3/5)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_4 t_3 t_2 t_1 : map addr int.
+  forall t_6 t_5 : map addr addr.
+  forall a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2
+    a_1 a : addr.
+  let a_17 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_18 = (shiftfield_f16__io_file_pvt_pub a_14) in
+  let x = a_15.base in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  let x_2 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_3 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  let x_4 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_7)] in
+  let x_5 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_10)] in
+  let x_6 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_12)] in
+  let x_7 = t_4[t_6[(shiftfield_f16__io_file_pvt_data a_11)]] in
+  (a_17 <> null) ->
+  (a_17 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_18 <> null) ->
+  (a_18 = a_17) ->
+  ((a_16.base) = x) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  ((framed t_6)) ->
+  ((linked t)) ->
+  ((sconst t_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((addr_le a_16 a_15)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_uint32 x_6)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_3)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_13)) ->
+  ((addr_le a_15 ((shift_sint8 a_16 i_1)))) ->
+  ((is_sint8 x_7)) ->
+  ((p_valid_file t t_2 a_17)) ->
+  ((x_6 = 0) -> (i_2 = (-1))) ->
+  ((0 < x_5) -> (x_7 = i_2)) ->
+  ((0 < x_4) ->
+   (t_5[(shiftfield_f16__io_file_pvt_data a_9)] =
+    ((shift_sint8 t_6[(shiftfield_f16__io_file_pvt_data a_8)] 1)))) ->
+  ((0 < x_2) -> (x_3 = (1 + x_1))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file fgets.c, line 25) (5/5)         --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_loop_assign_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Loop assigns (file fgets.c, line 25) (5/5)":
+*)
+goal goal7:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_4 t_3 t_2 t_1 : map addr int.
+  forall t_6 t_5 : map addr addr.
+  forall a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2
+    a_1 a : addr.
+  let a_17 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_18 = (shiftfield_f16__io_file_pvt_pub a_14) in
+  let x = a_16.base in
+  let x_1 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_12)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  let x_3 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_4 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  let x_5 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_7)] in
+  let x_6 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_10)] in
+  let x_7 = t_4[t_6[(shiftfield_f16__io_file_pvt_data a_11)]] in
+  (i_2 <> (-1)) ->
+  (i_2 <> 10) ->
+  (a_17 <> null) ->
+  (a_17 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_18 <> null) ->
+  (a_18 = a_17) ->
+  (x = (a_15.base)) ->
+  (x_1 <> 0) ->
+  (0 < i) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  ((framed t_6)) ->
+  ((linked t)) ->
+  ((sconst t_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((addr_le a_15 a_16)) ->
+  (not (invalid t a_15 1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_uint32 x_6)) ->
+  ((is_uint32 x_1)) ->
+  ((is_sint32 (1 + i))) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_3)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_13)) ->
+  ((addr_le a_16 ((shift_sint8 a_15 i_1)))) ->
+  ((is_sint8 x_7)) ->
+  ((p_valid_file t t_2 a_17)) ->
+  ((0 < x_6) -> (x_7 = i_2)) ->
+  ((0 < x_5) ->
+   (t_5[(shiftfield_f16__io_file_pvt_data a_9)] =
+    ((shift_sint8 t_6[(shiftfield_f16__io_file_pvt_data a_8)] 1)))) ->
+  ((0 < x_3) -> (x_4 = (1 + x_2))) ->
+  ((included a_15 1 ((shift_sint8 a_15 1)) (i_1 - i)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file fgets.c, line 28) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_loop_term_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file fgets.c, line 28)":
+*)
+goal goal8:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_4 t_3 t_2 t_1 : map addr int.
+  forall t_6 t_5 : map addr addr.
+  forall a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2
+    a_1 a : addr.
+  let a_17 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_18 = (shiftfield_f16__io_file_pvt_pub a_14) in
+  let x = a_15.base in
+  let x_1 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_12)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  let x_3 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_4 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  let x_5 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_7)] in
+  let x_6 = t_2[(shiftfield_f16__io_file_pvt_ibytes a_10)] in
+  let x_7 = t_4[t_6[(shiftfield_f16__io_file_pvt_data a_11)]] in
+  (i_2 <> (-1)) ->
+  (i_2 <> 10) ->
+  (a_17 <> null) ->
+  (a_17 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_18 <> null) ->
+  (a_18 = a_17) ->
+  ((a_16.base) = x) ->
+  (x_1 <> 0) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  ((framed t_6)) ->
+  ((linked t)) ->
+  ((sconst t_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((addr_le a_16 a_15)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_uint32 x_6)) ->
+  ((is_uint32 x_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_1)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_3)) ->
+  ((p_valid_io_file_pvt t t_6 t_2 a_13)) ->
+  ((addr_le a_15 ((shift_sint8 a_16 i_1)))) ->
+  ((is_sint8 x_7)) ->
+  ((p_valid_file t t_2 a_17)) ->
+  ((0 < x_6) -> (x_7 = i_2)) ->
+  ((0 < x_5) ->
+   (t_5[(shiftfield_f16__io_file_pvt_data a_9)] =
+    ((shift_sint8 t_6[(shiftfield_f16__io_file_pvt_data a_8)] 1)))) ->
+  ((0 < x_3) -> (x_4 = (1 + x_2))) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file fgetc.c, line 9) in 'fgetc'' in 'fgets' at call 'fgetc' (file fgets.c, line 29)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_call_fgetc_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file fgetc.c, line 9) in 'fgetc'' in 'fgets' at call 'fgetc' (file fgets.c, line 29)
+":
+*)
+goal goal9:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_7 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = a_5.base in
+  (a_7 <> null) ->
+  (a_7 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  ((a_6.base) = x) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((addr_le a_6 a_5)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((addr_le a_5 ((shift_sint8 a_6 i_1)))) ->
+  ((p_valid_file t t_1 a_7)) ->
+  (((shiftfield_f16__io_file_pvt_pub a_4)) = a_7)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file fgetc.c, line 10) in 'fgetc'' in 'fgets' at call 'fgetc' (file fgets.c, line 29)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgets_call_fgetc_pre_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file fgetc.c, line 10) in 'fgetc'' in 'fgets' at call 'fgetc' (file fgets.c, line 29)
+":
+*)
+goal goal10:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_7 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = a_5.base in
+  (a_7 <> null) ->
+  (a_7 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  ((a_6.base) = x) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((addr_le a_6 a_5)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((addr_le a_5 ((shift_sint8 a_6 i_1)))) ->
+  ((p_valid_file t t_1 a_7)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_4))
+
+end
+

@@ -1,0 +1,8 @@
+session vstte10_aqueue = NTP4Verif +
+theories
+  "vstte10_aqueue_AmortizedQueue_queueqtvc"
+  "vstte10_aqueue_AmortizedQueue_emptyqtvc"
+  "vstte10_aqueue_AmortizedQueue_tailqtvc"
+  "vstte10_aqueue_AmortizedQueue_createqtvc"
+  "vstte10_aqueue_AmortizedQueue_enqueueqtvc"
+  "vstte10_aqueue_AmortizedQueue_headqtvc"

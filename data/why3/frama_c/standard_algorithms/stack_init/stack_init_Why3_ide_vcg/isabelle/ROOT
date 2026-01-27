@@ -1,0 +1,9 @@
+session stack_init_Why3_ide = NTP4Verif +
+theories
+  "stack_init_Why3_ide_VCstack_init_assert_rte_mem_access_goal4"
+  "stack_init_Why3_ide_VCstack_init_assert_rte_mem_access_2_goal5"
+  "stack_init_Why3_ide_VCstack_init_post_invariant_goal0"
+  "stack_init_Why3_ide_VCstack_init_post_empty_goal2"
+  "stack_init_Why3_ide_VCstack_init_post_storage_goal3"
+  "stack_init_Why3_ide_VCstack_init_post_capacity_goal1"
+  "stack_init_Why3_ide_VCstack_init_assert_rte_mem_access_3_goal6"

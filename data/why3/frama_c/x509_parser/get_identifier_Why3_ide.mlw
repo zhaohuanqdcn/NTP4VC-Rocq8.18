@@ -1,0 +1,587 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 190) in 'get_identifier' (10/12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCget_identifier_post_part10
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Cbits.Cbits
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 190) in 'get_identifier' (10/12)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_4.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let a_5 = (shift_uint8 a_4 0) in
+  let x_5 = t_1[a_5] in
+  let x_6 = (land 31 x_5) in
+  let x_7 = (lsr x_5 5) in
+  let x_8 = (land 3 ((lsr x_5 6))) in
+  (a_1 <> a) ->
+  (i <> 0) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_4) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (x_6 <> 31) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x)) <= 0) ->
+  (0 <= x_5) ->
+  (0 <= x_6) ->
+  (0 <= ((land 1 ((to_sint32 x_7))))) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((is_uint8 x_5)) ->
+  ((valid_rd t a_5 1)) ->
+  ((is_uint32 x_6)) ->
+  ((is_uint32 x_8)) ->
+  ((is_uint8 t_1[a_3 <- x_8][a_1 <- (land 1 x_7)][a <- x_6][a_2 <- 1][a_1])) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  ((x_8 = 0) \/ (x_8 = 1) \/ (x_8 = 2) \/ (x_8 = 3)) ->
+  (0 < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 192) in 'get_identifier' (4/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCget_identifier_post_2_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Cbits.Cbits
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 192) in 'get_identifier' (4/6)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_4.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let a_5 = (shift_uint8 a_4 1) in
+  let a_6 = (shift_uint8 a_4 0) in
+  let x_5 = t_1[a_6] in
+  let x_6 = (lsr x_5 5) in
+  let x_7 = 1 + i in
+  let x_8 = (land 3 ((lsr x_5 6))) in
+  let x_9 = t_1[a_3 <- x_8][a_1 <- (land 1 x_6)][a <- i_1][a_2 <- x_7][a_1] in
+  (a_1 <> a) ->
+  (i_2 <> 0) ->
+  (i_2 <> 1) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_4) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (a_5 <> null) ->
+  (((land 31 x_5)) = 31) ->
+  (0 < i) ->
+  (0 < i_2) ->
+  (i < i_2) ->
+  (0 <= i_2) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x)) <= 0) ->
+  (0 <= x_5) ->
+  (0 <= ((land 1 ((to_sint32 x_6))))) ->
+  ((-2147483649) <= i) ->
+  ((-2147483647) <= i_2) ->
+  (i <= 65534) ->
+  (i_2 <= 65536) ->
+  (i <= 2147483646) ->
+  (i_2 <= 2147483648) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((is_uint16 x_7)) ->
+  ((is_uint8 x_5)) ->
+  ((valid_rd t a_6 1)) ->
+  ((valid_rd t a_6 i_2)) ->
+  ((valid_rd t a_5 (i_2 - 1))) ->
+  ((is_uint32 x_8)) ->
+  ((is_uint8 x_9)) ->
+  ((x_8 = 0) \/ (x_8 = 1) \/ (x_8 = 2) \/ (x_8 = 3)) ->
+  (x_9 <= 1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 192) in 'get_identifier' (5/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCget_identifier_post_2_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Cbits.Cbits
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 192) in 'get_identifier' (5/6)":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_4.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let a_5 = (shift_uint8 a_4 0) in
+  let x_5 = t_1[a_5] in
+  let x_6 = (land 31 x_5) in
+  let x_7 = (lsr x_5 5) in
+  let x_8 = (land 3 ((lsr x_5 6))) in
+  let x_9 = t_1[a_3 <- x_8][a_1 <- (land 1 x_7)][a <- x_6][a_2 <- 1][a_1] in
+  (a_1 <> a) ->
+  (i <> 0) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_4) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (x_6 <> 31) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x)) <= 0) ->
+  (0 <= x_5) ->
+  (0 <= x_6) ->
+  (0 <= ((land 1 ((to_sint32 x_7))))) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((is_uint8 x_5)) ->
+  ((valid_rd t a_5 1)) ->
+  ((is_uint32 x_6)) ->
+  ((is_uint32 x_8)) ->
+  ((is_uint8 x_9)) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  ((x_8 = 0) \/ (x_8 = 1) \/ (x_8 = 2) \/ (x_8 = 3)) ->
+  (x_9 <= 1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 224) --- *)
+(* ---------------------------------------------------------- *)
+theory VCget_identifier_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 224)":
+*)
+goal goal3:
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_4.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let a_5 = (shift_uint8 a_4 0) in
+  (a_1 <> a) ->
+  (i <> 0) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_4) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  ((valid_rd t a_5 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,shift' (file src/x509-parser.c, line 224) --- *)
+(* ---------------------------------------------------------- *)
+theory VCget_identifier_assert_rte_shift
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,shift' (file src/x509-parser.c, line 224)":
+*)
+goal goal4:
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_4.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let a_5 = (shift_uint8 a_4 0) in
+  let x_5 = t_1[a_5] in
+  (a_1 <> a) ->
+  (i <> 0) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_4) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((is_uint8 x_5)) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  (0 <= x_5)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion (file src/x509-parser.c, line 260) (1/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCget_identifier_assert_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Cbits.Cbits
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion (file src/x509-parser.c, line 260) (1/3)":
+*)
+goal goal5:
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_4.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let a_5 = (shift_uint8 a_4 0) in
+  let x_5 = t_1[a_5] in
+  let x_6 = (land 3 ((lsr x_5 6))) in
+  (a_1 <> a) ->
+  (i <> 0) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_4) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (((land 31 x_5)) = 31) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x)) <= 0) ->
+  (0 <= x_5) ->
+  (0 <= ((land 1 ((to_sint32 ((lsr x_5 5))))))) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((is_uint8 x_5)) ->
+  ((valid_rd t a_5 1)) ->
+  ((is_uint32 x_6)) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  ((x_6 = 0) \/ (x_6 = 1) \/ (x_6 = 2) \/ (x_6 = 3)) ->
+  (0 < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion (file src/x509-parser.c, line 260) (2/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCget_identifier_assert_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Cbits.Cbits
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion (file src/x509-parser.c, line 260) (2/3)":
+*)
+goal goal6:
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_4.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let a_5 = (shift_uint8 a_4 0) in
+  let x_5 = t_1[a_5] in
+  let x_6 = (land 3 ((lsr x_5 6))) in
+  (a_1 <> a) ->
+  (i <> 0) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_4) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (((land 31 x_5)) = 31) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x)) <= 0) ->
+  (0 <= x_5) ->
+  (0 <= ((land 1 ((to_sint32 ((lsr x_5 5))))))) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((is_uint8 x_5)) ->
+  ((valid_rd t a_5 1)) ->
+  ((is_uint32 x_6)) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  ((x_6 = 0) \/ (x_6 = 1) \/ (x_6 = 2) \/ (x_6 = 3)) ->
+  (i <= 65536)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion (file src/x509-parser.c, line 260) (3/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCget_identifier_assert_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Cbits.Cbits
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion (file src/x509-parser.c, line 260) (3/3)":
+*)
+goal goal7:
+*)
+goal goal7:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_4.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let a_5 = (shift_uint8 a_4 0) in
+  let x_5 = t_1[a_5] in
+  let x_6 = (land 3 ((lsr x_5 6))) in
+  (a_1 <> a) ->
+  (i <> 0) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_4) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (((land 31 x_5)) = 31) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x)) <= 0) ->
+  (0 <= x_5) ->
+  (0 <= ((land 1 ((to_sint32 ((lsr x_5 5))))))) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((is_uint8 x_5)) ->
+  ((valid_rd t a_5 1)) ->
+  ((is_uint32 x_6)) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  ((x_6 = 0) \/ (x_6 = 1) \/ (x_6 = 2) \/ (x_6 = 3)) ->
+  ((valid_rd t ((shift_uint8 a_4 1)) (i - 1)))
+
+end
+

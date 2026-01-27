@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name verifythis_2021_lexicographic_permutations_2_vcg)
+(theories Why3.array Why3 Why3.map Why3.why3.Ref Why3.queue verifythis_2021_lexicographic_permutations_2_vcg.verifythis_2021_lexicographic_permutations_2))

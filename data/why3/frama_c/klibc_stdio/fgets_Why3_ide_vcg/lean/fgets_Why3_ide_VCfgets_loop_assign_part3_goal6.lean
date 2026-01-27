@@ -1,0 +1,12 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import frama_c.klibc_stdio.lib.lean.Compound.Compound
+import Why3.Cint.Cint
+import frama_c.klibc_stdio.lib.lean.Axiomatic3.Axiomatic3
+open Classical
+open Lean4Why3
+namespace fgets_Why3_ide_VCfgets_loop_assign_part3_goal6
+theorem goal6 (a_2 : Memory.addr) (a_14 : Memory.addr) (a_15 : Memory.addr) (t_1 : Memory.addr -> ℤ) (a_5 : Memory.addr) (t_2 : Memory.addr -> ℤ) (a_4 : Memory.addr) (a_6 : Memory.addr) (a_7 : Memory.addr) (a_10 : Memory.addr) (a_12 : Memory.addr) (t_4 : Memory.addr -> ℤ) (t_6 : Memory.addr -> Memory.addr) (a_11 : Memory.addr) (a : Memory.addr) (a_16 : Memory.addr) (i : ℤ) (t : ℤ -> ℤ) (t_3 : Memory.addr -> ℤ) (i_1 : ℤ) (i_2 : ℤ) (a_1 : Memory.addr) (a_3 : Memory.addr) (a_13 : Memory.addr) (t_5 : Memory.addr -> Memory.addr) (a_9 : Memory.addr) (a_8 : Memory.addr) : let a_17 : Memory.addr := Memory.shift a_2 (0 : ℤ); let a_18 : Memory.addr := Memory.shift a_14 (0 : ℤ); let x : ℤ := Memory.addr.base a_15; let x_1 : ℤ := t_1 (Memory.shift a_5 (7 : ℤ)); let x_2 : ℤ := t_2 (Memory.shift a_4 (7 : ℤ)); let x_3 : ℤ := t_2 (Memory.shift a_6 (7 : ℤ)); let x_4 : ℤ := t_2 (Memory.shift a_7 (7 : ℤ)); let x_5 : ℤ := t_2 (Memory.shift a_10 (7 : ℤ)); let x_6 : ℤ := t_2 (Memory.shift a_12 (7 : ℤ)); let x_7 : ℤ := t_4 (t_6 (Memory.shift a_11 (6 : ℤ))); ¬a_17 = Memory.addr.mk (0 : ℤ) (0 : ℤ) → a_17 = Memory.shift a (0 : ℤ) → ¬a_18 = Memory.addr.mk (0 : ℤ) (0 : ℤ) → a_18 = a_17 → Memory.addr.base a_16 = x → Memory.region (Memory.addr.base a_14) ≤ (0 : ℤ) → Memory.region x ≤ (0 : ℤ) → (2 : ℤ) ≤ i → Memory.framed t_6 → Memory.linked t → Memory.sconst t_3 → Cint.is_sint32 i → Cint.is_sint32 i_1 → Cint.is_sint32 i_2 → Memory.addr_le a_16 a_15 → Cint.is_uint32 x_1 → Cint.is_uint32 x_2 → Cint.is_uint32 x_3 → Cint.is_uint32 x_4 → Cint.is_uint32 x_5 → Cint.is_uint32 x_6 → Axiomatic3.p_valid_io_file_pvt t t_6 t_2 a_1 → Axiomatic3.p_valid_io_file_pvt t t_6 t_2 a_3 → Axiomatic3.p_valid_io_file_pvt t t_6 t_2 a_13 → Memory.addr_le a_15 (Memory.shift a_16 i_1) → Cint.is_sint8 x_7 → Axiomatic3.p_valid_file t t_2 a_17 → (x_6 = (0 : ℤ) → i_2 = -(1 : ℤ)) → ((0 : ℤ) < x_5 → x_7 = i_2) → ((0 : ℤ) < x_4 → t_5 (Memory.shift a_9 (6 : ℤ)) = Memory.shift (t_6 (Memory.shift a_8 (6 : ℤ))) (1 : ℤ)) → ¬((0 : ℤ) < x_2 → x_3 = (1 : ℤ) + x_1)
+  := sorry
+end fgets_Why3_ide_VCfgets_loop_assign_part3_goal6

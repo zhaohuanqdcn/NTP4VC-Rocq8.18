@@ -1,0 +1,21 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.int.Unsigned
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.compare.Compare
+import pearl.multiprecision.lib.lean.ptralias.Alias
+import pearl.multiprecision.lib.lean.mpz.Z
+import pearl.multiprecision.lib.lean.mpz.Zutil
+open Classical
+open Lean4Why3
+namespace mpz_cmp_Zcmp_wmpz_cmp_uiqtvc
+theorem wmpz_cmp_ui'vc (mpz : Z.mpz_memo) (u : Z.mpz_ptr) (v_digit : BitVec 64) (fact0 : (0 : ℤ) ≤ Z.readers mpz u) : -(2 : ℤ) < Z.readers mpz u ∧ (∀(un : BitVec 32), BitVec.toInt un = Z.sgn mpz u * Z.abs_size mpz u → (∀(o1 : Bool), (BitVec.toInt un = BitVec.toInt (0 : BitVec 32) → o1 = true) ∧ (o1 = true → un = (0 : BitVec 32)) → (if o1 = true then ∀(o2 : Bool), (BitVec.toUInt v_digit = BitVec.toUInt (0 : BitVec 64) → o2 = true) ∧ (o2 = true → v_digit = (0 : BitVec 64)) → (∀(r : BitVec 32), (if ¬o2 = true then r = -(1 : BitVec 32) else r = (0 : BitVec 32)) → (∀(w : Z.mpz_ptr), Z.mpz_unchanged w mpz mpz) ∧ ((0 : ℤ) < BitVec.toInt r → BitVec.toUInt v_digit < Z.value_of u mpz) ∧ (BitVec.toInt r < (0 : ℤ) → Z.value_of u mpz < BitVec.toUInt v_digit) ∧ (BitVec.toInt r = (0 : ℤ) → Z.value_of u mpz = BitVec.toUInt v_digit)) else ∀(o2 : Bool), (BitVec.toInt un = BitVec.toInt (1 : BitVec 32) → o2 = true) ∧ (o2 = true → un = (1 : BitVec 32)) → (if o2 = true then (0 : ℤ) ≤ Z.readers mpz u ∧ (∀(mpz1 : Z.mpz_memo), Z.abs_value_of mpz1 = Z.abs_value_of mpz ∧ Z.alloc mpz1 = Z.alloc mpz ∧ Z.abs_size mpz1 = Z.abs_size mpz ∧ Z.sgn mpz1 = Z.sgn mpz ∧ Z.zones mpz1 = Z.zones mpz → (∀(up : C.ptr (BitVec 64)), Z.readers mpz1 u = Z.readers mpz u + (1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬u = y → Z.readers mpz1 y = Z.readers mpz y) ∧ Lemmas.value up (Z.abs_size mpz1 u) = Z.abs_value_of mpz1 u ∧ C.plength up = Z.alloc mpz1 u ∧ C.offset up = (0 : ℤ) ∧ C.min up = (0 : ℤ) ∧ C.max up = C.plength up ∧ C.zone1 up = Z.zones mpz1 u → (C.min up ≤ C.offset up ∧ C.offset up < C.max up) ∧ (let ul : BitVec 64 := C.pelts up (C.offset up); (Z.zones mpz1 u = C.zone1 up ∧ (1 : ℤ) ≤ Z.readers mpz1 u ∧ C.min up = (0 : ℤ) ∧ C.max up = C.plength up) ∧ (∀(mpz2 : Z.mpz_memo), Z.abs_value_of mpz2 = Z.abs_value_of mpz1 ∧ Z.alloc mpz2 = Z.alloc mpz1 ∧ Z.abs_size mpz2 = Z.abs_size mpz1 ∧ Z.sgn mpz2 = Z.sgn mpz1 ∧ Z.zones mpz2 = Z.zones mpz1 → Z.readers mpz2 u = Z.readers mpz1 u - (1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬y = u → Z.readers mpz2 y = Z.readers mpz1 y) → (if BitVec.toUInt v_digit < BitVec.toUInt ul then (∀(w : Z.mpz_ptr), Z.mpz_unchanged w mpz2 mpz) ∧ ((0 : ℤ) < (1 : ℤ) → BitVec.toUInt v_digit < Z.value_of u mpz2) ∧ ((1 : ℤ) < (0 : ℤ) → Z.value_of u mpz2 < BitVec.toUInt v_digit) ∧ ((1 : ℤ) = (0 : ℤ) → Z.value_of u mpz2 = BitVec.toUInt v_digit) else if BitVec.toUInt ul < BitVec.toUInt v_digit then (∀(w : Z.mpz_ptr), Z.mpz_unchanged w mpz2 mpz) ∧ ((0 : ℤ) < -(1 : ℤ) → BitVec.toUInt v_digit < Z.value_of u mpz2) ∧ (-(1 : ℤ) < (0 : ℤ) → Z.value_of u mpz2 < BitVec.toUInt v_digit) ∧ (-(1 : ℤ) = (0 : ℤ) → Z.value_of u mpz2 = BitVec.toUInt v_digit) else (∀(w : Z.mpz_ptr), Z.mpz_unchanged w mpz2 mpz) ∧ ((0 : ℤ) < (0 : ℤ) → BitVec.toUInt v_digit < Z.value_of u mpz2) ∧ ((0 : ℤ) < (0 : ℤ) → Z.value_of u mpz2 < BitVec.toUInt v_digit) ∧ Z.value_of u mpz2 = BitVec.toUInt v_digit))))) else ∀(r : BitVec 32), (if (0 : ℤ) < BitVec.toInt un then r = (1 : BitVec 32) else r = -(1 : BitVec 32)) → (∀(w : Z.mpz_ptr), Z.mpz_unchanged w mpz mpz) ∧ ((0 : ℤ) < BitVec.toInt r → BitVec.toUInt v_digit < Z.value_of u mpz) ∧ (BitVec.toInt r < (0 : ℤ) → Z.value_of u mpz < BitVec.toUInt v_digit) ∧ (BitVec.toInt r = (0 : ℤ) → Z.value_of u mpz = BitVec.toUInt v_digit)))))
+  := sorry
+end mpz_cmp_Zcmp_wmpz_cmp_uiqtvc

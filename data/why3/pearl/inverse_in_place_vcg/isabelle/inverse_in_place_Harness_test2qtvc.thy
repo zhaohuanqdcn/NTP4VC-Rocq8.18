@@ -1,0 +1,8 @@
+theory inverse_in_place_Harness_test2qtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.int_NumOf" "./inverse_in_place_InverseInPlace"
+begin
+theorem test2'vc:
+  shows "(0 :: int) \<le> (3 :: int)"
+  and "\<forall>(a :: int list). (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < (3 :: int) \<longrightarrow> a ! nat i = (0 :: int)) \<and> int (length a) = (3 :: int) \<longrightarrow> ((0 :: int) \<le> (0 :: int) \<and> (0 :: int) < int (length a)) \<and> (length (a[nat (0 :: int) := 1 :: int]) = length a \<longrightarrow> nth (a[nat (0 :: int) := 1 :: int]) o nat = (nth a o nat)(0 :: int := 1 :: int) \<longrightarrow> ((0 :: int) \<le> (1 :: int) \<and> (1 :: int) < int (length (a[nat (0 :: int) := 1 :: int]))) \<and> (length (a[nat (1 :: int) := 2 :: int, nat (0 :: int) := 1 :: int]) = length (a[nat (0 :: int) := 1 :: int]) \<longrightarrow> nth (a[nat (1 :: int) := 2 :: int, nat (0 :: int) := 1 :: int]) o nat = (nth (a[nat (0 :: int) := 1 :: int]) o nat)(1 :: int := 2 :: int) \<longrightarrow> ((0 :: int) \<le> (2 :: int) \<and> (2 :: int) < int (length (a[nat (1 :: int) := 2 :: int, nat (0 :: int) := 1 :: int]))) \<and> (length (a[nat (2 :: int) := 0 :: int, nat (1 :: int) := 2 :: int, nat (0 :: int) := 1 :: int]) = length (a[nat (1 :: int) := 2 :: int, nat (0 :: int) := 1 :: int]) \<longrightarrow> nth (a[nat (2 :: int) := 0 :: int, nat (1 :: int) := 2 :: int, nat (0 :: int) := 1 :: int]) o nat = (nth (a[nat (1 :: int) := 2 :: int, nat (0 :: int) := 1 :: int]) o nat)(2 :: int := 0 :: int) \<longrightarrow> is_permutation (a[nat (2 :: int) := 0 :: int, nat (1 :: int) := 2 :: int, nat (0 :: int) := 1 :: int]))))"
+  sorry
+end

@@ -1,0 +1,42 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'lower' in 'my_lrand48'             --- *)
+(* ---------------------------------------------------------- *)
+theory VCmy_lrand48_post_lower
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+use import Cbits.Cbits
+
+(*
+goal WP "expl:Post-condition 'lower' in 'my_lrand48'":
+*)
+goal goal0:
+  forall t : map int int.
+  let x = t[0] in
+  let x_1 = t[1] in
+  let x_2 = t[2] in
+  ((is_uint16 x)) ->
+  ((is_uint16 x_1)) ->
+  ((is_uint16 x_2)) ->
+  ((is_uint64 x_2)) ->
+  (0
+     <= ((to_sint32
+           ((div
+              ((to_uint64
+                 ((mod
+                    ((to_uint64
+                       (11
+                        + ((to_uint64
+                             (25214903917
+                              * ((lor ((to_uint64 ((lsl x 32)))) (lor
+                                 ((to_uint64 ((lsl x_1 16)))) x_2)))))))))
+                    281474976710656)))) 131072)))))
+
+end
+

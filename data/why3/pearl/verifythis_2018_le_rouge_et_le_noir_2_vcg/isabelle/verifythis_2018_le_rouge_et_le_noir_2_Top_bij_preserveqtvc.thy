@@ -1,0 +1,38 @@
+theory verifythis_2018_le_rouge_et_le_noir_2_Top_bij_preserveqtvc
+  imports "NTP4Verif.NTP4Verif"
+begin
+definition bijection :: "'a fset \<Rightarrow> ('b \<Rightarrow> bool) \<Rightarrow> ('a \<Rightarrow> 'b) \<Rightarrow> ('b \<Rightarrow> 'a) \<Rightarrow> _"
+  where "bijection p q f g \<longleftrightarrow> (\<forall>(x :: 'a). x |\<in>| p \<longrightarrow> q (f x) = True \<and> g (f x) = x) \<and> (\<forall>(x :: 'b). q x = True \<longrightarrow> g x |\<in>| p \<and> f (g x) = x)" for p q f g
+consts o1 :: "('b \<Rightarrow> bool) \<Rightarrow> ('a \<Rightarrow> 'b) \<Rightarrow> 'a \<Rightarrow> 'b \<Rightarrow> bool"
+consts o2 :: "('b \<Rightarrow> bool) \<Rightarrow> ('a \<Rightarrow> 'b) \<Rightarrow> 'a \<Rightarrow> 'b \<Rightarrow> bool"
+consts o3 :: "('b \<Rightarrow> bool) \<Rightarrow> ('a \<Rightarrow> 'b) \<Rightarrow> 'a \<Rightarrow> 'b \<Rightarrow> bool"
+consts o4 :: "('b \<Rightarrow> bool) \<Rightarrow> ('a \<Rightarrow> 'b) \<Rightarrow> 'a \<Rightarrow> 'b \<Rightarrow> bool"
+axiomatization where o'def:   "o1 q f x y = True \<longleftrightarrow> q y = True \<and> \<not>y = f x"
+  for q :: "'b \<Rightarrow> bool"
+  and f :: "'a \<Rightarrow> 'b"
+  and x :: "'a"
+  and y :: "'b"
+axiomatization where o'def1:   "o2 q f x y = True \<longleftrightarrow> q y = True \<and> \<not>y = f x"
+  for q :: "'b \<Rightarrow> bool"
+  and f :: "'a \<Rightarrow> 'b"
+  and x :: "'a"
+  and y :: "'b"
+axiomatization where o'def2:   "o3 q f x y = True \<longleftrightarrow> q y = True \<and> \<not>y = f x"
+  for q :: "'b \<Rightarrow> bool"
+  and f :: "'a \<Rightarrow> 'b"
+  and x :: "'a"
+  and y :: "'b"
+axiomatization where o'def3:   "o4 q f x y = True \<longleftrightarrow> q y = True \<and> \<not>y = f x"
+  for q :: "'b \<Rightarrow> bool"
+  and f :: "'a \<Rightarrow> 'b"
+  and x :: "'a"
+  and y :: "'b"
+theorem bij_preserve'vc:
+  fixes p :: "'a fset"
+  fixes q :: "'b \<Rightarrow> bool"
+  fixes f :: "'a \<Rightarrow> 'b"
+  fixes g :: "'b \<Rightarrow> 'a"
+  assumes fact0: "bijection p q f g"
+  shows "let o5 :: int = int (fcard p) in (\<not>o5 = (0 :: int) \<longrightarrow> (let x :: 'a = fset_pick p; o6 :: 'a fset = fset_remove x p in ((0 :: int) \<le> int (fcard p) \<and> fcard o6 < fcard p) \<and> bijection o6 (o2 q f x) f g)) \<and> (\<forall>(result :: 'b fset). (if o5 = (0 :: int) then result = (fempty :: 'b fset) else let x :: 'a = fset_pick p in \<exists>(o6 :: 'b fset). ((\<forall>(x1 :: 'b). o4 q f x x1 = True \<longleftrightarrow> x1 |\<in>| o6) \<and> fcard (fset_remove x p) = fcard o6) \<and> result = finsert (f x) o6) \<longrightarrow> (\<forall>(x :: 'b). q x = True \<longleftrightarrow> x |\<in>| result) \<and> fcard p = fcard result)"
+  sorry
+end

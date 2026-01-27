@@ -1,0 +1,22 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.int.Unsigned
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.compare.Compare
+import pearl.multiprecision.lib.lean.ptralias.Alias
+import pearl.multiprecision.lib.lean.mpz.Z
+import pearl.multiprecision.lib.lean.mpz.Zutil
+import pearl.multiprecision.lib.lean.mpz_getset.Set
+open Classical
+open Lean4Why3
+namespace mpz_cmp_Zcmp_wmpz_sgnqtvc
+theorem wmpz_sgn'vc (mpz : Z.mpz_memo) (u : Z.mpz_ptr) (fact0 : (0 : ℤ) ≤ Z.readers mpz u) : -(2 : ℤ) < Z.readers mpz u ∧ (∀(o1 : BitVec 32), BitVec.toInt o1 = Z.sgn mpz u * Z.abs_size mpz u → (¬BitVec.toInt o1 < (0 : ℤ) → -(2 : ℤ) < Z.readers mpz u) ∧ (∀(result : BitVec 32), (if BitVec.toInt o1 < (0 : ℤ) then result = -(1 : BitVec 32) else ∃(o2 : BitVec 32), BitVec.toInt o2 = Z.sgn mpz u * Z.abs_size mpz u ∧ (if (0 : ℤ) < BitVec.toInt o2 then result = (1 : BitVec 32) else result = (0 : BitVec 32))) → (∀(w : Z.mpz_ptr), Z.mpz_unchanged w mpz mpz) ∧ ((0 : ℤ) < BitVec.toInt result → (0 : ℤ) < Z.value_of u mpz) ∧ (BitVec.toInt result < (0 : ℤ) → Z.value_of u mpz < (0 : ℤ)) ∧ (BitVec.toInt result = (0 : ℤ) → Z.value_of u mpz = (0 : ℤ))))
+  := sorry
+end mpz_cmp_Zcmp_wmpz_sgnqtvc

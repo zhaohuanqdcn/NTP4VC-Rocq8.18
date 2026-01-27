@@ -1,0 +1,12 @@
+atoms:
+  bintree.Size.size: [size, Size.size]
+axioms:
+  bintree.Size.size_empty: [size_empty, Size.size_empty]
+  bintree.Size.size_nonneg: [size_nonneg, Size.size_nonneg]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.bintree.Size
+prefix_ops: {}
+types: {}

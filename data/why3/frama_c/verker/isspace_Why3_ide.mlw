@@ -1,0 +1,30 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/ctype.h, line 87) in 'isspace' --- *)
+(* ---------------------------------------------------------- *)
+theory VCisspace_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Cint.Cint
+use import Cbits.Cbits
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Post-condition (file src/ctype.h, line 87) in 'isspace'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  let x = t[(to_uint8 i)] in
+  ((is_sint8 i)) ->
+  ((is_uint8 x)) ->
+  (((bit_test x 5)) <-> ((p_isspace i)))
+
+end
+

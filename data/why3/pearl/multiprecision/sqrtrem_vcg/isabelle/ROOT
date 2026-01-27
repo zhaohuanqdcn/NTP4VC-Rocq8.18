@@ -1,0 +1,8 @@
+session sqrtrem = NTP4Verif +
+theories
+  "sqrtrem_Sqrt_wmpn_sqrtrem2qtvc"
+  "sqrtrem_Sqrt_sqrt_normqtvc"
+  "sqrtrem_Sqrt_ceilhalfqtvc"
+  "sqrtrem_Sqrt_wmpn_sqrtremqtvc"
+  "sqrtrem_Sqrt_same_modqtvc"
+  "sqrtrem_Sqrt_wmpn_dc_sqrtremqtvc"

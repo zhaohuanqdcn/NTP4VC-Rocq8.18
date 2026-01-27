@@ -1,0 +1,14 @@
+session Firstorder_symbol_impl = NTP4Verif +
+theories
+  "Firstorder_symbol_impl_Impl_nlsubst_symbol_in_symbolqtvc"
+  "Firstorder_symbol_impl_Impl_unbind_var_symbol_in_symbolqtvc"
+  "Firstorder_symbol_impl_Impl_bind_var_symbol_in_symbolqtvc"
+  "Firstorder_symbol_impl_Logic_shiftb_compose_lemma_symbolqtvc"
+  "Firstorder_symbol_impl_Impl_destruct_symbolqtvc"
+  "Firstorder_symbol_impl_Logic_nlsize_positive_lemma_symbolqtvc"
+  "Firstorder_symbol_impl_Impl_construct_symbolqtvc"
+  "Firstorder_symbol_impl_Logic_nlmodel_subst_commutation_lemma_symbolqtvc"
+  "Firstorder_symbol_impl_Logic_bound_depth_of_symbol_in_symbol_nonnegativeqtvc"
+  "Firstorder_symbol_impl_Logic_model_equal_symbolqtvc"
+  "Firstorder_symbol_impl_Impl_subst_base_symbol_in_symbolqtvc"
+  "Firstorder_symbol_impl_Logic_nlmodel_rename_commutation_lemma_symbolqtvc"

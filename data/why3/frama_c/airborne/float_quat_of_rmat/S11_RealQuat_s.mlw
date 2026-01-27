@@ -1,0 +1,26 @@
+(* ---------------------------------------------------------- *)
+(* --- Struct 'RealQuat_s'                                --- *)
+(* ---------------------------------------------------------- *)
+theory S11_RealQuat_s
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+type s11_realquat_s = {
+  f11_realquat_s_qi : real ;
+  f11_realquat_s_qx : real ;
+  f11_realquat_s_qy : real ;
+  f11_realquat_s_qz : real }
+
+predicate eqs11_realquat_s (s : s11_realquat_s) (s_1 : s11_realquat_s) =
+    ((s_1.f11_realquat_s_qi) = (s.f11_realquat_s_qi)) /\
+    ((s_1.f11_realquat_s_qx) = (s.f11_realquat_s_qx)) /\
+    ((s_1.f11_realquat_s_qy) = (s.f11_realquat_s_qy)) /\
+    ((s_1.f11_realquat_s_qz) = (s.f11_realquat_s_qz))
+
+end
+

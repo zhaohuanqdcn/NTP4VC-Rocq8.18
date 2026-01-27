@@ -1,0 +1,21 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.int.Iter
+import Why3.pigeon.Pigeonhole
+open Classical
+open Lean4Why3
+namespace tortoise_and_hare_TortoiseAndHareAlgorithm_periodicityqtvc
+axiom f : ℤ -> ℤ
+axiom m : ℤ
+axiom m_positive : (0 : ℤ) < m
+axiom f_range (x : ℤ) (fact0 : (0 : ℤ) ≤ x) (fact1 : x < m) : (0 : ℤ) ≤ f x ∧ f x < m
+axiom x0 : ℤ
+axiom x0'def : (0 : ℤ) ≤ x0 ∧ x0 < m
+axiom f_closure : ℤ -> ℤ
+axiom f_closure_def (y : ℤ) : f_closure y = f y
+noncomputable def x (i : ℤ) := Iter.iter f_closure i x0
+axiom get_closure :  {α : Type} -> [Inhabited α] -> List α -> ℤ -> α
+axiom get_closure_def {α : Type} [Inhabited α] (y : List α) (y1 : ℤ) : get_closure y y1 = y[Int.toNat y1]!
+theorem periodicity'vc : let o1 : ℤ := x0; let o2 : List ℤ := [o1]; Int.ofNat (List.length o2) = (1 : ℤ) ∧ o2[(0 : ℕ)]! = o1 → (let o3 : ℤ := m; ((1 : ℤ) ≤ o3 + (1 : ℤ) → ((((1 : ℤ) ≤ Int.ofNat (List.length o2) ∧ Int.ofNat (List.length o2) = (1 : ℤ) ∧ (1 : ℤ) ≤ m) ∧ x0 = o2[Int.toNat (Int.ofNat (List.length o2) - (1 : ℤ))]!) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length o2) → o2[Int.toNat i]! = x i) ∧ List.Nodup o2) ∧ (∀(cur : ℤ) (s : List ℤ), (((1 : ℤ) ≤ Int.ofNat (List.length s) ∧ Int.ofNat (List.length s) ≤ o3) ∧ (((1 : ℤ) ≤ Int.ofNat (List.length s) ∧ Int.ofNat (List.length s) ≤ m) ∧ cur = s[Int.toNat (Int.ofNat (List.length s) - (1 : ℤ))]!) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length s) → s[Int.toNat i]! = x i) ∧ List.Nodup s → (let o4 : ℤ := Int.ofNat (List.length s) - (1 : ℤ); ((0 : ℤ) ≤ o4 + (1 : ℤ) → (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < (0 : ℤ) → ¬s[Int.toNat i]! = f cur) ∧ (∀(mu : ℤ), ((0 : ℤ) ≤ mu ∧ mu ≤ o4) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < mu → ¬s[Int.toNat i]! = f cur) → (if f cur = s[Int.toNat mu]! then let o5 : ℤ := Int.ofNat (List.length s) - mu; (((0 : ℤ) ≤ mu ∧ mu < m) ∧ ((1 : ℤ) ≤ o5 ∧ o5 ≤ m) ∧ mu + o5 ≤ m ∧ x (mu + o5) = x mu) ∧ (∀(i : ℤ) (j : ℤ), (0 : ℤ) ≤ i ∧ i < j ∧ j < mu + o5 → ¬x i = x j) else ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < mu + (1 : ℤ) → ¬s[Int.toNat i]! = f cur)) ∧ ((∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < o4 + (1 : ℤ) → ¬s[Int.toNat i]! = f cur) → (let o5 : List ℤ := s ++ [f cur]; Int.ofNat (List.length o5) = (1 : ℤ) + Int.ofNat (List.length s) ∧ o5[List.length s]! = f cur ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length s) → o5[Int.toNat i]! = s[Int.toNat i]!) → (Int.ofNat (List.length s) = m → (let o6 : ℤ -> ℤ := get_closure o5; let o7 : ℤ := m; let o8 : ℤ := m + (1 : ℤ); ((0 : ℤ) ≤ o7 ∧ o7 < o8) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < o8 → (0 : ℤ) ≤ o6 i ∧ o6 i < o7))) ∧ ((Int.ofNat (List.length s) = m → (let o6 : ℤ -> ℤ := get_closure o5; ∃(i1 : ℤ) (i2 : ℤ), ((0 : ℤ) ≤ i1 ∧ i1 < i2 ∧ i2 < m + (1 : ℤ)) ∧ o6 i1 = o6 i2)) → (((1 : ℤ) ≤ Int.ofNat (List.length o5) ∧ Int.ofNat (List.length o5) = Int.ofNat (List.length s) + (1 : ℤ) ∧ Int.ofNat (List.length s) + (1 : ℤ) ≤ m) ∧ f cur = o5[Int.toNat (Int.ofNat (List.length o5) - (1 : ℤ))]!) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length o5) → o5[Int.toNat i]! = x i) ∧ List.Nodup o5)))) ∧ (o4 + (1 : ℤ) < (0 : ℤ) → (let o5 : List ℤ := s ++ [f cur]; Int.ofNat (List.length o5) = (1 : ℤ) + Int.ofNat (List.length s) ∧ o5[List.length s]! = f cur ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length s) → o5[Int.toNat i]! = s[Int.toNat i]!) → (Int.ofNat (List.length s) = m → (let o6 : ℤ -> ℤ := get_closure o5; let o7 : ℤ := m; let o8 : ℤ := m + (1 : ℤ); ((0 : ℤ) ≤ o7 ∧ o7 < o8) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < o8 → (0 : ℤ) ≤ o6 i ∧ o6 i < o7))) ∧ ((Int.ofNat (List.length s) = m → (let o6 : ℤ -> ℤ := get_closure o5; ∃(i1 : ℤ) (i2 : ℤ), ((0 : ℤ) ≤ i1 ∧ i1 < i2 ∧ i2 < m + (1 : ℤ)) ∧ o6 i1 = o6 i2)) → (((1 : ℤ) ≤ Int.ofNat (List.length o5) ∧ Int.ofNat (List.length o5) = Int.ofNat (List.length s) + (1 : ℤ) ∧ Int.ofNat (List.length s) + (1 : ℤ) ≤ m) ∧ f cur = o5[Int.toNat (Int.ofNat (List.length o5) - (1 : ℤ))]!) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length o5) → o5[Int.toNat i]! = x i) ∧ List.Nodup o5))))) ∧ ¬((((1 : ℤ) ≤ Int.ofNat (List.length s) ∧ Int.ofNat (List.length s) = o3 + (1 : ℤ) ∧ o3 + (1 : ℤ) ≤ m) ∧ cur = s[Int.toNat (Int.ofNat (List.length s) - (1 : ℤ))]!) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length s) → s[Int.toNat i]! = x i) ∧ List.Nodup s))) ∧ ¬o3 + (1 : ℤ) < (1 : ℤ))
+  := sorry
+end tortoise_and_hare_TortoiseAndHareAlgorithm_periodicityqtvc

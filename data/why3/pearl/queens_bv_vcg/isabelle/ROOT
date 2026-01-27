@@ -1,0 +1,23 @@
+session queens_bv = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "queens_bv_NQueensBits_test8qtvc"
+  "queens_bv_S"
+  "queens_bv_Solution"
+  "queens_bv_BitsSpec"
+  "queens_bv_Bits_remove_singletonqtvc"
+  "queens_bv_NQueensBits_tqtvc"
+  "queens_bv_Bits_belowqtvc"
+  "queens_bv_Bits_mul2qtvc"
+  "queens_bv_Bits_tqtvc"
+  "queens_bv_Solution_no_duplicateqtvc"
+  "queens_bv_Solution_partial_solution_eq_prefixqtvc"
+  "queens_bv_Bits_div2qtvc"
+  "queens_bv_Bits_diffqtvc"
+  "queens_bv_Bits_emptyqtvc"
+  "queens_bv_Bits_is_emptyqtvc"
+  "queens_bv_BitsSpec_tqtvc"
+  "queens_bv_Bits_add_singletonqtvc"
+  "queens_bv_NQueensBits_queensqtvc"
+  "queens_bv_Bits_rightmost_bit_trickqtvc"

@@ -1,0 +1,10 @@
+
+#ifndef STACKEQUIVALENCE_H_INCLUDED
+#define STACKEQUIVALENCE_H_INCLUDED
+
+#include "StackEqual.h"
+
+ 
+
+#endif /* STACKEQUIVALENCE_H_INCLUDED */
+

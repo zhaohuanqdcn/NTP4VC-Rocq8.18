@@ -1,0 +1,9 @@
+session generate_all_trees = NTP4Verif +
+theories
+  "generate_all_trees_GenerateAllTrees"
+  "generate_all_trees_GenerateAllTrees_combineqtvc"
+  "generate_all_trees_GenerateAllTrees_all_treesqtvc"
+  "generate_all_trees_GenerateAllTrees_all_trees_0qtvc"
+  "generate_all_trees_GenerateAllTrees_size_nonnegqtvc"
+  "generate_all_trees_GenerateAllTrees_size_leftqtvc"
+  "generate_all_trees_GenerateAllTrees_tree_diffqtvc"

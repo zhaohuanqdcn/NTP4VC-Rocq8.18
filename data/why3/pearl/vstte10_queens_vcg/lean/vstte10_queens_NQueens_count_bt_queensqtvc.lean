@@ -1,0 +1,13 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+open Classical
+open Lean4Why3
+namespace vstte10_queens_NQueens_count_bt_queensqtvc
+noncomputable def eq_board (b1 : List ℤ) (b2 : List ℤ) (pos : ℤ) := ∀(q : ℤ), (0 : ℤ) ≤ q ∧ q < pos → b1[Int.toNat q]! = b2[Int.toNat q]!
+noncomputable def consistent_row (board : List ℤ) (pos : ℤ) (q : ℤ) := ¬board[Int.toNat q]! = board[Int.toNat pos]! ∧ ¬board[Int.toNat q]! - board[Int.toNat pos]! = pos - q ∧ ¬board[Int.toNat pos]! - board[Int.toNat q]! = pos - q
+noncomputable def is_consistent (board : List ℤ) (pos : ℤ) := ∀(q : ℤ), (0 : ℤ) ≤ q ∧ q < pos → consistent_row board pos q
+noncomputable def is_board (board : List ℤ) (pos : ℤ) := ∀(q : ℤ), (0 : ℤ) ≤ q ∧ q < pos → (0 : ℤ) ≤ board[Int.toNat q]! ∧ board[Int.toNat q]! < Int.ofNat (List.length board)
+noncomputable def solution (board : List ℤ) (pos : ℤ) := is_board board pos ∧ (∀(q : ℤ), (0 : ℤ) ≤ q ∧ q < pos → is_consistent board q)
+theorem count_bt_queens'vc (pos : ℤ) (board : List ℤ) (fact0 : (0 : ℤ) ≤ pos) (fact1 : pos ≤ Int.ofNat (List.length board)) (fact2 : solution board pos) : if pos = Int.ofNat (List.length board) then eq_board board board pos else let o1 : ℤ := Int.ofNat (List.length board) - (1 : ℤ); ((0 : ℤ) ≤ o1 + (1 : ℤ) → eq_board board board pos ∧ (∀(s : ℤ) (board1 : List ℤ), List.length board1 = List.length board → (∀(i : ℤ), ((0 : ℤ) ≤ i ∧ i ≤ o1) ∧ eq_board board1 board pos → ((0 : ℤ) ≤ pos ∧ pos < Int.ofNat (List.length board1)) ∧ (List.length (List.set board1 (Int.toNat pos) i) = List.length board1 → getElem! (List.set board1 (Int.toNat pos) i) ∘ Int.toNat = Function.update (getElem! board1 ∘ Int.toNat) pos i → ((0 : ℤ) ≤ pos ∧ pos < Int.ofNat (List.length (List.set board1 (Int.toNat pos) i))) ∧ (if is_consistent (List.set board1 (Int.toNat pos) i) pos then let o2 : ℤ := pos + (1 : ℤ); (((0 : ℤ) ≤ Int.ofNat (List.length board) - pos ∧ Int.ofNat (List.length board) - o2 < Int.ofNat (List.length board) - pos) ∧ List.length (List.set board1 (Int.toNat pos) i) = List.length board ∧ ((0 : ℤ) ≤ o2 ∧ o2 ≤ Int.ofNat (List.length board)) ∧ solution (List.set board1 (Int.toNat pos) i) o2) ∧ (∀(board2 : List ℤ), List.length board2 = List.length (List.set board1 (Int.toNat pos) i) → (∀(o3 : ℤ), eq_board board2 (List.set board1 (Int.toNat pos) i) o2 → eq_board board2 board pos)) else eq_board (List.set board1 (Int.toNat pos) i) board pos))))) ∧ (o1 + (1 : ℤ) < (0 : ℤ) → eq_board board board pos)
+  := sorry
+end vstte10_queens_NQueens_count_bt_queensqtvc

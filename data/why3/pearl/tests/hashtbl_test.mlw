@@ -1,0 +1,19 @@
+module TestHashtbl
+
+  use int.Int
+  use list.List
+  use hashtbl.Hashtbl
+
+  val constant k1: key
+  val constant k2: key
+  val constant k3: key
+  axiom kdiff : k1 <> k2 /\ k1 <> k3 /\ k2 <> k3
+
+  let test1 () =
+    let h = create 17 in
+    add h k1 True;
+    let v1 = find h k1 in
+    add h k1 False;
+    replace h k1 True
+
+end

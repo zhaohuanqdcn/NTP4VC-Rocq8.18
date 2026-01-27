@@ -1,0 +1,14 @@
+session maximum_subarray = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "maximum_subarray_Algo3_maximum_subarrayqtvc"
+  "maximum_subarray_Spec"
+  "maximum_subarray_Algo3_maximum_subarray_recqtvc"
+  "maximum_subarray_Algo5_maximum_subarrayqtvc"
+  "maximum_subarray_Algo1_maximum_subarrayqtvc"
+  "maximum_subarray_BoundedIntegers_maximum_subarrayqtvc"
+  "maximum_subarray_MaxProd_prodqtvc"
+  "maximum_subarray_Algo2_maximum_subarrayqtvc"
+  "maximum_subarray_Algo4_maximum_subarrayqtvc"
+  "maximum_subarray_MaxProd_maximum_subarrayqtvc"

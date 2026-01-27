@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name contiki_list.linked_n_merge_segment_Why3_ide_vcg)
+(theories contiki_list.Compound contiki_list.Axiomatic Why3.Qed Why3 Why3.Memory Why3.Cint contiki_list.S1_list))

@@ -1,0 +1,10 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.int.Sum
+open Classical
+open Lean4Why3
+namespace vstte10_max_sum_MaxAndSum2_max_sumqtvc
+noncomputable def is_max (a : List ℤ) (l : ℤ) (h : ℤ) (m : ℤ) := (∀(k : ℤ), l ≤ k ∧ k < h → a[Int.toNat k]! ≤ m) ∧ (h ≤ l ∧ m = (0 : ℤ) ∨ l < h ∧ (∃(k : ℤ), (l ≤ k ∧ k < h) ∧ m = a[Int.toNat k]!))
+theorem max_sum'vc (a : List ℤ) (fact0 : ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a) → (0 : ℤ) ≤ a[Int.toNat i]!) : let o1 : ℤ := Int.ofNat (List.length a) - (1 : ℤ); ((0 : ℤ) ≤ o1 + (1 : ℤ) → ((0 : ℤ) = List.sum (List.drop (0 : ℕ) (List.take ((0 : ℕ) - (0 : ℕ)) a)) ∧ is_max a (0 : ℤ) (0 : ℤ) (0 : ℤ) ∧ (0 : ℤ) ≤ (0 : ℤ) * (0 : ℤ)) ∧ (∀(m : ℤ) (s : ℤ), (∀(i : ℤ), ((0 : ℤ) ≤ i ∧ i ≤ o1) ∧ s = List.sum (List.drop (0 : ℕ) (List.take (Int.toNat i - (0 : ℕ)) a)) ∧ is_max a (0 : ℤ) i m ∧ s ≤ i * m → ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ (if m < a[Int.toNat i]! then ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ s + a[Int.toNat i]! = List.sum (List.drop (0 : ℕ) (List.take (Int.toNat (i + (1 : ℤ)) - (0 : ℕ)) a)) ∧ is_max a (0 : ℤ) (i + (1 : ℤ)) (a[Int.toNat i]!) ∧ s + a[Int.toNat i]! ≤ (i + (1 : ℤ)) * a[Int.toNat i]! else ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ s + a[Int.toNat i]! = List.sum (List.drop (0 : ℕ) (List.take (Int.toNat (i + (1 : ℤ)) - (0 : ℕ)) a)) ∧ is_max a (0 : ℤ) (i + (1 : ℤ)) m ∧ s + a[Int.toNat i]! ≤ (i + (1 : ℤ)) * m)) ∧ (s = List.sum (List.drop (0 : ℕ) (List.take (Int.toNat (o1 + (1 : ℤ)) - (0 : ℕ)) a)) ∧ is_max a (0 : ℤ) (o1 + (1 : ℤ)) m ∧ s ≤ (o1 + (1 : ℤ)) * m → s = List.sum (List.drop (0 : ℕ) (List.take (List.length a - (0 : ℕ)) a)) ∧ is_max a (0 : ℤ) (Int.ofNat (List.length a)) m ∧ s ≤ Int.ofNat (List.length a) * m))) ∧ (o1 + (1 : ℤ) < (0 : ℤ) → (0 : ℤ) = List.sum (List.drop (0 : ℕ) (List.take (List.length a - (0 : ℕ)) a)) ∧ is_max a (0 : ℤ) (Int.ofNat (List.length a)) (0 : ℤ) ∧ (0 : ℤ) ≤ Int.ofNat (List.length a) * (0 : ℤ))
+  := sorry
+end vstte10_max_sum_MaxAndSum2_max_sumqtvc

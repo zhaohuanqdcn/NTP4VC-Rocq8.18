@@ -1,0 +1,75 @@
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file list_head.c, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VClist_head_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file list_head.c, line 20)":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t a 1)) ->
+  ((p_linked_n t t_1 t_1[a] a_1 i_1 i null)) ->
+  ((valid_rd t a 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_empty' (file list_head.c, line 14) in 'list_head' --- *)
+(* ---------------------------------------------------------- *)
+theory VClist_head_not_empty_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'not_empty' (file list_head.c, line 14) in 'list_head'":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_1[a] in
+  (a_2 <> null) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t a 1)) ->
+  ((p_linked_n t t_1 a_2 a_1 i_1 i null)) ->
+  (t_1[(shift_ptr a_1 i_1)] = a_2)
+
+end
+

@@ -1,0 +1,12 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import frama_c.x509_parser.lib.lean.Compound.Compound
+import frama_c.x509_parser.lib.lean.Globals.Globals
+import Why3.Cint.Cint
+open Classical
+open Lean4Why3
+namespace parse_x509_subjectPublicKeyInfo_Why3_ide_VCparse_x509_subjectPublicKeyInfo_call_parse_x509_Algorithm____goal5
+theorem goal5 (a_1 : Memory.addr) (a : Memory.addr) (i_2 : ℤ) (t : ℤ -> ℤ) (i_1 : ℤ) (i : ℤ) (t_1 : Memory.addr -> Memory.addr) : let x : ℤ := Memory.addr.base a_1; let x_1 : ℤ := Memory.addr.base a; let a_2 : Memory.addr := Memory.shift a_1 i_2; let a_3 : Memory.addr := Memory.shift a_1 (0 : ℤ); let m : ℤ -> ℤ := Function.update t (7106 : ℤ) (4 : ℤ); ¬i_1 = (0 : ℤ) → ¬Memory.addr.mk (0 : ℤ) (0 : ℤ) = a_1 → ¬x = x_1 → ¬a_2 = Memory.addr.mk (0 : ℤ) (0 : ℤ) → (0 : ℤ) < i → (0 : ℤ) ≤ i_1 → i ≤ i_1 → i_2 ≤ i_1 → i + i_2 ≤ i_1 → Memory.region x_1 ≤ (0 : ℤ) → Memory.region x ≤ (0 : ℤ) → (2 : ℤ) ≤ i_2 → Memory.framed t_1 → Memory.linked t → Cint.is_uint16 i → Cint.is_uint16 i_1 → Cint.is_uint16 i_2 → Memory.valid_rw t a (1 : ℤ) → ((0 : ℤ) < i_1 → Memory.valid_rd t a_3 i_1) → ((0 : ℤ) < i_1 → Memory.valid_rd m a_3 i_1) → Memory.valid_rd m a_2 i
+  := sorry
+end parse_x509_subjectPublicKeyInfo_Why3_ide_VCparse_x509_subjectPublicKeyInfo_call_parse_x509_Algorithm____goal5

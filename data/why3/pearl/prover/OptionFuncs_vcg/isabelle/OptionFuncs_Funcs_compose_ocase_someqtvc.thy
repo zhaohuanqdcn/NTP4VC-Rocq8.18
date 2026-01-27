@@ -1,0 +1,17 @@
+theory OptionFuncs_Funcs_compose_ocase_someqtvc
+  imports "NTP4Verif.NTP4Verif" "../../lib/isabelle/Functions_Config" "../../lib/isabelle/Functions_Func"
+begin
+consts some :: "'a \<Rightarrow> 'a option"
+axiomatization where some_def:   "some x = Some x"
+  for x :: "'a"
+consts ocase :: "('a \<Rightarrow> 'b) \<Rightarrow> 'b \<Rightarrow> 'a option \<Rightarrow> 'b"
+axiomatization where ocase_def:   "ocase f d x = (case x of (None :: 'a option) \<Rightarrow> d | Some x1 \<Rightarrow> f x1)"
+  for f :: "'a \<Rightarrow> 'b"
+  and d :: "'b"
+  and x :: "'a option"
+theorem compose_ocase_some'vc:
+  fixes f :: "'a \<Rightarrow> 'b"
+  fixes d :: "'b"
+  shows "compose (ocase f d) some = f"
+  sorry
+end

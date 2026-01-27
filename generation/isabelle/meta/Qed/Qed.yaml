@@ -1,0 +1,16 @@
+atoms:
+  Qed.Qed.eqb: [eqb, Qed_Qed.eqb]
+  Qed.Qed.match_bool: [match_bool, Qed_Qed.match_bool]
+  Qed.Qed.neqb: [neqb, Qed_Qed.neqb]
+  Qed.Qed.rleq: [rleq, Qed_Qed.rleq]
+  Qed.Qed.rlt: [rlt, Qed_Qed.rlt]
+  Qed.Qed.zleq: [zleq, Qed_Qed.zleq]
+  Qed.Qed.zlt: [zlt, Qed_Qed.zlt]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.Qed_Qed
+prefix_ops: {}
+types: {}

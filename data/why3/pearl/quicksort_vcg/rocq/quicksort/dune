@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name quicksort_vcg.quicksort)
+(theories Why3.array Why3 Why3.why3.Ref Why3.map Why3.random))

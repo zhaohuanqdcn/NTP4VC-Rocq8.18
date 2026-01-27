@@ -1,0 +1,31 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.why3.Ref.Ref.
+Open Scope Z_scope.
+Definition is_partition (a : array32 (bv 32%N)) := 0%Z < bv_signed (array32_length a) ∧ (∀(i : Z) (j : Z), 0%Z ≤ i ∧ i ≤ j ∧ j < bv_signed (array32_length a) -> bv_signed (array32_elts a j) ≤ bv_signed (array32_elts a i)) ∧ bv_signed (array32_elts a (bv_signed (array32_length a) - 1%Z)) = 0%Z.
+Definition numofgt (a : array32 (bv 32%N)) (n : Z) (v : Z) := (0%Z ≤ n ∧ n < bv_signed (array32_length a)) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < n -> v < bv_signed (array32_elts a j)) ∧ bv_signed (array32_elts a n) ≤ v.
+Definition is_conjugate (a : array32 (bv 32%N)) (b : array32 (bv 32%N)) := bv_signed (array32_elts a 0%Z) < bv_signed (array32_length b) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < bv_signed (array32_length b) -> numofgt a (bv_signed (array32_elts b j)) j).
+Theorem conjugate'vc (a : array32 (bv 32%N)) (b : array32 (bv 32%N)) (fact0 : is_partition a) (fact1 : bv_signed (array32_length b) = bv_signed (array32_elts a 0%Z) + 1%Z) (fact2 : ∀(i : Z), 0%Z ≤ i ∧ i < bv_signed (array32_length b) -> bv_signed (array32_elts b i) = 0%Z) : 0%Z ≤ 0%Z ∧ 0%Z < bv_signed (array32_length a) ∧ (∀(j : Z), bv_signed (array32_elts a 0%Z) ≤ j ∧ j < bv_signed (array32_length b) -> numofgt a (bv_signed (array32_elts b j)) j) ∧ (∀(partc : bv 32%N) (b1 : array32 (bv 32%N)), array32_length b1 = array32_length b -> (0%Z ≤ bv_signed partc ∧ bv_signed partc < bv_signed (array32_length a)) ∧ (∀(j : Z), bv_signed (array32_elts a (bv_signed partc)) ≤ j ∧ j < bv_signed (array32_length b1) -> numofgt a (bv_signed (array32_elts b1 j)) j) -> (0%Z ≤ bv_signed partc ∧ bv_signed partc < bv_signed (array32_length a)) ∧ (let o1 : bv 32%N := array32_elts a (bv_signed partc) in (bv_signed o1 = 0%Z -> o1 = (0%bv : bv 32%N)) -> (if decide (¬ o1 = (0%bv : bv 32%N)) then (0%Z ≤ bv_signed partc ∧ bv_signed partc < bv_signed (array32_length a)) ∧ (let edge : bv 32%N := array32_elts a (bv_signed partc) in int'32_in_bounds (bv_signed partc + 1%Z) ∧ (∀(o2 : bv 32%N), bv_signed o2 = bv_signed partc + 1%Z -> ((bv_signed partc ≤ bv_signed o2 ∧ bv_signed o2 < bv_signed (array32_length a)) ∧ (∀(j : Z), bv_signed partc ≤ j ∧ j < bv_signed o2 -> array32_elts a j = edge)) ∧ (∀(partc1 : bv 32%N), (bv_signed partc ≤ bv_signed partc1 ∧ bv_signed partc1 < bv_signed (array32_length a)) ∧ (∀(j : Z), bv_signed partc ≤ j ∧ j < bv_signed partc1 -> array32_elts a j = edge) -> (0%Z ≤ bv_signed partc1 ∧ bv_signed partc1 < bv_signed (array32_length a)) ∧ (let o3 : bv 32%N := array32_elts a (bv_signed partc1) in (bv_signed o3 = bv_signed edge -> o3 = edge) -> (if decide (o3 = edge) then int'32_in_bounds (bv_signed partc1 + 1%Z) ∧ (∀(o4 : bv 32%N), bv_signed o4 = bv_signed partc1 + 1%Z -> (0%Z ≤ bv_signed (array32_length a) - bv_signed partc1 ∧ bv_signed (array32_length a) - bv_signed o4 < bv_signed (array32_length a) - bv_signed partc1) ∧ (bv_signed partc ≤ bv_signed o4 ∧ bv_signed o4 < bv_signed (array32_length a)) ∧ (∀(j : Z), bv_signed partc ≤ j ∧ j < bv_signed o4 -> array32_elts a j = edge)) else int'32_in_bounds (bv_signed edge - 1%Z) ∧ (∀(o4 : bv 32%N), bv_signed o4 = bv_signed edge - 1%Z -> (0%Z ≤ bv_signed partc1 ∧ bv_signed partc1 < bv_signed (array32_length a)) ∧ (let o5 : bv 32%N := array32_elts a (bv_signed partc1) in (bv_signed o5 ≤ bv_signed o4 + 1%Z -> (∀(j : Z), bv_signed (array32_elts a (bv_signed partc1)) ≤ j ∧ j < bv_signed o5 -> array32_elts b1 j = partc1) ∧ (∀(b2 : array32 (bv 32%N)), array32_length b2 = array32_length b1 -> (∀(i : bv 32%N), let i1 : Z := bv_signed i in (bv_signed o5 ≤ i1 ∧ i1 ≤ bv_signed o4) ∧ (∀(j : Z), bv_signed edge ≤ j ∧ j < bv_signed (array32_length b2) -> array32_elts b2 j = array32_elts b1 j) ∧ (∀(j : Z), bv_signed (array32_elts a (bv_signed partc1)) ≤ j ∧ j < i1 -> array32_elts b2 j = partc1) -> (0%Z ≤ bv_signed i ∧ bv_signed i < bv_signed (array32_length b2)) ∧ (∀(b3 : array32 (bv 32%N)), array32_length b3 = array32_length b2 -> array32_elts b3 = fun_updt (array32_elts b2) (bv_signed i) partc1 -> (∀(j : Z), bv_signed edge ≤ j ∧ j < bv_signed (array32_length b3) -> array32_elts b3 j = array32_elts b1 j) ∧ (∀(j : Z), bv_signed (array32_elts a (bv_signed partc1)) ≤ j ∧ j < i1 + 1%Z -> array32_elts b3 j = partc1))) ∧ ((∀(j : Z), bv_signed edge ≤ j ∧ j < bv_signed (array32_length b2) -> array32_elts b2 j = array32_elts b1 j) ∧ (∀(j : Z), bv_signed (array32_elts a (bv_signed partc1)) ≤ j ∧ j < bv_signed o4 + 1%Z -> array32_elts b2 j = partc1) -> (0%Z ≤ bv_signed (array32_length a) - bv_signed partc ∧ bv_signed (array32_length a) - bv_signed partc1 < bv_signed (array32_length a) - bv_signed partc) ∧ (0%Z ≤ bv_signed partc1 ∧ bv_signed partc1 < bv_signed (array32_length a)) ∧ (∀(j : Z), bv_signed (array32_elts a (bv_signed partc1)) ≤ j ∧ j < bv_signed (array32_length b2) -> numofgt a (bv_signed (array32_elts b2 j)) j)))) ∧ (bv_signed o4 + 1%Z < bv_signed o5 -> (0%Z ≤ bv_signed (array32_length a) - bv_signed partc ∧ bv_signed (array32_length a) - bv_signed partc1 < bv_signed (array32_length a) - bv_signed partc) ∧ (0%Z ≤ bv_signed partc1 ∧ bv_signed partc1 < bv_signed (array32_length a)) ∧ (∀(j : Z), bv_signed (array32_elts a (bv_signed partc1)) ≤ j ∧ j < bv_signed (array32_length b1) -> numofgt a (bv_signed (array32_elts b1 j)) j))))))))) else is_conjugate a b1))).
+Admitted.

@@ -1,0 +1,3 @@
+session muller = NTP4Verif +
+theories
+  "muller_Muller_compactqtvc"

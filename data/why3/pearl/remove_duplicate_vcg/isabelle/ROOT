@@ -1,0 +1,5 @@
+session remove_duplicate = NTP4Verif +
+theories
+  "remove_duplicate_RemoveDuplicateQuadratic_remove_duplicateqtvc"
+  "remove_duplicate_Spec"
+  "remove_duplicate_RemoveDuplicateQuadratic_test_appearsqtvc"

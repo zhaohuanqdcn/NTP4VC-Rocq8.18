@@ -1,0 +1,16 @@
+session valuation = NTP4Verif +
+theories
+  "valuation_Valuation_valuation_monotonousqtvc"
+  "valuation_Valuation_valuation_modqtvc"
+  "valuation_Valuation_valuation_times_nondivqtvc"
+  "valuation_Valuation_valuationqtvc"
+  "valuation_Valuation_valuation_times_powqtvc"
+  "valuation_Valuation_valuation_prodqtvc"
+  "valuation_Valuation_power_ge_1qtvc"
+  "valuation_Valuation_valuation_splitqtvc"
+  "valuation_Valuation_valuation_decompqtvc"
+  "valuation_Valuation_valuation_powqtvc"
+  "valuation_Valuation_valuation_mulqtvc"
+  "valuation_Valuation_valuation_nondivqtvc"
+  "valuation_Valuation_valuation_zero_prodqtvc"
+  "valuation_Valuation_valuation_lower_boundqtvc"

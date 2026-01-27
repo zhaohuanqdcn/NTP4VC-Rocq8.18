@@ -1,0 +1,11 @@
+atoms:
+  string.StringBuffer.str: [str, StringBuffer.str]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.string.StringBuffer
+prefix_ops: {}
+types:
+  string.StringBuffer.buffer: [buffer, StringBuffer.buffer]

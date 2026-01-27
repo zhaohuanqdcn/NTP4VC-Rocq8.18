@@ -1,0 +1,30 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import euler_sieve_vcg.euler_sieve.ArithmeticResults.
+Require Import euler_sieve_vcg.euler_sieve.DivisibilityResults.
+Require Import euler_sieve_vcg.euler_sieve.EulerSieveSpec.
+Open Scope Z_scope.
+Theorem conservation_not_marked_impl_next_not_marked'vc (marked : list bool) (nexts : list Z) (n : Z) (max : Z) (fact0 : not_marked_impl_next_not_marked marked nexts n) (fact1 : n < nth (Z.to_nat n) nexts inhabitant) (fact2 : 0%Z < n) (fact3 : ZEuclid.div max (nth (Z.to_nat n) nexts inhabitant) ≤ ZEuclid.div max n) : not_marked_impl_next_not_marked marked nexts (nth (Z.to_nat n) nexts inhabitant).
+Admitted.

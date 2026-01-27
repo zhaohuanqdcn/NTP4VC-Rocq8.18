@@ -1,0 +1,7 @@
+session bubble_sort = NTP4Verif +
+theories
+  "bubble_sort_BubbleSort_test2qtvc"
+  "bubble_sort_TAOCP_bubble_sortqtvc"
+  "bubble_sort_BubbleSort_test1qtvc"
+  "bubble_sort_BubbleSort_benchqtvc"
+  "bubble_sort_BubbleSort_bubble_sortqtvc"

@@ -1,0 +1,19 @@
+theory memb_init_Why3_ide_VCmemb_init_assert_rte_mem_access_goal1
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "../../lib/isabelle/Axiomatic13_Axiomatic13" "Why3STD.Memory_Memory" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/A_OccArray_A_OccArray" "Why3STD.Cint_Cint"
+begin
+theorem goal1:
+  fixes a :: "addr"
+  fixes t_3 :: "addr \<Rightarrow> addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  assumes fact0: "region (base a) \<le> (0 :: int)"
+  assumes fact1: "framed t_3"
+  assumes fact2: "linked t"
+  assumes fact3: "sconst t_2"
+  assumes fact4: "is_uint16 (t_1 (shift a (1 :: int)))"
+  assumes fact5: "is_uint16 (t_1 (shift a (0 :: int)))"
+  assumes fact6: "p_valid_memb t t_3 t_1 a"
+  shows "valid_rd t (shift a (2 :: int)) (1 :: int)"
+  sorry
+end

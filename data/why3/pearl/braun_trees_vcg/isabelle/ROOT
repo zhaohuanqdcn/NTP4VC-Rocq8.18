@@ -1,0 +1,14 @@
+session braun_trees = NTP4Verif +
+theories
+  "braun_trees_BraunHeaps_diffqtvc"
+  "braun_trees_BraunHeaps_size_heightqtvc"
+  "braun_trees_BraunHeaps_get_minqtvc"
+  "braun_trees_BraunHeaps_addqtvc"
+  "braun_trees_BraunHeaps_emptyqtvc"
+  "braun_trees_BraunHeaps_inv_heightqtvc"
+  "braun_trees_BraunHeaps_mergeqtvc"
+  "braun_trees_BraunHeaps_fast_sizeqtvc"
+  "braun_trees_BraunHeaps_root_is_minqtvc"
+  "braun_trees_BraunHeaps_replace_minqtvc"
+  "braun_trees_BraunHeaps_extractqtvc"
+  "braun_trees_BraunHeaps_remove_minqtvc"

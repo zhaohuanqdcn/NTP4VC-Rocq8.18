@@ -1,0 +1,105 @@
+module Valuation
+
+  use int.Int
+  use int.Power
+  use int.ComputerDivision
+  use export number.Divisibility
+  use number.Prime
+  use number.Coprime
+  use export number.Parity
+
+  let rec ghost function valuation (n p: int)
+    requires { 1 < p }
+    requires { 1 <= n }
+    variant { n }
+    ensures { 0 <= result }
+    ensures { divides (power p result) n }
+  = if mod n p = 0
+    then
+      let d = div n p in
+      let r = valuation d p in
+      r+1
+    else 0
+
+  let ghost valuation_mul (n p: int) : unit
+    requires { 1 <= n }
+    requires { 1 < p }
+    ensures { valuation (n*p) p = 1 + valuation n p }
+  = ()
+
+  let ghost power_ge_1 (b e: int) : unit
+    requires { 1 <= b }
+    requires { 0 <= e }
+    ensures { 1 <= power b e }
+  = ()
+
+  let ghost valuation_times_pow (n p k:int) : unit
+    requires { 1 <= n /\ 1 < p /\ 0 <= k }
+    ensures  { valuation (n * power p k) p = k + valuation n p }
+  = ()
+
+  let ghost valuation_split (n p: int) : unit
+    requires { 1 <= n }
+    requires { prime p }
+    ensures { let v = valuation n p in
+    valuation (div n (power p v)) p = 0 }
+  = ()
+
+  let ghost valuation_lower_bound (n p v:int) : unit
+    requires {  1 <= n /\ 1 < p /\ 0 <= v }
+    requires { divides (power p v) n }
+    ensures  { v <= valuation n p }
+  = ()
+
+  let ghost valuation_pow (p k: int) : unit
+    requires { 1 < p /\ 0 <= k }
+    ensures { valuation (power p k) p = k }
+  = ()
+
+  let ghost valuation_monotonous (n c p:int) : unit
+    requires { 1 <= n /\ 1 <= c /\ 1 < p }
+    ensures { valuation n p <= valuation (n*c) p }
+  = ()
+
+  let ghost valuation_nondiv (n p: int) : unit
+    requires { 1 <= n }
+    requires { 1 < p }
+    ensures { valuation n p = 0 <-> not (divides p n) }
+  = ()
+
+  let ghost valuation_zero_prod (c1 c2 p: int) : unit
+    requires { 1 <= c1 }
+    requires { 1 <= c2 }
+    requires { prime p }
+    requires { valuation c1 p = 0 }
+    requires { valuation c2 p = 0 }
+    ensures { valuation (c1 * c2) p = 0 }
+  = ()
+
+  let ghost valuation_times_nondiv (n c p:int) : unit
+    requires { 1 <= n /\ 1 <= c }
+    requires { prime p }
+    requires { valuation c p = 0 }
+    ensures  { valuation (n*c) p = valuation n p }
+  = ()
+
+  let ghost valuation_prod (n1 n2 p: int) : unit
+    requires { 1 <= n1 }
+    requires { 1 <= n2 }
+    requires { prime p }
+    ensures { valuation (n1 * n2) p = valuation n1 p + valuation n2 p }
+  = ()
+
+  let ghost valuation_mod (n p: int) : unit
+    requires { 1 <= n }
+    requires { 1 < p }
+    ensures { mod n p = 0 <-> valuation n p > 0 }
+  = ()
+
+  let ghost valuation_decomp (n p: int) : unit
+    requires { 1 <= n }
+    requires { 1 < p }
+    ensures { n = (power p (valuation n p)) * (div n (power p (valuation n p))) }
+  = ()
+
+end

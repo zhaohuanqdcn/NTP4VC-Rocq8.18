@@ -1,0 +1,958 @@
+module Types
+
+  use Functions.Func
+  (*use import Assoc.Types as AS
+  use import Assoc.Logic as AS
+  use import Assoc.Impl as AS*)
+  use import BacktrackArray.Types as BA
+  use import BacktrackArray.Logic as BA
+  use import BacktrackArray.Impl as BA
+  use Firstorder_symbol_spec.Spec
+  use Firstorder_symbol_impl.Types
+  use Firstorder_symbol_impl.Logic
+  use Firstorder_symbol_impl.Impl
+  use Firstorder_term_spec.Spec
+  use Firstorder_term_impl.Types
+  use Firstorder_term_impl.Logic
+  use Firstorder_term_impl.Impl
+
+  type sdata = PConflict nlimpl_fo_term_list nlimpl_fo_term_list
+    | Assign nlimpl_fo_term
+
+  type subst = BA.t sdata
+  type timesubst = BA.timestamp sdata
+
+  type unifier_subst = {
+    ghost unifier_base_model : int -> (fo_term int int) ;
+    ghost unifier : int -> (fo_term int int) ;
+  }
+
+  type unification_return = {
+    ghost final_unifier : unifier_subst ;
+    ghost unifier_factor : int -> (fo_term int int) ;
+  }
+
+  (*type unify_return = {
+    ghost factor : int -> (fo_term int int);
+  }*)
+
+end
+
+module Logic
+
+  use int.Int
+  use Functions.Func
+  use option.Option
+  use import BacktrackArray.Types as BA
+  use import BacktrackArray.Logic as BA
+  use import BacktrackArray.Impl as BA
+  use list.List
+  use Firstorder_symbol_spec.Spec
+  use Firstorder_symbol_impl.Types
+  use Firstorder_symbol_impl.Logic
+  use Firstorder_symbol_impl.Impl
+  use Firstorder_term_spec.Spec
+  use Firstorder_term_impl.Types
+  use Firstorder_term_impl.Logic
+  use Firstorder_term_impl.Impl
+  use Types
+
+  constant sdata_inv : sdata -> bool
+  axiom sdata_inv_def : forall x:sdata.
+    sdata_inv x <-> match x with
+      | PConflict l1 l2 -> nlimpl_fo_term_list_ok l1 /\
+        nlimpl_fo_term_list_ok l2 /\ (forall x:int.
+          is_fo_term_free_var_in_fo_term_list x
+            l1.model_fo_term_list_field -> x >= 0) /\
+          (forall x:int. is_fo_term_free_var_in_fo_term_list x
+            l2.model_fo_term_list_field -> x >= 0)
+      | Assign l -> nlimpl_fo_term_ok l /\
+        (forall x:int. is_fo_term_free_var_in_fo_term x
+          l.model_fo_term_field -> x >= 0)
+    end
+
+  function smodel (l:timesubst) : int -> (fo_term int int)
+  axiom smodel_def : forall l:timesubst,x:int.
+    smodel l x = match table l x with
+      | Nil -> Var_fo_term x
+      | Cons (PConflict _ _) _ -> Var_fo_term x
+      | Cons (Assign u) _ -> u.model_fo_term_field
+    end
+
+  predicate unassigned (l:timesubst) (x:int) = match table l x with
+    | Cons (Assign _) _ -> false
+    | _ -> true
+  end
+
+  let ghost smodel_depend_only_model (l1 l2:timesubst) : unit
+    requires { l1.table = l2.table }
+    ensures { smodel l1 = smodel l2 }
+  =
+    ()
+
+  function sc (s1:'b -> (fo_term 'ls 'b)) (s2:'b -> (fo_term 'ls 'b)) :
+    'b -> (fo_term 'ls 'b) =
+    subst_compose_fo_term s1 subst_id_symbol s2
+
+  function st (t:fo_term 'ls 'b) (s:'b -> (fo_term 'ls 'b)) : fo_term 'ls 'b =
+    subst_fo_term t subst_id_symbol s
+
+  function stl (t:fo_term_list 'ls 'b)
+    (s:'b -> (fo_term 'ls 'b)) : fo_term_list 'ls 'b =
+    subst_fo_term_list t subst_id_symbol s
+
+  (*
+  (* power relation. *)
+
+  inductive power_rel (s:'b -> (fo_term 'ls 'b)) (n:int)
+    (sr:'b -> (fo_term 'ls 'b)) =
+    | Power0 : forall s:'b -> (fo_term 'ls 'b).
+      power_rel s 0 subst_id_fo_term
+    | Powern : forall s:'b -> (fo_term 'ls 'b),n:int,
+      sr:'b -> (fo_term 'ls 'b).
+      n >= 0 /\ power_rel s n sr ->
+      power_rel s (n+1) (sc s sr)
+
+  let rec ghost power_rel_det (s:'b -> (fo_term 'ls 'b)) (n:int) : unit
+    ensures { forall sr1 sr2:'b -> (fo_term 'ls 'b).
+      power_rel s n sr1 /\ power_rel s n sr2 -> sr1 = sr2 }
+  = ()
+
+  let rec ghost power_rel_additive (s:'b -> (fo_term 'ls 'b)) (n m:int)
+    (srm:'b -> (fo_term 'ls 'b)) : unit
+    ensures { forall srn:'b -> (fo_term 'ls 'b).
+      power_rel s n srn /\ power_rel s m srm ->
+      power_rel s (n+m) (sc srn srm) }
+  = ()
+
+  let rec ghost power (s:'b -> (fo_term 'ls 'b)) (n:int) :
+    'b -> (fo_term 'ls 'b)
+    requires { n >= 0 }
+    ensures { power_rel s n result }
+  = ()
+
+  let rec ghost power_fixed_point (s:'b -> (fo_term 'ls 'b)) (n:int)
+    (x:'b) : unit
+    requires { s x = Var_fo_term x }
+    ensures { forall srn:'b -> (fo_term 'ls 'b).
+      power_rel s n srn -> srn x = Var_fo_term x }
+  = ()
+  *)
+
+  (* In other words : unifier is the idempotent limit reached by power
+     iteration of the model of unifier_base, which is unifier_base_model,
+     and iteration is an exponent reaching the fixed point. *)
+
+  predicate unifier_subst_ok (rho:subst) (u:unifier_subst) =
+    smodel (BA.current_timestamp rho) = u.unifier_base_model /\
+    (forall x:int. eval u.unifier_base_model x = Var_fo_term x ->
+      unassigned (BA.current_timestamp rho) x) /\
+    (*power_rel u.unifier_base_model u.iteration u.unifier /\
+    u.iteration > 0 /\*)
+    (* Replace *) (forall x:int. eval u.unifier_base_model x = Var_fo_term x ->
+      eval u.unifier x = Var_fo_term x) /\
+    sc u.unifier_base_model u.unifier = u.unifier /\
+    sc u.unifier u.unifier_base_model = u.unifier /\
+    sc u.unifier u.unifier = u.unifier /\
+    BA.correct rho /\
+    rho.inv = sdata_inv
+
+  (*let rec ghost size_term_increase (t:fo_term int int) (x:int)
+    (s:int -> (fo_term int int)) : unit
+    ensures { is_fo_term_free_var_in_fo_term x t ->
+      size_fo_term (subst_fo_term t subst_id_symbol s)
+      >= size_fo_term t + size_fo_term (s x) -
+        size_fo_term (Var_fo_term x:fo_term int int) }
+    ensures { size_fo_term (subst_fo_term t subst_id_symbol s) >=
+      size_fo_term t }
+  = ()
+
+  with ghost size_list_increase (t:fo_term_list int int) (x:int)
+    (s:int -> (fo_term int int)) : unit
+    ensures { is_fo_term_free_var_in_fo_term_list x t ->
+      size_fo_term_list (subst_fo_term_list t subst_id_symbol s)
+      >= size_fo_term_list t + size_fo_term (s x) -
+        size_fo_term (Var_fo_term x:fo_term int int) }
+    ensures { size_fo_term_list (subst_fo_term_list t subst_id_symbol s)
+      >= size_fo_term_list t }
+  = ()*)
+
+end
+
+module Impl
+
+  use int.Int
+  use Functions.Func
+  use option.Option
+  use import BacktrackArray.Types as BA
+  use import BacktrackArray.Logic as BA
+  use import BacktrackArray.Impl as BA
+  use list.List
+  use Firstorder_symbol_spec.Spec
+  use Firstorder_symbol_impl.Types
+  use Firstorder_symbol_impl.Logic
+  use Firstorder_symbol_impl.Impl
+  use Firstorder_term_spec.Spec
+  use Firstorder_term_impl.Types
+  use Firstorder_term_impl.Logic
+  use Firstorder_term_impl.Impl
+  use Types
+  use Logic
+  use ref.Ref
+  use list.Mem
+
+  exception UnificationFailure
+
+  (* Utility for a frequent reasoning that
+     allow to decrease variant. *)
+  (*let ghost checkit (rhob:subst) (rho:unifier_subst) (x:int) (*(it:int)*) : unit
+    (*requires { it >= 0 }
+    requires { forall sp:int -> (fo_term int int).
+      let tm = Var_fo_term x in
+      power_rel rho.unifier_base_model it sp ->
+      st tm sp = st tm rho.unifier }*)
+    requires { unifier_subst_ok rhob rho }
+    requires { match table (BA.current_timestamp rhob) x with
+        | Cons (Assign _) _ -> true
+        | _ -> false
+      end }
+    (*ensures { it >= 1 }*)
+    ensures { forall sp:int -> (fo_term int int).
+      let tm = eval rho.unifier_base_model x in
+      power_rel rho.unifier_base_model (it-1) sp ->
+      st tm sp = st tm rho.unifier }
+  = ()*)
+
+  let ghost bottomvar (rhob:subst) (ghost rho:unifier_subst) (x:int) : unit
+    requires { unifier_subst_ok rhob rho }
+    requires { unassigned (BA.current_timestamp rhob) x }
+    ensures { let tm = Var_fo_term x in
+      tm = st tm rho.unifier_base_model /\
+      tm = st tm rho.unifier }
+  =
+    ()
+
+  (* Check presence of a variable inside the fully substituted term. *)
+  let rec check_unified_free_var (x:int) (t:nlimpl_fo_term)
+    (rhob:subst) (ghost rho:unifier_subst)
+    (*(ghost it:int)*) : unit
+    requires { unifier_subst_ok rhob rho }
+    requires { nlimpl_fo_term_ok t }
+    (* Variant requirement. *)
+    (*requires { forall sp:int -> (fo_term int int).
+      let tm = t.model_fo_term_field in
+      power_rel rho.unifier_base_model it sp ->
+      st tm sp = st tm rho.unifier }*)
+    (*requires { it >= 0 }*)
+    requires { forall y:int. is_fo_term_free_var_in_fo_term y
+      t.model_fo_term_field -> y >= 0 }
+    diverges (* variant { 0 } *)
+    (* variant { it , size_fo_term t.model_fo_term_field } *)
+    ensures { not(is_fo_term_free_var_in_fo_term x
+      (st t.model_fo_term_field rho.unifier)) }
+    raises { UnificationFailure (*->
+      is_fo_term_free_var_in_fo_term x (st t.model_fo_term_field rho.unifier)*) }
+  =
+    let tm = t.model_fo_term_field in
+    let rho0 = rho.unifier in
+    match destruct_fo_term t with
+      | NLCVar_fo_term y -> 
+        let by' = BA.get rhob y in
+        match by' with
+          | Nil -> bottomvar rhob rho y ;
+            if x = y
+            then raise UnificationFailure
+          | Cons (PConflict _ _) _ -> bottomvar rhob rho y ;
+            if x = y
+            then raise UnificationFailure
+          | Cons (Assign t2) _ -> 
+            let t2m = t2.model_fo_term_field in
+            (*checkit rhob rho y it ;*)
+            check_unified_free_var x t2 rhob rho (*(it-1)*)
+        end
+      | NLC_App f l -> let fm = f.model_symbol_field in
+        let lm = l.model_fo_term_list_field in
+        check_unified_free_var_list x l rhob rho (*it*)
+    end
+
+  with check_unified_free_var_list (x:int) (t:nlimpl_fo_term_list)
+    (rhob:subst) (ghost rho:unifier_subst) (*(ghost it:int)*) : unit
+    requires { nlimpl_fo_term_list_ok t }
+    requires { unifier_subst_ok rhob rho }
+    (* Variant requirement. *)
+    (*requires { forall sp:int -> (fo_term int int).
+      let tm = t.model_fo_term_list_field in
+      power_rel rho.unifier_base_model it sp ->
+      stl tm sp = stl tm rho.unifier }*)
+    (*requires { it >= 0 }*)
+    requires { forall y:int. is_fo_term_free_var_in_fo_term_list y
+      t.model_fo_term_list_field -> y >= 0 }
+    diverges (* variant { 0 } *)
+    (*variant { it , size_fo_term_list t.model_fo_term_list_field }*)
+    ensures { not(is_fo_term_free_var_in_fo_term_list x
+        (stl t.model_fo_term_list_field rho.unifier)) }
+    raises { UnificationFailure (*->
+      is_fo_term_free_var_in_fo_term_list x
+        (stl t.model_fo_term_list_field rho.unifier)*) }
+  =
+    let tm = t.model_fo_term_list_field in
+    let rho0 = rho.unifier in
+    match destruct_fo_term_list t with
+      | NLC_FONil -> ()
+      | NLC_FOCons u q -> let um = u.model_fo_term_field in
+        let qm = q.model_fo_term_list_field in
+        check_unified_free_var x u rhob rho (*it*) ;
+        check_unified_free_var_list x q rhob rho (*it*)
+    end
+
+  (*
+  (* to prevent : 1) expanding of t0 as a record,
+     2) inlining of nlimpl_fo_term *)
+  predicate ugly_hack (rho:table int nlimpl_fo_term) =
+    forall x:int, t0:nlimpl_fo_term.
+      AS.model rho x = Some t0 -> nlimpl_fo_term_ok t0
+  *)
+
+  (* Unification core routine : set a variable to some equation. *)
+
+  let assign (z:int) (t:nlimpl_fo_term) (lv:ref (list int)) (rhob:subst)
+    (ghost rho:unifier_subst) (ghost lp:int -> bool)
+    (*(ghost fv s:S.set int)*) : unification_return
+
+    (* Invariant requirements. *)
+    requires { z >= 0 }
+    requires { nlimpl_fo_term_ok t }
+    requires { unifier_subst_ok rhob rho }
+
+
+    (* Essential requirement : the variable is not yet assigned. *)
+    requires { unassigned (current_timestamp rhob) z }
+    (* Essential requirement given the structure invariants :
+       do not assign a variable to itself. *)
+    requires { st t.model_fo_term_field rho.unifier <> Var_fo_term z }
+
+    requires { forall y:int. is_fo_term_free_var_in_fo_term y
+      t.model_fo_term_field -> y >= 0 }
+
+    requires { forall x:int. mem x !lv ->
+      lp x /\ x >= 0 }
+    requires { forall x:int. unassigned (current_timestamp rhob) x -> lp x }
+    ensures { forall x:int. mem x !lv ->
+      lp x /\ x >= 0 }
+    ensures { forall x:int. unassigned (current_timestamp rhob) x -> lp x }
+
+    (* Invariant ensures. *)
+    ensures { unifier_subst_ok rhob result.final_unifier }
+    ensures { precede (old rhob) rhob }
+
+    (* Unifier properties. *)
+    ensures { sc rho.unifier result.unifier_factor =
+      result.final_unifier.unifier }
+    ensures { forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      s' z = st t.model_fo_term_field s' ->
+      s' = sc result.final_unifier.unifier s }
+    ensures { let s0 = result.final_unifier.unifier in
+      s0 z = st t.model_fo_term_field s0 }
+    ensures { let s0 = result.final_unifier.unifier in
+      let s1 = rho.unifier_base_model in
+      sc s0 s1 = s0 = sc s1 s0 }
+    ensures { let s0 = result.final_unifier.unifier in
+      let s1 = rho.unifier in
+      sc s0 s1 = s0 = sc s1 s0 }
+
+    diverges
+    (* Variant post-conditions. *)
+    (*ensures { cardinal result.unassigned_set < cardinal s }
+    ensures { forall x:int.
+      mem x fv /\ AS.model result.final_unifier.unifier_base x = None ->
+      mem x result.unassigned_set }
+    ensures { forall x y:int.
+      mem x fv /\
+      is_fo_term_free_var_in_fo_term y (
+        eval result.final_unifier.unifier_base_model x)
+        -> mem y fv }*)
+    raises { UnificationFailure -> precede (old rhob) rhob /\
+      correct rhob
+    (*-> forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      s' z <> st t.model_fo_term_field s'*) }
+  =
+    label Init in
+    let tm = t.model_fo_term_field in
+    let rho0 = rho.unifier_base_model in
+    let rhoi = rho.unifier in
+    let ghost stm = st tm rhoi in
+    (*let n0 = rho.iteration in*)
+    bottomvar rhob rho z;
+    (*assert { forall s:int -> (fo_term int int).
+      is_fo_term_free_var_in_fo_term z stm ->
+      match stm with
+        | Var_fo_term _ -> false
+        | _ -> size_fo_term (st stm s) > size_fo_term (s z) end &&
+      size_fo_term (st tm (sc rhoi s)) > size_fo_term (s z) &&
+      s z = sc rhoi s z && st tm (sc rhoi s) <> sc rhoi s z } ;*)
+    check_unified_free_var z t rhob rho (*rho.iteration*) ;
+    let ghost uf = subst_id_fo_term[z <- stm] in
+    let ghost rhoi' = sc rhoi uf in
+    let ghost rho0' = rho0[z <- tm] in
+    BA.add z (Assign t) rhob ;
+    lv := Cons z !lv;
+    (*let n1 = 2 * n0 + 1 in*)
+    let ghost rho0'' = rho0[z <- stm] in
+    let ghost rhoi'' = rhoi[z <- stm] in
+    let rhou = {(*
+      unifier_base = rho'' ;*)
+      unifier_base_model = rho0' ;
+      (*iteration = n1 ;*)
+      unifier = rhoi' } in
+    let res = { final_unifier = rhou ;
+      unifier_factor = uf (*;
+      unassigned_set = remove z s*) } in
+    res
+
+  (*
+  meta "remove_logic" predicate ugly_hack
+  *)
+
+  (* Forced because of the model fields. *)
+  val ghost unassigned_vars (rhob:subst) : int -> bool
+    ensures { forall x:int.
+      result x <-> unassigned (current_timestamp rhob) x }
+
+  let rec unification_term (t1 t2:nlimpl_fo_term) (lv:ref (list int))
+    (rhob:subst) (ghost rho:unifier_subst) (ghost lp:int -> bool)
+    (*(ghost fv s:S.set int) (ghost it1 it2:int)*) : unification_return
+
+    (* Invariant requirements. *)
+    requires { nlimpl_fo_term_ok t1 }
+    requires { nlimpl_fo_term_ok t2 }
+    requires { unifier_subst_ok rhob rho }
+    requires { forall y:int. is_fo_term_free_var_in_fo_term y
+      t1.model_fo_term_field -> y >= 0 }
+    requires { forall y:int. is_fo_term_free_var_in_fo_term y
+      t2.model_fo_term_field -> y >= 0 }
+
+    (* Variant requirements. *)
+    (*requires { forall x:int.
+      is_fo_term_free_var_in_fo_term x t1.model_fo_term_field -> mem x fv }
+    requires { forall x:int.
+      is_fo_term_free_var_in_fo_term x t2.model_fo_term_field -> mem x fv }
+    requires { forall x y:int.
+      mem x fv /\
+      is_fo_term_free_var_in_fo_term y (eval rho.unifier_base_model x)
+        -> mem y fv }
+    requires { forall x:int.
+      mem x fv /\ AS.model rho.unifier_base x = None -> mem x s }
+    requires { forall sp:int -> (fo_term int int).
+      let tm = t1.model_fo_term_field in
+      power_rel rho.unifier_base_model it1 sp ->
+      st tm sp = st tm rho.unifier }
+    requires { it1 >= 0 }
+    requires { forall sp:int -> (fo_term int int).
+      let tm = t2.model_fo_term_field in
+      power_rel rho.unifier_base_model it2 sp ->
+      st tm sp = st tm rho.unifier }
+    requires { it2 >= 0 }*)
+
+    (* Invariant ensures. *)
+    ensures { unifier_subst_ok rhob result.final_unifier }
+    ensures { precede (old rhob) rhob }
+
+    requires { forall x:int. mem x !lv ->
+      lp x /\ x >= 0 }
+    requires { forall x:int. unassigned (current_timestamp rhob) x -> lp x }
+    ensures { forall x:int. mem x !lv ->
+      lp x /\ x >= 0 }
+    ensures { forall x:int. unassigned (current_timestamp rhob) x -> lp x }
+
+    (* Unifier properties. *)
+    (* The final unifier is obtained by composition with
+       the first one and some given factor. *)
+    ensures { sc rho.unifier result.unifier_factor =
+      result.final_unifier.unifier }
+    (* Any possible unifier obtained in such a way can be
+       factorised with the final unifier as factor. In fact,
+       the factorisation is trivial, so we can avoid existentials. *)
+    ensures { forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      st t1.model_fo_term_field s' = st t2.model_fo_term_field s' ->
+      s' = sc result.final_unifier.unifier s }
+    (* It is of course an unifier. *)
+    ensures { let s0 = result.final_unifier.unifier in
+      st t1.model_fo_term_field s0 = st t2.model_fo_term_field s0 }
+    ensures { let s0 = result.final_unifier.unifier in
+      let s1 = rho.unifier_base_model in
+      sc s0 s1 = s0 = sc s1 s0 }
+    ensures { let s0 = result.final_unifier.unifier in
+      let s1 = rho.unifier in
+      sc s0 s1 = s0 = sc s1 s0 }
+
+    (* Variant postconditions. *)
+    (*ensures { result.unassigned_set = s ->
+      rho.unifier = result.final_unifier.unifier /\
+      rho.unifier_base_model = result.final_unifier.unifier_base_model }
+    ensures { result.unassigned_set <> s ->
+      cardinal result.unassigned_set < cardinal s }
+    ensures { forall x:int.
+      mem x fv /\ AS.model result.final_unifier.unifier_base x = None ->
+      mem x result.unassigned_set }
+    ensures { forall x y:int.
+      mem x fv /\
+      is_fo_term_free_var_in_fo_term y (
+        eval result.final_unifier.unifier_base_model x)
+        -> mem y fv }*)
+    raises { UnificationFailure -> precede (old rhob) rhob /\ correct rhob
+    (*-> forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      st t1.model_fo_term_field s' <> st t2.model_fo_term_field s'*) }
+    diverges (* variant { 0 } *)
+    (*variant { S.cardinal s , it1 + it2 ,
+      size_fo_term t1.model_fo_term_field +
+      size_fo_term t2.model_fo_term_field }*)
+  =
+    let t1m = t1.model_fo_term_field in
+    let t2m = t2.model_fo_term_field in
+    match destruct_fo_term t1 , destruct_fo_term t2 with
+      | NLCVar_fo_term x , NLCVar_fo_term y ->
+        if x = y
+        then { final_unifier = rho ;
+          unifier_factor = subst_id_fo_term (*;
+          unassigned_set = s*) }
+        else let bx = BA.get rhob x in
+          match bx with
+            | Cons (Assign bx) _ -> (*checkit rho x it1 ;*)
+              let bxm = bx.model_fo_term_field in
+              let rhobm = rho.unifier_base_model in
+              let rhoi = rho.unifier in
+              let res = unification_term bx t2 lv rhob rho lp (*
+                fv s (it1-1) it2*) in
+              let rhoi' = res.final_unifier.unifier in
+              res
+            | _ -> let by' = BA.get rhob y in
+              match by' with
+                | Cons (Assign by') _ -> (*checkit rho y it2 ;*)
+                  let bym = by'.model_fo_term_field in
+                  let rhobm = rho.unifier_base_model in
+                  let rhoi = rho.unifier in
+                  let res = unification_term t1 by' lv rhob rho lp (*fv s it1 (it2-1)*) in
+                  let rhoi' = res.final_unifier.unifier in
+                  res
+                | _ -> bottomvar rhob rho y ;
+                  bottomvar rhob rho x ;
+                  if x < y
+                  then assign x t2 lv rhob rho lp (*fv s*)
+                  else assign y t1 lv rhob rho lp
+              end
+          end
+      | NLC_App f1 l1 , NLC_App f2 l2 ->
+        let l1m = l1.model_fo_term_list_field in
+        let l2m = l2.model_fo_term_list_field in
+        let f1m = f1.model_symbol_field in
+        let f2m = f2.model_symbol_field in
+        match destruct_symbol f1 , destruct_symbol f2 with
+          | NLCVar_symbol f1 , NLCVar_symbol f2 -> if f1 = f2
+            then (
+                unification_term_list l1 l2 lv rhob rho lp (*fv s it1 it2*)
+              )
+            else raise UnificationFailure
+        end
+      | NLCVar_fo_term x , NLC_App f l ->
+        let fm = f.model_symbol_field in
+        let lm = l.model_fo_term_list_field in
+        let bx = BA.get rhob x in
+        match bx with
+          | Cons (Assign bx) _ ->
+            (*checkit rho x it1 ;*)
+            let bxm = bx.model_fo_term_field in
+            let rhobm = rho.unifier_base_model in
+            let rhoi = rho.unifier in
+            let res = unification_term bx t2 lv rhob rho lp (*
+              fv s (it1-1) it2*) in
+            let rhoi' = res.final_unifier.unifier in
+            res
+          | _ -> assign x t2 lv rhob rho lp (*fv s*)
+        end
+      | NLC_App f l , NLCVar_fo_term x ->
+        let fm = f.model_symbol_field in
+        let lm = l.model_fo_term_list_field in
+        let bx = BA.get rhob x in
+        match bx with
+          | Cons (Assign bx) _ -> (*checkit rho x it2 ;*)
+            let bxm = bx.model_fo_term_field in
+            let rhobm = rho.unifier_base_model in
+            let rhoi = rho.unifier in
+            let res = unification_term t1 bx lv rhob rho lp
+              (*fv s it1 (it2-1)*) in
+            let rhoi' = res.final_unifier.unifier in
+            res
+          | _ -> assign x t1 lv rhob rho lp (*fv s*)
+        end
+    end
+
+  with unification_term_list (t1 t2:nlimpl_fo_term_list) (lv:ref (list int))
+    (rhob:subst) (ghost rho:unifier_subst) (ghost lp:int -> bool)
+    (*(ghost fv s:S.set int) (ghost it1 it2:int)*) :
+    unification_return
+    (* Invariant requirements. *)
+    requires { nlimpl_fo_term_list_ok t1 }
+    requires { nlimpl_fo_term_list_ok t2 }
+    requires { unifier_subst_ok rhob rho }
+    requires { forall y:int. is_fo_term_free_var_in_fo_term_list y
+      t1.model_fo_term_list_field -> y >= 0 }
+    requires { forall y:int. is_fo_term_free_var_in_fo_term_list y
+      t2.model_fo_term_list_field -> y >= 0 }
+
+    (* Variant requirements. *)
+    (*requires { forall x:int.
+      is_fo_term_free_var_in_fo_term_list x t1.model_fo_term_list_field ->
+        mem x fv }
+    requires { forall x:int.
+      is_fo_term_free_var_in_fo_term_list x t2.model_fo_term_list_field ->
+        mem x fv }
+    requires { forall x y:int.
+      mem x fv /\
+      is_fo_term_free_var_in_fo_term y (eval rho.unifier_base_model x) ->
+        mem y fv }
+    requires { forall x:int.
+      mem x fv /\ AS.model rho.unifier_base x = None -> mem x s }
+    requires { forall sp:int -> (fo_term int int).
+      let tm = t1.model_fo_term_list_field in
+      power_rel rho.unifier_base_model it1 sp ->
+      stl tm sp = stl tm rho.unifier }
+    requires { it1 >= 0 }
+    requires { forall sp:int -> (fo_term int int).
+      let tm = t2.model_fo_term_list_field in
+      power_rel rho.unifier_base_model it2 sp ->
+      stl tm sp = stl tm rho.unifier }
+    requires { it2 >= 0 }*)
+
+    (* Invariant ensures. *)
+    ensures { unifier_subst_ok rhob result.final_unifier }
+    ensures { precede (old rhob) rhob }
+
+    requires { forall x:int. mem x !lv ->
+      lp x /\ x >= 0 }
+    requires { forall x:int. unassigned (current_timestamp rhob) x -> lp x }
+    ensures { forall x:int. mem x !lv ->
+      lp x /\ x >= 0 }
+    ensures { forall x:int. unassigned (current_timestamp rhob) x -> lp x }
+
+    (* Unifier properties. *)
+    ensures { sc rho.unifier result.unifier_factor =
+      result.final_unifier.unifier }
+    ensures { forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      stl t1.model_fo_term_list_field s' = stl t2.model_fo_term_list_field s' ->
+      s' = sc result.final_unifier.unifier s }
+    ensures { let s0 = result.final_unifier.unifier in
+      stl t1.model_fo_term_list_field s0 =
+        stl t2.model_fo_term_list_field s0 }
+    ensures { let s0 = result.final_unifier.unifier in
+      let s1 = rho.unifier_base_model in
+      sc s0 s1 = s0 = sc s1 s0 }
+    ensures { let s0 = result.final_unifier.unifier in
+      let s1 = rho.unifier in
+      sc s0 s1 = s0 = sc s1 s0 }
+
+    (* Variant postconditions. *)
+    (*ensures { result.unassigned_set = s ->
+      rho.unifier = result.final_unifier.unifier /\
+      rho.unifier_base_model = result.final_unifier.unifier_base_model }
+    ensures { result.unassigned_set <> s ->
+      cardinal result.unassigned_set < cardinal s }
+    ensures { forall x:int.
+      mem x fv /\ AS.model result.final_unifier.unifier_base x = None ->
+      mem x result.unassigned_set }
+    ensures { forall x y:int.
+      mem x fv /\
+      is_fo_term_free_var_in_fo_term y (
+        eval result.final_unifier.unifier_base_model x)
+        -> mem y fv }*)
+    raises { UnificationFailure -> precede (old rhob) rhob /\ correct rhob
+    (*-> forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      stl t1.model_fo_term_list_field s' <>
+        stl t2.model_fo_term_list_field s'*) }
+    diverges (* variant { 0 } *)
+     (*variant { S.cardinal s , it1 + it2 ,
+      size_fo_term_list t1.model_fo_term_list_field +
+      size_fo_term_list t2.model_fo_term_list_field }*)
+  =
+    let t1m = t1.model_fo_term_list_field in
+    let t2m = t2.model_fo_term_list_field in
+    match destruct_fo_term_list t1 , destruct_fo_term_list t2 with
+      | NLC_FONil , NLC_FONil -> { final_unifier = rho ;
+        unifier_factor = subst_id_fo_term (*;
+        unassigned_set = s*) }
+      | NLC_FOCons u1 q1 , NLC_FOCons u2 q2 ->
+        let u1m = u1.model_fo_term_field in
+        let u2m = u2.model_fo_term_field in
+        let q1m = q1.model_fo_term_list_field in
+        let q2m = q2.model_fo_term_list_field in
+        let rho0 = rho.unifier in
+        let rho2 = unification_term_list q1 q2 lv rhob rho lp (*fv s it1 it2*) in
+        let rho2f = rho2.final_unifier in
+        let rho20 = rho2f.unifier in
+        (*let u = rho2f.iteration in*)
+        (*let ghost aux_ (u_:unit) : (int,int)
+          returns { (it'1,it'2) ->
+            (rho2.unassigned_set = s -> it1=it'1 /\ it2 = it'2) /\
+            (forall sp:int -> (fo_term int int).
+              power_rel rho2f.unifier_base_model it'1 sp ->
+              stl t1m sp = stl t1m rho20) /\
+            (forall sp:int -> (fo_term int int).
+              power_rel rho2f.unifier_base_model it'2 sp ->
+              stl t2m sp = stl t2m rho20) /\
+              it'1 >= 0 /\
+              it'2 >= 0 }
+        = if rho2.unassigned_set = s
+          then (it1,it2)
+          else ( assert { forall sp:int -> (fo_term int int).
+            power_rel rho2f.unifier_base_model u sp ->
+            sp = rho2f.unifier } ; (u,u) ) in
+        let (it1,it2) = aux_ () in*)
+        let rho3 = unification_term u1 u2 lv rhob rho2f lp
+          (*fv rho2.unassigned_set it1 it2*) in
+        let rho30 = rho3.final_unifier.unifier in
+        let rhof3 = rho3.unifier_factor in
+        { final_unifier = rho3.final_unifier ;
+          unifier_factor = ghost sc rho2.unifier_factor rho3.unifier_factor (*;
+          unassigned_set = rho3.unassigned_set*) }
+      | NLC_FONil , NLC_FOCons u q ->
+        (*assert { forall s:int -> (fo_term int int).
+          subst_fo_term_list t1m subst_id_symbol s = FONil /\
+          let um = u.model_fo_term_field in
+          let qm = q.model_fo_term_list_field in
+          stl t2m s = FOCons (st um s) (stl qm s) } ;*)
+        raise UnificationFailure
+      | NLC_FOCons u q , NLC_FONil ->
+        (*assert { forall s:int -> (fo_term int int).
+          subst_fo_term_list t2m subst_id_symbol s = FONil /\
+          let um = u.model_fo_term_field in
+          let qm = q.model_fo_term_list_field in
+          stl t1m s = FOCons (st um s) (stl qm s) } ;*)
+        raise UnificationFailure
+    end
+
+  let conflict (t1 t2:nlimpl_fo_term_list) (rhob:subst) (ghost rho:unifier_subst) : unit
+    requires { sdata_inv (PConflict t1 t2) }
+    requires { unifier_subst_ok rhob rho }
+    diverges
+    ensures { unifier_subst_ok rhob rho }
+    (* Useless : trivial consequence of unifier_subst_ok rhob rho.
+    ensures { smodel (current_timestamp rhob) =
+      smodel (current_timestamp (old rhob)) }*)
+    ensures { precede (old rhob) rhob }
+    (*raises { UnificationFailure -> unifier_subst_ok rhob rho }*)
+    (*raises { UnificationFailure -> (current_timestamp rhob).table =
+      (current_timestamp (old rhob).table }*)
+    raises { UnificationFailure -> precede (old rhob) rhob /\ correct rhob }
+  =
+    label Init in
+    let l = ref Nil in
+    let t = stamp rhob in
+    let lp = unassigned_vars rhob in
+    let u = try Some (unification_term_list t1 t2 l rhob rho lp)
+    with UnificationFailure -> None end in
+    label Mid0 in
+    match u with
+      | Some _ -> match !l with
+          | Nil -> raise UnificationFailure
+          | Cons v _ -> backtrack t rhob ;
+            label Middle in
+            add v (PConflict t1 t2) rhob ;
+        end
+      | None -> backtrack t rhob ;
+    end
+
+  let rec conflicts (lv:list sdata) (rhob:subst) (ghost rho:unifier_subst) : unit
+    requires { list_forall sdata_inv lv }
+    requires { unifier_subst_ok rhob rho }
+    ensures { unifier_subst_ok rhob rho }
+    (*ensures { smodel (current_timestamp rhob) = smodel (current_timestamp (old rhob)) }*)
+    ensures { precede (old rhob) rhob }
+    diverges (* variant { lv } *)
+    raises { UnificationFailure -> correct rhob /\ precede (old rhob) rhob }
+  =
+    match lv with
+      | Nil -> ()
+      | Cons (Assign _) q -> conflicts q rhob rho
+      | Cons (PConflict t1 t2) q -> conflict t1 t2 rhob rho ; conflicts q rhob rho
+    end
+
+  let rec unif_conflicts (lv:list int) (rhob:subst) (ghost rho:unifier_subst) : unit
+    requires { forall x:int. mem x lv -> x >= 0 }
+    requires { unifier_subst_ok rhob rho }
+    ensures { unifier_subst_ok rhob rho }
+    ensures { precede (old rhob) rhob }
+    diverges (* variant { lv } *)
+    raises { UnificationFailure -> correct rhob /\ precede (old rhob) rhob }
+  =
+    match lv with
+      | Nil -> ()
+      | Cons v0 q -> conflicts (get rhob v0) rhob rho ; unif_conflicts q rhob rho
+    end
+
+  let unify_term_list (t1 t2:nlimpl_fo_term_list) (watch:ref (list int))
+    (rhob:subst) (ghost rho:unifier_subst) :
+    unification_return
+    requires { !watch = Nil }
+    requires { nlimpl_fo_term_list_ok t1 }
+    requires { forall x:int. is_fo_term_free_var_in_fo_term_list x
+      t1.model_fo_term_list_field -> x >= 0 }
+    requires { nlimpl_fo_term_list_ok t2 }
+    requires { forall x:int. is_fo_term_free_var_in_fo_term_list x
+      t2.model_fo_term_list_field -> x >= 0 }
+    requires { unifier_subst_ok rhob rho }
+    diverges
+    ensures { unifier_subst_ok rhob result.final_unifier }
+    ensures { result.final_unifier.unifier = sc rho.unifier result.unifier_factor }
+    ensures { precede (old rhob) rhob }
+    ensures { forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      stl t1.model_fo_term_list_field s' = stl t2.model_fo_term_list_field s' ->
+      s' = sc result.final_unifier.unifier s }
+    ensures { let s0 = result.final_unifier.unifier in
+      stl t1.model_fo_term_list_field s0 =
+        stl t2.model_fo_term_list_field s0 }
+    raises { UnificationFailure -> correct rhob /\ precede (old rhob) rhob }
+  =
+    let lp = unassigned_vars rhob in
+    let u = unification_term_list t1 t2 watch rhob rho lp in
+    unif_conflicts !watch rhob u.final_unifier ;
+    u
+
+  (*let rec conflicts (lv:list sdata) (rhob:subst) (ghost rho:unifier_subst) : unit
+    requires { list_forall sdata_inv lv }
+    requires { unifier_subst_ok rhob rho }
+    ensures { unifier_subst_ok rhob rho }
+    raises { UnificationFailure ->  }*)
+
+  (*
+  let rec ghost term_free_var_set (t:fo_term int int) (it:int)
+    (rho:unifier_subst) : set int
+    requires { unifier_subst_ok rho }
+    requires { it >= 0 }
+    requires { forall sp:int -> (fo_term int int).
+      power_rel rho.unifier_base_model it sp ->
+      st t sp = st t rho.unifier }
+    ensures { forall x:int. is_fo_term_free_var_in_fo_term x t ->
+      mem x result }
+    ensures { forall x y:int.
+      is_fo_term_free_var_in_fo_term x (eval rho.unifier_base_model y) /\
+      mem y result -> mem x result }
+    variant { it , size_fo_term t }
+  =
+    match t with
+      | Var_fo_term x -> let rho0 = rho.unifier_base_model in
+        let rhoi = rho.unifier in
+        if it = 0
+        then (assert { t = st t subst_id_fo_term = st t rhoi &&
+          t = st t (sc rhoi rho0) = st t rho0 && rho0 x = t } ;
+          assert { forall y:int. is_fo_term_free_var_in_fo_term y (rho0 x) ->
+            y = x } ;
+          add x empty)
+        else
+          let t2 = eval rho0 x in
+          (assert { forall sp:int -> (fo_term int int).
+            power_rel rho0 (it-1) sp ->
+            power_rel rho0 it (sc rho0 sp) &&
+            st t2 sp = st t (sc rho0 sp) = st t rhoi =
+            st t (sc rho0 rhoi) = st t2 rhoi && st t2 sp = st t2 rhoi } ;
+            add x (term_free_var_set t2 (it-1) rho))
+      | App _ l -> assert { forall s s2:int -> (fo_term int int).
+        st t s = st t s2 <-> stl l s = stl l s2 } ;
+        term_list_free_var_set l it rho
+    end
+
+  with ghost term_list_free_var_set (t:fo_term_list int int) (it:int)
+    (rho:unifier_subst) : set int
+    requires { unifier_subst_ok rho }
+    requires { it >= 0 }
+    requires { forall sp:int -> (fo_term int int).
+      power_rel rho.unifier_base_model it sp ->
+      stl t sp = stl t rho.unifier }
+    ensures { forall x:int. is_fo_term_free_var_in_fo_term_list x t ->
+      mem x result }
+    ensures { forall x y:int.
+      is_fo_term_free_var_in_fo_term x (eval rho.unifier_base_model y) /\
+      mem y result -> mem x result }
+    variant { it , size_fo_term_list t }
+  =
+    match t with
+      | FONil -> empty
+      | FOCons x q -> assert { forall s s2:int -> (fo_term int int).
+        stl t s = stl t s2 <->
+        st x s = st x s2 /\ stl q s = stl q s2 } ;
+        union (term_free_var_set x it rho)
+        (term_list_free_var_set q it rho)
+    end
+
+  (* Two main
+     functions, far more preferable for the user than
+     the incredibly ugly functions before !
+     Unification functions which are :
+       1) sound (if it returns, then it returns an unifier factor+
+         if it fails, then there is no unifier factor)
+       2) complete/terminating (either case is true) *)
+
+  let unify_term (t1 t2:nlimpl_fo_term) (rho:unifier_subst) : unify_return
+    requires { nlimpl_fo_term_ok t1 }
+    requires { nlimpl_fo_term_ok t2 }
+    requires { unifier_subst_ok rho }
+    (* Factorisation using previous unifier. *)
+    ensures { sc rho.unifier result.factor =
+      result.usubst.unifier }
+    (* All possible unifier factorisable using rho
+       can be factorised using the generated one. *)
+    ensures { forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      st t1.model_fo_term_field s' = st t2.model_fo_term_field s' ->
+      s' = sc result.usubst.unifier s }
+    (* this is an unifier. *)
+    ensures { let s0 = result.usubst.unifier in
+      st t1.model_fo_term_field s0 =
+        st t2.model_fo_term_field s0 }
+    ensures { unifier_subst_ok result.usubst }
+    (* There is no unifier factorisable by rho. *)
+    raises { UnificationFailure -> forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      st t1.model_fo_term_field s' <>
+        st t2.model_fo_term_field s' }
+  =
+    let it = rho.iteration in
+    let fv = term_free_var_set t1.model_fo_term_field it rho in
+    let fv = union fv (term_free_var_set t2.model_fo_term_field it rho) in
+    let res = unification_term t1 t2 rho fv fv it it in
+    { usubst = res.final_unifier ; factor = res.unifier_factor }
+
+  let unify_term_list (t1 t2:nlimpl_fo_term_list) (rho:unifier_subst) :
+    unify_return
+    requires { nlimpl_fo_term_list_ok t1 }
+    requires { nlimpl_fo_term_list_ok t2 }
+    requires { unifier_subst_ok rho }
+    ensures { sc rho.unifier result.factor =
+      result.usubst.unifier }
+    ensures { forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      stl t1.model_fo_term_list_field s' = stl t2.model_fo_term_list_field s' ->
+      s' = sc result.usubst.unifier s }
+    ensures { let s0 = result.usubst.unifier in
+      stl t1.model_fo_term_list_field s0 =
+        stl t2.model_fo_term_list_field s0 }
+    ensures { unifier_subst_ok result.usubst }
+    raises { UnificationFailure -> forall s:int -> (fo_term int int).
+      let s' = sc rho.unifier s in
+      stl t1.model_fo_term_list_field s' <>
+        stl t2.model_fo_term_list_field s' }
+  =
+    let it = rho.iteration in
+    let fv = term_list_free_var_set t1.model_fo_term_list_field it rho in
+    let fv = union fv
+      (term_list_free_var_set t2.model_fo_term_list_field it rho) in
+    let res = unification_term_list t1 t2 rho fv fv it it in
+    { usubst = res.final_unifier ; factor = res.unifier_factor }
+  *)
+
+end

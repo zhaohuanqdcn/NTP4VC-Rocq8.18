@@ -1,0 +1,12 @@
+atoms:
+  mach.c.String.strlen: [strlen, c_String.strlen]
+  mach.c.String.valid_string: [valid_string, c_String.valid_string]
+  mach.c.String.zero_char: [zero_char, c_String.zero_char]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: mach.c_String
+prefix_ops: {}
+types: {}

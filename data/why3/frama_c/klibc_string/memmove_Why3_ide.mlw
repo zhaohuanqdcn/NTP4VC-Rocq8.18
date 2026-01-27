@@ -1,0 +1,1850 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file memmove.c, line 14) in 'memmove' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_post_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file memmove.c, line 14) in 'memmove' (1/2)":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 i) in
+  let a_3 = (shift_sint8 a i) in
+  let a_4 = (shift_sint8 a_1 0) in
+  let a_5 = (havoc t_1 t_2 a_4 i) in
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((addr_lt a_1 a)) ->
+  ((addr_lt a_2 a_3)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_1 a_2)) ->
+  ((addr_le a_3 a_3)) ->
+  ((addr_le a_2 a_2)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_4 i)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (a_5[(shift_sint8 a_1 i_1)] = t_2[(shift_sint8 a i_1)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file memmove.c, line 14) in 'memmove' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_post_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file memmove.c, line 14) in 'memmove' (2/2)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let a_3 = (shift_sint8 a_1 0) in
+  let a_4 = (havoc t_1 t_2 a_3 i) in
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i) ->
+   (a_4[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (a_4[(shift_sint8 a_1 i_1)] = t_2[(shift_sint8 a i_1)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 39) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 39)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = - i_1 in
+  let x_1 = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let a_4 = (shift_sint8 a x_1) in
+  let a_5 = (havoc t_1 t_2 a_2 x_1) in
+  let x_2 = 1 + i - i_1 in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  ((addr_lt ((shift_sint8 a_1 x_2)) ((shift_sint8 a x_2))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 40) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_4_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 40) (1/2)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x) in
+  let a_4 = (shift_sint8 a x) in
+  let a_5 = (havoc t_1 t_2 a_2 x) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  (((to_uint32 (i_1 - 1))) <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 41) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_5_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 41)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x) in
+  let a_4 = (shift_sint8 a x) in
+  let a_5 = (havoc t_1 t_2 a_2 x) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  ((1 + ((to_uint32 (i_1 - 1)))) = i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 42) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_6_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 42)":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x) in
+  let a_4 = (shift_sint8 a x) in
+  let a_5 = (havoc t_1 t_2 a_2 x) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  ((1 + ((to_uint32 (i_1 - 1)))) = i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 43) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_7_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 43) (1/2)":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = - i_1 in
+  let x_1 = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let a_4 = (shift_sint8 a x_1) in
+  let a_5 = (havoc t_1 t_2 a_2 x_1) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  ((addr_le a ((shift_sint8 a (1 + i - i_1)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 43) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_7_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 43) (2/2)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = - i_1 in
+  let x_1 = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let a_4 = (shift_sint8 a x_1) in
+  let a_5 = (shift_sint8 a i) in
+  let a_6 = (havoc t_1 t_2 a_2 x_1) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 a_5)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_6[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_7 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_6[a_7] = t_2[a_7])) ->
+  ((addr_le ((shift_sint8 a (1 + i - i_1))) a_5))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file memmove.c, line 43) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_7_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file memmove.c, line 43) (1/2)":
+*)
+goal goal8:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((addr_le a a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file memmove.c, line 43) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_7_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file memmove.c, line 43) (2/2)":
+*)
+goal goal9:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((addr_le a ((shift_sint8 a i))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 44) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_8_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 44) (1/2)":
+*)
+goal goal10:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = - i_1 in
+  let x_1 = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let a_4 = (shift_sint8 a x_1) in
+  let a_5 = (havoc t_1 t_2 a_2 x_1) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  ((addr_le a_1 ((shift_sint8 a_1 (1 + i - i_1)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 44) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_8_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 44) (2/2)":
+*)
+goal goal11:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = - i_1 in
+  let x_1 = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let a_4 = (shift_sint8 a x_1) in
+  let a_5 = (shift_sint8 a_1 i) in
+  let a_6 = (havoc t_1 t_2 a_2 x_1) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 a_5)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_6[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_7 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_6[a_7] = t_2[a_7])) ->
+  ((addr_le ((shift_sint8 a_1 (1 + i - i_1))) a_5))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file memmove.c, line 44) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_8_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file memmove.c, line 44) (1/2)":
+*)
+goal goal12:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((addr_le a_1 a_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file memmove.c, line 44) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_8_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file memmove.c, line 44) (2/2)":
+*)
+goal goal13:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((addr_le a_1 ((shift_sint8 a_1 i))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 45) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_9_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 45)":
+*)
+goal goal14:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x) in
+  let a_4 = (shift_sint8 a x) in
+  let a_5 = (havoc t_1 t_2 a_2 x) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((i_2 + ((to_uint32 (i_1 - 1)))) < i) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_3)] = t_2[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. let a_6 = (shift_sint8 a_1 i_3) in (i_3 < i) ->
+   (i <= (i_3 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  (a_5[a_3 <- a_5[a_4]][(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 46) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_10_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 46)":
+*)
+goal goal15:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x) in
+  let a_4 = (shift_sint8 a x) in
+  let a_5 = (havoc t_1 t_2 a_2 x) in
+  let a_6 = (shift_sint8 a_1 i_2) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (i_2 + ((to_uint32 (i_1 - 1))))) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_3)] = t_2[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. let a_7 = (shift_sint8 a_1 i_3) in (i_3 < i) ->
+   (i <= (i_3 + i_1)) -> (a_5[a_7] = t_2[a_7])) ->
+  (a_5[a_3 <- a_5[a_4]][a_6] = t_2[a_6])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 61) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_13_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 61) (1/2)":
+*)
+goal goal16:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_4[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_5 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_4[a_5] = t_2[a_5])) ->
+  (((to_uint32 (i_1 - 1))) <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 62) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_14_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 62)":
+*)
+goal goal17:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_4[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_5 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_4[a_5] = t_2[a_5])) ->
+  ((1 + ((to_uint32 (i_1 - 1)))) = i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 63) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_15_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 63)":
+*)
+goal goal18:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_4[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_5 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_4[a_5] = t_2[a_5])) ->
+  ((1 + ((to_uint32 (i_1 - 1)))) = i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 64) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_16_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 64) (1/2)":
+*)
+goal goal19:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_4[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_5 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_4[a_5] = t_2[a_5])) ->
+  ((addr_le a ((shift_sint8 a (i_1 - 1)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 64) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_16_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 64) (2/2)":
+*)
+goal goal20:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (shift_sint8 a i) in
+  let a_5 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_5[a_6] = t_2[a_6])) ->
+  ((addr_le ((shift_sint8 a (i_1 - 1))) a_4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file memmove.c, line 64) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_16_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file memmove.c, line 64) (1/2)":
+*)
+goal goal21:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  (not (addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((addr_le a ((shift_sint8 a i))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file memmove.c, line 64) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_16_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file memmove.c, line 64) (2/2)":
+*)
+goal goal22:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i) in
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  (not (addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((addr_le a_2 a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 65) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_17_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 65) (1/2)":
+*)
+goal goal23:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_4[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_5 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_4[a_5] = t_2[a_5])) ->
+  ((addr_le a_1 ((shift_sint8 a_1 (i_1 - 1)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 65) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_17_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 65) (2/2)":
+*)
+goal goal24:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (shift_sint8 a_1 i) in
+  let a_5 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 a_4)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_5[a_6] = t_2[a_6])) ->
+  ((addr_le ((shift_sint8 a_1 (i_1 - 1))) a_4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file memmove.c, line 65) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_17_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file memmove.c, line 65) (1/2)":
+*)
+goal goal25:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  (not (addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((addr_le a_1 ((shift_sint8 a_1 i))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file memmove.c, line 65) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_17_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file memmove.c, line 65) (2/2)":
+*)
+goal goal26:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 i) in
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  (not (addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((addr_le a_2 a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 66) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_18_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 66)":
+*)
+goal goal27:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 - 1 in
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((to_uint32 x)) <= i_2) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_3 : int. (i_3 < i) -> (i_1 <= i_3) ->
+   (a_4[(shift_sint8 a_1 i_3)] = t_2[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. let a_5 = (shift_sint8 a_1 i_3) in (0 <= i_3) ->
+   (i_3 < i_1) -> (a_4[a_5] = t_2[a_5])) ->
+  (a_4[((shift_sint8 a_1 x)) <- a_4[(shift_sint8 a x)]][(shift_sint8 a_1 i_2)] =
+   t_2[(shift_sint8 a i_2)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memmove.c, line 67) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_inv_19_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memmove.c, line 67)":
+*)
+goal goal28:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 - 1 in
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  let a_5 = (shift_sint8 a_1 i_2) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 < ((to_uint32 x))) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_3 : int. (i_3 < i) -> (i_1 <= i_3) ->
+   (a_4[(shift_sint8 a_1 i_3)] = t_2[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. let a_6 = (shift_sint8 a_1 i_3) in (0 <= i_3) ->
+   (i_3 < i_1) -> (a_4[a_6] = t_2[a_6])) ->
+  (a_4[((shift_sint8 a_1 x)) <- a_4[(shift_sint8 a x)]][a_5] = t_2[a_5])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file memmove.c, line 47) (2/5)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_assign_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file memmove.c, line 47) (2/5)":
+*)
+goal goal29:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x) in
+  let a_4 = (shift_sint8 a x) in
+  let a_5 = (havoc t_1 t_2 a_2 x) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  (not (invalid t a_2 x)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  (((to_uint32 (i_1 - 1))) <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file memmove.c, line 47) (5/5)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_assign_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file memmove.c, line 47) (5/5)":
+*)
+goal goal30:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x) in
+  let a_4 = (shift_sint8 a x) in
+  let a_5 = (havoc t_1 t_2 a_2 x) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (not (invalid t a_3 1)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  ((included a_3 1 a_2 (i - ((to_uint32 (i_1 - 1))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file memmove.c, line 68) (2/3)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_assign_2_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file memmove.c, line 68) (2/3)":
+*)
+goal goal31:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let x = i - i_1 in
+  let a_4 = (havoc t_1 t_2 a_3 x) in
+  let x_1 = (to_uint32 (i_1 - 1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (not (invalid t a_3 x)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_4[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_5 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_4[a_5] = t_2[a_5])) ->
+  ((included a_3 x ((shift_sint8 a_1 x_1)) (i - x_1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file memmove.c, line 68) (3/3)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_assign_2_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file memmove.c, line 68) (3/3)":
+*)
+goal goal32:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let x = i_1 - 1 in
+  let a_4 = (shift_sint8 a_1 x) in
+  let a_5 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  let x_1 = (to_uint32 x) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (not (invalid t a_4 1)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_5[a_6] = t_2[a_6])) ->
+  ((included a_4 1 ((shift_sint8 a_1 x_1)) (i - x_1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file memmove.c, line 13) in 'memmove' (4/10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_assign_part04
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns (file memmove.c, line 13) in 'memmove' (4/10)":
+*)
+goal goal33:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  (0 <= i) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  (not (invalid t a_2 (i - i_1))) ->
+  (0 <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file memmove.c, line 13) in 'memmove' (10/10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_assign_part10
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns (file memmove.c, line 13) in 'memmove' (10/10)":
+*)
+goal goal34:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let x = i - i_1 in
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  (not (invalid t a_3 x)) ->
+  ((included a_3 x a_2 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file memmove.c, line 50) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file memmove.c, line 50)":
+*)
+goal goal35:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = i - i_1 in
+  let a_3 = (shift_sint8 a_1 x) in
+  let a_4 = (shift_sint8 a x) in
+  let a_5 = (havoc t_1 t_2 a_2 x) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((addr_lt a_3 a_4)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_4 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + i_1) < i) ->
+   (a_5[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_6 = (shift_sint8 a_1 i_2) in (i_2 < i) ->
+   (i <= (i_2 + i_1)) -> (a_5[a_6] = t_2[a_6])) ->
+  (((to_uint32 (i_1 - 1))) < i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file memmove.c, line 71) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemmove_loop_term_2_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file memmove.c, line 71)":
+*)
+goal goal36:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a i_1) in
+  let a_3 = (shift_sint8 a_1 i_1) in
+  let a_4 = (havoc t_1 t_2 a_3 (i - i_1)) in
+  (i_1 <> 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (not (addr_lt a_1 a)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_2 ((shift_sint8 a i)))) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i)))) ->
+  ((valid_rw t ((shift_sint8 a 0)) i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  (forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+   (a_4[(shift_sint8 a_1 i_2)] = t_2[(shift_sint8 a i_2)])) ->
+  (forall i_2 : int. let a_5 = (shift_sint8 a_1 i_2) in (0 <= i_2) ->
+   (i_2 < i_1) -> (a_4[a_5] = t_2[a_5])) ->
+  (((to_uint32 (i_1 - 1))) < i_1)
+
+end
+

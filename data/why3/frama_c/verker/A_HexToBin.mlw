@@ -1,0 +1,55 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'HexToBin'                               --- *)
+(* ---------------------------------------------------------- *)
+theory A_HexToBin
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function l_hex_to_bin int : int
+
+axiom Q_A0: ((l_hex_to_bin 48)) = 0
+
+axiom Q_A1: ((l_hex_to_bin 49)) = 1
+
+axiom Q_A2: ((l_hex_to_bin 50)) = 2
+
+axiom Q_A3: ((l_hex_to_bin 51)) = 3
+
+axiom Q_A4: ((l_hex_to_bin 52)) = 4
+
+axiom Q_A5: ((l_hex_to_bin 53)) = 5
+
+axiom Q_A6: ((l_hex_to_bin 54)) = 6
+
+axiom Q_A7: ((l_hex_to_bin 55)) = 7
+
+axiom Q_A8: ((l_hex_to_bin 56)) = 8
+
+axiom Q_A9: ((l_hex_to_bin 57)) = 9
+
+axiom Q_AA:
+  let x = (l_hex_to_bin 65) in (x = 10) /\ (((l_hex_to_bin 97)) = x)
+
+axiom Q_AB:
+  let x = (l_hex_to_bin 66) in (x = 11) /\ (((l_hex_to_bin 98)) = x)
+
+axiom Q_AC:
+  let x = (l_hex_to_bin 67) in (x = 12) /\ (((l_hex_to_bin 99)) = x)
+
+axiom Q_AD:
+  let x = (l_hex_to_bin 68) in (x = 13) /\ (((l_hex_to_bin 100)) = x)
+
+axiom Q_AE:
+  let x = (l_hex_to_bin 69) in (x = 14) /\ (((l_hex_to_bin 101)) = x)
+
+axiom Q_AF:
+  let x = (l_hex_to_bin 70) in (x = 15) /\ (((l_hex_to_bin 102)) = x)
+
+end
+

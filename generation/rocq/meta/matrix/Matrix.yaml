@@ -1,0 +1,20 @@
+atoms:
+  matrix.Matrix.columns: [columns, Matrix.columns]
+  matrix.Matrix.elts: [elts, Matrix.elts]
+  matrix.Matrix.get: [get, Matrix.get]
+  matrix.Matrix.rows: [rows, Matrix.rows]
+  matrix.Matrix.update: [update, Matrix.update]
+  matrix.Matrix.valid_index: [valid_index, Matrix.valid_index]
+axioms:
+  matrix.Matrix.matrix'invariant: [matrix'invariant, Matrix.matrix'invariant]
+  matrix.Matrix.update'spec: [update'spec, Matrix.update'spec]
+  matrix.Matrix.update'spec'0: [update'spec'0, Matrix.update'spec'0]
+  matrix.Matrix.update'spec'1: [update'spec'1, Matrix.update'spec'1]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.matrix.Matrix
+prefix_ops: {}
+types:
+  matrix.Matrix.matrix: [matrix, Matrix.matrix]

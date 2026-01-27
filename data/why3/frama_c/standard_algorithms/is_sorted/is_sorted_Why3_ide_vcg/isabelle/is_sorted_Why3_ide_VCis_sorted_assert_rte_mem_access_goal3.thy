@@ -1,0 +1,20 @@
+theory is_sorted_Why3_ide_VCis_sorted_assert_rte_mem_access_goal3
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/Axiomatic_Axiomatic"
+begin
+theorem goal3:
+  fixes i :: "int"
+  fixes a :: "addr"
+  fixes i_1 :: "int"
+  fixes t :: "int \<Rightarrow> int"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  assumes fact0: "(0 :: int) < i"
+  assumes fact1: "region (base a) \<le> (0 :: int)"
+  assumes fact2: "(2 :: int) + i_1 \<le> i"
+  assumes fact3: "linked t"
+  assumes fact4: "is_uint32 i"
+  assumes fact5: "is_uint32 i_1"
+  assumes fact6: "valid_rd t (shift a (0 :: int)) i"
+  assumes fact7: "p_weaklysorted_1' t_1 a (0 :: int) ((1 :: int) + i_1)"
+  shows "valid_rd t (shift a i_1) (1 :: int)"
+  sorry
+end

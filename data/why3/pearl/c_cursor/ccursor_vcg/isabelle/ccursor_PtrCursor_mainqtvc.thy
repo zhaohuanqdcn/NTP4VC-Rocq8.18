@@ -1,0 +1,24 @@
+theory ccursor_PtrCursor_mainqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.map_MapEq" "mach.int_Unsigned" "mach.c_C"
+begin
+typedecl  cursor
+consts current :: "cursor \<Rightarrow> 32 word ptr"
+consts new :: "cursor \<Rightarrow> bool"
+consts len :: "cursor \<Rightarrow> 32 word"
+consts freed :: "cursor \<Rightarrow> bool"
+consts bound :: "cursor \<Rightarrow> 32 word"
+axiomatization where cursor'invariant'0:   "(0 :: int) < sint (len self)"
+  for self :: "cursor"
+axiomatization where cursor'invariant'1:   "\<not>freed self = True \<longrightarrow> plength (current self) = sint (len self) \<and> offset (current self) = (0 :: int) \<and> valid (current self) (sint (len self)) \<and> c_C.min (current self) = (0 :: int) \<and> c_C.max (current self) = sint (len self) \<and> is_not_null (current self) \<and> writable (current self) = True \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < sint (len self) \<longrightarrow> sint (data (current self) ! nat i) < sint (bound self))"
+  for self :: "cursor"
+definition cursor'eq :: "cursor \<Rightarrow> cursor \<Rightarrow> _"
+  where "cursor'eq a b \<longleftrightarrow> current a = current b \<and> new a = new b \<and> len a = len b \<and> freed a = freed b \<and> bound a = bound b" for a b
+axiomatization where cursor'inj:   "a = b"
+ if "cursor'eq a b"
+  for a :: "cursor"
+  and b :: "cursor"
+theorem main'vc:
+  shows "(0 :: int) < (4 :: int)"
+  and "\<forall>(c :: cursor). len c = (4 :: 32 word) \<and> \<not>freed c = True \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < (4 :: int) \<longrightarrow> sint (data (current c) ! nat i) = (0 :: int)) \<and> bound c = (4 :: 32 word) \<longrightarrow> ((0 :: int) \<le> (255 :: int) + (1 :: int) \<longrightarrow> (\<not>freed c = True \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < sint (len c) \<longrightarrow> sint (data (current c) ! nat i) < sint (bound c))) \<and> (\<forall>(c1 :: cursor) (c_new :: bool) (c_current :: 32 word ptr). length (data c_current) = length (data (current c)) \<and> offset c_current = offset (current c) \<and> c_C.min c_current = c_C.min (current c) \<and> c_C.max c_current = c_C.max (current c) \<and> writable c_current = writable (current c) \<and> zone1 c_current = zone1 (current c) \<longrightarrow> (\<forall>(i :: 32 word). let i1 :: int = sint i in ((0 :: int) \<le> i1 \<and> i1 \<le> (255 :: int)) \<and> \<not>freed c = True \<and> (\<forall>(i2 :: int). (0 :: int) \<le> i2 \<and> i2 < sint (len c) \<longrightarrow> sint (data c_current ! nat i2) < sint (bound c)) \<longrightarrow> c_new = True \<longrightarrow> ((0 :: int) < sint (len c) \<and> (\<not>freed c = True \<longrightarrow> plength c_current = sint (len c) \<and> offset c_current = (0 :: int) \<and> valid c_current (sint (len c)) \<and> c_C.min c_current = (0 :: int) \<and> c_C.max c_current = sint (len c) \<and> is_not_null c_current \<and> writable c_current = True \<and> (\<forall>(i2 :: int). (0 :: int) \<le> i2 \<and> i2 < sint (len c) \<longrightarrow> sint (data c_current ! nat i2) < sint (bound c)))) \<and> (bound c = bound c1 \<and> freed c = freed c1 \<and> len c = len c1 \<and> c_new = new c1 \<and> c_current = current c1 \<longrightarrow> (\<not>freed c1 = True \<and> (0 :: int) < sint (bound c1) \<and> sint (bound c1) < (2147483647 :: int)) \<and> (\<forall>(c2 :: cursor). length (data (current c2)) = length (data (current c1)) \<and> offset (current c2) = offset (current c1) \<and> c_C.min (current c2) = c_C.min (current c1) \<and> c_C.max (current c2) = c_C.max (current c1) \<and> writable (current c2) = writable (current c1) \<and> zone1 (current c2) = zone1 (current c1) \<longrightarrow> bound c1 = bound c2 \<and> freed c1 = freed c2 \<and> len c1 = len c2 \<longrightarrow> \<not>freed c2 = True \<and> (\<forall>(i2 :: int). (0 :: int) \<le> i2 \<and> i2 < sint (len c2) \<longrightarrow> sint (data (current c2) ! nat i2) < sint (bound c2))))) \<and> (\<not>freed c = True \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < sint (len c) \<longrightarrow> sint (data c_current ! nat i) < sint (bound c)) \<longrightarrow> \<not>c_new = True \<longrightarrow> ((0 :: int) < sint (len c) \<and> (\<not>freed c = True \<longrightarrow> plength c_current = sint (len c) \<and> offset c_current = (0 :: int) \<and> valid c_current (sint (len c)) \<and> c_C.min c_current = (0 :: int) \<and> c_C.max c_current = sint (len c) \<and> is_not_null c_current \<and> writable c_current = True \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < sint (len c) \<longrightarrow> sint (data c_current ! nat i) < sint (bound c)))) \<and> (bound c = bound c1 \<and> freed c = freed c1 \<and> len c = len c1 \<and> c_new = new c1 \<and> c_current = current c1 \<longrightarrow> \<not>freed c1 = True)))) \<and> ((255 :: int) + (1 :: int) < (0 :: int) \<longrightarrow> \<not>new c = True \<longrightarrow> \<not>freed c = True)"
+  sorry
+end

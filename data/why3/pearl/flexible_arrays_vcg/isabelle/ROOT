@@ -1,0 +1,22 @@
+session flexible_arrays = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "flexible_arrays_FlexibleArrays_tailqtvc"
+  "flexible_arrays_BraunTrees"
+  "flexible_arrays_FlexibleArrays_consqtvc"
+  "flexible_arrays_FlexibleArrays_snocqtvc"
+  "flexible_arrays_BraunTrees_make_tree2qtvc"
+  "flexible_arrays_FlexibleArrays_tqtvc"
+  "flexible_arrays_BraunTrees_snoc_treeqtvc"
+  "flexible_arrays_BraunTrees_cons_treeqtvc"
+  "flexible_arrays_FlexibleArrays_make_treeqtvc"
+  "flexible_arrays_FlexibleArrays_getqtvc"
+  "flexible_arrays_BraunTrees_tail_treeqtvc"
+  "flexible_arrays_BraunTrees_get_treeqtvc"
+  "flexible_arrays_BraunTrees_make_treeqtvc"
+  "flexible_arrays_BraunTrees_set_treeqtvc"
+  "flexible_arrays_FlexibleArrays_emptyqtvc"
+  "flexible_arrays_FlexibleArrays_setqtvc"
+  "flexible_arrays_FlexibleArrays_liatqtvc"
+  "flexible_arrays_BraunTrees_liat_treeqtvc"

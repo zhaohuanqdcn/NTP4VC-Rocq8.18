@@ -1,0 +1,14 @@
+session adjacent_find_Why3_ide = NTP4Verif +
+theories
+  "adjacent_find_Why3_ide_VCadjacent_find_some_post_result_goal9"
+  "adjacent_find_Why3_ide_VCadjacent_find_loop_inv_none_established_goal4"
+  "adjacent_find_Why3_ide_VCadjacent_find_loop_inv_bound_preserved_goal1"
+  "adjacent_find_Why3_ide_VCadjacent_find_post_result_goal0"
+  "adjacent_find_Why3_ide_VCadjacent_find_assert_rte_mem_access_goal6"
+  "adjacent_find_Why3_ide_VCadjacent_find_none_post_result_goal8"
+  "adjacent_find_Why3_ide_VCadjacent_find_assert_rte_unsigned_overflow_goal5"
+  "adjacent_find_Why3_ide_VCadjacent_find_loop_inv_none_preserved_goal3"
+  "adjacent_find_Why3_ide_VCadjacent_find_assert_rte_mem_access_2_goal7"
+  "adjacent_find_Why3_ide_VCadjacent_find_some_post_adjacent_goal10"
+  "adjacent_find_Why3_ide_VCadjacent_find_loop_inv_bound_established_goal2"
+  "adjacent_find_Why3_ide_VCadjacent_find_some_post_first_goal11"

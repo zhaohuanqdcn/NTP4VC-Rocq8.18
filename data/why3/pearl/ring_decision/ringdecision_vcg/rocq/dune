@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name ring_decision.ringdecision_vcg)
+(theories Why3))

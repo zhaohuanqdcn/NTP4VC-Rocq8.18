@@ -1,0 +1,94 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions                                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+function l_storage (mptr_0 : map addr addr) (s : addr) : addr =
+    mptr_0[(shiftfield_f1_stack_obj s)]
+
+function l_size (mint_0 : map addr int) (s : addr) : int =
+    mint_0[(shiftfield_f1_stack_size s)]
+
+predicate p_equalranges_1_ (mint_0 : map addr int) (mint_1 : map addr int)
+    (a : addr) (n : int) (b : addr) =
+    forall i : int. (0 <= i) -> (i < n) ->
+    (mint_1[(shift_sint32 a i)] = mint_0[(shift_sint32 b i)])
+
+predicate p_equal (mptr_0 : map addr addr) (mint_0 : map addr int)
+    (mptr_1 : map addr addr) (mint_1 : map addr int) (s : addr) (t : addr) =
+    let x = (l_size mint_1 s) in (((l_size mint_0 t)) = x) /\
+    ((p_equalranges_1_ mint_0 mint_1 ((l_storage mptr_1 s)) x
+       ((l_storage mptr_0 t))))
+
+function l_capacity (mint_0 : map addr int) (s : addr) : int =
+    mint_0[(shiftfield_f1_stack_capacity s)]
+
+predicate p_invariant (malloc_0 : map int int) (mptr_0 : map addr addr)
+    (mint_0 : map addr int) (s : addr) =
+    let x = (l_capacity mint_0 s) in let x_1 = (l_size mint_0 s) in
+    let a = (shift_sint32 ((l_storage mptr_0 s)) 0) in (0 < x) /\
+    (x_1 <= x) /\ (0 <= x_1) /\ ((valid_rw malloc_0 a x)) /\
+    ((separated s 3 a x))
+
+predicate p_full (mint_0 : map addr int) (s : addr) =
+    ((l_size mint_0 s)) = ((l_capacity mint_0 s))
+
+predicate p_unchanged_1_ (mint_0 : map addr int) (mint_1 : map addr int)
+    (a : addr) (m : int) (n : int) =
+    forall i : int. let a_1 = (shift_sint32 a i) in (m <= i) -> (i < n) ->
+    (mint_1[a_1] = mint_0[a_1])
+
+predicate p_unchanged_2_ (mint_0 : map addr int) (mint_1 : map addr int)
+    (a : addr) (n : int) = (p_unchanged_1_ mint_0 mint_1 a 0 n)
+
+predicate p_empty (mint_0 : map addr int) (s : addr) =
+    ((l_size mint_0 s)) = 0
+
+function l_top (mptr_0 : map addr addr) (mint_0 : map addr int)
+    (s : addr) : int =
+    mint_0[(shift_sint32 mptr_0[(shiftfield_f1_stack_obj s)]
+             (mint_0[(shiftfield_f1_stack_size s)] - 1))]
+
+predicate p_separated (mptr_0 : map addr addr) (mint_0 : map addr int)
+    (s : addr) (t : addr) =
+    let a = (shift_sint32 mptr_0[(shiftfield_f1_stack_obj s)] 0) in
+    let x = mint_0[(shiftfield_f1_stack_capacity s)] in
+    let a_1 = (shift_sint32 mptr_0[(shiftfield_f1_stack_obj t)] 0) in
+    let x_1 = mint_0[(shiftfield_f1_stack_capacity t)] in
+    ((separated s 3 t 3)) /\ ((separated s 3 a x)) /\
+    ((separated s 3 a_1 x_1)) /\ ((separated t 3 a_1 x_1)) /\
+    ((separated a x t 3)) /\ ((separated a x a_1 x_1))
+
+use import Cint.Cint
+
+axiom Q_TL_Size:
+  forall s : addr.
+  forall mint_0 : map addr int
+  [(l_size mint_0 s)].
+  (is_uint32 ((l_size mint_0 s)))
+
+axiom Q_TL_Capacity:
+  forall s : addr.
+  forall mint_0 : map addr int
+  [(l_capacity mint_0 s)].
+  (is_uint32 ((l_capacity mint_0 s)))
+
+axiom Q_TL_Top:
+  forall s : addr.
+  forall mptr_0 : map addr addr.
+  forall mint_0 : map addr int
+  [(l_top mptr_0 mint_0 s)].
+  (is_sint32 ((l_top mptr_0 mint_0 s)))
+
+end
+

@@ -1,0 +1,10 @@
+atoms: {}
+axioms:
+  Cmath.Cmath.abs_def: Cmath_Cmath.abs_def
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.Cmath_Cmath
+prefix_ops: {}
+types: {}

@@ -1,0 +1,360 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file count.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcount_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic1.Axiomatic1
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file count.c, line 10)":
+*)
+goal goal0:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_count_2_ t_1 a i_2 i) in
+  let a_1 = (shift_sint32 a i_2) in
+  let x_1 = t_1[a_1] in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 (1 + i_2))) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_uint32 x)) ->
+  ((x_1 <> i) \/
+   ((((l_count_2_ t_1 a i_2 x_1)) = i_3) /\ (i_3 <= 4294967294))) ->
+  ((-1) <= i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file count.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcount_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file count.c, line 10)":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file count.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcount_loop_inv_bound_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic1.Axiomatic1
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file count.c, line 11)":
+*)
+goal goal2:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_count_2_ t_1 a i_2 i) in
+  let x_1 = 1 + i_2 in
+  let a_1 = (shift_sint32 a i_2) in
+  let x_2 = t_1[a_1] in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 i_4)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 x_1)) ->
+  ((is_sint32 x_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_uint32 x)) ->
+  (if (x_2 = i)
+   then (((1 + i_3) = i_4) /\ (((l_count_2_ t_1 a i_2 x_2)) = i_3) /\
+         (i_3 <= 4294967294)) else (x = i_4)) ->
+  ((0 <= i_4) /\ (i_4 <= x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'count' (file count.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcount_loop_inv_count_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic1.Axiomatic1
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant 'count' (file count.c, line 12)":
+*)
+goal goal3:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_count_2_ t_1 a i_2 i) in
+  let x_1 = 1 + i_2 in
+  let a_1 = (shift_sint32 a i_2) in
+  let x_2 = t_1[a_1] in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 i_4)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 x_1)) ->
+  ((is_sint32 x_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_uint32 x)) ->
+  (if (x_2 = i)
+   then (((1 + i_3) = i_4) /\ (((l_count_2_ t_1 a i_2 x_2)) = i_3) /\
+         (i_3 <= 4294967294)) else (x = i_4)) ->
+  (((l_count_2_ t_1 a x_1 i)) = i_4)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'count' (file count.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcount_loop_inv_count_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Establishment of Invariant 'count' (file count.c, line 12)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  (((l_count_2_ t_1 a 0 i)) = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file count.c, line 17) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcount_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic1.Axiomatic1
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file count.c, line 17)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_count_2_ t_1 a i_2 i) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((is_uint32 x)) ->
+  ((valid_rd t ((shift_sint32 a i_2)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file count.c, line 18) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcount_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic1.Axiomatic1
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file count.c, line 18)":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_1) in
+  let x = t_1[a_1] in
+  let x_1 = (l_count_2_ t_1 a i_1 x) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (x_1 <= i_1) ->
+  (0 <= x_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_uint32 x_1)) ->
+  (x_1 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file count.c, line 16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcount_assert_rte_unsigned_overflow_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic1.Axiomatic1
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file count.c, line 16)":
+*)
+goal goal7:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (l_count_2_ t_1 a i_2 i) in
+  let a_1 = (shift_sint32 a i_2) in
+  let x_1 = t_1[a_1] in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_uint32 x)) ->
+  ((x_1 <> i) \/
+   ((((l_count_2_ t_1 a i_2 x_1)) = i_3) /\ (i_3 <= 4294967294))) ->
+  (i_2 <= 4294967294)
+
+end
+

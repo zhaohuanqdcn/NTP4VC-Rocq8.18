@@ -1,0 +1,687 @@
+(* ---------------------------------------------------------- *)
+(* --- Complete behaviors 'below', 'above', 'nowhere'     --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_complete_below_above_nowhere
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Complete behaviors 'below', 'above', 'nowhere'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (((forall i_2 : int. (i_2 < i) -> (i_1 <= i_2) ->
+     (t_1[(shift_uint8 a i_2)] = 0)) /\
+    (exists i_2 : int. (t_1[(shift_uint8 a i_2)] <> 0) /\ (0 <= i_2) /\
+     (i_2 < i_1))) \/
+   (forall i_2 : int. (0 <= i_2) -> (i_2 < i) ->
+    (t_1[(shift_uint8 a i_2)] = 0)) \/
+   (exists i_2 : int. (t_1[(shift_uint8 a i_2)] <> 0) /\ (i_2 < i) /\
+    (i_1 <= i_2)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Disjoint behaviors 'below', 'above', 'nowhere'     --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_disjoint_below_above_nowhere
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Disjoint behaviors 'below', 'above', 'nowhere'":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (((exists i_2 : int. (t_1[(shift_uint8 a i_2)] <> 0) /\ (0 <= i_2) /\
+     (i_2 < i)) \/
+    (forall i_2 : int. (t_1[(shift_uint8 a i_2)] = 0) \/ (i <= i_2) \/
+     (i_2 < i_1))) /\
+   ((exists i_2 : int. (t_1[(shift_uint8 a i_2)] <> 0) /\ (0 <= i_2) /\
+     (i_2 < i)) \/
+    (forall i_2 : int. (t_1[(shift_uint8 a i_2)] = 0) \/ (i_2 < 0) \/
+     (i_1 <= i_2)) \/
+    (exists i_2 : int. (t_1[(shift_uint8 a i_2)] <> 0) /\ (i_2 < i) /\
+     (i_1 <= i_2))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file for_loops.c, line 128) in 'find_first_bit_0'' in 'find_next_bit_wrap_0' at call 'find_first_bit_0' (file for_loops.c, line 191)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_call_find_first_bit_0_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file for_loops.c, line 128) in 'find_first_bit_0'' in 'find_next_bit_wrap_0' at call 'find_first_bit_0' (file for_loops.c, line 191)
+":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_2)] in
+  let a_1 = (shift_uint8 a 0) in
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (i <= ((to_uint32 i_2))) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_uint8 x)) ->
+  ((valid_rd t a_1 i)) ->
+  ((forall i_3 : int. (i_3 < i) -> (i_1 <= i_3) ->
+    (t_1[(shift_uint8 a i_3)] = 0)) -> (i_2 = i)) ->
+  ((exists i_3 : int. (t_1[(shift_uint8 a i_3)] <> 0) /\ (i_3 < i) /\
+    (i_1 <= i_3)) -> (x <> 0)) ->
+  ((exists i_3 : int. (t_1[(shift_uint8 a i_3)] <> 0) /\ (i_3 < i) /\
+    (i_1 <= i_3)) -> (i_2 < i)) ->
+  ((exists i_3 : int. (t_1[(shift_uint8 a i_3)] <> 0) /\ (i_3 < i) /\
+    (i_1 <= i_3)) -> ((i_2 < i) /\ (i_1 <= i_2))) ->
+  ((exists i_3 : int. (t_1[(shift_uint8 a i_3)] <> 0) /\ (i_3 < i) /\
+    (i_1 <= i_3)) ->
+   (forall i_3 : int. (i_1 <= i_3) -> (i_3 < i_2) ->
+    (t_1[(shift_uint8 a i_3)] = 0))) ->
+  ((valid_rd t a_1 i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file for_loops.c, line 129) in 'find_first_bit_0'' in 'find_next_bit_wrap_0' at call 'find_first_bit_0' (file for_loops.c, line 191)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_call_find_first_bit_0_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file for_loops.c, line 129) in 'find_first_bit_0'' in 'find_next_bit_wrap_0' at call 'find_first_bit_0' (file for_loops.c, line 191)
+":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_2)] in
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (i <= ((to_uint32 i_2))) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_uint8 x)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((forall i_3 : int. (i_3 < i) -> (i_1 <= i_3) ->
+    (t_1[(shift_uint8 a i_3)] = 0)) -> (i_2 = i)) ->
+  ((exists i_3 : int. (t_1[(shift_uint8 a i_3)] <> 0) /\ (i_3 < i) /\
+    (i_1 <= i_3)) -> (x <> 0)) ->
+  ((exists i_3 : int. (t_1[(shift_uint8 a i_3)] <> 0) /\ (i_3 < i) /\
+    (i_1 <= i_3)) -> (i_2 < i)) ->
+  ((exists i_3 : int. (t_1[(shift_uint8 a i_3)] <> 0) /\ (i_3 < i) /\
+    (i_1 <= i_3)) -> ((i_2 < i) /\ (i_1 <= i_2))) ->
+  ((exists i_3 : int. (t_1[(shift_uint8 a i_3)] <> 0) /\ (i_3 < i) /\
+    (i_1 <= i_3)) ->
+   (forall i_3 : int. (i_1 <= i_3) -> (i_3 < i_2) ->
+    (t_1[(shift_uint8 a i_3)] = 0))) ->
+  (i_1 <= l_size)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'above' (file for_loops.c, line 167) in 'find_next_bit_wrap_0' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_above_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'above' (file for_loops.c, line 167) in 'find_next_bit_wrap_0'":
+*)
+goal goal4:
+  forall i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_4)] in
+  let x_1 = t_1[(shift_uint8 a i_5)] in
+  let a_1 = (shift_uint8 a 0) in
+  let x_2 = (to_uint32 i_4) in
+  (t_1[(shift_uint8 a i_2)] <> 0) ->
+  (i_1 < i) ->
+  (i_2 < i) ->
+  (i_1 <= i_2) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 i_6)) ->
+  ((is_sint32 i_4)) ->
+  ((is_sint32 i_5)) ->
+  ((is_uint8 t_1[(shift_uint8 a i_3)])) ->
+  ((is_uint8 x)) ->
+  ((is_uint8 x_1)) ->
+  ((valid_rd t a_1 i)) ->
+  (if (x_2 < i) then (x_2 = i_3)
+   else ((((to_uint32 i_5)) = i_6) /\ (i_1 <= l_size) /\
+         ((valid_rd t a_1 i_1)) /\
+         (if (i_6 < i_1) then (i_6 = i_3) else (i_3 = i)) /\
+         ((forall i_7 : int. (0 <= i_7) -> (i_7 < i_1) ->
+           (t_1[(shift_uint8 a i_7)] = 0)) -> (i_5 = i_1)) /\
+         ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (0 <= i_7) /\
+           (i_7 < i_1)) -> (x_1 <> 0)) /\
+         ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (0 <= i_7) /\
+           (i_7 < i_1)) -> ((0 <= i_5) /\ (i_5 < i_1))) /\
+         ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (0 <= i_7) /\
+           (i_7 < i_1)) ->
+          (forall i_7 : int. (0 <= i_7) -> (i_7 < i_5) ->
+           (t_1[(shift_uint8 a i_7)] = 0))))) ->
+  ((forall i_7 : int. (i_7 < i) -> (i_1 <= i_7) ->
+    (t_1[(shift_uint8 a i_7)] = 0)) -> (i_4 = i)) ->
+  ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (i_7 < i) /\
+    (i_1 <= i_7)) -> (x <> 0)) ->
+  ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (i_7 < i) /\
+    (i_1 <= i_7)) -> (i_4 < i)) ->
+  ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (i_7 < i) /\
+    (i_1 <= i_7)) -> ((i_4 < i) /\ (i_1 <= i_4))) ->
+  ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (i_7 < i) /\
+    (i_1 <= i_7)) ->
+   (forall i_7 : int. (i_1 <= i_7) -> (i_7 < i_4) ->
+    (t_1[(shift_uint8 a i_7)] = 0))) ->
+  ((i_3 < i) /\ (i_1 <= i_3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'above' (file for_loops.c, line 168) in 'find_next_bit_wrap_0' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_above_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'above' (file for_loops.c, line 168) in 'find_next_bit_wrap_0'":
+*)
+goal goal5:
+  forall i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_3)] in
+  let x_1 = t_1[(shift_uint8 a i_4)] in
+  let x_2 = t_1[(shift_uint8 a i_5)] in
+  let a_1 = (shift_uint8 a 0) in
+  let x_3 = (to_uint32 i_4) in
+  (t_1[(shift_uint8 a i_2)] <> 0) ->
+  (i_1 < i) ->
+  (i_2 < i) ->
+  (i_1 <= i_2) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 i_6)) ->
+  ((is_sint32 i_4)) ->
+  ((is_sint32 i_5)) ->
+  ((is_uint8 x)) ->
+  ((is_uint8 x_1)) ->
+  ((is_uint8 x_2)) ->
+  ((valid_rd t a_1 i)) ->
+  (if (x_3 < i) then (x_3 = i_3)
+   else ((((to_uint32 i_5)) = i_6) /\ (i_1 <= l_size) /\
+         ((valid_rd t a_1 i_1)) /\
+         (if (i_6 < i_1) then (i_6 = i_3) else (i_3 = i)) /\
+         ((forall i_7 : int. (0 <= i_7) -> (i_7 < i_1) ->
+           (t_1[(shift_uint8 a i_7)] = 0)) -> (i_5 = i_1)) /\
+         ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (0 <= i_7) /\
+           (i_7 < i_1)) -> (x_2 <> 0)) /\
+         ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (0 <= i_7) /\
+           (i_7 < i_1)) -> ((0 <= i_5) /\ (i_5 < i_1))) /\
+         ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (0 <= i_7) /\
+           (i_7 < i_1)) ->
+          (forall i_7 : int. (0 <= i_7) -> (i_7 < i_5) ->
+           (t_1[(shift_uint8 a i_7)] = 0))))) ->
+  ((forall i_7 : int. (i_7 < i) -> (i_1 <= i_7) ->
+    (t_1[(shift_uint8 a i_7)] = 0)) -> (i_4 = i)) ->
+  ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (i_7 < i) /\
+    (i_1 <= i_7)) -> (x_1 <> 0)) ->
+  ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (i_7 < i) /\
+    (i_1 <= i_7)) -> (i_4 < i)) ->
+  ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (i_7 < i) /\
+    (i_1 <= i_7)) -> ((i_4 < i) /\ (i_1 <= i_4))) ->
+  ((exists i_7 : int. (t_1[(shift_uint8 a i_7)] <> 0) /\ (i_7 < i) /\
+    (i_1 <= i_7)) ->
+   (forall i_7 : int. (i_1 <= i_7) -> (i_7 < i_4) ->
+    (t_1[(shift_uint8 a i_7)] = 0))) ->
+  (x <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'above' (file for_loops.c, line 169) in 'find_next_bit_wrap_0' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_above_post_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'above' (file for_loops.c, line 169) in 'find_next_bit_wrap_0'":
+*)
+goal goal6:
+  forall i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_5)] in
+  let x_1 = t_1[(shift_uint8 a i_6)] in
+  let a_1 = (shift_uint8 a 0) in
+  let x_2 = (to_uint32 i_5) in
+  (t_1[(shift_uint8 a i_2)] <> 0) ->
+  (i_1 < i) ->
+  (i_2 < i) ->
+  (i_1 <= i_2) ->
+  (i_1 <= i_3) ->
+  (i_3 < i_4) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_4)) ->
+  ((is_uint32 i_7)) ->
+  ((is_sint32 i_5)) ->
+  ((is_sint32 i_6)) ->
+  ((is_uint8 t_1[(shift_uint8 a i_4)])) ->
+  ((is_uint8 x)) ->
+  ((is_uint8 x_1)) ->
+  ((valid_rd t a_1 i)) ->
+  (if (x_2 < i) then (x_2 = i_4)
+   else ((((to_uint32 i_6)) = i_7) /\ (i_1 <= l_size) /\
+         ((valid_rd t a_1 i_1)) /\
+         (if (i_7 < i_1) then (i_7 = i_4) else (i_4 = i)) /\
+         ((forall i_8 : int. (0 <= i_8) -> (i_8 < i_1) ->
+           (t_1[(shift_uint8 a i_8)] = 0)) -> (i_6 = i_1)) /\
+         ((exists i_8 : int. (t_1[(shift_uint8 a i_8)] <> 0) /\ (0 <= i_8) /\
+           (i_8 < i_1)) -> (x_1 <> 0)) /\
+         ((exists i_8 : int. (t_1[(shift_uint8 a i_8)] <> 0) /\ (0 <= i_8) /\
+           (i_8 < i_1)) -> ((0 <= i_6) /\ (i_6 < i_1))) /\
+         ((exists i_8 : int. (t_1[(shift_uint8 a i_8)] <> 0) /\ (0 <= i_8) /\
+           (i_8 < i_1)) ->
+          (forall i_8 : int. (0 <= i_8) -> (i_8 < i_6) ->
+           (t_1[(shift_uint8 a i_8)] = 0))))) ->
+  ((forall i_8 : int. (i_8 < i) -> (i_1 <= i_8) ->
+    (t_1[(shift_uint8 a i_8)] = 0)) -> (i_5 = i)) ->
+  ((exists i_8 : int. (t_1[(shift_uint8 a i_8)] <> 0) /\ (i_8 < i) /\
+    (i_1 <= i_8)) -> (x <> 0)) ->
+  ((exists i_8 : int. (t_1[(shift_uint8 a i_8)] <> 0) /\ (i_8 < i) /\
+    (i_1 <= i_8)) -> (i_5 < i)) ->
+  ((exists i_8 : int. (t_1[(shift_uint8 a i_8)] <> 0) /\ (i_8 < i) /\
+    (i_1 <= i_8)) -> ((i_5 < i) /\ (i_1 <= i_5))) ->
+  ((exists i_8 : int. (t_1[(shift_uint8 a i_8)] <> 0) /\ (i_8 < i) /\
+    (i_1 <= i_8)) ->
+   (forall i_8 : int. (i_1 <= i_8) -> (i_8 < i_5) ->
+    (t_1[(shift_uint8 a i_8)] = 0))) ->
+  (t_1[(shift_uint8 a i_3)] = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'below' (file for_loops.c, line 175) in 'find_next_bit_wrap_0' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_below_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'below' (file for_loops.c, line 175) in 'find_next_bit_wrap_0'":
+*)
+goal goal7:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_3)] in
+  let a_1 = (shift_uint8 a 0) in
+  (t_1[(shift_uint8 a i_1)] <> 0) ->
+  (i < i_2) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (i_2 <= l_size) ->
+  (i <= ((to_uint32 i_3))) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_uint8 t_1[(shift_uint8 a i_2)])) ->
+  ((is_uint8 x)) ->
+  ((valid_rd t a_1 i)) ->
+  ((valid_rd t a_1 i_2)) ->
+  ((forall i_4 : int. (0 <= i_4) -> (i_4 < i) ->
+    (t_1[(shift_uint8 a i_4)] = 0)) -> (i_3 = i)) ->
+  ((exists i_4 : int. (t_1[(shift_uint8 a i_4)] <> 0) /\ (0 <= i_4) /\
+    (i_4 < i)) -> (x <> 0)) ->
+  ((exists i_4 : int. (t_1[(shift_uint8 a i_4)] <> 0) /\ (0 <= i_4) /\
+    (i_4 < i)) -> ((0 <= i_3) /\ (i_3 < i))) ->
+  ((exists i_4 : int. (t_1[(shift_uint8 a i_4)] <> 0) /\ (0 <= i_4) /\
+    (i_4 < i)) ->
+   (forall i_4 : int. (0 <= i_4) -> (i_4 < i_3) ->
+    (t_1[(shift_uint8 a i_4)] = 0))) ->
+  (forall i_4 : int. (i <= i_4) -> (i_4 < i_2) ->
+   (t_1[(shift_uint8 a i_4)] = 0)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'below' (file for_loops.c, line 176) in 'find_next_bit_wrap_0' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_below_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'below' (file for_loops.c, line 176) in 'find_next_bit_wrap_0'":
+*)
+goal goal8:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_2)] in
+  let x_1 = t_1[(shift_uint8 a i_4)] in
+  let a_1 = (shift_uint8 a 0) in
+  let x_2 = (to_uint32 i_4) in
+  (t_1[(shift_uint8 a i_1)] <> 0) ->
+  (i < i_3) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (i_3 <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((is_uint8 x)) ->
+  ((is_uint8 t_1[(shift_uint8 a i_3)])) ->
+  ((is_uint8 x_1)) ->
+  ((valid_rd t a_1 i)) ->
+  ((valid_rd t a_1 i_3)) ->
+  (if (x_2 < i) then (x_2 = i_2) else (i_3 = i_2)) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < i) ->
+    (t_1[(shift_uint8 a i_5)] = 0)) -> (i_4 = i)) ->
+  ((exists i_5 : int. (t_1[(shift_uint8 a i_5)] <> 0) /\ (0 <= i_5) /\
+    (i_5 < i)) -> (x_1 <> 0)) ->
+  ((exists i_5 : int. (t_1[(shift_uint8 a i_5)] <> 0) /\ (0 <= i_5) /\
+    (i_5 < i)) -> ((0 <= i_4) /\ (i_4 < i))) ->
+  ((exists i_5 : int. (t_1[(shift_uint8 a i_5)] <> 0) /\ (0 <= i_5) /\
+    (i_5 < i)) ->
+   (forall i_5 : int. (0 <= i_5) -> (i_5 < i_4) ->
+    (t_1[(shift_uint8 a i_5)] = 0))) ->
+  (forall i_5 : int. (i <= i_5) -> (i_5 < i_3) ->
+   (t_1[(shift_uint8 a i_5)] = 0)) ->
+  (x <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'below' (file for_loops.c, line 177) in 'find_next_bit_wrap_0' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_below_post_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'below' (file for_loops.c, line 177) in 'find_next_bit_wrap_0'":
+*)
+goal goal9:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_4)] in
+  let a_1 = (shift_uint8 a 0) in
+  let x_1 = (to_uint32 i_4) in
+  (t_1[(shift_uint8 a i_2)] <> 0) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (i <= l_size) ->
+  (i_1 <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_4)) ->
+  ((is_uint8 t_1[(shift_uint8 a i)])) ->
+  ((is_uint8 t_1[(shift_uint8 a i_3)])) ->
+  ((is_uint8 x)) ->
+  ((valid_rd t a_1 i)) ->
+  ((valid_rd t a_1 i_1)) ->
+  (if (x_1 < i_1) then (x_1 = i_3) else (i_3 = i)) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < i_1) ->
+    (t_1[(shift_uint8 a i_5)] = 0)) -> (i_4 = i_1)) ->
+  ((exists i_5 : int. (t_1[(shift_uint8 a i_5)] <> 0) /\ (0 <= i_5) /\
+    (i_5 < i_1)) -> (x <> 0)) ->
+  ((exists i_5 : int. (t_1[(shift_uint8 a i_5)] <> 0) /\ (0 <= i_5) /\
+    (i_5 < i_1)) -> ((0 <= i_4) /\ (i_4 < i_1))) ->
+  ((exists i_5 : int. (t_1[(shift_uint8 a i_5)] <> 0) /\ (0 <= i_5) /\
+    (i_5 < i_1)) ->
+   (forall i_5 : int. (0 <= i_5) -> (i_5 < i_4) ->
+    (t_1[(shift_uint8 a i_5)] = 0))) ->
+  (forall i_5 : int. (i_5 < i) -> (i_1 <= i_5) ->
+   (t_1[(shift_uint8 a i_5)] = 0)) ->
+  (i_3 < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'nowhere' (file for_loops.c, line 163) in 'find_next_bit_wrap_0' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_next_bit_wrap_0_nowhere_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'nowhere' (file for_loops.c, line 163) in 'find_next_bit_wrap_0'":
+*)
+goal goal10:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_uint8 a i_3)] in
+  let a_1 = (shift_uint8 a 0) in
+  let x_1 = (to_uint32 i_3) in
+  (i_1 < i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_5)) ->
+  ((is_sint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((is_uint8 x)) ->
+  ((valid_rd t a_1 i)) ->
+  (if (x_1 < i) then (x_1 = i_2)
+   else ((((to_uint32 i_4)) = i_5) /\ (i_1 <= l_size) /\
+         ((valid_rd t a_1 i_1)) /\
+         (if (i_5 < i_1) then (i_5 = i_2) else (i_2 = i)) /\
+         ((forall i_6 : int. (0 <= i_6) -> (i_6 < i_1) ->
+           (t_1[(shift_uint8 a i_6)] = 0)) -> (i_4 = i_1)) /\
+         ((exists i_6 : int. (t_1[(shift_uint8 a i_6)] <> 0) /\ (0 <= i_6) /\
+           (i_6 < i_1)) -> (t_1[(shift_uint8 a i_4)] <> 0)) /\
+         ((exists i_6 : int. (t_1[(shift_uint8 a i_6)] <> 0) /\ (0 <= i_6) /\
+           (i_6 < i_1)) -> ((0 <= i_4) /\ (i_4 < i_1))) /\
+         ((exists i_6 : int. (t_1[(shift_uint8 a i_6)] <> 0) /\ (0 <= i_6) /\
+           (i_6 < i_1)) ->
+          (forall i_6 : int. (0 <= i_6) -> (i_6 < i_4) ->
+           (t_1[(shift_uint8 a i_6)] = 0))))) ->
+  ((forall i_6 : int. (i_6 < i) -> (i_1 <= i_6) ->
+    (t_1[(shift_uint8 a i_6)] = 0)) -> (i_3 = i)) ->
+  ((exists i_6 : int. (t_1[(shift_uint8 a i_6)] <> 0) /\ (i_6 < i) /\
+    (i_1 <= i_6)) -> (x <> 0)) ->
+  ((exists i_6 : int. (t_1[(shift_uint8 a i_6)] <> 0) /\ (i_6 < i) /\
+    (i_1 <= i_6)) -> (i_3 < i)) ->
+  ((exists i_6 : int. (t_1[(shift_uint8 a i_6)] <> 0) /\ (i_6 < i) /\
+    (i_1 <= i_6)) -> ((i_3 < i) /\ (i_1 <= i_3))) ->
+  ((exists i_6 : int. (t_1[(shift_uint8 a i_6)] <> 0) /\ (i_6 < i) /\
+    (i_1 <= i_6)) ->
+   (forall i_6 : int. (i_1 <= i_6) -> (i_6 < i_3) ->
+    (t_1[(shift_uint8 a i_6)] = 0))) ->
+  (forall i_6 : int. (0 <= i_6) -> (i_6 < i) ->
+   (t_1[(shift_uint8 a i_6)] = 0)) ->
+  (i_2 = i)
+
+end
+

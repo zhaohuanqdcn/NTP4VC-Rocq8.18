@@ -1,0 +1,13 @@
+session replace_Why3_ide = NTP4Verif +
+theories
+  "replace_Why3_ide_VCreplace_assert_rte_mem_access_2_goal8"
+  "replace_Why3_ide_VCreplace_loop_inv_replace_established_goal4"
+  "replace_Why3_ide_VCreplace_post_replace_goal0"
+  "replace_Why3_ide_VCreplace_assert_rte_mem_access_goal7"
+  "replace_Why3_ide_VCreplace_loop_inv_unchanged_established_goal6"
+  "replace_Why3_ide_VCreplace_assert_rte_unsigned_overflow_goal9"
+  "replace_Why3_ide_VCreplace_loop_assign_part2_goal10"
+  "replace_Why3_ide_VCreplace_loop_inv_unchanged_preserved_goal5"
+  "replace_Why3_ide_VCreplace_loop_inv_bounds_preserved_goal1"
+  "replace_Why3_ide_VCreplace_loop_inv_bounds_established_goal2"
+  "replace_Why3_ide_VCreplace_loop_inv_replace_preserved_goal3"

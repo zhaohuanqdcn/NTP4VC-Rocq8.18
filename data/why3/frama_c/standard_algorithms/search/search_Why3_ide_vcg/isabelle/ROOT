@@ -1,0 +1,14 @@
+session search_Why3_ide = NTP4Verif +
+theories
+  "search_Why3_ide_VCsearch_no_match_post_result_goal11"
+  "search_Why3_ide_VCsearch_loop_inv_not_found_preserved_goal2"
+  "search_Why3_ide_VCsearch_has_match_post_first_goal10"
+  "search_Why3_ide_VCsearch_has_match_post_bound_goal8"
+  "search_Why3_ide_VCsearch_loop_term_positive_goal6"
+  "search_Why3_ide_VCsearch_loop_inv_bound_established_goal1"
+  "search_Why3_ide_VCsearch_has_match_post_result_goal9"
+  "search_Why3_ide_VCsearch_call_equal_pre_valid_goal7"
+  "search_Why3_ide_VCsearch_assert_rte_unsigned_overflow_2_goal4"
+  "search_Why3_ide_VCsearch_loop_inv_not_found_established_goal3"
+  "search_Why3_ide_VCsearch_assert_rte_unsigned_overflow_3_goal5"
+  "search_Why3_ide_VCsearch_post_result_goal0"

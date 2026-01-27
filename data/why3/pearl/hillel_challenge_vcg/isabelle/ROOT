@@ -1,0 +1,13 @@
+session hillel_challenge = NTP4Verif +
+theories
+  "hillel_challenge_FulcrumNoOverflow_add_bigqtvc"
+  "hillel_challenge_FulcrumNoOverflow_big_zeroqtvc"
+  "hillel_challenge_FulcrumNoOverflow_sum_boundsqtvc"
+  "hillel_challenge_FulcrumNoOverflow_fulcrumqtvc"
+  "hillel_challenge_FulcrumNoOverflow_big_ltqtvc"
+  "hillel_challenge_Unique_uniqueqtvc"
+  "hillel_challenge_Fulcrum_fulcrumqtvc"
+  "hillel_challenge_FulcrumNoOverflow_deltaqtvc"
+  "hillel_challenge_Leftpad_leftpadqtvc"
+  "hillel_challenge_FulcrumNoOverflow_bigqtvc"
+  "hillel_challenge_FulcrumNoOverflow_sub_bigqtvc"

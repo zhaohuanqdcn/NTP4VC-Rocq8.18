@@ -1,0 +1,22 @@
+import Why3.Base
+open Classical
+open Lean4Why3
+namespace verifythis_2024_challenge1_Top_decompose_sigmaqtvc
+noncomputable def permutation (l : ℤ) (p : List ℤ) := ((0 : ℤ) ≤ l ∧ l ≤ Int.ofNat (List.length p)) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < l → (0 : ℤ) ≤ p[Int.toNat i]! ∧ p[Int.toNat i]! < l) ∧ (∀(i : ℤ) (j : ℤ), (0 : ℤ) ≤ i ∧ i < l → (0 : ℤ) ≤ j ∧ j < l → ¬i = j → ¬p[Int.toNat i]! = p[Int.toNat j]!)
+noncomputable def permutation_pair (l : ℤ) (p : List ℤ) (invp : List ℤ) := permutation l p ∧ permutation l invp ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < l → p[Int.toNat (invp[Int.toNat i]!)]! = i) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < l → invp[Int.toNat (p[Int.toNat i]!)]! = i)
+axiom identity : ℤ -> List ℤ
+axiom identity'spec'1 (l : ℤ) (fact0 : (0 : ℤ) < l) : Int.ofNat (List.length (identity l)) = l
+axiom identity'spec'0 (l : ℤ) (i : ℤ) (fact0 : (0 : ℤ) < l) (fact1 : (0 : ℤ) ≤ i) (fact2 : i < l) : (identity l)[Int.toNat i]! = i
+axiom identity'spec (l : ℤ) (fact0 : (0 : ℤ) < l) : permutation_pair l (identity l) (identity l)
+axiom elt : Type
+axiom inhabited_axiom_elt : Inhabited elt
+attribute [instance] inhabited_axiom_elt
+noncomputable def valid_chunk (a : List elt) (ofs : ℤ) (len : ℤ) := (0 : ℤ) ≤ ofs ∧ ofs ≤ ofs + len ∧ ofs + len ≤ Int.ofNat (List.length a)
+noncomputable def copy (src : List elt) (dst : List elt) (ofs : ℤ) (len : ℤ) := valid_chunk src ofs len ∧ List.length src = List.length dst ∧ (∀(i : ℤ), ofs ≤ i ∧ i < ofs + len → dst[Int.toNat i]! = src[Int.toNat i]!)
+noncomputable def copy_to (src : List elt) (dst : List elt) (ofss : ℤ) (ofsd : ℤ) (len : ℤ) := valid_chunk src ofss len ∧ valid_chunk dst ofsd len ∧ List.length src = List.length dst ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < len → dst[Int.toNat (ofsd + i)]! = src[Int.toNat (ofss + i)]!) ∧ (∀(i : ℤ), ofsd ≤ i ∧ i < ofsd + len → dst[Int.toNat i]! = src[Int.toNat (i + (ofss - ofsd))]!)
+noncomputable def copy_perm (src : List elt) (dst : List elt) (size : ℤ) (p : List ℤ) (invp : List ℤ) := valid_chunk src (0 : ℤ) size ∧ List.length src = List.length dst ∧ permutation_pair size p invp ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < size → (0 : ℤ) ≤ p[Int.toNat i]! ∧ p[Int.toNat i]! < size) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < size → (0 : ℤ) ≤ invp[Int.toNat i]! ∧ invp[Int.toNat i]! < size) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < size → dst[Int.toNat i]! = src[Int.toNat (p[Int.toNat i]!)]!) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < size → src[Int.toNat i]! = dst[Int.toNat (invp[Int.toNat i]!)]!)
+noncomputable def copy_subsegment (src : List elt) (dst : List elt) (s : ℤ) (k : ℤ) (l : ℤ) (j : ℤ) (sigma : List ℤ) (tau : List ℤ) (p : List ℤ) (invp : List ℤ) := let start : ℤ := s * (k * l); let starts : ℤ := start + sigma[Int.toNat j]! * k; let startd : ℤ := start + tau[Int.toNat (sigma[Int.toNat j]!)]! * k; copy_to src dst starts startd k ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < k → p[Int.toNat (startd + i)]! = starts + i) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < k → invp[Int.toNat (starts + i)]! = startd + i)
+noncomputable def frame {α : Type} [Inhabited α] (a1 : List α) (a2 : List α) (ofs : ℤ) (len : ℤ) := List.length a2 = List.length a1 ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < ofs → a2[Int.toNat i]! = a1[Int.toNat i]!) ∧ (∀(i : ℤ), ofs + len ≤ i ∧ i < Int.ofNat (List.length a2) → a2[Int.toNat i]! = a1[Int.toNat i]!)
+theorem decompose_sigma'vc (k : ℤ) (l : ℤ) (s : ℤ) (sigma : List ℤ) (invsigma : List ℤ) (i : ℤ) (fact0 : (0 : ℤ) < k) (fact1 : (0 : ℤ) < l) (fact2 : (0 : ℤ) ≤ s) (fact3 : permutation_pair l sigma invsigma) (fact4 : s * (k * l) ≤ i) (fact5 : i < (s + (1 : ℤ)) * (k * l)) : let start : ℤ := s * (k * l); ¬k = (0 : ℤ) ∧ (let q : ℤ := (i - start) / k; ¬k = (0 : ℤ) ∧ (let r : ℤ := (i - start) % k; ((0 : ℤ) ≤ q ∧ q < Int.ofNat (List.length invsigma)) ∧ (let j : ℤ := invsigma[Int.toNat q]!; (((0 : ℤ) ≤ j ∧ j < l) ∧ (0 : ℤ) ≤ r ∧ r < k) ∧ i = s * (k * l) + sigma[Int.toNat j]! * k + r)))
+  := sorry
+end verifythis_2024_challenge1_Top_decompose_sigmaqtvc

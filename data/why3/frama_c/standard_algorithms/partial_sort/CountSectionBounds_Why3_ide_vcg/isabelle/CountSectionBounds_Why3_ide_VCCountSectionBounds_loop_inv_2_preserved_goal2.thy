@@ -1,0 +1,13 @@
+theory CountSectionBounds_Why3_ide_VCCountSectionBounds_loop_inv_2_preserved_goal2
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/A_Count_A_Count" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/Axiomatic_Axiomatic"
+begin
+theorem goal2:
+  fixes i_2 :: "int"
+  fixes t :: "addr \<Rightarrow> int"
+  fixes a :: "addr"
+  fixes i_1 :: "int"
+  fixes i_3 :: "int"
+  fixes i :: "int"
+  shows "let x :: int = (1 :: int) + i_2; x_1 :: int = l_count_1' t a i_1 x i_3 in i_1 \<le> i \<longrightarrow> i_2 \<le> i \<longrightarrow> i_2 < i \<longrightarrow> i_1 \<le> i_2 \<longrightarrow> region (base a) \<le> (0 :: int) \<longrightarrow> i_2 \<le> (4294967294 :: int) \<longrightarrow> is_uint32 i \<longrightarrow> is_uint32 i_1 \<longrightarrow> is_uint32 i_2 \<longrightarrow> is_sint32 i_3 \<longrightarrow> is_uint32 x \<longrightarrow> (\<forall>(i_4 :: int). let x_2 :: int = l_count_1' t a i_1 i_2 i_4 in is_sint32 i_4 \<longrightarrow> (0 :: int) \<le> x_2 \<and> i_1 + x_2 \<le> i_2) \<longrightarrow> (0 :: int) \<le> x_1 \<and> i_1 + x_1 \<le> x"
+  sorry
+end

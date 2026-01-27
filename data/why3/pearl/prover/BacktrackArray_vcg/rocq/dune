@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name prover.BacktrackArray_vcg)
+(theories prover.Functions prover.Choice Why3 prover.Predicates prover.BacktrackArray))

@@ -1,0 +1,13 @@
+theory strcat_Why3_ide_VCstrcat_assign_normal_part04_goal24
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "../../lib/isabelle/Axiomatic3_Axiomatic3" "Why3STD.Memory_Memory" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/A_Strlen_A_Strlen" "Why3STD.Cint_Cint"
+begin
+theorem goal24:
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes a :: "addr"
+  fixes t_3 :: "addr \<Rightarrow> int"
+  fixes a_1 :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes t :: "int \<Rightarrow> int"
+  shows "let x :: int = l_strlen t_2 a; a_2 :: addr = shift a x; x_1 :: int = l_strlen t_3 a_1; x_2 :: int = (1 :: int) + x_1; x_3 :: int = l_strlen t_2 a_1 in t_2 a_2 = (0 :: int) \<longrightarrow> havoc t_1 t_2 a_2 x_2 = t_3 \<longrightarrow> (0 :: int) \<le> x_1 \<longrightarrow> region (base a) \<le> (0 :: int) \<longrightarrow> region (base a_1) \<le> (0 :: int) \<longrightarrow> x + x_3 \<le> (18446744073709551615 :: int) \<longrightarrow> linked t \<longrightarrow> sconst t_2 \<longrightarrow> p_valid_str t t_2 a \<longrightarrow> p_valid_str t t_2 a_1 \<longrightarrow> is_uint64 x \<longrightarrow> addr_le a a_2 \<longrightarrow> addr_le a_2 a_2 \<longrightarrow> \<not>invalid t a_2 x_2 \<longrightarrow> p_valid_str t t_2 a_2 \<longrightarrow> valid_rw t (shift a (0 :: int)) ((1 :: int) + x + x_3) \<longrightarrow> (\<forall>(i :: int). (0 :: int) \<le> i \<longrightarrow> i < x \<longrightarrow> \<not>t_2 (shift a i) = (0 :: int)) \<longrightarrow> x_1 \<le> x_3"
+  sorry
+end

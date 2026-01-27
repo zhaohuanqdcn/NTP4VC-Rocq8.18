@@ -1,0 +1,30 @@
+theory float_mat_inv_4d_Why3_ide_VCfloat_mat_inv_4d_loop_inv_preserved_goal0
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cmath_Cmath" "Why3STD.Cfloat_Cfloat" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal0:
+  fixes i :: "int"
+  fixes r :: "real"
+  fixes a :: "addr"
+  fixes a_1 :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes r_1 :: "real"
+  assumes fact0: "(0 :: int) \<le> i"
+  assumes fact1: "(0 :: Real.real) \<le> r"
+  assumes fact2: "(7378697629483821 :: Real.real) / (73786976294838206464 :: Real.real) \<le> r"
+  assumes fact3: "region (base a) \<le> (0 :: int)"
+  assumes fact4: "region (base a_1) \<le> (0 :: int)"
+  assumes fact5: "i \<le> (15 :: int)"
+  assumes fact6: "i \<le> (16 :: int)"
+  assumes fact7: "linked t"
+  assumes fact8: "is_finite32 r"
+  assumes fact9: "is_finite32 r_1"
+  assumes fact10: "is_sint32 i"
+  assumes fact11: "is_float32 r"
+  assumes fact12: "is_float32 r_1"
+  assumes fact13: "is_sint32 ((1 :: int) + i)"
+  assumes fact14: "valid_rd t (shift a (0 :: int)) (16 :: int)"
+  assumes fact15: "valid_rw t (shift a_1 (0 :: int)) (16 :: int)"
+  assumes fact16: "r_1 = r \<or> r + r_1 = (0 :: Real.real)"
+  shows "-(1 :: int) \<le> i"
+  sorry
+end

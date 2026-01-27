@@ -1,0 +1,49 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'size' in 'axiom_size_of_init'      --- *)
+(* ---------------------------------------------------------- *)
+theory VCaxiom_size_of_init_post_size
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition 'size' in 'axiom_size_of_init'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let m = t_1[((shiftfield_f1_stack_size a_1)) <- i][((shiftfield_f1_stack_capacity
+                                                        a_1)) <- i_1] in
+  let x = (l_capacity m a_1) in
+  let m_1 = t_2[((shiftfield_f1_stack_obj a_1)) <- a] in
+  let a_2 = (l_storage m_1 a_1) in
+  let x_1 = (l_size m a_1) in
+  let a_3 = (shift_sint32 a_2 0) in
+  (((region (a_1.base))) <= 0) ->
+  (0 < x) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((valid_rw t a_1 3)) ->
+  ((p_empty m a_1)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_invariant t m_1 m a_1)) ->
+  ((valid_rw t a_3 x)) ->
+  ((separated a_1 3 a_3 x)) ->
+  (x_1 = 0)
+
+end
+

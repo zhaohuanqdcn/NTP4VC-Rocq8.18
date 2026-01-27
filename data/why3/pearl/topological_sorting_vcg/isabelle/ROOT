@@ -1,0 +1,9 @@
+session topological_sorting = NTP4Verif +
+theories
+  "topological_sorting_Online_Basic_add_edgeqtvc"
+  "topological_sorting_Graph"
+  "topological_sorting_Online_graph"
+  "topological_sorting_Static_topo_orderqtvc"
+  "topological_sorting_Online_Basic_dfsqtvc"
+  "topological_sorting_Static_dfsqtvc"
+  "topological_sorting_Online_Basic_createqtvc"

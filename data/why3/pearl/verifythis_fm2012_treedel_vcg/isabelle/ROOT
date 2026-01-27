@@ -1,0 +1,17 @@
+session verifythis_fm2012_treedel = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "verifythis_fm2012_treedel_Memory_get_leftqtvc"
+  "verifythis_fm2012_treedel_Treedel_distinct_break_appendqtvc"
+  "verifythis_fm2012_treedel_Memory"
+  "verifythis_fm2012_treedel_Memory_get_dataqtvc"
+  "verifythis_fm2012_treedel_Treedel_subst_zip_treeqtvc"
+  "verifythis_fm2012_treedel_Treedel_in_zip_treeqtvc"
+  "verifythis_fm2012_treedel_Memory_get_rightqtvc"
+  "verifythis_fm2012_treedel_Treedel_main_lemmaqtvc"
+  "verifythis_fm2012_treedel_Treedel_search_tree_delete_minqtvc"
+  "verifythis_fm2012_treedel_Treedel_tree_rightqtvc"
+  "verifythis_fm2012_treedel_Treedel_tree_leftqtvc"
+  "verifythis_fm2012_treedel_Treedel_inorder_zipqtvc"
+  "verifythis_fm2012_treedel_Treedel_extensionalityqtvc"

@@ -1,0 +1,13 @@
+theory index_of_not_in_subrange_Why3_ide_VCindex_of_not_in_subrange_loop_inv_2_preserved_goal2
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/S1_list_S1_list" "../../lib/isabelle/A_Index_of_item_A_Index_of_item"
+begin
+theorem goal2:
+  fixes i_2 :: "int"
+  fixes t :: "addr \<Rightarrow> addr"
+  fixes a :: "addr"
+  fixes i :: "int"
+  fixes i_1 :: "int"
+  fixes i_3 :: "int"
+  shows "let x :: int = (1 :: int) + i_2; a_1 :: addr = t (shift a x) in \<not>a_1 = t (shift a i_2) \<longrightarrow> (0 :: int) \<le> i \<longrightarrow> i_2 \<le> i_1 \<longrightarrow> i_3 \<le> i_1 \<longrightarrow> i_2 < i_1 \<longrightarrow> i_3 \<le> i_2 \<longrightarrow> (0 :: int) \<le> i_3 \<longrightarrow> region (base a) \<le> (0 :: int) \<longrightarrow> region (base a_1) \<le> (0 :: int) \<longrightarrow> (2 :: int) + i_2 \<le> i_1 \<longrightarrow> framed t \<longrightarrow> is_sint32 i \<longrightarrow> is_sint32 i_1 \<longrightarrow> is_sint32 i_2 \<longrightarrow> is_sint32 i_3 \<longrightarrow> is_sint32 x \<longrightarrow> (\<forall>(i_4 :: int). i_4 < i_1 \<longrightarrow> i_3 \<le> i_4 \<longrightarrow> \<not>a_1 = t (shift a i_4)) \<longrightarrow> \<not>(\<forall>(i_4 :: int). i_4 < i_2 \<longrightarrow> i_3 \<le> i_4 \<longrightarrow> l_index_of t a_1 a i_3 i = l_index_of t a_1 a i_2 i)"
+  sorry
+end

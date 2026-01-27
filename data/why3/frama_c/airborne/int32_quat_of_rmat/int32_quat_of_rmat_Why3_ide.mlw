@@ -1,0 +1,245 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 421) in 'int32_sqrt'' in 'int32_quat_of_rmat' at initialization of 'two_qi' (file math/pprz_algebra_int.c, line 445)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_of_rmat_call_int32_sqrt_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+use import Cint.Cint
+use import Cbits.Cbits
+use import Qed.Qed
+use import int.Abs as IAbs
+use import real.Truncate
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 421) in 'int32_sqrt'' in 'int32_quat_of_rmat' at initialization of 'two_qi' (file math/pprz_algebra_int.c, line 445)
+":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shiftfield_f12_int32rmat_m a) in
+  let x = t_1[(shift_sint32 a_1 0)] in
+  let x_1 = t_1[(shift_sint32 a_1 4)] in
+  let x_2 = t_1[(shift_sint32 a_1 8)] in
+  let x_3 = x + x_1 + x_2 in
+  (((region (a.base))) <= 0) ->
+  (0 < x_3) ->
+  ((linked t)) ->
+  ((p_rvalid_bound_int32rmat t t_1 a 32767)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 x_2)) ->
+  ((is_sint32 x_3)) ->
+  (((to_uint32
+      ((lsl
+         ((to_sint32
+            ((truncate
+               ((add_float64 ((mul_float64 1.0 16384.0))
+                  ((to_float64 ((real_of_int x_3)))))))))) 14))))
+     <= 2147483647)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 421) in 'int32_sqrt'' in 'int32_quat_of_rmat' at initialization of 'two_qx' (file math/pprz_algebra_int.c, line 464)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_of_rmat_call_int32_sqrt_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+use import Cint.Cint
+use import Cbits.Cbits
+use import Qed.Qed
+use import int.Abs as IAbs
+use import real.Truncate
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 421) in 'int32_sqrt'' in 'int32_quat_of_rmat' at initialization of 'two_qx' (file math/pprz_algebra_int.c, line 464)
+":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shiftfield_f12_int32rmat_m a) in
+  let x = t_1[(shift_sint32 a_1 4)] in
+  let x_1 = t_1[(shift_sint32 a_1 0)] in
+  let x_2 = t_1[(shift_sint32 a_1 8)] in
+  let x_3 = x_1 + x + x_2 in
+  (((region (a.base))) <= 0) ->
+  (x < x_1) ->
+  (x_2 < x_1) ->
+  (x_3 <= 0) ->
+  ((linked t)) ->
+  ((p_rvalid_bound_int32rmat t t_1 a 32767)) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 1)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 2)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 3)])) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 5)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 6)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 7)])) ->
+  ((is_sint32 x_2)) ->
+  ((is_sint32 x_3)) ->
+  (((to_uint32
+      ((lsl
+         ((to_sint32
+            ((truncate
+               ((add_float64 ((to_float64 ((real_of_int (x_1 - x - x_2)))))
+                  ((mul_float64 1.0 16384.0)))))))) 14)))) <= 2147483647)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 421) in 'int32_sqrt'' in 'int32_quat_of_rmat' at initialization of 'two_qy' (file math/pprz_algebra_int.c, line 481)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_of_rmat_call_int32_sqrt_pre_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+use import Cint.Cint
+use import Cbits.Cbits
+use import Qed.Qed
+use import int.Abs as IAbs
+use import real.Truncate
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 421) in 'int32_sqrt'' in 'int32_quat_of_rmat' at initialization of 'two_qy' (file math/pprz_algebra_int.c, line 481)
+":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shiftfield_f12_int32rmat_m a) in
+  let x = t_1[(shift_sint32 a_1 8)] in
+  let x_1 = t_1[(shift_sint32 a_1 4)] in
+  let x_2 = t_1[(shift_sint32 a_1 0)] in
+  let x_3 = x_2 + x_1 + x in
+  (((region (a.base))) <= 0) ->
+  (x < x_1) ->
+  (x_3 <= 0) ->
+  ((linked t)) ->
+  ((p_rvalid_bound_int32rmat t t_1 a 32767)) ->
+  ((is_sint32 x_2)) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 1)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 2)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 3)])) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 5)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 6)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 7)])) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_3)) ->
+  ((x_2 <= x_1) \/ (x_2 <= x)) ->
+  (((to_uint32
+      ((lsl
+         ((to_sint32
+            ((truncate
+               ((add_float64 ((to_float64 ((real_of_int (x_1 - x_2 - x)))))
+                  ((mul_float64 1.0 16384.0)))))))) 14)))) <= 2147483647)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 421) in 'int32_sqrt'' in 'int32_quat_of_rmat' at initialization of 'two_qz' (file math/pprz_algebra_int.c, line 498)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_of_rmat_call_int32_sqrt_pre_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+use import Cint.Cint
+use import Cbits.Cbits
+use import Qed.Qed
+use import int.Abs as IAbs
+use import real.Truncate
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 421) in 'int32_sqrt'' in 'int32_quat_of_rmat' at initialization of 'two_qz' (file math/pprz_algebra_int.c, line 498)
+":
+*)
+goal goal3:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shiftfield_f12_int32rmat_m a) in
+  let x = t_1[(shift_sint32 a_1 4)] in
+  let x_1 = t_1[(shift_sint32 a_1 8)] in
+  let x_2 = t_1[(shift_sint32 a_1 0)] in
+  let x_3 = x_2 + x + x_1 in
+  (((region (a.base))) <= 0) ->
+  (x <= x_1) ->
+  (x_3 <= 0) ->
+  ((linked t)) ->
+  ((p_rvalid_bound_int32rmat t t_1 a 32767)) ->
+  ((is_sint32 x_2)) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 1)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 2)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 3)])) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 5)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 6)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 7)])) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 x_3)) ->
+  ((x_2 <= x) \/ (x_2 <= x_1)) ->
+  (((to_uint32
+      ((lsl
+         ((to_sint32
+            ((truncate
+               ((add_float64 ((to_float64 ((real_of_int (x_1 - x_2 - x)))))
+                  ((mul_float64 1.0 16384.0)))))))) 14)))) <= 2147483647)
+
+end
+

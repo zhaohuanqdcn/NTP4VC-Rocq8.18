@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name verifythis_2018_mind_the_gap_1_vcg)
+(theories Why3))

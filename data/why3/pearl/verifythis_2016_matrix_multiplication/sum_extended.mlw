@@ -1,0 +1,32 @@
+module Sum_extended
+
+  use int.Int
+  use int.Sum
+
+  function addf (f g:int -> int) : int -> int = fun x -> f x + g x
+
+  function smulf (f:int -> int) (l:int) : int -> int = fun x -> l * f x
+
+  let ghost sum_mult (f:int -> int) (a b l:int) : unit
+    ensures { sum (smulf f l) a b = l * sum f a b }
+  = ()
+
+
+  let ghost sum_add (f g:int -> int) (a b:int) : unit
+    ensures { sum (addf f g) a b = sum f a b + sum g a b }
+  = ()
+
+
+  function sumf (f:int -> int -> int) (a b:int) : int -> int = fun x -> sum (f x) a b
+
+  let ghost fubini (f1 f2: int -> int -> int) (a b c d: int) : unit
+    requires { forall x y. a <= x < b /\ c <= y < d -> f1 x y = f2 y x }
+    ensures  { sum (sumf f1 c d) a b = sum (sumf f2 a b) c d }
+  = ()
+
+   let ghost sum_ext (f g: int -> int) (a b: int) : unit
+     requires {forall i. a <= i < b -> f i = g i }
+     ensures  { sum f a b  = sum g a b }
+   = ()
+
+end

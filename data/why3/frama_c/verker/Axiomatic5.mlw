@@ -1,0 +1,31 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #5)                  --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_kstrtobool_fmt_false (mchar_0 : map addr int) (s : addr) =
+    let x = mchar_0[(shift_sint8 s 0)] in
+    let x_1 = mchar_0[(shift_sint8 s 1)] in (x = 48) \/ (x = 78) \/
+    (x = 110) \/ (((x = 79) \/ (x = 111)) /\ ((x_1 = 70) \/ (x_1 = 102)))
+
+predicate p_kstrtobool_fmt_true (mchar_0 : map addr int) (s : addr) =
+    let x = mchar_0[(shift_sint8 s 0)] in
+    let x_1 = mchar_0[(shift_sint8 s 1)] in (x = 49) \/ (x = 89) \/
+    (x = 121) \/ (((x = 79) \/ (x = 111)) /\ ((x_1 = 78) \/ (x_1 = 110)))
+
+predicate p_kstrtobool_fmt (mchar_0 : map addr int) (s : addr) =
+    ((p_kstrtobool_fmt_false mchar_0 s)) \/
+    ((p_kstrtobool_fmt_true mchar_0 s))
+
+end
+

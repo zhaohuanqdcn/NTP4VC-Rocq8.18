@@ -1,0 +1,13 @@
+atoms:
+  pqueue.Pqueue.elts: [elts, pqueue_Pqueue.elts]
+  pqueue.Pqueue.le: [le, pqueue_Pqueue.le]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.pqueue_Pqueue
+prefix_ops: {}
+types:
+  pqueue.Pqueue.elt: [elt, pqueue_Pqueue.elt]
+  pqueue.Pqueue.t: [t, pqueue_Pqueue.t]

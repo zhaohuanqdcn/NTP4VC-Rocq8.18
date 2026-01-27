@@ -1,0 +1,13 @@
+session Unification = NTP4Verif +
+theories
+  "Unification_Impl_conflictsqtvc"
+  "Unification_Impl_unification_term_listqtvc"
+  "Unification_Impl_check_unified_free_varqtvc"
+  "Unification_Impl_unif_conflictsqtvc"
+  "Unification_Impl_assignqtvc"
+  "Unification_Impl_bottomvarqtvc"
+  "Unification_Impl_unify_term_listqtvc"
+  "Unification_Logic_smodel_depend_only_modelqtvc"
+  "Unification_Impl_unification_termqtvc"
+  "Unification_Impl_conflictqtvc"
+  "Unification_Impl_check_unified_free_var_listqtvc"

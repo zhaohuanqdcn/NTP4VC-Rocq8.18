@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name my_bag_vcg.my_bag)
+(theories Why3 Why3.map Why3.int))

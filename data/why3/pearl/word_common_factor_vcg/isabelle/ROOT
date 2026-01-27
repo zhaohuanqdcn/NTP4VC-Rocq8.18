@@ -1,0 +1,5 @@
+session word_common_factor = NTP4Verif +
+theories
+  "word_common_factor_Top_common_factorqtvc"
+  "word_common_factor_Top_powerqtvc"
+  "word_common_factor_Top_power_addqtvc"

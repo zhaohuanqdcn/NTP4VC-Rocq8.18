@@ -1,0 +1,363 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file lemma_functions_index_of.c, line 61) in 'index_of_inter_existing_item' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_inter_existing_item_post_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition (file lemma_functions_index_of.c, line 61) in 'index_of_inter_existing_item' (1/2)":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  let a_1 = t_1[(shift_ptr a i_1)] in
+  let x = (l_index_of t_1 a_1 a i_2 i) in
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (i_1 < i) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x < i) ->
+  (i_2 <= x) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t ((shift_ptr a i_2)) (i - i_2))) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (a_1 <> t_1[(shift_ptr a i_3)])) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (x = ((l_index_of t_1 a_1 a i_1 i)))) ->
+  (exists i_3 : int. (a_1 = t_1[(shift_ptr a i_3)]) /\ (i_3 < i) /\
+   (i_2 <= i_3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file lemma_functions_index_of.c, line 61) in 'index_of_inter_existing_item' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_inter_existing_item_post_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file lemma_functions_index_of.c, line 61) in 'index_of_inter_existing_item' (2/2)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let x = (l_index_of t_1 a a_1 i_2 i) in
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x < i) ->
+  (i_2 <= x) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t ((shift_ptr a_1 i_2)) (i - i_2))) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (t_1[(shift_ptr a_1 i_3)] <> a)) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (x = ((l_index_of t_1 a a_1 i_1 i)))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file lemma_functions_index_of.c, line 67) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_inter_existing_item_loop_inv_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file lemma_functions_index_of.c, line 67) (1/2)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let x = (l_index_of t_1 a a_1 i_2 i) in
+  let x_1 = 1 + i_1 in
+  (t_1[(shift_ptr a_1 i_1)] <> a) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (i_1 < i) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x < i) ->
+  (i_2 <= x) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rw t ((shift_ptr a_1 i_2)) (i - i_2))) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (t_1[(shift_ptr a_1 i_3)] <> a)) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (x = ((l_index_of t_1 a a_1 i_1 i)))) ->
+  (i_2 <= x_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file lemma_functions_index_of.c, line 68) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_inter_existing_item_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file lemma_functions_index_of.c, line 68)":
+*)
+goal goal3:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  let a_1 = t_1[(shift_ptr a i_2)] in
+  let x = (l_index_of t_1 a_1 a i_3 i) in
+  (a_1 <> t_1[(shift_ptr a i_1)]) ->
+  (i_1 <= i) ->
+  (i_3 <= i) ->
+  (i_1 < i) ->
+  (i_2 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x < i) ->
+  (i_3 <= x) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_sint32 (1 + i_1))) ->
+  ((valid_rw t ((shift_ptr a i_3)) (i - i_3))) ->
+  (forall i_4 : int. (i_4 < i_1) -> (i_3 <= i_4) ->
+   (a_1 <> t_1[(shift_ptr a i_4)])) ->
+  (forall i_4 : int. (i_4 < i_1) -> (i_3 <= i_4) ->
+   (x = ((l_index_of t_1 a_1 a i_1 i)))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file lemma_functions_index_of.c, line 69) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_inter_existing_item_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file lemma_functions_index_of.c, line 69)":
+*)
+goal goal4:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let x = (l_index_of t_1 a a_1 i_3 i) in
+  let x_1 = 1 + i_1 in
+  (t_1[(shift_ptr a_1 i_1)] <> a) ->
+  (i_1 <= i) ->
+  (i_3 <= i) ->
+  (i_1 < i) ->
+  (i_2 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x < i) ->
+  (i_3 <= x) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rw t ((shift_ptr a_1 i_3)) (i - i_3))) ->
+  (forall i_4 : int. (i_4 < i_1) -> (i_3 <= i_4) ->
+   (t_1[(shift_ptr a_1 i_4)] <> a)) ->
+  (forall i_4 : int. (i_4 < i_1) -> (i_3 <= i_4) ->
+   (x = ((l_index_of t_1 a a_1 i_1 i)))) ->
+  (((l_index_of t_1 a a_1 x_1 i)) = x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file lemma_functions_index_of.c, line 76) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_inter_existing_item_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file lemma_functions_index_of.c, line 76)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let x = (l_index_of t_1 a a_1 i_2 i) in
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (i_1 < i) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x < i) ->
+  (i_2 <= x) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t ((shift_ptr a_1 i_2)) (i - i_2))) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (t_1[(shift_ptr a_1 i_3)] <> a)) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (x = ((l_index_of t_1 a a_1 i_1 i)))) ->
+  ((valid_rd t ((shift_ptr a_1 i_1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,signed_overflow' (file lemma_functions_index_of.c, line 75) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_inter_existing_item_assert_rte_signed_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Index_of_item.A_Index_of_item
+use import Cint.Cint
+
+(*
+goal WP "expl:Assertion 'rte,signed_overflow' (file lemma_functions_index_of.c, line 75)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shift_ptr a_1 i_1) in
+  let x = (l_index_of t_1 a a_1 i_2 i) in
+  (t_1[a_2] <> a) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (i_1 < i) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x < i) ->
+  (i_2 <= x) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rw t ((shift_ptr a_1 i_2)) (i - i_2))) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (t_1[(shift_ptr a_1 i_3)] <> a)) ->
+  (forall i_3 : int. (i_3 < i_1) -> (i_2 <= i_3) ->
+   (x = ((l_index_of t_1 a a_1 i_1 i)))) ->
+  (i_1 <= 2147483646)
+
+end
+

@@ -1,0 +1,9 @@
+session coincidence_count_list = NTP4Verif +
+theories
+  "coincidence_count_list_CoincidenceCountAnyType_eqqtrefnqtvc"
+  "coincidence_count_list_CoincidenceCountList_Trans"
+  "coincidence_count_list_CoincidenceCount_coincidence_countqtvc"
+  "coincidence_count_list_CoincidenceCount_Trans"
+  "coincidence_count_list_CoincidenceCountAnyType_coincidence_countqtvc"
+  "coincidence_count_list_CoincidenceCountList_coincidence_countqtvc"
+  "coincidence_count_list_CoincidenceCountAnyType_Trans"

@@ -1,0 +1,14 @@
+session func_literals = NTP4Verif +
+theories
+  "func_literals_Top_seq_ok1qtvc"
+  "func_literals_Top_array_ok4qtvc"
+  "func_literals_Top_seq_ok3qtvc"
+  "func_literals_Top_g1"
+  "func_literals_Top_array_ok2qtvc"
+  "func_literals_Top_array_ok1qtvc"
+  "func_literals_Top_g3"
+  "func_literals_Top_array_ok3qtvc"
+  "func_literals_Top_g2"
+  "func_literals_Top_seq_ok2qtvc"
+  "func_literals_Top_g4"
+  "func_literals_Top_seq_ok4qtvc"

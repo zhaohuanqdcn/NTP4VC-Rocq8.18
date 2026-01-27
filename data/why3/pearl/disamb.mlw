@@ -1,0 +1,74 @@
+(** {1 Disambiguation of Plus Expressions }
+
+Author: Quentin Garchery (LRI, Université Paris-Sud)
+*)
+
+use int.Int
+use list.ListRich
+
+(** Consider the 'concrete' syntax of Plus Expressions containing only :
+    integers, the symbol PLUS and parentheses. *)
+
+type token = INTERGER | PLUS | LPAREN | RPAREN
+
+(** Plus Expressions are lists of tokens that satisfy the original following
+    inductive predicate. *)
+
+inductive pe (e : list token) =
+    | Plus : forall e1 e2. pe e1 -> pe e2 -> pe (e1 ++ Cons PLUS e2)
+    | Paren : forall e. pe e -> pe (Cons LPAREN (e ++ (Cons RPAREN Nil)))
+    | Int : pe (Cons INTERGER Nil)
+
+goal pe1 : pe (Cons INTERGER Nil)
+goal pe2 : pe (Cons INTERGER (Cons PLUS (Cons INTERGER (Cons PLUS (Cons INTERGER Nil)))))
+
+(** Define another predicate to recognize Plus Expressions but that removes the
+    ambiguity coming from the associativity of PLUS. *)
+
+inductive pe' (e : list token) =
+   | Plus' : forall e1 e2. pe' e1 -> pt e2 -> pe' (e1 ++ Cons PLUS e2)
+   | T' : forall t. pt t -> pe' t
+with pt (e : list token) =
+    | Paren' : forall e. pe' e -> pt (Cons LPAREN (e ++ (Cons RPAREN Nil)))
+    | Int' : pt (Cons INTERGER Nil)
+
+goal pep1 : pe' (Cons INTERGER Nil)
+goal pep2 : pe' (Cons INTERGER (Cons PLUS (Cons INTERGER (Cons PLUS (Cons INTERGER Nil)))))
+
+(** Show that the two predicates recognize the same expressions. *)
+
+(** Strengthen the disambiguation_included formula, making sure the pt predicate
+    appears. *)
+
+let ghost di_str (n : int) : unit
+    ensures { forall e. (length e <= n /\ pt e) \/ (length e < n /\ pe' e) ->
+    	      	     	pe e }
+    = ()
+
+let ghost disambiguation_included (e : list token) : unit
+    requires { pe' e }
+    ensures { pe e }
+    = ()
+
+(** Strengthen the original_included formula and prove it by using mutal
+    recursion (showing that we can decompose an expression w.r.t its last
+    toplevel PLUS symbol). *)
+
+let ghost oi_str (n : int) (ghost m : int) : unit
+    requires { m > n }
+    ensures { forall e. length e <= n -> pe e -> pe' e }
+    = ()
+
+let ghost decomp_last_plus (n : int) (ghost m : int) : unit
+     requires { m >= n }
+     ensures { forall e. length e <= n -> pe e -> not pt e ->
+     	       exists e1 e2. pe e1 /\ pt e2 /\ e = e1 ++ Cons PLUS e2 }
+     = ()
+
+let ghost original_included () : unit
+  ensures { forall e. pe e -> pe' e }
+= ()
+
+let ghost original_equiv_disambiguation () : unit
+  ensures { forall e. pe e <-> pe' e }
+= ()

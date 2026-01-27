@@ -1,0 +1,7 @@
+session stack_push_wd_Why3_ide = NTP4Verif +
+theories
+  "stack_push_wd_Why3_ide_VCstack_push_wd_post_valid_goal0"
+  "stack_push_wd_Why3_ide_VCstack_push_wd_assign_normal_part2_goal3"
+  "stack_push_wd_Why3_ide_VCstack_push_wd_post_equal_goal1"
+  "stack_push_wd_Why3_ide_VCstack_push_wd_assign_exit_part2_goal2"
+  "stack_push_wd_Why3_ide_VCstack_push_wd_call_stack_push_pre_valid_2_goal4"

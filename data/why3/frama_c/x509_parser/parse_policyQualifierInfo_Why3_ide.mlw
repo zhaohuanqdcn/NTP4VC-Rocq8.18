@@ -1,0 +1,393 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 5930) in 'parse_policyQualifierInfo' (14/28) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_policyQualifierInfo_post_part14
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 5930) in 'parse_policyQualifierInfo' (14/28)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_2) in
+  let a_3 = (shift_uint8 a_1 (10 + i_2)) in
+  let x_2 = i + i_2 in
+  let x_3 = i - 10 in
+  (i <> 0) ->
+  (i <> 10) ->
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (a_3 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  (x_2 <= i_1) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483638) <= i) ->
+  (2 <= i_2) ->
+  (10 <= i) ->
+  (i <= 65545) ->
+  (i <= 2147483657) ->
+  ((-2147483648) <= x_2) ->
+  (x_2 <= 65535) ->
+  (x_2 <= 2147483647) ->
+  ((10 + i_3) <= i) ->
+  (i <= (65545 + i_3)) ->
+  (i <= (2147483657 + i_3)) ->
+  (i_3 <= (2147483638 + i)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((valid_rw t a 1)) ->
+  ((is_uint16 x_3)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd t a_2 10)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_1 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_2 i))) ->
+  ((11 <= i) -> ((valid_rd t a_3 x_3))) ->
+  (2 <= x_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 5930) in 'parse_policyQualifierInfo' (20/28) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_policyQualifierInfo_post_part20
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 5930) in 'parse_policyQualifierInfo' (20/28)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_2) in
+  let a_3 = (shift_uint8 a_1 (10 + i_2)) in
+  let x_2 = i + i_2 in
+  let x_3 = i - 10 in
+  (i <> 0) ->
+  (i <> 10) ->
+  (i_1 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (a_3 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  (x_2 <= i_1) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483638) <= i) ->
+  (2 <= i_2) ->
+  (10 <= i) ->
+  (i <= 65545) ->
+  (i <= 2147483657) ->
+  ((-2147483648) <= x_2) ->
+  (x_2 <= 65535) ->
+  (x_2 <= 2147483647) ->
+  ((10 + i_3) <= i) ->
+  (i <= (65545 + i_3)) ->
+  (i <= (2147483657 + i_3)) ->
+  (i_3 <= (2147483638 + i)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_3)) ->
+  ((valid_rw t a 1)) ->
+  ((is_uint16 x_3)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd t a_2 10)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_1 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_2 i))) ->
+  ((11 <= i) -> ((valid_rd t a_3 x_3))) ->
+  (2 <= x_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 748) in 'parse_OID'' in 'parse_policyQualifierInfo' at call 'parse_OID' (file src/x509-parser.c, line 5965)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_policyQualifierInfo_call_parse_OID_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 748) in 'parse_OID'' in 'parse_policyQualifierInfo' at call 'parse_OID' (file src/x509-parser.c, line 5965)
+":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_2) in
+  (i_1 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (0 < i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  ((i + i_2) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_1 0)) i_1))) ->
+  ((valid_rd t a_2 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 49) in 'bufs_differ'' in 'parse_policyQualifierInfo' at call 'bufs_differ' (file src/x509-parser.c, line 5972)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_policyQualifierInfo_call_bufs_differ_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 49) in 'bufs_differ'' in 'parse_policyQualifierInfo' at call 'bufs_differ' (file src/x509-parser.c, line 5972)
+":
+*)
+goal goal3:
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_1) in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (0 <= i_2) ->
+  ((i_1 + i_2) <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (10 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  ((0 < i_2) -> ((valid_rd t a_2 i_2))) ->
+  ((valid_rd t a_2 10))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 5586) in 'parse_CPSuri'' in 'parse_policyQualifierInfo' at call 'parse_CPSuri' (file src/x509-parser.c, line 5978)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_policyQualifierInfo_call_parse_CPSuri_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 5586) in 'parse_CPSuri'' in 'parse_policyQualifierInfo' at call 'parse_CPSuri' (file src/x509-parser.c, line 5978)
+":
+*)
+goal goal4:
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_2) in
+  let a_3 = (shift_uint8 a_1 (10 + i_2)) in
+  let x_2 = i - 10 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (a_3 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  ((i + i_2) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483638) <= i) ->
+  (2 <= i_2) ->
+  (10 <= i) ->
+  (11 <= i) ->
+  (i <= 65545) ->
+  (i <= 2147483657) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd t a_2 10)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_1 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_2 i))) ->
+  ((valid_rd t a_3 x_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 5843) in 'parse_UserNotice'' in 'parse_policyQualifierInfo' at call 'parse_UserNotice' (file src/x509-parser.c, line 5994)
+ (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_policyQualifierInfo_call_parse_UserNotice_pre_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 5843) in 'parse_UserNotice'' in 'parse_policyQualifierInfo' at call 'parse_UserNotice' (file src/x509-parser.c, line 5994)
+ (1/2)":
+*)
+goal goal5:
+*)
+goal goal5:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_2) in
+  let a_3 = (shift_uint8 a_1 (10 + i_2)) in
+  let x_2 = i - 10 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_3 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (a_2 <> null) ->
+  (a_3 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_2 <= i_1) ->
+  ((i + i_2) <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483638) <= i) ->
+  (2 <= i_2) ->
+  (10 <= i) ->
+  (11 <= i) ->
+  (i <= 65545) ->
+  (i <= 2147483657) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rw t a 1)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd t a_2 10)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_1 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_2 i))) ->
+  ((valid_rd t a_3 x_2))
+
+end
+

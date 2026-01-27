@@ -1,0 +1,31 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #15)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_bound_int32quat (mint_0 : map addr int) (q : addr)
+    (bound_0 : int) =
+    let x = mint_0[(shiftfield_f8_int32quat_qi q)] in
+    let x_1 = mint_0[(shiftfield_f8_int32quat_qx q)] in
+    let x_2 = mint_0[(shiftfield_f8_int32quat_qy q)] in
+    let x_3 = mint_0[(shiftfield_f8_int32quat_qz q)] in (x <= bound_0) /\
+    (x_1 <= bound_0) /\ (x_2 <= bound_0) /\ (x_3 <= bound_0) /\
+    (0 <= (bound_0 + x)) /\ (0 <= (bound_0 + x_1)) /\
+    (0 <= (bound_0 + x_2)) /\ (0 <= (bound_0 + x_3))
+
+predicate p_rvalid_bound_int32quat (malloc_0 : map int int)
+    (mint_0 : map addr int) (q : addr) (bound_0 : int) =
+    ((valid_rd malloc_0 q 4)) /\ ((p_bound_int32quat mint_0 q bound_0))
+
+end
+

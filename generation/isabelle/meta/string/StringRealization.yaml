@@ -1,0 +1,24 @@
+atoms:
+  string.StringRealization.concat: [concat, string_StringRealization.concat]
+  string.StringRealization.contains: [contains, string_StringRealization.contains]
+  string.StringRealization.from_int: [from_int, string_StringRealization.from_int]
+  string.StringRealization.indexof: [indexof, string_StringRealization.indexof]
+  string.StringRealization.is_digit: [is_digit, string_StringRealization.is_digit]
+  string.StringRealization.le: [le, string_StringRealization.le]
+  string.StringRealization.length: [length, string_StringRealization.length]
+  string.StringRealization.lt: [lt, string_StringRealization.lt]
+  string.StringRealization.prefixof: [prefixof, string_StringRealization.prefixof]
+  string.StringRealization.replace: [replace, string_StringRealization.replace]
+  string.StringRealization.replaceall: [replaceall, string_StringRealization.replaceall]
+  string.StringRealization.s_at: [s_at, string_StringRealization.s_at]
+  string.StringRealization.substring: [substring, string_StringRealization.substring]
+  string.StringRealization.suffixof: [suffixof, string_StringRealization.suffixof]
+  string.StringRealization.to_int: [to_int, string_StringRealization.to_int]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.string_StringRealization
+prefix_ops: {}
+types: {}

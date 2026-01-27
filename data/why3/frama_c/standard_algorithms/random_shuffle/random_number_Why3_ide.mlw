@@ -1,0 +1,57 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file random_number.h, line 12) in 'random_number' --- *)
+(* ---------------------------------------------------------- *)
+theory VCrandom_number_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition (file random_number.h, line 12) in 'random_number'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  (0 < i) ->
+  (0 <= i_1) ->
+  (i_1 <= 2147483647) ->
+  (i_1 <= 4294967295) ->
+  ((is_uint32 i)) ->
+  ((is_sint32 i_1)) ->
+  (((to_uint32 ((mod i_1 i)))) < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file random_number.c, line 35) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrandom_number_assert_rte_unsigned_downcast
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file random_number.c, line 35)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  (0 < i_1) ->
+  (0 <= i) ->
+  (i <= 2147483647) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i)) ->
+  (i <= 4294967295)
+
+end
+

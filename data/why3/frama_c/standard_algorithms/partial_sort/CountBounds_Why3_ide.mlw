@@ -1,0 +1,64 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountBounds.h, line 27) in 'CountBounds' --- *)
+(* ---------------------------------------------------------- *)
+theory VCCountBounds_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Count.A_Count
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountBounds.h, line 27) in 'CountBounds'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  let x = (l_count_2_ t a i i_1) in
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_sint32 i_1)) ->
+  (forall i_2 : int. let x_1 = (l_count_1_ t a 0 i i_2) in
+   ((is_sint32 i_2)) -> ((x_1 <= i) /\ (0 <= x_1))) ->
+  ((x <= i) /\ (0 <= x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountBounds.h, line 11) in 'CountSectionBounds'' in 'CountBounds' at call 'CountSectionBounds' (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountBounds.h, line 30)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCCountBounds_call_CountSectionBounds_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountBounds.h, line 11) in 'CountSectionBounds'' in 'CountBounds' at call 'CountSectionBounds' (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountBounds.h, line 30)
+":
+*)
+goal goal1:
+  forall i : int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  (0 <= i)
+
+end
+

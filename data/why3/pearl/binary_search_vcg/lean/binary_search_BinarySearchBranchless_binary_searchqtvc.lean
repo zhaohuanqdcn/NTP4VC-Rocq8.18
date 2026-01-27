@@ -1,0 +1,8 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+open Classical
+open Lean4Why3
+namespace binary_search_BinarySearchBranchless_binary_searchqtvc
+theorem binary_search'vc (a : List ℤ) (v : ℤ) (fact0 : ∀(i1 : ℤ) (i2 : ℤ), (0 : ℤ) ≤ i1 ∧ i1 ≤ i2 ∧ i2 < Int.ofNat (List.length a) → a[Int.toNat i1]! ≤ a[Int.toNat i2]!) : let o1 : ℤ := Int.ofNat (List.length a); if o1 = (0 : ℤ) then ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a) → ¬a[Int.toNat i]! = v else (((0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) + o1 ≤ Int.ofNat (List.length a) ∧ (1 : ℤ) ≤ o1) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a) → a[Int.toNat i]! = v → a[(0 : ℕ)]! ≤ v ∧ i < (0 : ℤ) + o1)) ∧ (∀(s : ℤ) (l : ℤ), ((0 : ℤ) ≤ l ∧ l + s ≤ Int.ofNat (List.length a) ∧ (1 : ℤ) ≤ s) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a) → a[Int.toNat i]! = v → a[Int.toNat l]! ≤ v ∧ i < l + s) → (if (1 : ℤ) < s then ¬(2 : ℤ) = (0 : ℤ) ∧ (let h : ℤ := Int.tdiv s (2 : ℤ); let m : ℤ := l + h; ((0 : ℤ) ≤ m ∧ m < Int.ofNat (List.length a)) ∧ (∀(o2 : ℤ), (if v < a[Int.toNat m]! then o2 = l else o2 = m) → ((0 : ℤ) ≤ s ∧ s - h < s) ∧ ((0 : ℤ) ≤ o2 ∧ o2 + (s - h) ≤ Int.ofNat (List.length a) ∧ (1 : ℤ) ≤ s - h) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a) → a[Int.toNat i]! = v → a[Int.toNat o2]! ≤ v ∧ i < o2 + (s - h)))) else ((0 : ℤ) ≤ l ∧ l < Int.ofNat (List.length a)) ∧ (if a[Int.toNat l]! = v then (((0 : ℤ) ≤ l ∧ l < Int.ofNat (List.length a)) ∧ a[Int.toNat l]! = v) ∧ (∀(i : ℤ), l < i ∧ i < Int.ofNat (List.length a) → ¬a[Int.toNat i]! = v) else ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a) → ¬a[Int.toNat i]! = v)))
+  := sorry
+end binary_search_BinarySearchBranchless_binary_searchqtvc

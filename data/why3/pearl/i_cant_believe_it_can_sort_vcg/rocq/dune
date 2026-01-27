@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name i_cant_believe_it_can_sort_vcg)
+(theories Why3 Why3.map))

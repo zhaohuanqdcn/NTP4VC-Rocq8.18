@@ -1,0 +1,7 @@
+session incremental = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "incremental_Ce_int32"
+  "incremental_Ce_int32_dummy_updateqtvc"
+  "incremental_Ce_interesting_dummy_updateqtvc"

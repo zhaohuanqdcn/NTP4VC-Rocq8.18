@@ -1,0 +1,24 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #16)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic16
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import S9_RealVect3_s.S9_RealVect3_s
+use import Compound.Compound
+
+function l_l_vect_of_floatvect3 (mflt_0 : map addr real)
+    (v : addr) : s9_realvect3_s =
+    { f9_realvect3_s_x = mflt_0[(shiftfield_f2_floatvect3_x v)] ;
+      f9_realvect3_s_y = mflt_0[(shiftfield_f2_floatvect3_y v)] ;
+      f9_realvect3_s_z = mflt_0[(shiftfield_f2_floatvect3_z v)] }
+
+end
+

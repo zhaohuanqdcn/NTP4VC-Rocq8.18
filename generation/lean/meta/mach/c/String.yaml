@@ -1,0 +1,22 @@
+atoms:
+  mach.c.String.strlen: [String.strlen]
+  mach.c.String.valid_string: [String.valid_string]
+  mach.c.String.zero_char: [String.zero_char]
+axioms:
+  mach.c.String.code_0: String.code_0
+  mach.c.String.code_A: String.code_A
+  mach.c.String.code_a: String.code_a
+  mach.c.String.code_minus: String.code_minus
+  mach.c.String.lowcodes: String.lowcodes
+  mach.c.String.numcodes: String.numcodes
+  mach.c.String.strlen_def: String.strlen_def
+  mach.c.String.strlen_invalid: String.strlen_invalid
+  mach.c.String.upcodes: String.upcodes
+  mach.c.String.zero_char'def: String.zero_char'def
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.mach.c.String
+prefix_ops: {}
+types: {}

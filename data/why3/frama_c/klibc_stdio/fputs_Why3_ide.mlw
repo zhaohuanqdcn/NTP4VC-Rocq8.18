@@ -1,0 +1,155 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 73) in 'strlen'' in 'fputs' at call 'strlen' (file fputs.c, line 14)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfputs_call_strlen_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 73) in 'strlen'' in 'fputs' at call 'strlen' (file fputs.c, line 14)
+":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (exists i : int. (p_length_of_str_is t t_1 a i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file fwrite.c, line 75) in '_fwrite'' in 'fputs' at call '_fwrite' (file fputs.c, line 14)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfputs_call__fwrite_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Length.A_Length
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file fwrite.c, line 75) in '_fwrite'' in 'fputs' at call '_fwrite' (file fputs.c, line 14)
+":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_2 a_1 a : addr.
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 ((l_length t_1 a_1)))) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  (((shiftfield_f16__io_file_pvt_pub a)) = a_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file fwrite.c, line 76) in '_fwrite'' in 'fputs' at call '_fwrite' (file fputs.c, line 14)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfputs_call__fwrite_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Length.A_Length
+use import Axiomatic.Axiomatic
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file fwrite.c, line 76) in '_fwrite'' in 'fputs' at call '_fwrite' (file fputs.c, line 14)
+":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_2 a_1 a : addr.
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 ((l_length t_2 a_1)))) ->
+  ((p_length_of_str_is t t_2 a_1 i)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file fwrite.c, line 77) in '_fwrite'' in 'fputs' at call '_fwrite' (file fputs.c, line 14)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfputs_call__fwrite_pre_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Length.A_Length
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file fwrite.c, line 77) in '_fwrite'' in 'fputs' at call '_fwrite' (file fputs.c, line 14)
+":
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let x = (l_length t_1 a) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 x)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((valid_rw t ((shift_sint8 a 0)) ((to_uint32 x))))
+
+end
+

@@ -1,0 +1,25 @@
+atoms:
+  floating_point.Single.add_post: [add_post, floating_point_Single.add_post]
+  floating_point.Single.div_post: [div_post, floating_point_Single.div_post]
+  floating_point.Single.exact: [exact, floating_point_Single.exact]
+  floating_point.Single.gt: [gt, floating_point_Single.gt]
+  floating_point.Single.lt: [lt, floating_point_Single.lt]
+  floating_point.Single.model: [model, floating_point_Single.model]
+  floating_point.Single.mul_post: [mul_post, floating_point_Single.mul_post]
+  floating_point.Single.neg_post: [neg_post, floating_point_Single.neg_post]
+  floating_point.Single.no_overflow: [no_overflow, floating_point_Single.no_overflow]
+  floating_point.Single.of_real_post: [of_real_post, floating_point_Single.of_real_post]
+  floating_point.Single.round: [round, floating_point_Single.round]
+  floating_point.Single.round_error: [round_error, floating_point_Single.round_error]
+  floating_point.Single.round_logic: [round_logic, floating_point_Single.round_logic]
+  floating_point.Single.sub_post: [sub_post, floating_point_Single.sub_post]
+  floating_point.Single.total_error: [total_error, floating_point_Single.total_error]
+  floating_point.Single.value: [value, floating_point_Single.value]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.floating_point_Single
+prefix_ops: {}
+types: {}

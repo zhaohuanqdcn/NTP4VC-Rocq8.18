@@ -1,0 +1,105 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 96) in 'memcpy'' in 'strerror' at call 'memcpy' (file strerror.c, line 30)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrerror_call_memcpy_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Globals.Globals
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 96) in 'memcpy'' in 'strerror' at call 'memcpy' (file strerror.c, line 30)
+":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = (to_uint32 i) in
+  (((to_uint32 ((div i_1 10)))) = 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i_1)) ->
+  ((separated ((shift_sint8 a (-1))) x
+     ((shift_sint8 ((global g_message_16589)) 6)) x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 98) in 'memcpy'' in 'strerror' at call 'memcpy' (file strerror.c, line 30)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrerror_call_memcpy_pre_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 98) in 'memcpy'' in 'strerror' at call 'memcpy' (file strerror.c, line 30)
+":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  let x = (to_uint32 i) in
+  (((to_uint32 ((div i_1 10)))) = 0) ->
+  (0 < x) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i_1)) ->
+  (x <= 26)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 99) in 'memcpy'' in 'strerror' at call 'memcpy' (file strerror.c, line 30)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrerror_call_memcpy_pre_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 99) in 'memcpy'' in 'strerror' at call 'memcpy' (file strerror.c, line 30)
+":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t_1 t : map int int.
+  forall t_2 : map addr int.
+  forall a : addr.
+  (((to_uint32 ((div i_1 10)))) = 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t_1 ((shift_sint8 a (-1))) ((to_uint32 i))))
+
+end
+

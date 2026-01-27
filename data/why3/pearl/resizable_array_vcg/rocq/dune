@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name resizable_array_vcg)
+(theories Why3 resizable_array_vcg.resizable_array))

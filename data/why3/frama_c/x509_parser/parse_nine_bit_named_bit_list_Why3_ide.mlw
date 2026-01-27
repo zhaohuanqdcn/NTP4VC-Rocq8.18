@@ -1,0 +1,188 @@
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 5314) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_nine_bit_named_bit_list_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 5314)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 0) in
+  (i <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((0 < i) -> ((valid_rd t a_2 i))) ->
+  ((valid_rd t a_2 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 5360) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_nine_bit_named_bit_list_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Cbits.Cbits
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 5360)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 0) in
+  let x_2 = t_1[a_2] in
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (((land 248 x_2)) = 0) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((is_uint8 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_2 2)) ->
+  ((valid_rd t ((shift_uint8 a_1 1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 5424) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_nine_bit_named_bit_list_assert_rte_mem_access_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 5424)":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 0) in
+  let a_3 = (shift_uint8 a_1 2) in
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (t_1[a_2] = 7) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((is_uint8 t_1[a_3])) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_2 3)) ->
+  ((valid_rd t a_3 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file src/x509-parser.c, line 5389) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_nine_bit_named_bit_list_loop_term_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Cbits.Cbits
+
+(*
+(*
+goal WP "expl:Positivity of Loop variant at loop (file src/x509-parser.c, line 5389)":
+*)
+goal goal3:
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 1) in
+  let x_2 = t_1[a_2] in
+  let a_3 = (shift_uint8 a_1 0) in
+  let x_3 = t_1[a_3] in
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (x_2 <> 0) ->
+  (((land 248 x_3)) = 0) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (0 <= x_2) ->
+  ((-1) <= i) ->
+  (i <= 7) ->
+  (i <= 31) ->
+  (i <= 254) ->
+  (i <= 2147483646) ->
+  ((linked t)) ->
+  ((is_uint8 i)) ->
+  ((is_uint8 x_3)) ->
+  ((is_uint8 x_2)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t a_3 2)) ->
+  ((valid_rd t a_2 1)) ->
+  (not (bit_test ((lsr x_2 i)) 0)) ->
+  (i <= 8)
+
+end
+

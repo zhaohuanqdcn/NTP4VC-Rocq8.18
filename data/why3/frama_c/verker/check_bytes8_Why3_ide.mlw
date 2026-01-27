@@ -1,0 +1,715 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/check_bytes8.h, line 26) in 'check_bytes8' --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file src/check_bytes8.h, line 26) in 'check_bytes8'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a_1.offset in
+  let x_1 = a.offset in
+  let x_2 = i_1 + x - x_1 in
+  let a_3 = (l_check_bytes8 t_1 a_1 i i_1) in
+  let x_3 = i_1 + x in
+  (((l_check_bytes8 t_1 a i x_2)) = a_3) ->
+  (x <= x_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_1 <= x_3) ->
+  ((linked t)) ->
+  ((is_uint8 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_le a_1 a)) ->
+  ((addr_le a ((shift_uint8 a_1 i_1)))) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i_1)) ->
+  ((is_uint32 x_2)) ->
+  (if (x_3 = x_1) then ((null = a_2) /\ (a_3 = a_2)) else (t_1[a] <> i)) ->
+  (forall a_4 : addr. ((addr_lt a_4 a)) -> ((addr_le a_1 a_4)) ->
+   (t_1[a_4] = i)) ->
+  (a_3 = a_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/check_bytes8.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/check_bytes8.c, line 9)":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a.offset in
+  let x_2 = a_1.offset in
+  let x_3 = i + x_1 - x_2 in
+  (i <> 0) ->
+  (((l_check_bytes8 t_1 a_1 x x_3)) = ((l_check_bytes8 t_1 a x i))) ->
+  (0 <= i) ->
+  (x_2 <= x_1) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_uint8 x)) ->
+  ((is_uint32 x_3)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_3)) ->
+  ((addr_le a ((shift_uint8 a_1 x_3)))) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a_1 a_2)) ->
+   (x = t_1[a_2])) ->
+  ((x_2 + ((to_uint32 (i - 1)))) <= (i + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/check_bytes8.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/check_bytes8.c, line 9)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/check_bytes8.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/check_bytes8.c, line 10)":
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.offset in
+  let x_1 = i + x in
+  let x_2 = a.offset in
+  let x_3 = t_1[a] in
+  let x_4 = i + x - x_2 in
+  let a_2 = (shift_uint8 a_1 i) in
+  let a_3 = (shift_uint8 a 1) in
+  (x_1 <> x_2) ->
+  (((l_check_bytes8 t_1 a x_3 x_4)) = ((l_check_bytes8 t_1 a_1 x_3 i))) ->
+  (x <= x_2) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_2 <= x_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_uint8 x_3)) ->
+  ((addr_le a a_2)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((is_uint32 x_4)) ->
+  (forall a_4 : addr. ((addr_lt a_4 a)) -> ((addr_le a_1 a_4)) ->
+   (x_3 = t_1[a_4])) ->
+  (((addr_le a_1 a_3)) /\ ((addr_le a_3 a_2)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/check_bytes8.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_loop_inv_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/check_bytes8.c, line 10)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  (((addr_le a a)) /\ ((addr_le a ((shift_uint8 a i)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/check_bytes8.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/check_bytes8.c, line 11)":
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a.offset in
+  let x_2 = a_1.offset in
+  let x_3 = i + x_1 - x_2 in
+  (i <> 0) ->
+  (((l_check_bytes8 t_1 a_1 x x_3)) = ((l_check_bytes8 t_1 a x i))) ->
+  (0 <= i) ->
+  (x_2 <= x_1) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_uint8 x)) ->
+  ((is_uint32 x_3)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_3)) ->
+  ((addr_le a ((shift_uint8 a_1 x_3)))) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a_1 a_2)) ->
+   (x = t_1[a_2])) ->
+  ((1 + ((to_uint32 (i - 1)))) = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/check_bytes8.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_loop_inv_4_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/check_bytes8.c, line 12)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a_1.offset in
+  let x_1 = i + x in
+  let x_2 = a.offset in
+  let x_3 = t_1[a] in
+  let x_4 = i + x - x_2 in
+  (x_1 <> x_2) ->
+  (((l_check_bytes8 t_1 a x_3 x_4)) = ((l_check_bytes8 t_1 a_1 x_3 i))) ->
+  (x <= x_2) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_2 <= x_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_uint8 x_3)) ->
+  ((addr_lt a_2 ((shift_uint8 a 1)))) ->
+  ((addr_le a ((shift_uint8 a_1 i)))) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((is_uint32 x_4)) ->
+  (forall a_3 : addr. ((addr_lt a_3 a)) -> ((addr_le a_1 a_3)) ->
+   (x_3 = t_1[a_3])) ->
+  (t_1[a_2] = x_3)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/check_bytes8.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_loop_inv_4_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/check_bytes8.c, line 12)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint8 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_1 a)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i_1)) ->
+  (t_1[a_1] = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/check_bytes8.c, line 13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_loop_inv_5_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/check_bytes8.c, line 13)":
+*)
+goal goal8:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a.offset in
+  let x_2 = a_1.offset in
+  let x_3 = i + x_1 - x_2 in
+  let a_2 = (l_check_bytes8 t_1 a_1 x x_3) in
+  (i <> 0) ->
+  (a_2 = ((l_check_bytes8 t_1 a x i))) ->
+  (0 <= i) ->
+  (x_2 <= x_1) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_uint8 x)) ->
+  ((is_uint32 x_3)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_3)) ->
+  ((addr_le a ((shift_uint8 a_1 x_3)))) ->
+  (forall a_3 : addr. ((addr_lt a_3 a)) -> ((addr_le a_1 a_3)) ->
+   (x = t_1[a_3])) ->
+  (a_2 = ((l_check_bytes8 t_1 ((shift_uint8 a 1)) x ((to_uint32 (i - 1))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion (file src/check_bytes8.c, line 24)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_assert_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion (file src/check_bytes8.c, line 24)":
+*)
+goal goal9:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a.offset in
+  let x_1 = a_1.offset in
+  let x_2 = x - x_1 in
+  let a_2 = (l_check_bytes8 t_1 a_1 i x_2) in
+  (a_2 = ((l_check_bytes8 t_1 a i 0))) ->
+  (x_1 <= x) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint8 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_uint32 x_2)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_2)) ->
+  ((addr_le a ((shift_uint8 a_1 x_2)))) ->
+  (forall a_3 : addr. ((addr_lt a_3 a)) -> ((addr_le a_1 a_3)) ->
+   (t_1[a_3] = i)) ->
+  (a_2 = null)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file src/check_bytes8.c, line 17) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file src/check_bytes8.c, line 17)":
+*)
+goal goal10:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a.offset in
+  let x_2 = a_1.offset in
+  let x_3 = i + x_1 - x_2 in
+  (i <> 0) ->
+  (((l_check_bytes8 t_1 a_1 x x_3)) = ((l_check_bytes8 t_1 a x i))) ->
+  (0 <= i) ->
+  (x_2 <= x_1) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((addr_le a_1 a)) ->
+  ((is_uint8 x)) ->
+  ((is_uint32 x_3)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_3)) ->
+  ((addr_le a ((shift_uint8 a_1 x_3)))) ->
+  (forall a_2 : addr. ((addr_lt a_2 a)) -> ((addr_le a_1 a_2)) ->
+   (x = t_1[a_2])) ->
+  (((to_uint32 (i - 1))) < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file src/check_bytes8.h, line 29) in 'check_bytes8' --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_found_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'found' (file src/check_bytes8.h, line 29) in 'check_bytes8'":
+*)
+goal goal11:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_3.offset in
+  let x_1 = a_2.offset in
+  let x_2 = i_1 + x - x_1 in
+  let a_5 = (l_check_bytes8 t_1 a_3 i i_1) in
+  let x_3 = i_1 + x in
+  let x_4 = t_1[a_2] in
+  let a_6 = (shift_uint8 a_3 i_1) in
+  (t_1[a_4] <> i) ->
+  (((l_check_bytes8 t_1 a_2 i x_2)) = a_5) ->
+  (x <= x_1) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_1 <= x_3) ->
+  ((linked t)) ->
+  ((is_uint8 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_le a_3 a_2)) ->
+  ((addr_le a_3 a_4)) ->
+  ((is_uint8 x_4)) ->
+  ((addr_lt a_4 a_6)) ->
+  ((addr_le a_2 a_6)) ->
+  ((valid_rd t ((shift_uint8 a_3 0)) i_1)) ->
+  ((is_uint32 x_2)) ->
+  (if (x_3 = x_1) then (a_5 = null) else (x_4 <> i)) ->
+  (forall a_7 : addr. ((addr_lt a_7 a_2)) -> ((addr_le a_3 a_7)) ->
+   (t_1[a_7] = i)) ->
+  (((addr_le a_3 a)) /\ ((addr_lt a_1 a_6)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file src/check_bytes8.h, line 30) in 'check_bytes8' --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_found_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'found' (file src/check_bytes8.h, line 30) in 'check_bytes8'":
+*)
+goal goal12:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a_2.offset in
+  let x_2 = a_1.offset in
+  let x_3 = i + x_1 - x_2 in
+  let a_4 = (l_check_bytes8 t_1 a_2 x i) in
+  let x_4 = i + x_1 in
+  let x_5 = t_1[a_1] in
+  let a_5 = (shift_uint8 a_2 i) in
+  (t_1[a_3] <> x) ->
+  (((l_check_bytes8 t_1 a_1 x x_3)) = a_4) ->
+  (x_1 <= x_2) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_2 <= x_4) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((addr_le a_2 a_1)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_uint8 x)) ->
+  ((is_uint8 x_5)) ->
+  ((addr_lt a_3 a_5)) ->
+  ((addr_le a_1 a_5)) ->
+  ((valid_rd t ((shift_uint8 a_2 0)) i)) ->
+  ((is_uint32 x_3)) ->
+  (if (x_4 = x_2) then (a_4 = null) else (x_5 <> x)) ->
+  (forall a_6 : addr. ((addr_lt a_6 a_1)) -> ((addr_le a_2 a_6)) ->
+   (x = t_1[a_6])) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file src/check_bytes8.h, line 31) in 'check_bytes8' --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_found_post_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'found' (file src/check_bytes8.h, line 31) in 'check_bytes8'":
+*)
+goal goal13:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_2.offset in
+  let x_1 = a_1.offset in
+  let x_2 = i_1 + x - x_1 in
+  let a_5 = (l_check_bytes8 t_1 a_2 i i_1) in
+  let x_3 = i_1 + x in
+  let x_4 = t_1[a_1] in
+  let a_6 = (shift_uint8 a_2 i_1) in
+  (t_1[a_3] <> i) ->
+  (((l_check_bytes8 t_1 a_1 i x_2)) = a_5) ->
+  (x <= x_1) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= x_3) ->
+  ((linked t)) ->
+  ((is_uint8 i)) ->
+  ((is_uint32 i_1)) ->
+  ((addr_lt a_4 a)) ->
+  ((addr_le a_2 a_1)) ->
+  ((addr_le a_2 a_3)) ->
+  ((addr_le a_2 a_4)) ->
+  ((is_uint8 x_4)) ->
+  ((addr_lt a_3 a_6)) ->
+  ((addr_le a_1 a_6)) ->
+  ((valid_rd t ((shift_uint8 a_2 0)) i_1)) ->
+  ((is_uint32 x_2)) ->
+  (if (x_3 = x_1) then (a_5 = null) else (x_4 <> i)) ->
+  (forall a_7 : addr. ((addr_lt a_7 a_1)) -> ((addr_le a_2 a_7)) ->
+   (t_1[a_7] = i)) ->
+  (t_1[a_4] = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_exists' (file src/check_bytes8.h, line 34) in 'check_bytes8' --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_bytes8_not_exists_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_CheckBytes8.A_CheckBytes8
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'not_exists' (file src/check_bytes8.h, line 34) in 'check_bytes8'":
+*)
+goal goal14:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a_1.offset in
+  let x_1 = a.offset in
+  let x_2 = i_3 + x - x_1 in
+  let x_3 = i_3 + x in
+  let x_4 = t_3[a] in
+  let a_3 = (shift_uint8 a_1 i_3) in
+  (((l_check_bytes8 t_1 a i x_2)) = ((l_check_bytes8 t_1 a_1 i i_3))) ->
+  (x <= x_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_1 <= x_3) ->
+  ((linked t)) ->
+  ((is_uint8 i)) ->
+  ((is_uint8 i_1)) ->
+  ((is_uint8 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((addr_le a_1 a)) ->
+  ((is_uint8 x_4)) ->
+  ((addr_le a a_3)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i_3)) ->
+  ((is_uint32 x_2)) ->
+  (if (x_3 = x_1)
+   then ((i_1 = i) /\ (t_2 = t_1) /\ (null = a_2) /\
+         (((l_check_bytes8 t_2 a_1 i_1 i_3)) = a_2))
+   else ((i_2 = i) /\ (t_3 = t_1) /\ (x_4 <> i_2))) ->
+  (forall a_4 : addr. ((addr_lt a_4 a)) -> ((addr_le a_1 a_4)) ->
+   (t_1[a_4] = i)) ->
+  (forall a_4 : addr. ((addr_le a_1 a_4)) -> ((addr_lt a_4 a_3)) ->
+   (t_1[a_4] = i)) ->
+  (null = a_2)
+
+end
+

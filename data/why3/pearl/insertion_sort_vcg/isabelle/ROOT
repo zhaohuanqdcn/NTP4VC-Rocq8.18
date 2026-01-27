@@ -1,0 +1,8 @@
+session insertion_sort = NTP4Verif +
+theories
+  "insertion_sort_InsertionSort_test2qtvc"
+  "insertion_sort_InsertionSort_benchqtvc"
+  "insertion_sort_InsertionSortGen_insertion_sortqtvc"
+  "insertion_sort_InsertionSortSwaps_insertion_sortqtvc"
+  "insertion_sort_InsertionSort_insertion_sortqtvc"
+  "insertion_sort_InsertionSort_test1qtvc"

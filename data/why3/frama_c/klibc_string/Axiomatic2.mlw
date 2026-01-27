@@ -1,0 +1,19 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #2)                  --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+predicate p_is_lower (c : int) = (97 <= c) /\ (c <= 122)
+
+predicate p_is_upper (c : int) = (65 <= c) /\ (c <= 90)
+
+end
+

@@ -1,0 +1,14 @@
+session sub = NTP4Verif +
+theories
+  "sub_Sub_wmpn_subqtvc"
+  "sub_Sub_subqtvc"
+  "sub_SubOld_wmpn_sub_nqtvc"
+  "sub_Sub_sub_ryqtvc"
+  "sub_SubOld_wmpn_sub_n_in_placeqtvc"
+  "sub_Sub_sub_n_rxqtvc"
+  "sub_Sub_sub_nqtvc"
+  "sub_Sub_wmpn_sub_nqtvc"
+  "sub_Sub_sub_rxqtvc"
+  "sub_Sub_sub_n_ryqtvc"
+  "sub_SubOld_wmpn_subqtvc"
+  "sub_SubOld_wmpn_sub_in_placeqtvc"

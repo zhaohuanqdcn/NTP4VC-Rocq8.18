@@ -1,0 +1,9 @@
+theory Firstorder_term_impl_Impl_destruct_fo_term_listqtvc
+  imports "NTP4Verif.NTP4Verif" "../../lib/isabelle/Firstorder_term_impl_Types" "../../lib/isabelle/Nat_Nat" "../../lib/isabelle/Functions_Config" "../../lib/isabelle/Functions_Func" "../../lib/isabelle/OptionFuncs_Funcs" "../../lib/isabelle/Sum_Sum" "../../lib/isabelle/Firstorder_symbol_spec_Spec" "../../lib/isabelle/Firstorder_symbol_impl_Types" "../../lib/isabelle/Firstorder_symbol_impl_Logic" "../../lib/isabelle/Firstorder_symbol_impl_Impl" "../../lib/isabelle/Firstorder_term_spec_Spec" "../../lib/isabelle/Firstorder_term_impl_Logic"
+begin
+theorem destruct_fo_term_list'vc:
+  fixes t :: "nlimpl_fo_term_list"
+  assumes fact0: "nlimpl_fo_term_list_ok t"
+  shows "let fv0 :: int = nlfree_var_symbol_set_abstraction_fo_term_list_field t; fv3 :: int = nlfree_var_fo_term_set_abstraction_fo_term_list_field t; o1 :: (int, int) nl_fo_term_list = nlrepr_fo_term_list_field t in (case o1 of NL_FONil \<Rightarrow> (case model_fo_term_list_field t of FONil \<Rightarrow> True | FOCons x0 x1 \<Rightarrow> False) | NL_FOCons v0 v1 \<Rightarrow> (case model_fo_term_list_field t of FONil \<Rightarrow> False | FOCons x0 x1 \<Rightarrow> True)) \<and> (\<forall>(result :: cons_fo_term_list). (case o1 of NL_FONil \<Rightarrow> (case model_fo_term_list_field t of FONil \<Rightarrow> result = NLC_FONil | FOCons x0 x1 \<Rightarrow> False) | NL_FOCons v0 v1 \<Rightarrow> (case model_fo_term_list_field t of FONil \<Rightarrow> False | FOCons x0 x1 \<Rightarrow> result = NLC_FOCons (nlimpl_fo_term'mk v0 fv0 fv3 (rename_fo_term x0 identity identity)) (nlimpl_fo_term_list'mk v1 fv0 fv3 (rename_fo_term_list x1 identity identity)))) \<longrightarrow> cons_ok_fo_term_list result \<and> cons_rel_fo_term_list result t \<and> cons_open_rel_fo_term_list result t)"
+  sorry
+end

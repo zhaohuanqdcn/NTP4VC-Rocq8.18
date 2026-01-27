@@ -1,0 +1,29 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.why3.Ref.Ref.
+Open Scope Z_scope.
+Definition is_partition (a : list Z) := 0%Z < Z.of_nat (length a) ∧ (∀(i : Z) (j : Z), 0%Z ≤ i ∧ i ≤ j ∧ j < Z.of_nat (length a) -> nth (Z.to_nat j) a inhabitant ≤ nth (Z.to_nat i) a inhabitant) ∧ nth (Z.to_nat (Z.of_nat (length a) - 1%Z)) a inhabitant = 0%Z.
+Definition numofgt (a : list Z) (n : Z) (v : Z) := (0%Z ≤ n ∧ n < Z.of_nat (length a)) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < n -> v < nth (Z.to_nat j) a inhabitant) ∧ nth (Z.to_nat n) a inhabitant ≤ v.
+Definition is_conjugate (a : list Z) (b : list Z) := nth 0%nat a inhabitant < Z.of_nat (length b) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < Z.of_nat (length b) -> numofgt a (nth (Z.to_nat j) b inhabitant) j).

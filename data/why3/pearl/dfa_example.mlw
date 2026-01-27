@@ -1,0 +1,88 @@
+module DfaExample
+
+  (** regular expressions on alphabet {0,1} *)
+
+  type char = Zero | One
+
+  clone regexp.Regexp with type char = char
+
+  (** mutable input stream *)
+
+  use option.Option
+  use seq.Seq
+
+  type stream = abstract { mutable state: seq char }
+
+  val input: stream
+
+  val get () : option char writes {input}
+    ensures {
+      if old input.state = empty then
+        old input.state = input.state = empty /\ result = None
+      else
+        input.state = (old input.state)[1..] /\
+        result = Some ((old input.state)[0]) }
+
+  (** 2-state DFA to recognize words ending with a 1, that is (0|1)*1
+
+               --------- 1 -------->
+      +- state 1                    state 2-------+
+      |    ^   <-------- 0 ---------   ^          |
+      +-0--/                           \----- 1 --+
+  *)
+
+  constant r0 : regexp = Star (Alt (Char Zero) (Char One))
+  constant r1 : regexp = Concat r0 (Char One)
+  constant r2 : regexp = Alt Epsilon r1
+
+  let ghost empty_notin_r1 () : unit
+    ensures { not (mem empty r1) }
+  = ()
+
+  let ghost all_in_r0 (w: word) : unit
+    ensures { mem w r0 }
+  = ()
+
+  let ghost words_in_r1_end_with_one (w : word) : unit
+    ensures { mem w r1 <-> exists w': word. w = w' ++ cons One empty }
+  = ()
+
+  let ghost words_in_r1_suffix_in_r1 (c c' : char) (w : word) : unit
+    ensures { mem (cons c (cons c' w)) r1 -> mem (cons c' w) r1 }
+  = ()
+
+  let ghost zero_w_in_r1 (w : word) : unit
+    ensures { mem w r1 <-> mem (cons Zero w) r1 }
+  = ()
+
+  let ghost zero_w_in_r2 (w: word) : unit
+    ensures { mem w r1 <-> mem (cons Zero w) r2 }
+  = ()
+
+  let ghost one_w_in_r1 (w: word) : unit
+    ensures { mem w r2 <-> mem (cons One w) r1 }
+  = ()
+
+  let ghost one_w_in_r2 (w: word) : unit
+    ensures { mem w r2 <-> mem (cons One w) r2 }
+  = ()
+
+  let rec astate1 () : bool
+    variant { length input.state }
+    ensures { result <-> input.state = empty /\ mem (old input.state) r1 }
+  = match get () with
+    | None      -> false
+    | Some Zero -> astate1 ()
+    | Some One  -> astate2 ()
+    end
+
+  with astate2 () : bool
+    variant { length input.state }
+    ensures { result <-> input.state = empty /\ mem (old input.state) r2 }
+  = match get () with
+    | None      -> true
+    | Some Zero -> astate1 ()
+    | Some One  -> astate2 ()
+    end
+
+end

@@ -1,0 +1,21 @@
+module Test
+
+  use int.Int
+  use list.List
+  use stack.Stack
+
+  let test0 () =
+    let s = Stack.create () : Stack.t 'a in
+    let b = Stack.is_empty s in
+    let n = Stack.length s in
+    ()
+
+  let test1 () raises { Empty }
+  = let s = Stack.create () in
+    Stack.push 1 s;
+    let x = Stack.top s in
+    Stack.push 2 s;
+    let x = Stack.top s in
+    ()
+
+end

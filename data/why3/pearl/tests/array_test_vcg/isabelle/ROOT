@@ -1,0 +1,5 @@
+session array_test = NTP4Verif +
+theories
+  "array_test_TestArray_test_appendqtvc"
+  "array_test_TestArray_test_blitqtvc"
+  "array_test_TestArray_test_fillqtvc"

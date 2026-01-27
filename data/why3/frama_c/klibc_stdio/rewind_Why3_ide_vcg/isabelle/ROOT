@@ -1,0 +1,17 @@
+session rewind_Why3_ide = NTP4Verif +
+theories
+  "rewind_Why3_ide_VCrewind_call_fseek_pre_goal13"
+  "rewind_Why3_ide_VCrewind_assign_exit_part6_goal5"
+  "rewind_Why3_ide_VCrewind_assign_normal_part5_goal10"
+  "rewind_Why3_ide_VCrewind_assign_exit_part5_goal4"
+  "rewind_Why3_ide_VCrewind_assign_exit_part4_goal3"
+  "rewind_Why3_ide_VCrewind_assign_exit_part2_goal1"
+  "rewind_Why3_ide_VCrewind_assign_normal_part3_goal8"
+  "rewind_Why3_ide_VCrewind_assign_normal_part1_goal6"
+  "rewind_Why3_ide_VCrewind_assign_normal_part8_goal12"
+  "rewind_Why3_ide_VCrewind_assign_normal_part2_goal7"
+  "rewind_Why3_ide_VCrewind_call_fseek_pre_2_goal14"
+  "rewind_Why3_ide_VCrewind_assign_exit_part1_goal0"
+  "rewind_Why3_ide_VCrewind_assign_normal_part6_goal11"
+  "rewind_Why3_ide_VCrewind_assign_exit_part3_goal2"
+  "rewind_Why3_ide_VCrewind_assign_normal_part4_goal9"

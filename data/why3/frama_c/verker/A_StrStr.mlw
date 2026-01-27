@@ -1,0 +1,25 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'StrStr'                                 --- *)
+(* ---------------------------------------------------------- *)
+theory A_StrStr
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_strstr addr addr : addr
+
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+predicate p_strmatch (mchar_0 : map addr int) (s1_0 : addr) (s2_0 : addr) =
+    forall i : int. (0 <= i) -> (i < ((l_strlen mchar_0 s2_0))) ->
+    (mchar_0[(shift_sint8 s2_0 i)] = mchar_0[(shift_sint8 s1_0 i)])
+
+end
+

@@ -1,0 +1,30 @@
+theory WeaklySortedImpliesSorted_Why3_ide_VCWeaklySortedImpliesSorted_loop_inv_4_preserved_goal4
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Axiomatic_Axiomatic" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal4:
+  fixes i_2 :: "int"
+  fixes i_1 :: "int"
+  fixes i :: "int"
+  fixes i_3 :: "int"
+  fixes a :: "addr"
+  fixes t :: "addr \<Rightarrow> int"
+  assumes fact0: "(0 :: int) < i_2"
+  assumes fact1: "i_1 \<le> i"
+  assumes fact2: "i_3 \<le> i"
+  assumes fact3: "i_1 < i_2"
+  assumes fact4: "i_1 \<le> i_2"
+  assumes fact5: "i_3 < i"
+  assumes fact6: "i_1 \<le> i_3"
+  assumes fact7: "i_2 \<le> i_3"
+  assumes fact8: "region (base a) \<le> (0 :: int)"
+  assumes fact9: "is_uint32 i"
+  assumes fact10: "is_uint32 i_1"
+  assumes fact11: "is_uint32 i_2"
+  assumes fact12: "is_uint32 i_3"
+  assumes fact13: "is_uint32 (i_2 - (1 :: int))"
+  assumes fact14: "p_sorted_1' t a i_1 i_3"
+  assumes fact15: "p_weaklysorted_1' t a i_1 i"
+  assumes fact16: "\<forall>(i_4 :: int). i_2 \<le> i_4 \<longrightarrow> i_4 < i_3 \<longrightarrow> t (shift a i_4) \<le> t (shift a i_3)"
+  shows "i_2 \<le> (1 :: int) + i_3"
+  sorry
+end

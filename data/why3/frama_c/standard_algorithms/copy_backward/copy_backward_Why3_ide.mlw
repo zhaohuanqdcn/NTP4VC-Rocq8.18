@@ -1,0 +1,446 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'equal' in 'copy_backward'          --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_post_equal
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'equal' in 'copy_backward'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (havoc t_1 t_2 a_3 i) in
+  (i_1 <= 0) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  ((p_unchanged_2_ a_4 t_2 a_1 i_1)) ->
+  ((p_equalranges_2_ a_4 t_2 a_1 i_1 i a)) ->
+  ((p_equalranges_1_ a_4 t_2 a_1 i a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file copy_backward.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file copy_backward.c, line 8)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 - 1 in
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (havoc t_1 t_2 a_3 i) in
+  (0 < i_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  ((valid_rd t ((shift_sint32 a_1 x)) 1)) ->
+  ((valid_rw t ((shift_sint32 a x)) 1)) ->
+  ((p_unchanged_2_ a_4 t_2 a_1 i_1)) ->
+  ((p_equalranges_2_ a_4 t_2 a_1 i_1 i a)) ->
+  (i_1 <= (1 + i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file copy_backward.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file copy_backward.c, line 8)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'equal' (file copy_backward.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_loop_inv_equal_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'equal' (file copy_backward.c, line 9)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 - 1 in
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (shift_sint32 a_1 x) in
+  let a_5 = (shift_sint32 a x) in
+  let a_6 = (havoc t_1 t_2 a_3 i) in
+  (0 < i_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  ((valid_rd t a_4 1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((p_unchanged_2_ a_6 t_2 a_1 i_1)) ->
+  ((p_equalranges_2_ a_6 t_2 a_1 i_1 i a)) ->
+  ((p_equalranges_2_ a_6[a_5 <- a_6[a_4]] t_2 a_1 x i a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'equal' (file copy_backward.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_loop_inv_equal_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'equal' (file copy_backward.c, line 9)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  ((p_equalranges_2_ t_1 t_1 a_1 i i a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'unchanged' (file copy_backward.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_loop_inv_unchanged_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'unchanged' (file copy_backward.c, line 10)":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 - 1 in
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (shift_sint32 a_1 x) in
+  let a_5 = (shift_sint32 a x) in
+  let a_6 = (havoc t_1 t_2 a_3 i) in
+  (0 < i_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  ((valid_rd t a_4 1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((p_unchanged_2_ a_6 t_2 a_1 i_1)) ->
+  ((p_equalranges_2_ a_6 t_2 a_1 i_1 i a)) ->
+  ((p_unchanged_2_ a_6[a_5 <- a_6[a_4]] t_2 a_1 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'unchanged' (file copy_backward.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_loop_inv_unchanged_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'unchanged' (file copy_backward.c, line 10)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  ((p_unchanged_2_ t_1 t_1 a_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file copy_backward.c, line 15) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file copy_backward.c, line 15)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (havoc t_1 t_2 a_3 i) in
+  (0 < i_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  ((p_unchanged_2_ a_4 t_2 a_1 i_1)) ->
+  ((p_equalranges_2_ a_4 t_2 a_1 i_1 i a)) ->
+  ((valid_rw t ((shift_sint32 a ((to_uint32 (i_1 - 1))))) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file copy_backward.c, line 15) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file copy_backward.c, line 15)":
+*)
+goal goal8:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (havoc t_1 t_2 a_3 i) in
+  (0 < i_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  ((p_unchanged_2_ a_4 t_2 a_1 i_1)) ->
+  ((p_equalranges_2_ a_4 t_2 a_1 i_1 i a)) ->
+  ((valid_rd t ((shift_sint32 a_1 ((to_uint32 (i_1 - 1))))) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file copy_backward.c, line 11) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcopy_backward_loop_assign_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Loop assigns (file copy_backward.c, line 11) (2/2)":
+*)
+goal goal9:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let x = i_1 - 1 in
+  let a_4 = (shift_sint32 a x) in
+  let x_1 = (to_uint32 x) in
+  let a_5 = (havoc t_1 t_2 a_3 i) in
+  (0 < i_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i ((shift_sint32 a i)) 1)) ->
+  (not (invalid t a_4 1)) ->
+  ((valid_rd t ((shift_sint32 a_1 x_1)) 1)) ->
+  ((valid_rw t ((shift_sint32 a x_1)) 1)) ->
+  ((p_unchanged_2_ a_5 t_2 a_1 i_1)) ->
+  ((p_equalranges_2_ a_5 t_2 a_1 i_1 i a)) ->
+  ((included a_4 1 a_3 i))
+
+end
+

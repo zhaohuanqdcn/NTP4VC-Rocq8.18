@@ -1,0 +1,12 @@
+theory HasValueImpliesPositiveCount_Why3_ide_VCHasValueImpliesPositiveCount_loop_inv_2_preserved_goal1
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/Axiomatic1_Axiomatic1" "../../lib/isabelle/A_Count_A_Count" "../../lib/isabelle/Axiomatic_Axiomatic"
+begin
+theorem goal1:
+  fixes i_2 :: "int"
+  fixes t :: "addr \<Rightarrow> int"
+  fixes a :: "addr"
+  fixes i_1 :: "int"
+  fixes i :: "int"
+  shows "let x :: int = (1 :: int) + i_2; x_1 :: int = t (shift a i_2); x_2 :: int = t (shift a x) in i_1 \<le> i \<longrightarrow> i_2 \<le> i \<longrightarrow> i_2 < i \<longrightarrow> i_1 \<le> i_2 \<longrightarrow> region (base a) \<le> (0 :: int) \<longrightarrow> i_2 \<le> (4294967294 :: int) \<longrightarrow> (2 :: int) + i_2 \<le> i \<longrightarrow> i_1 \<le> x \<longrightarrow> is_uint32 i \<longrightarrow> is_uint32 i_1 \<longrightarrow> is_uint32 i_2 \<longrightarrow> is_uint32 x \<longrightarrow> is_sint32 (t (shift a i_1)) \<longrightarrow> is_sint32 x_1 \<longrightarrow> is_sint32 x_2 \<longrightarrow> p_hasvalue_1' t a i_1 i x_1 \<longrightarrow> (\<forall>(i_3 :: int). i_1 \<le> i_3 \<longrightarrow> i_3 < i_2 \<longrightarrow> (0 :: int) < l_count_1' t a i_1 i (t (shift a i_3))) \<longrightarrow> (\<forall>(i_3 :: int). is_sint32 i_3 \<longrightarrow> l_count_1' t a i_1 x i_3 + l_count_1' t a x i i_3 = l_count_1' t a i_1 i i_3) \<longrightarrow> (\<forall>(i_3 :: int). let x_3 :: int = l_count_1' t a i_1 i_2 i_3 in is_sint32 i_3 \<longrightarrow> (0 :: int) \<le> x_3 \<and> i_1 + x_3 \<le> i_2) \<longrightarrow> (\<forall>(i_3 :: int). let x_3 :: int = l_count_1' t a x i i_3 in is_sint32 i_3 \<longrightarrow> (0 :: int) \<le> x_3 \<and> i_2 + x_3 < i) \<longrightarrow> p_hasvalue_1' t a i_1 i x_2"
+  sorry
+end

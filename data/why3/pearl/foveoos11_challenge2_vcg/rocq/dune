@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name foveoos11_challenge2_vcg)
+(theories Why3))

@@ -1,0 +1,2 @@
+namespace WellFounded
+end WellFounded

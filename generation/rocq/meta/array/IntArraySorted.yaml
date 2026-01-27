@@ -1,0 +1,12 @@
+atoms:
+  array.IntArraySorted.sorted: [sorted, IntArraySorted.sorted]
+  array.IntArraySorted.sorted_sub: [sorted_sub, IntArraySorted.sorted_sub]
+  array.IntArraySorted.sorted_sub1: [sorted_sub1, IntArraySorted.sorted_sub1]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.array.IntArraySorted
+prefix_ops: {}
+types: {}

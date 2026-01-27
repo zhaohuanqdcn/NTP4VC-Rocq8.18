@@ -1,0 +1,6 @@
+session selection_sort = NTP4Verif +
+theories
+  "selection_sort_SelectionSort_test2qtvc"
+  "selection_sort_SelectionSort_benchqtvc"
+  "selection_sort_SelectionSort_test1qtvc"
+  "selection_sort_SelectionSort_selection_sortqtvc"

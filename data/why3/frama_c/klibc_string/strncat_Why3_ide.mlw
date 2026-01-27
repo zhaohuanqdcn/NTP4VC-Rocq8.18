@@ -1,0 +1,2141 @@
+(* ---------------------------------------------------------- *)
+(* --- Complete behaviors 'smaller', 'larger'             --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_complete_smaller_larger
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import A_Length.A_Length
+use import Compound.Compound
+
+(*
+goal WP "expl:Complete behaviors 'smaller', 'larger'":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = (l_length t_1 a) in
+  let a_2 = (shift_sint8 a_1 0) in
+  let x_1 = 2 * i in
+  let a_3 = (shift_sint8 a 0) in
+  let x_2 = i + x in
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  (((i < x) /\ ((valid_rw t a_2 x_1)) /\ ((separated a_3 x_1 a_2 i)) /\
+    (exists i_3 : int. (0 <= i_3) /\ (i_3 < i) /\
+     ((p_length_of_str_is t t_1 a i_3)))) \/
+   ((x <= i) /\ ((valid_rw t a_2 x_2)) /\ ((separated a_3 x_2 a_2 i)) /\
+    (exists i_3 : int. (0 <= i_3) /\ (i_3 < i) /\
+     ((p_length_of_str_is t t_1 a i_3)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strncat.c, line 40) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Preservation of Invariant (file strncat.c, line 40) (1/2)":
+*)
+goal goal1:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a] in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_6)))) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a_1 i_5)])) ->
+  (((to_uint32 (i - 1))) <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strncat.c, line 41) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Preservation of Invariant (file strncat.c, line 41)":
+*)
+goal goal2:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a_1] in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_6)))) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a_1)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a_1.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a_1.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a_1)) /\ ((addr_le a_1 ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a i_5)])) ->
+  ((1 + ((to_uint32 (i - 1)))) = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strncat.c, line 42) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Preservation of Invariant (file strncat.c, line 42)":
+*)
+goal goal3:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a] in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_6)))) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a_1 i_5)])) ->
+  ((i + ((l_length t_3[a_4 <- x_2] a_2))) = (1 + x_3 + ((to_uint32 (i - 1)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strncat.c, line 42) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_3_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import A_Length.A_Length
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Establishment of Invariant (file strncat.c, line 42)":
+*)
+goal goal4:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a_2.base in
+  let x_1 = t_1[a_1] in
+  let x_2 = (l_length t_1 a_2) in
+  let a_3 = (shift_sint8 a_2 x_2) in
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_sint8 x_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((forall i_4 : int. (0 <= i_4) -> (i_4 < x_2) ->
+    (t_1[(shift_sint8 a_2 i_4)] <> 0)) -> (null = a_1)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x_1 = 0)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x = (a_1.base))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) ->
+   ((p_exists_first_occurence_of_char t t_1 a_2 0
+      ((a_1.offset) - (a_2.offset))))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (((addr_le a_2 a_1)) /\ ((addr_le a_1 a_3)))) ->
+  (a_3 = a_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strncat.c, line 43) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_4_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Preservation of Invariant (file strncat.c, line 43) (1/2)":
+*)
+goal goal5:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a] in
+  let a_4 = (shift_sint8 a_2 i_1) in
+  let a_5 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le a_4 a_5)) ->
+  ((addr_le a_5 ((shift_sint8 a_2 x_6)))) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a_1 i_5)])) ->
+  ((addr_le a_4 ((shift_sint8 a_2 (1 + i_1 + x_3 - i)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strncat.c, line 43) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_4_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Preservation of Invariant (file strncat.c, line 43) (2/2)":
+*)
+goal goal6:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a] in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_6)))) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a_1 i_5)])) ->
+  ((addr_le ((shift_sint8 a_2 (1 + i_1 + x_3 - i)))
+     ((shift_sint8 a_2 (i_1 + ((l_length t_3[a_4 <- x_2] a_2)))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strncat.c, line 43) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_4_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import A_Length.A_Length
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Establishment of Invariant (file strncat.c, line 43) (1/2)":
+*)
+goal goal7:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a_2.base in
+  let x_1 = t_1[a_1] in
+  let x_2 = (l_length t_1 a_2) in
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_sint8 x_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((forall i_4 : int. (0 <= i_4) -> (i_4 < x_2) ->
+    (t_1[(shift_sint8 a_2 i_4)] <> 0)) -> (null = a_1)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x_1 = 0)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x = (a_1.base))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) ->
+   ((p_exists_first_occurence_of_char t t_1 a_2 0
+      ((a_1.offset) - (a_2.offset))))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) ->
+   (((addr_le a_2 a_1)) /\ ((addr_le a_1 ((shift_sint8 a_2 x_2)))))) ->
+  ((addr_le ((shift_sint8 a_2 i)) a_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strncat.c, line 43) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_4_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import A_Length.A_Length
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Establishment of Invariant (file strncat.c, line 43) (2/2)":
+*)
+goal goal8:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a_2.base in
+  let x_1 = t_1[a_1] in
+  let x_2 = (l_length t_1 a_2) in
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_sint8 x_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((forall i_4 : int. (0 <= i_4) -> (i_4 < x_2) ->
+    (t_1[(shift_sint8 a_2 i_4)] <> 0)) -> (null = a_1)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x_1 = 0)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x = (a_1.base))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) ->
+   ((p_exists_first_occurence_of_char t t_1 a_2 0
+      ((a_1.offset) - (a_2.offset))))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) ->
+   (((addr_le a_2 a_1)) /\ ((addr_le a_1 ((shift_sint8 a_2 x_2)))))) ->
+  ((addr_le a_1 ((shift_sint8 a_2 (i + x_2)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strncat.c, line 44) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_5_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Preservation of Invariant (file strncat.c, line 44) (1/2)":
+*)
+goal goal9:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a_1] in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_6)))) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a_1)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a_1.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a_1.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a_1)) /\ ((addr_le a_1 ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a i_5)])) ->
+  ((addr_le a ((shift_sint8 a (1 + i_1 - i)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strncat.c, line 44) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_5_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Preservation of Invariant (file strncat.c, line 44) (2/2)":
+*)
+goal goal10:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a_1] in
+  let a_4 = (shift_sint8 a i_1) in
+  let a_5 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_3 a_4)) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_5)) ->
+  ((addr_le a_5 ((shift_sint8 a_2 x_6)))) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a_1)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a_1.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a_1.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a_1)) /\ ((addr_le a_1 ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a i_5)])) ->
+  ((addr_le ((shift_sint8 a (1 + i_1 - i))) a_4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strncat.c, line 44) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_5_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import A_Length.A_Length
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Establishment of Invariant (file strncat.c, line 44) (1/2)":
+*)
+goal goal11:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a_2.base in
+  let x_1 = t_1[a] in
+  let x_2 = (l_length t_1 a_2) in
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_sint8 x_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((forall i_4 : int. (0 <= i_4) -> (i_4 < x_2) ->
+    (t_1[(shift_sint8 a_2 i_4)] <> 0)) -> (null = a)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x_1 = 0)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x = (a.base))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) ->
+   ((p_exists_first_occurence_of_char t t_1 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_2)))))) ->
+  ((addr_le a_1 a_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strncat.c, line 44) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_5_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import A_Length.A_Length
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Establishment of Invariant (file strncat.c, line 44) (2/2)":
+*)
+goal goal12:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a_2.base in
+  let x_1 = t_1[a] in
+  let x_2 = (l_length t_1 a_2) in
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_sint8 x_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((forall i_4 : int. (0 <= i_4) -> (i_4 < x_2) ->
+    (t_1[(shift_sint8 a_2 i_4)] <> 0)) -> (null = a)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x_1 = 0)) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) -> (x = (a.base))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) ->
+   ((p_exists_first_occurence_of_char t t_1 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_4 : int. (t_1[(shift_sint8 a_2 i_4)] = 0) /\ (0 <= i_4) /\
+    (i_4 < x_2)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_2)))))) ->
+  ((addr_le a_1 ((shift_sint8 a_1 i))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strncat.c, line 45) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_inv_6_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Preservation of Invariant (file strncat.c, line 45)":
+*)
+goal goal13:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let m = t_3[a_4 <- x_2] in
+  let x_5 = (l_length m a_2) in
+  let x_6 = t_2[a_1] in
+  let x_7 = i_1 + x_3 in
+  let x_8 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (x_5 <= i_5) ->
+  ((i_5 + ((to_uint32 (i - 1)))) < (i_1 + x_5)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_6)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_7)))) ->
+  ((forall i_6 : int. (0 <= i_6) -> (i_6 < x_8) ->
+    (t_2[(shift_sint8 a_2 i_6)] <> 0)) -> (null = a_1)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_8)) -> (x_6 = 0)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_8)) -> (x_4 = (a_1.base))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_8)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a_1.offset) - (a_2.offset))))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_8)) ->
+   (((addr_le a_2 a_1)) /\ ((addr_le a_1 ((shift_sint8 a_2 x_8)))))) ->
+  (forall i_6 : int. (x_3 <= i_6) -> ((i_6 + i) < x_7) ->
+   (t_3[(shift_sint8 a_2 (i_6 + x_3))] = t_3[(shift_sint8 a i_6)])) ->
+  (m[(shift_sint8 a_2 (i_5 + x_5))] = m[(shift_sint8 a i_5)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file strncat.c, line 46) (2/5)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_assign_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Loop assigns (file strncat.c, line 46) (2/5)":
+*)
+goal goal14:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let a_4 = (shift_sint8 a_2 x_3) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a] in
+  let a_5 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 a_4 x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  (not (invalid t a_4 x_1)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_5)) ->
+  ((addr_le a_5 ((shift_sint8 a_2 x_6)))) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a_1 i_5)])) ->
+  ((included a_4 x_1 ((shift_sint8 a_2 ((l_length t_3[a_5 <- x_2] a_2))))
+     (i_1 - ((to_uint32 (i - 1))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file strncat.c, line 46) (5/5)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_assign_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Loop assigns (file strncat.c, line 46) (5/5)":
+*)
+goal goal15:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a] in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_6)))) ->
+  (not (invalid t a_4 1)) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a_1 i_5)])) ->
+  ((included a_4 1 ((shift_sint8 a_2 ((l_length t_3[a_4 <- x_2] a_2))))
+     (i_1 - ((to_uint32 (i - 1))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file strncat.c, line 49) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file strncat.c, line 49)":
+*)
+goal goal16:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = t_3[a_3] in
+  let x_3 = (l_length t_3 a_2) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a] in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_3 - i)) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (x_2 <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_3)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i_1)))) ->
+  ((is_sint8 x_2)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_6)))) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_5 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) -> (x_4 = (a.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_7)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_7)))))) ->
+  (forall i_5 : int. (x_3 <= i_5) -> ((i_5 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x_3))] = t_3[(shift_sint8 a_1 i_5)])) ->
+  (((to_uint32 (i - 1))) < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file strchr.c, line 9) in 'strchr'' in 'strncat' at initialization of 'q' (file strncat.c, line 35)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_call_strchr_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file strchr.c, line 9) in 'strchr'' in 'strncat' at initialization of 'q' (file strncat.c, line 35)
+":
+*)
+goal goal17:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  (exists i_3 : int. (p_length_of_str_is t t_1 a_1 i_3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'larger' (file strncat.c, line 19) in 'strncat' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_larger_post_2_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'larger' (file strncat.c, line 19) in 'strncat' (1/2)":
+*)
+goal goal18:
+  forall i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = (l_length t_3 a_2) in
+  let x_3 = (l_length t_2 a_1) in
+  let x_4 = a_2.base in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_2 - i)) in
+  let m = t_3[a_4 <- 0] in
+  let x_5 = t_2[a] in
+  let a_5 = (shift_sint8 a_2 0) in
+  let x_6 = i_1 + x_3 in
+  let x_7 = i_1 + x_2 in
+  let x_8 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (t_3[a_3] = 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_2)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (0 <= i_4) ->
+  (i_4 < i_1) ->
+  (x_3 <= i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((l_length m a_2)) <= i_6) ->
+  (i_6 < ((l_length m ((shift_sint8 a_2 ((l_length m a_1))))))) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_1 i_4)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_5)) ->
+  ((valid_rw t a_5 x_6)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i_1)))) ->
+  ((separated ((shift_sint8 a_1 0)) x_6 a_5 i_1)) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_7)))) ->
+  ((forall i_7 : int. (0 <= i_7) -> (i_7 < x_8) ->
+    (t_2[(shift_sint8 a_2 i_7)] <> 0)) -> (null = a)) ->
+  ((exists i_7 : int. (t_2[(shift_sint8 a_2 i_7)] = 0) /\ (0 <= i_7) /\
+    (i_7 < x_8)) -> (x_5 = 0)) ->
+  ((exists i_7 : int. (t_2[(shift_sint8 a_2 i_7)] = 0) /\ (0 <= i_7) /\
+    (i_7 < x_8)) -> (x_4 = (a.base))) ->
+  ((exists i_7 : int. (t_2[(shift_sint8 a_2 i_7)] = 0) /\ (0 <= i_7) /\
+    (i_7 < x_8)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_7 : int. (t_2[(shift_sint8 a_2 i_7)] = 0) /\ (0 <= i_7) /\
+    (i_7 < x_8)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_8)))))) ->
+  (forall i_7 : int. (x_2 <= i_7) -> ((i_7 + i) < x_7) ->
+   (t_3[(shift_sint8 a_2 (i_7 + x_2))] = t_3[(shift_sint8 a_1 i_7)])) ->
+  (m[(shift_sint8 a_2 (i_1 + i_6))] = m[(shift_sint8 a_1 i_6)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'larger' (file strncat.c, line 19) in 'strncat' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_larger_post_2_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'larger' (file strncat.c, line 19) in 'strncat' (2/2)":
+*)
+goal goal19:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = (l_length t_3 a_2) in
+  let x_1 = (l_length t_2 a_1) in
+  let x_2 = a_2.base in
+  let x_3 = i + x in
+  let a_3 = (shift_sint8 a_2 x_3) in
+  let m = t_3[a_3 <- 0] in
+  let x_4 = t_2[a] in
+  let a_4 = (shift_sint8 a_1 i) in
+  let a_5 = (shift_sint8 a_2 0) in
+  let x_5 = i + x_1 in
+  let x_6 = (l_length t_2 a_2) in
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x)) i)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (0 <= i_3) ->
+  (i_3 < i) ->
+  (x_1 <= i) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((l_length m a_2)) <= i_5) ->
+  (i_5 < ((l_length m ((shift_sint8 a_2 ((l_length m a_1))))))) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_sint8 x_4)) ->
+  ((p_length_of_str_is t t_2 a_1 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_1)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_4 a_4)) ->
+  ((valid_rw t a_5 x_5)) ->
+  ((separated ((shift_sint8 a_1 0)) x_5 a_5 i)) ->
+  ((addr_le ((shift_sint8 a_2 i)) a_3)) ->
+  ((addr_le a_3 a_3)) ->
+  ((forall i_6 : int. (0 <= i_6) -> (i_6 < x_6) ->
+    (t_2[(shift_sint8 a_2 i_6)] <> 0)) -> (null = a)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_6)) -> (x_4 = 0)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_6)) -> (x_2 = (a.base))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_6)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_6)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_6)))))) ->
+  (forall i_6 : int. (x <= i_6) -> (i_6 < x_3) ->
+   (t_3[(shift_sint8 a_2 (i_6 + x))] = t_3[(shift_sint8 a_1 i_6)])) ->
+  (m[(shift_sint8 a_2 (i + i_5))] = m[(shift_sint8 a_1 i_5)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'larger' (file strncat.c, line 17) in 'strncat' (7/16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_larger_assign_normal_part07
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Assigns for 'larger' (file strncat.c, line 17) in 'strncat' (7/16)":
+*)
+goal goal20:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let a_3 = (shift_sint8 a_2 ((l_length t_3 a_2))) in
+  let x = i_1 - i in
+  let x_1 = (l_length t_2 a_1) in
+  let x_2 = a_2.base in
+  let x_3 = t_2[a] in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_4 = i_1 + x_1 in
+  let x_5 = (l_length t_2 a_2) in
+  (((havoc t_1 t_2 a_3 x)) = t_3) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (0 <= i_4) ->
+  (i_4 < i_1) ->
+  (x_1 <= i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_2)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_3)) ->
+  ((p_length_of_str_is t t_2 a_1 i_4)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_5)) ->
+  ((valid_rw t a_4 x_4)) ->
+  (not (invalid t a_3 x)) ->
+  ((separated ((shift_sint8 a_1 0)) x_4 a_4 i_1)) ->
+  ((forall i_6 : int. (0 <= i_6) -> (i_6 < x_5) ->
+    (t_2[(shift_sint8 a_2 i_6)] <> 0)) -> (null = a)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_5)) -> (x_3 = 0)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_5)) -> (x_2 = (a.base))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_5)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_5)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_5)))))) ->
+  ((included a_3 x ((shift_sint8 a_2 i_1)) (x_1 + x_5 - i_1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'larger' (file strncat.c, line 17) in 'strncat' (13/16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_larger_assign_normal_part13
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Assigns for 'larger' (file strncat.c, line 17) in 'strncat' (13/16)":
+*)
+goal goal21:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = (l_length t_3 a_2) in
+  let x_1 = - i in
+  let x_2 = i_1 - i in
+  let x_3 = (l_length t_2 a_1) in
+  let x_4 = a_2.base in
+  let x_5 = t_2[a] in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_6 = i_1 + x_3 in
+  let a_4 = (shift_sint8 a_1 x_2) in
+  let a_5 = (shift_sint8 a_2 i_1) in
+  let a_6 = (shift_sint8 a_2 (i_1 + x - i)) in
+  let x_7 = i_1 + x in
+  let x_8 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x)) x_2)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (0 <= i_4) ->
+  (i_4 < i_1) ->
+  (x_3 <= i_1) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_4)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_1 i_4)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_5)) ->
+  ((valid_rw t a_3 x_6)) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_1 i_1)))) ->
+  ((separated ((shift_sint8 a_1 0)) x_6 a_3 i_1)) ->
+  ((addr_le a_5 a_6)) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_7)))) ->
+  (not (invalid t a_6 1)) ->
+  ((forall i_6 : int. (0 <= i_6) -> (i_6 < x_8) ->
+    (t_2[(shift_sint8 a_2 i_6)] <> 0)) -> (null = a)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_8)) -> (x_5 = 0)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_8)) -> (x_4 = (a.base))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_8)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_8)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_8)))))) ->
+  (forall i_6 : int. (x <= i_6) -> ((i_6 + i) < x_7) ->
+   (t_3[(shift_sint8 a_2 (i_6 + x))] = t_3[(shift_sint8 a_1 i_6)])) ->
+  ((included a_6 1 a_5 (x_3 + x_8 - i_1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'larger' (file strncat.c, line 17) in 'strncat' (15/16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_larger_assign_normal_part15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Assigns for 'larger' (file strncat.c, line 17) in 'strncat' (15/16)":
+*)
+goal goal22:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = (l_length t_3 a_2) in
+  let x_1 = (l_length t_2 a_1) in
+  let x_2 = a_2.base in
+  let x_3 = t_2[a] in
+  let a_3 = (shift_sint8 a_1 i) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_4 = i + x_1 in
+  let a_5 = (shift_sint8 a_2 i) in
+  let x_5 = i + x in
+  let a_6 = (shift_sint8 a_2 x_5) in
+  let x_6 = (l_length t_2 a_2) in
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x)) i)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (0 <= i_3) ->
+  (i_3 < i) ->
+  (x_1 <= i) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_2)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_sint8 x_3)) ->
+  ((p_length_of_str_is t t_2 a_1 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_1)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 a_3)) ->
+  ((valid_rw t a_4 x_4)) ->
+  ((separated ((shift_sint8 a_1 0)) x_4 a_4 i)) ->
+  ((addr_le a_5 a_6)) ->
+  ((addr_le a_6 a_6)) ->
+  (not (invalid t a_6 1)) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_6) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_6)) -> (x_3 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_6)) -> (x_2 = (a.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_6)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_6)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_6)))))) ->
+  (forall i_5 : int. (x <= i_5) -> (i_5 < x_5) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x))] = t_3[(shift_sint8 a_1 i_5)])) ->
+  ((included a_6 1 a_5 (x_1 + x_6 - i)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'smaller' (file strncat.c, line 28) in 'strncat' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_smaller_post_2_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'smaller' (file strncat.c, line 28) in 'strncat' (1/2)":
+*)
+goal goal23:
+  forall i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = - i in
+  let x_1 = i_1 - i in
+  let a_3 = (shift_sint8 a_1 x_1) in
+  let x_2 = (l_length t_3 a_2) in
+  let x_3 = a_2.base in
+  let a_4 = (shift_sint8 a_2 (i_1 + x_2 - i)) in
+  let m = t_3[a_4 <- 0] in
+  let x_4 = (l_length m a_2) in
+  let x_5 = t_2[a] in
+  let a_5 = (shift_sint8 a_2 0) in
+  let x_6 = 2 * i_1 in
+  let x_7 = i_1 + x_2 in
+  let x_8 = (l_length t_2 a_2) in
+  (i <> 0) ->
+  (t_3[a_3] = 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x_2)) x_1)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (0 <= i_4) ->
+  (i_4 < i_1) ->
+  (i_1 < ((l_length t_2 a_1))) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (x_4 <= i_6) ->
+  (i_6 < (i_1 + x_4)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_5)) ->
+  ((p_length_of_str_is t t_2 a_1 i_4)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_5)) ->
+  ((valid_rw t a_5 x_6)) ->
+  ((separated ((shift_sint8 a_1 0)) x_6 a_5 i_1)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 ((shift_sint8 a_1 i_1)))) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_2 x_7)))) ->
+  ((forall i_7 : int. (0 <= i_7) -> (i_7 < x_8) ->
+    (t_2[(shift_sint8 a_2 i_7)] <> 0)) -> (null = a)) ->
+  ((exists i_7 : int. (t_2[(shift_sint8 a_2 i_7)] = 0) /\ (0 <= i_7) /\
+    (i_7 < x_8)) -> (x_5 = 0)) ->
+  ((exists i_7 : int. (t_2[(shift_sint8 a_2 i_7)] = 0) /\ (0 <= i_7) /\
+    (i_7 < x_8)) -> (x_3 = (a.base))) ->
+  ((exists i_7 : int. (t_2[(shift_sint8 a_2 i_7)] = 0) /\ (0 <= i_7) /\
+    (i_7 < x_8)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_7 : int. (t_2[(shift_sint8 a_2 i_7)] = 0) /\ (0 <= i_7) /\
+    (i_7 < x_8)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_8)))))) ->
+  (forall i_7 : int. (x_2 <= i_7) -> ((i_7 + i) < x_7) ->
+   (t_3[(shift_sint8 a_2 (i_7 + x_2))] = t_3[(shift_sint8 a_1 i_7)])) ->
+  (m[(shift_sint8 a_2 (i_1 + i_6))] = m[(shift_sint8 a_1 i_6)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'smaller' (file strncat.c, line 28) in 'strncat' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_smaller_post_2_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'smaller' (file strncat.c, line 28) in 'strncat' (2/2)":
+*)
+goal goal24:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = (l_length t_3 a_2) in
+  let x_1 = a_2.base in
+  let x_2 = i + x in
+  let a_3 = (shift_sint8 a_2 x_2) in
+  let m = t_3[a_3 <- 0] in
+  let x_3 = (l_length m a_2) in
+  let x_4 = t_2[a] in
+  let a_4 = (shift_sint8 a_1 i) in
+  let a_5 = (shift_sint8 a_2 0) in
+  let x_5 = 2 * i in
+  let x_6 = (l_length t_2 a_2) in
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x)) i)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (0 <= i_3) ->
+  (i_3 < i) ->
+  (i < ((l_length t_2 a_1))) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_1)) <= 0) ->
+  (x_3 <= i_5) ->
+  (i_5 < (i + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_sint8 x_4)) ->
+  ((p_length_of_str_is t t_2 a_1 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_1)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_4 a_4)) ->
+  ((valid_rw t a_5 x_5)) ->
+  ((separated ((shift_sint8 a_1 0)) x_5 a_5 i)) ->
+  ((addr_le ((shift_sint8 a_2 i)) a_3)) ->
+  ((addr_le a_3 a_3)) ->
+  ((forall i_6 : int. (0 <= i_6) -> (i_6 < x_6) ->
+    (t_2[(shift_sint8 a_2 i_6)] <> 0)) -> (null = a)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_6)) -> (x_4 = 0)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_6)) -> (x_1 = (a.base))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_6)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_6)) ->
+   (((addr_le a_2 a)) /\ ((addr_le a ((shift_sint8 a_2 x_6)))))) ->
+  (forall i_6 : int. (x <= i_6) -> (i_6 < x_2) ->
+   (t_3[(shift_sint8 a_2 (i_6 + x))] = t_3[(shift_sint8 a_1 i_6)])) ->
+  (m[(shift_sint8 a_2 (i + i_5))] = m[(shift_sint8 a_1 i_5)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'smaller' (file strncat.c, line 26) in 'strncat' (7/16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_smaller_assign_normal_part07
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Assigns for 'smaller' (file strncat.c, line 26) in 'strncat' (7/16)":
+*)
+goal goal25:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let a_3 = (shift_sint8 a_2 ((l_length t_3 a_2))) in
+  let x = i_1 - i in
+  let x_1 = a_2.base in
+  let x_2 = t_2[a] in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 2 * i_1 in
+  let x_4 = (l_length t_2 a_2) in
+  let a_5 = (shift_sint8 a_2 x_4) in
+  (((havoc t_1 t_2 a_3 x)) = t_3) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (0 <= i_4) ->
+  (i_4 < i_1) ->
+  (i_1 < ((l_length t_2 a_1))) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_1)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_2)) ->
+  ((p_length_of_str_is t t_2 a_1 i_4)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_5)) ->
+  ((valid_rw t a_4 x_3)) ->
+  ((separated ((shift_sint8 a_1 0)) x_3 a_4 i_1)) ->
+  (not (invalid t a_3 x)) ->
+  ((forall i_6 : int. (0 <= i_6) -> (i_6 < x_4) ->
+    (t_2[(shift_sint8 a_2 i_6)] <> 0)) -> (null = a)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_4)) -> (x_2 = 0)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_4)) -> (x_1 = (a.base))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_4)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_4)) -> (((addr_le a_2 a)) /\ ((addr_le a a_5)))) ->
+  ((included a_3 x a_5 i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'smaller' (file strncat.c, line 26) in 'strncat' (13/16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_smaller_assign_normal_part13
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Assigns for 'smaller' (file strncat.c, line 26) in 'strncat' (13/16)":
+*)
+goal goal26:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = (l_length t_3 a_2) in
+  let x_1 = - i in
+  let x_2 = i_1 - i in
+  let x_3 = a_2.base in
+  let x_4 = t_2[a] in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_5 = 2 * i_1 in
+  let a_4 = (shift_sint8 a_1 x_2) in
+  let a_5 = (shift_sint8 a_2 (i_1 + x - i)) in
+  let x_6 = i_1 + x in
+  let x_7 = (l_length t_2 a_2) in
+  let a_6 = (shift_sint8 a_2 x_7) in
+  (i <> 0) ->
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x)) x_2)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (0 <= i_4) ->
+  (i_4 < i_1) ->
+  (i_1 < ((l_length t_2 a_1))) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_3)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint8 x_4)) ->
+  ((p_length_of_str_is t t_2 a_1 i_4)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_5)) ->
+  ((valid_rw t a_3 x_5)) ->
+  ((separated ((shift_sint8 a_1 0)) x_5 a_3 i_1)) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_4 ((shift_sint8 a_1 i_1)))) ->
+  ((addr_le ((shift_sint8 a_2 i_1)) a_5)) ->
+  ((addr_le a_5 ((shift_sint8 a_2 x_6)))) ->
+  (not (invalid t a_5 1)) ->
+  ((forall i_6 : int. (0 <= i_6) -> (i_6 < x_7) ->
+    (t_2[(shift_sint8 a_2 i_6)] <> 0)) -> (null = a)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_7)) -> (x_4 = 0)) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_7)) -> (x_3 = (a.base))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_7)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_6 : int. (t_2[(shift_sint8 a_2 i_6)] = 0) /\ (0 <= i_6) /\
+    (i_6 < x_7)) -> (((addr_le a_2 a)) /\ ((addr_le a a_6)))) ->
+  (forall i_6 : int. (x <= i_6) -> ((i_6 + i) < x_6) ->
+   (t_3[(shift_sint8 a_2 (i_6 + x))] = t_3[(shift_sint8 a_1 i_6)])) ->
+  ((included a_5 1 a_6 i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'smaller' (file strncat.c, line 26) in 'strncat' (15/16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrncat_smaller_assign_normal_part15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Assigns for 'smaller' (file strncat.c, line 26) in 'strncat' (15/16)":
+*)
+goal goal27:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = (l_length t_3 a_2) in
+  let x_1 = a_2.base in
+  let x_2 = t_2[a] in
+  let a_3 = (shift_sint8 a_1 i) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 2 * i in
+  let x_4 = i + x in
+  let a_5 = (shift_sint8 a_2 x_4) in
+  let x_5 = (l_length t_2 a_2) in
+  let a_6 = (shift_sint8 a_2 x_5) in
+  (((havoc t_1 t_2 ((shift_sint8 a_2 x)) i)) = t_3) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (0 <= i_3) ->
+  (i_3 < i) ->
+  (i < ((l_length t_2 a_1))) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x_1)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_sint8 x_2)) ->
+  ((p_length_of_str_is t t_2 a_1 i_3)) ->
+  ((p_length_of_str_is t t_2 a_2 i_1)) ->
+  ((p_length_of_str_is t t_2 a_2 i_2)) ->
+  ((p_length_of_str_is t t_2 a_2 i_4)) ->
+  ((addr_le a_1 a_3)) ->
+  ((addr_le a_3 a_3)) ->
+  ((valid_rw t a_4 x_3)) ->
+  ((separated ((shift_sint8 a_1 0)) x_3 a_4 i)) ->
+  ((addr_le ((shift_sint8 a_2 i)) a_5)) ->
+  ((addr_le a_5 a_5)) ->
+  (not (invalid t a_5 1)) ->
+  ((forall i_5 : int. (0 <= i_5) -> (i_5 < x_5) ->
+    (t_2[(shift_sint8 a_2 i_5)] <> 0)) -> (null = a)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_5)) -> (x_2 = 0)) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_5)) -> (x_1 = (a.base))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_5)) ->
+   ((p_exists_first_occurence_of_char t t_2 a_2 0
+      ((a.offset) - (a_2.offset))))) ->
+  ((exists i_5 : int. (t_2[(shift_sint8 a_2 i_5)] = 0) /\ (0 <= i_5) /\
+    (i_5 < x_5)) -> (((addr_le a_2 a)) /\ ((addr_le a a_6)))) ->
+  (forall i_5 : int. (x <= i_5) -> (i_5 < x_4) ->
+   (t_3[(shift_sint8 a_2 (i_5 + x))] = t_3[(shift_sint8 a_1 i_5)])) ->
+  ((included a_5 1 a_6 i))
+
+end
+

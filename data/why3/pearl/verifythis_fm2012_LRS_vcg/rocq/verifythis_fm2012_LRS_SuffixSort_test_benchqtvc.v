@@ -1,0 +1,34 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.why3.Ref.Ref.
+Require Import Why3.map.MapEq.
+Require Import Why3.map.MapExchange.
+Require Import Why3.map.MapPermut.
+Require Import Why3.map.MapInjection.
+Require Import verifythis_fm2012_LRS_vcg.verifythis_fm2012_LRS.LCP.
+Require Import verifythis_fm2012_LRS_vcg.verifythis_fm2012_LRS.SuffixSort.
+Open Scope Z_scope.
+Theorem bench'vc : 0%Z ≤ 4%Z ∧ (∀(arr : list Z), (∀(i : Z), 0%Z ≤ i ∧ i < 4%Z -> nth (Z.to_nat i) arr inhabitant = 0%Z) ∧ Z.of_nat (length arr) = 4%Z -> (0%Z ≤ 0%Z ∧ 0%Z < Z.of_nat (length arr)) ∧ (length (set_list arr 0%nat 7%Z) = length arr -> nth_i (set_list arr 0%nat 7%Z) = fun_updt (nth_i arr) 0%Z 7%Z -> (0%Z ≤ 1%Z ∧ 1%Z < Z.of_nat (length (set_list arr 0%nat 7%Z))) ∧ (length (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) = length (set_list arr 0%nat 7%Z) -> nth_i (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) = fun_updt (nth_i (set_list arr 0%nat 7%Z)) 1%Z 8%Z -> (0%Z ≤ 2%Z ∧ 2%Z < Z.of_nat (length (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z))) ∧ (length (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z) = length (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) -> nth_i (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z) = fun_updt (nth_i (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z)) 2%Z 8%Z -> (0%Z ≤ 3%Z ∧ 3%Z < Z.of_nat (length (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z))) ∧ (length (set_list (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z) 3%nat 6%Z) = length (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z) -> nth_i (set_list (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z) 3%nat 6%Z) = fun_updt (nth_i (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z)) 3%Z 6%Z -> 0%Z ≤ 4%Z ∧ (∀(suf : list Z), (∀(i : Z), 0%Z ≤ i ∧ i < 4%Z -> nth (Z.to_nat i) suf inhabitant = 0%Z) ∧ Z.of_nat (length suf) = 4%Z -> (0%Z ≤ 3%Z + 1%Z -> (∀(j : Z), 0%Z ≤ j ∧ j < 0%Z -> nth (Z.to_nat j) suf inhabitant = j) ∧ (∀(suf1 : list Z), length suf1 = length suf -> (∀(i : Z), (0%Z ≤ i ∧ i ≤ 3%Z) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < i -> nth (Z.to_nat j) suf1 inhabitant = j) -> (0%Z ≤ i ∧ i < Z.of_nat (length suf1)) ∧ (length (set_list suf1 (Z.to_nat i) i) = length suf1 -> nth_i (set_list suf1 (Z.to_nat i) i) = fun_updt (nth_i suf1) i i -> (∀(j : Z), 0%Z ≤ j ∧ j < i + 1%Z -> nth (Z.to_nat j) (set_list suf1 (Z.to_nat i) i) inhabitant = j))) ∧ ((∀(j : Z), 0%Z ≤ j ∧ j < 3%Z + 1%Z -> nth (Z.to_nat j) suf1 inhabitant = j) -> (length suf1 = length (set_list (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z) 3%nat 6%Z) ∧ SuffixSort.range suf1) ∧ (∀(suf2 : list Z), length suf2 = length suf1 -> sorted (set_list (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z) 3%nat 6%Z) suf2 ∧ suf1 ≡ₚ suf2 -> (0%Z ≤ 0%Z ∧ 0%Z < Z.of_nat (length suf2)) ∧ (nth 0%nat suf2 inhabitant = 3%Z -> (0%Z ≤ 1%Z ∧ 1%Z < Z.of_nat (length suf2)) ∧ (nth 1%nat suf2 inhabitant = 0%Z -> (0%Z ≤ 2%Z ∧ 2%Z < Z.of_nat (length suf2)) ∧ (nth 2%nat suf2 inhabitant = 2%Z -> 0%Z ≤ 3%Z ∧ 3%Z < Z.of_nat (length suf2)))))))) ∧ (3%Z + 1%Z < 0%Z -> (length suf = length (set_list (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z) 3%nat 6%Z) ∧ SuffixSort.range suf) ∧ (∀(suf1 : list Z), length suf1 = length suf -> sorted (set_list (set_list (set_list (set_list arr 0%nat 7%Z) 1%nat 8%Z) 2%nat 8%Z) 3%nat 6%Z) suf1 ∧ suf ≡ₚ suf1 -> (0%Z ≤ 0%Z ∧ 0%Z < Z.of_nat (length suf1)) ∧ (nth 0%nat suf1 inhabitant = 3%Z -> (0%Z ≤ 1%Z ∧ 1%Z < Z.of_nat (length suf1)) ∧ (nth 1%nat suf1 inhabitant = 0%Z -> (0%Z ≤ 2%Z ∧ 2%Z < Z.of_nat (length suf1)) ∧ (nth 2%nat suf1 inhabitant = 2%Z -> 0%Z ≤ 3%Z ∧ 3%Z < Z.of_nat (length suf1)))))))))))).
+Admitted.

@@ -1,0 +1,4 @@
+session bresenham = NTP4Verif +
+theories
+  "bresenham_M_closestqtvc"
+  "bresenham_M_bresenhamqtvc"

@@ -1,0 +1,71 @@
+
+#ifndef EQUALRANGESPRESERVESCOUNT_H_INCLUDED
+#define EQUALRANGESPRESERVESCOUNT_H_INCLUDED
+
+#include "EqualRanges.h"
+#include "CountSection.h"
+#include "CountSectionLemmas.h"
+
+
+
+
+
+
+/*
+/@
+  assigns a[m .. n], a[m+p .. n+p] ;
+  ensures EqualRanges{Pre,Post}(a, m, n, m+p) ;
+@/
+void havoc(value_type* a, size_type m, size_type n, size_type p);
+*/
+
+
+/* preparing Macro:
+/@
+ requires _m <= _n ;
+ assigns _a[_m .. _n], _a[_m+_p .. _n+_p] ;
+@/
+void x(value_type* _a, size_type _m, size_type _n, size_type _p){
+  havoc(_a, _m, _n, _p);
+
+  /@
+    loop invariant _m <= _i <= _n ;
+    loop invariant \forall value_type _v ;
+      Count{Pre}(_a, _m, \at(_i, Here), _v) == Count{Here}(_a, _m + _p, _i + _p, _v);
+    loop assigns _i;
+    loop variant _n - _i ;
+  @/
+  for(size_type _i = _m ; _i < _n ; ++_i){
+    /@ assert \true; @/    
+    //@ assert \true;
+  }
+}
+*/
+
+
+#define EqualRangesPreservesCount(_K,_L,_a,_m,_n,_p)			\
+  /@ assert \true; @/			\
+  /@									\
+  loop invariant _m <= _i <= _n ;					\
+  loop invariant \forall value_type _v ;				\
+    Count{_K}(_a, _m, \at(_i, Here), _v) ==				\
+    Count{_L}(_a, _m + _p, _i + _p, _v);				\
+  loop assigns _i;							\
+  loop variant _n - _i ;						\
+  @/									\
+  for(size_type _i = _m ; _i < _n ; ++_i){				\
+    /@ assert \true; @/									\
+    /@ assert \true; @/									\
+  }									\
+  /@ assert \true; @/
+
+/*
+/@ requires m <= n ; @/
+void test_EqualRangesPreservesCount(value_type* a, size_type m, size_type n, size_type p){
+  havoc(a, m, n, p);
+  //@ assert \true;
+}
+*/
+
+#endif /* EQUALRANGESPRESERVESCOUNT_H_INCLUDED */
+

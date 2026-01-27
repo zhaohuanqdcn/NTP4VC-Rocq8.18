@@ -1,0 +1,7 @@
+session split_string = NTP4Verif +
+theories
+  "split_string_SplitString_split_stringqtvc"
+  "split_string_SplitString_mixfix_lbrbqtvc"
+  "split_string_SplitStringOCaml_concatqtvc"
+  "split_string_SplitString_concatqtvc"
+  "split_string_SplitStringOCaml_split_stringqtvc"

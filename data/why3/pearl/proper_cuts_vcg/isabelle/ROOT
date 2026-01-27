@@ -1,0 +1,7 @@
+session proper_cuts = NTP4Verif +
+theories
+  "proper_cuts_ProperCut_Ge"
+  "proper_cuts_ProperCut_G3"
+  "proper_cuts_ProperCut_consqtvc"
+  "proper_cuts_ProperCut_mapqtvc"
+  "proper_cuts_ProperCut_proper_cutsqtvc"

@@ -1,0 +1,100 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'result' in 'equal_range'           --- *)
+(* ---------------------------------------------------------- *)
+theory VCequal_range_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import S1_size_type_pair.S1_size_type_pair
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition 'result' in 'equal_range'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  forall s : s1_size_type_pair.
+  let x = s.f1_size_type_pair_first in
+  let x_1 = s.f1_size_type_pair_second in
+  (x <= i_1) ->
+  (x_1 <= i_1) ->
+  (0 <= x) ->
+  (0 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  ((iss1_size_type_pair s)) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_sorted_2_ t_1 a i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((p_lowerbound_1_ t_1 a x i_1 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 x i)) ->
+  ((p_upperbound_1_ t_1 a 0 x_1 i)) ->
+  ((p_strictlowerbound_1_ t_1 a x_1 i_1 i)) ->
+  (x <= x_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'middle' in 'equal_range'           --- *)
+(* ---------------------------------------------------------- *)
+theory VCequal_range_post_middle
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import S1_size_type_pair.S1_size_type_pair
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition 'middle' in 'equal_range'":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  forall s : s1_size_type_pair.
+  let x = s.f1_size_type_pair_first in
+  let x_1 = s.f1_size_type_pair_second in
+  (x <= i_1) ->
+  (x_1 <= i_1) ->
+  (0 <= x) ->
+  (0 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  ((iss1_size_type_pair s)) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_sorted_2_ t_1 a i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((p_lowerbound_1_ t_1 a x i_1 i)) ->
+  ((p_strictupperbound_1_ t_1 a 0 x i)) ->
+  ((p_upperbound_1_ t_1 a 0 x_1 i)) ->
+  ((p_strictlowerbound_1_ t_1 a x_1 i_1 i)) ->
+  ((p_constantrange t_1 a x x_1 i))
+
+end
+

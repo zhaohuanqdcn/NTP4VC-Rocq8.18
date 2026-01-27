@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name bellman_ford_vcg)
+(theories Why3.why3.Ref Why3.map Why3.int bellman_ford_vcg.bellman_ford Why3))

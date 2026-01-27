@@ -1,0 +1,11 @@
+atoms:
+  string.StringBuffer.str: [str, string_StringBuffer.str]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.string_StringBuffer
+prefix_ops: {}
+types:
+  string.StringBuffer.buffer: [buffer, string_StringBuffer.buffer]

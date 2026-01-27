@@ -1,0 +1,419 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 780) in 'int32_quat_comp'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_comp' (file math/pprz_algebra_int.c, line 314)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_comp_norm_shortest_call_int32_quat_comp_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 780) in 'int32_quat_comp'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_comp' (file math/pprz_algebra_int.c, line 314)
+":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((separated a_1 4 a 4)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qi a)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qi a_1)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qx a)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qx a_1)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qy a)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qy a_1)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qz a)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qz a_1)])) ->
+  ((p_rvalid_bound_int32quat t t_1 a 13777)) ->
+  ((p_rvalid_bound_int32quat t t_1 a_1 13777)) ->
+  ((valid_rd t a_1 4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 781) in 'int32_quat_comp'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_comp' (file math/pprz_algebra_int.c, line 314)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_comp_norm_shortest_call_int32_quat_comp_pre_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 781) in 'int32_quat_comp'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_comp' (file math/pprz_algebra_int.c, line 314)
+":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[(shiftfield_f8_int32quat_qi a_1)] in
+  let x_1 = t_1[(shiftfield_f8_int32quat_qx a_1)] in
+  let x_2 = t_1[(shiftfield_f8_int32quat_qy a_1)] in
+  let x_3 = t_1[(shiftfield_f8_int32quat_qz a_1)] in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((separated a_1 4 a 4)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qi a)])) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qx a)])) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qy a)])) ->
+  ((is_sint32 x_2)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qz a)])) ->
+  ((is_sint32 x_3)) ->
+  ((p_rvalid_bound_int32quat t t_1 a 13777)) ->
+  ((p_rvalid_bound_int32quat t t_1 a_1 13777)) ->
+  ((((-23170)) <= x) /\ (((-23170)) <= x_1) /\ (((-23170)) <= x_2) /\
+   (((-23170)) <= x_3) /\ (x <= 23170) /\ (x_1 <= 23170) /\ (x_2 <= 23170) /\
+   (x_3 <= 23170))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 782) in 'int32_quat_comp'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_comp' (file math/pprz_algebra_int.c, line 314)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_comp_norm_shortest_call_int32_quat_comp_pre_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 782) in 'int32_quat_comp'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_comp' (file math/pprz_algebra_int.c, line 314)
+":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((separated a_1 4 a 4)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qi a)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qi a_1)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qx a)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qx a_1)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qy a)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qy a_1)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qz a)])) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qz a_1)])) ->
+  ((p_rvalid_bound_int32quat t t_1 a 13777)) ->
+  ((p_rvalid_bound_int32quat t t_1 a_1 13777)) ->
+  ((valid_rd t a 4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 783) in 'int32_quat_comp'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_comp' (file math/pprz_algebra_int.c, line 314)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_comp_norm_shortest_call_int32_quat_comp_pre_5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 783) in 'int32_quat_comp'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_comp' (file math/pprz_algebra_int.c, line 314)
+":
+*)
+goal goal3:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[(shiftfield_f8_int32quat_qi a)] in
+  let x_1 = t_1[(shiftfield_f8_int32quat_qx a)] in
+  let x_2 = t_1[(shiftfield_f8_int32quat_qy a)] in
+  let x_3 = t_1[(shiftfield_f8_int32quat_qz a)] in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((separated a_1 4 a 4)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qi a_1)])) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qx a_1)])) ->
+  ((is_sint32 x_2)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qy a_1)])) ->
+  ((is_sint32 x_3)) ->
+  ((is_sint32 t_1[(shiftfield_f8_int32quat_qz a_1)])) ->
+  ((p_rvalid_bound_int32quat t t_1 a 13777)) ->
+  ((p_rvalid_bound_int32quat t t_1 a_1 13777)) ->
+  ((((-23170)) <= x) /\ (((-23170)) <= x_1) /\ (((-23170)) <= x_2) /\
+   (((-23170)) <= x_3) /\ (x <= 23170) /\ (x_1 <= 23170) /\ (x_2 <= 23170) /\
+   (x_3 <= 23170))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 741) in 'int32_quat_wrap_shortest'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_wrap_shortest' (file math/pprz_algebra_int.c, line 315)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_comp_norm_shortest_call_int32_quat_wrap_shorte____2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import S8_Int32Quat.S8_Int32Quat
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 741) in 'int32_quat_wrap_shortest'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_wrap_shortest' (file math/pprz_algebra_int.c, line 315)
+":
+*)
+goal goal4:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  forall i : s8_int32quat.
+  let x = t_1[(shiftfield_f8_int32quat_qi a)] in
+  let x_1 = t_1[(shiftfield_f8_int32quat_qi a_1)] in
+  let x_2 = t_1[(shiftfield_f8_int32quat_qx a)] in
+  let x_3 = t_1[(shiftfield_f8_int32quat_qx a_1)] in
+  let x_4 = t_1[(shiftfield_f8_int32quat_qy a)] in
+  let x_5 = t_1[(shiftfield_f8_int32quat_qy a_1)] in
+  let x_6 = t_1[(shiftfield_f8_int32quat_qz a)] in
+  let x_7 = t_1[(shiftfield_f8_int32quat_qz a_1)] in
+  let x_8 = i.f8_int32quat_qi in
+  let x_9 = i.f8_int32quat_qx in
+  let x_10 = i.f8_int32quat_qy in
+  let x_11 = i.f8_int32quat_qz in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((-23170)) <= x) ->
+  (((-23170)) <= x_1) ->
+  (((-23170)) <= x_2) ->
+  (((-23170)) <= x_3) ->
+  (((-23170)) <= x_4) ->
+  (((-23170)) <= x_5) ->
+  (((-23170)) <= x_6) ->
+  (((-23170)) <= x_7) ->
+  (x <= 23170) ->
+  (x_1 <= 23170) ->
+  (x_2 <= 23170) ->
+  (x_3 <= 23170) ->
+  (x_4 <= 23170) ->
+  (x_5 <= 23170) ->
+  (x_6 <= 23170) ->
+  (x_7 <= 23170) ->
+  ((linked t)) ->
+  ((is_sint32 x_8)) ->
+  ((is_sint32 x_9)) ->
+  ((is_sint32 x_10)) ->
+  ((is_sint32 x_11)) ->
+  ((valid_rd t a 4)) ->
+  ((valid_rd t a_1 4)) ->
+  ((separated a_1 4 a 4)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 x_2)) ->
+  ((is_sint32 x_3)) ->
+  ((is_sint32 x_4)) ->
+  ((is_sint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((p_rvalid_bound_int32quat t t_1 a 13777)) ->
+  ((p_rvalid_bound_int32quat t t_1 a_1 13777)) ->
+  (((p_bound_int32quat t_1 a 23170)) ->
+   ((p_bound_int32quat t_1 a_1 23170)) ->
+   ((((-65535)) <= x_8) /\ (x_8 <= 65535))) ->
+  (((p_bound_int32quat t_1 a 23170)) ->
+   ((p_bound_int32quat t_1 a_1 23170)) ->
+   ((((-65535)) <= x_9) /\ (x_9 <= 65535))) ->
+  (((p_bound_int32quat t_1 a 23170)) ->
+   ((p_bound_int32quat t_1 a_1 23170)) ->
+   ((((-65535)) <= x_10) /\ (x_10 <= 65535))) ->
+  (((p_bound_int32quat t_1 a 23170)) ->
+   ((p_bound_int32quat t_1 a_1 23170)) ->
+   ((((-65535)) <= x_11) /\ (x_11 <= 65535))) ->
+  (((p_bound_int32quat t_1 a 13777)) ->
+   ((p_bound_int32quat t_1 a_1 13777)) ->
+   ((((-23170)) <= x_8) /\ (x_8 <= 23170))) ->
+  (((p_bound_int32quat t_1 a 13777)) ->
+   ((p_bound_int32quat t_1 a_1 13777)) ->
+   ((((-23170)) <= x_9) /\ (x_9 <= 23170))) ->
+  (((p_bound_int32quat t_1 a 13777)) ->
+   ((p_bound_int32quat t_1 a_1 13777)) ->
+   ((((-23170)) <= x_10) /\ (x_10 <= 23170))) ->
+  (((p_bound_int32quat t_1 a 13777)) ->
+   ((p_bound_int32quat t_1 a_1 13777)) ->
+   ((((-23170)) <= x_11) /\ (x_11 <= 23170))) ->
+  ((((-2147483647)) <= x_8) /\ (((-2147483647)) <= x_9) /\
+   (((-2147483647)) <= x_10) /\ (((-2147483647)) <= x_11) /\
+   (x_8 <= 2147483647) /\ (x_9 <= 2147483647) /\ (x_10 <= 2147483647) /\
+   (x_11 <= 2147483647))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 758) in 'int32_quat_normalize'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_normalize' (file math/pprz_algebra_int.c, line 316)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_quat_comp_norm_shortest_call_int32_quat_normalize_p___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import S8_Int32Quat.S8_Int32Quat
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file math/pprz_algebra_int.h, line 758) in 'int32_quat_normalize'' in 'int32_quat_comp_norm_shortest' at call 'int32_quat_normalize' (file math/pprz_algebra_int.c, line 316)
+":
+*)
+goal goal5:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  forall i_1 i : s8_int32quat.
+  let x = i.f8_int32quat_qi in
+  let x_1 = i.f8_int32quat_qx in
+  let x_2 = i.f8_int32quat_qy in
+  let x_3 = i.f8_int32quat_qz in
+  let x_4 = t_1[(shiftfield_f8_int32quat_qi a)] in
+  let x_5 = t_1[(shiftfield_f8_int32quat_qi a_1)] in
+  let x_6 = t_1[(shiftfield_f8_int32quat_qx a)] in
+  let x_7 = t_1[(shiftfield_f8_int32quat_qx a_1)] in
+  let x_8 = t_1[(shiftfield_f8_int32quat_qy a)] in
+  let x_9 = t_1[(shiftfield_f8_int32quat_qy a_1)] in
+  let x_10 = t_1[(shiftfield_f8_int32quat_qz a)] in
+  let x_11 = t_1[(shiftfield_f8_int32quat_qz a_1)] in
+  let x_12 = i_1.f8_int32quat_qi in
+  let x_13 = i_1.f8_int32quat_qx in
+  let x_14 = i_1.f8_int32quat_qy in
+  let x_15 = i_1.f8_int32quat_qz in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((-2147483647)) <= x) ->
+  (((-2147483647)) <= x_1) ->
+  (((-2147483647)) <= x_2) ->
+  (((-2147483647)) <= x_3) ->
+  (x <= 2147483647) ->
+  (x_1 <= 2147483647) ->
+  (x_2 <= 2147483647) ->
+  (x_3 <= 2147483647) ->
+  (((-23170)) <= x_4) ->
+  (((-23170)) <= x_5) ->
+  (((-23170)) <= x_6) ->
+  (((-23170)) <= x_7) ->
+  (((-23170)) <= x_8) ->
+  (((-23170)) <= x_9) ->
+  (((-23170)) <= x_10) ->
+  (((-23170)) <= x_11) ->
+  (x_4 <= 23170) ->
+  (x_5 <= 23170) ->
+  (x_6 <= 23170) ->
+  (x_7 <= 23170) ->
+  (x_8 <= 23170) ->
+  (x_9 <= 23170) ->
+  (x_10 <= 23170) ->
+  (x_11 <= 23170) ->
+  ((linked t)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 x_2)) ->
+  ((is_sint32 x_3)) ->
+  ((is_sint32 x_12)) ->
+  ((is_sint32 x_13)) ->
+  ((is_sint32 x_14)) ->
+  ((is_sint32 x_15)) ->
+  ((valid_rd t a 4)) ->
+  ((valid_rd t a_1 4)) ->
+  ((separated a_1 4 a 4)) ->
+  ((is_sint32 x_4)) ->
+  ((is_sint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  ((is_sint32 x_9)) ->
+  ((is_sint32 x_10)) ->
+  ((is_sint32 x_11)) ->
+  ((p_rvalid_bound_int32quat t t_1 a 13777)) ->
+  ((p_rvalid_bound_int32quat t t_1 a_1 13777)) ->
+  (((p_bound_int32quat t_1 a 23170)) ->
+   ((p_bound_int32quat t_1 a_1 23170)) -> ((((-65535)) <= x) /\ (x <= 65535))) ->
+  (((p_bound_int32quat t_1 a 23170)) ->
+   ((p_bound_int32quat t_1 a_1 23170)) ->
+   ((((-65535)) <= x_1) /\ (x_1 <= 65535))) ->
+  (((p_bound_int32quat t_1 a 23170)) ->
+   ((p_bound_int32quat t_1 a_1 23170)) ->
+   ((((-65535)) <= x_2) /\ (x_2 <= 65535))) ->
+  (((p_bound_int32quat t_1 a 23170)) ->
+   ((p_bound_int32quat t_1 a_1 23170)) ->
+   ((((-65535)) <= x_3) /\ (x_3 <= 65535))) ->
+  (((p_bound_int32quat t_1 a 13777)) ->
+   ((p_bound_int32quat t_1 a_1 13777)) -> ((((-23170)) <= x) /\ (x <= 23170))) ->
+  (((p_bound_int32quat t_1 a 13777)) ->
+   ((p_bound_int32quat t_1 a_1 13777)) ->
+   ((((-23170)) <= x_1) /\ (x_1 <= 23170))) ->
+  (((p_bound_int32quat t_1 a 13777)) ->
+   ((p_bound_int32quat t_1 a_1 13777)) ->
+   ((((-23170)) <= x_2) /\ (x_2 <= 23170))) ->
+  (((p_bound_int32quat t_1 a 13777)) ->
+   ((p_bound_int32quat t_1 a_1 13777)) ->
+   ((((-23170)) <= x_3) /\ (x_3 <= 23170))) ->
+  ((x_12 = x) \/ ((x + x_12) = 0)) ->
+  ((x_13 = x_1) \/ ((x_1 + x_13) = 0)) ->
+  ((x_14 = x_2) \/ ((x_2 + x_14) = 0)) ->
+  ((x_15 = x_3) \/ ((x_3 + x_15) = 0)) ->
+  ((((-23170)) <= x_12) /\ (((-23170)) <= x_13) /\ (((-23170)) <= x_14) /\
+   (((-23170)) <= x_15) /\ (x_12 <= 23170) /\ (x_13 <= 23170) /\
+   (x_14 <= 23170) /\ (x_15 <= 23170))
+
+end
+

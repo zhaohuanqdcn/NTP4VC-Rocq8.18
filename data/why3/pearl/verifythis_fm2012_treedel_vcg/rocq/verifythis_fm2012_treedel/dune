@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name verifythis_fm2012_treedel_vcg.verifythis_fm2012_treedel)
+(theories Why3 Why3.why3.Ref))

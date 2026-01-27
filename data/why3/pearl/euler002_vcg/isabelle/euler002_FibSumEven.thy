@@ -1,0 +1,26 @@
+theory euler002_FibSumEven
+  imports "NTP4Verif.NTP4Verif" "Why3STD.int_Fibonacci"
+begin
+consts fib_sum_even :: "int \<Rightarrow> int \<Rightarrow> int"
+axiomatization where SumZero:   "fib_sum_even m (0 :: int) = (0 :: int)"
+  for m :: "int"
+axiomatization where SumEvenLe:   "fib_sum_even m (n + (1 :: int)) = fib_sum_even m n + fib n"
+ if "(0 :: int) \<le> n"
+ and "fib n \<le> m"
+ and "fib n cmod (2 :: int) = (0 :: int)"
+  for n :: "int"
+  and m :: "int"
+axiomatization where SumEvenGt:   "fib_sum_even m (n + (1 :: int)) = fib_sum_even m n"
+ if "(0 :: int) \<le> n"
+ and "m < fib n"
+ and "fib n cmod (2 :: int) = (0 :: int)"
+  for n :: "int"
+  and m :: "int"
+axiomatization where SumOdd:   "fib_sum_even m (n + (1 :: int)) = fib_sum_even m n"
+ if "(0 :: int) \<le> n"
+ and "\<not>fib n cmod (2 :: int) = (0 :: int)"
+  for n :: "int"
+  and m :: "int"
+definition is_fib_sum_even :: "int \<Rightarrow> int \<Rightarrow> _"
+  where "is_fib_sum_even m sum \<longleftrightarrow> (\<exists>(n :: int). sum = fib_sum_even m n \<and> m < fib n)" for m sum
+end

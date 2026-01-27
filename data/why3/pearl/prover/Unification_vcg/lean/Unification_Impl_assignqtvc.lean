@@ -1,0 +1,28 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.prover.lib.lean.Unification.Types
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.BacktrackArray.Types
+import pearl.prover.lib.lean.Predicates.Pred
+import pearl.prover.lib.lean.BacktrackArray.Logic
+import pearl.prover.lib.lean.Choice.Choice
+import pearl.prover.lib.lean.BacktrackArray.Impl
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+import pearl.prover.lib.lean.Firstorder_term_impl.Impl
+import pearl.prover.lib.lean.Unification.Logic
+open Classical
+open Lean4Why3
+namespace Unification_Impl_assignqtvc
+theorem assign'vc (z : ℤ) (t : Types.nlimpl_fo_term) (rhob : Types.t Types.sdata) (rho : Types.unifier_subst) (lv : List ℤ) (lp : ℤ -> Bool) (fact0 : (0 : ℤ) ≤ z) (fact1 : Logic.nlimpl_fo_term_ok t) (fact2 : Logic.unifier_subst_ok rhob rho) (fact3 : Logic.unassigned (Logic.current_timestamp rhob) z) (fact4 : ¬Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field t) Spec.subst_id_symbol (Types.unifier_subst.unifier rho) = Spec.fo_term.Var_fo_term z) (fact5 : ∀(y : ℤ), Spec.is_fo_term_free_var_in_fo_term y (Types.nlimpl_fo_term.model_fo_term_field t) → (0 : ℤ) ≤ y) (fact6 : ∀(x : ℤ), x ∈ lv → lp x = true ∧ (0 : ℤ) ≤ x) (fact7 : ∀(x : ℤ), Logic.unassigned (Logic.current_timestamp rhob) x → lp x = true) : let tm : Spec.fo_term ℤ ℤ := Types.nlimpl_fo_term.model_fo_term_field t; let rhoi : ℤ -> Spec.fo_term ℤ ℤ := Types.unifier_subst.unifier rho; (Logic.unifier_subst_ok rhob rho ∧ Logic.unassigned (Logic.current_timestamp rhob) z) ∧ ((let tm1 : Spec.fo_term ℤ ℤ := Spec.fo_term.Var_fo_term z; tm1 = Spec.subst_fo_term tm1 Spec.subst_id_symbol (Types.unifier_subst.unifier_base_model rho) ∧ tm1 = Spec.subst_fo_term tm1 Spec.subst_id_symbol (Types.unifier_subst.unifier rho)) → (Logic.unifier_subst_ok rhob rho ∧ Logic.nlimpl_fo_term_ok t ∧ (∀(y : ℤ), Spec.is_fo_term_free_var_in_fo_term y (Types.nlimpl_fo_term.model_fo_term_field t) → (0 : ℤ) ≤ y)) ∧ (¬Spec.is_fo_term_free_var_in_fo_term z (Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field t) Spec.subst_id_symbol (Types.unifier_subst.unifier rho)) → (let uf : ℤ -> Spec.fo_term ℤ ℤ := Func.update Spec.subst_id_fo_term z (Spec.subst_fo_term tm Spec.subst_id_symbol rhoi); let rhoi' : ℤ -> Spec.fo_term ℤ ℤ := Spec.subst_compose_fo_term rhoi Spec.subst_id_symbol uf; let o1 : Types.sdata := Types.sdata.Assign t; (Logic.correct rhob ∧ (0 : ℤ) ≤ z ∧ Types.t.inv rhob o1 = true) ∧ (∀(rhob1 : Types.t Types.sdata), Types.t.inv rhob1 = Types.t.inv rhob → Logic.past_time (Logic.current_timestamp rhob1) rhob1 ∧ Logic.correct rhob1 ∧ Logic.precede rhob rhob1 ∧ (let tb0 : ℤ -> List Types.sdata := Types.timestamp.table (Logic.current_timestamp rhob); Types.timestamp.table (Logic.current_timestamp rhob1) = Func.update tb0 z (List.cons o1 (tb0 z))) → (∀(x : ℤ), x ∈ List.cons z lv → lp x = true ∧ (0 : ℤ) ≤ x) ∧ (∀(x : ℤ), Logic.unassigned (Logic.current_timestamp rhob1) x → lp x = true) ∧ Logic.unifier_subst_ok rhob1 (Types.unifier_subst.mk (Func.update (Types.unifier_subst.unifier_base_model rho) z tm) rhoi') ∧ Logic.precede rhob rhob1 ∧ Spec.subst_compose_fo_term (Types.unifier_subst.unifier rho) Spec.subst_id_symbol uf = rhoi' ∧ (∀(s : ℤ -> Spec.fo_term ℤ ℤ), let s' : ℤ -> Spec.fo_term ℤ ℤ := Spec.subst_compose_fo_term (Types.unifier_subst.unifier rho) Spec.subst_id_symbol s; s' z = Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field t) Spec.subst_id_symbol s' → s' = Spec.subst_compose_fo_term rhoi' Spec.subst_id_symbol s) ∧ rhoi' z = Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field t) Spec.subst_id_symbol rhoi' ∧ (let s1 : ℤ -> Spec.fo_term ℤ ℤ := Types.unifier_subst.unifier_base_model rho; Spec.subst_compose_fo_term rhoi' Spec.subst_id_symbol s1 = rhoi' ∧ rhoi' = Spec.subst_compose_fo_term s1 Spec.subst_id_symbol rhoi') ∧ (let s1 : ℤ -> Spec.fo_term ℤ ℤ := Types.unifier_subst.unifier rho; Spec.subst_compose_fo_term rhoi' Spec.subst_id_symbol s1 = rhoi' ∧ rhoi' = Spec.subst_compose_fo_term s1 Spec.subst_id_symbol rhoi')))) ∧ Logic.precede rhob rhob ∧ Logic.correct rhob)
+  := sorry
+end Unification_Impl_assignqtvc

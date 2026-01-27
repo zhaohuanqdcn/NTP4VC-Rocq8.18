@@ -1,0 +1,393 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'increment' in 'iota'               --- *)
+(* ---------------------------------------------------------- *)
+theory VCiota_post_increment
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'increment' in 'iota'":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = i - i_2 in
+  let a_1 = (shift_sint32 a 0) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_1 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  ((i + i_1) <= (2147483647 + i_2)) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 x)) ->
+  ((valid_rw t a_1 i_1)) ->
+  ((p_iota ((havoc t_1 t_2 a_1 i_1)) a i_2 x)) ->
+  ((p_iota ((havoc t_1 t_2 a_1 i_2)) a i_2 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file iota.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCiota_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file iota.c, line 7)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = i_1 + i_2 in
+  let x_1 = - i_1 in
+  let x_2 = i - i_1 in
+  let a_1 = (shift_sint32 a 0) in
+  (i_1 <= i) ->
+  (i < x) ->
+  (i <= x) ->
+  (((region (a.base))) <= 0) ->
+  (i <= 2147483646) ->
+  (x <= 2147483647) ->
+  (i <= (4294967294 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint32 x_2)) ->
+  ((valid_rw t a_1 i_2)) ->
+  ((is_uint32 (1 + i - i_1))) ->
+  ((valid_rw t ((shift_sint32 a x_2)) 1)) ->
+  ((p_iota ((havoc t_1 t_2 a_1 i_2)) a x_2 i_1)) ->
+  (i_1 <= (1 + i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file iota.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCiota_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file iota.c, line 7)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((i + i_1) <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  (0 <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'increment' (file iota.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCiota_loop_inv_increment_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'increment' (file iota.c, line 9)":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_2 in
+  let x_1 = i - i_2 in
+  let a_1 = (shift_sint32 a 0) in
+  let a_2 = (shift_sint32 a i_2) in
+  let a_3 = (havoc t_1 t_2 a_1 i_1) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (i <= 2147483646) ->
+  (i_2 <= 4294967294) ->
+  ((i + i_1) <= (2147483647 + i_2)) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 x)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rw t a_1 i_1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_iota a_3 a i_2 x_1)) ->
+  ((p_iota a_3[a_2 <- i] a x x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'increment' (file iota.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCiota_loop_inv_increment_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'increment' (file iota.c, line 9)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((i + i_1) <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  ((p_iota t_1 a 0 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,signed_overflow' (file iota.c, line 15) --- *)
+(* ---------------------------------------------------------- *)
+theory VCiota_assert_rte_signed_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,signed_overflow' (file iota.c, line 15)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = i + i_2 in
+  let a_1 = (shift_sint32 a 0) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((i + i_1) <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 x)) ->
+  ((valid_rw t a_1 i_1)) ->
+  ((p_iota ((havoc t_1 t_2 a_1 i_1)) a i_2 i)) ->
+  (x <= 2147483646)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file iota.c, line 15)  --- *)
+(* ---------------------------------------------------------- *)
+theory VCiota_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file iota.c, line 15)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = i_1 + i_2 in
+  let x_1 = i - i_1 in
+  let a_1 = (shift_sint32 a 0) in
+  (i_1 <= i) ->
+  (i < x) ->
+  (i <= x) ->
+  (((region (a.base))) <= 0) ->
+  (i <= 2147483646) ->
+  (x <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint32 x_1)) ->
+  ((valid_rw t a_1 i_2)) ->
+  ((p_iota ((havoc t_1 t_2 a_1 i_2)) a x_1 i_1)) ->
+  ((valid_rw t ((shift_sint32 a x_1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file iota.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCiota_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file iota.c, line 14)":
+*)
+goal goal7:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = i_1 + i_2 in
+  let x_1 = i - i_1 in
+  let a_1 = (shift_sint32 a 0) in
+  (i_1 <= i) ->
+  (i < x) ->
+  (i <= x) ->
+  (((region (a.base))) <= 0) ->
+  (i <= 2147483646) ->
+  (x <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint32 x_1)) ->
+  ((valid_rw t a_1 i_2)) ->
+  ((valid_rw t ((shift_sint32 a x_1)) 1)) ->
+  ((p_iota ((havoc t_1 t_2 a_1 i_2)) a x_1 i_1)) ->
+  (i <= (4294967294 + i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file iota.c, line 11) (3/3)          --- *)
+(* ---------------------------------------------------------- *)
+theory VCiota_loop_assign_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Loop assigns (file iota.c, line 11) (3/3)":
+*)
+goal goal8:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = i_1 + i_2 in
+  let x_1 = i - i_1 in
+  let a_1 = (shift_sint32 a 0) in
+  let a_2 = (shift_sint32 a x_1) in
+  (i_1 <= i) ->
+  (i < x) ->
+  (i <= x) ->
+  (((region (a.base))) <= 0) ->
+  (i <= 2147483646) ->
+  (x <= 2147483647) ->
+  (i <= (4294967294 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint32 x_1)) ->
+  ((valid_rw t a_1 i_2)) ->
+  ((valid_rw t a_2 1)) ->
+  (not (invalid t a_2 1)) ->
+  ((p_iota ((havoc t_1 t_2 a_1 i_2)) a x_1 i_1)) ->
+  ((included a_2 1 a_1 i_2))
+
+end
+

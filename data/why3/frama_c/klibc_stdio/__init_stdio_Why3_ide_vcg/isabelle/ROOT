@@ -1,0 +1,16 @@
+session __init_stdio_Why3_ide = NTP4Verif +
+theories
+  "X__init_stdio_Why3_ide_VC__init_stdio_post_5_goal6"
+  "X__init_stdio_Why3_ide_VC__init_stdio_assign_normal_part5_goal13"
+  "X__init_stdio_Why3_ide_VC__init_stdio_assign_exit_part2_goal7"
+  "X__init_stdio_Why3_ide_VC__init_stdio_post_4_goal5"
+  "X__init_stdio_Why3_ide_VC__init_stdio_assign_exit_part3_goal8"
+  "X__init_stdio_Why3_ide_VC__init_stdio_post_part2_goal1"
+  "X__init_stdio_Why3_ide_VC__init_stdio_post_part1_goal0"
+  "X__init_stdio_Why3_ide_VC__init_stdio_post_part3_goal2"
+  "X__init_stdio_Why3_ide_VC__init_stdio_assign_normal_part4_goal12"
+  "X__init_stdio_Why3_ide_VC__init_stdio_post_3_goal4"
+  "X__init_stdio_Why3_ide_VC__init_stdio_assign_normal_part2_goal10"
+  "X__init_stdio_Why3_ide_VC__init_stdio_assign_normal_part3_goal11"
+  "X__init_stdio_Why3_ide_VC__init_stdio_post_2_goal3"
+  "X__init_stdio_Why3_ide_VC__init_stdio_assign_exit_part4_goal9"

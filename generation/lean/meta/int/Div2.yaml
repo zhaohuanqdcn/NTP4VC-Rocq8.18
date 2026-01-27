@@ -1,0 +1,10 @@
+atoms: {}
+axioms:
+  int.Div2.div2: Div2.div2
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.int.Div2
+prefix_ops: {}
+types: {}

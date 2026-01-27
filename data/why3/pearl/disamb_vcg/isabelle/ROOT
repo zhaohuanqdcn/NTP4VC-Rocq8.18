@@ -1,0 +1,12 @@
+session disamb = NTP4Verif +
+theories
+  "disamb_Top_original_includedqtvc"
+  "disamb_Top_di_strqtvc"
+  "disamb_Top_pep2"
+  "disamb_Top_pe2"
+  "disamb_Top_decomp_last_plusqtvc"
+  "disamb_Top_pep1"
+  "disamb_Top_original_equiv_disambiguationqtvc"
+  "disamb_Top_oi_strqtvc"
+  "disamb_Top_disambiguation_includedqtvc"
+  "disamb_Top_pe1"

@@ -1,0 +1,48 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'StrCmp'                                 --- *)
+(* ---------------------------------------------------------- *)
+theory A_StrCmp
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function l_cmp (a : int) (b : int) : int =
+    if (b = a) then 0 else (if (a < b) then (-1) else 1)
+
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+function l_strncmp_1_ (map addr int) addr addr int : int
+axiom fix_l_strncmp_1_:
+  forall cs_0 ct_0 : addr.
+  forall mchar_0 : map addr int.
+  forall n : int.
+  let x = (l_strncmp_1_ mchar_0 cs_0 ct_0 n) in
+    let x_1 = mchar_0[(shift_sint8 ct_0 0)] in
+    let x_2 = mchar_0[(shift_sint8 cs_0 0)] in
+    if (n = (-1)) then (x = 0)
+    else (if (x_1 = x_2)
+          then (((l_strncmp_1_ mchar_0 ((shift_sint8 cs_0 1))
+                   ((shift_sint8 ct_0 1)) (n - 1))) = x)
+          else (((l_cmp ((to_uint8 x_2)) ((to_uint8 x_1)))) = x))
+
+use import A_Strlen.A_Strlen
+
+function l_strcmp (mchar_0 : map addr int) (cs_0 : addr)
+    (ct_0 : addr) : int =
+    (l_strncmp_1_ mchar_0 cs_0 ct_0 ((l_strlen mchar_0 cs_0)))
+
+predicate p_equaln (mchar_0 : map addr int) (cs_0 : addr) (ct_0 : addr)
+    (n : int) = ((l_strncmp_1_ mchar_0 cs_0 ct_0 n)) = 0
+
+predicate p_equal (mchar_0 : map addr int) (cs_0 : addr) (ct_0 : addr) =
+    ((l_strcmp mchar_0 cs_0 ct_0)) = 0
+
+end
+

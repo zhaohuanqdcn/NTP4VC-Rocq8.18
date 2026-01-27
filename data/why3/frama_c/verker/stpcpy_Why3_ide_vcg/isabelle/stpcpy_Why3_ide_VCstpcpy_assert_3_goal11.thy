@@ -1,0 +1,15 @@
+theory stpcpy_Why3_ide_VCstpcpy_assert_3_goal11
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "../../lib/isabelle/Axiomatic3_Axiomatic3" "Why3STD.Memory_Memory" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/A_Strlen_A_Strlen" "Why3STD.Cint_Cint"
+begin
+theorem goal11:
+  fixes a_2 :: "addr"
+  fixes a_1 :: "addr"
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes a_3 :: "addr"
+  fixes a :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes t_3 :: "addr \<Rightarrow> int"
+  fixes t :: "int \<Rightarrow> int"
+  shows "let x :: int = base a_2; x_1 :: int = base a_1; m :: addr \<Rightarrow> int = t_2(a_3 := 0 :: int); x_2 :: int = offset a_1; x_3 :: int = offset a; x_4 :: int = l_strlen t_2 a_1; a_4 :: addr = shift a_2 (0 :: int) in t_2 a = (0 :: int) \<longrightarrow> \<not>x = x_1 \<longrightarrow> m (shift a (0 :: int)) = (0 :: int) \<longrightarrow> x_2 + offset a_3 = x_3 + offset a_2 \<longrightarrow> x_2 + x_4 = x_3 + l_strlen t_2 a \<longrightarrow> havoc t_1 t_3 a_4 ((1 :: int) + x_4) = t_2 \<longrightarrow> region x_1 \<le> (0 :: int) \<longrightarrow> region x \<le> (0 :: int) \<longrightarrow> linked t \<longrightarrow> sconst t_3 \<longrightarrow> addr_le a_1 a \<longrightarrow> addr_le a_2 a_3 \<longrightarrow> p_valid_str t t_2 a \<longrightarrow> p_valid_str t t_3 a_1 \<longrightarrow> addr_le a (shift a_1 x_4) \<longrightarrow> addr_le a_3 (shift a_2 x_4) \<longrightarrow> valid_rw t a_4 ((1 :: int) + l_strlen t_3 a_1) \<longrightarrow> (\<forall>(i :: int). (0 :: int) \<le> i \<longrightarrow> i + x_2 < x_3 \<longrightarrow> t_2 (shift a_2 i) = t_2 (shift a_1 i)) \<longrightarrow> p_valid_str t m a_2"
+  sorry
+end

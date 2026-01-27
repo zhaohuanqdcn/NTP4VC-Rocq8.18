@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name search_vcg.search)
+(theories Why3))

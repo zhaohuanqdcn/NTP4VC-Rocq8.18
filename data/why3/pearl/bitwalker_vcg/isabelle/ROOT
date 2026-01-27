@@ -1,0 +1,20 @@
+session bitwalker = NTP4Verif +
+sessions
+  "Why3STD"
+  "mach"
+theories
+  "bitwalker_Bitwalker"
+  "bitwalker_Bitwalker_poke_8bitqtvc"
+  "bitwalker_Bitwalker_pokeqtvc"
+  "bitwalker_Bitwalker_peek_8bit_bvqtvc"
+  "bitwalker_Bitwalker_pokethenpeekqtvc"
+  "bitwalker_Bitwalker_nth8qtvc"
+  "bitwalker_Bitwalker_poke_8bit_arrayqtvc"
+  "bitwalker_Bitwalker_peek_8bit_arrayqtvc"
+  "bitwalker_Bitwalker_nth_ultpre0qtvc"
+  "bitwalker_Bitwalker_peekthenpokeqtvc"
+  "bitwalker_Bitwalker_poke_64bit_bvqtvc"
+  "bitwalker_Bitwalker_nth64qtvc"
+  "bitwalker_Bitwalker_peek_64bitqtvc"
+  "bitwalker_Bitwalker_peekqtvc"
+  "bitwalker_Bitwalker_poke_64bitqtvc"

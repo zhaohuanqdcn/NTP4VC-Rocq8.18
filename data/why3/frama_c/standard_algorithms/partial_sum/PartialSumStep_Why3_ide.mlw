@@ -1,0 +1,37 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PartialSumLemmas.h, line 15) in 'PartialSumStep' --- *)
+(* ---------------------------------------------------------- *)
+theory VCPartialSumStep_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/PartialSumLemmas.h, line 15) in 'PartialSumStep'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map addr int.
+  forall a_1 a : addr.
+  let x = t[(shift_sint32 a i)] in
+  let x_1 = 1 + i in
+  (x = ((l_accumulate_2_ t a_1 x_1))) ->
+  (0 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((p_partialsum t a_1 i a)) ->
+  ((is_sint32 x)) ->
+  ((p_partialsum t a_1 x_1 a))
+
+end
+

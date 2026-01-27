@@ -1,0 +1,13 @@
+session verifythis_2024_challenge0 = NTP4Verif +
+theories
+  "verifythis_2024_challenge0_Top_concat2qtvc"
+  "verifythis_2024_challenge0_Top_str_lizardqtvc"
+  "verifythis_2024_challenge0_Top_test_deleteqtvc"
+  "verifythis_2024_challenge0_Top_str_izqtvc"
+  "verifythis_2024_challenge0_Top_splitqtvc"
+  "verifythis_2024_challenge0_Top_str_lenqtvc"
+  "verifythis_2024_challenge0_Top_str_lardqtvc"
+  "verifythis_2024_challenge0_Top_test_insertqtvc"
+  "verifythis_2024_challenge0_Top_concatqtvc"
+  "verifythis_2024_challenge0_Top_insertqtvc"
+  "verifythis_2024_challenge0_Top_deleteqtvc"

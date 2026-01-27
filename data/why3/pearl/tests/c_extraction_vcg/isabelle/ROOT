@@ -1,0 +1,3 @@
+session c_extraction = NTP4Verif +
+theories
+  "c_extraction_S_hello_lenqtvc"

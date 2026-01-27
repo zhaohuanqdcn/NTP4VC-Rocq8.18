@@ -1,0 +1,597 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file masks.c, line 124) in 'cpumask_copy' --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file masks.c, line 124) in 'cpumask_copy'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_3[(shiftfield_f1_cpumask_bits a)] in
+  let a_3 = (shift_uint8 a_2 0) in
+  let a_4 = t_3[(shiftfield_f1_cpumask_bits a_1)] in
+  let a_5 = (shift_uint8 a_4 0) in
+  let a_6 = (havoc t_1 t_2 a_5 l_size) in
+  (((to_uint32 i_1)) = l_size) ->
+  (0 <= i) ->
+  (i < l_size) ->
+  (0 <= i_1) ->
+  (i_1 <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rd t a_3 l_size)) ->
+  ((valid_rw t a_5 l_size)) ->
+  ((separated a_5 l_size a_3 l_size)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i_1) ->
+   ((a_6[(shift_uint8 a_4 i_2)] <> 0) <-> (a_6[(shift_uint8 a_2 i_2)] <> 0))) ->
+  ((a_6[(shift_uint8 a_4 i)] <> 0) <-> (a_6[(shift_uint8 a_2 i)] <> 0))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file masks.c, line 129) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file masks.c, line 129)":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shiftfield_f1_cpumask_bits a) in
+  let a_3 = (shiftfield_f1_cpumask_bits a_1) in
+  let a_4 = t_3[a_2] in
+  let a_5 = (shift_uint8 a_4 0) in
+  let a_6 = (shift_uint8 a_4 i) in
+  let a_7 = t_3[a_3] in
+  let a_8 = (shift_uint8 a_7 0) in
+  let a_9 = (havoc t_1 t_2 a_8 l_size) in
+  let a_10 = a_9[a_6] in
+  (((to_uint32 i)) <> l_size) ->
+  (0 <= i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 2147483646) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_sint32 (1 + i))) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t a_5 l_size)) ->
+  ((valid_rd t a_6 1)) ->
+  ((valid_rw t a_8 l_size)) ->
+  ((valid_rw t ((shift_uint8 a_7 i)) 1)) ->
+  ((separated a_8 l_size a_5 l_size)) ->
+  ((is_uint8 a_10)) ->
+  ((a_10 = 0) \/ (a_10 = 1)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   ((a_9[(shift_uint8 a_7 i_1)] <> 0) <-> (a_9[(shift_uint8 a_4 i_1)] <> 0))) ->
+  ((i < l_size) /\ ((-1) <= i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file masks.c, line 129) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_thread_variables_properties.A_thread_variables_properties
+
+(*
+goal WP "expl:Establishment of Invariant (file masks.c, line 129)":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shift_uint8 t_1[(shiftfield_f1_cpumask_bits a)] 0) in
+  let a_3 = (shift_uint8 t_1[(shiftfield_f1_cpumask_bits a_1)] 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rd t a_2 l_size)) ->
+  ((valid_rw t a_3 l_size)) ->
+  ((separated a_3 l_size a_2 l_size)) ->
+  (0 <= l_size)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file masks.c, line 130) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file masks.c, line 130)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shiftfield_f1_cpumask_bits a) in
+  let a_3 = (shiftfield_f1_cpumask_bits a_1) in
+  let a_4 = t_3[a_2] in
+  let a_5 = (shift_uint8 a_4 0) in
+  let a_6 = (shift_uint8 a_4 i) in
+  let a_7 = t_3[a_3] in
+  let a_8 = (shift_uint8 a_7 0) in
+  let a_9 = (shift_uint8 a_7 i) in
+  let a_10 = (havoc t_1 t_2 a_8 l_size) in
+  let a_11 = a_10[a_6] in
+  let a_12 = a_10[a_9 <- a_11] in
+  (((to_uint32 i)) <> l_size) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 2147483646) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((is_sint32 (1 + i))) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t a_5 l_size)) ->
+  ((valid_rd t a_6 1)) ->
+  ((valid_rw t a_8 l_size)) ->
+  ((valid_rw t a_9 1)) ->
+  ((separated a_8 l_size a_5 l_size)) ->
+  ((is_uint8 a_11)) ->
+  ((a_11 = 0) \/ (a_11 = 1)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i) ->
+   ((a_10[(shift_uint8 a_7 i_2)] <> 0) <->
+    (a_10[(shift_uint8 a_4 i_2)] <> 0))) ->
+  ((a_12[(shift_uint8 a_7 i_1)] <> 0) <-> (a_12[(shift_uint8 a_4 i_1)] <> 0))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,bool_value' (file masks.c, line 135) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_assert_rte_bool_value
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,bool_value' (file masks.c, line 135)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_3[(shiftfield_f1_cpumask_bits a)] in
+  let a_3 = (shift_uint8 a_2 0) in
+  let a_4 = t_3[(shiftfield_f1_cpumask_bits a_1)] in
+  let a_5 = (shift_uint8 a_4 0) in
+  let a_6 = (havoc t_1 t_2 a_5 l_size) in
+  let a_7 = a_6[(shift_uint8 a_2 i)] in
+  (((to_uint32 i)) <> l_size) ->
+  (0 <= i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rd t a_3 l_size)) ->
+  ((valid_rw t a_5 l_size)) ->
+  ((separated a_5 l_size a_3 l_size)) ->
+  ((is_uint8 a_7)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   ((a_6[(shift_uint8 a_4 i_1)] <> 0) <-> (a_6[(shift_uint8 a_2 i_1)] <> 0))) ->
+  ((a_7 = 0) \/ (a_7 = 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file masks.c, line 135) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file masks.c, line 135)":
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_3[(shiftfield_f1_cpumask_bits a)] in
+  let a_3 = (shift_uint8 a_2 0) in
+  let a_4 = t_3[(shiftfield_f1_cpumask_bits a_1)] in
+  let a_5 = (shift_uint8 a_4 0) in
+  let a_6 = (havoc t_1 t_2 a_5 l_size) in
+  (((to_uint32 i)) <> l_size) ->
+  (0 <= i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rd t a_3 l_size)) ->
+  ((valid_rw t a_5 l_size)) ->
+  ((separated a_5 l_size a_3 l_size)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   ((a_6[(shift_uint8 a_4 i_1)] <> 0) <-> (a_6[(shift_uint8 a_2 i_1)] <> 0))) ->
+  ((valid_rw t ((shift_uint8 a_4 i)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file masks.c, line 135) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file masks.c, line 135)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_3[(shiftfield_f1_cpumask_bits a)] in
+  let a_3 = (shift_uint8 a_2 0) in
+  let a_4 = (shiftfield_f1_cpumask_bits a_1) in
+  let a_5 = t_3[a_4] in
+  let a_6 = (shift_uint8 a_5 0) in
+  let a_7 = (havoc t_1 t_2 a_6 l_size) in
+  (((to_uint32 i)) <> l_size) ->
+  (0 <= i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rd t a_3 l_size)) ->
+  ((valid_rw t a_6 l_size)) ->
+  ((separated a_6 l_size a_3 l_size)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   ((a_7[(shift_uint8 a_5 i_1)] <> 0) <-> (a_7[(shift_uint8 a_2 i_1)] <> 0))) ->
+  ((valid_rd t a_4 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file masks.c, line 135) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_assert_rte_mem_access_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file masks.c, line 135)":
+*)
+goal goal7:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shiftfield_f1_cpumask_bits a) in
+  let a_3 = t_3[a_2] in
+  let a_4 = (shift_uint8 a_3 0) in
+  let a_5 = t_3[(shiftfield_f1_cpumask_bits a_1)] in
+  let a_6 = (shift_uint8 a_5 0) in
+  let a_7 = (havoc t_1 t_2 a_6 l_size) in
+  (((to_uint32 i)) <> l_size) ->
+  (0 <= i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rd t a_4 l_size)) ->
+  ((valid_rw t a_6 l_size)) ->
+  ((separated a_6 l_size a_4 l_size)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   ((a_7[(shift_uint8 a_5 i_1)] <> 0) <-> (a_7[(shift_uint8 a_3 i_1)] <> 0))) ->
+  ((valid_rd t a_2 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file masks.c, line 135) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_assert_rte_mem_access_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file masks.c, line 135)":
+*)
+goal goal8:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_3[(shiftfield_f1_cpumask_bits a)] in
+  let a_3 = (shift_uint8 a_2 0) in
+  let a_4 = t_3[(shiftfield_f1_cpumask_bits a_1)] in
+  let a_5 = (shift_uint8 a_4 0) in
+  let a_6 = (havoc t_1 t_2 a_5 l_size) in
+  (((to_uint32 i)) <> l_size) ->
+  (0 <= i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rd t a_3 l_size)) ->
+  ((valid_rw t a_5 l_size)) ->
+  ((separated a_5 l_size a_3 l_size)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   ((a_6[(shift_uint8 a_4 i_1)] <> 0) <-> (a_6[(shift_uint8 a_2 i_1)] <> 0))) ->
+  ((valid_rd t ((shift_uint8 a_2 i)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,signed_overflow' (file masks.c, line 134) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_assert_rte_signed_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,signed_overflow' (file masks.c, line 134)":
+*)
+goal goal9:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shiftfield_f1_cpumask_bits a) in
+  let a_3 = (shiftfield_f1_cpumask_bits a_1) in
+  let a_4 = t_3[a_2] in
+  let a_5 = (shift_uint8 a_4 0) in
+  let a_6 = (shift_uint8 a_4 i) in
+  let a_7 = t_3[a_3] in
+  let a_8 = (shift_uint8 a_7 0) in
+  let a_9 = (havoc t_1 t_2 a_8 l_size) in
+  let a_10 = a_9[a_6] in
+  (((to_uint32 i)) <> l_size) ->
+  (0 <= i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t a_5 l_size)) ->
+  ((valid_rd t a_6 1)) ->
+  ((valid_rw t a_8 l_size)) ->
+  ((valid_rw t ((shift_uint8 a_7 i)) 1)) ->
+  ((separated a_8 l_size a_5 l_size)) ->
+  ((is_uint8 a_10)) ->
+  ((a_10 = 0) \/ (a_10 = 1)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   ((a_9[(shift_uint8 a_7 i_1)] <> 0) <-> (a_9[(shift_uint8 a_4 i_1)] <> 0))) ->
+  (i <= 2147483646)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file masks.c, line 131) (3/3)        --- *)
+(* ---------------------------------------------------------- *)
+theory VCcpumask_copy_loop_assign_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_thread_variables_properties.A_thread_variables_properties
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file masks.c, line 131) (3/3)":
+*)
+goal goal10:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shiftfield_f1_cpumask_bits a) in
+  let a_3 = (shiftfield_f1_cpumask_bits a_1) in
+  let a_4 = t_3[a_2] in
+  let a_5 = (shift_uint8 a_4 0) in
+  let a_6 = (shift_uint8 a_4 i) in
+  let a_7 = t_3[a_3] in
+  let a_8 = (shift_uint8 a_7 0) in
+  let a_9 = (shift_uint8 a_7 i) in
+  let a_10 = (havoc t_1 t_2 a_8 l_size) in
+  let a_11 = a_10[a_6] in
+  (((to_uint32 i)) <> l_size) ->
+  (0 <= i) ->
+  (i <= l_size) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 2147483646) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a 1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t a_5 l_size)) ->
+  ((valid_rd t a_6 1)) ->
+  ((valid_rw t a_8 l_size)) ->
+  ((valid_rw t a_9 1)) ->
+  (not (invalid t a_9 1)) ->
+  ((separated a_8 l_size a_5 l_size)) ->
+  ((is_uint8 a_11)) ->
+  ((a_11 = 0) \/ (a_11 = 1)) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   ((a_10[(shift_uint8 a_7 i_1)] <> 0) <->
+    (a_10[(shift_uint8 a_4 i_1)] <> 0))) ->
+  ((included a_9 1 a_8 l_size))
+
+end
+

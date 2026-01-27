@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name register_allocation_vcg)
+(theories Why3 register_allocation_vcg.register_allocation))

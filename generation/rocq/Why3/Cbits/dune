@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench)
+(name Why3.Cbits)
+(theories Why3 Why3.Cint Why3.Qed))

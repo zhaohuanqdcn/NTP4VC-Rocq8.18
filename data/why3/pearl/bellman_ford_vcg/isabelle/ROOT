@@ -1,0 +1,15 @@
+session bellman_ford = NTP4Verif +
+theories
+  "bellman_ford_BellmanFord_initialize_single_sourceqtvc"
+  "bellman_ford_Graph"
+  "bellman_ford_Graph_simple_pathqtvc"
+  "bellman_ford_Graph_sqtvc"
+  "bellman_ford_BellmanFord_bellman_fordqtvc"
+  "bellman_ford_BellmanFord_inv2_pathqtvc"
+  "bellman_ford_Graph_path_in_verticesqtvc"
+  "bellman_ford_BellmanFord_relaxqtvc"
+  "bellman_ford_Graph_long_path_reductionqtvc"
+  "bellman_ford_Graph_vertices_cardinal_posqtvc"
+  "bellman_ford_Graph_key_lemma_1qtvc"
+  "bellman_ford_BellmanFord_key_lemma_2qtvc"
+  "bellman_ford_Graph_long_path_decompositionqtvc"

@@ -1,0 +1,738 @@
+(* ---------------------------------------------------------- *)
+(* --- Complete behaviors 'diff', 'equal'                 --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_complete_diff_equal
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Complete behaviors 'diff', 'equal'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3
+    a_2 a_1 a : addr.
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((region (a_16.base))) <= 0) ->
+  (((region (a_17.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) i)) ->
+  ((forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+    (t_1[(shift_uint8 a_15 i_1)] = t_1[(shift_uint8 a_14 i_1)])) \/
+   (exists i_1 : int.
+    (t_1[(shift_uint8 a_13 i_1)] <> t_1[(shift_uint8 a_12 i_1)]) /\
+    (0 <= i_1) /\ (i_1 < i)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Disjoint behaviors 'diff', 'equal'                 --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_disjoint_diff_equal
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Disjoint behaviors 'diff', 'equal'":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3
+    a_2 a_1 a : addr.
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((region (a_16.base))) <= 0) ->
+  (((region (a_17.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) i)) ->
+  ((forall i_1 : int.
+    (t_1[(shift_uint8 a_13 i_1)] = t_1[(shift_uint8 a_12 i_1)]) \/
+    (i_1 < 0) \/ (i <= i_1)) \/
+   (exists i_1 : int.
+    (t_1[(shift_uint8 a_15 i_1)] <> t_1[(shift_uint8 a_14 i_1)]) /\
+    (0 <= i_1) /\ (i_1 < i)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memcmp.c, line 52) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memcmp.c, line 52)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_24 a_23 a_22 a_21 a_20 a_19 a_18 a_17 a_16 a_15 a_14 a_13 a_12
+    a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_22] in
+  let x_1 = t_1[a_21] in
+  let x_2 = a_21.offset in
+  let x_3 = a_16.offset in
+  let x_4 = i + x_2 - x_3 in
+  (x = x_1) ->
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((a_15.offset) + (a_22.offset)) = ((a_14.offset) + x_2)) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (x_3 <= x_2) ->
+  (((region (a_23.base))) <= 0) ->
+  (((region (a_24.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_17 a_21)) ->
+  ((addr_le a_19 a_22)) ->
+  ((is_uint8 x_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_4)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) x_4)) ->
+  ((addr_le a_21 ((shift_uint8 a_18 x_4)))) ->
+  ((addr_le a_22 ((shift_uint8 a_20 x_4)))) ->
+  (forall i_1 : int. (0 <= i_1) -> ((i_1 + x_3) < x_2) ->
+   (t_1[(shift_uint8 a_13 i_1)] = t_1[(shift_uint8 a_12 i_1)])) ->
+  ((x_3 + ((to_uint64 (i - 1)))) <= (i + x_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memcmp.c, line 52) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memcmp.c, line 52)":
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((region (a_12.base))) <= 0) ->
+  (((region (a_13.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memcmp.c, line 53) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memcmp.c, line 53)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_26 a_25 a_24 a_23 a_22 a_21 a_20 a_19 a_18 a_17 a_16 a_15 a_14
+    a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_24] in
+  let x_1 = t_1[a_23] in
+  let x_2 = a_23.offset in
+  let x_3 = a_16.offset in
+  let x_4 = i + x_2 - x_3 in
+  let a_27 = (shift_uint8 a_24 1) in
+  (x = x_1) ->
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((a_15.offset) + (a_24.offset)) = ((a_14.offset) + x_2)) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (x_3 <= x_2) ->
+  (((region (a_25.base))) <= 0) ->
+  (((region (a_26.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_17 a_23)) ->
+  ((addr_le a_19 a_24)) ->
+  ((is_uint8 x_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_4)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) x_4)) ->
+  ((addr_le a_23 ((shift_uint8 a_18 x_4)))) ->
+  ((addr_le a_24 ((shift_uint8 a_20 x_4)))) ->
+  (forall i_1 : int. (0 <= i_1) -> ((i_1 + x_3) < x_2) ->
+   (t_1[(shift_uint8 a_13 i_1)] = t_1[(shift_uint8 a_12 i_1)])) ->
+  (((addr_le a_21 a_27)) /\ ((addr_le a_27 ((shift_uint8 a_22 x_4)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memcmp.c, line 53) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_inv_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memcmp.c, line 53)":
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2
+    a_1 a : addr.
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((region (a_15.base))) <= 0) ->
+  (((region (a_16.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) i)) ->
+  (((addr_le a_12 a_14)) /\ ((addr_le a_14 ((shift_uint8 a_13 i)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memcmp.c, line 54) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memcmp.c, line 54)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_26 a_25 a_24 a_23 a_22 a_21 a_20 a_19 a_18 a_17 a_16 a_15 a_14
+    a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_24] in
+  let x_1 = t_1[a_23] in
+  let x_2 = a_23.offset in
+  let x_3 = a_16.offset in
+  let x_4 = i + x_2 - x_3 in
+  let a_27 = (shift_uint8 a_23 1) in
+  (x = x_1) ->
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((a_15.offset) + (a_24.offset)) = ((a_14.offset) + x_2)) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (x_3 <= x_2) ->
+  (((region (a_25.base))) <= 0) ->
+  (((region (a_26.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_17 a_23)) ->
+  ((addr_le a_19 a_24)) ->
+  ((is_uint8 x_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_4)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) x_4)) ->
+  ((addr_le a_23 ((shift_uint8 a_18 x_4)))) ->
+  ((addr_le a_24 ((shift_uint8 a_20 x_4)))) ->
+  (forall i_1 : int. (0 <= i_1) -> ((i_1 + x_3) < x_2) ->
+   (t_1[(shift_uint8 a_13 i_1)] = t_1[(shift_uint8 a_12 i_1)])) ->
+  (((addr_le a_21 a_27)) /\ ((addr_le a_27 ((shift_uint8 a_22 x_4)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memcmp.c, line 54) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_inv_3_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memcmp.c, line 54)":
+*)
+goal goal7:
+  forall i : int.
+  forall t : map int int.
+  forall a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2
+    a_1 a : addr.
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((region (a_15.base))) <= 0) ->
+  (((region (a_16.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) i)) ->
+  (((addr_le a_12 a_14)) /\ ((addr_le a_14 ((shift_uint8 a_13 i)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memcmp.c, line 55) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_inv_4_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memcmp.c, line 55)":
+*)
+goal goal8:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_27 a_26 a_25 a_24 a_23 a_22 a_21 a_20 a_19 a_18 a_17 a_16 a_15
+    a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_25] in
+  let x_1 = t_1[a_24] in
+  let x_2 = a_25.offset in
+  let x_3 = a_24.offset in
+  let x_4 = a_16.offset in
+  let x_5 = i + x_3 - x_4 in
+  (x = x_1) ->
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((a_15.offset) + x_2) = ((a_14.offset) + x_3)) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (x_4 <= x_3) ->
+  (((region (a_26.base))) <= 0) ->
+  (((region (a_27.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_17 a_24)) ->
+  ((addr_le a_19 a_25)) ->
+  ((is_uint8 x_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_5)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_5)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_5)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) x_5)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) x_5)) ->
+  ((addr_le a_24 ((shift_uint8 a_18 x_5)))) ->
+  ((addr_le a_25 ((shift_uint8 a_20 x_5)))) ->
+  (forall i_1 : int. (0 <= i_1) -> ((i_1 + x_4) < x_3) ->
+   (t_1[(shift_uint8 a_13 i_1)] = t_1[(shift_uint8 a_12 i_1)])) ->
+  ((((a_22.offset) + x_2) = ((a_21.offset) + x_3)) /\
+   ((1 + x_4 + ((to_uint64 (i - 1)))) = (i + (a_23.offset))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/memcmp.c, line 55) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_inv_4_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/memcmp.c, line 55)":
+*)
+goal goal9:
+  forall i : int.
+  forall t : map int int.
+  forall a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4
+    a_3 a_2 a_1 a : addr.
+  let x = a_15.offset in
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((region (a_17.base))) <= 0) ->
+  (((region (a_18.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) i)) ->
+  ((x = (a_14.offset)) /\
+   (((a_13.offset) + (a_16.offset)) = ((a_12.offset) + x)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/memcmp.c, line 58) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_inv_5_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/memcmp.c, line 58)":
+*)
+goal goal10:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_26 a_25 a_24 a_23 a_22 a_21 a_20 a_19 a_18 a_17 a_16 a_15 a_14
+    a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_24] in
+  let x_1 = t_1[a_23] in
+  let x_2 = a_23.offset in
+  let x_3 = a_16.offset in
+  let x_4 = i_1 + x_2 - x_3 in
+  (x = x_1) ->
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((a_15.offset) + (a_24.offset)) = ((a_14.offset) + x_2)) ->
+  (0 < i_1) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (x_3 <= x_2) ->
+  (((region (a_25.base))) <= 0) ->
+  (((region (a_26.base))) <= 0) ->
+  ((i + x_3 + ((to_uint64 (i_1 - 1)))) < (i_1 + x_2)) ->
+  ((linked t)) ->
+  ((is_uint64 i_1)) ->
+  ((addr_le a_17 a_23)) ->
+  ((addr_le a_19 a_24)) ->
+  ((is_uint8 x_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_4)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) x_4)) ->
+  ((addr_le a_23 ((shift_uint8 a_18 x_4)))) ->
+  ((addr_le a_24 ((shift_uint8 a_20 x_4)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_3) < x_2) ->
+   (t_1[(shift_uint8 a_13 i_2)] = t_1[(shift_uint8 a_12 i_2)])) ->
+  (t_1[(shift_uint8 a_22 i)] = t_1[(shift_uint8 a_21 i)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file src/memcmp.c, line 66) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file src/memcmp.c, line 66)":
+*)
+goal goal11:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_24 a_23 a_22 a_21 a_20 a_19 a_18 a_17 a_16 a_15 a_14 a_13 a_12
+    a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_22] in
+  let x_1 = t_1[a_21] in
+  let x_2 = a_21.offset in
+  let x_3 = a_16.offset in
+  let x_4 = i + x_2 - x_3 in
+  (x = x_1) ->
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((a_15.offset) + (a_22.offset)) = ((a_14.offset) + x_2)) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (x_3 <= x_2) ->
+  (((region (a_23.base))) <= 0) ->
+  (((region (a_24.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_17 a_21)) ->
+  ((addr_le a_19 a_22)) ->
+  ((is_uint8 x_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint64 x_4)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) x_4)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) x_4)) ->
+  ((addr_le a_21 ((shift_uint8 a_18 x_4)))) ->
+  ((addr_le a_22 ((shift_uint8 a_20 x_4)))) ->
+  (forall i_1 : int. (0 <= i_1) -> ((i_1 + x_3) < x_2) ->
+   (t_1[(shift_uint8 a_13 i_1)] = t_1[(shift_uint8 a_12 i_1)])) ->
+  (((to_uint64 (i - 1))) < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'diff' (file src/memcmp.c, line 40) in 'memcmp' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_diff_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'diff' (file src/memcmp.c, line 40) in 'memcmp'":
+*)
+goal goal12:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_32 a_31 a_30 a_29 a_28 a_27 a_26 a_25 a_24 a_23 a_22 a_21 a_20
+    a_19 a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4
+    a_3 a_2 a_1 a : addr.
+  let x = a_29.offset in
+  let x_1 = a_18.offset in
+  let x_2 = i_3 + x in
+  let x_3 = t_1[a_29] in
+  let x_4 = t_1[a_30] in
+  let x_5 = i_3 + x - x_1 in
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (t_1[(shift_uint8 a_13 i_2)] <> t_1[(shift_uint8 a_12 i_2)]) ->
+  (((a_17.offset) + (a_30.offset)) = ((a_16.offset) + x)) ->
+  (0 <= i_2) ->
+  (0 <= i_3) ->
+  (x_1 <= x) ->
+  (((region (a_31.base))) <= 0) ->
+  (((region (a_32.base))) <= 0) ->
+  ((i_2 + x_1) < x_2) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint64 i_3)) ->
+  ((addr_le a_19 a_29)) ->
+  ((addr_le a_21 a_30)) ->
+  ((is_uint8 x_3)) ->
+  ((is_uint8 x_4)) ->
+  ((is_uint64 x_5)) ->
+  ((valid_rd t ((shift_uint8 a 0)) x_5)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) x_5)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) x_5)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) x_5)) ->
+  ((addr_le a_29 ((shift_uint8 a_20 x_5)))) ->
+  ((addr_le a_30 ((shift_uint8 a_22 x_5)))) ->
+  (if (0 < i_3)
+   then ((x_4 <> x_3) /\ (x_4 = (i + x_3)) /\ (x_4 = (i_1 + x_3)))
+   else ((i = 0) /\ (i_1 = 0))) ->
+  (forall i_4 : int. (0 <= i_4) -> ((i_4 + x_1) < x) ->
+   (t_1[(shift_uint8 a_15 i_4)] = t_1[(shift_uint8 a_14 i_4)])) ->
+  (exists i_4 : int.
+   (t_1[(shift_uint8 a_26 i_4)] <> t_1[(shift_uint8 a_25 i_4)]) /\
+   (t_1[(shift_uint8 a_28 i_4)] = (i_1 + t_1[(shift_uint8 a_27 i_4)])) /\
+   (0 <= i_4) /\ ((i_4 + x_1) < x_2) /\
+   (forall i_5 : int. (0 <= i_5) -> (i_5 < i_4) ->
+    (t_1[(shift_uint8 a_24 i_5)] = t_1[(shift_uint8 a_23 i_5)])))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'equal' (file src/memcmp.c, line 37) in 'memcmp' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemcmp_equal_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'equal' (file src/memcmp.c, line 37) in 'memcmp'":
+*)
+goal goal13:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_26 a_25 a_24 a_23 a_22 a_21 a_20 a_19 a_18 a_17 a_16 a_15 a_14
+    a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_24] in
+  let x_1 = t_1[a_23] in
+  let x_2 = a_23.offset in
+  let x_3 = a_18.offset in
+  (x <> x_1) ->
+  (not ((a_5.base) <> (a_4.base)) <-> ((a_3.base) = (a_2.base))) ->
+  (not ((a_11.base) <> (a_10.base)) <-> ((a_9.base) = (a_8.base))) ->
+  (((a_17.offset) + (a_24.offset)) = ((a_16.offset) + x_2)) ->
+  (x_3 <= x_2) ->
+  (((region (a_25.base))) <= 0) ->
+  (((region (a_26.base))) <= 0) ->
+  (x_2 < (i + x_3)) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_19 a_23)) ->
+  ((addr_le a_21 a_24)) ->
+  ((is_uint8 x_1)) ->
+  ((is_uint8 x)) ->
+  ((addr_le a_23 ((shift_uint8 a_20 i)))) ->
+  ((addr_le a_24 ((shift_uint8 a_22 i)))) ->
+  ((valid_rd t ((shift_uint8 a 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_1 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_6 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a_7 0)) i)) ->
+  ((is_sint32 (x - x_1))) ->
+  ((is_uint64 (i + x_3 - x_2))) ->
+  (forall i_1 : int. (0 <= i_1) -> (i_1 < i) ->
+   (t_1[(shift_uint8 a_13 i_1)] = t_1[(shift_uint8 a_12 i_1)])) ->
+  (forall i_1 : int. (0 <= i_1) -> ((i_1 + x_3) < x_2) ->
+   (t_1[(shift_uint8 a_15 i_1)] = t_1[(shift_uint8 a_14 i_1)])) ->
+  false
+
+end
+

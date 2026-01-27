@@ -1,0 +1,13 @@
+session f_puzzle = NTP4Verif +
+theories
+  "f_puzzle_Solution_l5qtvc"
+  "f_puzzle_Puzzle"
+  "f_puzzle_Step1"
+  "f_puzzle_Solution_l4qtvc"
+  "f_puzzle_Solution_l6qtvc"
+  "f_puzzle_Solution_induction_step"
+  "f_puzzle_Solution_G"
+  "f_puzzle_Solution_base"
+  "f_puzzle_Step1_base"
+  "f_puzzle_Solution_l3qtvc"
+  "f_puzzle_Step1_induction_step"

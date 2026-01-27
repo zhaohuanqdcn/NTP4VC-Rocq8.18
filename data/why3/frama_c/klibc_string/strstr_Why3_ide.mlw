@@ -1,0 +1,194 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 73) in 'strlen'' in 'strstr' at call 'strlen' (file strstr.c, line 10)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrstr_call_strlen_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 73) in 'strlen'' in 'strstr' at call 'strlen' (file strstr.c, line 10)
+":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  (exists i : int. (p_length_of_str_is t t_1 a i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 73) in 'strlen'' in 'strstr' at call 'strlen' (file strstr.c, line 9)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrstr_call_strlen_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Length.A_Length
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 73) in 'strlen'' in 'strstr' at call 'strlen' (file strstr.c, line 9)
+":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 ((l_length t_1 a)))) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  (exists i_1 : int. (p_length_of_str_is t t_1 a_1 i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file memmem.c, line 17) in 'memmem'' in 'strstr' at call 'memmem' (file strstr.c, line 9)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrstr_call_memmem_pre_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Length.A_Length
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file memmem.c, line 17) in 'memmem'' in 'strstr' at call 'memmem' (file strstr.c, line 9)
+":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = (l_length t_1 a_1) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 ((l_length t_1 a)))) ->
+  ((is_sint32 x)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) ((to_uint32 x))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file memmem.c, line 18) in 'memmem'' in 'strstr' at call 'memmem' (file strstr.c, line 9)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrstr_call_memmem_pre_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Length.A_Length
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file memmem.c, line 18) in 'memmem'' in 'strstr' at call 'memmem' (file strstr.c, line 9)
+":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = (l_length t_1 a) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 ((l_length t_1 a_1)))) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((valid_rw t ((shift_sint8 a 0)) ((to_uint32 x))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file memmem.c, line 19) in 'memmem'' in 'strstr' at call 'memmem' (file strstr.c, line 9)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrstr_call_memmem_pre_5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Length.A_Length
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file memmem.c, line 19) in 'memmem'' in 'strstr' at call 'memmem' (file strstr.c, line 9)
+":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = (l_length t_1 a) in
+  let x_1 = (l_length t_1 a_1) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((separated ((shift_sint8 a_1 0)) ((to_uint32 x_1)) ((shift_sint8 a 0))
+     ((to_uint32 x))))
+
+end
+

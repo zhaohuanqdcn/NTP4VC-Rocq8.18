@@ -1,0 +1,7 @@
+session add_list = NTP4Verif +
+theories
+  "add_list_SumList"
+  "add_list_AddListImp_mainqtvc"
+  "add_list_AddListRec_sumqtvc"
+  "add_list_AddListImp_sumqtvc"
+  "add_list_AddListRec_mainqtvc"

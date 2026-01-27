@@ -1,0 +1,35 @@
+theory vacid_0_build_maze_UnionFind_pure
+  imports "NTP4Verif.NTP4Verif"
+begin
+typedecl  uf_pure
+consts repr :: "uf_pure \<Rightarrow> int \<Rightarrow> int \<Rightarrow> bool"
+consts size :: "uf_pure \<Rightarrow> int"
+consts num :: "uf_pure \<Rightarrow> int"
+axiomatization where Repr_function_1:   "\<exists>(y :: int). ((0 :: int) \<le> y \<and> y < size u) \<and> repr u x y"
+ if "(0 :: int) \<le> x"
+ and "x < size u"
+  for x :: "int"
+  and u :: "uf_pure"
+axiomatization where Repr_function_2:   "y = z"
+ if "(0 :: int) \<le> x"
+ and "x < size u"
+ and "repr u x y"
+ and "repr u x z"
+  for x :: "int"
+  and u :: "uf_pure"
+  and y :: "int"
+  and z :: "int"
+definition same :: "uf_pure \<Rightarrow> int \<Rightarrow> int \<Rightarrow> _"
+  where "same u x y \<longleftrightarrow> (\<forall>(r :: int). repr u x r \<longleftrightarrow> repr u y r)" for u x y
+definition same_reprs :: "uf_pure \<Rightarrow> uf_pure \<Rightarrow> _"
+  where "same_reprs u1 u2 \<longleftrightarrow> (\<forall>(x :: int) (r :: int). repr u1 x r \<longleftrightarrow> repr u2 x r)" for u1 u2
+axiomatization where OneClass:   "same u x y"
+ if "num u = (1 :: int)"
+ and "(0 :: int) \<le> x"
+ and "x < size u"
+ and "(0 :: int) \<le> y"
+ and "y < size u"
+  for u :: "uf_pure"
+  and x :: "int"
+  and y :: "int"
+end

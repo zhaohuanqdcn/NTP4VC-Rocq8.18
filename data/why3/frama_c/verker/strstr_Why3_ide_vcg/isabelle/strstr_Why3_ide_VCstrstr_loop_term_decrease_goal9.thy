@@ -1,0 +1,31 @@
+theory strstr_Why3_ide_VCstrstr_loop_term_decrease_goal9
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "../../lib/isabelle/Axiomatic3_Axiomatic3" "Why3STD.Memory_Memory" "../../lib/isabelle/A_Strlen_A_Strlen" "../../lib/isabelle/Compound_Compound" "Why3STD.Cint_Cint" "../../lib/isabelle/A_StrStr_A_StrStr"
+begin
+theorem goal9:
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes a_16 :: "addr"
+  fixes a_18 :: "addr"
+  fixes a_17 :: "addr"
+  fixes i :: "int"
+  fixes a_13 :: "addr"
+  fixes a_12 :: "addr"
+  fixes a_11 :: "addr"
+  fixes a_10 :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes a_1 :: "addr"
+  fixes i_1 :: "int"
+  fixes a :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes a_14 :: "addr"
+  fixes a_15 :: "addr"
+  fixes a_3 :: "addr"
+  fixes a_2 :: "addr"
+  fixes a_7 :: "addr"
+  fixes a_6 :: "addr"
+  fixes a_9 :: "addr"
+  fixes a_8 :: "addr"
+  fixes a_5 :: "addr"
+  fixes a_4 :: "addr"
+  shows "let x :: int = l_strlen t_2 a_16; x_1 :: int = l_strlen t_2 a_18; a_19 :: addr = shift a_18 x_1; x_2 :: int = offset a_18; x_3 :: int = offset a_17; x_4 :: int = x_2 + x_1 in \<not>i = (0 :: int) \<longrightarrow> (base a_13 = base a_12 \<longleftrightarrow> base a_11 = base a_10) \<longrightarrow> \<not>x = (0 :: int) \<longrightarrow> \<not>t_1 (shift a_1 i_1) = t_1 (shift a i_1) \<longrightarrow> t_2 (shift a_16 x) = (0 :: int) \<longrightarrow> t_2 a_19 = (0 :: int) \<longrightarrow> (0 :: int) \<le> i_1 \<longrightarrow> x_2 \<le> x_3 \<longrightarrow> (0 :: int) < x \<longrightarrow> i_1 < x \<longrightarrow> region (base a_16) \<le> (0 :: int) \<longrightarrow> region (base a_18) \<le> (0 :: int) \<longrightarrow> x_3 + x \<le> x_4 \<longrightarrow> linked t \<longrightarrow> sconst t_2 \<longrightarrow> is_sint32 i \<longrightarrow> addr_le a_18 a_17 \<longrightarrow> \<not>p_strmatch t_2 a_17 a_16 \<longrightarrow> p_valid_str t t_2 a_16 \<longrightarrow> p_valid_str t t_2 a_17 \<longrightarrow> p_valid_str t t_2 a_18 \<longrightarrow> is_uint64 x \<longrightarrow> is_uint64 x_1 \<longrightarrow> valid_rd t (shift a_14 (0 :: int)) x \<longrightarrow> valid_rd t (shift a_15 (0 :: int)) x \<longrightarrow> addr_le a_17 a_19 \<longrightarrow> is_uint64 (x_2 + x_1 - x_3) \<longrightarrow> ((\<exists>(i_2 :: int). \<not>t_1 (shift a_3 i_2) = t_1 (shift a_2 i_2) \<and> (0 :: int) \<le> i_2 \<and> i_2 < x) \<longrightarrow> (\<exists>(i_2 :: int). \<not>t_1 (shift a_7 i_2) = t_1 (shift a_6 i_2) \<and> t_1 (shift a_9 i_2) = i + t_1 (shift a_8 i_2) \<and> (0 :: int) \<le> i_2 \<and> i_2 < x \<and> (\<forall>(i_3 :: int). (0 :: int) \<le> i_3 \<longrightarrow> i_3 < i_2 \<longrightarrow> t_1 (shift a_5 i_3) = t_1 (shift a_4 i_3)))) \<longrightarrow> (\<forall>(i_2 :: int). (0 :: int) \<le> i_2 \<longrightarrow> i_2 < x \<longrightarrow> \<not>t_2 (shift a_16 i_2) = (0 :: int)) \<longrightarrow> (\<forall>(i_2 :: int). (0 :: int) \<le> i_2 \<longrightarrow> i_2 < x_1 \<longrightarrow> \<not>t_2 (shift a_18 i_2) = (0 :: int)) \<longrightarrow> (\<forall>(a_20 :: addr). addr_lt a_20 a_17 \<longrightarrow> addr_le a_18 a_20 \<longrightarrow> \<not>p_strmatch t_2 a_20 a_16) \<longrightarrow> x_3 + to_uint64 (x_2 + x_1 - (1 :: int) - x_3) < x_4"
+  sorry
+end

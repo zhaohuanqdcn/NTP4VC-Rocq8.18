@@ -1,0 +1,13 @@
+session vacid_0_sparse_array = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "vacid_0_sparse_array_SparseArray"
+  "vacid_0_sparse_array_Harness_benchqtvc"
+  "vacid_0_sparse_array_Harness_harnessqtvc"
+  "vacid_0_sparse_array_SparseArray_setqtvc"
+  "vacid_0_sparse_array_SparseArray_sparse_arrayqtvc"
+  "vacid_0_sparse_array_SparseArray_getqtvc"
+  "vacid_0_sparse_array_SparseArray_createqtvc"
+  "vacid_0_sparse_array_SparseArray_permutationqtvc"
+  "vacid_0_sparse_array_SparseArray_testqtvc"

@@ -1,0 +1,15 @@
+session gcd = NTP4Verif +
+theories
+  "gcd_EuclideanAlgorithm_euclidqtvc"
+  "gcd_BinaryGcd_odd_odd_div2qtvc"
+  "gcd_BinaryGcd_gcd_even_oddqtvc"
+  "gcd_EuclideanAlgorithmIterative_euclidqtvc"
+  "gcd_BinaryGcd_gcd_even_odd2qtvc"
+  "gcd_BinaryGcd_odd1qtvc"
+  "gcd_BinaryGcd_gcd_even_evenqtvc"
+  "gcd_BinaryGcd_gcd_odd_oddqtvc"
+  "gcd_BinaryGcd_even1qtvc"
+  "gcd_BinaryGcd_gcd_odd_odd2qtvc"
+  "gcd_BinaryGcd_binary_gcdqtvc"
+  "gcd_EuclideanAlgorithm63_euclidqtvc"
+  "gcd_BinaryGcd_div_nonnegqtvc"

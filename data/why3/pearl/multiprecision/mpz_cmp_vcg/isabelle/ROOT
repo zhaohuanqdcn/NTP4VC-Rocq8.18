@@ -1,0 +1,6 @@
+session mpz_cmp = NTP4Verif +
+theories
+  "mpz_cmp_Zcmp_wmpz_cmp_siqtvc"
+  "mpz_cmp_Zcmp_wmpz_cmp_uiqtvc"
+  "mpz_cmp_Zcmp_wmpz_cmpqtvc"
+  "mpz_cmp_Zcmp_wmpz_sgnqtvc"

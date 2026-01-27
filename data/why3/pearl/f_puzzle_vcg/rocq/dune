@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name f_puzzle_vcg)
+(theories Why3 f_puzzle_vcg.f_puzzle))

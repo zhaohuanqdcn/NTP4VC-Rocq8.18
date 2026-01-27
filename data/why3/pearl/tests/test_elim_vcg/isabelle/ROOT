@@ -1,0 +1,7 @@
+session test_elim = NTP4Verif +
+theories
+  "test_elim_Ref_fqtvc"
+  "test_elim_MatchPair_g"
+  "test_elim_UnusedAbs_fqtvc"
+  "test_elim_DefMatchPair_g"
+  "test_elim_UnusedBV_fqtvc"

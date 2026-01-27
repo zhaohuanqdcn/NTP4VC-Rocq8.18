@@ -1,0 +1,11 @@
+session find_Why3_ide = NTP4Verif +
+theories
+  "find_Why3_ide_VCfind_loop_inv_preserved_goal0"
+  "find_Why3_ide_VCfind_loop_inv_established_goal1"
+  "find_Why3_ide_VCfind_some_post_3_goal8"
+  "find_Why3_ide_VCfind_loop_inv_2_preserved_goal2"
+  "find_Why3_ide_VCfind_some_post_goal6"
+  "find_Why3_ide_VCfind_none_post_goal5"
+  "find_Why3_ide_VCfind_some_post_2_goal7"
+  "find_Why3_ide_VCfind_assert_rte_unsigned_overflow_goal4"
+  "find_Why3_ide_VCfind_assert_rte_mem_access_goal3"

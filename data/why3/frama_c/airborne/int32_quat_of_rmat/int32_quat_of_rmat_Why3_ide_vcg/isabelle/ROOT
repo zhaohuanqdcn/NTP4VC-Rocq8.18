@@ -1,0 +1,6 @@
+session int32_quat_of_rmat_Why3_ide = NTP4Verif +
+theories
+  "int32_quat_of_rmat_Why3_ide_VCint32_quat_of_rmat_call_int32_sqrt_pre_2_goal1"
+  "int32_quat_of_rmat_Why3_ide_VCint32_quat_of_rmat_call_int32_sqrt_pre_3_goal2"
+  "int32_quat_of_rmat_Why3_ide_VCint32_quat_of_rmat_call_int32_sqrt_pre_goal0"
+  "int32_quat_of_rmat_Why3_ide_VCint32_quat_of_rmat_call_int32_sqrt_pre_4_goal3"

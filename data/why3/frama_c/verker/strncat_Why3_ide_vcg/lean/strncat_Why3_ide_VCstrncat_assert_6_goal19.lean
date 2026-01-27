@@ -1,0 +1,14 @@
+import Why3.Base
+import Why3.Qed.Qed
+import frama_c.verker.lib.lean.Axiomatic3.Axiomatic3
+import Why3.Memory.Memory
+import frama_c.verker.lib.lean.Compound.Compound
+import frama_c.verker.lib.lean.A_Strlen.A_Strlen
+import Why3.Cint.Cint
+import frama_c.verker.lib.lean.A_Strnlen.A_Strnlen
+open Classical
+open Lean4Why3
+namespace strncat_Why3_ide_VCstrncat_assert_6_goal19
+theorem goal19 (t_2 : Memory.addr -> ℤ) (a : Memory.addr) (t_3 : Memory.addr -> ℤ) (a_1 : Memory.addr) (i : ℤ) (t_1 : Memory.addr -> ℤ) (t : ℤ -> ℤ) (i_1 : ℤ) : let x : ℤ := A_Strlen.l_strlen t_2 a; let a_2 : Memory.addr := Memory.shift a x; let x_1 : ℤ := t_3 (Memory.shift a_1 (0 : ℤ)); let x_2 : ℤ := A_Strnlen.l_strnlen t_2 a_1 i; let x_3 : ℤ := t_3 a_2; let a_3 : Memory.addr := Memory.shift a_1 x_2; let x_4 : ℤ := t_2 a_3; let a_4 : Memory.addr := Memory.shift a (0 : ℤ); let a_5 : Memory.addr := Memory.shift a ((1 : ℤ) + x); let x_5 : ℤ := t_3 a_5; let x_6 : ℤ := x + x_2; let a_6 : Memory.addr -> ℤ := Memory.havoc t_1 t_2 a_2 ((1 : ℤ) + x_2); let a_7 : ℤ := a_6 a_1; let a_8 : Memory.addr -> ℤ := Function.update a_6 a_2 (0 : ℤ); let a_9 : Memory.addr -> ℤ := Function.update (Function.update a_6 a_2 a_7) a_5 (0 : ℤ); let x_7 : ℤ := Cint.to_uint64 x_6; ¬i = (0 : ℤ) → t_2 a_2 = (0 : ℤ) → (0 : ℤ) ≤ i → Memory.region (Memory.addr.base a) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_1) ≤ (0 : ℤ) → i + x ≤ (18446744073709551615 : ℤ) → Memory.linked t → Memory.sconst t_2 → Cint.is_uint64 i → Cint.is_uint64 i_1 → Memory.addr_le a_1 a_1 → A_Strlen.p_valid_str t t_2 a → Cint.is_uint64 x → A_Strnlen.p_valid_strn t t_2 a_1 i → Cint.is_sint8 x_1 → Cint.is_uint64 x_2 → Memory.addr_le a a_2 → Memory.addr_le a_2 a_2 → Cint.is_sint8 x_3 → Memory.addr_le a_1 a_3 → Cint.is_sint8 x_4 → A_Strlen.p_valid_str t t_2 a_2 → Memory.valid_rw t a_4 ((1 : ℤ) + i + x) → Cint.is_sint8 x_5 → Memory.addr_le a_2 (Memory.shift a x_6) → Cint.is_sint8 a_7 → A_Strlen.p_valid_str t a_6 a_1 → (if a_7 = (0 : ℤ) then i_1 = i ∧ a_8 = t_3 ∧ (∀(i_2 : ℤ), let a_10 : Memory.addr := Memory.shift a i_2; (0 : ℤ) ≤ i_2 → i_2 < x → a_8 a_10 = t_2 a_10) else i_1 = (0 : ℤ) ∧ Cint.to_uint64 (i - (1 : ℤ)) = (0 : ℤ) ∧ a_9 = t_3 ∧ (∀(i_2 : ℤ), let a_10 : Memory.addr := Memory.shift a i_2; (0 : ℤ) ≤ i_2 → i_2 < x → a_9 a_10 = t_2 a_10)) → ((∀(i_2 : ℤ), (0 : ℤ) ≤ i_2 → i_2 ≤ i → ¬t_2 (Memory.shift a_1 i_2) = (0 : ℤ)) → x_2 = i) → ((∃(i_2 : ℤ), t_2 (Memory.shift a_1 i_2) = (0 : ℤ) ∧ (0 : ℤ) ≤ i_2 ∧ i_2 ≤ i) → x_4 = (0 : ℤ)) → ((0 : ℤ) < i_1 → x_2 = (0 : ℤ) ∧ x_1 = (0 : ℤ) ∧ x_3 = (0 : ℤ)) → ((∃(i_2 : ℤ), t_2 (Memory.shift a_1 i_2) = (0 : ℤ) ∧ (0 : ℤ) ≤ i_2 ∧ i_2 ≤ i) → (∀(i_2 : ℤ), (0 : ℤ) ≤ i_2 → i_2 < x_2 → ¬t_2 (Memory.shift a_1 i_2) = (0 : ℤ))) → (i_1 = (0 : ℤ) → x_2 = i ∧ x_5 = (0 : ℤ)) → (∀(i_2 : ℤ), (0 : ℤ) ≤ i_2 → i_2 < x → ¬t_2 (Memory.shift a i_2) = (0 : ℤ)) → t_3 (Memory.shift a x_7) = (0 : ℤ) ∧ Memory.valid_rw t a_4 ((1 : ℤ) + x_7)
+  := sorry
+end strncat_Why3_ide_VCstrncat_assert_6_goal19

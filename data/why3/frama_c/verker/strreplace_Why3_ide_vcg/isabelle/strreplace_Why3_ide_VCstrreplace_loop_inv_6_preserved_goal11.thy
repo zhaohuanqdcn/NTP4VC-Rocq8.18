@@ -1,0 +1,16 @@
+theory strreplace_Why3_ide_VCstrreplace_loop_inv_6_preserved_goal11
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "../../lib/isabelle/Axiomatic3_Axiomatic3" "Why3STD.Memory_Memory" "../../lib/isabelle/A_Strlen_A_Strlen" "../../lib/isabelle/Compound_Compound" "Why3STD.Cint_Cint"
+begin
+theorem goal11:
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes a_2 :: "addr"
+  fixes a_1 :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes a :: "addr"
+  fixes i :: "int"
+  fixes t :: "int \<Rightarrow> int"
+  fixes i_1 :: "int"
+  fixes t_3 :: "addr \<Rightarrow> int"
+  shows "let x :: int = t_2 a_2; x_1 :: int = l_strlen t_2 a_1; a_3 :: addr = shift a_1 x_1; a_4 :: addr \<Rightarrow> int = havoc t_1 t_2 (shift a_1 (0 :: int)) x_1; a_5 :: int = a_4 a in \<not>x = i \<longrightarrow> t_2 a_3 = (0 :: int) \<longrightarrow> \<not>a_5 = (0 :: int) \<longrightarrow> region (base a_1) \<le> (0 :: int) \<longrightarrow> linked t \<longrightarrow> sconst t_2 \<longrightarrow> is_sint8 i \<longrightarrow> is_sint8 i_1 \<longrightarrow> addr_le a_1 a \<longrightarrow> addr_le a_1 a_2 \<longrightarrow> p_valid_str t t_2 a_1 \<longrightarrow> is_uint64 x_1 \<longrightarrow> addr_lt a_2 (shift a (1 :: int)) \<longrightarrow> addr_le a a_3 \<longrightarrow> is_sint8 a_5 \<longrightarrow> p_valid_str t a_4 a \<longrightarrow> p_valid_str t a_4 a_1 \<longrightarrow> (if a_5 = i then a_4(a := i_1) = t_3 else a_4 = t_3) \<longrightarrow> (\<forall>(i_2 :: int). (0 :: int) \<le> i_2 \<longrightarrow> i_2 < x_1 \<longrightarrow> \<not>t_2 (shift a_1 i_2) = (0 :: int)) \<longrightarrow> (\<forall>(a_6 :: addr). addr_le a a_6 \<longrightarrow> addr_lt a_6 a_3 \<longrightarrow> a_4 a_6 = t_2 a_6) \<longrightarrow> (\<forall>(a_6 :: addr). t_2 a_6 = i \<longrightarrow> addr_lt a_6 a \<longrightarrow> addr_le a_1 a_6 \<longrightarrow> a_4 a_6 = i_1) \<longrightarrow> (\<forall>(a_6 :: addr). let x_2 :: int = t_2 a_6 in \<not>x_2 = i \<longrightarrow> addr_lt a_6 a \<longrightarrow> addr_le a_1 a_6 \<longrightarrow> a_4 a_6 = x_2) \<longrightarrow> t_3 a_2 = x"
+  sorry
+end

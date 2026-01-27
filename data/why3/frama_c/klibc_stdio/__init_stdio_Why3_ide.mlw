@@ -1,0 +1,1016 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file fdopen.c, line 101) in '__init_stdio' (1/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_post_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition (file fdopen.c, line 101) in '__init_stdio' (1/3)":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4
+    a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_10)] in
+  let x_5 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_11)] in
+  let a_19 = (shiftfield_f12__io_file__io_fileno a_16) in
+  let x_6 = t_1[a_19] in
+  let a_20 = (shiftfield_f12__io_file__io_fileno a_17) in
+  let x_7 = t_1[a_20] in
+  let a_21 = (shiftfield_f12__io_file__io_fileno a_18) in
+  let x_8 = t_1[a_21] in
+  let m = t_1[((shiftfield_f16__io_file_pvt_bufmode a_12)) <- 0] in
+  (((region (a_13.base))) <= 0) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region (a_15.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_13 3)) ->
+  ((valid_rw t a_14 3)) ->
+  ((valid_rw t a_15 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  ((is_sint32 m[a_19])) ->
+  ((is_sint32 m[a_20])) ->
+  ((is_sint32 m[a_21])) ->
+  ((null = a_17) -> (i = 12)) ->
+  ((null = a_16) -> (i_1 = 12)) ->
+  ((null = a_18) -> (i_2 = 12)) ->
+  ((null <> a_17) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_17)) ->
+  ((null <> a_18) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_18)) ->
+  ((null <> a_16) -> (((shiftfield_f16__io_file_pvt_pub a_9)) = a_16)) ->
+  ((null <> a_16) -> (x_6 = 2)) ->
+  ((null <> a_17) -> (x_7 = 0)) ->
+  ((null <> a_18) -> (x_8 = 1)) ->
+  ((null <> a_17) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_18) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_16) -> ((p_valid_io_file_pvt t t_3 t_1 a_8))) ->
+  ((null <> a_17) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_18) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  ((null <> a_16) -> ((x_4 = 1) \/ (x_5 = 2))) ->
+  ((p_valid_file t m a_16))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file fdopen.c, line 101) in '__init_stdio' (2/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_post_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition (file fdopen.c, line 101) in '__init_stdio' (2/3)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4
+    a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_10)] in
+  let x_5 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_11)] in
+  let a_19 = (shiftfield_f12__io_file__io_fileno a_15) in
+  let x_6 = t_1[a_19] in
+  let a_20 = (shiftfield_f12__io_file__io_fileno a_17) in
+  let x_7 = t_1[a_20] in
+  let a_21 = (shiftfield_f12__io_file__io_fileno a_18) in
+  let x_8 = t_1[a_21] in
+  let m = t_1[((shiftfield_f16__io_file_pvt_bufmode a_12)) <- 0] in
+  (((region (a_13.base))) <= 0) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region (a_16.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_13 3)) ->
+  ((valid_rw t a_14 3)) ->
+  ((valid_rw t a_16 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  ((is_sint32 m[a_19])) ->
+  ((is_sint32 m[a_20])) ->
+  ((is_sint32 m[a_21])) ->
+  ((null = a_15) -> (i = 12)) ->
+  ((null = a_18) -> (i_1 = 12)) ->
+  ((null = a_17) -> (i_2 = 12)) ->
+  ((null <> a_15) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_15)) ->
+  ((null <> a_17) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_17)) ->
+  ((null <> a_18) -> (((shiftfield_f16__io_file_pvt_pub a_9)) = a_18)) ->
+  ((null <> a_15) -> (x_6 = 0)) ->
+  ((null <> a_17) -> (x_7 = 1)) ->
+  ((null <> a_18) -> (x_8 = 2)) ->
+  ((null <> a_15) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_17) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_18) -> ((p_valid_io_file_pvt t t_3 t_1 a_8))) ->
+  ((null <> a_15) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_17) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  ((null <> a_18) -> ((x_4 = 1) \/ (x_5 = 2))) ->
+  ((p_valid_file t m a_15))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file fdopen.c, line 101) in '__init_stdio' (3/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_post_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition (file fdopen.c, line 101) in '__init_stdio' (3/3)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4
+    a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_10)] in
+  let x_5 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_11)] in
+  let a_19 = (shiftfield_f12__io_file__io_fileno a_14) in
+  let x_6 = t_1[a_19] in
+  let a_20 = (shiftfield_f12__io_file__io_fileno a_17) in
+  let x_7 = t_1[a_20] in
+  let a_21 = (shiftfield_f12__io_file__io_fileno a_18) in
+  let x_8 = t_1[a_21] in
+  let m = t_1[((shiftfield_f16__io_file_pvt_bufmode a_12)) <- 0] in
+  (((region (a_13.base))) <= 0) ->
+  (((region (a_15.base))) <= 0) ->
+  (((region (a_16.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_13 3)) ->
+  ((valid_rw t a_15 3)) ->
+  ((valid_rw t a_16 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  ((is_sint32 m[a_19])) ->
+  ((is_sint32 m[a_20])) ->
+  ((is_sint32 m[a_21])) ->
+  ((null = a_17) -> (i = 12)) ->
+  ((null = a_18) -> (i_1 = 12)) ->
+  ((null = a_14) -> (i_2 = 12)) ->
+  ((null <> a_17) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_17)) ->
+  ((null <> a_14) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_14)) ->
+  ((null <> a_18) -> (((shiftfield_f16__io_file_pvt_pub a_9)) = a_18)) ->
+  ((null <> a_14) -> (x_6 = 1)) ->
+  ((null <> a_17) -> (x_7 = 0)) ->
+  ((null <> a_18) -> (x_8 = 2)) ->
+  ((null <> a_17) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_14) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_18) -> ((p_valid_io_file_pvt t t_3 t_1 a_8))) ->
+  ((null <> a_17) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_14) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  ((null <> a_18) -> ((x_4 = 1) \/ (x_5 = 2))) ->
+  ((p_valid_file t m a_14))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file fdopen.c, line 102) in '__init_stdio' --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition (file fdopen.c, line 102) in '__init_stdio'":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4
+    a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_10)] in
+  let x_5 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_11)] in
+  let a_19 = (shiftfield_f12__io_file__io_fileno a_15) in
+  let x_6 = t_1[a_19] in
+  let a_20 = (shiftfield_f12__io_file__io_fileno a_17) in
+  let x_7 = t_1[a_20] in
+  let a_21 = (shiftfield_f12__io_file__io_fileno a_18) in
+  let x_8 = t_1[a_21] in
+  let m = t_1[((shiftfield_f16__io_file_pvt_bufmode a_12)) <- 0] in
+  let x_9 = m[a_19] in
+  (((region (a_13.base))) <= 0) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region (a_16.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_13 3)) ->
+  ((valid_rw t a_14 3)) ->
+  ((valid_rw t a_16 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  ((is_sint32 x_9)) ->
+  ((is_sint32 m[a_20])) ->
+  ((is_sint32 m[a_21])) ->
+  ((null = a_15) -> (i = 12)) ->
+  ((null = a_18) -> (i_1 = 12)) ->
+  ((null = a_17) -> (i_2 = 12)) ->
+  ((null <> a_15) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_15)) ->
+  ((null <> a_17) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_17)) ->
+  ((null <> a_18) -> (((shiftfield_f16__io_file_pvt_pub a_9)) = a_18)) ->
+  ((null <> a_15) -> (x_6 = 0)) ->
+  ((null <> a_17) -> (x_7 = 1)) ->
+  ((null <> a_18) -> (x_8 = 2)) ->
+  ((null <> a_15) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_17) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_18) -> ((p_valid_io_file_pvt t t_3 t_1 a_8))) ->
+  ((null <> a_15) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_17) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  ((null <> a_18) -> ((x_4 = 1) \/ (x_5 = 2))) ->
+  (x_9 = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file fdopen.c, line 103) in '__init_stdio' --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_post_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition (file fdopen.c, line 103) in '__init_stdio'":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4
+    a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_10)] in
+  let x_5 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_11)] in
+  let a_19 = (shiftfield_f12__io_file__io_fileno a_14) in
+  let x_6 = t_1[a_19] in
+  let a_20 = (shiftfield_f12__io_file__io_fileno a_17) in
+  let x_7 = t_1[a_20] in
+  let a_21 = (shiftfield_f12__io_file__io_fileno a_18) in
+  let x_8 = t_1[a_21] in
+  let m = t_1[((shiftfield_f16__io_file_pvt_bufmode a_12)) <- 0] in
+  let x_9 = m[a_19] in
+  (((region (a_13.base))) <= 0) ->
+  (((region (a_15.base))) <= 0) ->
+  (((region (a_16.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_13 3)) ->
+  ((valid_rw t a_15 3)) ->
+  ((valid_rw t a_16 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  ((is_sint32 x_9)) ->
+  ((is_sint32 m[a_20])) ->
+  ((is_sint32 m[a_21])) ->
+  ((null = a_17) -> (i = 12)) ->
+  ((null = a_18) -> (i_1 = 12)) ->
+  ((null = a_14) -> (i_2 = 12)) ->
+  ((null <> a_17) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_17)) ->
+  ((null <> a_14) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_14)) ->
+  ((null <> a_18) -> (((shiftfield_f16__io_file_pvt_pub a_9)) = a_18)) ->
+  ((null <> a_14) -> (x_6 = 1)) ->
+  ((null <> a_17) -> (x_7 = 0)) ->
+  ((null <> a_18) -> (x_8 = 2)) ->
+  ((null <> a_17) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_14) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_18) -> ((p_valid_io_file_pvt t t_3 t_1 a_8))) ->
+  ((null <> a_17) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_14) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  ((null <> a_18) -> ((x_4 = 1) \/ (x_5 = 2))) ->
+  (x_9 = 1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file fdopen.c, line 104) in '__init_stdio' --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_post_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition (file fdopen.c, line 104) in '__init_stdio'":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4
+    a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_10)] in
+  let x_5 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_11)] in
+  let a_19 = (shiftfield_f12__io_file__io_fileno a_16) in
+  let x_6 = t_1[a_19] in
+  let a_20 = (shiftfield_f12__io_file__io_fileno a_17) in
+  let x_7 = t_1[a_20] in
+  let a_21 = (shiftfield_f12__io_file__io_fileno a_18) in
+  let x_8 = t_1[a_21] in
+  let m = t_1[((shiftfield_f16__io_file_pvt_bufmode a_12)) <- 0] in
+  let x_9 = m[a_19] in
+  (((region (a_13.base))) <= 0) ->
+  (((region (a_14.base))) <= 0) ->
+  (((region (a_15.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_13 3)) ->
+  ((valid_rw t a_14 3)) ->
+  ((valid_rw t a_15 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  ((is_sint32 x_9)) ->
+  ((is_sint32 m[a_20])) ->
+  ((is_sint32 m[a_21])) ->
+  ((null = a_17) -> (i = 12)) ->
+  ((null = a_16) -> (i_1 = 12)) ->
+  ((null = a_18) -> (i_2 = 12)) ->
+  ((null <> a_17) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_17)) ->
+  ((null <> a_18) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_18)) ->
+  ((null <> a_16) -> (((shiftfield_f16__io_file_pvt_pub a_9)) = a_16)) ->
+  ((null <> a_16) -> (x_6 = 2)) ->
+  ((null <> a_17) -> (x_7 = 0)) ->
+  ((null <> a_18) -> (x_8 = 1)) ->
+  ((null <> a_17) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_18) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_16) -> ((p_valid_io_file_pvt t t_3 t_1 a_8))) ->
+  ((null <> a_17) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_18) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  ((null <> a_16) -> ((x_4 = 1) \/ (x_5 = 2))) ->
+  (x_9 = 2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file fdopen.c, line 105) in '__init_stdio' --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_post_5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition (file fdopen.c, line 105) in '__init_stdio'":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_19 a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6
+    a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_10)] in
+  let x_5 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_11)] in
+  let a_20 = (shiftfield_f12__io_file__io_fileno a_17) in
+  let x_6 = t_1[a_20] in
+  let a_21 = (shiftfield_f12__io_file__io_fileno a_18) in
+  let x_7 = t_1[a_21] in
+  let a_22 = (shiftfield_f12__io_file__io_fileno a_19) in
+  let x_8 = t_1[a_22] in
+  let m = t_1[((shiftfield_f16__io_file_pvt_bufmode a_12)) <- 0] in
+  let x_9 = m[(shiftfield_f16__io_file_pvt_bufmode a_13)] in
+  (((region (a_14.base))) <= 0) ->
+  (((region (a_15.base))) <= 0) ->
+  (((region (a_16.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_14 3)) ->
+  ((valid_rw t a_15 3)) ->
+  ((valid_rw t a_16 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  ((is_uint32 x_9)) ->
+  ((is_sint32 m[a_20])) ->
+  ((is_sint32 m[a_21])) ->
+  ((is_sint32 m[a_22])) ->
+  ((null = a_17) -> (i = 12)) ->
+  ((null = a_19) -> (i_1 = 12)) ->
+  ((null = a_18) -> (i_2 = 12)) ->
+  ((null <> a_17) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_17)) ->
+  ((null <> a_18) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_18)) ->
+  ((null <> a_19) -> (((shiftfield_f16__io_file_pvt_pub a_9)) = a_19)) ->
+  ((null <> a_17) -> (x_6 = 0)) ->
+  ((null <> a_18) -> (x_7 = 1)) ->
+  ((null <> a_19) -> (x_8 = 2)) ->
+  ((null <> a_17) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_18) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_19) -> ((p_valid_io_file_pvt t t_3 t_1 a_8))) ->
+  ((null <> a_17) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_18) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  ((null <> a_19) -> ((x_4 = 1) \/ (x_5 = 2))) ->
+  (x_9 = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file fdopen.c, line 100) in '__init_stdio' (2/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_assign_exit_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns (file fdopen.c, line 100) in '__init_stdio' (2/4)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_5 a_4 a_3 a_2 a_1 a : addr.
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (((region (a_4.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t a_2 3)) ->
+  ((valid_rw t a_3 3)) ->
+  ((valid_rw t a_4 3)) ->
+  ((is_uint32 t_1[(shiftfield_f16__io_file_pvt_bufmode a)])) ->
+  ((is_uint32 t_1[(shiftfield_f16__io_file_pvt_bufmode a_1)])) ->
+  ((is_sint32 t_1[(shiftfield_f12__io_file__io_fileno a_5)])) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file fdopen.c, line 100) in '__init_stdio' (3/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_assign_exit_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file fdopen.c, line 100) in '__init_stdio' (3/4)":
+*)
+goal goal8:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall t_4 : map addr addr.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f12__io_file__io_fileno a_9)] in
+  (((region (a_6.base))) <= 0) ->
+  (((region (a_7.base))) <= 0) ->
+  (((region (a_8.base))) <= 0) ->
+  ((framed t_4)) ->
+  ((linked t)) ->
+  ((sconst t_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_6 3)) ->
+  ((valid_rw t a_7 3)) ->
+  ((valid_rw t a_8 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 t_2[(shiftfield_f16__io_file_pvt_bufmode a_4)])) ->
+  ((is_uint32 t_2[(shiftfield_f16__io_file_pvt_bufmode a_5)])) ->
+  ((is_sint32 x_2)) ->
+  ((is_sint32 t_2[(shiftfield_f12__io_file__io_fileno a_10)])) ->
+  ((null = a_9) -> (i_1 = 12)) ->
+  ((null <> a_9) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_9)) ->
+  ((null <> a_9) -> (x_2 = 0)) ->
+  ((null <> a_9) -> ((p_valid_io_file_pvt t t_4 t_1 a))) ->
+  ((null <> a_9) -> ((x = 1) \/ (x_1 = 2))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file fdopen.c, line 100) in '__init_stdio' (4/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_assign_exit_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file fdopen.c, line 100) in '__init_stdio' (4/4)":
+*)
+goal goal9:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f12__io_file__io_fileno a_11)] in
+  let x_5 = t_1[(shiftfield_f12__io_file__io_fileno a_12)] in
+  (((region (a_8.base))) <= 0) ->
+  (((region (a_9.base))) <= 0) ->
+  (((region (a_10.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t a_8 3)) ->
+  ((valid_rw t a_9 3)) ->
+  ((valid_rw t a_10 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_sint32 x_4)) ->
+  ((is_sint32 x_5)) ->
+  ((null = a_11) -> (i = 12)) ->
+  ((null = a_12) -> (i_1 = 12)) ->
+  ((null <> a_11) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_11)) ->
+  ((null <> a_12) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_12)) ->
+  ((null <> a_11) -> (x_4 = 0)) ->
+  ((null <> a_12) -> (x_5 = 1)) ->
+  ((null <> a_11) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_12) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_11) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_12) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file fdopen.c, line 100) in '__init_stdio' (2/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_assign_normal_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file fdopen.c, line 100) in '__init_stdio' (2/5)":
+*)
+goal goal10:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f12__io_file__io_fileno a_7)] in
+  (((region (a_4.base))) <= 0) ->
+  (((region (a_5.base))) <= 0) ->
+  (((region (a_6.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t a_4 3)) ->
+  ((valid_rw t a_5 3)) ->
+  ((valid_rw t a_6 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_sint32 x_2)) ->
+  ((null = a_7) -> (i = 12)) ->
+  ((null <> a_7) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_7)) ->
+  ((null <> a_7) -> (x_2 = 0)) ->
+  ((null <> a_7) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_7) -> ((x = 1) \/ (x_1 = 2))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file fdopen.c, line 100) in '__init_stdio' (3/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_assign_normal_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file fdopen.c, line 100) in '__init_stdio' (3/5)":
+*)
+goal goal11:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f12__io_file__io_fileno a_11)] in
+  let x_5 = t_1[(shiftfield_f12__io_file__io_fileno a_12)] in
+  (((region (a_8.base))) <= 0) ->
+  (((region (a_9.base))) <= 0) ->
+  (((region (a_10.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t a_8 3)) ->
+  ((valid_rw t a_9 3)) ->
+  ((valid_rw t a_10 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_sint32 x_4)) ->
+  ((is_sint32 x_5)) ->
+  ((null = a_11) -> (i = 12)) ->
+  ((null = a_12) -> (i_1 = 12)) ->
+  ((null <> a_11) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_11)) ->
+  ((null <> a_12) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_12)) ->
+  ((null <> a_11) -> (x_4 = 0)) ->
+  ((null <> a_12) -> (x_5 = 1)) ->
+  ((null <> a_11) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_12) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_11) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_12) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file fdopen.c, line 100) in '__init_stdio' (4/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_assign_normal_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file fdopen.c, line 100) in '__init_stdio' (4/5)":
+*)
+goal goal12:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3
+    a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_10)] in
+  let x_5 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_11)] in
+  let x_6 = t_1[(shiftfield_f12__io_file__io_fileno a_15)] in
+  let x_7 = t_1[(shiftfield_f12__io_file__io_fileno a_16)] in
+  let x_8 = t_1[(shiftfield_f12__io_file__io_fileno a_17)] in
+  (((region (a_12.base))) <= 0) ->
+  (((region (a_13.base))) <= 0) ->
+  (((region (a_14.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_12 3)) ->
+  ((valid_rw t a_13 3)) ->
+  ((valid_rw t a_14 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  ((null = a_15) -> (i = 12)) ->
+  ((null = a_17) -> (i_1 = 12)) ->
+  ((null = a_16) -> (i_2 = 12)) ->
+  ((null <> a_15) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_15)) ->
+  ((null <> a_16) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_16)) ->
+  ((null <> a_17) -> (((shiftfield_f16__io_file_pvt_pub a_9)) = a_17)) ->
+  ((null <> a_15) -> (x_6 = 0)) ->
+  ((null <> a_16) -> (x_7 = 1)) ->
+  ((null <> a_17) -> (x_8 = 2)) ->
+  ((null <> a_15) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_16) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_17) -> ((p_valid_io_file_pvt t t_3 t_1 a_8))) ->
+  ((null <> a_15) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_16) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  ((null <> a_17) -> ((x_4 = 1) \/ (x_5 = 2))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file fdopen.c, line 100) in '__init_stdio' (5/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__init_stdio_assign_normal_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file fdopen.c, line 100) in '__init_stdio' (5/5)":
+*)
+goal goal13:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_19 a_18 a_17 a_16 a_15 a_14 a_13 a_12 a_11 a_10 a_9 a_8 a_7 a_6
+    a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[(shiftfield_f16__io_file_pvt_bufmode a_2)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_3)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_6)] in
+  let x_3 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_7)] in
+  let x_4 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_10)] in
+  let x_5 = t_1[(shiftfield_f16__io_file_pvt_bufmode a_11)] in
+  let x_6 = t_1[(shiftfield_f12__io_file__io_fileno a_17)] in
+  let x_7 = t_1[(shiftfield_f12__io_file__io_fileno a_18)] in
+  let x_8 = t_1[(shiftfield_f12__io_file__io_fileno a_19)] in
+  let a_20 = (shiftfield_f16__io_file_pvt_bufmode a_12) in
+  (((region (a_14.base))) <= 0) ->
+  (((region (a_15.base))) <= 0) ->
+  (((region (a_16.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_14 3)) ->
+  ((valid_rw t a_15 3)) ->
+  ((valid_rw t a_16 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  ((is_uint32 x_5)) ->
+  ((is_sint32 x_6)) ->
+  ((is_sint32 x_7)) ->
+  ((is_sint32 x_8)) ->
+  (not (invalid t a_20 1)) ->
+  ((null = a_17) -> (i = 12)) ->
+  ((null = a_19) -> (i_1 = 12)) ->
+  ((null = a_18) -> (i_2 = 12)) ->
+  ((null <> a_17) -> (((shiftfield_f16__io_file_pvt_pub a_1)) = a_17)) ->
+  ((null <> a_18) -> (((shiftfield_f16__io_file_pvt_pub a_5)) = a_18)) ->
+  ((null <> a_19) -> (((shiftfield_f16__io_file_pvt_pub a_9)) = a_19)) ->
+  ((null <> a_17) -> (x_6 = 0)) ->
+  ((null <> a_18) -> (x_7 = 1)) ->
+  ((null <> a_19) -> (x_8 = 2)) ->
+  ((null <> a_17) -> ((p_valid_io_file_pvt t t_3 t_1 a))) ->
+  ((null <> a_18) -> ((p_valid_io_file_pvt t t_3 t_1 a_4))) ->
+  ((null <> a_19) -> ((p_valid_io_file_pvt t t_3 t_1 a_8))) ->
+  ((null <> a_17) -> ((x = 1) \/ (x_1 = 2))) ->
+  ((null <> a_18) -> ((x_2 = 1) \/ (x_3 = 2))) ->
+  ((null <> a_19) -> ((x_4 = 1) \/ (x_5 = 2))) ->
+  (((shiftfield_f16__io_file_pvt_bufmode a_13)) = a_20)
+
+end
+

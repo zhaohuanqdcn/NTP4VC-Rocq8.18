@@ -1,0 +1,19 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import Why3.mach.int.Unsigned
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.mpz.Z
+import pearl.multiprecision.lib.lean.mpz.Zutil
+open Classical
+open Lean4Why3
+namespace mpz_getset_Set_abs_castqtvc
+theorem abs_cast'vc (x : BitVec 64) : (if (0 : ℤ) ≤ BitVec.toInt x then (0 : ℤ) ≤ BitVec.toInt x else int'64_in_bounds (BitVec.toInt x + (1 : ℤ)) ∧ (∀(o1 : BitVec 64), BitVec.toInt o1 = BitVec.toInt x + (1 : ℤ) → int'64_in_bounds (-BitVec.toInt o1) ∧ (∀(o2 : BitVec 64), BitVec.toInt o2 = -BitVec.toInt o1 → (0 : ℤ) ≤ BitVec.toInt o2 ∧ (∀(o3 : BitVec 64), BitVec.toUInt o3 = BitVec.toInt o2 → uint'64_in_bounds (BitVec.toUInt o3 + (1 : ℤ)))))) ∧ (∀(result : BitVec 64), (if (0 : ℤ) ≤ BitVec.toInt x then BitVec.toUInt result = BitVec.toInt x else ∃(o1 : BitVec 64), BitVec.toInt o1 = BitVec.toInt x + (1 : ℤ) ∧ (∃(o2 : BitVec 64), BitVec.toInt o2 = -BitVec.toInt o1 ∧ (∃(o3 : BitVec 64), BitVec.toUInt o3 = BitVec.toInt o2 ∧ BitVec.toUInt result = BitVec.toUInt o3 + (1 : ℤ)))) → BitVec.toUInt result = abs (BitVec.toInt x))
+  := sorry
+end mpz_getset_Set_abs_castqtvc

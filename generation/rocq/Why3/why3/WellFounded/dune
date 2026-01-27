@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench)
+(name Why3.why3.WellFounded)
+(theories Why3))

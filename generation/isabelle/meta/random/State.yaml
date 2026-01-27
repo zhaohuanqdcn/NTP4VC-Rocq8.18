@@ -1,0 +1,10 @@
+atoms: {}
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.random_State
+prefix_ops: {}
+types:
+  random.State.state: [state, random_State.state]

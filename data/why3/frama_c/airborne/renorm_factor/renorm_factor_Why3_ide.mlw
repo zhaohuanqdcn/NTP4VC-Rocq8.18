@@ -1,0 +1,66 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'sqrtf'' in 'renorm_factor' at call 'sqrtf' (file math/pprz_algebra_float.c, line 317)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrenorm_factor_call_sqrtf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'sqrtf'' in 'renorm_factor' at call 'sqrtf' (file math/pprz_algebra_float.c, line 317)
+":
+*)
+goal goal0:
+  forall r : real.
+  ((5368709.0 /. 536870912.0) <. r) ->
+  (r <. 100.0) ->
+  ((is_float32 r)) ->
+  ((r <=. (5368709.0 /. 8388608.0)) \/ ((25.0 /. 16.0) <=. r)) ->
+  ((is_finite32 r))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'arg_positive' in 'sqrtf'' in 'renorm_factor' at call 'sqrtf' (file math/pprz_algebra_float.c, line 317)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrenorm_factor_call_sqrtf_pre_arg_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'arg_positive' in 'sqrtf'' in 'renorm_factor' at call 'sqrtf' (file math/pprz_algebra_float.c, line 317)
+":
+*)
+goal goal1:
+  forall r : real.
+  ((5368709.0 /. 536870912.0) <. r) ->
+  (r <. 100.0) ->
+  ((is_float32 r)) ->
+  ((r <=. (5368709.0 /. 8388608.0)) \/ ((25.0 /. 16.0) <=. r)) ->
+  (0.0 <=. r)
+
+end
+

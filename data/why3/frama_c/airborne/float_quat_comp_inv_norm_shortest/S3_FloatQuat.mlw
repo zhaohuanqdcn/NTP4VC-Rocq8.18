@@ -1,0 +1,20 @@
+(* ---------------------------------------------------------- *)
+(* --- Struct 'FloatQuat'                                 --- *)
+(* ---------------------------------------------------------- *)
+theory S3_FloatQuat
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+type s3_floatquat = {
+  f3_floatquat_qi : real ;
+  f3_floatquat_qx : real ;
+  f3_floatquat_qy : real ;
+  f3_floatquat_qz : real }
+
+end
+

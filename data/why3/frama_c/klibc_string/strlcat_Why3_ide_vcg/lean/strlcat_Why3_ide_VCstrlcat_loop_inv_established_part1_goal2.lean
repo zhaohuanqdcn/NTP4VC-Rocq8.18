@@ -1,0 +1,12 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import frama_c.klibc_string.lib.lean.Compound.Compound
+import Why3.Cint.Cint
+import frama_c.klibc_string.lib.lean.Axiomatic.Axiomatic
+open Classical
+open Lean4Why3
+namespace strlcat_Why3_ide_VCstrlcat_loop_inv_established_part1_goal2
+theorem goal2 (a_1 : Memory.addr) (i_1 : ℤ) (i_2 : ℤ) (i_3 : ℤ) (i_4 : ℤ) (a : Memory.addr) (i : ℤ) (t : ℤ -> ℤ) (t_1 : Memory.addr -> ℤ) : let a_2 : Memory.addr := Memory.shift a_1 (0 : ℤ); let x : ℤ := (1 : ℤ) + i_1 + i_2; let x_1 : ℤ := (1 : ℤ) + i_3 + i_4; let a_3 : Memory.addr := Memory.shift a (0 : ℤ); (0 : ℤ) < i → Memory.region (Memory.addr.base a) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_1) ≤ (0 : ℤ) → Memory.linked t → Memory.sconst t_1 → Cint.is_uint32 i → Axiomatic.p_length_of_str_is t t_1 a i_2 → Axiomatic.p_length_of_str_is t t_1 a i_4 → Axiomatic.p_length_of_str_is t t_1 a_1 i_1 → Axiomatic.p_length_of_str_is t t_1 a_1 i_3 → Memory.valid_rw t a_2 x → Memory.valid_rw t a_2 x_1 → Memory.separated a_3 ((1 : ℤ) + i_2) a_2 x → Memory.separated a_3 ((1 : ℤ) + i_4) a_2 x_1 → Memory.addr_le a_1 a_1
+  := sorry
+end strlcat_Why3_ide_VCstrlcat_loop_inv_established_part1_goal2

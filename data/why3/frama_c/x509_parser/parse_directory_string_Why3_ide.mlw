@@ -1,0 +1,371 @@
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 2878) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_directory_string_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 2878)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a 0) in
+  (i <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((0 < i) -> ((valid_rd t a_1 i))) ->
+  ((valid_rd t a_1 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 2881) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_directory_string_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 2881)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a 0) in
+  (i <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((-2147483646) <= i) ->
+  (2 <= i) ->
+  (i <= 65537) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rd t a_1 1)) ->
+  ((0 < i) -> ((valid_rd t a_1 i))) ->
+  ((valid_rd t ((shift_uint8 a 1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2629) in 'check_printable_string'' in 'parse_directory_string' at call 'check_printable_string' (file src/x509-parser.c, line 2896)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_directory_string_call_check_printable_string_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2629) in 'check_printable_string'' in 'parse_directory_string' at call 'check_printable_string' (file src/x509-parser.c, line 2896)
+":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a 2) in
+  let a_2 = (shift_uint8 a 0) in
+  let a_3 = (shift_uint8 a 1) in
+  let x = t_1[a_3] in
+  let x_1 = 2 + x in
+  (null <> a) ->
+  (a_1 <> null) ->
+  (t_1[a_2] = 19) ->
+  (x <> (-2)) ->
+  (((region (a.base))) <= 0) ->
+  (0 < x) ->
+  (x <= i) ->
+  (i_1 <= x) ->
+  ((-2147483648) <= x) ->
+  ((-2) <= x) ->
+  (x <= 65535) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_3 1)) ->
+  ((is_uint16 x_1)) ->
+  ((valid_rd t a_2 x_1)) ->
+  ((valid_rd t a_1 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2463) in 'check_utf8_string'' in 'parse_directory_string' at call 'check_utf8_string' (file src/x509-parser.c, line 2902)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_directory_string_call_check_utf8_string_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2463) in 'check_utf8_string'' in 'parse_directory_string' at call 'check_utf8_string' (file src/x509-parser.c, line 2902)
+":
+*)
+goal goal3:
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a 2) in
+  let a_2 = (shift_uint8 a 0) in
+  let a_3 = (shift_uint8 a 1) in
+  let x = t_1[a_3] in
+  let x_1 = 2 + x in
+  (null <> a) ->
+  (a_1 <> null) ->
+  (t_1[a_2] = 12) ->
+  (x <> (-2)) ->
+  (((region (a.base))) <= 0) ->
+  (0 < x) ->
+  (x <= i) ->
+  (i_1 <= x) ->
+  ((-2147483648) <= x) ->
+  ((-2) <= x) ->
+  (x <= 65535) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_3 1)) ->
+  ((is_uint16 x_1)) ->
+  ((valid_rd t a_2 x_1)) ->
+  ((valid_rd t a_1 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2780) in 'check_teletex_string'' in 'parse_directory_string' at call 'check_teletex_string' (file src/x509-parser.c, line 2914)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_directory_string_call_check_teletex_string_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2780) in 'check_teletex_string'' in 'parse_directory_string' at call 'check_teletex_string' (file src/x509-parser.c, line 2914)
+":
+*)
+goal goal4:
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a 2) in
+  let a_2 = (shift_uint8 a 0) in
+  let a_3 = (shift_uint8 a 1) in
+  let x = t_1[a_3] in
+  let x_1 = 2 + x in
+  (null <> a) ->
+  (a_1 <> null) ->
+  (t_1[a_2] = 20) ->
+  (x <> (-2)) ->
+  (((region (a.base))) <= 0) ->
+  (0 < x) ->
+  (x <= i) ->
+  (i_1 <= x) ->
+  ((-2147483648) <= x) ->
+  ((-2) <= x) ->
+  (x <= 65535) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_3 1)) ->
+  ((is_uint16 x_1)) ->
+  ((valid_rd t a_2 x_1)) ->
+  ((valid_rd t a_1 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2795) in 'check_universal_string'' in 'parse_directory_string' at call 'check_universal_string' (file src/x509-parser.c, line 2920)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_directory_string_call_check_universal_string_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2795) in 'check_universal_string'' in 'parse_directory_string' at call 'check_universal_string' (file src/x509-parser.c, line 2920)
+":
+*)
+goal goal5:
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a 2) in
+  let a_2 = (shift_uint8 a 0) in
+  let a_3 = (shift_uint8 a 1) in
+  let x = t_1[a_3] in
+  let x_1 = 2 + x in
+  (null <> a) ->
+  (a_1 <> null) ->
+  (t_1[a_2] = 28) ->
+  (x <> (-2)) ->
+  (((region (a.base))) <= 0) ->
+  (0 < x) ->
+  (x <= i) ->
+  (i_1 <= x) ->
+  ((-2147483648) <= x) ->
+  ((-2) <= x) ->
+  (x <= 65535) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_3 1)) ->
+  ((is_uint16 x_1)) ->
+  ((valid_rd t a_2 x_1)) ->
+  ((valid_rd t a_1 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2810) in 'check_bmp_string'' in 'parse_directory_string' at call 'check_bmp_string' (file src/x509-parser.c, line 2926)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_directory_string_call_check_bmp_string_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2810) in 'check_bmp_string'' in 'parse_directory_string' at call 'check_bmp_string' (file src/x509-parser.c, line 2926)
+":
+*)
+goal goal6:
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a 2) in
+  let a_2 = (shift_uint8 a 0) in
+  let a_3 = (shift_uint8 a 1) in
+  let x = t_1[a_3] in
+  let x_1 = 2 + x in
+  (null <> a) ->
+  (a_1 <> null) ->
+  (t_1[a_2] = 30) ->
+  (x <> (-2)) ->
+  (((region (a.base))) <= 0) ->
+  (0 < x) ->
+  (x <= i) ->
+  (i_1 <= x) ->
+  ((-2147483648) <= x) ->
+  ((-2) <= x) ->
+  (x <= 65535) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint8 x)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_2 1)) ->
+  ((valid_rd t a_3 1)) ->
+  ((is_uint16 x_1)) ->
+  ((valid_rd t a_2 x_1)) ->
+  ((valid_rd t a_1 x))
+
+end
+

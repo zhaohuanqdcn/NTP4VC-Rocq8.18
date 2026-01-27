@@ -1,0 +1,12 @@
+atoms:
+  why3.Ref.Ref.contents: [contents, Ref.contents]
+  why3.Ref.Ref.ref'mk: [ref'mk, Ref.ref'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.why3.Ref.Ref
+prefix_ops: {}
+types:
+  why3.Ref.Ref.ref: [ref, Ref.ref]

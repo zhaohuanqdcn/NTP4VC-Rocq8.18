@@ -1,0 +1,3 @@
+session mpz_realloc2 = NTP4Verif +
+theories
+  "mpz_realloc2_Zrealloc2_wmpz_realloc2qtvc"

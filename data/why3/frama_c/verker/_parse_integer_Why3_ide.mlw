@@ -1,0 +1,65 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/_parse_integer.h, line 26) in 'div_u64'' in '_parse_integer' at call 'div_u64' (file src/_parse_integer.c, line 31)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_call_div_u64_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Cbits.Cbits
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/_parse_integer.h, line 26) in 'div_u64'' in '_parse_integer' at call 'div_u64' (file src/_parse_integer.c, line 31)
+":
+*)
+goal goal0:
+  forall p_2 p_1 p : bool.
+  forall i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_4 t_3 t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_2[a_1] in
+  let x_1 = t_3[a_1] in
+  let x_2 = t_4[a_1] in
+  let x_3 = (to_uint32 (i_6 - 87)) in
+  (x <> 0) ->
+  (((mod i_2 2)) = 0) ->
+  (((land 17293822569102704640 i_1)) <> 0) ->
+  (i < 0) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (i_2 <= 16) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint8 i_3)) ->
+  ((is_sint8 i_4)) ->
+  ((is_sint8 i_5)) ->
+  ((is_sint8 i_6)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint64 i_1)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((is_sint8 x_2)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_valid_str t t_1 a)) ->
+  (if (48 <= x)
+   then (((p_2=True) <-> (p_1=True)) /\ (t_3 = t_2) /\
+         (if (x_1 <= 57) then ((t_4 = t_3) /\ (((to_uint32 (x_2 - 48))) = i))
+          else ((p=False) /\ (p_2=True) /\ (x_3 = i) /\ (97 <= i_4) /\
+                (i_5 <= 102))))
+   else ((p=False) /\ (p_1=False) /\ (x_3 = i) /\ (97 <= i_3) /\
+         (i_5 <= 102))) ->
+  false
+
+end
+

@@ -1,0 +1,51 @@
+theory strassen_MatrixTests_mul_blockqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.int_Sum" "../../lib/isabelle/strassen_Sum_extended" "../../lib/isabelle/strassen_MaxFun" "../../lib/isabelle/strassen_InfIntMatrix" "../../lib/isabelle/strassen_InfIntMatrixDecision"
+begin
+consts cols :: "mat \<Rightarrow> int"
+consts rows :: "mat \<Rightarrow> int"
+axiomatization where rows_def:   "rows a = r"
+ if "(0 :: int) \<le> r"
+ and "(0 :: int) \<le> c"
+ and "strassen_InfIntMatrix.size a r c"
+  for r :: "int"
+  and c :: "int"
+  and a :: "mat"
+axiomatization where cols_def:   "cols a = c"
+ if "(0 :: int) \<le> r"
+ and "(0 :: int) \<le> c"
+ and "strassen_InfIntMatrix.size a r c"
+  for r :: "int"
+  and c :: "int"
+  and a :: "mat"
+definition is_finite :: "mat \<Rightarrow> _"
+  where "is_finite m \<longleftrightarrow> strassen_InfIntMatrix.size m (rows m) (cols m)" for m
+consts ofs2 :: "mat \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int"
+axiomatization where ofs2'def:   "ofs2 a ai aj i j = get a (ai + i) (aj + j)"
+  for a :: "mat"
+  and ai :: "int"
+  and aj :: "int"
+  and i :: "int"
+  and j :: "int"
+definition block :: "mat \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int \<Rightarrow> mat"
+  where "block a r dr c dc = fcreate dr dc (ofs2 a r c)" for a r dr c dc
+definition c_blocks :: "mat \<Rightarrow> mat \<Rightarrow> mat \<Rightarrow> _"
+  where "c_blocks a a1 a2 \<longleftrightarrow> ((0 :: int) \<le> cols a1 \<and> cols a1 \<le> cols a) \<and> a1 = block a (0 :: int) (rows a) (0 :: int) (cols a1) \<and> a2 = block a (0 :: int) (rows a) (cols a1) (cols a - cols a1)" for a a1 a2
+definition r_blocks :: "mat \<Rightarrow> mat \<Rightarrow> mat \<Rightarrow> _"
+  where "r_blocks a a1 a2 \<longleftrightarrow> ((0 :: int) \<le> rows a1 \<and> rows a1 \<le> rows a) \<and> a1 = block a (0 :: int) (rows a1) (0 :: int) (cols a) \<and> a2 = block a (rows a1) (rows a - rows a1) (0 :: int) (cols a)" for a a1 a2
+theorem mul_block'vc:
+  fixes a :: "mat"
+  fixes b :: "mat"
+  fixes r :: "int"
+  fixes dr :: "int"
+  fixes c :: "int"
+  fixes dc :: "int"
+  assumes fact0: "cols a = rows b"
+  assumes fact1: "(0 :: int) \<le> r"
+  assumes fact2: "r \<le> r + dr"
+  assumes fact3: "r + dr \<le> rows a"
+  assumes fact4: "(0 :: int) \<le> c"
+  assumes fact5: "c \<le> c + dc"
+  assumes fact6: "c + dc \<le> cols b"
+  shows "block (mul a b) r dr c dc = mul (block a r dr (0 :: int) (cols a)) (block b (0 :: int) (rows b) c dc)"
+  sorry
+end

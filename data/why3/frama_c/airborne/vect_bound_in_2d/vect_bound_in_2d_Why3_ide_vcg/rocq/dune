@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name airborne.vect_bound_in_2d.vect_bound_in_2d_Why3_ide_vcg)
+(theories vect_bound_in_2d.S2_FloatVect3 Why3.Cfloat Why3.Qed Why3.Cmath Why3))

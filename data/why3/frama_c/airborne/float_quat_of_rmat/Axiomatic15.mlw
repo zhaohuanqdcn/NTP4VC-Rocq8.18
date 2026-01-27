@@ -1,0 +1,38 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #15)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+predicate p_finite_floatrmat (mflt_0 : map addr real) (rm_0 : addr) =
+    let a = (shiftfield_f5_floatrmat_m rm_0) in
+    ((is_finite32 mflt_0[(shift_float32 a 0)])) /\
+    ((is_finite32 mflt_0[(shift_float32 a 1)])) /\
+    ((is_finite32 mflt_0[(shift_float32 a 2)])) /\
+    ((is_finite32 mflt_0[(shift_float32 a 3)])) /\
+    ((is_finite32 mflt_0[(shift_float32 a 4)])) /\
+    ((is_finite32 mflt_0[(shift_float32 a 5)])) /\
+    ((is_finite32 mflt_0[(shift_float32 a 6)])) /\
+    ((is_finite32 mflt_0[(shift_float32 a 7)])) /\
+    ((is_finite32 mflt_0[(shift_float32 a 8)]))
+
+predicate p_rvalid_floatrmat (malloc_0 : map int int)
+    (mflt_0 : map addr real) (rm_0 : addr) =
+    ((p_finite_floatrmat mflt_0 rm_0)) /\ ((valid_rd malloc_0 rm_0 9))
+
+end
+

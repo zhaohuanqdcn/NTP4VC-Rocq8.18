@@ -1,0 +1,306 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file math/pprz_algebra_int.h, line 423) in 'int32_sqrt' --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_sqrt_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition (file math/pprz_algebra_int.h, line 423) in 'int32_sqrt'":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  let x = (to_uint32
+            ((div ((to_uint32 (i + ((to_uint32 ((div i_2 i))))))) 2))) in
+  (i_2 <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (i_1 <= 40) ->
+  (i <= 2147483647) ->
+  (i_2 <= 2147483647) ->
+  ((is_uint8 i_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((i_2 <= 46340) -> (i <= 46340)) ->
+  ((40 <= ((to_uint8 (1 + i_1)))) \/ (((to_uint32 (i - x))) <= 1)) ->
+  (x <= 2147483647)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file math/pprz_algebra_int.c, line 39) --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_sqrt_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file math/pprz_algebra_int.c, line 39)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  let x = (to_uint32
+            ((div ((to_uint32 (i + ((to_uint32 ((div i_2 i))))))) 2))) in
+  (i_2 <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (i_1 <= 40) ->
+  (i <= 2147483647) ->
+  (i_2 <= 2147483647) ->
+  (((to_uint8 (1 + i_1))) <= 39) ->
+  (2 <= ((to_uint32 (i - x)))) ->
+  ((is_uint8 i_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((i_2 <= 46340) -> (i <= 46340)) ->
+  ((0 < x) /\ (x <= i_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file math/pprz_algebra_int.c, line 39) --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_sqrt_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Establishment of Invariant (file math/pprz_algebra_int.c, line 39)":
+*)
+goal goal2:
+  forall i : int.
+  (i <> 0) ->
+  (0 <= i) ->
+  (i <= 2147483647) ->
+  ((is_uint32 i)) ->
+  (0 < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file math/pprz_algebra_int.c, line 40) --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_sqrt_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file math/pprz_algebra_int.c, line 40)":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  let x = (to_uint8 (1 + i_1)) in
+  (i_2 <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (i_1 <= 40) ->
+  (i <= 2147483647) ->
+  (i_2 <= 2147483647) ->
+  (x <= 39) ->
+  (2
+     <= ((to_uint32
+           (i
+            - ((to_uint32
+                 ((div ((to_uint32 (i + ((to_uint32 ((div i_2 i))))))) 2)))))))) ->
+  ((is_uint8 i_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((i_2 <= 46340) -> (i <= 46340)) ->
+  (x <= 40)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file math/pprz_algebra_int.c, line 41) --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_sqrt_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file math/pprz_algebra_int.c, line 41)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  let x = (to_uint32
+            ((div ((to_uint32 (i + ((to_uint32 ((div i_2 i))))))) 2))) in
+  (i_2 <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (i_1 <= 40) ->
+  (i <= 2147483647) ->
+  (i_2 <= 2147483647) ->
+  (((to_uint8 (1 + i_1))) <= 39) ->
+  (2 <= ((to_uint32 (i - x)))) ->
+  ((is_uint8 i_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((i_2 <= 46340) -> (i <= 46340)) ->
+  (x <= 2147483647)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file math/pprz_algebra_int.c, line 42) --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_sqrt_loop_inv_4_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file math/pprz_algebra_int.c, line 42)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  let x = (to_uint32
+            ((div ((to_uint32 (i + ((to_uint32 ((div i_2 i))))))) 2))) in
+  (i_2 <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (i_1 <= 40) ->
+  (i <= 46340) ->
+  (i_2 <= 46340) ->
+  (i <= 2147483647) ->
+  (i_2 <= 2147483647) ->
+  (((to_uint8 (1 + i_1))) <= 39) ->
+  (2 <= ((to_uint32 (i - x)))) ->
+  ((is_uint8 i_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  (x <= 46340)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file math/pprz_algebra_int.c, line 47) --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_sqrt_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file math/pprz_algebra_int.c, line 47)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  let x = (to_uint8 (1 + i_1)) in
+  (i_2 <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (i_1 <= 40) ->
+  (i <= 2147483647) ->
+  (i_2 <= 2147483647) ->
+  (x <= 39) ->
+  (2
+     <= ((to_uint32
+           (i
+            - ((to_uint32
+                 ((div ((to_uint32 (i + ((to_uint32 ((div i_2 i))))))) 2)))))))) ->
+  ((is_uint8 i_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((i_2 <= 46340) -> (i <= 46340)) ->
+  (i_1 < x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'result_bounded' (file math/pprz_algebra_int.h, line 427) in 'int32_sqrt' --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_sqrt_result_bounded_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'result_bounded' (file math/pprz_algebra_int.h, line 427) in 'int32_sqrt'":
+*)
+goal goal7:
+  forall i_2 i_1 i : int.
+  let x = (to_uint32
+            ((div ((to_uint32 (i + ((to_uint32 ((div i_2 i))))))) 2))) in
+  (i_2 <> 0) ->
+  (0 < i) ->
+  (0 <= i) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (i_1 <= 40) ->
+  (i <= 46340) ->
+  (i_2 <= 46340) ->
+  (i <= 2147483647) ->
+  (i_2 <= 2147483647) ->
+  ((is_uint8 i_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((40 <= ((to_uint8 (1 + i_1)))) \/ (((to_uint32 (i - x))) <= 1)) ->
+  (x <= 46340)
+
+end
+

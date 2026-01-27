@@ -1,0 +1,3 @@
+session gnome_sort = NTP4Verif +
+theories
+  "gnome_sort_GnomeSort_gnome_sortqtvc"

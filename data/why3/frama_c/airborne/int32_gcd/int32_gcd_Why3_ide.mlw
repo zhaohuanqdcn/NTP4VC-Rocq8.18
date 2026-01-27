@@ -1,0 +1,51 @@
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file math/pprz_algebra_int.c, line 68) --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_gcd_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file math/pprz_algebra_int.c, line 68)":
+*)
+goal goal0:
+  forall i_1 i : int.
+  (i <> 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  (((to_uint32 ((mod i_1 i)))) < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file math/pprz_algebra_int.c, line 68) --- *)
+(* ---------------------------------------------------------- *)
+theory VCint32_gcd_loop_term_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file math/pprz_algebra_int.c, line 68)":
+*)
+goal goal1:
+  forall i : int.
+  (i <> 0) ->
+  ((is_uint32 i)) ->
+  (0 <= i)
+
+end
+

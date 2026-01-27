@@ -1,0 +1,4 @@
+session int32_gcd_Why3_ide = NTP4Verif +
+theories
+  "int32_gcd_Why3_ide_VCint32_gcd_loop_term_decrease_goal0"
+  "int32_gcd_Why3_ide_VCint32_gcd_loop_term_positive_goal1"

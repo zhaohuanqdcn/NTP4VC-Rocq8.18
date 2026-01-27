@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name verifythis_2017_tree_buffer_vcg.verifythis_2017_tree_buffer)
+(theories Why3))

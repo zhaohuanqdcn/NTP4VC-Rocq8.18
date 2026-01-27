@@ -1,0 +1,14 @@
+atoms:
+  array.Inversions.inversion: [inversion, array_Inversions.inversion]
+  array.Inversions.inversion_closure: [inversion_closure, array_Inversions.inversion_closure]
+  array.Inversions.inversions: [inversions, array_Inversions.inversions]
+  array.Inversions.inversions_for: [inversions_for, array_Inversions.inversions_for]
+  array.Inversions.inversions_for_closure: [inversions_for_closure, array_Inversions.inversions_for_closure]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.array_Inversions
+prefix_ops: {}
+types: {}

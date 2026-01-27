@@ -1,0 +1,593 @@
+(* ---------------------------------------------------------- *)
+(* --- Complete behaviors 'error', 'no_error'             --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_complete_error_no_error
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Complete behaviors 'error', 'no_error'":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_6 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  (a_6 <> null) ->
+  (a_6 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((x = 0) \/ (0 < x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Disjoint behaviors 'error', 'no_error'             --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_disjoint_error_no_error
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Disjoint behaviors 'error', 'no_error'":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_6 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  (a_6 <> null) ->
+  (a_6 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((x <> 0) \/ (x_1 <= 0))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'error' (file fgetc.c, line 23) in 'fgetc' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_error_post_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition for 'error' (file fgetc.c, line 23) in 'fgetc' (1/2)":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_6 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  let x_1 = t_2[t_3[(shiftfield_f16__io_file_pvt_data a_5)]] in
+  (a_6 <> null) ->
+  (a_6 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] = 0) ->
+  (x <> 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((is_sint8 x_1)) ->
+  ((is_sint32 x_1)) ->
+  (x_1 = (-1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'error' nothing in 'fgetc' (1/5)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_error_assign_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns for 'error' nothing in 'fgetc' (1/5)":
+*)
+goal goal3:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_6 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_7 = (shiftfield_f16__io_file_pvt_ibytes a_5) in
+  let x = t_1[a_7] in
+  (a_6 <> null) ->
+  (a_6 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] = 0) ->
+  (x <> 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((invalid t a_7 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'error' nothing in 'fgetc' (3/5)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_error_assign_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns for 'error' nothing in 'fgetc' (3/5)":
+*)
+goal goal4:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_6 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  (a_6 <> null) ->
+  (a_6 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] = 0) ->
+  (x <> 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((invalid t ((shiftfield_f16__io_file_pvt_data a_5)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'no_error' (file fgetc.c, line 15) in 'fgetc' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_no_error_post_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition for 'no_error' (file fgetc.c, line 15) in 'fgetc' (1/2)":
+*)
+goal goal5:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_8 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_9 = (shiftfield_f16__io_file_pvt_ibytes a_7) in
+  let x = t_1[a_9] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  let x_3 = t_2[t_3[(shiftfield_f16__io_file_pvt_data a_7)]] in
+  let x_4 = t_1[a_9 <- (to_uint32 (x - 1))][(shiftfield_f16__io_file_pvt_ibytes
+                                              a_5)] in
+  (a_8 <> null) ->
+  (a_8 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (x <> 0) ->
+  (0 < x_1) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((is_sint8 x_3)) ->
+  ((is_sint32 x_3)) ->
+  ((is_uint32 x_4)) ->
+  (x_2 = (1 + x_4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'no_error' (file fgetc.c, line 15) in 'fgetc' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_no_error_post_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition for 'no_error' (file fgetc.c, line 15) in 'fgetc' (2/2)":
+*)
+goal goal6:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_8 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_5)] in
+  let x_2 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  (a_8 <> null) ->
+  (a_8 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (t_1[(shiftfield_f16__io_file_pvt_ibytes a_7)] = 0) ->
+  (0 < x) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  (x_2 = (1 + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'no_error' (file fgetc.c, line 16) in 'fgetc' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_no_error_post_2_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition for 'no_error' (file fgetc.c, line 16) in 'fgetc' (1/2)":
+*)
+goal goal7:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_8 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_7)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let a_9 = (shiftfield_f16__io_file_pvt_data a_7) in
+  let a_10 = t_3[a_9] in
+  let x_2 = t_2[a_10] in
+  (a_8 <> null) ->
+  (a_8 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (x <> 0) ->
+  (0 < x_1) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((is_sint8 x_2)) ->
+  ((is_sint32 x_2)) ->
+  (t_3[a_9 <- (shift_sint8 a_10 1)][(shiftfield_f16__io_file_pvt_data a_6)] =
+   ((shift_sint8 t_3[(shiftfield_f16__io_file_pvt_data a_5)] 1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'no_error' (file fgetc.c, line 16) in 'fgetc' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_no_error_post_2_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition for 'no_error' (file fgetc.c, line 16) in 'fgetc' (2/2)":
+*)
+goal goal8:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_8 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  (a_8 <> null) ->
+  (a_8 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (t_1[(shiftfield_f16__io_file_pvt_ibytes a_7)] = 0) ->
+  (0 < x) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  (t_3[(shiftfield_f16__io_file_pvt_data a_6)] =
+   ((shift_sint8 t_3[(shiftfield_f16__io_file_pvt_data a_5)] 1)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'no_error' (file fgetc.c, line 18) in 'fgetc' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_no_error_post_3_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition for 'no_error' (file fgetc.c, line 18) in 'fgetc' (1/2)":
+*)
+goal goal9:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_7 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_6)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_2 = t_2[t_3[(shiftfield_f16__io_file_pvt_data a_5)]] in
+  let x_3 = t_2[t_3[(shiftfield_f16__io_file_pvt_data a_6)]] in
+  (a_7 <> null) ->
+  (a_7 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (x <> 0) ->
+  (0 < x_1) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((is_sint8 x_2)) ->
+  ((is_sint8 x_3)) ->
+  ((is_sint32 x_3)) ->
+  (x_3 = x_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'no_error' (file fgetc.c, line 18) in 'fgetc' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_no_error_post_3_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Post-condition for 'no_error' (file fgetc.c, line 18) in 'fgetc' (2/2)":
+*)
+goal goal10:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_7 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let x_1 = t_2[t_3[(shiftfield_f16__io_file_pvt_data a_5)]] in
+  (a_7 <> null) ->
+  (a_7 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (t_1[(shiftfield_f16__io_file_pvt_ibytes a_6)] = 0) ->
+  (0 < x) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  ((is_sint8 x_1)) ->
+  (x_1 = (-1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'no_error' (file fgetc.c, line 14) in 'fgetc' (1/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_no_error_assign_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns for 'no_error' (file fgetc.c, line 14) in 'fgetc' (1/5)":
+*)
+goal goal11:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_8 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_9 = (shiftfield_f16__io_file_pvt_ibytes a_7) in
+  let x = t_1[a_9] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  (a_8 <> null) ->
+  (a_8 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (x <> 0) ->
+  (0 < x_1) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  (not (invalid t a_9 1)) ->
+  ((a_9 = ((shiftfield_f16__io_file_pvt_data a_5))) \/
+   (a_9 = ((shiftfield_f16__io_file_pvt_ibytes a_6))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns for 'no_error' (file fgetc.c, line 14) in 'fgetc' (3/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfgetc_no_error_assign_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns for 'no_error' (file fgetc.c, line 14) in 'fgetc' (3/5)":
+*)
+goal goal12:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall t_3 : map addr addr.
+  forall a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_8 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let x = t_1[(shiftfield_f16__io_file_pvt_ibytes a_7)] in
+  let x_1 = t_1[(shiftfield_f16__io_file_pvt_ibytes a_4)] in
+  let a_9 = (shiftfield_f16__io_file_pvt_data a_7) in
+  (a_8 <> null) ->
+  (a_8 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (x <> 0) ->
+  (0 < x_1) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_3)) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_3 t_1 a_3)) ->
+  (not (invalid t a_9 1)) ->
+  ((a_9 = ((shiftfield_f16__io_file_pvt_data a_5))) \/
+   (((shiftfield_f16__io_file_pvt_ibytes a_6)) = a_9))
+
+end
+

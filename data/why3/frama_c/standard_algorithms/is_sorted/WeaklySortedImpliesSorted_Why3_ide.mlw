@@ -1,0 +1,341 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 13) in 'WeaklySortedImpliesSorted' --- *)
+(* ---------------------------------------------------------- *)
+theory VCWeaklySortedImpliesSorted_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 13) in 'WeaklySortedImpliesSorted'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_weaklysorted_1_ t a i_1 i)) ->
+  ((p_sorted_1_ t a i_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 18) --- *)
+(* ---------------------------------------------------------- *)
+theory VCWeaklySortedImpliesSorted_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 18)":
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  let x = 1 + i_3 in
+  (i_1 <= i) ->
+  (i_3 <= i) ->
+  (i_2 <= i_1) ->
+  (i_1 <= i_2) ->
+  (i_3 < i) ->
+  (i_1 <= i_3) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (i_3 <= 4294967294) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 x)) ->
+  ((p_sorted_1_ t a i_1 i_3)) ->
+  ((p_weaklysorted_1_ t a i_1 i)) ->
+  (forall i_4 : int. (i_2 <= i_4) -> (i_4 < i_3) ->
+   (t[(shift_sint32 a i_4)] <= t[(shift_sint32 a i_3)])) ->
+  (i_2 <= x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VCWeaklySortedImpliesSorted_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 20)":
+*)
+goal goal2:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  let x = 1 + i_3 in
+  (i_1 <= i) ->
+  (i_3 <= i) ->
+  (i_2 <= i_1) ->
+  (i_1 <= i_2) ->
+  (i_3 < i) ->
+  (i_1 <= i_3) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (i_3 <= 4294967294) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 x)) ->
+  ((p_sorted_1_ t a i_1 i_3)) ->
+  ((p_weaklysorted_1_ t a i_1 i)) ->
+  (forall i_4 : int. (i_2 <= i_4) -> (i_4 < i_3) ->
+   (t[(shift_sint32 a i_4)] <= t[(shift_sint32 a i_3)])) ->
+  ((p_sorted_1_ t a i_2 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VCWeaklySortedImpliesSorted_loop_inv_3_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 20)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_1 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_weaklysorted_1_ t a i_1 i)) ->
+  ((p_sorted_1_ t a i_1 i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 26) --- *)
+(* ---------------------------------------------------------- *)
+theory VCWeaklySortedImpliesSorted_loop_inv_4_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 26)":
+*)
+goal goal4:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (0 < i_2) ->
+  (i_1 <= i) ->
+  (i_3 <= i) ->
+  (i_1 < i_2) ->
+  (i_1 <= i_2) ->
+  (i_3 < i) ->
+  (i_1 <= i_3) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 (i_2 - 1))) ->
+  ((p_sorted_1_ t a i_1 i_3)) ->
+  ((p_weaklysorted_1_ t a i_1 i)) ->
+  (forall i_4 : int. (i_2 <= i_4) -> (i_4 < i_3) ->
+   (t[(shift_sint32 a i_4)] <= t[(shift_sint32 a i_3)])) ->
+  (i_2 <= (1 + i_3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 27) --- *)
+(* ---------------------------------------------------------- *)
+theory VCWeaklySortedImpliesSorted_loop_inv_5_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 27)":
+*)
+goal goal5:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  let x = t[(shift_sint32 a i_4)] in
+  (0 < i_1) ->
+  (i_2 <= i) ->
+  (i_4 <= i) ->
+  (i_2 <= i_1) ->
+  (i_2 < i_1) ->
+  (i_3 < i_4) ->
+  (i_4 < i) ->
+  (i_1 <= i_4) ->
+  (i_2 <= i_4) ->
+  (((region (a.base))) <= 0) ->
+  (i_1 <= (1 + i_3)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_4)) ->
+  ((is_uint32 (i_1 - 1))) ->
+  ((p_sorted_1_ t a i_2 i_4)) ->
+  ((p_weaklysorted_1_ t a i_2 i)) ->
+  (forall i_5 : int. (i_1 <= i_5) -> (i_5 < i_4) ->
+   (t[(shift_sint32 a i_5)] <= x)) ->
+  (t[(shift_sint32 a i_3)] <= x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 31) --- *)
+(* ---------------------------------------------------------- *)
+theory VCWeaklySortedImpliesSorted_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 31)":
+*)
+goal goal6:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_2 <= i) ->
+  (i_3 <= i) ->
+  (i_2 <= i_1) ->
+  (i_2 < i_1) ->
+  (i_3 < i) ->
+  (i_1 <= i_3) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((p_sorted_1_ t a i_2 i_3)) ->
+  ((p_weaklysorted_1_ t a i_2 i)) ->
+  (forall i_4 : int. (i_1 <= i_4) -> (i_4 < i_3) ->
+   (t[(shift_sint32 a i_4)] <= t[(shift_sint32 a i_3)])) ->
+  (0 < i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 24) --- *)
+(* ---------------------------------------------------------- *)
+theory VCWeaklySortedImpliesSorted_assert_rte_unsigned_overflow_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/WeaklySortedImpliesSorted.h, line 24)":
+*)
+goal goal7:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_2 <= i) ->
+  (i_3 <= i) ->
+  (i_2 <= i_1) ->
+  (i_1 <= i_2) ->
+  (i_3 < i) ->
+  (i_1 <= i_3) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((p_sorted_1_ t a i_2 i_3)) ->
+  ((p_weaklysorted_1_ t a i_2 i)) ->
+  (forall i_4 : int. (i_1 <= i_4) -> (i_4 < i_3) ->
+   (t[(shift_sint32 a i_4)] <= t[(shift_sint32 a i_3)])) ->
+  (i_3 <= 4294967294)
+
+end
+

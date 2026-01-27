@@ -1,0 +1,5 @@
+session axiom_push_of_pop_top_Why3_ide = NTP4Verif +
+theories
+  "axiom_push_of_pop_top_Why3_ide_VCaxiom_push_of_pop_top_assign_exit_part4_goal1"
+  "axiom_push_of_pop_top_Why3_ide_VCaxiom_push_of_pop_top_post_equal_goal0"
+  "axiom_push_of_pop_top_Why3_ide_VCaxiom_push_of_pop_top_assign_normal_part4_goal2"

@@ -1,0 +1,11 @@
+atoms:
+  map.MapExt.infix_eqeq: [MapExt.infix_eqeq]
+axioms:
+  map.MapExt.extensionality: MapExt.extensionality
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.map.MapExt
+prefix_ops: {}
+types: {}

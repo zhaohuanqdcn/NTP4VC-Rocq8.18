@@ -1,0 +1,17 @@
+theory mismatch_Why3_ide_VCmismatch_loop_inv_bound_established_goal1
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "../../lib/isabelle/Compound_Compound" "Why3STD.Cint_Cint"
+begin
+theorem goal1:
+  fixes a :: "addr"
+  fixes a_1 :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes i :: "int"
+  assumes fact0: "region (base a) \<le> (0 :: int)"
+  assumes fact1: "region (base a_1) \<le> (0 :: int)"
+  assumes fact2: "linked t"
+  assumes fact3: "is_uint32 i"
+  assumes fact4: "valid_rd t (shift a (0 :: int)) i"
+  assumes fact5: "valid_rd t (shift a_1 (0 :: int)) i"
+  shows "(0 :: int) \<le> i"
+  sorry
+end

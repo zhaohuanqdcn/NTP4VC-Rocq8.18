@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name counting_sort_vcg)
+(theories counting_sort_vcg.counting_sort Why3.why3.Ref Why3.array Why3.int Why3))

@@ -1,0 +1,12 @@
+session sf = NTP4Verif +
+theories
+  "sf_HoareLogic_even_nonegqtvc"
+  "sf_HoareLogic_sqrtqtvc"
+  "sf_HoareLogic_slow_additionqtvc"
+  "sf_MoreHoareLogic_list_sumqtvc"
+  "sf_HoareLogic_reduce_to_zeroqtvc"
+  "sf_HoareLogic_parityqtvc"
+  "sf_HoareLogic_factorialqtvc"
+  "sf_HoareLogic_even_not_oddqtvc"
+  "sf_HoareLogic_slow_subtractionqtvc"
+  "sf_MoreHoareLogic_list_memberqtvc"

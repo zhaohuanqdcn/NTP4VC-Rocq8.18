@@ -1,0 +1,4 @@
+session mpz_div = NTP4Verif +
+theories
+  "mpz_div_Zdiv_wmpz_tdiv_qrqtvc"
+  "mpz_div_Zdiv_wmpz_tdiv_qr_uiqtvc"

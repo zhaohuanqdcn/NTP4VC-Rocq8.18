@@ -1,0 +1,37 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file lemma_functions_linked_n.h, line 26) in 'linked_n_bounds' --- *)
+(* ---------------------------------------------------------- *)
+theory VClinked_n_bounds_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition (file lemma_functions_linked_n.h, line 26) in 'linked_n_bounds'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_2 a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((p_linked_n t t_1 a a_2 i_1 i a_1)) ->
+  (((i = 0) /\ (0 <= i_1) /\ (i_1 <= 2147483646)) \/
+   ((0 < i) /\ (0 <= i_1) /\ (i_1 <= 2147483645)))
+
+end
+

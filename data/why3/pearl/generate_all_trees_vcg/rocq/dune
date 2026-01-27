@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name generate_all_trees_vcg)
+(theories Why3))

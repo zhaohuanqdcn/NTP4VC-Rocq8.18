@@ -1,0 +1,5 @@
+session schorr_waite_with_ghost_monitor = NTP4Verif +
+theories
+  "schorr_waite_with_ghost_monitor_SchorrWaite_schorr_waiteqtvc"
+  "schorr_waite_with_ghost_monitor_Memory"
+  "schorr_waite_with_ghost_monitor_GraphShape"

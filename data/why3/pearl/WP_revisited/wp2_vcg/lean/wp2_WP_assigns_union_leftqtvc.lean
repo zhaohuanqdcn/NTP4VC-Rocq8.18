@@ -1,0 +1,17 @@
+import Why3.Base
+import pearl.WP_revisited.lib.lean.wp2.Imp
+open Classical
+open Lean4Why3
+namespace wp2_WP_assigns_union_leftqtvc
+axiom set : Type
+axiom inhabited_axiom_set : Inhabited set
+attribute [instance] inhabited_axiom_set
+axiom to_fset : set -> Finset ℤ
+axiom mk : Finset ℤ -> set
+axiom mk'spec (s : Finset ℤ) : to_fset (mk s) = s
+axiom choose1 : set -> ℤ
+axiom choose'spec (s : set) (fact0 : ¬to_fset s = ∅) : choose1 s ∈ to_fset s
+noncomputable def assigns (sigma : ℤ -> Imp.value) (a : Finset ℤ) (sigma' : ℤ -> Imp.value) := ∀(i : ℤ), ¬i ∈ a → sigma i = sigma' i
+theorem assigns_union_left'vc (sigma : ℤ -> Imp.value) (s1 : Finset ℤ) (sigma' : ℤ -> Imp.value) (s2 : Finset ℤ) (fact0 : assigns sigma s1 sigma') : assigns sigma (s1 ∪ s2) sigma'
+  := sorry
+end wp2_WP_assigns_union_leftqtvc

@@ -1,0 +1,14 @@
+session stack_push_Why3_ide = NTP4Verif +
+theories
+  "stack_push_Why3_ide_VCstack_push_assert_rte_mem_access_2_goal1"
+  "stack_push_Why3_ide_VCstack_push_not_full_post_size_goal7"
+  "stack_push_Why3_ide_VCstack_push_not_full_post_capacity_goal11"
+  "stack_push_Why3_ide_VCstack_push_assert_rte_mem_access_goal0"
+  "stack_push_Why3_ide_VCstack_push_not_full_post_not_empty_goal9"
+  "stack_push_Why3_ide_VCstack_push_full_post_unchanged_goal5"
+  "stack_push_Why3_ide_VCstack_push_assert_rte_unsigned_overflow_goal2"
+  "stack_push_Why3_ide_VCstack_push_assert_rte_mem_access_4_goal3"
+  "stack_push_Why3_ide_VCstack_push_not_full_post_top_goal8"
+  "stack_push_Why3_ide_VCstack_push_assert_rte_mem_access_5_goal4"
+  "stack_push_Why3_ide_VCstack_push_not_full_post_unchanged_goal10"
+  "stack_push_Why3_ide_VCstack_push_not_full_post_valid_goal6"

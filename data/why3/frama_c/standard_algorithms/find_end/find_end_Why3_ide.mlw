@@ -1,0 +1,593 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'result' in 'find_end'              --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'result' in 'find_end'":
+*)
+goal goal0:
+  forall p : bool.
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_2 - 1 in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  (if (0 < i)
+   then (if (i <= i_1)
+         then ((p=False) /\ (i_1 < (i + i_2)) /\ (i_1 <= (4294967295 + i)) /\
+               ((i_3 < i_1) ->
+                ((p_equalranges_1_ t_1 t_1 ((shift_sint32 a_1 i_3)) i a))) /\
+               ((i_3 = i_1) -> (not (p_hassubrange_2_ t_1 a_1 x a i))) /\
+               ((i_3 < i_1) ->
+                (not (p_hassubrange_1_ t_1 a_1 (1 + i_3) x a i))) /\
+               ((i_3 = i_1) \/ ((i + i_3) <= i_1))) else (i_3 = i_1))
+   else (i_3 = i_1)) ->
+  ((i_3 <= i_1) /\ (0 <= i_3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'last' (file find_end.c, line 16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_loop_inv_last_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant 'last' (file find_end.c, line 16)":
+*)
+goal goal1:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_4) in
+  let x = i_2 + i_4 in
+  let x_1 = i_2 + i_4 - 1 in
+  (((p_equalranges_1_ t_1 t_1 a_2 i_2 a)) <-> (i_5 <> 0)) ->
+  (0 < i_2) ->
+  (i_1 < i_3) ->
+  (i_2 <= i_3) ->
+  (x <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_4 <= 4294967294) ->
+  (i_3 <= (4294967295 + i_2)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 i_4)) ->
+  ((is_sint32 i_5)) ->
+  ((is_uint32 (1 + i_4))) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_3)) ->
+  ((valid_rd t a_2 i_2)) ->
+  (if (i_5 = 0) then (i_1 = i) else (i_4 = i_1)) ->
+  ((i < i_3) -> ((p_equalranges_1_ t_1 t_1 ((shift_sint32 a_1 i)) i_2 a))) ->
+  ((i_3 = i) -> (not (p_hassubrange_2_ t_1 a_1 x_1 a i_2))) ->
+  ((i < i_3) -> (not (p_hassubrange_1_ t_1 a_1 (1 + i) x_1 a i_2))) ->
+  ((i_3 = i) \/ ((i + i_2) <= i_3)) ->
+  (not (p_hassubrange_1_ t_1 a_1 (1 + i_1) x a i_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'result' (file find_end.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_loop_inv_result_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'result' (file find_end.c, line 14)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_2 in
+  let a_2 = (shift_sint32 a_1 i_2) in
+  (0 < i) ->
+  (i <= i_1) ->
+  (x <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  (i_1 <= (4294967295 + i)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 (1 + i_2))) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  (not (p_equalranges_1_ t_1 t_1 a_2 i a)) ->
+  (not (p_hassubrange_2_ t_1 a_1 (i + i_2 - 1) a i)) ->
+  (not (p_hassubrange_2_ t_1 a_1 x a i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'result' (file find_end.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_loop_inv_result_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'result' (file find_end.c, line 14)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (0 < i_1) ->
+  (i_1 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  (not (p_hassubrange_2_ t_1 a_1 (i_1 - 1) a i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file find_end.c, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_assert_rte_unsigned_overflow_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file find_end.c, line 20)":
+*)
+goal goal4:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 + i_3 - 1 in
+  (0 < i_1) ->
+  (i_1 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_2)) ->
+  ((i < i_2) -> ((p_equalranges_1_ t_1 t_1 ((shift_sint32 a_1 i)) i_1 a))) ->
+  ((i_2 = i) -> (not (p_hassubrange_2_ t_1 a_1 x a i_1))) ->
+  ((i < i_2) -> (not (p_hassubrange_1_ t_1 a_1 (1 + i) x a i_1))) ->
+  ((i_2 = i) \/ ((i + i_1) <= i_2)) ->
+  (i_2 <= (4294967295 + i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file find_end.c, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_assert_rte_unsigned_overflow_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file find_end.c, line 20)":
+*)
+goal goal5:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_3) in
+  let x = i_1 + i_3 - 1 in
+  (((p_equalranges_1_ t_1 t_1 a_2 i_1 a)) <-> (i_4 <> 0)) ->
+  (0 < i_1) ->
+  (i_1 <= i_2) ->
+  ((i_1 + i_3) <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_2)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((i < i_2) -> ((p_equalranges_1_ t_1 t_1 ((shift_sint32 a_1 i)) i_1 a))) ->
+  ((i_2 = i) -> (not (p_hassubrange_2_ t_1 a_1 x a i_1))) ->
+  ((i < i_2) -> (not (p_hassubrange_1_ t_1 a_1 (1 + i) x a i_1))) ->
+  ((i_2 = i) \/ ((i + i_1) <= i_2)) ->
+  (i_3 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file find_end.c, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_loop_term_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file find_end.c, line 20)":
+*)
+goal goal6:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_3) in
+  let x = i_1 + i_3 - 1 in
+  (((p_equalranges_1_ t_1 t_1 a_2 i_1 a)) <-> (i_4 <> 0)) ->
+  (0 < i_1) ->
+  (i_1 <= i_2) ->
+  ((i_1 + i_3) <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_3 <= 4294967294) ->
+  (i_2 <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_2)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((i < i_2) -> ((p_equalranges_1_ t_1 t_1 ((shift_sint32 a_1 i)) i_1 a))) ->
+  ((i_2 = i) -> (not (p_hassubrange_2_ t_1 a_1 x a i_1))) ->
+  ((i < i_2) -> (not (p_hassubrange_1_ t_1 a_1 (1 + i) x a i_1))) ->
+  ((i_2 = i) \/ ((i + i_1) <= i_2)) ->
+  (i_3 <= i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'valid' in 'equal'' in 'find_end' at call 'equal' (file find_end.c, line 21)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_call_equal_pre_valid
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'valid' in 'equal'' in 'find_end' at call 'equal' (file find_end.c, line 21)
+":
+*)
+goal goal7:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i_1 + i_3 - 1 in
+  (0 < i_1) ->
+  (i_1 <= i_2) ->
+  ((i_1 + i_3) <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_2)) ->
+  ((i < i_2) -> ((p_equalranges_1_ t_1 t_1 ((shift_sint32 a_1 i)) i_1 a))) ->
+  ((i_2 = i) -> (not (p_hassubrange_2_ t_1 a_1 x a i_1))) ->
+  ((i < i_2) -> (not (p_hassubrange_1_ t_1 a_1 (1 + i) x a i_1))) ->
+  ((i_2 = i) \/ ((i + i_1) <= i_2)) ->
+  ((valid_rd t ((shift_sint32 a_1 i_3)) i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'has_match' 'bound' in 'find_end' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_has_match_post_bound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'has_match' 'bound' in 'find_end'":
+*)
+goal goal8:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_2 - 1 in
+  let x_1 = i + i_3 in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((p_hassubrange_1_ t_1 a_1 0 i_1 a i)) ->
+  (if (0 < i)
+   then ((t_2 = t_1) /\
+         (if (i <= i_1)
+          then ((t_3 = t_2) /\ (i_1 < (i + i_2)) /\
+                (i_1 <= (4294967295 + i)) /\
+                ((i_3 < i_1) ->
+                 ((p_equalranges_1_ t_3 t_3 ((shift_sint32 a_1 i_3)) i a))) /\
+                ((i_3 = i_1) -> (not (p_hassubrange_2_ t_3 a_1 x a i))) /\
+                ((i_3 < i_1) ->
+                 (not (p_hassubrange_1_ t_3 a_1 (1 + i_3) x a i))) /\
+                ((i_3 = i_1) \/ (x_1 <= i_1))) else (i_3 = i_1)))
+   else (i_3 = i_1)) ->
+  ((0 <= i_3) /\ (x_1 <= i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'has_match' 'result' in 'find_end' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_has_match_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'has_match' 'result' in 'find_end'":
+*)
+goal goal9:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_4) in
+  let x = i + i_3 - 1 in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_uint32 i_4)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((p_hassubrange_1_ t_1 a_1 0 i_1 a i)) ->
+  (if (0 < i)
+   then (if (i <= i_1)
+         then ((i_2 = i_1) /\ (i_2 < (i + i_3)) /\
+               (i_2 <= (4294967295 + i)) /\
+               ((i_4 < i_2) -> ((p_equalranges_1_ t_1 t_1 a_2 i a))) /\
+               ((i_4 = i_2) -> (not (p_hassubrange_2_ t_1 a_1 x a i))) /\
+               ((i_4 < i_2) ->
+                (not (p_hassubrange_1_ t_1 a_1 (1 + i_4) x a i))) /\
+               ((i_4 = i_2) \/ ((i + i_4) <= i_2))) else (i_4 = i_1))
+   else (i_4 = i_1)) ->
+  ((p_equalranges_1_ t_1 t_1 a_2 i a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'has_match' 'last' in 'find_end' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_has_match_post_last
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'has_match' 'last' in 'find_end'":
+*)
+goal goal10:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_2 - 1 in
+  let x_1 = 1 + i_3 in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((p_hassubrange_1_ t_1 a_1 0 i_1 a i)) ->
+  (if (0 < i)
+   then (if (i <= i_1)
+         then ((i_1 < (i + i_2)) /\ (i_1 <= (4294967295 + i)) /\
+               ((i_3 < i_1) ->
+                ((p_equalranges_1_ t_1 t_1 ((shift_sint32 a_1 i_3)) i a))) /\
+               ((i_3 = i_1) -> (not (p_hassubrange_2_ t_1 a_1 x a i))) /\
+               ((i_3 < i_1) -> (not (p_hassubrange_1_ t_1 a_1 x_1 x a i))) /\
+               ((i_3 = i_1) \/ ((i + i_3) <= i_1))) else (i_3 = i_1))
+   else (i_3 = i_1)) ->
+  (not (p_hassubrange_1_ t_1 a_1 x_1 i_1 a i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'no_match' 'result' in 'find_end' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_end_no_match_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'no_match' 'result' in 'find_end'":
+*)
+goal goal11:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = i + i_2 - 1 in
+  (0 < i) ->
+  (i <= i_1) ->
+  (i_1 < (i + i_2)) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_1 <= (4294967295 + i)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  (not (p_hassubrange_1_ t_1 a_1 0 i_1 a i)) ->
+  ((i_3 < i_1) -> ((p_equalranges_1_ t_1 t_1 ((shift_sint32 a_1 i_3)) i a))) ->
+  ((i_3 = i_1) -> (not (p_hassubrange_2_ t_1 a_1 x a i))) ->
+  ((i_3 < i_1) -> (not (p_hassubrange_1_ t_1 a_1 (1 + i_3) x a i))) ->
+  ((i_3 = i_1) \/ ((i + i_3) <= i_1)) ->
+  (i_3 = i_1)
+
+end
+

@@ -1,0 +1,13 @@
+session dfa_example = NTP4Verif +
+theories
+  "dfa_example_DfaExample"
+  "dfa_example_DfaExample_one_w_in_r1qtvc"
+  "dfa_example_DfaExample_astate2qtvc"
+  "dfa_example_DfaExample_zero_w_in_r2qtvc"
+  "dfa_example_DfaExample_words_in_r1_end_with_oneqtvc"
+  "dfa_example_DfaExample_all_in_r0qtvc"
+  "dfa_example_DfaExample_astate1qtvc"
+  "dfa_example_DfaExample_words_in_r1_suffix_in_r1qtvc"
+  "dfa_example_DfaExample_empty_notin_r1qtvc"
+  "dfa_example_DfaExample_one_w_in_r2qtvc"
+  "dfa_example_DfaExample_zero_w_in_r1qtvc"

@@ -1,0 +1,8 @@
+session float_mat_norm_li_Why3_ide = NTP4Verif +
+theories
+  "float_mat_norm_li_Why3_ide_VCfloat_mat_norm_li_loop_inv_3_established_goal4"
+  "float_mat_norm_li_Why3_ide_VCfloat_mat_norm_li_loop_inv_established_goal1"
+  "float_mat_norm_li_Why3_ide_VCfloat_mat_norm_li_loop_inv_2_preserved_goal2"
+  "float_mat_norm_li_Why3_ide_VCfloat_mat_norm_li_loop_inv_preserved_goal0"
+  "float_mat_norm_li_Why3_ide_VCfloat_mat_norm_li_call_fabsf_pre_finite_arg_goal5"
+  "float_mat_norm_li_Why3_ide_VCfloat_mat_norm_li_loop_inv_3_preserved_goal3"

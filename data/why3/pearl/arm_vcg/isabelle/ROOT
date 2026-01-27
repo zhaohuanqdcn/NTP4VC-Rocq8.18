@@ -1,0 +1,8 @@
+session arm = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "arm_M_insertion_sortqtvc"
+  "arm_InsertionSortExample_path_init_l2qtvc"
+  "arm_ARM"
+  "arm_InsertionSortExample_path_l2_exitqtvc"

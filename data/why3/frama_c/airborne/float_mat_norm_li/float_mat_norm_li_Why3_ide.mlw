@@ -1,0 +1,299 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file math/pprz_algebra_float.c, line 1032) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_mat_norm_li_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Preservation of Invariant (file math/pprz_algebra_float.c, line 1032)":
+*)
+goal goal0:
+  forall i_3 i_2 i_1 i : int.
+  forall r : real.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  (0.0 <=. r) ->
+  (i_2 <= i) ->
+  (i_3 <= i_1) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_float32 r)) ->
+  ((is_sint32 (1 + i_3))) ->
+  ((p_rvalid_float_mat_2_ t t_1 a i_1 i)) ->
+  (((-1)) <= i_3)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file math/pprz_algebra_float.c, line 1032) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_mat_norm_li_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Establishment of Invariant (file math/pprz_algebra_float.c, line 1032)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((p_rvalid_float_mat_2_ t t_1 a i_1 i)) ->
+  (0 <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file math/pprz_algebra_float.c, line 1033) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_mat_norm_li_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Preservation of Invariant (file math/pprz_algebra_float.c, line 1033)":
+*)
+goal goal2:
+  forall i_3 i_2 i_1 i : int.
+  forall r_1 r : real.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  (0.0 <=. r) ->
+  (r <=. r_1) ->
+  (i_2 <= i) ->
+  (i_3 <= i_1) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((p_rvalid_float_mat_2_ t t_1 a i_1 i)) ->
+  (0.0 <=. r_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file math/pprz_algebra_float.c, line 1040) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_mat_norm_li_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Cint.Cint
+use import Axiomatic15.Axiomatic15
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file math/pprz_algebra_float.c, line 1040)":
+*)
+goal goal3:
+  forall i_3 i_2 i_1 i : int.
+  forall r_1 r : real.
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let r_2 = t_1[(shift_float32 t_2[(shift_ptr a i_3)] i_2)] in
+  (0.0 <=. r) ->
+  (i_2 <= i) ->
+  (i_3 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (0.0 <=. r_1) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_finite32 r_1)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_sint32 (1 + i_2))) ->
+  ((p_rvalid_float_mat_2_ t t_2 a i_1 i)) ->
+  ((is_finite32 r_2)) ->
+  ((is_float32 r_2)) ->
+  ((r_2 = r_1) \/ ((r_1 +. r_2) = 0.0)) ->
+  (((-1)) <= i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file math/pprz_algebra_float.c, line 1040) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_mat_norm_li_loop_inv_3_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Establishment of Invariant (file math/pprz_algebra_float.c, line 1040)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall r : real.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a : addr.
+  (0.0 <=. r) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_float32 r)) ->
+  ((p_rvalid_float_mat_2_ t t_1 a i_1 i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'fabsf'' in 'float_mat_norm_li' at call 'fabsf' (file math/pprz_algebra_float.c, line 1046)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_mat_norm_li_call_fabsf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Axiomatic15.Axiomatic15
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'fabsf'' in 'float_mat_norm_li' at call 'fabsf' (file math/pprz_algebra_float.c, line 1046)
+":
+*)
+goal goal5:
+  forall i_3 i_2 i_1 i : int.
+  forall r : real.
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let r_1 = t_1[(shift_float32 t_2[(shift_ptr a i_3)] i_2)] in
+  (0.0 <=. r) ->
+  (i_2 <= i) ->
+  (i_3 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (0 <= i_3) ->
+  (i_3 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((is_float32 r)) ->
+  ((p_rvalid_float_mat_2_ t t_2 a i_1 i)) ->
+  ((is_float32 r_1)) ->
+  ((is_finite32 r_1))
+
+end
+

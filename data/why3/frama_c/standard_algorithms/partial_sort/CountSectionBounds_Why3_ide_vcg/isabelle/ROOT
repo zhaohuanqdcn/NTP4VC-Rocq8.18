@@ -1,0 +1,7 @@
+session CountSectionBounds_Why3_ide = NTP4Verif +
+theories
+  "CountSectionBounds_Why3_ide_VCCountSectionBounds_post_goal0"
+  "CountSectionBounds_Why3_ide_VCCountSectionBounds_loop_inv_2_established_goal3"
+  "CountSectionBounds_Why3_ide_VCCountSectionBounds_assert_rte_unsigned_overflow_goal4"
+  "CountSectionBounds_Why3_ide_VCCountSectionBounds_loop_inv_2_preserved_goal2"
+  "CountSectionBounds_Why3_ide_VCCountSectionBounds_loop_inv_preserved_goal1"

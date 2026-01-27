@@ -1,0 +1,388 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file find.c, line 7)    --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file find.c, line 7)":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_2) in
+  let x = t_1[a_1] in
+  (x <> i) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 (1 + i_2))) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t a_1 1)) ->
+  (forall i_3 : int. (0 <= i_3) -> (i_3 < i_2) ->
+   (t_1[(shift_sint32 a i_3)] <> i)) ->
+  ((-1) <= i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file find.c, line 7)   --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file find.c, line 7)":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file find.c, line 8)    --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Preservation of Invariant (file find.c, line 8)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_sint32 a i_2)] in
+  let a_1 = (shift_sint32 a i_1) in
+  let x_1 = t_1[a_1] in
+  (x <> x_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (i_1 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 (1 + i_1))) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_1 1)) ->
+  (forall i_3 : int. (0 <= i_3) -> (i_3 < i_1) ->
+   (x <> t_1[(shift_sint32 a i_3)])) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file find.c, line 13)  --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file find.c, line 13)":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_2) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 t_1[a_1])) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  (forall i_3 : int. (0 <= i_3) -> (i_3 < i_2) ->
+   (t_1[(shift_sint32 a i_3)] <> i)) ->
+  ((valid_rd t a_1 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file find.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file find.c, line 12)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_2) in
+  let x = t_1[a_1] in
+  (x <> i) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((valid_rd t a_1 1)) ->
+  (forall i_3 : int. (0 <= i_3) -> (i_3 < i_2) ->
+   (t_1[(shift_sint32 a i_3)] <> i)) ->
+  (i_2 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'none' (file find.h, line 22) in 'find' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_none_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'none' (file find.h, line 22) in 'find'":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_1) in
+  let x = t_1[a_1] in
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_1 1)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i) ->
+   (x <> t_1[(shift_sint32 a i_2)])) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i_1) ->
+   (x <> t_1[(shift_sint32 a i_2)])) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'some' (file find.h, line 16) in 'find' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_some_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'some' (file find.h, line 16) in 'find'":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_sint32 a i_1)] in
+  (i_2 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 t_1[(shift_sint32 a i_2)])) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (forall i_3 : int. (0 <= i_3) -> (i_3 < i_2) ->
+   (x <> t_1[(shift_sint32 a i_3)])) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'some' (file find.h, line 17) in 'find' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_some_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'some' (file find.h, line 17) in 'find'":
+*)
+goal goal7:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_sint32 a i_1)] in
+  let x_1 = t_1[(shift_sint32 a i_2)] in
+  (i_2 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (forall i_3 : int. (0 <= i_3) -> (i_3 < i_2) ->
+   (x <> t_1[(shift_sint32 a i_3)])) ->
+  (x_1 = x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'some' (file find.h, line 18) in 'find' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_some_post_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'some' (file find.h, line 18) in 'find'":
+*)
+goal goal8:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = t_1[(shift_sint32 a i_1)] in
+  let a_1 = (shift_sint32 a i_3) in
+  let x_1 = t_1[a_1] in
+  (i_3 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i_3) ->
+  (0 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((i <= i_3) \/ ((x_1 = x) /\ ((valid_rd t a_1 1)))) ->
+  (forall i_4 : int. (0 <= i_4) -> (i_4 < i_3) ->
+   (x <> t_1[(shift_sint32 a i_4)])) ->
+  (t_1[(shift_sint32 a i_2)] <> x)
+
+end
+

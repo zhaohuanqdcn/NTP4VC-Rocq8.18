@@ -1,0 +1,31 @@
+(* ---------------------------------------------------------- *)
+(* --- Struct '__anonstruct_cert_parsing_ctx_12'          --- *)
+(* ---------------------------------------------------------- *)
+theory S22
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+type s22 = {
+  f22_empty_subject : int ;
+  f22_san_empty : int ;
+  f22_san_critical : int ;
+  f22_ca_true : int ;
+  f22_bc_critical : int ;
+  f22_has_ski : int ;
+  f22_has_keyusage : int ;
+  f22_keycertsign_set : int ;
+  f22_crlsign_set : int ;
+  f22_pathlenconstraint_set : int ;
+  f22_has_name_constraints : int ;
+  f22_has_crldp : int ;
+  f22_one_crldp_has_all_reasons : int ;
+  f22_aki_has_keyidentifier : int ;
+  f22_self_signed : int }
+
+end
+

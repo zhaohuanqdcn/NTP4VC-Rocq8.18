@@ -1,0 +1,14 @@
+session min_element_Why3_ide = NTP4Verif +
+theories
+  "min_element_Why3_ide_VCmin_element_post_result_goal2"
+  "min_element_Why3_ide_VCmin_element_loop_inv_first_preserved_goal4"
+  "min_element_Why3_ide_VCmin_element_assert_rte_unsigned_overflow_goal10"
+  "min_element_Why3_ide_VCmin_element_not_empty_post_min_goal11"
+  "min_element_Why3_ide_VCmin_element_loop_inv_bound_preserved_goal3"
+  "min_element_Why3_ide_VCmin_element_loop_inv_lower_preserved_goal6"
+  "min_element_Why3_ide_VCmin_element_disjoint_not_empty_empty_goal1"
+  "min_element_Why3_ide_VCmin_element_complete_not_empty_empty_goal0"
+  "min_element_Why3_ide_VCmin_element_loop_inv_first_established_goal5"
+  "min_element_Why3_ide_VCmin_element_assert_rte_mem_access_2_goal9"
+  "min_element_Why3_ide_VCmin_element_loop_inv_lower_established_goal7"
+  "min_element_Why3_ide_VCmin_element_assert_rte_mem_access_goal8"

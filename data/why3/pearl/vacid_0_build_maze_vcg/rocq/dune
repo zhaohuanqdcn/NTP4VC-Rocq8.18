@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name vacid_0_build_maze_vcg)
+(theories Why3 vacid_0_build_maze_vcg.vacid_0_build_maze Why3.why3.Ref))

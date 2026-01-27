@@ -1,0 +1,13 @@
+import Why3.Base
+open Classical
+open Lean4Why3
+namespace subsequence_Top_is_subsequenceqtvc
+axiom char : Type
+axiom inhabited_axiom_char : Inhabited char
+attribute [instance] inhabited_axiom_char
+noncomputable def subsequence (v : List char) (u : List char) (f : ℤ -> ℤ) := (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length v) → ((0 : ℤ) ≤ f i ∧ f i < Int.ofNat (List.length u)) ∧ v[Int.toNat i]! = u[Int.toNat (f i)]!) ∧ (∀(i : ℤ) (j : ℤ), (0 : ℤ) ≤ i ∧ i < j ∧ j < Int.ofNat (List.length v) → f i < f j)
+axiom identity : ℤ -> ℤ
+axiom identity_def (y : ℤ) : identity y = y
+theorem is_subsequence'vc (v : List char) (u : List char) : (∀(i : ℤ) (j : ℤ) (f : ℤ -> ℤ), ((0 : ℤ) ≤ i ∧ i ≤ Int.ofNat (List.length v)) ∧ ((0 : ℤ) ≤ j ∧ j ≤ Int.ofNat (List.length u)) ∧ subsequence (List.drop (0 : ℕ) (List.take (Int.toNat i - (0 : ℕ)) v)) (List.drop (0 : ℕ) (List.take (Int.toNat j - (0 : ℕ)) u)) f ∧ (∀(f1 : ℤ -> ℤ), subsequence v u f1 → i < Int.ofNat (List.length v) → j ≤ f1 i) → (let o1 : ℤ := Int.ofNat (List.length v); (¬i = o1 → j < Int.ofNat (List.length u) → (if v[Int.toNat i]! = u[Int.toNat j]! then let o2 : ℤ := j + (1 : ℤ); let o3 : ℤ := i + (1 : ℤ); ((0 : ℤ) ≤ Int.ofNat (List.length u) - j ∧ Int.ofNat (List.length u) - o2 < Int.ofNat (List.length u) - j) ∧ ((0 : ℤ) ≤ o3 ∧ o3 ≤ Int.ofNat (List.length v)) ∧ ((0 : ℤ) ≤ o2 ∧ o2 ≤ Int.ofNat (List.length u)) ∧ subsequence (List.drop (0 : ℕ) (List.take (Int.toNat o3 - (0 : ℕ)) v)) (List.drop (0 : ℕ) (List.take (Int.toNat o2 - (0 : ℕ)) u)) (Function.update f i j) ∧ (∀(f1 : ℤ -> ℤ), subsequence v u f1 → o3 < Int.ofNat (List.length v) → o2 ≤ f1 o3) else let o2 : ℤ := j + (1 : ℤ); ((0 : ℤ) ≤ Int.ofNat (List.length u) - j ∧ Int.ofNat (List.length u) - o2 < Int.ofNat (List.length u) - j) ∧ ((0 : ℤ) ≤ i ∧ i ≤ Int.ofNat (List.length v)) ∧ ((0 : ℤ) ≤ o2 ∧ o2 ≤ Int.ofNat (List.length u)) ∧ subsequence (List.drop (0 : ℕ) (List.take (Int.toNat i - (0 : ℕ)) v)) (List.drop (0 : ℕ) (List.take (Int.toNat o2 - (0 : ℕ)) u)) f ∧ (∀(f1 : ℤ -> ℤ), subsequence v u f1 → i < Int.ofNat (List.length v) → o2 ≤ f1 i))) ∧ (∀(result : Bool), (if i = o1 then result = true else if j < Int.ofNat (List.length u) then result = (if ∃(f1 : ℤ -> ℤ), subsequence v u f1 then true else false) else result = false) → (result = true) = (∃(f1 : ℤ -> ℤ), subsequence v u f1)))) ∧ (0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) ≤ Int.ofNat (List.length v) ∧ (0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) ≤ Int.ofNat (List.length u) ∧ subsequence (List.drop (0 : ℕ) (List.take ((0 : ℕ) - (0 : ℕ)) v)) (List.drop (0 : ℕ) (List.take ((0 : ℕ) - (0 : ℕ)) u)) identity ∧ (∀(f : ℤ -> ℤ), subsequence v u f → (0 : ℤ) < Int.ofNat (List.length v) → (0 : ℤ) ≤ f (0 : ℤ))
+  := sorry
+end subsequence_Top_is_subsequenceqtvc

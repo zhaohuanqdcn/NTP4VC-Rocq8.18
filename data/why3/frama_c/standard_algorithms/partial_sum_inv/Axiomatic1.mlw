@@ -1,0 +1,44 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #1)                  --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_AccumulateAxiomatic.A_AccumulateAxiomatic
+
+predicate p_accumulatebounds_1_ (mint_0 : map addr int) (a : addr) (n : int)
+    (init_0 : int) =
+    forall i : int. let x = (l_accumulate_1_ mint_0 a i init_0) in
+    (i <= n) -> (0 <= i) -> (((-2147483648) <= x) /\ (x <= 2147483647))
+
+predicate p_accumulatebounds_2_ (mint_0 : map addr int) (a : addr)
+    (n : int) = (p_accumulatebounds_1_ mint_0 a n 0)
+
+function l_accumulate_2_ (mint_0 : map addr int) (a : addr) (n : int) : int =
+    (l_accumulate_1_ mint_0 a n 0)
+
+use import Compound.Compound
+
+predicate p_partialsum (mint_0 : map addr int) (a : addr) (n : int)
+    (b : addr) =
+    forall i : int. (0 <= i) -> (i < n) ->
+    (mint_0[(shift_sint32 b i)] = ((l_accumulate_2_ mint_0 a (1 + i))))
+
+use import Cint.Cint
+
+axiom Q_TL_Accumulate_2_:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall n : int
+  [(l_accumulate_2_ mint_0 a n)].
+  (is_sint32 ((l_accumulate_2_ mint_0 a n)))
+
+end
+

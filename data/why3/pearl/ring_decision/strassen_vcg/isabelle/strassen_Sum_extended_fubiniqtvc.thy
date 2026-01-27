@@ -1,0 +1,30 @@
+theory strassen_Sum_extended_fubiniqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.int_Sum"
+begin
+consts addf :: "(int \<Rightarrow> int) \<Rightarrow> (int \<Rightarrow> int) \<Rightarrow> int \<Rightarrow> int"
+axiomatization where addf'def:   "addf f g x = f x + g x"
+  for f :: "int \<Rightarrow> int"
+  and g :: "int \<Rightarrow> int"
+  and x :: "int"
+consts smulf :: "(int \<Rightarrow> int) \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int"
+axiomatization where smulf'def:   "smulf f l x = l * f x"
+  for f :: "int \<Rightarrow> int"
+  and l :: "int"
+  and x :: "int"
+consts sumf :: "(int \<Rightarrow> int \<Rightarrow> int) \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int"
+axiomatization where sumf'def:   "sumf f a b x = sum (f x) a b"
+  for f :: "int \<Rightarrow> int \<Rightarrow> int"
+  and a :: "int"
+  and b :: "int"
+  and x :: "int"
+theorem fubini'vc:
+  fixes a :: "int"
+  fixes b :: "int"
+  fixes c :: "int"
+  fixes d :: "int"
+  fixes f1 :: "int \<Rightarrow> int \<Rightarrow> int"
+  fixes f2 :: "int \<Rightarrow> int \<Rightarrow> int"
+  assumes fact0: "\<forall>(x :: int) (y :: int). (a \<le> x \<and> x < b) \<and> c \<le> y \<and> y < d \<longrightarrow> f1 x y = f2 y x"
+  shows "sum (sumf f1 c d) a b = sum (sumf f2 a b) c d"
+  sorry
+end

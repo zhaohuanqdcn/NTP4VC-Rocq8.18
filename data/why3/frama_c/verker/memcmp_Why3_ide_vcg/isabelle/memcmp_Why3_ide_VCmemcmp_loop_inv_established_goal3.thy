@@ -1,0 +1,33 @@
+theory memcmp_Why3_ide_VCmemcmp_loop_inv_established_goal3
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "../../lib/isabelle/Axiomatic3_Axiomatic3" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal3:
+  fixes a_5 :: "addr"
+  fixes a_4 :: "addr"
+  fixes a_3 :: "addr"
+  fixes a_2 :: "addr"
+  fixes a_11 :: "addr"
+  fixes a_10 :: "addr"
+  fixes a_9 :: "addr"
+  fixes a_8 :: "addr"
+  fixes a_12 :: "addr"
+  fixes a_13 :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes i :: "int"
+  fixes a :: "addr"
+  fixes a_1 :: "addr"
+  fixes a_6 :: "addr"
+  fixes a_7 :: "addr"
+  assumes fact0: "base a_5 = base a_4 \<longleftrightarrow> base a_3 = base a_2"
+  assumes fact1: "base a_11 = base a_10 \<longleftrightarrow> base a_9 = base a_8"
+  assumes fact2: "region (base a_12) \<le> (0 :: int)"
+  assumes fact3: "region (base a_13) \<le> (0 :: int)"
+  assumes fact4: "linked t"
+  assumes fact5: "is_uint64 i"
+  assumes fact6: "valid_rd t (shift a (0 :: int)) i"
+  assumes fact7: "valid_rd t (shift a_1 (0 :: int)) i"
+  assumes fact8: "valid_rd t (shift a_6 (0 :: int)) i"
+  assumes fact9: "valid_rd t (shift a_7 (0 :: int)) i"
+  shows "(0 :: int) \<le> i"
+  sorry
+end

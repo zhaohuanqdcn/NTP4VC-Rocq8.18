@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name verifythis_2018_array_based_queuing_lock_1_vcg)
+(theories Why3 Why3.why3.Ref))

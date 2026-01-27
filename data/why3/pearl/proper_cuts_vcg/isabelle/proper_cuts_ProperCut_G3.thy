@@ -1,0 +1,26 @@
+theory proper_cuts_ProperCut_G3
+  imports "NTP4Verif.NTP4Verif"
+begin
+definition injective :: "('a \<Rightarrow> 'b) \<Rightarrow> _"
+  where "injective f \<longleftrightarrow> (\<forall>(x :: 'a) (x' :: 'a). \<not>x = x' \<longrightarrow> \<not>f x = f x')" for f
+fun map :: "('a \<Rightarrow> 'b) \<Rightarrow> 'a list \<Rightarrow> 'b list"
+  where "map f (Nil :: 'a list) = (Nil :: 'b list)" for f
+      | "map f (Cons x s) = Cons (f x) (map f s)" for f x s
+axiomatization where map'spec'0:   "y \<in> set (map f l) \<longleftrightarrow> (\<exists>(x :: 'a). x \<in> set l \<and> y = f x)"
+  for y :: "'b"
+  and f :: "'a \<Rightarrow> 'b"
+  and l :: "'a list"
+axiomatization where map'spec:   "distinct (map f l)"
+ if "distinct l"
+ and "injective f"
+  for l :: "'a list"
+  and f :: "'a \<Rightarrow> 'b"
+definition cut :: "'a list \<Rightarrow> 'a list \<Rightarrow> 'a list \<Rightarrow> _"
+  where "cut l1 l2 l \<longleftrightarrow> l1 @ l2 = l" for l1 l2 l
+typedecl 'a cut_list
+definition proper_cuts :: "('a list \<times> 'a list) list \<Rightarrow> 'a list \<Rightarrow> _"
+  where "proper_cuts c l \<longleftrightarrow> distinct c \<and> (\<forall>(l1 :: 'a list) (l2 :: 'a list). (l1, l2) \<in> set c \<longleftrightarrow> cut l1 l2 l)" for c l
+theorem G3:
+  shows "proper_cuts (Cons ((Nil :: int list), Cons (3 :: int) (Nil :: int list)) (Cons (Cons (3 :: int) (Nil :: int list), (Nil :: int list)) (Nil :: (int list \<times> int list) list))) (Cons (3 :: int) (Nil :: int list))"
+  sorry
+end

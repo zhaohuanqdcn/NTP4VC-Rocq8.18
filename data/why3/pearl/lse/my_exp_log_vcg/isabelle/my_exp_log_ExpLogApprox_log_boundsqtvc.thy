@@ -1,0 +1,32 @@
+theory my_exp_log_ExpLogApprox_log_boundsqtvc
+  imports "NTP4Verif.NTP4Verif" "../../lib/isabelle/my_exp_log_ExpLogLemmas" "../../lib/isabelle/udouble_UDouble" "Why3STD.ieee_float_RoundingMode"
+begin
+consts exp_max_value :: "real"
+axiomatization where exp_max_value_spec:   "(0 :: Real.real) < exp_max_value"
+consts exp_error :: "real"
+axiomatization where exp_error_bound'0:   "(0 :: Real.real) < exp_error"
+axiomatization where exp_error_bound'1:   "exp_error \<le> (1 :: Real.real) / (2)"
+consts u_exp :: "udouble \<Rightarrow> udouble"
+axiomatization where u_exp_spec:   "abs (to_real (u_exp x) - exp (to_real x)) \<le> exp (to_real x) * exp_error"
+ if "abs (to_real x) \<le> exp_max_value"
+  for x :: "udouble"
+consts log_max_value :: "real"
+axiomatization where log_max_value_spec:   "(0 :: Real.real) < log_max_value"
+consts log_error :: "real"
+axiomatization where log_error_bound'0:   "(0 :: Real.real) < log_error"
+axiomatization where log_error_bound'1:   "log_error \<le> (1 :: Real.real)"
+consts u_log :: "udouble \<Rightarrow> udouble"
+axiomatization where u_log_spec:   "abs (to_real (u_log x) - ln (to_real x)) \<le> abs (ln (to_real x)) * log_error"
+ if "(0 :: Real.real) < to_real x"
+ and "to_real x \<le> log_max_value"
+  for x :: "udouble"
+consts log2_error :: "real"
+axiomatization where log2_error_bound'0:   "(0 :: Real.real) \<le> log2_error"
+axiomatization where log2_error_bound'1:   "log2_error \<le> (1 :: Real.real) / (4)"
+theorem log_bounds'vc:
+  fixes x :: "real"
+  assumes fact0: "(1 :: Real.real) / (1125899906842624) \<le> x"
+  assumes fact1: "x \<le> (10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376 :: Real.real)"
+  shows "abs (ln x) \<le> (800 :: Real.real)"
+  sorry
+end

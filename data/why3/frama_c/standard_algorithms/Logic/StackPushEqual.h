@@ -1,0 +1,10 @@
+
+#ifndef STACKPUSHEQUAL_H_INCLUDED
+#define STACKPUSHEQUAL_H_INCLUDED
+
+#include "StackEqual.h"
+
+
+
+#endif /* STACKPUSHEQUAL_H_INCLUDED */
+

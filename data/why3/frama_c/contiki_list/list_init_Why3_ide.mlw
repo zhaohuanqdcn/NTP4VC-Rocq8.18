@@ -1,0 +1,71 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file list_init.c, line 19) in 'list_init' --- *)
+(* ---------------------------------------------------------- *)
+theory VClist_init_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file list_init.c, line 19) in 'list_init'":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shift_ptr a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 2147483646)) ->
+  ((separated a 1 a_2 2147483646)) ->
+  ((separated t_1[a] 4 a_2 2147483646)) ->
+  ((separated null 4 a_2 2147483646))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file list_init.c, line 21) in 'list_init' --- *)
+(* ---------------------------------------------------------- *)
+theory VClist_init_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition (file list_init.c, line 21) in 'list_init'":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shift_ptr a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 2147483646)) ->
+  ((separated a 1 a_2 2147483646)) ->
+  ((separated t_1[a] 4 a_2 2147483646)) ->
+  ((p_linked_n t t_1[a <- null] null a_1 0 0 null))
+
+end
+

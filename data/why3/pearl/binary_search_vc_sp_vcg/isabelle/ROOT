@@ -1,0 +1,6 @@
+session binary_search_vc_sp = NTP4Verif +
+theories
+  "binary_search_vc_sp_BinarySearch_binary_searchqtvc"
+  "binary_search_vc_sp_BinarySearchAnyMidPoint_binary_searchqtvc"
+  "binary_search_vc_sp_BinarySearchBoolean_binary_searchqtvc"
+  "binary_search_vc_sp_BinarySearchInt32_binary_searchqtvc"

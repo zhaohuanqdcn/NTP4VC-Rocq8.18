@@ -1,0 +1,15 @@
+atoms:
+  mach.int.Unsigned.in_bounds: [in_bounds, int_Unsigned.in_bounds]
+  mach.int.Unsigned.max: [max, int_Unsigned.max]
+  mach.int.Unsigned.radix: [radix, int_Unsigned.radix]
+  mach.int.Unsigned.to_int: [to_int, int_Unsigned.to_int]
+  mach.int.Unsigned.zero_unsigned: [zero_unsigned, int_Unsigned.zero_unsigned]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: mach.int_Unsigned
+prefix_ops: {}
+types:
+  mach.int.Unsigned.t: [t, int_Unsigned.t]

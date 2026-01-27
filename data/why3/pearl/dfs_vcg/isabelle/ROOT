@@ -1,0 +1,9 @@
+session dfs = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "dfs_DFS"
+  "dfs_DFS_setqtvc"
+  "dfs_DFS_traverseqtvc"
+  "dfs_DFS_reformulationqtvc"
+  "dfs_DFS_dfsqtvc"

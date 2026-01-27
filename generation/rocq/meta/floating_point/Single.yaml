@@ -1,0 +1,37 @@
+atoms:
+  floating_point.Single.add_post: [add_post, Single.add_post]
+  floating_point.Single.div_post: [div_post, Single.div_post]
+  floating_point.Single.exact: [exact, Single.exact]
+  floating_point.Single.gt: [gt, Single.gt]
+  floating_point.Single.lt: [lt, Single.lt]
+  floating_point.Single.model: [model, Single.model]
+  floating_point.Single.mul_post: [mul_post, Single.mul_post]
+  floating_point.Single.neg_post: [neg_post, Single.neg_post]
+  floating_point.Single.no_overflow: [no_overflow, Single.no_overflow]
+  floating_point.Single.of_real_post: [of_real_post, Single.of_real_post]
+  floating_point.Single.round: [round, Single.round]
+  floating_point.Single.round_error: [round_error, Single.round_error]
+  floating_point.Single.round_logic: [round_logic, Single.round_logic]
+  floating_point.Single.sub_post: [sub_post, Single.sub_post]
+  floating_point.Single.total_error: [total_error, Single.total_error]
+  floating_point.Single.value: [value, Single.value]
+axioms:
+  floating_point.Single.Bounded_real_no_overflow: [Bounded_real_no_overflow, Single.Bounded_real_no_overflow]
+  floating_point.Single.Bounded_value: [Bounded_value, Single.Bounded_value]
+  floating_point.Single.Exact_rounding_for_integers: [Exact_rounding_for_integers,
+    Single.Exact_rounding_for_integers]
+  floating_point.Single.Round_down_le: [Round_down_le, Single.Round_down_le]
+  floating_point.Single.Round_down_neg: [Round_down_neg, Single.Round_down_neg]
+  floating_point.Single.Round_idempotent: [Round_idempotent, Single.Round_idempotent]
+  floating_point.Single.Round_logic_def: [Round_logic_def, Single.Round_logic_def]
+  floating_point.Single.Round_monotonic: [Round_monotonic, Single.Round_monotonic]
+  floating_point.Single.Round_up_ge: [Round_up_ge, Single.Round_up_ge]
+  floating_point.Single.Round_up_neg: [Round_up_neg, Single.Round_up_neg]
+  floating_point.Single.Round_value: [Round_value, Single.Round_value]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.floating_point.Single
+prefix_ops: {}
+types: {}

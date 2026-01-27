@@ -1,0 +1,28 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.prover.lib.lean.Unification.Types
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.BacktrackArray.Types
+import pearl.prover.lib.lean.Predicates.Pred
+import pearl.prover.lib.lean.BacktrackArray.Logic
+import pearl.prover.lib.lean.Choice.Choice
+import pearl.prover.lib.lean.BacktrackArray.Impl
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+import pearl.prover.lib.lean.Firstorder_term_impl.Impl
+import pearl.prover.lib.lean.Unification.Logic
+open Classical
+open Lean4Why3
+namespace Unification_Impl_bottomvarqtvc
+theorem bottomvar'vc (rhob : Types.t Types.sdata) (rho : Types.unifier_subst) (x : ℤ) (fact0 : Logic.unifier_subst_ok rhob rho) (fact1 : Logic.unassigned (Logic.current_timestamp rhob) x) : let tm : Spec.fo_term ℤ ℤ := Spec.fo_term.Var_fo_term x; tm = Spec.subst_fo_term tm Spec.subst_id_symbol (Types.unifier_subst.unifier_base_model rho) ∧ tm = Spec.subst_fo_term tm Spec.subst_id_symbol (Types.unifier_subst.unifier rho)
+  := sorry
+end Unification_Impl_bottomvarqtvc

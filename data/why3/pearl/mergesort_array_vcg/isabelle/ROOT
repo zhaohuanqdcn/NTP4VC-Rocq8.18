@@ -1,0 +1,11 @@
+session mergesort_array = NTP4Verif +
+theories
+  "mergesort_array_NaturalMergesort_natural_mergesort2qtvc"
+  "mergesort_array_NaturalMergesort_naturalrecqtvc"
+  "mergesort_array_Merge_merge_usingqtvc"
+  "mergesort_array_NaturalMergesort_find_runqtvc"
+  "mergesort_array_BottomUpMergesort_bottom_up_mergesortqtvc"
+  "mergesort_array_TopDownMergesort_mergesortqtvc"
+  "mergesort_array_NaturalMergesort_natural_mergesortqtvc"
+  "mergesort_array_TopDownMergesort_mergesort_recqtvc"
+  "mergesort_array_Merge_mergeqtvc"

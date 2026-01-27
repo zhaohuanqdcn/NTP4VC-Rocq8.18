@@ -1,0 +1,15 @@
+session logical = NTP4Verif +
+theories
+  "logical_Logical_wmpn_rshift_sepqtvc"
+  "logical_Logical_wmpn_lshift_sepqtvc"
+  "logical_LogicalUtil_clz_extqtvc"
+  "logical_Logical_wmpn_rshiftqtvc"
+  "logical_LogicalUtil_lsld_extqtvc"
+  "logical_LogicalOld_wmpn_lshiftqtvc"
+  "logical_LogicalUtil_lsl_mod_extqtvc"
+  "logical_LogicalUtil_mod_multqtvc"
+  "logical_Logical_wmpn_lshiftqtvc"
+  "logical_LogicalUtil_pow2_64qtvc"
+  "logical_LogicalOld_wmpn_rshift_in_placeqtvc"
+  "logical_LogicalOld_wmpn_rshiftqtvc"
+  "logical_LogicalOld_wmpn_lshift_in_placeqtvc"

@@ -1,0 +1,32 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.Qed.Qed.
+Require Import Why3.Memory.Memory.
+Require Import Why3.Cint.Cint.
+Require Import find_end.Compound.Compound.
+Require Import find_end.Axiomatic.Axiomatic.
+Open Scope Z_scope.
+Theorem goal10 (i : Z) (i_2 : Z) (i_3 : Z) (a : addr) (a_1 : addr) (t : Z -> Z) (i_1 : Z) (t_1 : addr -> Z) : let x : Z := i + i_2 - 1%Z in let x_1 : Z := 1%Z + i_3 in region (base a) ≤ 0%Z -> region (base a_1) ≤ 0%Z -> linked t -> is_uint32 i -> is_uint32 i_1 -> is_uint32 i_2 -> is_uint32 i_3 -> valid_rd t (shift a 0%Z) i -> valid_rd t (shift a_1 0%Z) i_1 -> p_hassubrange_1' t_1 a_1 0%Z i_1 a i -> (if decide (0%Z < i) then if decide (i ≤ i_1) then i_1 < i + i_2 ∧ i_1 ≤ 4294967295%Z + i ∧ (i_3 < i_1 -> p_equalranges_1' t_1 t_1 (shift a_1 i_3) i a) ∧ (i_3 = i_1 -> ¬ p_hassubrange_1' t_1 a_1 0%Z x a i) ∧ (i_3 < i_1 -> ¬ p_hassubrange_1' t_1 a_1 x_1 x a i) ∧ (i_3 = i_1 ∨ i + i_3 ≤ i_1) else i_3 = i_1 else i_3 = i_1) -> ¬ p_hassubrange_1' t_1 a_1 x_1 i_1 a i.
+Admitted.

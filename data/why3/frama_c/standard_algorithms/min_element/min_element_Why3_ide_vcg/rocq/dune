@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.min_element.min_element_Why3_ide_vcg)
+(theories Why3 Why3.Cint Why3.Memory min_element.Compound Why3.Qed min_element.Axiomatic))

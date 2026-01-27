@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name koda_ruskey_vcg.koda_ruskey)
+(theories Why3))

@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name binary_sqrt_vcg.binary_sqrt)
+(theories Why3.real Why3))

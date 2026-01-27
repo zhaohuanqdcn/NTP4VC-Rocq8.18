@@ -1,0 +1,12 @@
+atoms:
+  debug.Debug.foo: [foo, Debug.foo]
+  debug.Debug.t'mk: [t'mk, Debug.t'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.debug.Debug
+prefix_ops: {}
+types:
+  debug.Debug.t: [t, Debug.t]

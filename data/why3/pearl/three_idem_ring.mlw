@@ -1,0 +1,161 @@
+(** {1 Three idempotent rings are commutative }
+
+Author: Quentin Garchery (LRI, Université Paris-Sud)
+*)
+
+
+
+(** {2 Definitions} *)
+
+use int.Int
+
+clone export algebra.Ring with
+  axiom .
+
+(** Define multiplication by an integer recursively *)
+let rec ghost function mul (x : t) (n : int) : t
+  requires { n >= 0 }
+  variant { n }
+=
+  if n = 0 then pure{zero} else let r = mul x (n-1) in pure {x + r}
+
+(** We get lemmas from the why3 library *)
+clone int.Exponentiation with type t = t,
+  constant one = zero, function ( * ) = (+), function power = mul,
+  lemma .
+
+
+(** {2 General results about rings} *)
+
+(** First results : *)
+
+let ghost simpl_left (x y z: t) : unit
+  requires { x + y = x + z }
+  ensures  { y = z }
+= ()
+
+let ghost simpl_right (x y z: t) : unit
+  requires { y + x = z + x }
+  ensures  { y = z }
+= ()
+
+let ghost zero_star_l (x: t) : unit
+  ensures  { zero * x = zero }
+= ()
+
+let ghost zero_star_r (x: t) : unit
+  ensures  { x * zero = zero }
+= ()
+
+let ghost neg_star_r (x y: t) : unit
+  ensures  { x * (-y) = - (x * y) }
+= ()
+
+let ghost neg_star_l (x y: t) : unit
+  ensures  { (-x) * y = - (x * y) }
+= ()
+
+let ghost neg_neg (x: t) : unit
+  ensures  { - (- x) = x }
+= ()
+
+(** Lemmas about nullable elements : *)
+
+predicate null (x : t) (n : int) = mul x n = zero
+
+let ghost null_add (x x': t) (n: int) : unit
+  requires { 0 <= n }
+  requires { null x n }
+  requires { null x' n }
+  ensures  { null (x + x') n }
+= ()
+
+let ghost mul_star_l (x y : t) (n : int) : unit
+  requires { 0 <= n }
+  ensures { mul (x * y) n = (mul x n) * y }
+= ()
+
+let ghost mul_star_r (x y : t) (n : int) : unit
+  requires { 0 <= n }
+  ensures { mul (x * y) n = x * (mul y n) }
+= ()
+
+let ghost null_star_l (x y: t) (n: int) : unit
+  requires { 0 <= n }
+  requires { null x n }
+  ensures  { null (x * y) n }
+= ()
+
+let ghost null_star_r (x y: t) (n: int) : unit
+  requires { 0 <= n }
+  requires { null y n }
+  ensures  { null (x * y) n }
+= ()
+
+let ghost null_mul_congr (x: t) (k km: int) : unit
+  requires { k > 0 }
+  requires { km > 0 }
+  requires { null x k }
+  ensures  { mul x (Int.(+) km k) = mul x km }
+= ()
+
+
+(** {2 ThreeIdem axiom specific results} *)
+
+(** We now add the following axiom and want to prove the commutative property : *)
+
+axiom ThreeIdem : forall x. x * x * x = x
+
+(** Split the problem in two :
+one where the ring has characteritic 2
+and another where the ring has characteristic 3 *)
+
+(** First show that the characteristic of the ring divides 6 ... *)
+let ghost all_null6 (x: t) : unit
+  ensures  { null x 6 }
+= ()
+
+(** ... use it to show we can split the problem in two ...*)
+let ghost all_split (x: t) : unit
+  ensures  { exists y z. x = y + z /\ null y 2 /\ null z 3 }
+= ()
+
+(** ... and show that the two problems are independent *)
+let ghost free_split (x: t) : unit
+  requires { null x 2 }
+  requires { null x 3 }
+  ensures  { x = zero }
+= ()
+
+(** Show the commutative property in characteristic 2 : *)
+
+let ghost null_2_idem (x: t) : unit
+  requires { null x 2 }
+  ensures  { x * x = x }
+= ()
+
+let ghost null2_comm (x y: t) : unit
+  requires { null x 2 }
+  requires { null y 2 }
+  ensures  { x * y = y * x }
+= ()
+
+(** Show the commutative property in characteristic 3 : *)
+
+let ghost swap_equality (x y: t) : unit
+  requires { null x 3 }
+  requires { null y 3 }
+  ensures  { y * y * x + y * x * y + x * y * y = zero }
+= ()
+
+let ghost null3_comm (x y: t) : unit
+  requires { null x 3 }
+  requires { null y 3 }
+  ensures  { x * y = y * x }
+= ()
+
+(** Finally, combine the previous results to show the commutative property. *)
+
+let ghost commutative (x y: t) : unit
+  ensures  { x * y = y * x }
+= ()

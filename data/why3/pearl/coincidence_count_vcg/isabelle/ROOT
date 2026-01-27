@@ -1,0 +1,11 @@
+session coincidence_count = NTP4Verif +
+theories
+  "coincidence_count_CoincidenceCount_coincidence_countqtvc"
+  "coincidence_count_CoincidenceCountBag_bagofincreasingqtvc"
+  "coincidence_count_CoincidenceCount_not_mem_inter_lqtvc"
+  "coincidence_count_CoincidenceCountBag_not_mem_inter_lqtvc"
+  "coincidence_count_CoincidenceCountBag_coincidence_countqtvc"
+  "coincidence_count_CoincidenceCountBag_not_mem_inter_rqtvc"
+  "coincidence_count_CoincidenceCount_not_mem_inter_rqtvc"
+  "coincidence_count_CoincidenceCount_drop_leftqtvc"
+  "coincidence_count_CoincidenceCountBag_bagofsubqtvc"

@@ -1,0 +1,10 @@
+atoms:
+  map.Const.const: [const, map_Const.const]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.map_Const
+prefix_ops: {}
+types: {}

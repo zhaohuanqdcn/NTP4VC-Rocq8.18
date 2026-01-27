@@ -1,0 +1,545 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'result' in 'adjacent_find'         --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'result' in 'adjacent_find'":
+*)
+goal goal0:
+  forall p : bool.
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_1 in
+  let x_1 = 1 + i_2 in
+  let a_1 = (shift_sint32 a i_2) in
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (if (2 <= i)
+   then ((p=False) /\ (0 <= i_1) /\ (i_1 < i) /\ (i_1 <= 4294967294) /\
+         (not (p_hasequalneighbors t_1 a x)) /\
+         (if ((2 + i_1) <= i)
+          then ((i_2 = i_1) /\ (t_1[(shift_sint32 a x_1)] = t_1[a_1]) /\
+                ((valid_rd t a_1 1)) /\
+                ((valid_rd t ((shift_sint32 a ((to_uint32 x_1)))) 1)))
+          else (x = i_2))) else (i_2 = i)) ->
+  ((i_2 <= i) /\ (0 <= i_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file adjacent_find.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file adjacent_find.c, line 8)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_1 in
+  let a_1 = (shift_sint32 a x) in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint32 a i_1) in
+  let x_2 = t_1[a_2] in
+  (x_1 <> x_2) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i) ->
+  (i_1 <= 4294967294) ->
+  ((2 + i_1) <= i) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((is_sint32 x_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_2 1)) ->
+  (not (p_hasequalneighbors t_1 a x)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((-1) <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file adjacent_find.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file adjacent_find.c, line 8)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  (2 <= i) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (0 < i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'none' (file adjacent_find.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_loop_inv_none_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'none' (file adjacent_find.c, line 9)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_1 in
+  let a_1 = (shift_sint32 a x) in
+  let x_1 = t_1[a_1] in
+  let a_2 = (shift_sint32 a i_1) in
+  let x_2 = t_1[a_2] in
+  let x_3 = 2 + i_1 in
+  (x_1 <> x_2) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i) ->
+  (i_1 <= 4294967294) ->
+  (x_3 <= i) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((is_sint32 x_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_2 1)) ->
+  (not (p_hasequalneighbors t_1 a x)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t a_1 1)) ->
+  (not (p_hasequalneighbors t_1 a x_3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'none' (file adjacent_find.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_loop_inv_none_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'none' (file adjacent_find.c, line 9)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  (2 <= i) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (not (p_hasequalneighbors t_1 a 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file adjacent_find.c, line 13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file adjacent_find.c, line 13)":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_1 in
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 t_1[(shift_sint32 a i_1)])) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (not (p_hasequalneighbors t_1 a x)) ->
+  ((is_sint32 t_1[(shift_sint32 a x)])) ->
+  (i_1 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file adjacent_find.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file adjacent_find.c, line 14)":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_1) in
+  let x = 1 + i_1 in
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i) ->
+  (i_1 <= 4294967294) ->
+  ((2 + i_1) <= i) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 t_1[a_1])) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (not (p_hasequalneighbors t_1 a x)) ->
+  ((is_sint32 t_1[(shift_sint32 a x)])) ->
+  ((valid_rd t a_1 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file adjacent_find.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file adjacent_find.c, line 14)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_1 in
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i) ->
+  (i_1 <= 4294967294) ->
+  ((2 + i_1) <= i) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 t_1[(shift_sint32 a i_1)])) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (not (p_hasequalneighbors t_1 a x)) ->
+  ((is_sint32 t_1[(shift_sint32 a x)])) ->
+  ((valid_rd t ((shift_sint32 a ((to_uint32 x)))) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'none' 'result' in 'adjacent_find' --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_none_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'none' 'result' in 'adjacent_find'":
+*)
+goal goal8:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_1 in
+  let x_1 = 1 + i_2 in
+  let a_1 = (shift_sint32 a i_2) in
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i) ->
+  (i_1 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  (not (p_hasequalneighbors t_1 a i)) ->
+  ((is_sint32 t_1[(shift_sint32 a i_1)])) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  (not (p_hasequalneighbors t_1 a x)) ->
+  ((is_sint32 t_1[(shift_sint32 a x)])) ->
+  (if ((2 + i_1) <= i)
+   then ((i_2 = i_1) /\ (t_1[(shift_sint32 a x_1)] = t_1[a_1]) /\
+         ((valid_rd t a_1 1)) /\
+         ((valid_rd t ((shift_sint32 a ((to_uint32 x_1)))) 1)))
+   else (x = i_2)) ->
+  (i_2 = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'some' 'result' in 'adjacent_find' --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_some_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'some' 'result' in 'adjacent_find'":
+*)
+goal goal9:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_2) in
+  let x = t_1[a_1] in
+  let x_1 = 1 + i_2 in
+  let x_2 = t_1[(shift_sint32 a x_1)] in
+  let x_3 = 1 + i_1 in
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((p_hasequalneighbors t_1 a i)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((is_sint32 x_2)) ->
+  (if (2 <= i)
+   then ((0 <= i_1) /\ (i_1 < i) /\ (i_1 <= 4294967294) /\
+         (not (p_hasequalneighbors t_1 a x_3)) /\
+         (if ((2 + i_1) <= i)
+          then ((i_2 = i_1) /\ (x_2 = x) /\ ((valid_rd t a_1 1)) /\
+                ((valid_rd t ((shift_sint32 a ((to_uint32 x_1)))) 1)))
+          else (x_3 = i_2))) else (i_2 = i)) ->
+  ((0 <= i_2) /\ ((2 + i_2) <= i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'some' 'adjacent' in 'adjacent_find' --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_some_post_adjacent
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'some' 'adjacent' in 'adjacent_find'":
+*)
+goal goal10:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_2) in
+  let x = t_1[a_1] in
+  let x_1 = 1 + i_2 in
+  let x_2 = t_1[(shift_sint32 a x_1)] in
+  let x_3 = 1 + i_1 in
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((p_hasequalneighbors t_1 a i)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((is_sint32 x_2)) ->
+  (if (2 <= i)
+   then ((0 <= i_1) /\ (i_1 < i) /\ (i_1 <= 4294967294) /\
+         (not (p_hasequalneighbors t_1 a x_3)) /\
+         (if ((2 + i_1) <= i)
+          then ((i_2 = i_1) /\ (x_2 = x) /\ ((valid_rd t a_1 1)) /\
+                ((valid_rd t ((shift_sint32 a ((to_uint32 x_1)))) 1)))
+          else (x_3 = i_2))) else (i_2 = i)) ->
+  (x_2 = x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'some' 'first' in 'adjacent_find' --- *)
+(* ---------------------------------------------------------- *)
+theory VCadjacent_find_some_post_first
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'some' 'first' in 'adjacent_find'":
+*)
+goal goal11:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_2) in
+  let x = t_1[a_1] in
+  let x_1 = 1 + i_2 in
+  let x_2 = t_1[(shift_sint32 a x_1)] in
+  let x_3 = 1 + i_1 in
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((p_hasequalneighbors t_1 a i)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((is_sint32 x_2)) ->
+  (if (2 <= i)
+   then ((0 <= i_1) /\ (i_1 < i) /\ (i_1 <= 4294967294) /\
+         (not (p_hasequalneighbors t_1 a x_3)) /\
+         (if ((2 + i_1) <= i)
+          then ((i_2 = i_1) /\ (x_2 = x) /\ ((valid_rd t a_1 1)) /\
+                ((valid_rd t ((shift_sint32 a ((to_uint32 x_1)))) 1)))
+          else (x_3 = i_2))) else (i_2 = i)) ->
+  (not (p_hasequalneighbors t_1 a i_2))
+
+end
+

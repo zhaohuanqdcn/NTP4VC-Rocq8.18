@@ -1,0 +1,5 @@
+session tree_max = NTP4Verif +
+theories
+  "tree_max_TreeMax_maxqtvc"
+  "tree_max_BinTree_ge_transqtvc"
+  "tree_max_TreeMax_max_auxqtvc"

@@ -1,0 +1,40 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file bzero.c, line 7) in 'bzero'   --- *)
+(* ---------------------------------------------------------- *)
+theory VCbzero_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file bzero.c, line 7) in 'bzero'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  let a_2 = (havoc t_1 t_2 a_1 i) in
+  (0 < i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 i)) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i) ->
+   (a_2[(shift_sint8 a i_2)] = 0)) ->
+  (a_2[(shift_sint8 a i_1)] = 0)
+
+end
+

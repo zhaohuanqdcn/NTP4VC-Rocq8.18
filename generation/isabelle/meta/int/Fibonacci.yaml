@@ -1,0 +1,10 @@
+atoms:
+  int.Fibonacci.fib: [fib, int_Fibonacci.fib]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.int_Fibonacci
+prefix_ops: {}
+types: {}

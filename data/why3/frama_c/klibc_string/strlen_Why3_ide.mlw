@@ -1,0 +1,296 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file /home/root/klibc_framac_wp/include/string.h, line 76) in 'strlen' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrlen_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Post-condition (file /home/root/klibc_framac_wp/include/string.h, line 76) in 'strlen'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.offset in
+  let x_2 = a_1.offset in
+  let x_3 = (l_length t_1 a_1) in
+  (t_1[a] = 0) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((is_sint32 (x_1 - x_2))) ->
+  ((addr_le a ((shift_sint8 a_1 x_3)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_2) < x_1) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((x_2 + x_3) = x_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strlen.c, line 12) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrlen_loop_inv_2_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file strlen.c, line 12) (1/2)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a_1.base in
+  (x <> 0) ->
+  (x_1 = (a.base)) ->
+  (((region x_1)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le a_1 ((shift_sint8 a 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strlen.c, line 12) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrlen_loop_inv_2_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file strlen.c, line 12) (2/2)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a_1.base in
+  let a_2 = (shift_sint8 a_1 ((l_length t_1 a_1))) in
+  (x <> 0) ->
+  (x_1 = (a.base)) ->
+  (((region x_1)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a a_2)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le ((shift_sint8 a 1)) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strlen.c, line 12) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrlen_loop_inv_2_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant (file strlen.c, line 12) (1/2)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((addr_le a a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strlen.c, line 12) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrlen_loop_inv_2_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Establishment of Invariant (file strlen.c, line 12) (2/2)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((addr_le a ((shift_sint8 a ((l_length t_1 a))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strlen.c, line 13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrlen_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file strlen.c, line 13)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a_1.base in
+  let x_2 = a_1.offset in
+  let x_3 = a.offset in
+  (x <> 0) ->
+  (x_1 = (a.base)) ->
+  (0 <= i_2) ->
+  (((region x_1)) <= 0) ->
+  ((i_2 + x_2) <= x_3) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_3) ->
+   (t_1[(shift_sint8 a_1 i_3)] <> 0)) ->
+  (t_1[(shift_sint8 a_1 i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file strlen.c, line 17) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrlen_loop_term_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file strlen.c, line 17)":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a_1.base in
+  let x_2 = (l_length t_1 a_1) in
+  let x_3 = a_1.offset in
+  let x_4 = a.offset in
+  (x <> 0) ->
+  (x_1 = (a.base)) ->
+  (((region x_1)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_2)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_3) < x_4) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  (x_4 <= (x_3 + x_2))
+
+end
+

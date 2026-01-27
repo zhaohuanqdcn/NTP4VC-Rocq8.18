@@ -1,0 +1,9 @@
+session space_saving = NTP4Verif +
+theories
+  "space_saving_Top_minimum_kqtvc"
+  "space_saving_Top_sqtvc"
+  "space_saving_Top_incrementqtvc"
+  "space_saving_Top_space_saving_2qtvc"
+  "space_saving_Top_minimumqtvc"
+  "space_saving_Top_findqtvc"
+  "space_saving_Top_space_saving_kqtvc"

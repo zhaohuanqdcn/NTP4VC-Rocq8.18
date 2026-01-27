@@ -1,0 +1,9 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+open Classical
+open Lean4Why3
+namespace decrease1_Decrease1_searchqtvc
+noncomputable def decrease1 (a : List ℤ) := ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a) - (1 : ℤ) → a[Int.toNat i]! - (1 : ℤ) ≤ a[Int.toNat (i + (1 : ℤ))]!
+theorem search'vc (a : List ℤ) (fact0 : decrease1 a) : (0 : ℤ) ≤ (0 : ℤ) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < (0 : ℤ) → j < Int.ofNat (List.length a) → ¬a[Int.toNat j]! = (0 : ℤ)) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < i → j < Int.ofNat (List.length a) → ¬a[Int.toNat j]! = (0 : ℤ)) → (if i < Int.ofNat (List.length a) then ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ (if a[Int.toNat i]! = (0 : ℤ) then i = -(1 : ℤ) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < Int.ofNat (List.length a) → ¬a[Int.toNat j]! = (0 : ℤ)) ∨ ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ a[Int.toNat i]! = (0 : ℤ) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < i → ¬a[Int.toNat j]! = (0 : ℤ)) else ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ (if (0 : ℤ) < a[Int.toNat i]! then ((0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a)) ∧ ((0 : ℤ) ≤ Int.ofNat (List.length a) - i ∧ Int.ofNat (List.length a) - (i + a[Int.toNat i]!) < Int.ofNat (List.length a) - i) ∧ (0 : ℤ) ≤ i + a[Int.toNat i]! ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < i + a[Int.toNat i]! → j < Int.ofNat (List.length a) → ¬a[Int.toNat j]! = (0 : ℤ)) else ((0 : ℤ) ≤ Int.ofNat (List.length a) - i ∧ Int.ofNat (List.length a) - (i + (1 : ℤ)) < Int.ofNat (List.length a) - i) ∧ (0 : ℤ) ≤ i + (1 : ℤ) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < i + (1 : ℤ) → j < Int.ofNat (List.length a) → ¬a[Int.toNat j]! = (0 : ℤ)))) else (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < Int.ofNat (List.length a) → ¬a[Int.toNat j]! = (0 : ℤ)) ∨ ((0 : ℤ) ≤ -(1 : ℤ) ∧ -(1 : ℤ) < Int.ofNat (List.length a)) ∧ a[Int.toNat (-(1 : ℤ))]! = (0 : ℤ) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < -(1 : ℤ) → ¬a[Int.toNat j]! = (0 : ℤ))))
+  := sorry
+end decrease1_Decrease1_searchqtvc

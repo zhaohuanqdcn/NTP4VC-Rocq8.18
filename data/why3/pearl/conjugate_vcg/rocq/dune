@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name conjugate_vcg)
+(theories Why3 conjugate_vcg.conjugate Why3.why3.Ref))

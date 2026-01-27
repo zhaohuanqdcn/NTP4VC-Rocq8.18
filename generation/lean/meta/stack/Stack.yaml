@@ -1,0 +1,12 @@
+atoms:
+  stack.Stack.elts: [Stack.elts]
+  stack.Stack.length: [Stack.length]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.stack.Stack
+prefix_ops: {}
+types:
+  stack.Stack.t: [Stack.t]

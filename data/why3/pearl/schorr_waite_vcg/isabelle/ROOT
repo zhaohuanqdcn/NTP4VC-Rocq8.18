@@ -1,0 +1,12 @@
+session schorr_waite = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "schorr_waite_SchorrWaite"
+  "schorr_waite_SchorrWaite_tl_stackNodesqtvc"
+  "schorr_waite_SchorrWaite_cons_not_inqtvc"
+  "schorr_waite_SchorrWaite_path_edge_consqtvc"
+  "schorr_waite_SchorrWaite_path_edgeqtvc"
+  "schorr_waite_SchorrWaite_schorr_waiteqtvc"
+  "schorr_waite_SchorrWaite_tl_consqtvc"
+  "schorr_waite_SchorrWaite_trans_pathqtvc"

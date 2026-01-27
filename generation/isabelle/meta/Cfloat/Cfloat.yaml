@@ -1,0 +1,48 @@
+atoms:
+  Cfloat.Cfloat.Down: [Down, Cfloat_Cfloat.Down, Cfloat_Cfloat.rounding_mode.Down]
+  Cfloat.Cfloat.Float32: [Float32, Cfloat_Cfloat.Float32, Cfloat_Cfloat.float_kind.Float32]
+  Cfloat.Cfloat.Float64: [Float64, Cfloat_Cfloat.Float64, Cfloat_Cfloat.float_kind.Float64]
+  Cfloat.Cfloat.Inf_neg: [Inf_neg, Cfloat_Cfloat.Inf_neg, Cfloat_Cfloat.float_kind.Inf_neg]
+  Cfloat.Cfloat.Inf_pos: [Inf_pos, Cfloat_Cfloat.Inf_pos, Cfloat_Cfloat.float_kind.Inf_pos]
+  Cfloat.Cfloat.NaN: [NaN, Cfloat_Cfloat.NaN, Cfloat_Cfloat.float_kind.NaN]
+  Cfloat.Cfloat.NearestTiesToAway: [NearestTiesToAway, Cfloat_Cfloat.NearestTiesToAway,
+    Cfloat_Cfloat.rounding_mode.NearestTiesToAway]
+  Cfloat.Cfloat.NearestTiesToEven: [NearestTiesToEven, Cfloat_Cfloat.NearestTiesToEven,
+    Cfloat_Cfloat.rounding_mode.NearestTiesToEven]
+  Cfloat.Cfloat.Real: [Real, Cfloat_Cfloat.Real, Cfloat_Cfloat.float_kind.Real]
+  Cfloat.Cfloat.ToZero: [ToZero, Cfloat_Cfloat.ToZero, Cfloat_Cfloat.rounding_mode.ToZero]
+  Cfloat.Cfloat.Up: [Up, Cfloat_Cfloat.Up, Cfloat_Cfloat.rounding_mode.Up]
+  Cfloat.Cfloat.classify_float: [classify_float, Cfloat_Cfloat.classify_float]
+  Cfloat.Cfloat.delta: [delta, Cfloat_Cfloat.delta]
+  Cfloat.Cfloat.error: [error, Cfloat_Cfloat.error]
+  Cfloat.Cfloat.is_NaN: [is_NaN, Cfloat_Cfloat.is_NaN]
+  Cfloat.Cfloat.is_finite32: [is_finite32, Cfloat_Cfloat.is_finite32]
+  Cfloat.Cfloat.is_finite64: [is_finite64, Cfloat_Cfloat.is_finite64]
+  Cfloat.Cfloat.is_float32: [is_float32, Cfloat_Cfloat.is_float32]
+  Cfloat.Cfloat.is_float64: [is_float64, Cfloat_Cfloat.is_float64]
+  Cfloat.Cfloat.is_infinite: [is_infinite, Cfloat_Cfloat.is_infinite]
+  Cfloat.Cfloat.is_negative_infinite: [is_negative_infinite, Cfloat_Cfloat.is_negative_infinite]
+  Cfloat.Cfloat.is_positive_infinite: [is_positive_infinite, Cfloat_Cfloat.is_positive_infinite]
+  Cfloat.Cfloat.model: [model, Cfloat_Cfloat.model]
+  Cfloat.Cfloat.round_double: [round_double, Cfloat_Cfloat.round_double]
+  Cfloat.Cfloat.round_float: [round_float, Cfloat_Cfloat.round_float]
+axioms:
+  Cfloat.Cfloat.float_32: Cfloat_Cfloat.float_32
+  Cfloat.Cfloat.float_64: Cfloat_Cfloat.float_64
+  Cfloat.Cfloat.is_finite_to_float_32: Cfloat_Cfloat.is_finite_to_float_32
+  Cfloat.Cfloat.is_finite_to_float_64: Cfloat_Cfloat.is_finite_to_float_64
+  Cfloat.Cfloat.model_add: Cfloat_Cfloat.model_add
+  Cfloat.Cfloat.model_div: Cfloat_Cfloat.model_div
+  Cfloat.Cfloat.model_float_32: Cfloat_Cfloat.model_float_32
+  Cfloat.Cfloat.model_float_64: Cfloat_Cfloat.model_float_64
+  Cfloat.Cfloat.model_mul: Cfloat_Cfloat.model_mul
+  Cfloat.Cfloat.model_sqrt: Cfloat_Cfloat.model_sqrt
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.Cfloat_Cfloat
+prefix_ops: {}
+types:
+  Cfloat.Cfloat.float_kind: [float_kind, Cfloat_Cfloat.float_kind]
+  Cfloat.Cfloat.rounding_mode: [rounding_mode, Cfloat_Cfloat.rounding_mode]

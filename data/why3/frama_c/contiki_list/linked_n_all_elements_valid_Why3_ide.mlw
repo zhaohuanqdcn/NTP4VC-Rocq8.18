@@ -1,0 +1,325 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file lemma_functions_linked_n.h, line 11) in 'linked_n_all_elements_valid' --- *)
+(* ---------------------------------------------------------- *)
+theory VClinked_n_all_elements_valid_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition (file lemma_functions_linked_n.h, line 11) in 'linked_n_all_elements_valid'":
+*)
+goal goal0:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let x = i_1 + i_3 in
+  (i_3 <= i) ->
+  (i_1 <= i_2) ->
+  (0 <= i_3) ->
+  (i <= i_3) ->
+  (i_2 < (i + i_1)) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rw t ((shift_ptr a_3 0)) 2147483646)) ->
+  ((p_linked_n t t_1 a a_3 i_1 i a_2)) ->
+  ((p_linked_n t t_1 a_1 a_3 x (i - i_3) a_2)) ->
+  (forall i_4 : int. (i_1 <= i_4) -> (i_4 < x) ->
+   ((valid_rw t t_1[(shift_ptr a_3 i_4)] 4))) ->
+  ((valid_rw t t_1[(shift_ptr a_3 i_2)] 4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file lemma_functions_linked_n.c, line 12) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VClinked_n_all_elements_valid_loop_inv_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file lemma_functions_linked_n.c, line 12) (1/2)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let x = i_1 + i_2 in
+  (i_2 <= i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 (1 + i_2))) ->
+  ((valid_rw t ((shift_ptr a_3 0)) 2147483646)) ->
+  ((p_linked_n t t_1 a a_3 i_1 i a_2)) ->
+  ((p_linked_n t t_1 a_1 a_3 x (i - i_2) a_2)) ->
+  (forall i_3 : int. (i_1 <= i_3) -> (i_3 < x) ->
+   ((valid_rw t t_1[(shift_ptr a_3 i_3)] 4))) ->
+  ((-1) <= i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file lemma_functions_linked_n.c, line 12) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VClinked_n_all_elements_valid_loop_inv_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant (file lemma_functions_linked_n.c, line 12) (2/2)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_2 a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t ((shift_ptr a_2 0)) 2147483646)) ->
+  ((p_linked_n t t_1 a a_2 i_1 i a_1)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file lemma_functions_linked_n.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VClinked_n_all_elements_valid_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file lemma_functions_linked_n.c, line 14)":
+*)
+goal goal3:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let x = i_1 + i_2 in
+  (i_2 <= i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (i_1 <= i_3) ->
+  (i_3 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 (1 + i_2))) ->
+  ((valid_rw t ((shift_ptr a_3 0)) 2147483646)) ->
+  ((p_linked_n t t_1 a a_3 i_1 i a_2)) ->
+  ((p_linked_n t t_1 a_1 a_3 x (i - i_2) a_2)) ->
+  (forall i_4 : int. (i_1 <= i_4) -> (i_4 < x) ->
+   ((valid_rw t t_1[(shift_ptr a_3 i_4)] 4))) ->
+  ((valid_rw t t_1[(shift_ptr a_3 i_3)] 4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file lemma_functions_linked_n.c, line 15) --- *)
+(* ---------------------------------------------------------- *)
+theory VClinked_n_all_elements_valid_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file lemma_functions_linked_n.c, line 15)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let x = i_1 + i_2 in
+  let x_1 = - i_2 in
+  (i_2 <= i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((is_sint32 (1 + i_2))) ->
+  ((valid_rw t ((shift_ptr a_3 0)) 2147483646)) ->
+  ((p_linked_n t t_1 a a_3 i_1 i a_2)) ->
+  ((p_linked_n t t_1 a_1 a_3 x (i - i_2) a_2)) ->
+  (forall i_3 : int. (i_1 <= i_3) -> (i_3 < x) ->
+   ((valid_rw t t_1[(shift_ptr a_3 i_3)] 4))) ->
+  ((p_linked_n t t_1 t_1[(shiftfield_f1_list_next a_1)] a_3 (1 + i_1 + i_2)
+     (i - 1 - i_2) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file lemma_functions_linked_n.c, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VClinked_n_all_elements_valid_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file lemma_functions_linked_n.c, line 20)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let x = i_1 + i_2 in
+  (i_2 <= i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t ((shift_ptr a_3 0)) 2147483646)) ->
+  ((p_linked_n t t_1 a a_3 i_1 i a_2)) ->
+  ((p_linked_n t t_1 a_1 a_3 x (i - i_2) a_2)) ->
+  (forall i_3 : int. (i_1 <= i_3) -> (i_3 < x) ->
+   ((valid_rw t t_1[(shift_ptr a_3 i_3)] 4))) ->
+  ((valid_rd t ((shiftfield_f1_list_next a_1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,signed_overflow' (file lemma_functions_linked_n.c, line 19) --- *)
+(* ---------------------------------------------------------- *)
+theory VClinked_n_all_elements_valid_assert_rte_signed_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,signed_overflow' (file lemma_functions_linked_n.c, line 19)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let x = i_1 + i_2 in
+  (i_2 <= i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rd t ((shiftfield_f1_list_next a_1)) 1)) ->
+  ((valid_rw t ((shift_ptr a_3 0)) 2147483646)) ->
+  ((p_linked_n t t_1 a a_3 i_1 i a_2)) ->
+  ((p_linked_n t t_1 a_1 a_3 x (i - i_2) a_2)) ->
+  (forall i_3 : int. (i_1 <= i_3) -> (i_3 < x) ->
+   ((valid_rw t t_1[(shift_ptr a_3 i_3)] 4))) ->
+  (i_2 <= 2147483646)
+
+end
+

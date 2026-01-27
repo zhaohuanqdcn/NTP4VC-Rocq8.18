@@ -1,0 +1,16 @@
+session __strxspn_Why3_ide = NTP4Verif +
+theories
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_4_preserved_part1_goal5"
+  "X__strxspn_Why3_ide_VC__strxspn_disjoint_one_zero_goal0"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_7_preserved_goal10"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_6_preserved_goal8"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_6_established_goal9"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_2_preserved_part2_goal2"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_9_preserved_goal13"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_4_established_part2_goal7"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_2_established_part1_goal3"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_4_preserved_part2_goal6"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_8_established_goal12"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_2_preserved_part1_goal1"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_2_established_part2_goal4"
+  "X__strxspn_Why3_ide_VC__strxspn_loop_inv_8_preserved_goal11"

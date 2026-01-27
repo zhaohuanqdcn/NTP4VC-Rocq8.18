@@ -1,0 +1,8 @@
+session lemma_functions = NTP4Verif +
+theories
+  "lemma_functions_LemmaFunction2_g1"
+  "lemma_functions_M_toy_exampleqtvc"
+  "lemma_functions_LemmaFunction2_sum_nonnegqtvc"
+  "lemma_functions_LemmaFunction1_fffqtvc"
+  "lemma_functions_LemmaFunction1_g"
+  "lemma_functions_M_lemma_length_non_negqtvc"

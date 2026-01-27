@@ -1,0 +1,11 @@
+atoms:
+  ufloat.UDoubleLemmas.real_fun: [real_fun, ufloat_UDoubleLemmas.real_fun]
+  ufloat.UDoubleLemmas.udiv_closure: [udiv_closure, ufloat_UDoubleLemmas.udiv_closure]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.ufloat_UDoubleLemmas
+prefix_ops: {}
+types: {}

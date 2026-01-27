@@ -1,0 +1,6 @@
+session HeapMaximum_Why3_ide = NTP4Verif +
+theories
+  "HeapMaximum_Why3_ide_VCHeapMaximum_loop_inv_preserved_goal1"
+  "HeapMaximum_Why3_ide_VCHeapMaximum_post_goal0"
+  "HeapMaximum_Why3_ide_VCHeapMaximum_assert_rte_unsigned_overflow_goal3"
+  "HeapMaximum_Why3_ide_VCHeapMaximum_loop_inv_2_preserved_goal2"

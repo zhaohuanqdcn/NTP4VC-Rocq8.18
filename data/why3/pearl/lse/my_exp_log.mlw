@@ -1,0 +1,163 @@
+module ExpLogLemmas
+
+  use real.RealInfix
+  use real.ExpLog
+  use real.Abs
+(*
+  use real_ineq.RealIneq
+*)
+
+  let ghost exp_positive (x:real) : unit
+    ensures { 0. <. exp(x) }
+  = ()
+
+  let ghost exp_inv (x:real) : unit
+    requires { x <> 0.0 }
+    ensures { exp(-. x) = 1.0 /. exp x }
+  = ()
+
+  let ghost exp_monotonic (x:real) (y:real) : unit
+    requires { x <=. y }
+    ensures { exp x <=. exp y }
+  = ()
+
+  let ghost log_monotonic (x:real) (y:real) : unit
+    requires { 0.0 <. x <=. y }
+    ensures { log x <=. log y }
+  = ()
+
+  let ghost exp_increasing () : unit
+    ensures { forall x y. x <. y -> exp x <. exp y }
+    = ()
+
+  let ghost log_increasing () : unit
+    ensures { forall x y. 0. <. x -> x <. y -> log x <. log y }
+    = ()
+(*
+  let lemma log2_increasing (x y :real)
+    requires { 0. <. x }
+    requires { x <. y }
+    ensures { log2 x <. log2 y }
+  = assert { forall x y z. x <. y -> z >. 0. -> x /. z <. y /. z }
+*)
+  let ghost log_1_minus_x (x:real) : unit
+    requires { 0. <=. x <. 1. }
+    ensures { log (1. +. x) <=. -. log (1. -. x) }
+  = ()
+
+(*
+  let ghost log2_1_minus_x (x:real)
+    requires { 0. <=. abs x <. 1. }
+    ensures { log2 (1. +. x) <=. -. log2 (1. -. x) }
+  = log_1_minus_x x
+*)
+
+  let ghost log_combine_err (x x_approx a b :real) : unit
+    requires { 0.0 <. x }
+    requires { b <. x *. (1.0 -. a)  }
+    requires { abs (x_approx -. x) <=. x *. a +. b }
+    ensures {
+      abs (log x_approx -. log x) <=. -. log(1.0 -. (a +. b /. x))
+    }
+  = ()
+
+(*
+  let ghost log2_approx_err (x x_approx a b :real)
+    requires { abs (x_approx -. x) <=. x *. a +. b }
+    requires { 0. <. (x *. (1. -. a) -. b) }
+    requires { 0. <. x }
+    ensures {
+      abs (log2 x_approx -. log2 x) <=. -. log2(1. -. (a +. b /. x))
+    }
+  =
+    assert { b = x *. (b /. x) };
+    assert { log2 (x *. (1. -. a -. b /. x)) <=. log2 x_approx <=. log2 (x *. (1. +. a +. b /. x)) };
+    log2_1_minus_x (a +. b /. x)
+*)
+end
+
+module ExpLogApprox
+
+  use real.RealInfix
+  use real.ExpLog
+  use ExpLogLemmas
+  use real.Abs
+
+  use udouble.UDouble
+
+  (* BEGIN{ax_exp_log_approx} *)
+  constant exp_max_value :real
+  axiom exp_max_value_spec: 0.0 <. exp_max_value
+
+  (** parameter for the error on exponential *)
+  constant exp_error:real
+  axiom exp_error_bound : 0. <. exp_error <=. 0.5
+
+  (** the assumed exponential function on unbounded doubles *)
+  function u_exp (x:udouble) : udouble
+  axiom u_exp_spec :
+    forall x:udouble [to_real (u_exp x)].
+      abs (to_real x) <=. exp_max_value ->
+      abs (to_real (u_exp x) -. exp (to_real x)) <=. exp (to_real x) *. exp_error
+
+  let ghost u_exp_pos (x:udouble) : unit
+    requires { abs (to_real x) <=. exp_max_value }
+    ensures { 0.0 <. to_real (u_exp x) }
+  = ()
+
+  constant log_max_value :real
+  axiom log_max_value_spec: 0.0 <. log_max_value
+
+  (** parameter for the error on logarithm *)
+  constant log_error:real
+  axiom log_error_bound : 0. <. log_error <=. 1.
+
+  (** the assumed logarithm function on unbounded doubles *)
+  function u_log (x:udouble) : udouble
+  axiom u_log_spec  :
+    forall x:udouble [to_real (u_log x)]. 0.0 <. to_real x <=. log_max_value ->
+    abs (to_real (u_log x) -. log (to_real x)) <=. abs (log (to_real x)) *. log_error
+  (* END{ax_exp_log_approx} *)
+
+(* useless
+  val u_log (x:udouble) : udouble
+    requires { [@expl:domain for log] 0.0 <. to_real x <=. log_max_value }
+    ensures { abs (to_real result -. log (to_real x)) <=. abs (log (to_real x)) *. log_error }
+*)
+
+  constant log2_error:real
+  axiom log2_error_bound : 0. <=. log2_error <=. 0x1p-2
+
+(*
+  function ulog2_approx (x:udouble) : udouble
+  axiom ulog2_approx_spec :
+    forall x [to_real (u_log x)]. 0. <. to_real x -> abs (to_real (ulog2_approx x) -. log2 (to_real x)) <=. abs (log2 (to_real x)) *. log2_error
+*)
+
+  (* For overflows *)
+  constant exp_lb : real = 1.4259626853e-292
+  constant exp_ub : real = 7.01280622773e+291
+  constant u_exp_lb : real = 7.129813e-293
+  constant u_exp_ub : real = 1.051921e+292
+
+  let ghost exp_bounds () : unit
+    ensures { forall x. abs x <=. exp_max_value -> exp_lb <=. exp(x) <=. exp_ub }
+    = ()
+
+  let ghost u_exp_bounds () : unit
+    ensures { forall x [u_exp x]. abs (to_real x) <=. exp_max_value -> u_exp_lb <=. to_real (u_exp x) <=. u_exp_ub }
+    = ()
+
+  let ghost log_bounds () : unit
+    ensures { forall x. 0x1p-50 <=. x <=. 0x1p1000 -> abs (log x) <=. 800. }
+    = ()
+
+  let ghost log_2_bounds () : unit
+    ensures { 0.68 <=. log 2.0 <=. 0.7 }
+    = ()
+
+  let ghost log2_bounds () : unit
+    ensures { forall x. 0x1p-50 <=. x <=. 0x1p1000 -> abs (log2 x) <=. 3000. }
+    = ()
+
+end

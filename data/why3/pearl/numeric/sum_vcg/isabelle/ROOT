@@ -1,0 +1,10 @@
+session sum = NTP4Verif +
+theories
+  "sum_SumDouble_example1qtvc"
+  "sum_SumSingle_usum_recqtvc"
+  "sum_SumDouble_usumqtvc"
+  "sum_SumSingle_example1qtvc"
+  "sum_SumDouble_usum_recqtvc"
+  "sum_SumSingle_sum_of_fun_le_sum_of_abs_funqtvc"
+  "sum_SumSingle_usumqtvc"
+  "sum_SumDouble_sum_of_fun_le_sum_of_abs_funqtvc"

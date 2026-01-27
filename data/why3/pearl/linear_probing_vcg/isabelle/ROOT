@@ -1,0 +1,18 @@
+session linear_probing = NTP4Verif +
+theories
+  "linear_probing_LinearProbing_addqtvc"
+  "linear_probing_LinearProbing_copyqtvc"
+  "linear_probing_LinearProbing_find_dummyqtvc"
+  "linear_probing_HashedTypeWithDummy_neqqtvc"
+  "linear_probing_LinearProbing_tqtvc"
+  "linear_probing_LinearProbing_findqtvc"
+  "linear_probing_LinearProbing_numof_eqqtvc"
+  "linear_probing_LinearProbing_dummy_constqtvc"
+  "linear_probing_LinearProbing_createqtvc"
+  "linear_probing_LinearProbing_memqtvc"
+  "linear_probing_LinearProbing_numof_updateqtvc"
+  "linear_probing_LinearProbing_resizeqtvc"
+  "linear_probing_LinearProbing_clearqtvc"
+  "linear_probing_LinearProbing_deleteqtvc"
+  "linear_probing_LinearProbing_removeqtvc"
+  "linear_probing_LinearProbing_bucketqtvc"

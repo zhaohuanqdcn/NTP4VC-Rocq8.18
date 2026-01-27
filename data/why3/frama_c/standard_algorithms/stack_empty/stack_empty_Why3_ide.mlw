@@ -1,0 +1,70 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'empty' in 'stack_empty'            --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_empty_post_empty
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'empty' in 'stack_empty'":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let x = (l_size t_1 a) in
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  (((p_empty t_1 a)) <-> (x = 0))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'not_empty' in 'stack_empty'        --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_empty_post_not_empty
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'not_empty' in 'stack_empty'":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let x = (l_size t_1 a) in
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((not (p_empty t_1 a)) <-> (x <> 0))
+
+end
+

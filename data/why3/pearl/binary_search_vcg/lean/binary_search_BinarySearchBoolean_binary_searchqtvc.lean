@@ -1,0 +1,8 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+open Classical
+open Lean4Why3
+namespace binary_search_BinarySearchBoolean_binary_searchqtvc
+theorem binary_search'vc (a : List ℤ) (fact0 : (0 : ℤ) < Int.ofNat (List.length a)) (fact1 : ∀(i : ℤ) (j : ℤ), (0 : ℤ) ≤ i ∧ i ≤ j ∧ j < Int.ofNat (List.length a) → (0 : ℤ) ≤ a[Int.toNat i]! ∧ a[Int.toNat i]! ≤ a[Int.toNat j]! ∧ a[Int.toNat j]! ≤ (1 : ℤ)) (fact2 : a[Int.toNat (Int.ofNat (List.length a) - (1 : ℤ))]! = (1 : ℤ)) : let o1 : ℤ := Int.ofNat (List.length a) - (1 : ℤ); (((0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) ≤ o1 ∧ o1 < Int.ofNat (List.length a)) ∧ a[Int.toNat o1]! = (1 : ℤ) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < (0 : ℤ) → a[Int.toNat i]! = (0 : ℤ))) ∧ (∀(hi : ℤ) (lo : ℤ), ((0 : ℤ) ≤ lo ∧ lo ≤ hi ∧ hi < Int.ofNat (List.length a)) ∧ a[Int.toNat hi]! = (1 : ℤ) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < lo → a[Int.toNat i]! = (0 : ℤ)) → (if lo < hi then ¬(2 : ℤ) = (0 : ℤ) ∧ (let mid : ℤ := lo + Int.tdiv (hi - lo) (2 : ℤ); ((0 : ℤ) ≤ mid ∧ mid < Int.ofNat (List.length a)) ∧ (if a[Int.toNat mid]! = (1 : ℤ) then ((0 : ℤ) ≤ hi - lo ∧ mid - lo < hi - lo) ∧ ((0 : ℤ) ≤ lo ∧ lo ≤ mid ∧ mid < Int.ofNat (List.length a)) ∧ a[Int.toNat mid]! = (1 : ℤ) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < lo → a[Int.toNat i]! = (0 : ℤ)) else ((0 : ℤ) ≤ hi - lo ∧ hi - (mid + (1 : ℤ)) < hi - lo) ∧ ((0 : ℤ) ≤ mid + (1 : ℤ) ∧ mid + (1 : ℤ) ≤ hi ∧ hi < Int.ofNat (List.length a)) ∧ a[Int.toNat hi]! = (1 : ℤ) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < mid + (1 : ℤ) → a[Int.toNat i]! = (0 : ℤ)))) else ((0 : ℤ) ≤ lo ∧ lo < Int.ofNat (List.length a)) ∧ a[Int.toNat lo]! = (1 : ℤ) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < lo → a[Int.toNat i]! = (0 : ℤ))))
+  := sorry
+end binary_search_BinarySearchBoolean_binary_searchqtvc

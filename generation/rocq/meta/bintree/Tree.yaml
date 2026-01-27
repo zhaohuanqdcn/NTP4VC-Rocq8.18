@@ -1,0 +1,14 @@
+atoms:
+  bintree.Tree.Empty: [Empty, Tree.Empty]
+  bintree.Tree.Node: [Node, Tree.Node]
+  bintree.Tree.is_empty: [is_empty, Tree.is_empty]
+axioms:
+  bintree.Tree.is_empty'spec: [is_empty'spec, Tree.is_empty'spec]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.bintree.Tree
+prefix_ops: {}
+types:
+  bintree.Tree.tree: [tree, Tree.tree]

@@ -1,0 +1,30 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #1)                  --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_InnerProductAxiomatic.A_InnerProductAxiomatic
+
+predicate p_innerproductbounds (mint_0 : map addr int) (a : addr) (b : addr)
+    (n : int) (init_0 : int) =
+    forall i : int. let x = (l_innerproduct mint_0 a b i init_0) in
+    (i <= n) -> (0 <= i) -> (((-2147483648) <= x) /\ (x <= 2147483647))
+
+use import Compound.Compound
+
+predicate p_productbounds (mint_0 : map addr int) (a : addr) (b : addr)
+    (n : int) =
+    forall i : int.
+    let x = mint_0[(shift_sint32 a i)] * mint_0[(shift_sint32 b i)] in
+    (0 <= i) -> (i < n) -> (((-2147483648) <= x) /\ (x <= 2147483647))
+
+end
+

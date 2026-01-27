@@ -1,0 +1,47 @@
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file src/x509-parser.c, line 8108) in 'check_record_ext_unknown' (4/9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_record_ext_unknown_assign_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assigns (file src/x509-parser.c, line 8108) in 'check_record_ext_unknown' (4/9)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shift_ptr a 0) in
+  let a_3 = (shift_ptr a i) in
+  let a_4 = ((havoc t_1 t_2 a_2 29))[a_3] in
+  (a_4 <> a_1) ->
+  (a_4 = null) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 28) ->
+  (i <= 29) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rw t a_2 29)) ->
+  ((valid_rw t a_3 1)) ->
+  (not (invalid t a_3 1)) ->
+  (0 <= i)
+
+end
+

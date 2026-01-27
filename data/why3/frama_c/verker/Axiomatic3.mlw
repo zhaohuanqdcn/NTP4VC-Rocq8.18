@@ -1,0 +1,15 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #3)                  --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+end
+

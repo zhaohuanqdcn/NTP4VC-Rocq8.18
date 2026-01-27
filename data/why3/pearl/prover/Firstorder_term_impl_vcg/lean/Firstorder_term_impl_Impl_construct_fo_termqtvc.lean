@@ -1,0 +1,19 @@
+import Why3.Base
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+open Classical
+open Lean4Why3
+namespace Firstorder_term_impl_Impl_construct_fo_termqtvc
+theorem construct_fo_term'vc (c : Types.cons_fo_term) (fact0 : Logic.cons_ok_fo_term c) : (match c with | Types.cons_fo_term.NLCVar_fo_term v0 => True | Types.cons_fo_term.NLC_App v0 v1 => (∀(a : ℤ) (b : ℤ) (result : ℤ), (if a < b then result = b else result = a) → a ≤ result ∧ b ≤ result)) ∧ (∀(result : Types.nlimpl_fo_term), (match c with | Types.cons_fo_term.NLCVar_fo_term v0 => result = Types.nlimpl_fo_term.mk (Types.nl_fo_term.NLFVar_fo_term v0) (0 : ℤ) ((1 : ℤ) + v0) (Spec.fo_term.Var_fo_term v0) | Types.cons_fo_term.NLC_App v0 v1 => (∃(o1 : ℤ), (Types.nlimpl_symbol.nlfree_var_symbol_set_abstraction_symbol_field v0 ≤ o1 ∧ Types.nlimpl_fo_term_list.nlfree_var_symbol_set_abstraction_fo_term_list_field v1 ≤ o1) ∧ result = Types.nlimpl_fo_term.mk (Types.nl_fo_term.NL_App (Types.nlimpl_symbol.nlrepr_symbol_field v0) (Types.nlimpl_fo_term_list.nlrepr_fo_term_list_field v1)) o1 (Types.nlimpl_fo_term_list.nlfree_var_fo_term_set_abstraction_fo_term_list_field v1) (Spec.fo_term.App (Spec.rename_symbol (Types.nlimpl_symbol.model_symbol_field v0) Func.identity) (Spec.rename_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field v1) Func.identity Func.identity)))) → Logic.nlimpl_fo_term_ok result ∧ Logic.cons_rel_fo_term c result)
+  := sorry
+end Firstorder_term_impl_Impl_construct_fo_termqtvc

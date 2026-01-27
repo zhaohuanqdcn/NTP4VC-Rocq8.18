@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.remove_copy.remove_copy_Why3_ide_vcg)
+(theories Why3 Why3.Cint Why3.Memory remove_copy.Compound Why3.Qed remove_copy.Axiomatic remove_copy.A_Count remove_copy.Axiomatic1))

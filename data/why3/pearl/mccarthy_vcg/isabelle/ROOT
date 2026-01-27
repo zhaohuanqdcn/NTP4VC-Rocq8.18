@@ -1,0 +1,13 @@
+session mccarthy = NTP4Verif +
+theories
+  "mccarthy_McCarthyWithGhostMonitor_monitor2qtvc"
+  "mccarthy_McCarthy91Mach_f91_pseudorecqtvc"
+  "mccarthy_McCarthyWithGhostMonitor_mccarthyqtvc"
+  "mccarthy_McCarthy91Mach_f91qtvc"
+  "mccarthy_McCarthyWithGhostMonitor_mccarthy2qtvc"
+  "mccarthy_McCarthy91_f91_pseudorecqtvc"
+  "mccarthy_McCarthy91_f91qtvc"
+  "mccarthy_McCarthy91Mach_f91_nonrecqtvc"
+  "mccarthy_McCarthyWithGhostMonitor_monitorqtvc"
+  "mccarthy_McCarthy91_f91_nonrecqtvc"
+  "mccarthy_McCarthy91_f91_tcoqtvc"

@@ -1,0 +1,14 @@
+atoms:
+  pqueue.PqueueNoDup.elts: [elts, pqueue_PqueueNoDup.elts]
+  pqueue.PqueueNoDup.le: [le, pqueue_PqueueNoDup.le]
+  pqueue.PqueueNoDup.minimal_elt: [minimal_elt, pqueue_PqueueNoDup.minimal_elt]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.pqueue_PqueueNoDup
+prefix_ops: {}
+types:
+  pqueue.PqueueNoDup.elt: [elt, pqueue_PqueueNoDup.elt]
+  pqueue.PqueueNoDup.t: [t, pqueue_PqueueNoDup.t]

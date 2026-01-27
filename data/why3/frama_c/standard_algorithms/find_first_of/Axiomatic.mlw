@@ -1,0 +1,29 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions                                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_hasvalue_1_ (mint_0 : map addr int) (a : addr) (m : int)
+    (n : int) (v : int) =
+    exists i : int. (mint_0[(shift_sint32 a i)] = v) /\ (m <= i) /\ (i < n)
+
+predicate p_hasvalue_2_ (mint_0 : map addr int) (a : addr) (n : int)
+    (v : int) = (p_hasvalue_1_ mint_0 a 0 n v)
+
+predicate p_hasvalueof (mint_0 : map addr int) (a : addr) (m : int)
+    (b : addr) (n : int) =
+    exists i : int. (0 <= i) /\ (i < m) /\
+    ((p_hasvalue_2_ mint_0 b n mint_0[(shift_sint32 a i)]))
+
+end
+

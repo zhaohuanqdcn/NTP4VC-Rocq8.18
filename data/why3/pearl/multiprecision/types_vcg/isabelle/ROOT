@@ -1,0 +1,4 @@
+session types = NTP4Verif +
+theories
+  "types_Int32Eq_infix_eqqtvc"
+  "types_UInt64Eq_infix_eqqtvc"

@@ -1,0 +1,35 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/ShiftLemmas.h, line 36) in 'LowerBoundForce' --- *)
+(* ---------------------------------------------------------- *)
+theory VCLowerBoundForce_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/ShiftLemmas.h, line 36) in 'LowerBoundForce'":
+*)
+goal goal0:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_1 < i_2) ->
+  (i_3 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((p_lowerbound_1_ t a i_3 i_2 i)) ->
+  (i <= t[(shift_sint32 a i_1)])
+
+end
+

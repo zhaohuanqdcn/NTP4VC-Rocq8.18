@@ -1,0 +1,27 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'MemSet'                                 --- *)
+(* ---------------------------------------------------------- *)
+theory A_MemSet
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_memset (map addr int) addr int int : bool
+
+use import Compound.Compound
+
+axiom Q_memset_def:
+  forall s : addr.
+  forall mchar_0 : map addr int.
+  forall c n : int.
+  (forall i : int. (0 <= i) -> (i < n) -> (mchar_0[(shift_sint8 s i)] = c)) <->
+    (((l_memset mchar_0 s c n))=True)
+
+end
+

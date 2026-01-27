@@ -1,0 +1,14 @@
+session add = NTP4Verif +
+theories
+  "add_AddOld_wmpn_add_n_in_placeqtvc"
+  "add_Add_add_nqtvc"
+  "add_AddOld_wmpn_addqtvc"
+  "add_Add_add_ryqtvc"
+  "add_Add_add_rxqtvc"
+  "add_Add_wmpn_addqtvc"
+  "add_Add_add_n_rxyqtvc"
+  "add_AddOld_wmpn_add_in_placeqtvc"
+  "add_Add_add_n_rxqtvc"
+  "add_AddOld_wmpn_add_nqtvc"
+  "add_Add_addqtvc"
+  "add_Add_wmpn_add_nqtvc"

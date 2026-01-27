@@ -1,0 +1,10 @@
+import Why3.Base
+import Why3.map.MapEq
+import Why3.map.MapExchange
+import Why3.map.MapPermut
+import Why3.random.State
+import Why3.random.Random
+open Classical
+open Lean4Why3
+namespace Shuffle
+end Shuffle

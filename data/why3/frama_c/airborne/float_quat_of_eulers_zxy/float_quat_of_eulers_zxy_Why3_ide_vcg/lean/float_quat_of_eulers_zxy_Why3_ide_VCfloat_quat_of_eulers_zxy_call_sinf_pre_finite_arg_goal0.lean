@@ -1,0 +1,13 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import frama_c.airborne.float_quat_of_eulers_zxy.lib.lean.Axiomatic15.Axiomatic15
+import Why3.Cmath.Cmath
+import Why3.Cfloat.Cfloat
+import frama_c.airborne.float_quat_of_eulers_zxy.lib.lean.Compound.Compound
+open Classical
+open Lean4Why3
+namespace float_quat_of_eulers_zxy_Why3_ide_VCfloat_quat_of_eulers_zxy_call_sinf_pre_finite_arg_goal0
+theorem goal0 (t_1 : Memory.addr -> ℝ) (a : Memory.addr) (t : ℤ -> ℤ) : let r : ℝ := t_1 (Memory.shift a (0 : ℤ)); let r_1 : ℝ := r / (2 : ℝ); Memory.region (Memory.addr.base a) ≤ (0 : ℤ) → Memory.linked t → Axiomatic15.p_rvalid_floateulers t t_1 a → Cfloat.is_float32 r → Cfloat.is_float32 (t_1 (Memory.shift a (2 : ℤ))) → Cfloat.is_float32 (t_1 (Memory.shift a (1 : ℤ))) → Cfloat.is_float32 r_1 → Cfloat.is_finite32 r_1
+  := sorry
+end float_quat_of_eulers_zxy_Why3_ide_VCfloat_quat_of_eulers_zxy_call_sinf_pre_finite_arg_goal0

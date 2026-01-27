@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name klibc_string.memswap_Why3_ide_vcg)
+(theories Why3 Why3.Cint Why3.Memory klibc_string.Compound Why3.Qed))

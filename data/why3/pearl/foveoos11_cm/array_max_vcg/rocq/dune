@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name foveoos11_cm.array_max_vcg)
+(theories Why3 Why3.why3.Ref))

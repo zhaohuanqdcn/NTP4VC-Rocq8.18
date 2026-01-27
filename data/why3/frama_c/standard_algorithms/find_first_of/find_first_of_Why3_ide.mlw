@@ -1,0 +1,410 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file find_first_of.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_of_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file find_first_of.c, line 9)":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_1) in
+  let x = t_1[a_2] in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_1 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 (1 + i_1))) ->
+  ((is_sint32 t_1[(shift_sint32 a i_2)])) ->
+  ((is_sint32 x)) ->
+  (not (p_hasvalueof t_1 a_1 i_1 a i_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  ((valid_rd t a_2 1)) ->
+  (not (p_hasvalue_2_ t_1 a i_2 x)) ->
+  ((-1) <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file find_first_of.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_of_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file find_first_of.c, line 9)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  (0 <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'not_found' (file find_first_of.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_of_loop_inv_not_found_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'not_found' (file find_first_of.c, line 10)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = 1 + i_2 in
+  let a_2 = (shift_sint32 a_1 i_2) in
+  let x_1 = t_1[a_2] in
+  (0 <= i) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 x)) ->
+  ((is_sint32 t_1[(shift_sint32 a i)])) ->
+  ((is_sint32 x_1)) ->
+  (not (p_hasvalueof t_1 a_1 i_2 a i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((valid_rd t a_2 1)) ->
+  (not (p_hasvalue_2_ t_1 a i x_1)) ->
+  (not (p_hasvalueof t_1 a_1 x a i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'not_found' (file find_first_of.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_of_loop_inv_not_found_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'not_found' (file find_first_of.c, line 10)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  (not (p_hasvalueof t_1 a_1 0 a i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file find_first_of.c, line 15) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_of_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file find_first_of.c, line 15)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_2) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 t_1[a_2])) ->
+  (not (p_hasvalueof t_1 a_1 i_2 a i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((valid_rd t a_2 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file find_first_of.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_of_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file find_first_of.c, line 14)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_1) in
+  let x = t_1[a_2] in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 t_1[(shift_sint32 a i_2)])) ->
+  ((is_sint32 x)) ->
+  (not (p_hasvalueof t_1 a_1 i_1 a i_2)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_2)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  ((valid_rd t a_2 1)) ->
+  (not (p_hasvalue_2_ t_1 a i_2 x)) ->
+  (i_1 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' 'bound' in 'find_first_of' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_of_found_post_bound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'found' 'bound' in 'find_first_of'":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_1 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((p_hasvalueof t_1 a_1 i_1 a i)) ->
+  (not (p_hasvalueof t_1 a_1 i_2 a i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' 'result' in 'find_first_of' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_of_found_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'found' 'result' in 'find_first_of'":
+*)
+goal goal7:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[(shift_sint32 a i_3)] in
+  let a_2 = (shift_sint32 a_1 i_2) in
+  let x_1 = t_1[a_2] in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  ((p_hasvalueof t_1 a_1 i_1 a i)) ->
+  (not (p_hasvalueof t_1 a_1 i_2 a i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((i_1 <= i_2) \/
+   ((i_3 <= i) /\ (0 <= i_3) /\ (i_3 < i) /\ ((valid_rd t a_2 1)) /\
+    (((p_hasvalue_2_ t_1 a i x_1)) -> (x_1 = x)) /\
+    ((not (p_hasvalue_2_ t_1 a i x_1)) -> (i_3 = i)) /\
+    (((p_hasvalue_2_ t_1 a i x_1)) -> (not (p_hasvalue_2_ t_1 a i_3 x_1))))) ->
+  ((p_hasvalue_2_ t_1 a i x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_found' 'result' in 'find_first_of' --- *)
+(* ---------------------------------------------------------- *)
+theory VCfind_first_of_not_found_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'not_found' 'result' in 'find_first_of'":
+*)
+goal goal8:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[(shift_sint32 a i_3)] in
+  let a_2 = (shift_sint32 a_1 i_2) in
+  let x_1 = t_1[a_2] in
+  (i_3 <= i) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (0 <= i_3) ->
+  (i_3 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  (not (p_hasvalueof t_1 a_1 i_1 a i)) ->
+  (not (p_hasvalueof t_1 a_1 i_2 a i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i_1)) ->
+  ((valid_rd t a_2 1)) ->
+  (((p_hasvalue_2_ t_1 a i x_1)) -> (x_1 = x)) ->
+  ((not (p_hasvalue_2_ t_1 a i x_1)) -> (i_3 = i)) ->
+  (((p_hasvalue_2_ t_1 a i x_1)) -> (not (p_hasvalue_2_ t_1 a i_3 x_1))) ->
+  false
+
+end
+

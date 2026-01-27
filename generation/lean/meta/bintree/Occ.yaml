@@ -1,0 +1,12 @@
+atoms:
+  bintree.Occ.mem: [Occ.mem]
+  bintree.Occ.occ: [Occ.occ]
+axioms:
+  bintree.Occ.occ_nonneg: Occ.occ_nonneg
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.bintree.Occ
+prefix_ops: {}
+types: {}

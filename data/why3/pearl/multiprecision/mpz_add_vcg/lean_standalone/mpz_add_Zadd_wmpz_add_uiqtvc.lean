@@ -1,0 +1,353 @@
+import Mathlib
+
+open Classical
+
+namespace Lean4Why3
+
+instance {n : Nat} : HShiftLeft (BitVec n) Int (BitVec n) where
+  hShiftLeft x k := x <<< k.toNat
+
+instance {n : Nat} : HShiftRight (BitVec n) Int (BitVec n) where
+  hShiftRight x k := x >>> k.toNat
+
+abbrev sshiftRight'i {n : ℕ} (a : BitVec n) (s : Int) : BitVec n := a.sshiftRight s.toNat
+
+abbrev make_str_i (size : Int) := String.mk (List.replicate (Int.toNat size) 'a')
+abbrev _root_.List.create_i {α} (n : ℤ) (f : ℤ -> α) := (List.range n.toNat).map f
+abbrev _root_.List.create {α} (n : ℕ) (f : ℕ -> α) := (List.range n).map f
+
+abbrev _root_.Bool.imp (a b : Bool) : Bool := !a || b
+
+abbrev _root_.List.replicate_i {α} (n : ℤ) (x : α) := List.replicate (Int.toNat n) x
+
+abbrev take_i {α : Type} (n : ℤ) (l : List α) := List.take n.toNat l
+abbrev drop_i {α : Type} (n : ℤ) (l : List α) := List.drop n.toNat l
+
+abbrev getElem_i! {α : Type} [Inhabited α] (l : List α) (i : Int) := l[i.toNat]!
+abbrev getElem_i? {α : Type} (l : List α) (i : Int) := l[i.toNat]?
+
+abbrev length_i {α : Type} (l : List α) := Int.ofNat l.length
+abbrev slice {α : Type} (l : List α) (i j : Nat) : List α :=
+  (l.drop i).take (j - i)
+abbrev slice_i {α : Type} (l : List α) (i j : Int) : List α :=
+  (l.drop i.toNat).take (j.toNat - i.toNat)
+
+abbrev Sorted {α : Type} [LE α] (l : List α) := List.Sorted LE.le l
+abbrev _root_.List.set_i {α : Type} (l : List α) (n : ℤ) (a : α) :=
+  List.set l n.toNat a
+
+abbrev implication (P : Prop) (Q : Prop) := P -> Q
+
+noncomputable def map_occ {α : Type} (v : α) (m : Int -> α) (l u : Int)
+  := {n | l ≤ n ∧ n < u ∧ m n = v }.ncard
+noncomputable abbrev map_occ_i {α : Type} (v : α) (m : Int -> α) (l u : Int)
+  := Int.ofNat (map_occ (v : α) (m : Int -> α) (l : Int) u)
+
+abbrev _root_.BitVec.toUInt {n : Nat} (x : BitVec n) := Int.ofNat x.toNat
+
+abbrev int'16_max : BitVec 16 := 32767
+abbrev int'16_min : BitVec 16 := -32768
+abbrev int'31_max : BitVec 31 := 1073741823
+abbrev int'31_min : BitVec 31 := -1073741824
+abbrev int'32_max : BitVec 32 := 2147483647
+abbrev int'32_min : BitVec 32 := -2147483648
+abbrev int'63_max : BitVec 63 := 4611686018427387903
+abbrev int'63_min : BitVec 63 := -4611686018427387904
+abbrev int'64_max : BitVec 64 := 9223372036854775807
+abbrev int'64_min : BitVec 64 := -9223372036854775808
+abbrev uint'16_max : BitVec 16 := 65535
+abbrev uint'16_min : BitVec 16 := 0
+abbrev uint'31_max : BitVec 31 := 2147483647
+abbrev uint'31_min : BitVec 31 := 0
+abbrev uint'32_max : BitVec 32 := 4294967295
+abbrev uint'32_min : BitVec 32 := 0
+abbrev uint'63_max : BitVec 63 := 9223372036854775807
+abbrev uint'63_min : BitVec 63 := 0
+abbrev uint'64_max : BitVec 64 := 18446744073709551615
+abbrev uint'64_min : BitVec 64 := 0
+
+abbrev int'16_in_bounds (x : Int) := int'16_min.toInt ≤ x ∧ x ≤ int'16_max.toInt
+abbrev int'31_in_bounds (x : Int) := int'31_min.toInt ≤ x ∧ x ≤ int'31_max.toInt
+abbrev int'32_in_bounds (x : Int) := int'32_min.toInt ≤ x ∧ x ≤ int'32_max.toInt
+abbrev int'63_in_bounds (x : Int) := int'63_min.toInt ≤ x ∧ x ≤ int'63_max.toInt
+abbrev int'64_in_bounds (x : Int) := int'64_min.toInt ≤ x ∧ x ≤ int'64_max.toInt
+abbrev uint'8_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ 256
+abbrev uint'16_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'16_max.toUInt
+abbrev uint'31_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'31_max.toUInt
+abbrev uint'32_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'32_max.toUInt
+abbrev uint'63_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'63_max.toUInt
+abbrev uint'64_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'64_max.toUInt
+
+axiom array31 : Type -> Type
+axiom array32 : Type -> Type
+axiom array63 : Type -> Type
+
+axiom array31_elts : {α : Type} -> array31 α -> Int -> α
+axiom array32_elts : {α : Type} -> array32 α -> Int -> α
+axiom array63_elts : {α : Type} -> array63 α -> List α
+
+noncomputable abbrev array63_nth {α : Type} [Inhabited α] (a : array63 α) (i : Int) := (array63_elts a)[i.toNat]!
+
+axiom array31_length : {α : Type} -> array31 α -> BitVec 31
+axiom array32_length : {α : Type} -> array32 α -> BitVec 32
+axiom array63_length : {α : Type} -> array63 α -> BitVec 63
+
+abbrev is_none {α : Type} (x : Option α) := x = none
+abbrev is_nil {α : Type} (x : List α) := x = []
+
+abbrev _root_.List.rev_append {α : Type} (a : List α) (b : List α) := a.reverse ++ b
+abbrev _root_.Finset.is_empty {α : Type} (s : Finset α) := s = ∅
+abbrev _root_.Finset.filter' {α : Type} (s : Finset α) (p : α → Prop) [DecidablePred p] : Finset α
+  := Finset.filter p s
+
+abbrev _root_.Finset.card_i {α : Type} (s : Finset α) := Int.ofNat s.card
+
+abbrev int_power (x : Int) (n : Int) := x ^ n.toNat
+abbrev bv2_power (n : Int) := Int.ofNat (2 ^ n.toNat)
+
+abbrev take_bit_i {n : Nat} (x : BitVec n) (i : Int) := x[i.toNat]!
+abbrev take_bit_bv {n m : Nat} (x : BitVec n) (i : BitVec m) := x[i.toNat]!
+
+noncomputable def _root_.Finset.pick! {α} [Inhabited α] (s : Finset α) : α :=
+  if h : s.Nonempty then Classical.choose h else default
+noncomputable def _root_.Set.pick! {α} [Inhabited α] (s : Finset α) : α :=
+  if h : s.Nonempty then Classical.choose h else default
+
+noncomputable abbrev _root_.BitVec.eq_sub {m : Nat} (a b : BitVec m) (i n : Nat) :=
+  BitVec.extractLsb (i+n-1) i a = BitVec.extractLsb (i+n-1) i b
+
+noncomputable abbrev _root_.BitVec.eq_sub_i {m : Nat} (a b : BitVec m) (i n : Int) :=
+  BitVec.eq_sub a b i.toNat n.toNat
+
+noncomputable abbrev _root_.BitVec.eq_sub_bv {m : Nat} {m1 : Nat} {m2 : Nat} (a b : BitVec m) (i : BitVec m1) (n : BitVec m2) :=
+  BitVec.eq_sub a b i.toNat n.toNat
+
+abbrev w8_size_bv := (8 : BitVec 8)
+abbrev w16_size_bv := (16 : BitVec 16)
+abbrev w32_size_bv := (32 : BitVec 32)
+abbrev w64_size_bv := (64 : BitVec 64)
+abbrev w128_size_bv := (128 : BitVec 128)
+abbrev w256_size_bv := (256 : BitVec 256)
+abbrev w8_size_i := (8 : Int)
+abbrev w16_size_i := (16 : Int)
+abbrev w32_size_i := (32 : Int)
+abbrev w64_size_i := (64 : Int)
+abbrev w128_size_i := (128 : Int)
+abbrev w256_size_i := (256 : Int)
+
+abbrev _root_.Finset.erase' {α : Type} [DecidableEq α] (a : α) (s : Finset α) : Finset α
+  := Finset.erase s a
+
+abbrev _root_.BitVec.sge {n : ℕ} (x y : BitVec n) := BitVec.sle y x
+abbrev _root_.BitVec.sgt {n : ℕ} (x y : BitVec n) := BitVec.slt y x
+
+abbrev _root_.BitVec.sshiftRight_i {n : ℕ} (x : BitVec n) (s : ℤ) := BitVec.sshiftRight x s.toNat
+abbrev _root_.BitVec.sshiftRight_bv {n m : ℕ} (x : BitVec n) (s : BitVec m)
+  := BitVec.sshiftRight x s.toNat
+
+abbrev _root_.BitVec.rotateLeft_i {w : ℕ} (x : BitVec w) (n : ℤ) := BitVec.rotateLeft x n.toNat
+abbrev _root_.BitVec.rotateLeft_nv {w w2 : ℕ} (x : BitVec w) (n : BitVec w2)
+  := BitVec.rotateLeft x n.toNat
+
+abbrev _root_.BitVec.rotateRight_i {w : ℕ} (x : BitVec w) (n : ℤ) := BitVec.rotateRight x n.toNat
+abbrev _root_.BitVec.rotateRight_nv {w w2 : ℕ} (x : BitVec w) (n : BitVec w2)
+  := BitVec.rotateRight x n.toNat
+
+abbrev _root_.Multiset.count_i {α : Type} [DecidableEq α] (a : α) (s : Multiset α)
+  := Int.ofNat (s.count a)
+
+abbrev _root_.Multiset.card_i {α : Type} (S : Multiset α) := Int.ofNat S.card
+
+abbrev _root_.Int.gcd_i (a : ℤ) (b : ℤ) := Int.ofNat (Int.gcd a b)
+
+abbrev _root_.Int.Prime (p : ℤ) := Nat.Prime p.toNat
+abbrev _root_.Int.Coprime (a b : ℤ) := Nat.Coprime a.toNat b.toNat
+
+abbrev _root_.Set.remove {α : Type} (x : α) (A : Set α) := A \ {x}
+abbrev _root_.Set.filter {α : Type} (S : Set α) (P : α -> Bool) := {x ∈ S | P x }
+
+abbrev _root_.Option.the {α : Type} [Inhabited α] (opt : Option α) := opt.getD default
+
+noncomputable abbrev _root_.Finmap.lookup! {K : Type} {V : Type} [Inhabited V] (m : Finmap (fun _ : K => V)) (k : K) :=
+  (Finmap.lookup k m).getD default
+
+noncomputable abbrev _root_.Finmap.mapsto {K V : Type} (k : K) (v : V) (m : Finmap (fun _ : K => V))
+  := Finmap.lookup k m = some v
+
+abbrev _root_.Finmap.is_empty {K V : Type} (m : Finmap (fun _ : K => V)) := m = ∅
+abbrev _root_.Finmap.size {K V : Type} (m : Finmap (fun _ : K => V)) := m.keys.card
+
+abbrev _root_.Finset.min'' {α} [Inhabited α] [LinearOrder α] (s : Finset α) : α :=
+  match s.min with
+  | ⊤        => default
+  | .some a  => a
+
+abbrev _root_.Finset.max'' {α} [Inhabited α] [LinearOrder α] (s : Finset α) : α :=
+  match s.max with
+  | ⊥        => default
+  | .some a  => a
+
+abbrev arrayExchange {α} [Inhabited α] (a1 a2 : List α) (i j : Int) : Prop :=
+  let i' := i.toNat
+  let j' := j.toNat
+  a1 = (a2.set i' a1[j']!).set j' (a1[i']!)
+
+abbrev _root_.List.permut_sub {α} (a1 a2 : List α) (l u : ℕ) : Prop :=
+  a1.length = a2.length ∧ (0 ≤ l ∧ l ≤ a1.length) ∧ (0 ≤ u ∧ u ≤ a1.length) ∧
+  List.Perm (slice a1 l u) (slice a2 l u)
+
+abbrev _root_.List.permut_sub' {α} (a1 a2 : List α) (l u : ℕ) : Prop :=
+  a1.length = a2.length ∧ slice a1 0 l = slice a2 0 l ∧
+  slice a1 u a1.length = slice a2 u a1.length ∧
+  List.Perm (slice a1 l u) (slice a2 l u)
+
+abbrev _root_.List.foldr' {α β} (f : α -> β -> β) (l : List α) (x : β) := List.foldr f x l
+
+abbrev _root_.Int.to_Real (z : ℤ) : ℝ := z
+
+abbrev _root_.List.mem' {α} (eq : α -> α -> Bool) (x : α) (l : List α) := List.all l (eq x)
+
+noncomputable abbrev _root_.Real.truncate (x : ℝ) : ℤ := if 0 ≤ x then Int.floor x  else Int.ceil x
+
+alias _root_.Math.abs := abs
+
+end Lean4Why3
+
+open Classical
+open Lean4Why3
+
+namespace Ref
+structure ref (α : Type) where
+  contents : α
+axiom inhabited_axiom_ref {α : Type} [Inhabited α] : Inhabited (ref α)
+attribute [instance] inhabited_axiom_ref
+end Ref
+namespace Const
+axiom const :  {β : Type} -> [Inhabited β] ->  {α : Type} -> [Inhabited α] -> β -> α -> β
+axiom const'def {β : Type} {α : Type} [Inhabited β] [Inhabited α] (v : β) (x : α) : (const : β -> α -> β) v x = v
+end Const
+namespace MapEq
+noncomputable def map_eq_sub {α : Type} [Inhabited α] (a1 : ℤ -> α) (a2 : ℤ -> α) (l : ℤ) (u : ℤ) := ∀(i : ℤ), l ≤ i ∧ i < u → a1 i = a2 i
+end MapEq
+namespace Unsigned
+axiom t : Type
+axiom inhabited_axiom_t : Inhabited t
+attribute [instance] inhabited_axiom_t
+axiom max : ℤ
+axiom to_int : t -> ℤ
+noncomputable def in_bounds (n : ℤ) := (0 : ℤ) ≤ n ∧ n ≤ max
+axiom to_int_in_bounds (n : t) : in_bounds (to_int n)
+axiom extensionality (x : t) (y : t) (fact0 : to_int x = to_int y) : x = y
+axiom zero_unsigned : t
+axiom zero_unsigned_is_zero : to_int zero_unsigned = (0 : ℤ)
+axiom radix : ℤ
+axiom radix_def : radix = max + (1 : ℤ)
+end Unsigned
+namespace C
+noncomputable def in_us_bounds (n : ℤ) := (0 : ℤ) ≤ n ∧ n ≤ (4294967295 : ℤ)
+noncomputable def in_bounds (n : ℤ) := -(2147483648 : ℤ) ≤ n ∧ n ≤ (2147483647 : ℤ)
+axiom zone : Type
+axiom inhabited_axiom_zone : Inhabited zone
+attribute [instance] inhabited_axiom_zone
+axiom null_zone : zone
+axiom ptr : Type -> Type
+axiom inhabited_axiom_ptr {α : Type} [Inhabited α] : Inhabited (ptr α)
+attribute [instance] inhabited_axiom_ptr
+axiom data :  {α : Type} -> [Inhabited α] -> ptr α -> List α
+axiom offset :  {α : Type} -> [Inhabited α] -> ptr α -> ℤ
+axiom min :  {α : Type} -> [Inhabited α] -> ptr α -> ℤ
+axiom max :  {α : Type} -> [Inhabited α] -> ptr α -> ℤ
+axiom writable :  {α : Type} -> [Inhabited α] -> ptr α -> Bool
+axiom zone1 :  {α : Type} -> [Inhabited α] -> ptr α -> zone
+noncomputable def plength {α : Type} [Inhabited α] (p : ptr α) := Int.ofNat (List.length (data p))
+noncomputable def pelts {α : Type} [Inhabited α] (p : ptr α) := getElem! (data p) ∘ Int.toNat
+axiom is_not_null :  {α : Type} -> [Inhabited α] -> ptr α -> Prop
+axiom is_not_null'spec {α : Type} [Inhabited α] (p : ptr α) : is_not_null p = (¬zone1 p = null_zone)
+noncomputable def valid_ptr_shift {α : Type} [Inhabited α] (p : ptr α) (i : ℤ) := min p ≤ offset p + i ∧ offset p + i < max p
+noncomputable def valid {α : Type} [Inhabited α] (p : ptr α) (sz : ℤ) := in_bounds sz ∧ (0 : ℤ) ≤ sz ∧ ((0 : ℤ) ≤ min p ∧ min p ≤ offset p) ∧ offset p + sz ≤ max p ∧ max p ≤ plength p
+axiom valid_itv_to_shift {α : Type} [Inhabited α] (p : ptr α) (sz : ℤ) (i : ℤ) (fact0 : valid p sz) (fact1 : (0 : ℤ) ≤ i) (fact2 : i < sz) : valid_ptr_shift p i
+end C
+namespace Config
+end Config
+namespace Types
+axiom limb : Type
+axiom inhabited_axiom_limb : Inhabited limb
+attribute [instance] inhabited_axiom_limb
+axiom t : Type
+axiom inhabited_axiom_t : Inhabited t
+attribute [instance] inhabited_axiom_t
+end Types
+namespace Int32Eq
+end Int32Eq
+namespace UInt64Eq
+end UInt64Eq
+namespace Lemmas
+noncomputable def map_eq_sub_shift {α : Type} [Inhabited α] (x : ℤ -> α) (y : ℤ -> α) (xi : ℤ) (yi : ℤ) (sz : ℤ) := ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < sz → x (xi + i) = y (yi + i)
+axiom value_sub : (ℤ -> BitVec 64) -> ℤ -> ℤ -> ℤ
+axiom value_sub'def (n : ℤ) (m : ℤ) (x : ℤ -> BitVec 64) : if n < m then value_sub x n m = BitVec.toUInt (x n) + ((18446744073709551615 : ℤ) + (1 : ℤ)) * value_sub x (n + (1 : ℤ)) m else value_sub x n m = (0 : ℤ)
+noncomputable def value (x : C.ptr (BitVec 64)) (sz : ℤ) := value_sub (C.pelts x) (C.offset x) (C.offset x + sz)
+end Lemmas
+namespace Alias
+axiom mem : Type
+axiom inhabited_axiom_mem : Inhabited mem
+attribute [instance] inhabited_axiom_mem
+axiom zr : mem -> C.zone
+axiom zx : mem -> C.zone
+axiom zy : mem -> C.zone
+axiom mr : mem -> BitVec 32
+axiom mx : mem -> BitVec 32
+axiom my : mem -> BitVec 32
+axiom lr : mem -> BitVec 32
+axiom lx : mem -> BitVec 32
+axiom ly : mem -> BitVec 32
+axiom ok : mem -> Bool
+noncomputable def identical (p1 : C.ptr (BitVec 64)) (p2 : C.ptr (BitVec 64)) := C.data p1 = C.data p2 ∧ C.offset p1 = C.offset p2 ∧ C.min p1 = C.min p2 ∧ C.max p1 = C.max p2 ∧ C.zone1 p1 = C.zone1 p2
+end Alias
+namespace Util
+end Util
+namespace Compare
+noncomputable def compare_int (x : ℤ) (y : ℤ) := if x < y then -(1 : ℤ) else if x = y then (0 : ℤ) else (1 : ℤ)
+end Compare
+namespace Add
+end Add
+namespace Sub
+end Sub
+namespace Z
+axiom mpz_ptr : Type
+axiom inhabited_axiom_mpz_ptr : Inhabited mpz_ptr
+attribute [instance] inhabited_axiom_mpz_ptr
+axiom mpz_eq : mpz_ptr -> mpz_ptr -> Prop
+axiom mpz_eq'spec (x : mpz_ptr) (y : mpz_ptr) : mpz_eq x y = (x = y)
+axiom mpz_memo : Type
+axiom inhabited_axiom_mpz_memo : Inhabited mpz_memo
+attribute [instance] inhabited_axiom_mpz_memo
+axiom abs_value_of : mpz_memo -> mpz_ptr -> ℤ
+axiom alloc : mpz_memo -> mpz_ptr -> ℤ
+axiom abs_size : mpz_memo -> mpz_ptr -> ℤ
+axiom sgn : mpz_memo -> mpz_ptr -> ℤ
+axiom readers : mpz_memo -> mpz_ptr -> ℤ
+axiom zones : mpz_memo -> mpz_ptr -> C.zone
+axiom mpz_memo'invariant (self : mpz_memo) (p : mpz_ptr) : (0 : ℤ) ≤ alloc self p ∧ (sgn self p = (1 : ℤ) ∨ sgn self p = -(1 : ℤ)) ∧ abs_size self p ≤ alloc self p ∧ (0 : ℤ) ≤ abs_size self p ∧ abs_size self p ≤ (2147483647 : ℤ) ∧ (0 : ℤ) ≤ abs_value_of self p ∧ ((1 : ℤ) ≤ abs_size self p → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs_size self p - (1 : ℤ))) ≤ abs_value_of self p) ∧ abs_value_of self p < HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs_size self p))
+noncomputable def value_of (x : mpz_ptr) (memo : mpz_memo) := sgn memo x * abs_value_of memo x
+noncomputable def sgn_value (p : C.ptr (BitVec 64)) (sz : BitVec 32) := if (0 : ℤ) ≤ BitVec.toInt sz then Lemmas.value p (BitVec.toInt sz) else -Lemmas.value p (-BitVec.toInt sz)
+noncomputable def mpz_unchanged (x : mpz_ptr) (memo1 : mpz_memo) (memo2 : mpz_memo) := readers memo1 x = readers memo2 x ∧ (-(2 : ℤ) < readers memo1 x → abs_value_of memo1 x = abs_value_of memo2 x ∧ alloc memo1 x = alloc memo2 x ∧ abs_size memo1 x = abs_size memo2 x ∧ sgn memo1 x = sgn memo2 x ∧ zones memo1 x = zones memo2 x)
+structure mpz_struct where
+  addr : mpz_ptr
+axiom inhabited_axiom_mpz_struct : Inhabited mpz_struct
+attribute [instance] inhabited_axiom_mpz_struct
+end Z
+namespace Zutil
+axiom mpz_mem : Type
+axiom inhabited_axiom_mpz_mem : Inhabited mpz_mem
+attribute [instance] inhabited_axiom_mpz_mem
+axiom ptr : mpz_mem -> Z.mpz_ptr
+axiom ok : mpz_mem -> Bool
+end Zutil
+namespace Add_1
+end Add_1
+namespace Sub_1
+end Sub_1
+namespace mpz_add_Zadd_wmpz_add_uiqtvc
+theorem wmpz_add_ui'vc (mpz : Z.mpz_memo) (w : Z.mpz_ptr) (u : Z.mpz_ptr) (v : BitVec 64) (fact0 : (1 : ℤ) ≤ Z.alloc mpz w) (fact1 : (1 : ℤ) ≤ Z.alloc mpz u) (fact2 : Z.readers mpz w = (0 : ℤ)) (fact3 : Z.readers mpz u = (0 : ℤ)) (fact4 : Z.abs_size mpz u < (2147483647 : ℤ)) : -(2 : ℤ) < Z.readers mpz u ∧ (∀(usize : BitVec 32), BitVec.toInt usize = Z.sgn mpz u * Z.abs_size mpz u → (BitVec.toInt usize = (0 : ℤ) → usize = (0 : BitVec 32)) → (if usize = (0 : BitVec 32) then Z.readers mpz w = (0 : ℤ) ∧ (∀(mpz1 : Z.mpz_memo), Z.abs_value_of mpz1 = Z.abs_value_of mpz ∧ Z.alloc mpz1 = Z.alloc mpz ∧ Z.abs_size mpz1 = Z.abs_size mpz ∧ Z.sgn mpz1 = Z.sgn mpz ∧ Z.zones mpz1 = Z.zones mpz → (∀(wp : C.ptr (BitVec 64)), Z.readers mpz1 w = -(1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬w = y → Z.readers mpz1 y = Z.readers mpz y) ∧ Lemmas.value wp (Z.abs_size mpz1 w) = Z.abs_value_of mpz1 w ∧ C.plength wp = Z.alloc mpz1 w ∧ C.offset wp = (0 : ℤ) ∧ C.min wp = (0 : ℤ) ∧ C.max wp = C.plength wp ∧ C.writable wp = true ∧ C.zone1 wp = Z.zones mpz1 w → ((C.min wp ≤ C.offset wp ∧ C.offset wp < C.max wp) ∧ C.writable wp = true) ∧ (∀(wp1 : C.ptr (BitVec 64)), List.length (C.data wp1) = List.length (C.data wp) ∧ C.offset wp1 = C.offset wp ∧ C.min wp1 = C.min wp ∧ C.max wp1 = C.max wp ∧ C.writable wp1 = C.writable wp ∧ C.zone1 wp1 = C.zone1 wp → C.pelts wp1 = Function.update (C.pelts wp) (C.offset wp1) v → (BitVec.toUInt v = (0 : ℤ) → v = (0 : BitVec 64)) → (∀(o1 : BitVec 32), (if ¬v = (0 : BitVec 64) then o1 = (1 : BitVec 32) else o1 = (0 : BitVec 32)) → (Z.zones mpz1 w = C.zone1 wp1 ∧ Z.readers mpz1 w = -(1 : ℤ) ∧ C.offset wp1 = (0 : ℤ) ∧ C.min wp1 = (0 : ℤ) ∧ C.max wp1 = C.plength wp1 ∧ abs (BitVec.toInt o1) ≤ C.plength wp1 ∧ C.plength wp1 = Z.alloc mpz1 w ∧ (¬BitVec.toInt o1 = (0 : ℤ) → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs (BitVec.toInt o1) - (1 : ℤ))) ≤ Lemmas.value wp1 (abs (BitVec.toInt o1)))) ∧ (∀(mpz2 : Z.mpz_memo), Z.alloc mpz2 = Z.alloc mpz1 ∧ Z.readers mpz2 = Z.readers mpz1 ∧ Z.zones mpz2 = Z.zones mpz1 → (∀(y : Z.mpz_ptr), ¬y = w → Z.mpz_unchanged y mpz2 mpz1) ∧ (Z.sgn mpz2 w = (1 : ℤ)) = ((0 : ℤ) ≤ BitVec.toInt o1) ∧ (Z.sgn mpz2 w = -(1 : ℤ)) = (BitVec.toInt o1 < (0 : ℤ)) ∧ Z.abs_size mpz2 w = abs (BitVec.toInt o1) ∧ Z.abs_value_of mpz2 w = Lemmas.value wp1 (abs (BitVec.toInt o1)) → (Z.zones mpz2 w = C.zone1 wp1 ∧ Z.readers mpz2 w = -(1 : ℤ) ∧ C.min wp1 = (0 : ℤ) ∧ C.max wp1 = C.plength wp1 ∧ Z.abs_value_of mpz2 w = Lemmas.value wp1 (Z.abs_size mpz2 w)) ∧ (∀(mpz3 : Z.mpz_memo), Z.abs_value_of mpz3 = Z.abs_value_of mpz2 ∧ Z.alloc mpz3 = Z.alloc mpz2 ∧ Z.abs_size mpz3 = Z.abs_size mpz2 ∧ Z.sgn mpz3 = Z.sgn mpz2 ∧ Z.zones mpz3 = Z.zones mpz2 → Z.readers mpz3 w = (0 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬y = w → Z.readers mpz3 y = Z.readers mpz2 y) → Z.value_of w mpz3 = Z.value_of u mpz + BitVec.toUInt v ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz3 mpz) ∧ Z.readers mpz3 w = (0 : ℤ) ∧ Z.readers mpz3 u = (0 : ℤ))))))) else -(2147483648 : ℤ) < BitVec.toInt usize ∧ (∀(abs_usize : BitVec 32), BitVec.toInt abs_usize = abs (BitVec.toInt usize) → Z.mpz_eq u w = (u = w) → int'32_in_bounds (BitVec.toInt abs_usize + (1 : ℤ)) ∧ (∀(o1 : BitVec 32), BitVec.toInt o1 = BitVec.toInt abs_usize + (1 : ℤ) → (Z.readers mpz w = (0 : ℤ) ∧ (1 : ℤ) ≤ Z.alloc mpz w) ∧ (∀(mpz1 : Z.mpz_memo), Z.sgn mpz1 = Z.sgn mpz → (∀(wp : C.ptr (BitVec 64)), (∀(y : Z.mpz_ptr), ¬y = w → Z.mpz_unchanged y mpz1 mpz) ∧ Z.readers mpz1 w = -(1 : ℤ) ∧ Z.abs_value_of mpz1 w = Lemmas.value wp (Z.abs_size mpz1 w) ∧ Z.zones mpz1 w = C.zone1 wp ∧ C.offset wp = (0 : ℤ) ∧ C.plength wp = Z.alloc mpz1 w ∧ C.min wp = (0 : ℤ) ∧ C.max wp = C.plength wp ∧ C.writable wp = true ∧ Z.abs_size mpz1 w = Z.abs_size mpz w ∧ Lemmas.value wp (Z.abs_size mpz w) = Z.abs_value_of mpz w ∧ (if Z.alloc mpz w < BitVec.toInt o1 then Z.alloc mpz1 w = BitVec.toInt o1 else Z.alloc mpz1 w = Z.alloc mpz w) → (if (0 : ℤ) ≤ BitVec.toInt usize then (if Z.mpz_eq u w then (C.valid wp (BitVec.toInt abs_usize) ∧ (0 : ℤ) < BitVec.toInt abs_usize ∧ C.writable wp = true) ∧ (∀(wp1 : C.ptr (BitVec 64)), List.length (C.data wp1) = List.length (C.data wp) ∧ C.offset wp1 = C.offset wp ∧ C.min wp1 = C.min wp ∧ C.max wp1 = C.max wp ∧ C.writable wp1 = C.writable wp ∧ C.zone1 wp1 = C.zone1 wp → (∀(o2 : BitVec 64), Lemmas.value wp1 (BitVec.toInt abs_usize) + HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt abs_usize)) * BitVec.toUInt o2 = Lemmas.value wp (BitVec.toInt abs_usize) + BitVec.toUInt v ∧ ((0 : ℤ) ≤ BitVec.toUInt o2 ∧ BitVec.toUInt o2 ≤ (1 : ℤ)) ∧ (∀(j : ℤ), j < C.offset wp1 ∨ C.offset wp1 + BitVec.toInt abs_usize ≤ j → C.pelts wp1 j = C.pelts wp j) → Lemmas.value wp1 (BitVec.toInt abs_usize) + HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt abs_usize)) * BitVec.toUInt o2 = Z.value_of u mpz1 + BitVec.toUInt v ∧ ((0 : ℤ) ≤ BitVec.toUInt o2 ∧ BitVec.toUInt o2 ≤ (1 : ℤ)) ∧ (Z.mpz_eq u w ∨ Z.readers mpz1 u = (0 : ℤ)) ∧ Z.readers mpz1 w = -(1 : ℤ) ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz1 mpz))) else (0 : ℤ) ≤ Z.readers mpz1 u ∧ (∀(mpz2 : Z.mpz_memo), Z.abs_value_of mpz2 = Z.abs_value_of mpz1 ∧ Z.alloc mpz2 = Z.alloc mpz1 ∧ Z.abs_size mpz2 = Z.abs_size mpz1 ∧ Z.sgn mpz2 = Z.sgn mpz1 ∧ Z.zones mpz2 = Z.zones mpz1 → (∀(up : C.ptr (BitVec 64)), Z.readers mpz2 u = Z.readers mpz1 u + (1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬u = y → Z.readers mpz2 y = Z.readers mpz1 y) ∧ Lemmas.value up (Z.abs_size mpz2 u) = Z.abs_value_of mpz2 u ∧ C.plength up = Z.alloc mpz2 u ∧ C.offset up = (0 : ℤ) ∧ C.min up = (0 : ℤ) ∧ C.max up = C.plength up ∧ C.zone1 up = Z.zones mpz2 u → (C.valid up (BitVec.toInt abs_usize) ∧ C.valid wp (BitVec.toInt abs_usize) ∧ (0 : ℤ) < BitVec.toInt abs_usize ∧ C.writable wp = true) ∧ (∀(wp1 : C.ptr (BitVec 64)), List.length (C.data wp1) = List.length (C.data wp) ∧ C.offset wp1 = C.offset wp ∧ C.min wp1 = C.min wp ∧ C.max wp1 = C.max wp ∧ C.writable wp1 = C.writable wp ∧ C.zone1 wp1 = C.zone1 wp → (∀(o2 : BitVec 64), Lemmas.value wp1 (BitVec.toInt abs_usize) + HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt abs_usize)) * BitVec.toUInt o2 = Lemmas.value up (BitVec.toInt abs_usize) + BitVec.toUInt v ∧ ((0 : ℤ) ≤ BitVec.toUInt o2 ∧ BitVec.toUInt o2 ≤ (1 : ℤ)) ∧ (∀(j : ℤ), j < C.offset wp1 ∨ C.offset wp1 + BitVec.toInt abs_usize ≤ j → C.pelts wp1 j = C.pelts wp j) → (Z.zones mpz2 u = C.zone1 up ∧ (1 : ℤ) ≤ Z.readers mpz2 u ∧ C.min up = (0 : ℤ) ∧ C.max up = C.plength up) ∧ (∀(mpz3 : Z.mpz_memo), Z.abs_value_of mpz3 = Z.abs_value_of mpz2 ∧ Z.alloc mpz3 = Z.alloc mpz2 ∧ Z.abs_size mpz3 = Z.abs_size mpz2 ∧ Z.sgn mpz3 = Z.sgn mpz2 ∧ Z.zones mpz3 = Z.zones mpz2 → Z.readers mpz3 u = Z.readers mpz2 u - (1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬y = u → Z.readers mpz3 y = Z.readers mpz2 y) → Lemmas.value wp1 (BitVec.toInt abs_usize) + HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt abs_usize)) * BitVec.toUInt o2 = Z.value_of u mpz1 + BitVec.toUInt v ∧ ((0 : ℤ) ≤ BitVec.toUInt o2 ∧ BitVec.toUInt o2 ≤ (1 : ℤ)) ∧ (Z.mpz_eq u w ∨ Z.readers mpz3 u = (0 : ℤ)) ∧ Z.readers mpz3 w = -(1 : ℤ) ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz3 mpz))))))) ∧ (∀(cy : BitVec 64) (wp1 : C.ptr (BitVec 64)) (mpz2 : Z.mpz_memo), List.length (C.data wp1) = List.length (C.data wp) ∧ C.offset wp1 = C.offset wp ∧ C.min wp1 = C.min wp ∧ C.max wp1 = C.max wp ∧ C.writable wp1 = C.writable wp ∧ C.zone1 wp1 = C.zone1 wp → Z.abs_value_of mpz2 = Z.abs_value_of mpz1 ∧ Z.alloc mpz2 = Z.alloc mpz1 ∧ Z.abs_size mpz2 = Z.abs_size mpz1 ∧ Z.sgn mpz2 = Z.sgn mpz1 ∧ Z.zones mpz2 = Z.zones mpz1 → Lemmas.value wp1 (BitVec.toInt abs_usize) + HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt abs_usize)) * BitVec.toUInt cy = Z.value_of u mpz1 + BitVec.toUInt v ∧ ((0 : ℤ) ≤ BitVec.toUInt cy ∧ BitVec.toUInt cy ≤ (1 : ℤ)) ∧ (Z.mpz_eq u w ∨ Z.readers mpz2 u = (0 : ℤ)) ∧ Z.readers mpz2 w = -(1 : ℤ) ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz2 mpz) → ((C.min wp1 ≤ C.offset wp1 + BitVec.toInt abs_usize ∧ C.offset wp1 + BitVec.toInt abs_usize < C.max wp1) ∧ C.writable wp1 = true) ∧ (∀(wp2 : C.ptr (BitVec 64)), List.length (C.data wp2) = List.length (C.data wp1) ∧ C.offset wp2 = C.offset wp1 ∧ C.min wp2 = C.min wp1 ∧ C.max wp2 = C.max wp1 ∧ C.writable wp2 = C.writable wp1 ∧ C.zone1 wp2 = C.zone1 wp1 → C.pelts wp2 = Function.update (C.pelts wp1) (C.offset wp2 + BitVec.toInt abs_usize) cy ∧ C.pelts wp2 (C.offset wp2 + BitVec.toInt abs_usize) = cy → BitVec.toUInt cy ≤ (2147483647 : ℤ) ∧ (∀(o2 : BitVec 32), BitVec.toInt o2 = BitVec.toUInt cy → int'32_in_bounds (BitVec.toInt abs_usize + BitVec.toInt o2) ∧ (∀(o3 : BitVec 32), BitVec.toInt o3 = BitVec.toInt abs_usize + BitVec.toInt o2 → (Z.zones mpz2 w = C.zone1 wp2 ∧ Z.readers mpz2 w = -(1 : ℤ) ∧ C.offset wp2 = (0 : ℤ) ∧ C.min wp2 = (0 : ℤ) ∧ C.max wp2 = C.plength wp2 ∧ abs (BitVec.toInt o3) ≤ C.plength wp2 ∧ C.plength wp2 = Z.alloc mpz2 w ∧ (¬BitVec.toInt o3 = (0 : ℤ) → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs (BitVec.toInt o3) - (1 : ℤ))) ≤ Lemmas.value wp2 (abs (BitVec.toInt o3)))) ∧ (∀(mpz3 : Z.mpz_memo), Z.alloc mpz3 = Z.alloc mpz2 ∧ Z.readers mpz3 = Z.readers mpz2 ∧ Z.zones mpz3 = Z.zones mpz2 → (∀(y : Z.mpz_ptr), ¬y = w → Z.mpz_unchanged y mpz3 mpz2) ∧ (Z.sgn mpz3 w = (1 : ℤ)) = ((0 : ℤ) ≤ BitVec.toInt o3) ∧ (Z.sgn mpz3 w = -(1 : ℤ)) = (BitVec.toInt o3 < (0 : ℤ)) ∧ Z.abs_size mpz3 w = abs (BitVec.toInt o3) ∧ Z.abs_value_of mpz3 w = Lemmas.value wp2 (abs (BitVec.toInt o3)) → (Z.zones mpz3 w = C.zone1 wp2 ∧ Z.readers mpz3 w = -(1 : ℤ) ∧ C.min wp2 = (0 : ℤ) ∧ C.max wp2 = C.plength wp2 ∧ Z.abs_value_of mpz3 w = Lemmas.value wp2 (Z.abs_size mpz3 w)) ∧ (∀(mpz4 : Z.mpz_memo), Z.abs_value_of mpz4 = Z.abs_value_of mpz3 ∧ Z.alloc mpz4 = Z.alloc mpz3 ∧ Z.abs_size mpz4 = Z.abs_size mpz3 ∧ Z.sgn mpz4 = Z.sgn mpz3 ∧ Z.zones mpz4 = Z.zones mpz3 → Z.readers mpz4 w = (0 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬y = w → Z.readers mpz4 y = Z.readers mpz3 y) → Z.value_of w mpz4 = Z.value_of u mpz + BitVec.toUInt v ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz4 mpz) ∧ Z.readers mpz4 w = (0 : ℤ) ∧ Z.readers mpz4 u = (0 : ℤ))))))) else (if Z.mpz_eq u w then (BitVec.toInt abs_usize = (1 : ℤ) → abs_usize = (1 : BitVec 32)) → (abs_usize = (1 : BitVec 32) → C.min wp ≤ C.offset wp ∧ C.offset wp < C.max wp) ∧ (∀(o2 : Bool), (if abs_usize = (1 : BitVec 32) then o2 = (if BitVec.toUInt (C.pelts wp (C.offset wp)) < BitVec.toUInt v then true else false) else o2 = false) → (if o2 = true then (C.min wp ≤ C.offset wp ∧ C.offset wp < C.max wp) ∧ (let o3 : BitVec 64 := C.pelts wp (C.offset wp); uint'64_in_bounds (BitVec.toUInt v - BitVec.toUInt o3) ∧ (∀(o4 : BitVec 64), BitVec.toUInt o4 = BitVec.toUInt v - BitVec.toUInt o3 → ((C.min wp ≤ C.offset wp ∧ C.offset wp < C.max wp) ∧ C.writable wp = true) ∧ (∀(wp1 : C.ptr (BitVec 64)), List.length (C.data wp1) = List.length (C.data wp) ∧ C.offset wp1 = C.offset wp ∧ C.min wp1 = C.min wp ∧ C.max wp1 = C.max wp ∧ C.writable wp1 = C.writable wp ∧ C.zone1 wp1 = C.zone1 wp → C.pelts wp1 = Function.update (C.pelts wp) (C.offset wp1) o4 → Z.sgn_value wp1 (1 : BitVec 32) = Z.value_of u mpz1 + BitVec.toUInt v ∧ abs (BitVec.toInt (1 : BitVec 32)) ≤ BitVec.toInt abs_usize + (1 : ℤ) ∧ (¬BitVec.toInt (1 : BitVec 32) = (0 : ℤ) → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs (BitVec.toInt (1 : BitVec 32)) - (1 : ℤ))) ≤ Lemmas.value wp1 (abs (BitVec.toInt (1 : BitVec 32)))) ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz1 mpz) ∧ (Z.mpz_eq u w ∨ Z.readers mpz1 u = (0 : ℤ)) ∧ Z.readers mpz1 w = -(1 : ℤ)))) else (C.valid wp (BitVec.toInt abs_usize) ∧ (0 : ℤ) < BitVec.toInt abs_usize ∧ C.writable wp = true) ∧ (∀(wp1 : C.ptr (BitVec 64)), List.length (C.data wp1) = List.length (C.data wp) ∧ C.offset wp1 = C.offset wp ∧ C.min wp1 = C.min wp ∧ C.max wp1 = C.max wp ∧ C.writable wp1 = C.writable wp ∧ C.zone1 wp1 = C.zone1 wp → (∀(x_b : BitVec 64), Lemmas.value wp1 (BitVec.toInt abs_usize) - HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt abs_usize)) * BitVec.toUInt x_b = Lemmas.value wp (BitVec.toInt abs_usize) - BitVec.toUInt v ∧ ((0 : ℤ) ≤ BitVec.toUInt x_b ∧ BitVec.toUInt x_b ≤ (1 : ℤ)) ∧ (∀(j : ℤ), j < C.offset wp1 ∨ C.offset wp1 + BitVec.toInt abs_usize ≤ j → C.pelts wp1 j = C.pelts wp j) → int'32_in_bounds (BitVec.toInt abs_usize - (1 : ℤ)) ∧ (∀(o3 : BitVec 32), BitVec.toInt o3 = BitVec.toInt abs_usize - (1 : ℤ) → (C.min wp1 ≤ C.offset wp1 + BitVec.toInt o3 ∧ C.offset wp1 + BitVec.toInt o3 < C.max wp1) ∧ (let o4 : BitVec 64 := C.pelts wp1 (C.offset wp1 + BitVec.toInt o3); (BitVec.toUInt o4 = (0 : ℤ) → o4 = (0 : BitVec 64)) → (∀(o5 : BitVec 32), (if o4 = (0 : BitVec 64) then o5 = (1 : BitVec 32) else o5 = (0 : BitVec 32)) → int'32_in_bounds (BitVec.toInt abs_usize - BitVec.toInt o5) ∧ (∀(o6 : BitVec 32), BitVec.toInt o6 = BitVec.toInt abs_usize - BitVec.toInt o5 → int'32_in_bounds (-BitVec.toInt o6) ∧ (∀(o7 : BitVec 32), BitVec.toInt o7 = -BitVec.toInt o6 → Z.sgn_value wp1 o7 = Z.value_of u mpz1 + BitVec.toUInt v ∧ abs (BitVec.toInt o7) ≤ BitVec.toInt abs_usize + (1 : ℤ) ∧ (¬BitVec.toInt o7 = (0 : ℤ) → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs (BitVec.toInt o7) - (1 : ℤ))) ≤ Lemmas.value wp1 (abs (BitVec.toInt o7))) ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz1 mpz) ∧ (Z.mpz_eq u w ∨ Z.readers mpz1 u = (0 : ℤ)) ∧ Z.readers mpz1 w = -(1 : ℤ)))))))))) else (0 : ℤ) ≤ Z.readers mpz1 u ∧ (∀(mpz2 : Z.mpz_memo), Z.abs_value_of mpz2 = Z.abs_value_of mpz1 ∧ Z.alloc mpz2 = Z.alloc mpz1 ∧ Z.abs_size mpz2 = Z.abs_size mpz1 ∧ Z.sgn mpz2 = Z.sgn mpz1 ∧ Z.zones mpz2 = Z.zones mpz1 → (∀(up : C.ptr (BitVec 64)), Z.readers mpz2 u = Z.readers mpz1 u + (1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬u = y → Z.readers mpz2 y = Z.readers mpz1 y) ∧ Lemmas.value up (Z.abs_size mpz2 u) = Z.abs_value_of mpz2 u ∧ C.plength up = Z.alloc mpz2 u ∧ C.offset up = (0 : ℤ) ∧ C.min up = (0 : ℤ) ∧ C.max up = C.plength up ∧ C.zone1 up = Z.zones mpz2 u → (BitVec.toInt abs_usize = (1 : ℤ) → abs_usize = (1 : BitVec 32)) → (abs_usize = (1 : BitVec 32) → C.min up ≤ C.offset up ∧ C.offset up < C.max up) ∧ (∀(o2 : Bool), (if abs_usize = (1 : BitVec 32) then o2 = (if BitVec.toUInt (C.pelts up (C.offset up)) < BitVec.toUInt v then true else false) else o2 = false) → (if o2 = true then (C.min up ≤ C.offset up ∧ C.offset up < C.max up) ∧ (let o3 : BitVec 64 := C.pelts up (C.offset up); uint'64_in_bounds (BitVec.toUInt v - BitVec.toUInt o3) ∧ (∀(o4 : BitVec 64), BitVec.toUInt o4 = BitVec.toUInt v - BitVec.toUInt o3 → ((C.min wp ≤ C.offset wp ∧ C.offset wp < C.max wp) ∧ C.writable wp = true) ∧ (∀(wp1 : C.ptr (BitVec 64)), List.length (C.data wp1) = List.length (C.data wp) ∧ C.offset wp1 = C.offset wp ∧ C.min wp1 = C.min wp ∧ C.max wp1 = C.max wp ∧ C.writable wp1 = C.writable wp ∧ C.zone1 wp1 = C.zone1 wp → C.pelts wp1 = Function.update (C.pelts wp) (C.offset wp1) o4 → (Z.zones mpz2 u = C.zone1 up ∧ (1 : ℤ) ≤ Z.readers mpz2 u ∧ C.min up = (0 : ℤ) ∧ C.max up = C.plength up) ∧ (∀(mpz3 : Z.mpz_memo), Z.abs_value_of mpz3 = Z.abs_value_of mpz2 ∧ Z.alloc mpz3 = Z.alloc mpz2 ∧ Z.abs_size mpz3 = Z.abs_size mpz2 ∧ Z.sgn mpz3 = Z.sgn mpz2 ∧ Z.zones mpz3 = Z.zones mpz2 → Z.readers mpz3 u = Z.readers mpz2 u - (1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬y = u → Z.readers mpz3 y = Z.readers mpz2 y) → Z.sgn_value wp1 (1 : BitVec 32) = Z.value_of u mpz1 + BitVec.toUInt v ∧ abs (BitVec.toInt (1 : BitVec 32)) ≤ BitVec.toInt abs_usize + (1 : ℤ) ∧ (¬BitVec.toInt (1 : BitVec 32) = (0 : ℤ) → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs (BitVec.toInt (1 : BitVec 32)) - (1 : ℤ))) ≤ Lemmas.value wp1 (abs (BitVec.toInt (1 : BitVec 32)))) ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz3 mpz) ∧ (Z.mpz_eq u w ∨ Z.readers mpz3 u = (0 : ℤ)) ∧ Z.readers mpz3 w = -(1 : ℤ))))) else (C.valid up (BitVec.toInt abs_usize) ∧ C.valid wp (BitVec.toInt abs_usize) ∧ (0 : ℤ) < BitVec.toInt abs_usize ∧ C.writable wp = true) ∧ (∀(wp1 : C.ptr (BitVec 64)), List.length (C.data wp1) = List.length (C.data wp) ∧ C.offset wp1 = C.offset wp ∧ C.min wp1 = C.min wp ∧ C.max wp1 = C.max wp ∧ C.writable wp1 = C.writable wp ∧ C.zone1 wp1 = C.zone1 wp → (∀(x_b : BitVec 64), Lemmas.value wp1 (BitVec.toInt abs_usize) - HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (BitVec.toInt abs_usize)) * BitVec.toUInt x_b = Lemmas.value up (BitVec.toInt abs_usize) - BitVec.toUInt v ∧ (∀(j : ℤ), j < C.offset wp1 ∨ C.offset wp1 + BitVec.toInt abs_usize ≤ j → C.pelts wp1 j = C.pelts wp j) ∧ (0 : ℤ) ≤ BitVec.toUInt x_b ∧ BitVec.toUInt x_b ≤ (1 : ℤ) → int'32_in_bounds (BitVec.toInt abs_usize - (1 : ℤ)) ∧ (∀(o3 : BitVec 32), BitVec.toInt o3 = BitVec.toInt abs_usize - (1 : ℤ) → (C.min wp1 ≤ C.offset wp1 + BitVec.toInt o3 ∧ C.offset wp1 + BitVec.toInt o3 < C.max wp1) ∧ (let o4 : BitVec 64 := C.pelts wp1 (C.offset wp1 + BitVec.toInt o3); (BitVec.toUInt o4 = (0 : ℤ) → o4 = (0 : BitVec 64)) → (∀(o5 : BitVec 32), (if o4 = (0 : BitVec 64) then o5 = (1 : BitVec 32) else o5 = (0 : BitVec 32)) → int'32_in_bounds (BitVec.toInt abs_usize - BitVec.toInt o5) ∧ (∀(o6 : BitVec 32), BitVec.toInt o6 = BitVec.toInt abs_usize - BitVec.toInt o5 → int'32_in_bounds (-BitVec.toInt o6) ∧ (∀(o7 : BitVec 32), BitVec.toInt o7 = -BitVec.toInt o6 → (Z.zones mpz2 u = C.zone1 up ∧ (1 : ℤ) ≤ Z.readers mpz2 u ∧ C.min up = (0 : ℤ) ∧ C.max up = C.plength up) ∧ (∀(mpz3 : Z.mpz_memo), Z.abs_value_of mpz3 = Z.abs_value_of mpz2 ∧ Z.alloc mpz3 = Z.alloc mpz2 ∧ Z.abs_size mpz3 = Z.abs_size mpz2 ∧ Z.sgn mpz3 = Z.sgn mpz2 ∧ Z.zones mpz3 = Z.zones mpz2 → Z.readers mpz3 u = Z.readers mpz2 u - (1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬y = u → Z.readers mpz3 y = Z.readers mpz2 y) → Z.sgn_value wp1 o7 = Z.value_of u mpz1 + BitVec.toUInt v ∧ abs (BitVec.toInt o7) ≤ BitVec.toInt abs_usize + (1 : ℤ) ∧ (¬BitVec.toInt o7 = (0 : ℤ) → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs (BitVec.toInt o7) - (1 : ℤ))) ≤ Lemmas.value wp1 (abs (BitVec.toInt o7))) ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz3 mpz) ∧ (Z.mpz_eq u w ∨ Z.readers mpz3 u = (0 : ℤ)) ∧ Z.readers mpz3 w = -(1 : ℤ)))))))))))))) ∧ (∀(wp1 : C.ptr (BitVec 64)) (wsize : BitVec 32) (mpz2 : Z.mpz_memo), List.length (C.data wp1) = List.length (C.data wp) ∧ C.offset wp1 = C.offset wp ∧ C.min wp1 = C.min wp ∧ C.max wp1 = C.max wp ∧ C.writable wp1 = C.writable wp ∧ C.zone1 wp1 = C.zone1 wp → Z.abs_value_of mpz2 = Z.abs_value_of mpz1 ∧ Z.alloc mpz2 = Z.alloc mpz1 ∧ Z.abs_size mpz2 = Z.abs_size mpz1 ∧ Z.sgn mpz2 = Z.sgn mpz1 ∧ Z.zones mpz2 = Z.zones mpz1 → Z.sgn_value wp1 wsize = Z.value_of u mpz1 + BitVec.toUInt v ∧ abs (BitVec.toInt wsize) ≤ BitVec.toInt abs_usize + (1 : ℤ) ∧ (¬BitVec.toInt wsize = (0 : ℤ) → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs (BitVec.toInt wsize) - (1 : ℤ))) ≤ Lemmas.value wp1 (abs (BitVec.toInt wsize))) ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz2 mpz) ∧ (Z.mpz_eq u w ∨ Z.readers mpz2 u = (0 : ℤ)) ∧ Z.readers mpz2 w = -(1 : ℤ) → (Z.zones mpz2 w = C.zone1 wp1 ∧ Z.readers mpz2 w = -(1 : ℤ) ∧ C.offset wp1 = (0 : ℤ) ∧ C.min wp1 = (0 : ℤ) ∧ C.max wp1 = C.plength wp1 ∧ abs (BitVec.toInt wsize) ≤ C.plength wp1 ∧ C.plength wp1 = Z.alloc mpz2 w ∧ (¬BitVec.toInt wsize = (0 : ℤ) → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs (BitVec.toInt wsize) - (1 : ℤ))) ≤ Lemmas.value wp1 (abs (BitVec.toInt wsize)))) ∧ (∀(mpz3 : Z.mpz_memo), Z.alloc mpz3 = Z.alloc mpz2 ∧ Z.readers mpz3 = Z.readers mpz2 ∧ Z.zones mpz3 = Z.zones mpz2 → (∀(y : Z.mpz_ptr), ¬y = w → Z.mpz_unchanged y mpz3 mpz2) ∧ (Z.sgn mpz3 w = (1 : ℤ)) = ((0 : ℤ) ≤ BitVec.toInt wsize) ∧ (Z.sgn mpz3 w = -(1 : ℤ)) = (BitVec.toInt wsize < (0 : ℤ)) ∧ Z.abs_size mpz3 w = abs (BitVec.toInt wsize) ∧ Z.abs_value_of mpz3 w = Lemmas.value wp1 (abs (BitVec.toInt wsize)) → (Z.zones mpz3 w = C.zone1 wp1 ∧ Z.readers mpz3 w = -(1 : ℤ) ∧ C.min wp1 = (0 : ℤ) ∧ C.max wp1 = C.plength wp1 ∧ Z.abs_value_of mpz3 w = Lemmas.value wp1 (Z.abs_size mpz3 w)) ∧ (∀(mpz4 : Z.mpz_memo), Z.abs_value_of mpz4 = Z.abs_value_of mpz3 ∧ Z.alloc mpz4 = Z.alloc mpz3 ∧ Z.abs_size mpz4 = Z.abs_size mpz3 ∧ Z.sgn mpz4 = Z.sgn mpz3 ∧ Z.zones mpz4 = Z.zones mpz3 → Z.readers mpz4 w = (0 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬y = w → Z.readers mpz4 y = Z.readers mpz3 y) → Z.value_of w mpz4 = Z.value_of u mpz + BitVec.toUInt v ∧ (∀(x : Z.mpz_ptr), ¬x = w → Z.mpz_unchanged x mpz4 mpz) ∧ Z.readers mpz4 w = (0 : ℤ) ∧ Z.readers mpz4 u = (0 : ℤ)))))))))))
+  := sorry
+end mpz_add_Zadd_wmpz_add_uiqtvc

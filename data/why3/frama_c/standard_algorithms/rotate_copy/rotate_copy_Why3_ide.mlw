@@ -1,0 +1,577 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'left' in 'rotate_copy'             --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_post_left
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'left' in 'rotate_copy'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (shift_sint32 a_1 i_1) in
+  let x = i - i_1 in
+  let a_5 = (shift_sint32 a x) in
+  let a_6 = (havoc t_1 t_3 a_5 i_1) in
+  let a_7 = (havoc t_2 a_6 a_3 x) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((valid_rw t a_3 i)) ->
+  ((valid_rd t a_4 x)) ->
+  ((valid_rw t a_3 x)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((separated a_4 x a 1)) ->
+  ((valid_rw t a_5 i_1)) ->
+  ((separated a_2 i_1 a_5 1)) ->
+  ((p_equalranges_1_ a_6 t_3 a_1 i_1 a_5)) ->
+  ((p_equalranges_1_ a_7 a_6 a_4 x a)) ->
+  ((p_equalranges_3_ a_7 t_3 a_1 0 i_1 a x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'right' in 'rotate_copy'            --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_post_right
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'right' in 'rotate_copy'":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (shift_sint32 a_1 i_1) in
+  let x = i - i_1 in
+  let a_5 = (shift_sint32 a x) in
+  let a_6 = (havoc t_1 t_3 a_5 i_1) in
+  let a_7 = (havoc t_2 a_6 a_3 x) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((valid_rw t a_3 i)) ->
+  ((valid_rd t a_4 x)) ->
+  ((valid_rw t a_3 x)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((separated a_4 x a 1)) ->
+  ((valid_rw t a_5 i_1)) ->
+  ((separated a_2 i_1 a_5 1)) ->
+  ((p_equalranges_1_ a_6 t_3 a_1 i_1 a_5)) ->
+  ((p_equalranges_1_ a_7 a_6 a_4 x a)) ->
+  ((p_equalranges_3_ a_7 t_3 a_1 i_1 x a 0))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'unchanged' in 'rotate_copy'        --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_post_unchanged
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'unchanged' in 'rotate_copy'":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (shift_sint32 a_1 i_1) in
+  let x = i - i_1 in
+  let a_5 = (shift_sint32 a x) in
+  let a_6 = (havoc t_1 t_3 a_5 i_1) in
+  let a_7 = (havoc t_2 a_6 a_3 x) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((valid_rw t a_3 i)) ->
+  ((valid_rd t a_4 x)) ->
+  ((valid_rw t a_3 x)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((separated a_4 x a 1)) ->
+  ((valid_rw t a_5 i_1)) ->
+  ((separated a_2 i_1 a_5 1)) ->
+  ((p_equalranges_1_ a_6 t_3 a_1 i_1 a_5)) ->
+  ((p_equalranges_1_ a_7 a_6 a_4 x a)) ->
+  ((p_unchanged_2_ a_7 t_3 a_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file rotate_copy.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_assert_rte_unsigned_overflow_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file rotate_copy.c, line 8)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i a_3 i)) ->
+  (i <= (4294967295 + i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rotate_copy.h, line 14) in 'rotate_copy' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_assign_exit_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assigns (file rotate_copy.h, line 14) in 'rotate_copy' (1/2)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (shift_sint32 a (i_1 - i_2)) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_1 <= (4294967295 + i_2)) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((valid_rw t a_3 i_1)) ->
+  ((separated a_2 i_1 a_3 i_1)) ->
+  ((((valid_rd t a_2 i_2)) /\ ((valid_rw t a_4 i_2)) /\
+    (not (invalid t a_4 i_2)) /\ ((separated a_2 i_2 a_4 1))) \/
+   (((valid_rd t a_2 i_2)) /\ ((valid_rw t a_4 i_2)) /\
+    (not (invalid t a_4 i_2)) /\ ((separated a_2 i_2 a_4 1)) /\
+    ((p_equalranges_1_ ((havoc t_1 t_2 a_4 i_2)) t_2 a_1 i_2 a_4)))) ->
+  ((included a_4 i_2 a_3 i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rotate_copy.h, line 14) in 'rotate_copy' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_assign_normal_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assigns (file rotate_copy.h, line 14) in 'rotate_copy' (1/2)":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let a_4 = (shift_sint32 a (i - i_1)) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((valid_rw t a_4 i_1)) ->
+  (not (invalid t a_4 i_1)) ->
+  ((separated a_2 i_1 a_4 1)) ->
+  ((p_equalranges_1_ ((havoc t_1 t_2 a_4 i_1)) t_2 a_1 i_1 a_4)) ->
+  ((included a_4 i_1 a_3 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'valid' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 8)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_call_copy_pre_valid
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'valid' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 8)
+":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((valid_rd t a_2 i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'valid' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 8)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_call_copy_pre_valid_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'valid' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 8)
+":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((valid_rw t ((shift_sint32 a (i - i_1))) i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'sep' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 8)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_call_copy_pre_sep
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'sep' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 8)
+":
+*)
+goal goal8:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((separated a_2 i_1 ((shift_sint32 a (i - i_1))) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'valid' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 9)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_call_copy_pre_valid_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'valid' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 9)
+":
+*)
+goal goal9:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let x = i - i_1 in
+  let a_4 = (shift_sint32 a x) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((valid_rw t a_4 i_1)) ->
+  ((separated a_2 i_1 a_4 1)) ->
+  ((p_equalranges_1_ ((havoc t_1 t_2 a_4 i_1)) t_2 a_1 i_1 a_4)) ->
+  ((valid_rd t ((shift_sint32 a_1 i_1)) x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'valid' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 9)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_call_copy_pre_valid_2_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'valid' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 9)
+":
+*)
+goal goal10:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let x = i - i_1 in
+  let a_4 = (shift_sint32 a x) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((valid_rw t a_4 i_1)) ->
+  ((separated a_2 i_1 a_4 1)) ->
+  ((p_equalranges_1_ ((havoc t_1 t_2 a_4 i_1)) t_2 a_1 i_1 a_4)) ->
+  ((valid_rw t a_3 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'sep' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 9)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrotate_copy_call_copy_pre_sep_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'sep' in 'copy'' in 'rotate_copy' at call 'copy' (file rotate_copy.c, line 9)
+":
+*)
+goal goal11:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 0) in
+  let a_3 = (shift_sint32 a 0) in
+  let x = i - i_1 in
+  let a_4 = (shift_sint32 a x) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= (4294967295 + i_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rd t a_2 i)) ->
+  ((valid_rd t a_2 i_1)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_2 i a_3 i)) ->
+  ((valid_rw t a_4 i_1)) ->
+  ((separated a_2 i_1 a_4 1)) ->
+  ((p_equalranges_1_ ((havoc t_1 t_2 a_4 i_1)) t_2 a_1 i_1 a_4)) ->
+  ((separated ((shift_sint32 a_1 i_1)) x a 1))
+
+end
+

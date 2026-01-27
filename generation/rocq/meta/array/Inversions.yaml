@@ -1,0 +1,17 @@
+atoms:
+  array.Inversions.inversion: [inversion, Inversions.inversion]
+  array.Inversions.inversion_closure: [inversion_closure, Inversions.inversion_closure]
+  array.Inversions.inversions: [inversions, Inversions.inversions]
+  array.Inversions.inversions_for: [inversions_for, Inversions.inversions_for]
+  array.Inversions.inversions_for_closure: [inversions_for_closure, Inversions.inversions_for_closure]
+axioms:
+  array.Inversions.exchange_inversion: [exchange_inversion, Inversions.exchange_inversion]
+  array.Inversions.inversion_closure_def: [inversion_closure_def, Inversions.inversion_closure_def]
+  array.Inversions.inversions_for_closure_def: [inversions_for_closure_def, Inversions.inversions_for_closure_def]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.array.Inversions
+prefix_ops: {}
+types: {}

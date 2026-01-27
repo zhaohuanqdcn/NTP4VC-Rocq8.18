@@ -1,0 +1,39 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file lemma_functions_index_of.c, line 80) in 'index_of'' in 'index_of_bounds_weak' at initialization of 'result' (file lemma_functions_index_of.c, line 112)
+ (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCindex_of_bounds_weak_call_index_of_pre_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file lemma_functions_index_of.c, line 80) in 'index_of'' in 'index_of_bounds_weak' at initialization of 'result' (file lemma_functions_index_of.c, line 112)
+ (2/2)":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t ((shift_ptr a_1 i_1)) (i - i_1))) ->
+  (0 <= i)
+
+end
+

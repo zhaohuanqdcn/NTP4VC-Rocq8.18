@@ -1,0 +1,15 @@
+theory cpumask_andnot_Why3_ide_VCcpumask_andnot_assert_rte_mem_access_5_goal12
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/A_thread_variables_properties_A_thread_variables_properties" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/A_schedule_cpumask_A_schedule_cpumask"
+begin
+theorem goal12:
+  fixes a_1 :: "addr"
+  fixes a :: "addr"
+  fixes t_3 :: "addr \<Rightarrow> addr"
+  fixes i :: "int"
+  fixes a_2 :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes t :: "int \<Rightarrow> int"
+  shows "let a_3 :: addr = shift a_1 (0 :: int); a_4 :: addr = shift a (0 :: int); a_5 :: addr = t_3 a_4; a_6 :: addr = shift a_5 (0 :: int); a_7 :: addr = t_3 a_3; a_8 :: addr = shift a_7 (0 :: int); a_9 :: addr = shift a_7 i; a_10 :: addr = t_3 (shift a_2 (0 :: int)); a_11 :: addr = shift a_10 (0 :: int); a_12 :: addr \<Rightarrow> int = havoc t_1 t_2 a_11 l_size; a_13 :: addr = shift a_5 i; a_14 :: int = a_12 a_13; a_15 :: int = a_12 a_9 in \<not>Mk_addr (0 :: int) (0 :: int) = a_2 \<longrightarrow> \<not>to_uint32 i = l_size \<longrightarrow> (0 :: int) \<le> i \<longrightarrow> i \<le> l_size \<longrightarrow> region (base a) \<le> (0 :: int) \<longrightarrow> region (base a_1) \<le> (0 :: int) \<longrightarrow> region (base a_2) \<le> (0 :: int) \<longrightarrow> framed t_3 \<longrightarrow> linked t \<longrightarrow> is_sint32 i \<longrightarrow> valid_rd t a (1 :: int) \<longrightarrow> valid_rd t a_1 (1 :: int) \<longrightarrow> valid_rd t a_2 (1 :: int) \<longrightarrow> valid_rd t a_3 (1 :: int) \<longrightarrow> valid_rd t a_6 l_size \<longrightarrow> valid_rd t a_8 l_size \<longrightarrow> valid_rd t a_9 (1 :: int) \<longrightarrow> valid_rw t a_11 l_size \<longrightarrow> is_uint8 a_14 \<longrightarrow> is_uint8 a_15 \<longrightarrow> (\<not>a_2 = a \<longrightarrow> separated a_11 l_size a_6 l_size) \<longrightarrow> (\<not>a_2 = a_1 \<longrightarrow> separated a_11 l_size a_8 l_size) \<longrightarrow> a_15 = (0 :: int) \<or> a_15 = (1 :: int) \<longrightarrow> a_15 = (0 :: int) \<or> valid_rd t a_4 (1 :: int) \<and> valid_rd t a_13 (1 :: int) \<and> (a_14 = (0 :: int) \<or> a_14 = (1 :: int)) \<longrightarrow> (\<forall>(i_1 :: int). (0 :: int) \<le> i_1 \<longrightarrow> i_1 < l_size \<longrightarrow> separated a_11 l_size (shift (t_3 (shift (l_cpu_smt_mask i_1) (0 :: int))) (0 :: int)) l_size) \<longrightarrow> (\<forall>(i_1 :: int). let a_16 :: addr = shift a_10 i_1 in i \<le> i_1 \<longrightarrow> i_1 < l_size \<longrightarrow> \<not>a_12 a_16 = (0 :: int) \<longleftrightarrow> \<not>t_2 a_16 = (0 :: int)) \<longrightarrow> (\<forall>(i_1 :: int). (0 :: int) \<le> i_1 \<longrightarrow> i_1 < i \<longrightarrow> t_2 (shift a_5 i_1) = (0 :: int) \<and> \<not>t_2 (shift a_7 i_1) = (0 :: int) \<longleftrightarrow> \<not>a_12 (shift a_10 i_1) = (0 :: int)) \<longrightarrow> valid_rw t (shift a_10 i) (1 :: int)"
+  sorry
+end

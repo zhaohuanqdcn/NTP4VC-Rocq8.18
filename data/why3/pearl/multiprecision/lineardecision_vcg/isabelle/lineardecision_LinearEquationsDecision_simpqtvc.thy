@@ -1,0 +1,199 @@
+theory lineardecision_LinearEquationsDecision_simpqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "mach.matrix_Matrix63" "Why3STD.debug_Debug"
+begin
+typedecl  coeff
+typedecl  a
+consts infix_pl :: "a \<Rightarrow> a \<Rightarrow> a"
+consts infix_as :: "a \<Rightarrow> a \<Rightarrow> a"
+consts prefix_mn :: "a \<Rightarrow> a"
+consts azero :: "a"
+consts aone :: "a"
+consts ale :: "a \<Rightarrow> a \<Rightarrow> bool"
+axiomatization where Assoc:   "infix_pl (infix_pl x y) z = infix_pl x (infix_pl y z)"
+  for x :: "a"
+  and y :: "a"
+  and z :: "a"
+axiomatization where Unit_def_l:   "infix_pl azero x = x"
+  for x :: "a"
+axiomatization where Unit_def_r:   "infix_pl x azero = x"
+  for x :: "a"
+axiomatization where Inv_def_l:   "infix_pl (prefix_mn x) x = azero"
+  for x :: "a"
+axiomatization where Inv_def_r:   "infix_pl x (prefix_mn x) = azero"
+  for x :: "a"
+axiomatization where Comm:   "infix_pl x y = infix_pl y x"
+  for x :: "a"
+  and y :: "a"
+axiomatization where Assoc1:   "infix_as (infix_as x y) z = infix_as x (infix_as y z)"
+  for x :: "a"
+  and y :: "a"
+  and z :: "a"
+axiomatization where Mul_distr_l:   "infix_as x (infix_pl y z) = infix_pl (infix_as x y) (infix_as x z)"
+  for x :: "a"
+  and y :: "a"
+  and z :: "a"
+axiomatization where Mul_distr_r:   "infix_as (infix_pl y z) x = infix_pl (infix_as y x) (infix_as z x)"
+  for y :: "a"
+  and z :: "a"
+  and x :: "a"
+axiomatization where Comm1:   "infix_as x y = infix_as y x"
+  for x :: "a"
+  and y :: "a"
+axiomatization where Unitary:   "infix_as aone x = x"
+  for x :: "a"
+axiomatization where NonTrivialRing:   "\<not>azero = aone"
+axiomatization where Refl:   "ale x x"
+  for x :: "a"
+axiomatization where Trans:   "ale x z"
+ if "ale x y"
+ and "ale y z"
+  for x :: "a"
+  and y :: "a"
+  and z :: "a"
+axiomatization where Antisymm:   "x = y"
+ if "ale x y"
+ and "ale y x"
+  for x :: "a"
+  and y :: "a"
+axiomatization where Total:   "ale x y \<or> ale y x"
+  for x :: "a"
+  and y :: "a"
+axiomatization where ZeroLessOne:   "ale azero aone"
+axiomatization where CompatOrderAdd:   "ale (infix_pl x z) (infix_pl y z)"
+ if "ale x y"
+  for x :: "a"
+  and y :: "a"
+  and z :: "a"
+axiomatization where CompatOrderMult:   "ale (infix_as x z) (infix_as y z)"
+ if "ale x y"
+ and "ale azero z"
+  for x :: "a"
+  and y :: "a"
+  and z :: "a"
+consts infix_mn :: "a \<Rightarrow> a \<Rightarrow> a"
+axiomatization where sub_def:   "infix_mn a1 a2 = infix_pl a1 (prefix_mn a2)"
+  for a1 :: "a"
+  and a2 :: "a"
+typedecl  vars
+typedecl  cvars
+consts interp :: "coeff \<Rightarrow> cvars \<Rightarrow> a"
+consts czero :: "coeff"
+consts cone :: "coeff"
+axiomatization where zero_def:   "interp czero y = azero"
+  for y :: "cvars"
+axiomatization where one_def:   "interp cone y = aone"
+  for y :: "cvars"
+consts eq :: "coeff \<Rightarrow> coeff \<Rightarrow> bool"
+axiomatization where eq'spec:   "interp a1 y = interp b y"
+ if "eq a1 b"
+  for a1 :: "coeff"
+  and b :: "coeff"
+  and y :: "cvars"
+typedecl  vars1
+datatype  expr = Term "coeff" "int" | Add "expr" "expr" | Cst "coeff"
+fun valid_expr :: "expr \<Rightarrow> _"
+  where "valid_expr (Term x i) = ((0 :: int) \<le> i)" for x i
+      | "valid_expr (Cst x) = True" for x
+      | "valid_expr (Add e1 e2) = (valid_expr e1 \<and> valid_expr e2)" for e1 e2
+fun expr_bound :: "expr \<Rightarrow> int \<Rightarrow> _"
+  where "expr_bound (Term x i) b = ((0 :: int) \<le> i \<and> i \<le> b)" for x i b
+      | "expr_bound (Cst x) b = True" for x b
+      | "expr_bound (Add e1 e2) b = (expr_bound e1 b \<and> expr_bound e2 b)" for e1 e2 b
+fun interp1 :: "expr \<Rightarrow> (int \<Rightarrow> a) \<Rightarrow> cvars \<Rightarrow> a"
+  where "interp1 (Term c v) y z = infix_as (interp c z) (y v)" for c v y z
+      | "interp1 (Add e1 e2) y z = infix_pl (interp1 e1 y z) (interp1 e2 y z)" for e1 e2 y z
+      | "interp1 (Cst c) y z = interp c z" for c y z
+typedecl  equality
+typedecl  "context"
+definition valid_eq :: "expr \<times> expr \<Rightarrow> _"
+  where "valid_eq eq1 \<longleftrightarrow> (case eq1 of (e1, e2) \<Rightarrow> valid_expr e1 \<and> valid_expr e2)" for eq1
+definition eq_bound :: "expr \<times> expr \<Rightarrow> int \<Rightarrow> _"
+  where "eq_bound eq1 b \<longleftrightarrow> (case eq1 of (e1, e2) \<Rightarrow> expr_bound e1 b \<and> expr_bound e2 b)" for eq1 b
+fun valid_ctx :: "(expr \<times> expr) list \<Rightarrow> _"
+  where "valid_ctx (Nil :: (expr \<times> expr) list) = True"
+      | "valid_ctx (Cons eq1 t) = (valid_eq eq1 \<and> valid_ctx t)" for eq1 t
+fun ctx_bound :: "(expr \<times> expr) list \<Rightarrow> int \<Rightarrow> _"
+  where "ctx_bound (Nil :: (expr \<times> expr) list) b = True" for b
+      | "ctx_bound (Cons eq1 t) b = (eq_bound eq1 b \<and> ctx_bound t b)" for eq1 t b
+definition interp_eq :: "expr \<times> expr \<Rightarrow> (int \<Rightarrow> a) \<Rightarrow> cvars \<Rightarrow> bool"
+  where "interp_eq g y z = (if case g of (g1, g2) \<Rightarrow> interp1 g1 y z = interp1 g2 y z then True else False)" for g y z
+fun interp_ctx :: "(expr \<times> expr) list \<Rightarrow> expr \<times> expr \<Rightarrow> (int \<Rightarrow> a) \<Rightarrow> cvars \<Rightarrow> bool"
+  where "interp_ctx l g y z = (if case l of Nil \<Rightarrow> interp_eq g y z = True | Cons h t \<Rightarrow> interp_eq h y z = True \<longrightarrow> interp_ctx t g y z = True then True else False)" for l g y z
+consts infix_eqeq :: "coeff array63 \<Rightarrow> coeff array63 \<Rightarrow> bool"
+axiomatization where infix_eqeq'spec'0:   "array63_length a1 = array63_length b"
+ if "infix_eqeq a1 b"
+  for a1 :: "coeff array63"
+  and b :: "coeff array63"
+axiomatization where infix_eqeq'spec'1:   "\<forall>(i :: int). (0 :: int) \<le> i \<and> i < sint (array63_length a1) \<longrightarrow> eq (array63_elts a1 ! nat i) (array63_elts b ! nat i)"
+ if "infix_eqeq a1 b"
+  for a1 :: "coeff array63"
+  and b :: "coeff array63"
+consts max_var :: "expr \<Rightarrow> int"
+axiomatization where max_var'def:   "case e of Term _ i \<Rightarrow> max_var e = i | Cst _ \<Rightarrow> max_var e = (0 :: int) | Add e1 e2 \<Rightarrow> max_var e = max (max_var e1) (max_var e2)"
+ if "valid_expr e"
+  for e :: "expr"
+axiomatization where max_var'spec'0:   "(0 :: int) \<le> max_var e"
+ if "valid_expr e"
+  for e :: "expr"
+axiomatization where max_var'spec:   "expr_bound e (max_var e)"
+ if "valid_expr e"
+  for e :: "expr"
+consts max_var_e :: "expr \<times> expr \<Rightarrow> int"
+axiomatization where max_var_e'def:   "case e of (e1, e2) \<Rightarrow> max_var_e e = max (max_var e1) (max_var e2)"
+ if "valid_eq e"
+  for e :: "expr \<times> expr"
+axiomatization where max_var_e'spec'0:   "(0 :: int) \<le> max_var_e e"
+ if "valid_eq e"
+  for e :: "expr \<times> expr"
+axiomatization where max_var_e'spec:   "eq_bound e (max_var_e e)"
+ if "valid_eq e"
+  for e :: "expr \<times> expr"
+consts max_var_ctx :: "(expr \<times> expr) list \<Rightarrow> int"
+axiomatization where max_var_ctx'def:   "case l of Nil \<Rightarrow> max_var_ctx l = (0 :: int) | Cons e t \<Rightarrow> max_var_ctx l = max (max_var_e e) (max_var_ctx t)"
+ if "valid_ctx l"
+  for l :: "(expr \<times> expr) list"
+axiomatization where max_var_ctx'spec'0:   "(0 :: int) \<le> max_var_ctx l"
+ if "valid_ctx l"
+  for l :: "(expr \<times> expr) list"
+axiomatization where max_var_ctx'spec:   "ctx_bound l (max_var_ctx l)"
+ if "valid_ctx l"
+  for l :: "(expr \<times> expr) list"
+definition atom :: "expr \<Rightarrow> _"
+  where "atom e \<longleftrightarrow> (case e of Add _ _ \<Rightarrow> False | _ \<Rightarrow> True)" for e
+consts to_list :: "'a array63 \<Rightarrow> 63 word \<Rightarrow> 63 word \<Rightarrow> 'a list"
+datatype  expr' = Sum "expr'" "expr'" | ProdL "expr'" "cprod" | ProdR "cprod" "expr'" | Diff "expr'" "expr'" | Var "int" | Coeff "coeff"
+     and  cprod = C "coeff" | Times "cprod" "cprod"
+fun interp_c :: "cprod \<Rightarrow> (int \<Rightarrow> a) \<Rightarrow> cvars \<Rightarrow> a"
+  where "interp_c (C c) y z = interp c z" for c y z
+      | "interp_c (Times e1 e2) y z = infix_as (interp_c e1 y z) (interp_c e2 y z)" for e1 e2 y z
+fun interp' :: "expr' \<Rightarrow> (int \<Rightarrow> a) \<Rightarrow> cvars \<Rightarrow> a"
+  where "interp' (Sum e1 e2) y z = infix_pl (interp' e1 y z) (interp' e2 y z)" for e1 e2 y z
+      | "interp' (ProdL e1 c) y z = infix_as (interp' e1 y z) (interp_c c y z)" for e1 c y z
+      | "interp' (ProdR c e1) y z = infix_as (interp_c c y z) (interp' e1 y z)" for c e1 y z
+      | "interp' (Diff e1 e2) y z = infix_mn (interp' e1 y z) (interp' e2 y z)" for e1 e2 y z
+      | "interp' (Var n) y z = y n" for n y z
+      | "interp' (Coeff c) y z = interp c z" for c y z
+typedecl  equality'
+typedecl  context'
+definition interp_eq' :: "expr' \<times> expr' \<Rightarrow> (int \<Rightarrow> a) \<Rightarrow> cvars \<Rightarrow> bool"
+  where "interp_eq' g y z = (if case g of (g1, g2) \<Rightarrow> interp' g1 y z = interp' g2 y z then True else False)" for g y z
+fun interp_ctx' :: "(expr' \<times> expr') list \<Rightarrow> expr' \<times> expr' \<Rightarrow> (int \<Rightarrow> a) \<Rightarrow> cvars \<Rightarrow> bool"
+  where "interp_ctx' l g y z = (if case l of Nil \<Rightarrow> interp_eq' g y z = True | Cons h t \<Rightarrow> interp_eq' h y z = True \<longrightarrow> interp_ctx' t g y z = True then True else False)" for l g y z
+fun valid_expr' :: "expr' \<Rightarrow> _"
+  where "valid_expr' (Var i) = ((0 :: int) \<le> i)" for i
+      | "valid_expr' (Sum e1 e2) = (valid_expr' e1 \<and> valid_expr' e2)" for e1 e2
+      | "valid_expr' (Diff e1 e2) = (valid_expr' e1 \<and> valid_expr' e2)" for e1 e2
+      | "valid_expr' (Coeff x) = True" for x
+      | "valid_expr' (ProdL e1 x) = valid_expr' e1" for e1 x
+      | "valid_expr' (ProdR x e1) = valid_expr' e1" for x e1
+definition valid_eq' :: "expr' \<times> expr' \<Rightarrow> _"
+  where "valid_eq' eq1 \<longleftrightarrow> (case eq1 of (e1, e2) \<Rightarrow> valid_expr' e1 \<and> valid_expr' e2)" for eq1
+fun valid_ctx' :: "(expr' \<times> expr') list \<Rightarrow> _"
+  where "valid_ctx' (Nil :: (expr' \<times> expr') list) = True"
+      | "valid_ctx' (Cons eq1 t) = (valid_eq' eq1 \<and> valid_ctx' t)" for eq1 t
+theorem simp'vc:
+  fixes e :: "expr'"
+  shows "\<forall>(e :: cprod). (case e of C c \<Rightarrow> (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp c z = interp_c e y z) | Times c1 c2 \<Rightarrow> (case e of C _ \<Rightarrow> False | Times f f1 \<Rightarrow> f = c2 \<or> f1 = c2) \<and> (\<forall>(o1 :: coeff). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp o1 z = interp_c c2 y z) \<longrightarrow> (case e of C _ \<Rightarrow> False | Times f f1 \<Rightarrow> f = c1 \<or> f1 = c1) \<and> (\<forall>(o2 :: coeff). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp o2 z = interp_c c1 y z) \<longrightarrow> (\<forall>(result :: coeff). (\<forall>(v :: cvars). interp result v = infix_as (interp o2 v) (interp o1 v)) \<longrightarrow> (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp result z = interp_c e y z)))))"
+  and "case e of Sum e1 e2 \<Rightarrow> (case e of Sum f f1 \<Rightarrow> f = e2 \<or> f1 = e2 | ProdL f _ \<Rightarrow> f = e2 | ProdR _ f \<Rightarrow> f = e2 | Diff f f1 \<Rightarrow> f = e2 \<or> f1 = e2 | Var _ \<Rightarrow> False | Coeff _ \<Rightarrow> False) \<and> (\<forall>(o1 :: expr). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 o1 y z = interp' e2 y z) \<and> (valid_expr' e2 \<longrightarrow> valid_expr o1) \<longrightarrow> (case e of Sum f f1 \<Rightarrow> f = e1 \<or> f1 = e1 | ProdL f _ \<Rightarrow> f = e1 | ProdR _ f \<Rightarrow> f = e1 | Diff f f1 \<Rightarrow> f = e1 \<or> f1 = e1 | Var _ \<Rightarrow> False | Coeff _ \<Rightarrow> False) \<and> (\<forall>(o2 :: expr). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 o2 y z = interp' e1 y z) \<and> (valid_expr' e1 \<longrightarrow> valid_expr o2) \<longrightarrow> (let result :: expr = Add o2 o1 in (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 result y z = interp' e y z) \<and> (valid_expr' e \<longrightarrow> valid_expr result)))) | Diff e1 e2 \<Rightarrow> (case e of Sum f f1 \<Rightarrow> f = e2 \<or> f1 = e2 | ProdL f _ \<Rightarrow> f = e2 | ProdR _ f \<Rightarrow> f = e2 | Diff f f1 \<Rightarrow> f = e2 \<or> f1 = e2 | Var _ \<Rightarrow> False | Coeff _ \<Rightarrow> False) \<and> (\<forall>(o1 :: expr). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 o1 y z = interp' e2 y z) \<and> (valid_expr' e2 \<longrightarrow> valid_expr o1) \<longrightarrow> (\<forall>(o2 :: expr). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 o2 y z = prefix_mn (interp1 o1 y z)) \<and> (valid_expr o1 \<longrightarrow> valid_expr o2) \<and> (\<forall>(b :: int). expr_bound o1 b \<longrightarrow> expr_bound o2 b) \<longrightarrow> (case e of Sum f f1 \<Rightarrow> f = e1 \<or> f1 = e1 | ProdL f _ \<Rightarrow> f = e1 | ProdR _ f \<Rightarrow> f = e1 | Diff f f1 \<Rightarrow> f = e1 \<or> f1 = e1 | Var _ \<Rightarrow> False | Coeff _ \<Rightarrow> False) \<and> (\<forall>(o3 :: expr). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 o3 y z = interp' e1 y z) \<and> (valid_expr' e1 \<longrightarrow> valid_expr o3) \<longrightarrow> (let result :: expr = Add o3 o2 in (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 result y z = interp' e y z) \<and> (valid_expr' e \<longrightarrow> valid_expr result))))) | Var n \<Rightarrow> (let result :: expr = Term cone n in (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 result y z = interp' e y z) \<and> (valid_expr' e \<longrightarrow> valid_expr result)) | Coeff c \<Rightarrow> (let result :: expr = Cst c in (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 result y z = interp' e y z) \<and> (valid_expr' e \<longrightarrow> valid_expr result)) | ProdL e1 c \<Rightarrow> (\<forall>(o1 :: coeff). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp o1 z = interp_c c y z) \<longrightarrow> (case e of Sum f f1 \<Rightarrow> f = e1 \<or> f1 = e1 | ProdL f _ \<Rightarrow> f = e1 | ProdR _ f \<Rightarrow> f = e1 | Diff f f1 \<Rightarrow> f = e1 \<or> f1 = e1 | Var _ \<Rightarrow> False | Coeff _ \<Rightarrow> False) \<and> (\<forall>(o2 :: expr). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 o2 y z = interp' e1 y z) \<and> (valid_expr' e1 \<longrightarrow> valid_expr o2) \<longrightarrow> (\<forall>(result :: expr). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 result y z = infix_as (interp o1 z) (interp1 o2 y z)) \<and> (valid_expr o2 \<longrightarrow> valid_expr result) \<longrightarrow> (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 result y z = interp' e y z) \<and> (valid_expr' e \<longrightarrow> valid_expr result)))) | ProdR c e1 \<Rightarrow> (\<forall>(o1 :: coeff). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp o1 z = interp_c c y z) \<longrightarrow> (case e of Sum f f1 \<Rightarrow> f = e1 \<or> f1 = e1 | ProdL f _ \<Rightarrow> f = e1 | ProdR _ f \<Rightarrow> f = e1 | Diff f f1 \<Rightarrow> f = e1 \<or> f1 = e1 | Var _ \<Rightarrow> False | Coeff _ \<Rightarrow> False) \<and> (\<forall>(o2 :: expr). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 o2 y z = interp' e1 y z) \<and> (valid_expr' e1 \<longrightarrow> valid_expr o2) \<longrightarrow> (\<forall>(result :: expr). (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 result y z = infix_as (interp o1 z) (interp1 o2 y z)) \<and> (valid_expr o2 \<longrightarrow> valid_expr result) \<longrightarrow> (\<forall>(y :: int \<Rightarrow> a) (z :: cvars). interp1 result y z = interp' e y z) \<and> (valid_expr' e \<longrightarrow> valid_expr result))))"
+  sorry
+end

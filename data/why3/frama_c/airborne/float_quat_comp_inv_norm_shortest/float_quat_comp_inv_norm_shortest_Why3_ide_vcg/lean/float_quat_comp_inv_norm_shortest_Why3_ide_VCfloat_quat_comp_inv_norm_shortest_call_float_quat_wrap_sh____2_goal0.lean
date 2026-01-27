@@ -1,0 +1,11 @@
+import Why3.Base
+import Why3.Qed.Qed
+import frama_c.airborne.float_quat_comp_inv_norm_shortest.lib.lean.S3_FloatQuat.S3_FloatQuat
+import Why3.Cmath.Cmath
+import Why3.Cfloat.Cfloat
+open Classical
+open Lean4Why3
+namespace float_quat_comp_inv_norm_shortest_Why3_ide_VCfloat_quat_comp_inv_norm_shortest_call_float_quat_wrap_sh____2_goal0
+theorem goal0 (f : S3_FloatQuat.s3_floatquat) (f_1 : S3_FloatQuat.s3_floatquat) (f_2 : S3_FloatQuat.s3_floatquat) : let r : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qi f; let r_1 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qx f; let r_2 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qy f; let r_3 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qz f; let r_4 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qi f_1; let r_5 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qx f_1; let r_6 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qy f_1; let r_7 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qz f_1; let r_8 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qi f_2; let r_9 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qx f_2; let r_10 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qy f_2; let r_11 : ℝ := S3_FloatQuat.s3_floatquat.f3_floatquat_qz f_2; Cfloat.is_finite32 r → Cfloat.is_finite32 r_1 → Cfloat.is_finite32 r_2 → Cfloat.is_finite32 r_3 → Cfloat.is_finite32 r_4 → Cfloat.is_finite32 r_5 → Cfloat.is_finite32 r_6 → Cfloat.is_finite32 r_7 → Cfloat.is_float32 r → Cfloat.is_float32 r_1 → Cfloat.is_float32 r_2 → Cfloat.is_float32 r_3 → Cfloat.is_float32 r_4 → Cfloat.is_float32 r_5 → Cfloat.is_float32 r_6 → Cfloat.is_float32 r_7 → Cfloat.is_float32 r_8 → Cfloat.is_float32 r_9 → Cfloat.is_float32 r_10 → Cfloat.is_float32 r_11 → Cfloat.is_finite32 r_8 ∧ Cfloat.is_finite32 r_9 ∧ Cfloat.is_finite32 r_10 ∧ Cfloat.is_finite32 r_11
+  := sorry
+end float_quat_comp_inv_norm_shortest_Why3_ide_VCfloat_quat_comp_inv_norm_shortest_call_float_quat_wrap_sh____2_goal0

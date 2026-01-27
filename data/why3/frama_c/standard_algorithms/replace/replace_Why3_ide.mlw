@@ -1,0 +1,482 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'replace' in 'replace'              --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_post_replace
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'replace' in 'replace'":
+*)
+goal goal0:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a 0) in
+  let a_2 = (havoc t_1 t_2 a_1 i_2) in
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t a_1 i_2)) ->
+  ((p_unchanged_1_ a_2 t_2 a i_3 i_2)) ->
+  ((p_replace_2_ a_2 t_2 a i_3 i_1 i)) ->
+  ((p_replace_2_ ((havoc t_1 t_2 a_1 i_3)) t_2 a i_3 i_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bounds' (file replace.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_loop_inv_bounds_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'bounds' (file replace.c, line 8)":
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_3) in
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (havoc t_1 t_2 a_2 i_2) in
+  let a_4 = a_3[a_1] in
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_2) ->
+  (((region (a.base))) <= 0) ->
+  (i_3 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint32 (1 + i_3))) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_2 i_2)) ->
+  ((is_sint32 a_4)) ->
+  ((p_unchanged_1_ a_3 t_2 a i_3 i_2)) ->
+  ((p_replace_2_ a_3 t_2 a i_3 i_1 i)) ->
+  ((a_4 <> i_1) \/ ((valid_rw t a_1 1))) ->
+  ((-1) <= i_3)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bounds' (file replace.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_loop_inv_bounds_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bounds' (file replace.c, line 8)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'replace' (file replace.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_loop_inv_replace_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'replace' (file replace.c, line 9)":
+*)
+goal goal3:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_3 in
+  let a_1 = (shift_sint32 a i_3) in
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (havoc t_1 t_2 a_2 i_2) in
+  let a_4 = a_3[a_1] in
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_2) ->
+  (((region (a.base))) <= 0) ->
+  (i_3 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_2 i_2)) ->
+  ((is_sint32 a_4)) ->
+  ((p_unchanged_1_ a_3 t_2 a i_3 i_2)) ->
+  ((p_replace_2_ a_3 t_2 a i_3 i_1 i)) ->
+  (if (a_4 = i_1) then ((a_3[a_1 <- i] = t_3) /\ ((valid_rw t a_1 1)))
+   else (a_3 = t_3)) ->
+  ((p_replace_2_ t_3 t_2 a x i_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'replace' (file replace.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_loop_inv_replace_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'replace' (file replace.c, line 9)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_2)) ->
+  ((p_replace_2_ t_1 t_1 a 0 i_1 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'unchanged' (file replace.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_loop_inv_unchanged_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'unchanged' (file replace.c, line 10)":
+*)
+goal goal5:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_3 in
+  let a_1 = (shift_sint32 a i_3) in
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (havoc t_1 t_2 a_2 i_2) in
+  let a_4 = a_3[a_1] in
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_2) ->
+  (((region (a.base))) <= 0) ->
+  (i_3 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((is_uint32 x)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_2 i_2)) ->
+  ((is_sint32 a_4)) ->
+  ((p_unchanged_1_ a_3 t_2 a i_3 i_2)) ->
+  ((p_replace_2_ a_3 t_2 a i_3 i_1 i)) ->
+  (if (a_4 = i_1) then ((a_3[a_1 <- i] = t_3) /\ ((valid_rw t a_1 1)))
+   else (a_3 = t_3)) ->
+  ((p_unchanged_1_ t_3 t_2 a x i_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'unchanged' (file replace.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_loop_inv_unchanged_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'unchanged' (file replace.c, line 10)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i)) ->
+  ((p_unchanged_1_ t_1 t_1 a 0 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file replace.c, line 15) --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file replace.c, line 15)":
+*)
+goal goal7:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a 0) in
+  let a_2 = (havoc t_1 t_2 a_1 i_2) in
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_2) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t a_1 i_2)) ->
+  ((p_unchanged_1_ a_2 t_2 a i_3 i_2)) ->
+  ((p_replace_2_ a_2 t_2 a i_3 i_1 i)) ->
+  ((valid_rd t ((shift_sint32 a i_3)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file replace.c, line 16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file replace.c, line 16)":
+*)
+goal goal8:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_2) in
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (havoc t_1 t_2 a_2 i_1) in
+  let a_4 = a_3[a_1] in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_2 i_1)) ->
+  ((is_sint32 a_4)) ->
+  ((p_unchanged_1_ a_3 t_2 a i_2 i_1)) ->
+  ((p_replace_2_ a_3 t_2 a i_2 a_4 i)) ->
+  ((valid_rw t a_1 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file replace.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file replace.c, line 14)":
+*)
+goal goal9:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_3) in
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (havoc t_1 t_2 a_2 i_2) in
+  let a_4 = a_3[a_1] in
+  (i_3 <= i_2) ->
+  (0 <= i_3) ->
+  (i_3 < i_2) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_2 i_2)) ->
+  ((is_sint32 a_4)) ->
+  ((p_unchanged_1_ a_3 t_2 a i_3 i_2)) ->
+  ((p_replace_2_ a_3 t_2 a i_3 i_1 i)) ->
+  ((a_4 <> i_1) \/ ((valid_rw t a_1 1))) ->
+  (i_3 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file replace.c, line 11) (2/2)       --- *)
+(* ---------------------------------------------------------- *)
+theory VCreplace_loop_assign_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Loop assigns (file replace.c, line 11) (2/2)":
+*)
+goal goal10:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_2) in
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (havoc t_1 t_2 a_2 i_1) in
+  let a_4 = a_3[a_1] in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_2 i_1)) ->
+  ((valid_rw t a_1 1)) ->
+  (not (invalid t a_1 1)) ->
+  ((is_sint32 a_4)) ->
+  ((p_unchanged_1_ a_3 t_2 a i_2 i_1)) ->
+  ((p_replace_2_ a_3 t_2 a i_2 a_4 i)) ->
+  ((included a_1 1 a_2 i_1))
+
+end
+

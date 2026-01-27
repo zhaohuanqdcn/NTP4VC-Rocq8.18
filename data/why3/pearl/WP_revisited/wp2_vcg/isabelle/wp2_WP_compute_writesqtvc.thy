@@ -1,0 +1,27 @@
+theory wp2_WP_compute_writesqtvc
+  imports "NTP4Verif.NTP4Verif" "../../lib/isabelle/wp2_Imp"
+begin
+typedecl  set
+consts to_fset :: "set \<Rightarrow> int fset"
+consts mk :: "int fset \<Rightarrow> set"
+axiomatization where mk'spec:   "to_fset (mk s) = s"
+  for s :: "int fset"
+consts choose1 :: "set \<Rightarrow> int"
+axiomatization where choose'spec:   "choose1 s |\<in>| to_fset s"
+ if "\<not>to_fset s = fempty"
+  for s :: "set"
+definition assigns :: "(int \<Rightarrow> value) \<Rightarrow> int fset \<Rightarrow> (int \<Rightarrow> value) \<Rightarrow> _"
+  where "assigns sigma a sigma' \<longleftrightarrow> (\<forall>(i :: int). \<not>i |\<in>| a \<longrightarrow> sigma i = sigma' i)" for sigma a sigma'
+fun stmt_writes :: "stmt \<Rightarrow> int fset \<Rightarrow> _"
+  where "stmt_writes Sskip w = True" for w
+      | "stmt_writes (Sassert x) w = True" for x w
+      | "stmt_writes (Sassign id1 x) w = (id1 |\<in>| w)" for id1 x w
+      | "stmt_writes (Sseq s1 s2) w = (stmt_writes s1 w \<and> stmt_writes s2 w)" for s1 s2 w
+      | "stmt_writes (Sif x s1 s2) w = (stmt_writes s1 w \<and> stmt_writes s2 w)" for x s1 s2 w
+      | "stmt_writes (Swhile x x0 s) w = stmt_writes s w" for x x0 s w
+theorem compute_writes'vc:
+  fixes s :: "stmt"
+  shows "case s of Sskip \<Rightarrow> True | Sassign i _ \<Rightarrow> True | Sseq s1 s2 \<Rightarrow> (case s of Sskip \<Rightarrow> False | Sassign _ _ \<Rightarrow> False | Sseq f f1 \<Rightarrow> f = s2 \<or> f1 = s2 | Sif _ f f1 \<Rightarrow> f = s2 \<or> f1 = s2 | Sassert _ \<Rightarrow> False | Swhile _ _ f \<Rightarrow> f = s2) \<and> (\<forall>(o1 :: set). (\<forall>(sigma :: int \<Rightarrow> value) (pi :: int \<Rightarrow> value) (sigma' :: int \<Rightarrow> value) (pi' :: int \<Rightarrow> value) (n :: int). many_steps sigma pi s2 sigma' pi' Sskip n \<longrightarrow> assigns sigma (to_fset o1) sigma') \<longrightarrow> (case s of Sskip \<Rightarrow> False | Sassign _ _ \<Rightarrow> False | Sseq f f1 \<Rightarrow> f = s1 \<or> f1 = s1 | Sif _ f f1 \<Rightarrow> f = s1 \<or> f1 = s1 | Sassert _ \<Rightarrow> False | Swhile _ _ f \<Rightarrow> f = s1)) | Sif _ s1 s2 \<Rightarrow> (case s of Sskip \<Rightarrow> False | Sassign _ _ \<Rightarrow> False | Sseq f f1 \<Rightarrow> f = s2 \<or> f1 = s2 | Sif _ f f1 \<Rightarrow> f = s2 \<or> f1 = s2 | Sassert _ \<Rightarrow> False | Swhile _ _ f \<Rightarrow> f = s2) \<and> (\<forall>(o1 :: set). (\<forall>(sigma :: int \<Rightarrow> value) (pi :: int \<Rightarrow> value) (sigma' :: int \<Rightarrow> value) (pi' :: int \<Rightarrow> value) (n :: int). many_steps sigma pi s2 sigma' pi' Sskip n \<longrightarrow> assigns sigma (to_fset o1) sigma') \<longrightarrow> (case s of Sskip \<Rightarrow> False | Sassign _ _ \<Rightarrow> False | Sseq f f1 \<Rightarrow> f = s1 \<or> f1 = s1 | Sif _ f f1 \<Rightarrow> f = s1 \<or> f1 = s1 | Sassert _ \<Rightarrow> False | Swhile _ _ f \<Rightarrow> f = s1)) | Swhile _ _ s1 \<Rightarrow> (case s of Sskip \<Rightarrow> False | Sassign _ _ \<Rightarrow> False | Sseq f f1 \<Rightarrow> f = s1 \<or> f1 = s1 | Sif _ f f1 \<Rightarrow> f = s1 \<or> f1 = s1 | Sassert _ \<Rightarrow> False | Swhile _ _ f \<Rightarrow> f = s1) | Sassert _ \<Rightarrow> True"
+  and "\<forall>(result :: set). (case s of Sskip \<Rightarrow> to_fset result = fempty \<and> int (fcard (to_fset result)) = (0 :: int) | Sassign i _ \<Rightarrow> to_fset result = finsert i fempty \<and> int (fcard (to_fset result)) = (1 :: int) | Sseq s1 s2 \<Rightarrow> (\<exists>(o1 :: set). (\<forall>(sigma :: int \<Rightarrow> value) (pi :: int \<Rightarrow> value) (sigma' :: int \<Rightarrow> value) (pi' :: int \<Rightarrow> value) (n :: int). many_steps sigma pi s2 sigma' pi' Sskip n \<longrightarrow> assigns sigma (to_fset o1) sigma') \<and> (\<exists>(o2 :: set). (\<forall>(sigma :: int \<Rightarrow> value) (pi :: int \<Rightarrow> value) (sigma' :: int \<Rightarrow> value) (pi' :: int \<Rightarrow> value) (n :: int). many_steps sigma pi s1 sigma' pi' Sskip n \<longrightarrow> assigns sigma (to_fset o2) sigma') \<and> to_fset result = to_fset o2 |\<union>| to_fset o1)) | Sif _ s1 s2 \<Rightarrow> (\<exists>(o1 :: set). (\<forall>(sigma :: int \<Rightarrow> value) (pi :: int \<Rightarrow> value) (sigma' :: int \<Rightarrow> value) (pi' :: int \<Rightarrow> value) (n :: int). many_steps sigma pi s2 sigma' pi' Sskip n \<longrightarrow> assigns sigma (to_fset o1) sigma') \<and> (\<exists>(o2 :: set). (\<forall>(sigma :: int \<Rightarrow> value) (pi :: int \<Rightarrow> value) (sigma' :: int \<Rightarrow> value) (pi' :: int \<Rightarrow> value) (n :: int). many_steps sigma pi s1 sigma' pi' Sskip n \<longrightarrow> assigns sigma (to_fset o2) sigma') \<and> to_fset result = to_fset o2 |\<union>| to_fset o1)) | Swhile _ _ s1 \<Rightarrow> (\<forall>(sigma :: int \<Rightarrow> value) (pi :: int \<Rightarrow> value) (sigma' :: int \<Rightarrow> value) (pi' :: int \<Rightarrow> value) (n :: int). many_steps sigma pi s1 sigma' pi' Sskip n \<longrightarrow> assigns sigma (to_fset result) sigma') | Sassert _ \<Rightarrow> to_fset result = fempty \<and> int (fcard (to_fset result)) = (0 :: int)) \<longrightarrow> (\<forall>(sigma :: int \<Rightarrow> value) (pi :: int \<Rightarrow> value) (sigma' :: int \<Rightarrow> value) (pi' :: int \<Rightarrow> value) (n :: int). many_steps sigma pi s sigma' pi' Sskip n \<longrightarrow> assigns sigma (to_fset result) sigma')"
+  sorry
+end

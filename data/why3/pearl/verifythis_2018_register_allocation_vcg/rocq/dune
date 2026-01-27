@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name verifythis_2018_register_allocation_vcg)
+(theories Why3.ocaml Why3 Why3.why3.Ref))

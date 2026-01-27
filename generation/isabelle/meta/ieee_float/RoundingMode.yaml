@@ -1,0 +1,16 @@
+atoms:
+  ieee_float.RoundingMode.RNA: [RNA, ieee_float_RoundingMode.RNA, ieee_float_RoundingMode.mode.RNA]
+  ieee_float.RoundingMode.RNE: [RNE, ieee_float_RoundingMode.RNE, ieee_float_RoundingMode.mode.RNE]
+  ieee_float.RoundingMode.RTN: [RTN, ieee_float_RoundingMode.RTN, ieee_float_RoundingMode.mode.RTN]
+  ieee_float.RoundingMode.RTP: [RTP, ieee_float_RoundingMode.RTP, ieee_float_RoundingMode.mode.RTP]
+  ieee_float.RoundingMode.RTZ: [RTZ, ieee_float_RoundingMode.RTZ, ieee_float_RoundingMode.mode.RTZ]
+  ieee_float.RoundingMode.to_nearest: [to_nearest, ieee_float_RoundingMode.to_nearest]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.ieee_float_RoundingMode
+prefix_ops: {}
+types:
+  ieee_float.RoundingMode.mode: [mode, ieee_float_RoundingMode.mode]

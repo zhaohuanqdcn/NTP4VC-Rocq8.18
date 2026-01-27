@@ -1,0 +1,17 @@
+theory memscan_Why3_ide_VCmemscan_loop_inv_established_goal5
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "../../lib/isabelle/Axiomatic3_Axiomatic3" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal5:
+  fixes a_2 :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes i :: "int"
+  fixes a :: "addr"
+  fixes a_1 :: "addr"
+  assumes fact0: "region (base a_2) \<le> (0 :: int)"
+  assumes fact1: "linked t"
+  assumes fact2: "is_uint64 i"
+  assumes fact3: "valid_rd t (shift a (0 :: int)) i"
+  assumes fact4: "valid_rd t (shift a_1 (0 :: int)) i"
+  shows "(0 :: int) \<le> i"
+  sorry
+end

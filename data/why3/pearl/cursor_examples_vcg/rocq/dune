@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name cursor_examples_vcg)
+(theories Why3 cursor_examples_vcg.cursor_examples Why3.why3.Ref Why3.int Why3.cursor))

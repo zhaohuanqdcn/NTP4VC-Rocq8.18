@@ -1,0 +1,12 @@
+atoms:
+  map.MapPermut.permut: [permut, MapPermut.permut]
+axioms:
+  map.MapPermut.permut_exists: [permut_exists, MapPermut.permut_exists]
+  map.MapPermut.permut_trans: [permut_trans, MapPermut.permut_trans]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.map.MapPermut
+prefix_ops: {}
+types: {}

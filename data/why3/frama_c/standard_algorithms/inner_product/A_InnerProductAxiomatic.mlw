@@ -1,0 +1,49 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'InnerProductAxiomatic'                  --- *)
+(* ---------------------------------------------------------- *)
+theory A_InnerProductAxiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_innerproduct (map addr int) addr addr int int : int
+
+use import Cint.Cint
+
+axiom Q_InnerProductEmpty:
+  forall a b : addr.
+  forall mint_0 : map addr int.
+  forall init_0 n : int.
+  (n <= 0) -> ((is_sint32 init_0)) ->
+    (((l_innerproduct mint_0 a b n init_0)) = init_0)
+
+use import Compound.Compound
+
+axiom Q_InnerProductNext:
+  forall a b : addr.
+  forall mint_0 : map addr int.
+  forall init_0 n : int.
+  let x = n - 1 in (0 < n) -> ((is_sint32 init_0)) ->
+    ((((l_innerproduct mint_0 a b x init_0))
+      + (mint_0[(shift_sint32 a x)] * mint_0[(shift_sint32 b x)]))
+       = ((l_innerproduct mint_0 a b n init_0)))
+
+use import Axiomatic.Axiomatic
+
+axiom Q_InnerProductRead:
+  forall a b : addr.
+  forall mint_0 mint_1 : map addr int.
+  forall init_0 n : int.
+  ((is_sint32 init_0)) -> ((p_unchanged_2_ mint_0 mint_1 a n)) ->
+    ((p_unchanged_2_ mint_0 mint_1 b n)) ->
+    (((l_innerproduct mint_1 a b n init_0))
+       = ((l_innerproduct mint_0 a b n init_0)))
+
+end
+

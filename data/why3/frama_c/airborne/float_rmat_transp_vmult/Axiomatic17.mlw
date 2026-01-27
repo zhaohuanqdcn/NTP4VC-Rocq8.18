@@ -1,0 +1,64 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #17)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic17
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import S10_RealRMat_s.S10_RealRMat_s
+use import Compound.Compound
+
+function l_l_rmat_of_floatrmat (mflt_0 : map addr real)
+    (rmat_0 : addr) : s10_realrmat_s =
+    let a = (shiftfield_f5_floatrmat_m rmat_0) in
+    { f10_realrmat_s_a00 = mflt_0[(shift_float32 a 0)] ;
+      f10_realrmat_s_a01 = mflt_0[(shift_float32 a 1)] ;
+      f10_realrmat_s_a02 = mflt_0[(shift_float32 a 2)] ;
+      f10_realrmat_s_a10 = mflt_0[(shift_float32 a 3)] ;
+      f10_realrmat_s_a11 = mflt_0[(shift_float32 a 4)] ;
+      f10_realrmat_s_a12 = mflt_0[(shift_float32 a 5)] ;
+      f10_realrmat_s_a20 = mflt_0[(shift_float32 a 6)] ;
+      f10_realrmat_s_a21 = mflt_0[(shift_float32 a 7)] ;
+      f10_realrmat_s_a22 = mflt_0[(shift_float32 a 8)] }
+
+function l_transpose (rmat_0 : s10_realrmat_s) : s10_realrmat_s =
+    { rmat_0 with f10_realrmat_s_a01 = rmat_0.f10_realrmat_s_a10 ;
+      f10_realrmat_s_a02 = rmat_0.f10_realrmat_s_a20 ;
+      f10_realrmat_s_a10 = rmat_0.f10_realrmat_s_a01 ;
+      f10_realrmat_s_a12 = rmat_0.f10_realrmat_s_a21 ;
+      f10_realrmat_s_a20 = rmat_0.f10_realrmat_s_a02 ;
+      f10_realrmat_s_a21 = rmat_0.f10_realrmat_s_a12 }
+
+use import S9_RealVect3_s.S9_RealVect3_s
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+
+function l_mult_realrmat_realvect3 (rm_0 : s10_realrmat_s)
+    (v : s9_realvect3_s) : s9_realvect3_s =
+    let r = v.f9_realvect3_s_x in let r_1 = v.f9_realvect3_s_y in
+    let r_2 = v.f9_realvect3_s_z in
+    {
+      f9_realvect3_s_x = (to_float32
+                           (((rm_0.f10_realrmat_s_a00) *. r)
+                            +. ((rm_0.f10_realrmat_s_a01) *. r_1)
+                            +. ((rm_0.f10_realrmat_s_a02) *. r_2))) ;
+      f9_realvect3_s_y = (to_float32
+                           (((rm_0.f10_realrmat_s_a10) *. r)
+                            +. ((rm_0.f10_realrmat_s_a11) *. r_1)
+                            +. ((rm_0.f10_realrmat_s_a12) *. r_2))) ;
+      f9_realvect3_s_z = (to_float32
+                           (((rm_0.f10_realrmat_s_a20) *. r)
+                            +. ((rm_0.f10_realrmat_s_a21) *. r_1)
+                            +. ((rm_0.f10_realrmat_s_a22) *. r_2))) }
+
+end
+

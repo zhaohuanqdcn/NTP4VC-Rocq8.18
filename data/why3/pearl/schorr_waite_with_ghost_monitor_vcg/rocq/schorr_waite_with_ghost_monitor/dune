@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name schorr_waite_with_ghost_monitor_vcg.schorr_waite_with_ghost_monitor)
+(theories Why3))

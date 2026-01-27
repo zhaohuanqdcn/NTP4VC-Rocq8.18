@@ -1,0 +1,7 @@
+session lcp = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "lcp_LCP"
+  "lcp_LCP_lcpqtvc"
+  "lcp_LCP_not_eqseqqtvc"

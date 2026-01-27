@@ -1,0 +1,30 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/ctype.h, line 79) in 'isalpha' --- *)
+(* ---------------------------------------------------------- *)
+theory VCisalpha_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+use import Cbits.Cbits
+
+(*
+goal WP "expl:Post-condition (file src/ctype.h, line 79) in 'isalpha'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  let x = t[(to_uint8 i)] in
+  ((is_sint8 i)) ->
+  ((is_uint8 x)) ->
+  (((p_isalpha i)) <-> (((land 3 x)) <> 0))
+
+end
+

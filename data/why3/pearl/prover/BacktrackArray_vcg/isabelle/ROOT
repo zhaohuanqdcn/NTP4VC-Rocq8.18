@@ -1,0 +1,10 @@
+session BacktrackArray = NTP4Verif +
+theories
+  "BacktrackArray_Impl_add_eventqtvc"
+  "BacktrackArray_Impl_resize_forqtvc"
+  "BacktrackArray_Impl_iaddqtvc"
+  "BacktrackArray_Impl_getqtvc"
+  "BacktrackArray_Impl_addqtvc"
+  "BacktrackArray_Impl_createqtvc"
+  "BacktrackArray_Impl_backtrackqtvc"
+  "BacktrackArray_Impl_stampqtvc"

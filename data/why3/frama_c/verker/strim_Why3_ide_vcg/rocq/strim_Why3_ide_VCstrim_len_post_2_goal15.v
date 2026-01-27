@@ -1,0 +1,35 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.Qed.Qed.
+Require Import verker.Axiomatic3.Axiomatic3.
+Require Import Why3.Memory.Memory.
+Require Import verker.A_Strlen.A_Strlen.
+Require Import verker.Compound.Compound.
+Require Import Why3.Cint.Cint.
+Require Import verker.A_Ctype.A_Ctype.
+Require Import verker.A_SkipSpaces.A_SkipSpaces.
+Open Scope Z_scope.
+Theorem goal15 (a : addr) (t_2 : addr -> Z) (t_3 : addr -> Z) (a_1 : addr) (t : Z -> Z) (a_2 : addr) (t_1 : Z -> Z) : let a_3 : addr := l_skip_spaces a in let x : Z := base a in let x_1 : Z := l_strlen t_2 a in let a_4 : addr := shift a (x_1 - 1%Z) in let x_2 : Z := t_2 a_4 in let x_3 : Z := t_3 a_1 in let a_5 : addr := shift a (- 1%Z) in let a_6 : addr := shift a_1 1%Z in let m : addr -> Z := fun_updt t_3 a_6 0%Z in let x_4 : Z := m a_3 in let x_5 : Z := l_strlen m a in base a_3 = x -> t_2 (shift a x_1) = 0%Z -> ¬ x_2 = 0%Z -> 0%Z < x_1 -> region x ≤ 0%Z -> linked t -> sconst t_2 -> addr_le a a_2 -> is_sint8 x_3 -> p_valid_str t t_2 a -> addr_lt a_2 a_3 -> addr_le a a_3 -> is_uint64 x_1 -> addr_le a_5 a_1 -> is_sint8 x_4 -> ¬ p_isspace x_4 -> p_valid_str t_1 m a -> p_valid_str t_1 m a_3 -> addr_le a_1 a_4 -> is_sint8 x_2 -> addr_le a_3 (shift a x_5) -> is_sint8 (m (shift a_3 (l_strlen m a_3 - 1%Z))) -> (if decide (addr_le a a_1) then ¬ p_isspace (t_2 a_1) ∧ (a_5 = a_1 ∨ ¬ p_isspace x_3) else t_3 = t_2 ∧ t_1 = t ∧ (a_5 = a_1 ∨ ¬ p_isspace x_3)) -> (a_5 = a_1 -> x_5 = 0%Z) -> (addr_lt a a_1 -> l_strlen m a_1 = 1%Z) -> (∀(i : Z), 0%Z ≤ i -> i < x_1 -> ¬ t_2 (shift a i) = 0%Z) -> (∀(a_7 : addr), addr_le a a_7 -> addr_lt a_7 a_3 -> p_isspace (m a_7)) -> (∀(a_7 : addr), addr_lt a_1 a_7 -> addr_le a_7 a_4 -> p_isspace (t_2 a_7)) -> (∀(a_7 : addr), addr_lt a_6 a_7 -> addr_le a_7 a_4 -> p_isspace (m a_7)) -> p_isspace (m a_2).
+Admitted.

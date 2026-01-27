@@ -1,0 +1,53 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #19)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic19
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import S12_RealQuatVect_s.S12_RealQuatVect_s
+use import Compound.Compound
+use import S9_RealVect3_s.S9_RealVect3_s
+
+function l_l_quatvect_of_floatquat (mflt_0 : map addr real)
+    (q : addr) : s12_realquatvect_s =
+    { f12_realquatvect_s_scalar = mflt_0[(shiftfield_f3_floatquat_qi q)] ;
+      f12_realquatvect_s_vect = {
+                                  f9_realvect3_s_x = mflt_0[(shiftfield_f3_floatquat_qx
+                                                              q)] ;
+                                  f9_realvect3_s_y = mflt_0[(shiftfield_f3_floatquat_qy
+                                                              q)] ;
+                                  f9_realvect3_s_z = mflt_0[(shiftfield_f3_floatquat_qz
+                                                              q)] } }
+
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Axiomatic16.Axiomatic16
+
+function l_mult_realquatvect (q1_0 : s12_realquatvect_s)
+    (q2_0 : s12_realquatvect_s) : s12_realquatvect_s =
+    let a = q1_0.f12_realquatvect_s_vect in
+    let a_1 = q2_0.f12_realquatvect_s_vect in
+    let r = q1_0.f12_realquatvect_s_scalar in
+    let r_1 = q2_0.f12_realquatvect_s_scalar in
+    {
+      f12_realquatvect_s_scalar = (add_float32
+                                    (-. ((l_scalar_product a a_1)))
+                                    (r *. r_1)) ;
+      f12_realquatvect_s_vect = (l_add_realvect3
+                                  ((l_add_realvect3
+                                     ((l_mult_scalar_1_ r a_1))
+                                     ((l_mult_scalar_1_ r_1 a))))
+                                  ((l_cross_product a a_1))) }
+
+end
+

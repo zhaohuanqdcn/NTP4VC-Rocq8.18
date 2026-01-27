@@ -1,0 +1,45 @@
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 7718) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_ext_inhibitAnyPolicy_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 7718)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (3 <= i) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_sint32 i_1)) ->
+  ((valid_rw t a 15)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a_1 2)) 1))
+
+end
+

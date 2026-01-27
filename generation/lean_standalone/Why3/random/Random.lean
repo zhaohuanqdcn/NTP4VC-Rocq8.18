@@ -1,0 +1,2 @@
+namespace Random
+end Random

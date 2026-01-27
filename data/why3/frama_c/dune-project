@@ -1,0 +1,6 @@
+(lang dune 3.19)
+(using coq 0.8)
+(name "Why3Bench-frama_c")
+(package
+ (name "Why3Bench-frama_c")
+ (depends Why3Bench))

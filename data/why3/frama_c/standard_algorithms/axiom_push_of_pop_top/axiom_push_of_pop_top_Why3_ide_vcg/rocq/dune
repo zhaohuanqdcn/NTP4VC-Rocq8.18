@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.axiom_push_of_pop_top.axiom_push_of_pop_top_Why3_ide_vcg)
+(theories axiom_push_of_pop_top.Axiomatic Why3 Why3.Cint Why3.Memory axiom_push_of_pop_top.Compound Why3.Qed))

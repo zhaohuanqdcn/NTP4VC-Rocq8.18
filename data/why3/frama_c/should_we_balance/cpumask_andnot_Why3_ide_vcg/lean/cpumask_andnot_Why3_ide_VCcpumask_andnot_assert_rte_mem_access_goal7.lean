@@ -1,0 +1,13 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import Why3.Cint.Cint
+import frama_c.should_we_balance.lib.lean.A_thread_variables_properties.A_thread_variables_properties
+import frama_c.should_we_balance.lib.lean.Compound.Compound
+import frama_c.should_we_balance.lib.lean.A_schedule_cpumask.A_schedule_cpumask
+open Classical
+open Lean4Why3
+namespace cpumask_andnot_Why3_ide_VCcpumask_andnot_assert_rte_mem_access_goal7
+theorem goal7 (t_3 : Memory.addr -> Memory.addr) (a : Memory.addr) (a_1 : Memory.addr) (a_2 : Memory.addr) (t_1 : Memory.addr -> ℤ) (t_2 : Memory.addr -> ℤ) (i : ℤ) (t : ℤ -> ℤ) : let a_3 : Memory.addr := t_3 (Memory.shift a (0 : ℤ)); let a_4 : Memory.addr := Memory.shift a_3 (0 : ℤ); let a_5 : Memory.addr := Memory.shift a_1 (0 : ℤ); let a_6 : Memory.addr := t_3 a_5; let a_7 : Memory.addr := Memory.shift a_6 (0 : ℤ); let a_8 : Memory.addr := t_3 (Memory.shift a_2 (0 : ℤ)); let a_9 : Memory.addr := Memory.shift a_8 (0 : ℤ); let a_10 : Memory.addr -> ℤ := Memory.havoc t_1 t_2 a_9 A_thread_variables_properties.l_size; ¬Memory.addr.mk (0 : ℤ) (0 : ℤ) = a_2 → ¬Cint.to_uint32 i = A_thread_variables_properties.l_size → (0 : ℤ) ≤ i → i ≤ A_thread_variables_properties.l_size → Memory.region (Memory.addr.base a) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_1) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_2) ≤ (0 : ℤ) → Memory.framed t_3 → Memory.linked t → Cint.is_sint32 i → Memory.valid_rd t a (1 : ℤ) → Memory.valid_rd t a_1 (1 : ℤ) → Memory.valid_rd t a_2 (1 : ℤ) → Memory.valid_rd t a_4 A_thread_variables_properties.l_size → Memory.valid_rd t a_7 A_thread_variables_properties.l_size → Memory.valid_rw t a_9 A_thread_variables_properties.l_size → (¬a_2 = a → Memory.separated a_9 A_thread_variables_properties.l_size a_4 A_thread_variables_properties.l_size) → (¬a_2 = a_1 → Memory.separated a_9 A_thread_variables_properties.l_size a_7 A_thread_variables_properties.l_size) → (∀(i_1 : ℤ), (0 : ℤ) ≤ i_1 → i_1 < A_thread_variables_properties.l_size → Memory.separated a_9 A_thread_variables_properties.l_size (Memory.shift (t_3 (Memory.shift (A_schedule_cpumask.l_cpu_smt_mask i_1) (0 : ℤ))) (0 : ℤ)) A_thread_variables_properties.l_size) → (∀(i_1 : ℤ), let a_11 : Memory.addr := Memory.shift a_8 i_1; i ≤ i_1 → i_1 < A_thread_variables_properties.l_size → (¬a_10 a_11 = (0 : ℤ)) = (¬t_2 a_11 = (0 : ℤ))) → (∀(i_1 : ℤ), (0 : ℤ) ≤ i_1 → i_1 < i → (t_2 (Memory.shift a_3 i_1) = (0 : ℤ) ∧ ¬t_2 (Memory.shift a_6 i_1) = (0 : ℤ)) = (¬a_10 (Memory.shift a_8 i_1) = (0 : ℤ))) → Memory.valid_rd t a_5 (1 : ℤ)
+  := sorry
+end cpumask_andnot_Why3_ide_VCcpumask_andnot_assert_rte_mem_access_goal7

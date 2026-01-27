@@ -1,0 +1,9 @@
+session vstte12_bfs = NTP4Verif +
+theories
+  "vstte12_bfs_Graph_path_inversionqtvc"
+  "vstte12_bfs_BFS_eqqtrefnqtvc"
+  "vstte12_bfs_Graph"
+  "vstte12_bfs_BFS_bfsqtvc"
+  "vstte12_bfs_Graph_path_nonnegqtvc"
+  "vstte12_bfs_Graph_path_closureqtvc"
+  "vstte12_bfs_BFS_fill_nextqtvc"

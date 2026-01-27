@@ -1,0 +1,14 @@
+session flag2 = NTP4Verif +
+theories
+  "flag2_Flag_nb_occ_store_neq_neqqtvc"
+  "flag2_Flag_nb_occ_store_eq_neqqtvc"
+  "flag2_Flag_nb_occ_store_neq_eqqtvc"
+  "flag2_Flag_nb_occqtvc"
+  "flag2_Flag_nb_occ_store_outside_upqtvc"
+  "flag2_Flag_nb_occ_splitqtvc"
+  "flag2_Flag_swapqtvc"
+  "flag2_Flag_nb_occ_store_outside_downqtvc"
+  "flag2_Flag_dutch_flagqtvc"
+  "flag2_Flag_eq_colorqtvc"
+  "flag2_Flag_nb_occ_extqtvc"
+  "flag2_Flag_nb_occ_store_eq_eqqtvc"

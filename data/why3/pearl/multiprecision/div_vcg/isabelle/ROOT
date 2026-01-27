@@ -1,0 +1,15 @@
+session div = NTP4Verif +
+theories
+  "div_Div_div_qrqtvc"
+  "div_Div_wmpn_divrem_2qtvc"
+  "div_Div_div2by1_invqtvc"
+  "div_Div_bounds_imply_rec3by2qtvc"
+  "div_Div_wmpn_tdiv_qr_in_placeqtvc"
+  "div_Div_reciprocal_word_3by2qtvc"
+  "div_Div_div_qr_in_placeqtvc"
+  "div_Div_wmpn_tdiv_qrqtvc"
+  "div_Div_div_sb_qrqtvc"
+  "div_Div_div3by2_invqtvc"
+  "div_Div_fact_divqtvc"
+  "div_Div_invert_limbqtvc"
+  "div_Div_wmpn_divrem_1qtvc"

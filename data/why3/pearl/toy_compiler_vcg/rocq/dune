@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name toy_compiler_vcg)
+(theories Why3 toy_compiler_vcg.toy_compiler))

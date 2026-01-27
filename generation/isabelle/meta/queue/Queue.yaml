@@ -1,0 +1,11 @@
+atoms:
+  queue.Queue.seq: [seq, queue_Queue.seq]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.queue_Queue
+prefix_ops: {}
+types:
+  queue.Queue.t: [t, queue_Queue.t]

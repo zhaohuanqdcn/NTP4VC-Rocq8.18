@@ -1,0 +1,16 @@
+theory swap_ranges_Why3_ide_VCswap_ranges_loop_inv_equal_preserved_goal4
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/Axiomatic_Axiomatic"
+begin
+theorem goal4:
+  fixes a :: "addr"
+  fixes a_1 :: "addr"
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes t_3 :: "addr \<Rightarrow> int"
+  fixes i_1 :: "int"
+  fixes i_2 :: "int"
+  fixes i :: "int"
+  fixes t :: "int \<Rightarrow> int"
+  shows "let a_2 :: addr = shift a (0 :: int); a_3 :: addr = shift a_1 (0 :: int); a_4 :: addr \<Rightarrow> int = havoc t_2 (havoc t_1 t_3 a_2 i_1) a_3 i_1; a_5 :: addr = shift a i_2; a_6 :: addr = shift a_1 i_2; a_7 :: int = a_4 a_5; a_8 :: addr \<Rightarrow> int = a_4(a_6 := a_7, a_5 := i); a_9 :: int = a_8 a_5; a_10 :: int = a_4 a_6; x :: int = (1 :: int) + i_2 in a_9 = a_10 \<longrightarrow> i_2 \<le> i_1 \<longrightarrow> (0 :: int) \<le> i_2 \<longrightarrow> i_2 < i_1 \<longrightarrow> region (base a) \<le> (0 :: int) \<longrightarrow> region (base a_1) \<le> (0 :: int) \<longrightarrow> i_2 \<le> (4294967294 :: int) \<longrightarrow> linked t \<longrightarrow> is_uint32 i_1 \<longrightarrow> is_uint32 i_2 \<longrightarrow> is_uint32 x \<longrightarrow> valid_rw t a_2 i_1 \<longrightarrow> valid_rw t a_5 (1 :: int) \<longrightarrow> valid_rw t a_3 i_1 \<longrightarrow> valid_rw t a_6 (1 :: int) \<longrightarrow> separated a_3 i_1 a_2 i_1 \<longrightarrow> is_sint32 a_7 \<longrightarrow> is_sint32 a_10 \<longrightarrow> is_sint32 a_9 \<longrightarrow> p_equalranges_1' a_4 t_3 a i_2 a_1 \<longrightarrow> p_equalranges_1' a_4 t_3 a_1 i_2 a \<longrightarrow> p_unchanged_1' a_4 t_3 a i_2 i_1 \<longrightarrow> p_unchanged_1' a_4 t_3 a_1 i_2 i_1 \<longrightarrow> p_equalranges_1' a_8 t_3 a_1 x a"
+  sorry
+end

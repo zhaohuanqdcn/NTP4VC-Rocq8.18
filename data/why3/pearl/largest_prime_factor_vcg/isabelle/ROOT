@@ -1,0 +1,6 @@
+session largest_prime_factor = NTP4Verif +
+theories
+  "largest_prime_factor_PrimeFactor_largest_prime_factorqtvc"
+  "largest_prime_factor_PrimeFactor_testqtvc"
+  "largest_prime_factor_PrimeFactor_smallest_divisorqtvc"
+  "largest_prime_factor_PrimeFactor_solveqtvc"

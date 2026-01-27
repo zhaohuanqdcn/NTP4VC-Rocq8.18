@@ -1,0 +1,33 @@
+theory X__init_stdio_Why3_ide_VC__init_stdio_post_part2_goal1
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/Axiomatic3_Axiomatic3"
+begin
+theorem goal1:
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes a_2 :: "addr"
+  fixes a_3 :: "addr"
+  fixes a_6 :: "addr"
+  fixes a_7 :: "addr"
+  fixes a_10 :: "addr"
+  fixes a_11 :: "addr"
+  fixes a_15 :: "addr"
+  fixes a_17 :: "addr"
+  fixes a_18 :: "addr"
+  fixes a_12 :: "addr"
+  fixes a_13 :: "addr"
+  fixes a_14 :: "addr"
+  fixes a_16 :: "addr"
+  fixes t_3 :: "addr \<Rightarrow> addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes i :: "int"
+  fixes i_1 :: "int"
+  fixes i_2 :: "int"
+  fixes a_1 :: "addr"
+  fixes a_5 :: "addr"
+  fixes a_9 :: "addr"
+  fixes a :: "addr"
+  fixes a_4 :: "addr"
+  fixes a_8 :: "addr"
+  shows "let x :: int = t_1 (shift a_2 (10 :: int)); x_1 :: int = t_1 (shift a_3 (10 :: int)); x_2 :: int = t_1 (shift a_6 (10 :: int)); x_3 :: int = t_1 (shift a_7 (10 :: int)); x_4 :: int = t_1 (shift a_10 (10 :: int)); x_5 :: int = t_1 (shift a_11 (10 :: int)); a_19 :: addr = shift a_15 (0 :: int); x_6 :: int = t_1 a_19; a_20 :: addr = shift a_17 (0 :: int); x_7 :: int = t_1 a_20; a_21 :: addr = shift a_18 (0 :: int); x_8 :: int = t_1 a_21; m :: addr \<Rightarrow> int = t_1(shift a_12 (10 :: int) := 0 :: int) in region (base a_13) \<le> (0 :: int) \<longrightarrow> region (base a_14) \<le> (0 :: int) \<longrightarrow> region (base a_16) \<le> (0 :: int) \<longrightarrow> framed t_3 \<longrightarrow> linked t \<longrightarrow> sconst t_2 \<longrightarrow> is_sint32 i \<longrightarrow> is_sint32 i_1 \<longrightarrow> is_sint32 i_2 \<longrightarrow> valid_rw t a_13 (3 :: int) \<longrightarrow> valid_rw t a_14 (3 :: int) \<longrightarrow> valid_rw t a_16 (3 :: int) \<longrightarrow> is_uint32 x \<longrightarrow> is_uint32 x_1 \<longrightarrow> is_uint32 x_2 \<longrightarrow> is_uint32 x_3 \<longrightarrow> is_uint32 x_4 \<longrightarrow> is_uint32 x_5 \<longrightarrow> is_sint32 x_6 \<longrightarrow> is_sint32 x_7 \<longrightarrow> is_sint32 x_8 \<longrightarrow> is_sint32 (m a_19) \<longrightarrow> is_sint32 (m a_20) \<longrightarrow> is_sint32 (m a_21) \<longrightarrow> (Mk_addr (0 :: int) (0 :: int) = a_15 \<longrightarrow> i = (12 :: int)) \<longrightarrow> (Mk_addr (0 :: int) (0 :: int) = a_18 \<longrightarrow> i_1 = (12 :: int)) \<longrightarrow> (Mk_addr (0 :: int) (0 :: int) = a_17 \<longrightarrow> i_2 = (12 :: int)) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_15 \<longrightarrow> shift a_1 (0 :: int) = a_15) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_17 \<longrightarrow> shift a_5 (0 :: int) = a_17) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_18 \<longrightarrow> shift a_9 (0 :: int) = a_18) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_15 \<longrightarrow> x_6 = (0 :: int)) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_17 \<longrightarrow> x_7 = (1 :: int)) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_18 \<longrightarrow> x_8 = (2 :: int)) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_15 \<longrightarrow> p_valid_io_file_pvt t t_3 t_1 a) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_17 \<longrightarrow> p_valid_io_file_pvt t t_3 t_1 a_4) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_18 \<longrightarrow> p_valid_io_file_pvt t t_3 t_1 a_8) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_15 \<longrightarrow> x = (1 :: int) \<or> x_1 = (2 :: int)) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_17 \<longrightarrow> x_2 = (1 :: int) \<or> x_3 = (2 :: int)) \<longrightarrow> (\<not>Mk_addr (0 :: int) (0 :: int) = a_18 \<longrightarrow> x_4 = (1 :: int) \<or> x_5 = (2 :: int)) \<longrightarrow> p_valid_file t m a_15"
+  sorry
+end

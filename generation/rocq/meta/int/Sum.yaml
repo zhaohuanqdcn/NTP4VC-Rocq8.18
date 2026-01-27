@@ -1,0 +1,18 @@
+atoms:
+  int.Sum.sum: [sum, int.Sum.sum]
+axioms:
+  int.Sum.shift_left: [shift_left, int.Sum.shift_left]
+  int.Sum.sum'def: [sum'def, int.Sum.sum'def]
+  int.Sum.sum_decomp: [sum_decomp, int.Sum.sum_decomp]
+  int.Sum.sum_ext: [sum_ext, int.Sum.sum_ext]
+  int.Sum.sum_le: [sum_le, int.Sum.sum_le]
+  int.Sum.sum_left: [sum_left, int.Sum.sum_left]
+  int.Sum.sum_nonneg: [sum_nonneg, int.Sum.sum_nonneg]
+  int.Sum.sum_zero: [sum_zero, int.Sum.sum_zero]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.int.Sum
+prefix_ops: {}
+types: {}

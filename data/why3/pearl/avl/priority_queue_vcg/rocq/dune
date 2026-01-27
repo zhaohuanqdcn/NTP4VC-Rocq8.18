@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name avl.priority_queue_vcg)
+(theories avl.avl Why3 Why3.why3.Ref Why3.int))

@@ -1,0 +1,19 @@
+(* ---------------------------------------------------------- *)
+(* --- Struct 'FloatVect3'                                --- *)
+(* ---------------------------------------------------------- *)
+theory S2_FloatVect3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+type s2_floatvect3 = {
+  f2_floatvect3_x : real ;
+  f2_floatvect3_y : real ;
+  f2_floatvect3_z : real }
+
+end
+

@@ -1,0 +1,9 @@
+session _parse_arc_Why3_ide = NTP4Verif +
+theories
+  "X_parse_arc_Why3_ide_VC_parse_arc_post_2_part09_goal2"
+  "X_parse_arc_Why3_ide_VC_parse_arc_assert_rte_mem_access_part2_goal6"
+  "X_parse_arc_Why3_ide_VC_parse_arc_post_2_part05_goal1"
+  "X_parse_arc_Why3_ide_VC_parse_arc_post_part04_goal0"
+  "X_parse_arc_Why3_ide_VC_parse_arc_loop_inv_preserved_part1_goal3"
+  "X_parse_arc_Why3_ide_VC_parse_arc_loop_inv_preserved_part2_goal4"
+  "X_parse_arc_Why3_ide_VC_parse_arc_assert_rte_mem_access_part1_goal5"

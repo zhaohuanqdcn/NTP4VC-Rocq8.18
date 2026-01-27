@@ -1,0 +1,40 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.why3.Ref.Ref.
+Open Scope Z_scope.
+Axiom loc : Type.
+Axiom loc_inhabited : Inhabited loc.
+Global Existing Instance loc_inhabited.
+Axiom loc_countable : Countable loc.
+Global Existing Instance loc_countable.
+Axiom null : loc.
+Axiom stacknodes : Type.
+Axiom stacknodes_inhabited : Inhabited stacknodes.
+Global Existing Instance stacknodes_inhabited.
+Axiom stacknodes_countable : Countable stacknodes.
+Global Existing Instance stacknodes_countable.
+Definition not_in_stack (n : loc) (s : list loc) := ∀(i : Z), 0%Z ≤ i ∧ i < Z.of_nat (length s) -> ¬ n = nth (Z.to_nat i) s inhabitant.
+Theorem cons_not_in'vc (n : loc) (t : loc) (s : list loc) (fact0 : not_in_stack n (cons t s)) : not_in_stack n s.
+Admitted.

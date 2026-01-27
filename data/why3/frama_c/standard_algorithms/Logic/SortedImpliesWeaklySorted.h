@@ -1,0 +1,11 @@
+
+#ifndef SORTEDIMPLIESWEAKLYSORTED_H_INCLUDED
+#define SORTEDIMPLIESWEAKLYSORTED_H_INCLUDED
+
+#include "Sorted.h"
+#include "WeaklySorted.h"
+
+
+
+#endif /* SORTEDIMPLIESWEAKLYSORTED_H_INCLUDED */
+

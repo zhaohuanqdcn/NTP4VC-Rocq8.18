@@ -1,0 +1,10 @@
+atoms: {}
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.floating_point.SingleFormat
+prefix_ops: {}
+types:
+  floating_point.SingleFormat.single: [single, SingleFormat.single]

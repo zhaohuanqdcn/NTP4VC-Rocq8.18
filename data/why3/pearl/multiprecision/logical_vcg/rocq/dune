@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name multiprecision.logical_vcg)
+(theories Why3.why3.Ref Why3.mach.int Why3.mach.c multiprecision.lemmas multiprecision.logical Why3.map multiprecision.types multiprecision.ptralias Why3))

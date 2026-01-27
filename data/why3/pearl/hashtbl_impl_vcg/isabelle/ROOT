@@ -1,0 +1,13 @@
+session hashtbl_impl = NTP4Verif +
+theories
+  "hashtbl_impl_HashtblImpl_clearqtvc"
+  "hashtbl_impl_HashtblImpl_bucketqtvc"
+  "hashtbl_impl_HashtblImpl_list_removeqtvc"
+  "hashtbl_impl_HashtblImpl_list_findqtvc"
+  "hashtbl_impl_HashtblImpl_removeqtvc"
+  "hashtbl_impl_HashtblImpl_tqtvc"
+  "hashtbl_impl_HashtblImpl_addqtvc"
+  "hashtbl_impl_HashtblImpl_findqtvc"
+  "hashtbl_impl_HashtblImpl_resizeqtvc"
+  "hashtbl_impl_HashtblImpl_createqtvc"
+  "hashtbl_impl_HashtblImpl_bucket_boundsqtvc"

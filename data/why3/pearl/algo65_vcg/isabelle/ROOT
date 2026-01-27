@@ -1,0 +1,3 @@
+session algo65 = NTP4Verif +
+theories
+  "algo65_Algo65_findqtvc"

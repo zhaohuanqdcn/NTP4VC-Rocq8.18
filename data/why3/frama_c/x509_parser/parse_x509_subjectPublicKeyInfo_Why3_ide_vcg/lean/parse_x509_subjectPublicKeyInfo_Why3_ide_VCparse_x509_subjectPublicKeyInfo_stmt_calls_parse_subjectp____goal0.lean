@@ -1,0 +1,12 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import frama_c.x509_parser.lib.lean.Compound.Compound
+import frama_c.x509_parser.lib.lean.Globals.Globals
+import Why3.Cint.Cint
+open Classical
+open Lean4Why3
+namespace parse_x509_subjectPublicKeyInfo_Why3_ide_VCparse_x509_subjectPublicKeyInfo_stmt_calls_parse_subjectp____goal0
+theorem goal0 : let a : Memory.addr := Memory.addr.mk (7106 : ℤ) (0 : ℤ); ∀(i_4 : ℤ) (i_3 : ℤ) (i_2 : ℤ) (i_1 : ℤ) (i : ℤ) (t : ℤ -> ℤ) (t_1 : ℤ -> Memory.addr) (t_3 : Memory.addr -> ℤ) (t_2 : Memory.addr -> ℤ) (t_5 : Memory.addr -> Memory.addr) (t_4 : Memory.addr -> Memory.addr) (a_4 : Memory.addr) (a_3 : Memory.addr), let x : ℤ := Memory.addr.base a_4; let x_1 : ℤ := Memory.addr.base a_3; let a_5 : Memory.addr := Memory.shift a_4 i_3; let a_6 : Memory.addr := t_1 i_2; let a_7 : Memory.addr := Memory.shift a_6 (6 : ℤ); let a_8 : Memory.addr := Memory.havoc t_4 (Function.update (Function.update t_5 (Memory.shift a (0 : ℤ)) (Memory.addr.mk (0 : ℤ) (0 : ℤ))) (Memory.shift a (1 : ℤ)) (Memory.addr.mk (0 : ℤ) (0 : ℤ))) a (4 : ℤ) a_7; let a_9 : Memory.addr := Memory.shift a_6 (4 : ℤ); let m : ℤ -> ℤ := Function.update t (7106 : ℤ) (4 : ℤ); let a_10 : Memory.addr := Memory.shift a_4 (0 : ℤ); ¬i_1 = (0 : ℤ) → ¬i_4 = (0 : ℤ) → ¬Memory.addr.mk (0 : ℤ) (0 : ℤ) = a_4 → ¬x = x_1 → ¬a_5 = Memory.addr.mk (0 : ℤ) (0 : ℤ) → ¬a_8 = Memory.addr.mk (0 : ℤ) (0 : ℤ) → Memory.havoc t_2 (Function.update (Function.update t_3 (Memory.shift a (2 : ℤ)) (0 : ℤ)) (Memory.shift a (3 : ℤ)) (0 : ℤ)) a (4 : ℤ) a_9 = (2 : ℤ) → (0 : ℤ) ≤ i_1 → i_3 ≤ i_1 → i_4 ≤ i_1 → (0 : ℤ) ≤ i_4 → i ≤ i_4 → i_3 + i_4 ≤ i_1 → Memory.region x_1 ≤ (0 : ℤ) → Memory.region x ≤ (0 : ℤ) → (2 : ℤ) ≤ i → (2 : ℤ) ≤ i_3 → i ≤ (2147483648 : ℤ) + i_4 → i_4 ≤ (65535 : ℤ) + i → i_4 ≤ (2147483647 : ℤ) + i → Memory.framed t_5 → Memory.linked t → Cint.is_uint8 i_2 → Cint.is_uint16 i → Cint.is_uint16 i_1 → Cint.is_uint16 i_3 → Cint.is_uint16 i_4 → Memory.valid_rw t a_3 (1 : ℤ) → Memory.valid_rd m a_6 (8 : ℤ) → Memory.valid_rd m a_9 (1 : ℤ) → Memory.valid_rd m a_7 (1 : ℤ) → Memory.separated a_5 (1 : ℤ) a (4 : ℤ) → ((0 : ℤ) < i_1 → Memory.valid_rd t a_10 i_1) → ((0 : ℤ) < i_1 → Memory.valid_rd m a_10 i_1) → ((0 : ℤ) < i_4 → Memory.valid_rd m a_5 i_4) → a_8 = Memory.addr.mk (8421 : ℤ) (0 : ℤ) ∨ a_8 = Memory.addr.mk (8422 : ℤ) (0 : ℤ)
+  := sorry
+end parse_x509_subjectPublicKeyInfo_Why3_ide_VCparse_x509_subjectPublicKeyInfo_stmt_calls_parse_subjectp____goal0

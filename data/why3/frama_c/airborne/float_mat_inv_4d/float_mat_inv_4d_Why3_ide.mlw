@@ -1,0 +1,89 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file math/pprz_algebra_float.c, line 890) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_mat_inv_4d_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file math/pprz_algebra_float.c, line 890)":
+*)
+goal goal0:
+  forall i : int.
+  forall r_1 r : real.
+  forall t : map int int.
+  forall a_1 a : addr.
+  (0 <= i) ->
+  (0.0 <=. r) ->
+  ((7378697629483821.0 /. 73786976294838206464.0) <=. ((to_float64 r))) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 15) ->
+  (i <= 16) ->
+  ((linked t)) ->
+  ((is_finite32 r)) ->
+  ((is_finite32 r_1)) ->
+  ((is_sint32 i)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_sint32 (1 + i))) ->
+  ((valid_rd t ((shift_float32 a 0)) 16)) ->
+  ((valid_rw t ((shift_float32 a_1 0)) 16)) ->
+  ((r_1 = r) \/ ((r +. r_1) = 0.0)) ->
+  (((-1)) <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'fabsf'' in 'float_mat_inv_4d' at call 'fabsf' (file math/pprz_algebra_float.c, line 885)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_mat_inv_4d_call_fabsf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'fabsf'' in 'float_mat_inv_4d' at call 'fabsf' (file math/pprz_algebra_float.c, line 885)
+":
+*)
+goal goal1:
+  forall r : real.
+  forall t : map int int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_float32 r)) ->
+  ((valid_rd t ((shift_float32 a 0)) 16)) ->
+  ((valid_rw t ((shift_float32 a_1 0)) 16)) ->
+  ((is_finite32 r))
+
+end
+

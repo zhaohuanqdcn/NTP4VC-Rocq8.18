@@ -1,0 +1,13 @@
+atoms:
+  int.Iter.iter: [iter, Iter.iter]
+axioms:
+  int.Iter.iter'def: [iter'def, Iter.iter'def]
+  int.Iter.iter_1: [iter_1, Iter.iter_1]
+  int.Iter.iter_s: [iter_s, Iter.iter_s]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.int.Iter
+prefix_ops: {}
+types: {}

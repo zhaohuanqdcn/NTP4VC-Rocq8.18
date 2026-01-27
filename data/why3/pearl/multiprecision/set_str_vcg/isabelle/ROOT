@@ -1,0 +1,5 @@
+session set_str = NTP4Verif +
+theories
+  "set_str_Set_str_wmpn_set_strqtvc"
+  "set_str_Set_str_wmpn_set_str_otherqtvc"
+  "set_str_Set_str_wmpn_set_str_bitsqtvc"

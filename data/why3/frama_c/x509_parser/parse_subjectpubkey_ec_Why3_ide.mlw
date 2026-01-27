@@ -1,0 +1,106 @@
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 2024) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_subjectpubkey_ec_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 2024)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  ((i_1 + i_2) <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (2 <= i_1) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a_1 i_1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 2046) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_subjectpubkey_ec_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 2046)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shift_uint8 a_1 i_2) in
+  (i <> (-1)) ->
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (null <> a_1) ->
+  (t_1[a_2] = 0) ->
+  (0 <= i) ->
+  (i < i_1) ->
+  (0 <= i_1) ->
+  (i_2 <= i_1) ->
+  ((i + i_2) < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_2) ->
+  (i <= 65535) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 (1 + i))) ->
+  ((valid_rd t a_2 1)) ->
+  ((is_uint16
+     t_1[(shiftfield_f18_crv_order_bit_len
+           t_2[(shiftfield_f19_curve_param a)])])) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_1 0)) i_1))) ->
+  ((valid_rd t ((shift_uint8 a_1 (1 + i_2))) 1))
+
+end
+

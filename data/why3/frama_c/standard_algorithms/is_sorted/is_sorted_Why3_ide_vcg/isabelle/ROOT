@@ -1,0 +1,9 @@
+session is_sorted_Why3_ide = NTP4Verif +
+theories
+  "is_sorted_Why3_ide_VCis_sorted_assert_rte_mem_access_goal3"
+  "is_sorted_Why3_ide_VCis_sorted_post_goal0"
+  "is_sorted_Why3_ide_VCis_sorted_loop_term_positive_goal6"
+  "is_sorted_Why3_ide_VCis_sorted_loop_inv_sorted_established_goal2"
+  "is_sorted_Why3_ide_VCis_sorted_assert_rte_unsigned_overflow_2_goal5"
+  "is_sorted_Why3_ide_VCis_sorted_loop_inv_sorted_preserved_goal1"
+  "is_sorted_Why3_ide_VCis_sorted_assert_rte_mem_access_2_goal4"

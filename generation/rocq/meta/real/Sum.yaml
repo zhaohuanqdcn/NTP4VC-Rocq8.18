@@ -1,0 +1,11 @@
+atoms:
+  real.Sum.sum: [sum, real.Sum.sum]
+axioms:
+  real.Sum.sum'def: [sum'def, real.Sum.sum'def]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.real.Sum
+prefix_ops: {}
+types: {}

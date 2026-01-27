@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.partial_sum.partial_sum_Why3_ide_vcg)
+(theories partial_sum.Axiomatic partial_sum.Axiomatic1 partial_sum.A_AccumulateAxiomatic Why3 Why3.Cint partial_sum.Compound Why3.Memory Why3.Qed))

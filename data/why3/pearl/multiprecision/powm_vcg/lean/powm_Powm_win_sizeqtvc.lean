@@ -1,0 +1,35 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.c.C
+import Why3.mach.int.Unsigned
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.compare.Compare
+import pearl.multiprecision.lib.lean.valuation.Valuation
+import pearl.multiprecision.lib.lean.util.Util
+import pearl.multiprecision.lib.lean.ptralias.Alias
+import pearl.multiprecision.lib.lean.util.UtilOld
+import pearl.multiprecision.lib.lean.add.Add
+import pearl.multiprecision.lib.lean.add.AddOld
+import pearl.multiprecision.lib.lean.sub.SubOld
+import pearl.multiprecision.lib.lean.mul.Mul
+import pearl.multiprecision.lib.lean.mul.Mul_basecase
+import pearl.multiprecision.lib.lean.logical.LogicalUtil
+import pearl.multiprecision.lib.lean.logical.Logical
+import pearl.multiprecision.lib.lean.logical.LogicalOld
+import pearl.multiprecision.lib.lean.div.Div
+import pearl.multiprecision.lib.lean.toom.Toom
+import pearl.multiprecision.lib.lean.add_1.Add_1
+import pearl.multiprecision.lib.lean.sub_1.Sub_1
+open Classical
+open Lean4Why3
+namespace powm_Powm_win_sizeqtvc
+noncomputable def redc (ur : ℤ) (u : ℤ) (n : ℤ) (m : ℤ) := ur % m = HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat n) * u % m
+theorem win_size'vc (eb : BitVec 32) (o1 : Bool) (result : BitVec 32) (fact0 : BitVec.toInt eb = BitVec.toInt (0 : BitVec 32) → o1 = true) (fact1 : o1 = true → eb = (0 : BitVec 32)) (fact2 : if o1 = true then result = (0 : BitVec 32) else if BitVec.toInt eb ≤ (7 : ℤ) then result = (1 : BitVec 32) else if BitVec.toInt eb ≤ (25 : ℤ) then result = (2 : BitVec 32) else if BitVec.toInt eb ≤ (81 : ℤ) then result = (3 : BitVec 32) else if BitVec.toInt eb ≤ (214 : ℤ) then result = (4 : BitVec 32) else if BitVec.toInt eb ≤ (673 : ℤ) then result = (5 : BitVec 32) else if BitVec.toInt eb ≤ (1793 : ℤ) then result = (6 : BitVec 32) else if BitVec.toInt eb ≤ (4609 : ℤ) then result = (7 : BitVec 32) else if BitVec.toInt eb ≤ (11521 : ℤ) then result = (8 : BitVec 32) else if BitVec.toInt eb ≤ (28161 : ℤ) then result = (9 : BitVec 32) else result = (10 : BitVec 32)) : (0 : ℤ) ≤ BitVec.toInt result ∧ BitVec.toInt result ≤ (10 : ℤ) ∧ ((0 : ℤ) < BitVec.toInt eb → (0 : ℤ) < BitVec.toInt result)
+  := sorry
+end powm_Powm_win_sizeqtvc

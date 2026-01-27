@@ -1,0 +1,12 @@
+theory check_bytes8_Why3_ide_VCcheck_bytes8_loop_inv_5_preserved_goal8
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "../../lib/isabelle/Axiomatic3_Axiomatic3" "Why3STD.Memory_Memory" "../../lib/isabelle/A_CheckBytes8_A_CheckBytes8" "../../lib/isabelle/Compound_Compound" "Why3STD.Cint_Cint"
+begin
+theorem goal8:
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes a :: "addr"
+  fixes a_1 :: "addr"
+  fixes i :: "int"
+  fixes t :: "int \<Rightarrow> int"
+  shows "let x :: int = t_1 a; x_1 :: int = offset a; x_2 :: int = offset a_1; x_3 :: int = i + x_1 - x_2; a_2 :: addr = l_check_bytes8 t_1 a_1 x x_3 in \<not>i = (0 :: int) \<longrightarrow> a_2 = l_check_bytes8 t_1 a x i \<longrightarrow> (0 :: int) \<le> i \<longrightarrow> x_2 \<le> x_1 \<longrightarrow> region (base a_1) \<le> (0 :: int) \<longrightarrow> linked t \<longrightarrow> is_uint32 i \<longrightarrow> addr_le a_1 a \<longrightarrow> is_uint8 x \<longrightarrow> is_uint32 x_3 \<longrightarrow> valid_rd t (shift a_1 (0 :: int)) x_3 \<longrightarrow> addr_le a (shift a_1 x_3) \<longrightarrow> (\<forall>(a_3 :: addr). addr_lt a_3 a \<longrightarrow> addr_le a_1 a_3 \<longrightarrow> x = t_1 a_3) \<longrightarrow> a_2 = l_check_bytes8 t_1 (shift a (1 :: int)) x (to_uint32 (i - (1 :: int)))"
+  sorry
+end

@@ -1,0 +1,5 @@
+use int.Int
+
+let ghost l () : unit
+  ensures { (forall x. x + x = 2 * x) /\ (forall x. x = 0) }
+= ()

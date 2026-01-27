@@ -1,0 +1,4 @@
+session mex = NTP4Verif +
+theories
+  "mex_MexArray_mexqtvc"
+  "mex_MexArrayInPlace_mexqtvc"

@@ -1,0 +1,36 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions                                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_lowerbound_1_ (mint_0 : map addr int) (a : addr) (m : int)
+    (n : int) (v : int) =
+    forall i : int. (m <= i) -> (i < n) -> (v <= mint_0[(shift_sint32 a i)])
+
+predicate p_lowerbound_2_ (mint_0 : map addr int) (a : addr) (n : int)
+    (v : int) = (p_lowerbound_1_ mint_0 a 0 n v)
+
+predicate p_strictlowerbound_1_ (mint_0 : map addr int) (a : addr) (m : int)
+    (n : int) (v : int) =
+    forall i : int. (m <= i) -> (i < n) -> (v < mint_0[(shift_sint32 a i)])
+
+predicate p_strictlowerbound_2_ (mint_0 : map addr int) (a : addr) (n : int)
+    (v : int) = (p_strictlowerbound_1_ mint_0 a 0 n v)
+
+predicate p_minelement (mint_0 : map addr int) (a : addr) (n : int)
+    (min_0 : int) =
+    (0 <= min_0) /\ (min_0 < n) /\
+    ((p_lowerbound_2_ mint_0 a n mint_0[(shift_sint32 a min_0)]))
+
+end
+

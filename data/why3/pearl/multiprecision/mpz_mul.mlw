@@ -1,0 +1,288 @@
+module Zmul
+
+use int.Int
+use int.Power
+use map.Map
+use mach.int.Int32GMP
+use ref.Ref
+use mach.c.C
+use lemmas.Lemmas
+use util.Util
+use util.UtilOld
+use ptralias.Alias
+use compare.Compare
+use import mach.int.UInt64GMP as Limb
+use types.Int32Eq
+use types.UInt64Eq
+use add.Add
+use sub.Sub
+use mul.Mul
+use toom.Toom
+use int.Abs
+use mpz.Z
+use mpz.Zutil
+
+let partial wmpz_mul (w u v: mpz_ptr) : unit
+  requires { mpz.alloc[w] >= 1 /\ mpz.alloc[u] >= 1 /\ mpz.alloc[v] >= 1 }
+  requires { mpz.readers[w] = 0 /\ mpz.readers[u] = 0 /\ mpz.readers[v] = 0 }
+  requires { mpz.abs_size[u] + mpz.abs_size[v] <= max_int32 }
+  requires { 8 * mpz.abs_size[u] < max_int32
+             /\ 8 * mpz.abs_size[v] < max_int32 }
+  ensures  { value_of w mpz = old (value_of u mpz * value_of v mpz) }
+  ensures  { forall x. x <> w -> mpz_unchanged x mpz (old mpz) }
+  ensures  { mpz.readers[w] = 0 /\ mpz.readers[u] = 0 /\ mpz.readers[v] = 0 }
+=
+  let ghost ou = pure { u } in
+  let ghost ov = pure { v } in
+  label Start in
+  let ref u = u in
+  let ref v = v in
+  let ref usize = size_of u in
+  let ref vsize = size_of v in
+  let sign_product = bxor usize vsize in
+  usize <- abs usize;
+  vsize <- abs vsize;
+  begin ensures { mpz.abs_size[u] = usize /\ mpz.abs_size[v] = vsize }
+        ensures { mpz.alloc[u] >= 1 /\ mpz.alloc[v] >= 1 }
+        ensures { vsize <= usize }
+        ensures { usize + vsize <= max_int32 }
+        ensures { 8 * usize < max_int32 }
+        ensures { mpz.readers[w] = 0 /\ mpz.readers[u] = 0
+                  /\ mpz.readers[v] = 0 }
+        ensures { abs_value_of mpz u * abs_value_of mpz v
+                  = old (abs_value_of mpz u * abs_value_of mpz v) }
+        ensures { value_of u mpz * value_of v mpz
+                  = old (value_of u mpz * value_of v mpz) }
+        ensures { (u = ou /\ v = ov) \/ (u = ov /\ v = ou) }
+  if usize < vsize
+  then begin
+    mpz_ptr_swap u v;
+    let z = usize in
+    usize <- vsize;
+    vsize <- z
+  end;
+  end;
+  if vsize = 0
+  then begin
+    set_size_0 w;
+    return;
+  end;
+  let uw = mpz_eq u w in
+  let vw = mpz_eq v w in
+  let ompz = pure { mpz } in
+  label Op in
+  if vsize = 1
+  then begin
+    let vp = get_read_ptr v in
+    let v0 = get vp in
+    release_reader v vp;
+    let wp = wmpz_realloc w (usize + 1) in
+    let cy = if uw
+             then wmpn_mul_1_in_place wp usize v0
+             else begin
+                  unchanged u mpz ompz;
+                  let up = get_read_ptr u in
+                  let cy = wmpn_mul_1 wp up usize v0 in
+                  release_reader u up;
+                  cy end in
+    C.set_ofs wp usize cy;
+    label Size in
+    usize <- usize + (if cy <> 0 then 1 else 0);
+    let wsize = begin
+                ensures { sgn_value wp result =
+                          (value_of ou mpz * value_of ov mpz) at Start }
+                ensures { abs result = usize }
+                if sign_product >= 0
+                then begin
+                  usize end
+                else begin
+                  let ghost us = - usize in
+                  -usize
+                end end in
+    set_size w wsize wp;
+    release_writer w wp;
+    return
+  end;
+  let ref freew = false in
+  let ref wsize = usize + vsize in
+  let ref u' = u in
+  let ref v' = v in
+  let ref w' = w in
+  let ghost ompz = pure { mpz } in
+  let ghost ref should_clear_u = false in
+  let ghost ref should_clear_v = false in
+  let ghost ref clear_mpz_u = any mpz_mem in
+  let ghost ref clear_mpz_v = any mpz_mem in
+  let ghost ref clear_mpz_w = any mpz_mem in
+  begin
+  if alloc_of w < wsize
+  then begin
+    freew <- true;
+    let nw, ghost memw = wmpz_ptr_decl () in
+    clear_mpz_w <- memw;
+    wmpz_init nw;
+    w' <- nw;
+    let wp' = wmpz_realloc w' wsize in
+    unchanged u' mpz ompz;
+    unchanged v' mpz ompz;
+    unchanged w mpz ompz;
+    release_writer w' wp';
+  end else begin
+    if uw
+    then begin
+      let wp = get_read_ptr w in
+      let ghost mpz' = pure { mpz } in
+      let up = salloc (UInt32.of_int32 usize) in
+      let nu, ghost mu = wmpz_ptr_decl () in
+      should_clear_u <- true;
+      clear_mpz_u <- mu;
+      u' <- nu;
+      set_alloc u' usize;
+      wmpn_copyi up wp usize;
+      set_ptr u' up;
+      set_size u' usize up;
+      release_writer u' up;
+      if vw then v' <- u' else unchanged v mpz mpz';
+      unchanged u mpz mpz';
+      unchanged w mpz mpz';
+      release_reader w wp;
+    end else
+      if vw then begin
+      let wp = get_read_ptr w in
+      let ghost mpz' = pure { mpz } in
+      let vp = salloc (UInt32.of_int32 vsize) in
+      let nv, ghost mv = wmpz_ptr_decl () in
+      should_clear_v <- true;
+      clear_mpz_v <- mv;
+      v' <- nv;
+      set_alloc v' vsize;
+      wmpn_copyi vp wp vsize;
+      set_ptr v' vp;
+      set_size v' vsize vp;
+      release_writer v' vp;
+      unchanged u mpz mpz';
+      unchanged v mpz mpz';
+      unchanged w mpz mpz';
+      release_reader w wp;
+    end
+  end end;
+  label Read in
+  let ghost mpzr = pure { mpz } in
+  let up' = get_read_ptr u' in
+  let vp' = get_read_ptr v' in
+  unchanged w' mpz mpzr;
+  let ghost mpz' = pure { mpz } in
+  let wp' = get_write_ptr w' in
+  unchanged u' mpz mpz';
+  unchanged v' mpz mpz';
+  (* TODO sqr if u' = v' *)
+  let ghost mpzm = pure { mpz } in
+  let cy = wmpn_mul wp' up' usize vp' vsize 64 in
+  let ghost wsize' = wsize - (if cy = 0 then 1 else 0) in
+  release_reader u' up';
+  ghost (if not mpz_eq u' v' then unchanged v' mpz mpz');
+  release_reader v' vp';
+  unchanged w' mpz mpzm;
+  if freew then begin
+    let ghost mpzf = pure { mpz } in
+    let wp = get_write_ptr w in
+    free wp;
+    set_alloc w wsize;
+    let ghost mpzw = pure { mpz } in
+    wmpz_tmp_clear w' clear_mpz_w;
+    ghost (if not mpz_eq u' w then unchanged u' mpz mpzf);
+    ghost (if not mpz_eq v' w then unchanged v' mpz mpzf);
+    unchanged w mpz mpzw;
+  end;
+  wsize <- wsize - (if cy = 0 then 1 else 0);
+  wsize <- if sign_product < 0 then -wsize else wsize;
+  let ghost mpz' = pure { mpz } in
+  set_ptr w wp';
+  set_size w wsize wp';
+  ghost (if not mpz_eq w w' then unchanged w' mpz mpz');
+  release_writer w wp';
+  ghost (if not mpz_eq u' w then unchanged u' mpz mpz');
+  ghost (if not mpz_eq v' w then unchanged v' mpz mpz');
+  ghost (if not (mpz_eq u u' || mpz_eq u v' || mpz_eq u w' || mpz_eq u w)
+         then unchanged u mpz ompz);
+  ghost (if not (mpz_eq v u' || mpz_eq v v' || mpz_eq v w' || mpz_eq v w)
+         then unchanged v mpz ompz);
+  let ghost mpzc = pure { mpz } in
+  ghost (if should_clear_u then wmpz_tmp_clear u' clear_mpz_u);
+  ghost (if should_clear_v then wmpz_tmp_clear v' clear_mpz_v);
+  unchanged w mpz mpzc;
+  return ()
+
+use mach.int.Int64
+use mpz_getset.Set
+use bool.Bool
+
+let partial wmpz_mul_si (prod mult: mpz_ptr) (small_mult:int64)
+  requires { mpz.alloc[prod] >= 1 /\ mpz.alloc[mult] >= 1 }
+  requires { mpz.readers[prod] = 0 /\ mpz.readers[mult] = 0 }
+  requires { mpz.abs_size[mult] + 1 <= max_int32 }
+  ensures  { value_of prod mpz = old (value_of mult mpz * small_mult) }
+  ensures  { forall x. x <> prod -> mpz_unchanged x mpz (old mpz) }
+  ensures  { mpz.readers[prod] = 0 /\ mpz.readers[mult] = 0 }
+=
+  label Start in
+  let sign_product = size_of mult in
+  if (sign_product = 0 || small_mult = 0)
+  then begin
+    set_size_0 prod;
+    return
+  end;
+  let ref size = abs sign_product in
+  let sml = abs_cast small_mult in
+  let ghost mpz' = pure { mpz } in
+  let pp = wmpz_realloc prod (size+1) in
+  label Mult in
+  let cy = if (mpz_eq prod mult)
+           then
+              wmpn_mul_1_in_place pp size sml
+           else begin
+              unchanged mult mpz mpz';
+              let mp = get_read_ptr mult in
+              let cy = wmpn_mul_1 pp mp size sml in
+              release_reader mult mp; cy end in
+  C.set_ofs pp size cy;
+  size <- size + (if cy <> 0 then 1 else 0);
+  size <- if (xorb (sign_product < 0) (small_mult < 0)) then -size else size;;
+  set_size prod size pp;
+  release_writer prod pp
+
+
+let partial wmpz_mul_ui (prod mult: mpz_ptr) (small_mult:uint64)
+  requires { mpz.alloc[prod] >= 1 /\ mpz.alloc[mult] >= 1 }
+  requires { mpz.readers[prod] = 0 /\ mpz.readers[mult] = 0 }
+  requires { mpz.abs_size[mult] + 1 <= max_int32 }
+  ensures  { value_of prod mpz = old (value_of mult mpz * small_mult) }
+  ensures  { forall x. x <> prod -> mpz_unchanged x mpz (old mpz) }
+  ensures  { mpz.readers[prod] = 0 /\ mpz.readers[mult] = 0 }
+=
+  label Start in
+  let sign_product = size_of mult in
+  if (sign_product = 0 || small_mult = 0)
+  then begin
+    set_size_0 prod;
+    return
+  end;
+  let ref size = abs sign_product in
+  let ghost mpz' = pure { mpz } in
+  let pp = wmpz_realloc prod (size+1) in
+  label Mult in
+  let cy = if (mpz_eq prod mult)
+           then
+              wmpn_mul_1_in_place pp size small_mult
+           else begin
+              unchanged mult mpz mpz';
+              let mp = get_read_ptr mult in
+              let cy = wmpn_mul_1 pp mp size small_mult in
+              release_reader mult mp; cy end in
+  C.set_ofs pp size cy;
+  size <- size + (if cy <> 0 then 1 else 0);
+  size <- if (sign_product < 0) then -size else size;;
+  set_size prod size pp;
+  release_writer prod pp
+
+end

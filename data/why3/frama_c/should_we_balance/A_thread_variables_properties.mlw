@@ -1,0 +1,19 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'thread_variables_properties'            --- *)
+(* ---------------------------------------------------------- *)
+theory A_thread_variables_properties
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function l_size : int
+
+axiom Q_some: (0 < l_size) /\ (l_size <= 2147483647)
+
+end
+

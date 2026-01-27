@@ -1,0 +1,14 @@
+atoms:
+  map.MapInjection.injective: [MapInjection.injective]
+  map.MapInjection.range: [MapInjection.range]
+  map.MapInjection.surjective: [MapInjection.surjective]
+axioms:
+  map.MapInjection.injection_occ: MapInjection.injection_occ
+  map.MapInjection.injective_surjective: MapInjection.injective_surjective
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.map.MapInjection
+prefix_ops: {}
+types: {}

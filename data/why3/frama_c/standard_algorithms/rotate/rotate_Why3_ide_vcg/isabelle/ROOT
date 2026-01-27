@@ -1,0 +1,14 @@
+session rotate_Why3_ide = NTP4Verif +
+theories
+  "rotate_Why3_ide_VCrotate_stmt_post_left_goal10"
+  "rotate_Why3_ide_VCrotate_stmt_pre_right_goal9"
+  "rotate_Why3_ide_VCrotate_call_reverse_pre_valid_2_goal7"
+  "rotate_Why3_ide_VCrotate_assign_exit_part2_goal4"
+  "rotate_Why3_ide_VCrotate_stmt_post_right_goal11"
+  "rotate_Why3_ide_VCrotate_stmt_pre_left_goal8"
+  "rotate_Why3_ide_VCrotate_call_reverse_pre_valid_goal6"
+  "rotate_Why3_ide_VCrotate_post_left_goal0"
+  "rotate_Why3_ide_VCrotate_assert_rte_unsigned_overflow_4_goal3"
+  "rotate_Why3_ide_VCrotate_assert_rte_unsigned_overflow_2_goal2"
+  "rotate_Why3_ide_VCrotate_post_right_goal1"
+  "rotate_Why3_ide_VCrotate_assign_normal_part2_goal5"

@@ -1,0 +1,19 @@
+import Why3.Base
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+open Classical
+open Lean4Why3
+namespace Firstorder_term_impl_Impl_destruct_fo_term_listqtvc
+theorem destruct_fo_term_list'vc (t : Types.nlimpl_fo_term_list) (fact0 : Logic.nlimpl_fo_term_list_ok t) : let fv0 : ℤ := Types.nlimpl_fo_term_list.nlfree_var_symbol_set_abstraction_fo_term_list_field t; let fv3 : ℤ := Types.nlimpl_fo_term_list.nlfree_var_fo_term_set_abstraction_fo_term_list_field t; let o1 : Types.nl_fo_term_list ℤ ℤ := Types.nlimpl_fo_term_list.nlrepr_fo_term_list_field t; (match o1 with | Types.nl_fo_term_list.NL_FONil => (match Types.nlimpl_fo_term_list.model_fo_term_list_field t with | Spec.fo_term_list.FONil => True | Spec.fo_term_list.FOCons x0 x1 => False) | Types.nl_fo_term_list.NL_FOCons v0 v1 => (match Types.nlimpl_fo_term_list.model_fo_term_list_field t with | Spec.fo_term_list.FONil => False | Spec.fo_term_list.FOCons x0 x1 => True)) ∧ (∀(result : Types.cons_fo_term_list), (match o1 with | Types.nl_fo_term_list.NL_FONil => (match Types.nlimpl_fo_term_list.model_fo_term_list_field t with | Spec.fo_term_list.FONil => result = Types.cons_fo_term_list.NLC_FONil | Spec.fo_term_list.FOCons x0 x1 => False) | Types.nl_fo_term_list.NL_FOCons v0 v1 => (match Types.nlimpl_fo_term_list.model_fo_term_list_field t with | Spec.fo_term_list.FONil => False | Spec.fo_term_list.FOCons x0 x1 => result = Types.cons_fo_term_list.NLC_FOCons (Types.nlimpl_fo_term.mk v0 fv0 fv3 (Spec.rename_fo_term x0 Func.identity Func.identity)) (Types.nlimpl_fo_term_list.mk v1 fv0 fv3 (Spec.rename_fo_term_list x1 Func.identity Func.identity)))) → Logic.cons_ok_fo_term_list result ∧ Logic.cons_rel_fo_term_list result t ∧ Logic.cons_open_rel_fo_term_list result t)
+  := sorry
+end Firstorder_term_impl_Impl_destruct_fo_term_listqtvc

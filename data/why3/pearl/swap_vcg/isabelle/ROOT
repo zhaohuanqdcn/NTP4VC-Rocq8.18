@@ -1,0 +1,6 @@
+session swap = NTP4Verif +
+theories
+  "swap_Swap_swapqtvc"
+  "swap_SwapInt32xor_swapqtvc"
+  "swap_SwapInt32_swapqtvc"
+  "swap_SwapInt32_swap_refqtvc"

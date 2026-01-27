@@ -1,0 +1,12 @@
+atoms:
+  debug.Debug.foo: [foo, debug_Debug.foo, debug_Debug.t.foo]
+  debug.Debug.t'mk: [t'mk, debug_Debug.t'mk, debug_Debug.t.t'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.debug_Debug
+prefix_ops: {}
+types:
+  debug.Debug.t: [t, debug_Debug.t]

@@ -1,0 +1,28 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'parent' in 'heap_parent'           --- *)
+(* ---------------------------------------------------------- *)
+theory VCheap_parent_post_parent
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'parent' in 'heap_parent'":
+*)
+goal goal0:
+  forall i : int.
+  let x = (div (i - 1) 2) in
+  (0 < i) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 x)) ->
+  (x = ((l_heapparent i)))
+
+end
+

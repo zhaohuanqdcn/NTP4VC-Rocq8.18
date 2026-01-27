@@ -1,0 +1,13 @@
+session max_element_Why3_ide = NTP4Verif +
+theories
+  "max_element_Why3_ide_VCmax_element_not_empty_post_strict_goal10"
+  "max_element_Why3_ide_VCmax_element_disjoint_not_empty_empty_goal1"
+  "max_element_Why3_ide_VCmax_element_complete_not_empty_empty_goal0"
+  "max_element_Why3_ide_VCmax_element_assert_rte_mem_access_goal6"
+  "max_element_Why3_ide_VCmax_element_not_empty_post_upper_goal9"
+  "max_element_Why3_ide_VCmax_element_loop_inv_strict_preserved_goal4"
+  "max_element_Why3_ide_VCmax_element_post_result_goal2"
+  "max_element_Why3_ide_VCmax_element_assert_rte_unsigned_overflow_goal8"
+  "max_element_Why3_ide_VCmax_element_loop_inv_bound_preserved_goal3"
+  "max_element_Why3_ide_VCmax_element_loop_inv_upper_preserved_goal5"
+  "max_element_Why3_ide_VCmax_element_assert_rte_mem_access_2_goal7"

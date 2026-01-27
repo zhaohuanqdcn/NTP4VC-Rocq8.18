@@ -1,0 +1,11 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import frama_c.x509_parser.lib.lean.Compound.Compound
+import Why3.Cint.Cint
+open Classical
+open Lean4Why3
+namespace parse_x509_Extensions_Why3_ide_VCparse_x509_Extensions_assert_rte_unsigned_downcast_goal2
+theorem goal2 (a_2 : Memory.addr) (a : Memory.addr) (a_1 : Memory.addr) (i_1 : ℤ) (i_2 : ℤ) (i : ℤ) (t : ℤ -> ℤ) : let x : ℤ := Memory.addr.base a_2; let x_1 : ℤ := Memory.addr.base a; let x_2 : ℤ := Memory.addr.base a_1; let x_3 : ℤ := i_1 + i_2; ¬i = (0 : ℤ) → ¬Memory.addr.mk (0 : ℤ) (0 : ℤ) = a_2 → ¬x = x_1 → ¬x = x_2 → (0 : ℤ) ≤ i → i_1 ≤ i → i_2 ≤ i → x_3 ≤ i → Memory.region x_1 ≤ (0 : ℤ) → Memory.region x_2 ≤ (0 : ℤ) → Memory.region x ≤ (0 : ℤ) → Memory.linked t → Cint.is_uint16 i → Cint.is_uint16 i_1 → Cint.is_uint16 i_2 → Memory.valid_rw t a (1 : ℤ) → Memory.valid_rw t a_1 (15 : ℤ) → Memory.separated a (1 : ℤ) a_1 (15 : ℤ) → ((0 : ℤ) < i → Memory.valid_rd t (Memory.shift a_2 (0 : ℤ)) i) → x_3 ≤ (65535 : ℤ)
+  := sorry
+end parse_x509_Extensions_Why3_ide_VCparse_x509_Extensions_assert_rte_unsigned_downcast_goal2

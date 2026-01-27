@@ -1,0 +1,10 @@
+atoms:
+  map.MapEq.map_eq_sub: [map_eq_sub, MapEq.map_eq_sub]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.map.MapEq
+prefix_ops: {}
+types: {}

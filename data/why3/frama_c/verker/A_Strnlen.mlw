@@ -1,0 +1,48 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'Strnlen'                                --- *)
+(* ---------------------------------------------------------- *)
+theory A_Strnlen
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+predicate p_valid_strn (malloc_0 : map int int) (mchar_0 : map addr int)
+    (s : addr) (cnt_0 : int) =
+    let a = (shift_sint8 s 0) in ((valid_rw malloc_0 a (1 + cnt_0))) \/
+    (exists i : int. (mchar_0[(shift_sint8 s i)] = 0) /\ (i < cnt_0) /\
+     ((is_uint64 i)) /\ ((valid_rw malloc_0 a (1 + i)))) /\
+    (forall j : int. (j <= cnt_0) -> is_sint8 (mchar_0[(shift_sint8 s j)]))
+
+function l_strnlen (map addr int) addr int : int
+axiom fix_l_strnlen:
+  forall s : addr.
+  forall mchar_0 : map addr int.
+  forall cnt_0 : int.
+  let x = (l_strnlen mchar_0 s cnt_0) in
+    if ((cnt_0 = 0) \/ (mchar_0[(shift_sint8 s 0)] = 0)) then (x = 0)
+    else (((to_uint64
+             (1
+              + ((l_strnlen mchar_0 ((shift_sint8 s 1))
+                   ((to_uint64 (cnt_0 - 1)))))))) = x)
+
+axiom Q_TL_strnlen:
+  forall s : addr.
+  forall mchar_0 : map addr int.
+  forall cnt_0 : int
+  [(l_strnlen mchar_0 s cnt_0)].
+  (is_uint64 ((l_strnlen mchar_0 s cnt_0)))
+
+use import A_Strlen.A_Strlen
+
+use import int.MinMax as Ig
+
+end
+

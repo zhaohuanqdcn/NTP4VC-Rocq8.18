@@ -1,0 +1,25 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions                                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function l_heapparent (i : int) : int = (div (i - 1) 2)
+
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_isheap (mint_0 : map addr int) (a : addr) (n : int) =
+    forall i : int. (0 < i) -> (i < n) ->
+    (mint_0[(shift_sint32 a i)]
+       <= mint_0[(shift_sint32 a ((l_heapparent i)))])
+
+end
+

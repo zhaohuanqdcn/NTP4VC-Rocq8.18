@@ -1,0 +1,13 @@
+atoms: {}
+axioms:
+  Square.Square.sqrt_0: Square.sqrt_0
+  Square.Square.sqrt_1: Square.sqrt_1
+  Square.Square.sqrt_lin0: Square.sqrt_lin0
+  Square.Square.sqrt_lin1: Square.sqrt_lin1
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.Square.Square
+prefix_ops: {}
+types: {}

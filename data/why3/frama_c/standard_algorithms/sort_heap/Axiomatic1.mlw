@@ -1,0 +1,58 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #1)                  --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Count.A_Count
+
+function l_count_2_ (mint_0 : map addr int) (a : addr) (n : int)
+    (v : int) : int = (l_count_1_ mint_0 a 0 n v)
+
+use import Compound.Compound
+
+predicate p_upperbound_1_ (mint_0 : map addr int) (a : addr) (m : int)
+    (n : int) (v : int) =
+    forall i : int. (m <= i) -> (i < n) -> (mint_0[(shift_sint32 a i)] <= v)
+
+predicate p_upperbound_2_ (mint_0 : map addr int) (a : addr) (n : int)
+    (v : int) = (p_upperbound_1_ mint_0 a 0 n v)
+
+predicate p_maxelement (mint_0 : map addr int) (a : addr) (n : int)
+    (max_0 : int) =
+    (0 <= max_0) /\ (max_0 < n) /\
+    ((p_upperbound_2_ mint_0 a n mint_0[(shift_sint32 a max_0)]))
+
+use import Cint.Cint
+
+predicate p_multisetunchanged_1_ (mint_0 : map addr int)
+    (mint_1 : map addr int) (a : addr) (first_0 : int) (last_0 : int) =
+    forall i : int. ((is_sint32 i)) ->
+    (((l_count_1_ mint_1 a first_0 last_0 i))
+       = ((l_count_1_ mint_0 a first_0 last_0 i)))
+
+predicate p_multisetunchanged_2_ (mint_0 : map addr int)
+    (mint_1 : map addr int) (a : addr) (n : int) =
+    (p_multisetunchanged_1_ mint_0 mint_1 a 0 n)
+
+predicate p_sorted_1_ (mint_0 : map addr int) (a : addr) (m : int)
+    (n : int) =
+    forall i_1 i : int. (i < n) -> (m <= i_1) -> (i_1 < i) ->
+    (mint_0[(shift_sint32 a i_1)] <= mint_0[(shift_sint32 a i)])
+
+predicate p_lowerbound_1_ (mint_0 : map addr int) (a : addr) (m : int)
+    (n : int) (v : int) =
+    forall i : int. (m <= i) -> (i < n) -> (v <= mint_0[(shift_sint32 a i)])
+
+predicate p_sorted_2_ (mint_0 : map addr int) (a : addr) (n : int) =
+    (p_sorted_1_ mint_0 a 0 n)
+
+end
+

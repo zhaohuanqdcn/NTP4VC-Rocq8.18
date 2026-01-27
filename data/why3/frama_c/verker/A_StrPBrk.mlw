@@ -1,0 +1,41 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'StrPBrk'                                --- *)
+(* ---------------------------------------------------------- *)
+theory A_StrPBrk
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_strpbrk addr addr : addr
+
+axiom Q_strpbrk_base_case:
+  forall ct_0 s : addr.
+  forall mchar_0 : map addr int.
+  (mchar_0[s] = 0) -> (((l_strpbrk s ct_0)) = null)
+
+use import A_StrSpn.A_StrSpn
+
+axiom Q_strpbrk_found:
+  forall ct_0 s : addr.
+  forall mchar_0 : map addr int.
+  let x = mchar_0[s] in (x <> 0) -> ((p_in_array mchar_0 ct_0 x)) ->
+    (((l_strpbrk s ct_0)) = s)
+
+use import Compound.Compound
+
+axiom Q_strpbrk_not_found:
+  forall ct_0 s : addr.
+  forall mchar_0 : map addr int.
+  let x = mchar_0[s] in (x <> 0) -> (not (p_in_array mchar_0 ct_0 x)) ->
+    (((l_strpbrk ((shift_sint8 s 1)) ct_0)) = ((l_strpbrk s ct_0)))
+
+use import A_Strlen.A_Strlen
+
+end
+

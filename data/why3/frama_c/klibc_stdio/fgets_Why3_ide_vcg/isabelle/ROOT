@@ -1,0 +1,13 @@
+session fgets_Why3_ide = NTP4Verif +
+theories
+  "fgets_Why3_ide_VCfgets_loop_term_positive_goal8"
+  "fgets_Why3_ide_VCfgets_call_fgetc_pre_3_goal10"
+  "fgets_Why3_ide_VCfgets_loop_assign_part3_goal6"
+  "fgets_Why3_ide_VCfgets_loop_assign_part5_goal7"
+  "fgets_Why3_ide_VCfgets_loop_inv_2_established_part1_goal3"
+  "fgets_Why3_ide_VCfgets_call_fgetc_pre_2_goal9"
+  "fgets_Why3_ide_VCfgets_loop_inv_2_established_part2_goal4"
+  "fgets_Why3_ide_VCfgets_loop_inv_2_preserved_part2_goal2"
+  "fgets_Why3_ide_VCfgets_post_part1_goal0"
+  "fgets_Why3_ide_VCfgets_loop_inv_2_preserved_part1_goal1"
+  "fgets_Why3_ide_VCfgets_loop_assign_part2_goal5"

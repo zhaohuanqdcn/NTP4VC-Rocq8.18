@@ -1,0 +1,13 @@
+theory maximum_heap_child_Why3_ide_VCmaximum_heap_child_post_less_2_goal2
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Axiomatic_Axiomatic" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal2:
+  fixes i :: "int"
+  fixes a :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes i_1 :: "int"
+  fixes i_2 :: "int"
+  fixes t :: "int \<Rightarrow> int"
+  shows "let x :: int = (2 :: int) * i; x_1 :: int = (2 :: int) + x; a_1 :: addr = shift a x_1; x_2 :: int = t_1 a_1; x_3 :: int = (1 :: int) + x; a_2 :: addr = shift a x_3 in (0 :: int) < i_1 \<longrightarrow> (0 :: int) \<le> i \<longrightarrow> region (base a) \<le> (0 :: int) \<longrightarrow> (2 :: int) \<le> i_1 \<longrightarrow> i \<le> (2147483646 :: int) \<longrightarrow> i \<le> (2147483647 :: int) \<longrightarrow> to_uint32 x \<le> (4294967293 :: int) \<longrightarrow> (2 :: int) + i \<le> i_1 \<longrightarrow> (2 :: int) + i_2 \<le> i_1 \<longrightarrow> linked t \<longrightarrow> is_uint32 i \<longrightarrow> is_uint32 i_1 \<longrightarrow> is_uint32 i_2 \<longrightarrow> p_isheap t_1 a i_1 \<longrightarrow> is_uint32 x_1 \<longrightarrow> valid_rw t (shift a (0 :: int)) i_1 \<longrightarrow> is_sint32 x_2 \<longrightarrow> (if (4 :: int) + x \<le> i_1 then valid_rd t a_2 (1 :: int) \<and> valid_rd t a_1 (1 :: int) \<and> (if x_2 \<le> t_1 a_2 then x_3 = i_2 else x_1 = i_2) else x_3 = i_2) \<longrightarrow> l_heapparent i_2 = i"
+  sorry
+end

@@ -1,0 +1,185 @@
+(**
+
+{1 Compound Sums of (Unbounded) Floating-Point Numbers }
+
+*)
+
+
+module Sum
+
+ (** needed modules from Why3 stdlib *)
+
+  use int.Int
+  use real.RealInfix
+  use real.FromInt
+  use real.Abs
+
+(** extra theories needed *)
+
+  use sum_real.Sum as RealSum     (* sums of sequences of real numbers *)
+  use udouble.UDouble  (* unbounded doubles *)
+
+(** Definition of the compound sums of udoubles *)
+
+(* BEGIN{sum} *)
+  let rec ghost function u_sum (a: int -> udouble) (m n: int) : udouble
+    variant { n - m }
+  = if n <= m then uzero else uadd (u_sum a m (n-1)) (a (n-1))
+(* END{sum} *)
+
+(* BEGIN{lemma} *)
+  function real_fun (a:int -> udouble) : int -> real = fun i -> to_real (a i)
+  function abs_real_fun (a:int -> udouble) : int -> real = fun i -> abs (to_real (a i))
+
+  let rec lemma u_sum_accuracy (a:int -> udouble) (m n:int)
+    requires { m <= n }
+    variant { n - m }
+    ensures { abs (to_real (u_sum a m n) -. RealSum.sum (real_fun a) m n) <=.
+                from_int (n-m-1) *. eps *. RealSum.sum (abs_real_fun a) m n  }
+(* END{lemma} *)
+  =
+(* BEGIN{proof} *)
+  if n = m then (* base case, trivial *) return ();
+  if n = m+1 then (* base case, almost trivial *)
+     begin
+     assert { u_sum a m n = uadd (u_sum a m m) (a m)
+              = uadd uzero (a m) = a m };
+     return ()
+     end;
+  (* induction *)
+  u_sum_accuracy a m (n-1);  (** recursive call to obtain induction hypothesis *)
+  let ghost exact_sum = RealSum.sum (real_fun a) m (n - 1) in  (* sum in real numbers *)
+  let ghost abs_sum = RealSum.sum (abs_real_fun a) m (n - 1) in (* sum of absolute values *)
+  begin ensures { abs exact_sum <=. abs_sum }
+    RealSum.sum_abs (real_fun a) (abs_real_fun a) m (n-1);
+  end;
+  let ghost psum : udouble = u_sum a m (n - 1) in (* the previous sum, in udouble *)
+  let ghost res : udouble = uadd psum (a (n - 1)) in (* the final sum, in udouble *)
+  let ghost s : real = to_real psum in  (* the previous sum, in real *)
+  let ghost anm1 = to_real (a (n-1)) in (* the last element as a real *)
+  let ghost delta = to_real res -. (s +. anm1) in (* the difference to bound *)
+  begin (* additional property (5) *)
+    ensures { abs delta <=. eps *. (abs_sum +. from_int (n-m-1) *. abs anm1) }
+    if abs anm1 <=. eps *. abs_sum then (** case 1 of the proof, trivial *) ()
+    else begin
+         (** case 2 of the proof *)
+         (* we know eps *. abs_sum <. abs anm1 *)
+         assert { abs (s +. anm1) <=. abs (s -. exact_sum) +. abs abs_sum +. abs anm1 };
+         assert { from_int (n-m-2) *. (eps *. abs_sum) <=. from_int (n-m-2) *. abs anm1 }
+         end
+  end;
+  assert { abs (to_real (u_sum a m n) -. RealSum.sum (real_fun a) m n)
+           <=. abs delta +. abs (s +. anm1 -. RealSum.sum (real_fun a) m n) }
+(* END{proof} *)
+
+end
+
+
+
+module Bound
+
+  use int.Int
+  use real.RealInfix
+  use real.FromInt
+  use real.Abs
+  use sum_real.Sum
+  use udouble.UDouble
+  use Sum
+
+(* BEGIN{usumconstantbound} *)
+  let ghost u_sum_constant_bounds (max:real) (a:int -> udouble) (size m n:int)
+    requires { 0 <= n - m <= size }
+    requires { 0. <=. max }
+    requires { forall i. m <= i < n -> abs (to_real (a i)) <=. max }
+    ensures {
+      abs (to_real (u_sum a m n))
+      <=. (max *. from_int size) *. (1. +. eps *. from_int (size - 1))
+    }
+  =
+  sum_bounds (-. max) max (real_fun a) m n;
+     (* real sum is between -(n-m)*max and (n-m)*max *)
+  sum_bounds 0. max (abs_real_fun a) m n;
+     (* real sum of abs values is between 0 and (n-m)*max *)
+  u_sum_accuracy a m n;
+     (* call the known theorem on sum accuracy *)
+  assert {
+    n-m > 0 ->
+    (max *. from_int size) *. (-.1. -. eps *. from_int (size - 1))
+    <=. to_real (u_sum a m n) <=.
+    (max *. from_int size) *. (1. +. eps *. from_int (size - 1))
+    by
+      abs (to_real (u_sum a m n) -. sum (real_fun a) m n) <=.
+        (eps *. from_int (n-m-1)) *. (from_int size *. max)
+    so
+      abs (to_real (u_sum a m n) -. sum (real_fun a) m n) <=.
+        max *. from_int size *. (eps *. from_int (size - 1))
+  };
+  assert {
+    abs (to_real (u_sum a m n)) <=.
+    (max *. from_int size) *. (1. +. eps *. from_int (size - 1))
+  }
+(* END{usumconstantbound} *)
+
+
+end
+
+
+
+module Combine
+
+  use int.Int
+  use real.RealInfix
+  use real.FromInt
+  use real.Abs
+  use sum_real.Sum
+  use udouble.UDouble
+  use Sum
+
+  let ghost u_sum_accuracy_combine (rel_err abs_err : real)
+      (f : int -> real) (f': int -> udouble) (a b:int)
+    requires { forall i. a <= i < b ->
+    	         abs ((real_fun f') i -. f i) <=. abs (f i) *. rel_err +. abs_err }
+    requires { 0. <=. rel_err <=. 1. }
+    requires { 0. <=. abs_err <=. 1. }
+    requires { 0 <= b - a }
+    ensures {
+      let s = u_sum f' a b in
+      abs (to_real s -. sum f a b) <=.
+        (sum (abs_fun f) a b) *. (rel_err +. (eps *. from_int (b-a-1) *. (1. +. rel_err)))
+        +. abs_err *. ((1. +. eps *. from_int (b-a-1)) *. from_int (b-a))
+    }
+  = ()
+  (*
+    sum_approx_err2 (-.rel_err) (-.abs_err) rel_err abs_err f (real_fun f') a b;
+    u_sum_err f' a b;
+    assert { forall i. a <= i < b -> abs ((abs_real_fun f') i -. (abs_fun f) i) <=. abs (f i) *. rel_err +. abs_err };
+    sum_approx_err_same_sign rel_err abs_err (abs_fun f) (abs_real_fun f') a b;
+    assert { sum (abs_fun f) a b >=. 0. };
+    assert { eps *. from_int (b - a - 1) *. sum (abs_real_fun f') a b <=. eps *. from_int (b-a-1) *. (sum (abs_fun f) a b *. (1. +. rel_err) +. from_int (b-a) *. abs_err)
+    }
+*)
+
+(* BEGIN{u_sum_accuracy_combine_pos} *)
+  let ghost u_sum_accuracy_combine_pos (rel_err abs_err:real)
+      (f : int -> real) (f': int -> udouble) (a b:int)
+    requires { forall i. a <= i < b ->
+    	         abs ((real_fun f') i -. f i) <=. abs (f i) *. rel_err +. abs_err }
+    requires { forall i. a <= i < b -> f i >=. 0. }
+    requires { 0. <=. rel_err <=. 1. }
+    requires { 0. <=. abs_err <=. 1. }
+    requires { 0 <= b - a }
+    ensures {
+      let s = u_sum f' a b in
+      abs (to_real s -. sum f a b) <=.
+      sum f a b *. (rel_err +. (eps *. from_int (b-a-1) *. (1. +. rel_err))) +. abs_err *. ((1. +. eps *. from_int (b-a-1)) *. from_int (b-a))
+    }
+(* END{u_sum_accuracy_combine_pos} *)
+  = ()
+  (*
+    u_sum_err_combine s rel_err abs_err f f' a b;
+    sum_same_sign f (abs_fun f) a b;
+    sum_pos f a b;
+    sum_approx_err2 (-.rel_err) (-.abs_err) rel_err abs_err f (real_fun f') a b
+  *)
+
+end

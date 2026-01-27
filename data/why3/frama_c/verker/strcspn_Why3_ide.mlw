@@ -1,0 +1,1303 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/strcspn.h, line 125) in 'strcspn' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Post-condition (file src/strcspn.h, line 125) in 'strcspn'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = a_3.offset in
+  let x_1 = a_2.offset in
+  let x_2 = (l_strcspn a_2 a) in
+  let x_3 = (l_strlen t_1 a_2) in
+  let x_4 = t_1[a_3] in
+  let x_5 = t_2[a_4] in
+  let x_6 = i + x_1 in
+  let x_7 = t_2[a_1] in
+  ((x + ((l_strcspn a_3 a))) = (x_1 + x_2)) ->
+  (x_1 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x <= (x_1 + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_sint8 x_4)) ->
+  ((is_sint8 x_5)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((is_uint64 (x - x_1))) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_3)))) ->
+  (if (x_4 = 0) then (x_6 = x)
+   else ((a_4 = a_3) /\ (t_2 = t_1) /\ (x_7 <> 0) /\ (x_5 = x_7) /\
+         (x_6 = (a_4.offset)) /\ ((addr_le a a_1)) /\
+         ((p_valid_str t t_2 a_1)) /\ ((p_in_array t_2 a x_5)) /\
+         ((p_in_array t_2 a_1 x_5)) /\
+         ((addr_le a_1 ((shift_sint8 a ((l_strlen t_2 a)))))) /\
+         (forall a_5 : addr. ((addr_lt a_5 a_1)) -> ((addr_le a a_5)) ->
+          (x_5 <> t_2[a_5])))) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_5)) ->
+   ((addr_le a_2 a_6)) ->
+   ((addr_lt a_5 ((shift_sint8 a ((l_strlen t_1 a)))))) ->
+   (t_1[a_6] <> t_1[a_5])) ->
+  (x_2 = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/strcspn.h, line 127) in 'strcspn' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_post_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Post-condition (file src/strcspn.h, line 127) in 'strcspn'":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_3.offset in
+  let x_1 = a_2.offset in
+  let x_2 = (l_strlen t_1 a_2) in
+  let x_3 = t_1[a_3] in
+  let x_4 = t_1[a_4] in
+  let a_7 = (shift_sint8 a ((l_strlen t_1 a))) in
+  let x_5 = t_1[a_1] in
+  ((x + ((l_strcspn a_3 a))) = (x_1 + ((l_strcspn a_2 a)))) ->
+  (x_1 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x <= (x_1 + x_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_5)) ->
+  ((addr_le a_2 a_3)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 x_3)) ->
+  ((is_sint8 x_4)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((addr_lt a_6 ((shift_sint8 a_2 i)))) ->
+  ((is_uint64 (x - x_1))) ->
+  ((addr_lt a_5 a_7)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_2)))) ->
+  (if (x_3 = 0) then ((i_1 = i) /\ ((i_1 + x_1) = x))
+   else ((a_4 = a_3) /\ (i_2 = i) /\ (x_5 <> 0) /\ (x_4 = x_5) /\
+         ((i_2 + x_1) = (a_4.offset)) /\ ((addr_le a a_1)) /\
+         ((p_valid_str t t_1 a_1)) /\ ((p_in_array t_1 a x_4)) /\
+         ((p_in_array t_1 a_1 x_4)) /\ ((addr_le a_1 a_7)) /\
+         (forall a_8 : addr. ((addr_lt a_8 a_1)) -> ((addr_le a a_8)) ->
+          (x_4 <> t_1[a_8])))) ->
+  (forall a_9 a_8 : addr. ((addr_lt a_9 a_3)) -> ((addr_le a a_8)) ->
+   ((addr_le a_2 a_9)) -> ((addr_lt a_8 a_7)) -> (t_1[a_9] <> t_1[a_8])) ->
+  (t_1[a_6] <> t_1[a_5])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import A_StrSpn.A_StrSpn
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 9)":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_3] in
+  let x_1 = a_3.offset in
+  let x_2 = a.offset in
+  let x_3 = (l_strlen t_1 a) in
+  let a_4 = (shift_sint8 a_1 ((l_strlen t_1 a_1))) in
+  let a_5 = (shift_sint8 a x_3) in
+  let a_6 = (shift_sint8 a_3 1) in
+  (t_1[a_2] = 0) ->
+  (x <> 0) ->
+  ((x_1 + ((l_strcspn a_3 a_1))) = (x_2 + ((l_strcspn a a_1)))) ->
+  (x_2 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_1 <= (x_2 + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  (not (p_in_array t_1 a_1 x)) ->
+  ((is_uint64 (x_1 - x_2))) ->
+  ((addr_le a_2 a_4)) ->
+  ((addr_le a_3 a_5)) ->
+  (forall a_7 : addr. ((addr_lt a_7 a_2)) -> ((addr_le a_1 a_7)) ->
+   (x <> t_1[a_7])) ->
+  (forall a_8 a_7 : addr. ((addr_lt a_8 a_3)) -> ((addr_le a a_8)) ->
+   ((addr_le a_1 a_7)) -> ((addr_lt a_7 a_4)) -> (t_1[a_8] <> t_1[a_7])) ->
+  (((addr_le a a_6)) /\ ((addr_le a_6 a_5)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/strcspn.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/strcspn.c, line 9)":
+*)
+goal goal3:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  (((addr_le a_1 a_1)) /\
+   ((addr_le a_1 ((shift_sint8 a_1 ((l_strlen t_1 a_1)))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import A_StrSpn.A_StrSpn
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 10)":
+*)
+goal goal4:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_3] in
+  let x_1 = a_3.offset in
+  let x_2 = a.offset in
+  let x_3 = (l_strlen t_1 a) in
+  let x_4 = - x_2 in
+  let a_4 = (shift_sint8 a_1 ((l_strlen t_1 a_1))) in
+  (t_1[a_2] = 0) ->
+  (x <> 0) ->
+  ((x_1 + ((l_strcspn a_3 a_1))) = (x_2 + ((l_strcspn a a_1)))) ->
+  (x_2 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_1 <= (x_2 + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  (not (p_in_array t_1 a_1 x)) ->
+  ((is_uint64 (x_1 - x_2))) ->
+  ((addr_le a_2 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a x_3)))) ->
+  (forall a_5 : addr. ((addr_lt a_5 a_2)) -> ((addr_le a_1 a_5)) ->
+   (x <> t_1[a_5])) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_6)) ->
+   ((addr_le a_1 a_5)) -> ((addr_lt a_5 a_4)) -> (t_1[a_6] <> t_1[a_5])) ->
+  (((to_uint64 (1 + x_1 - x_2))) <= x_3)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/strcspn.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_Strlen.A_Strlen
+
+(*
+goal WP "expl:Establishment of Invariant (file src/strcspn.c, line 10)":
+*)
+goal goal5:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  (0 <= ((l_strlen t_1 a)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import A_StrSpn.A_StrSpn
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 11)":
+*)
+goal goal6:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_3] in
+  let x_1 = a_3.offset in
+  let x_2 = a.offset in
+  let x_3 = (l_strlen t_1 a) in
+  let x_4 = - x_2 in
+  let a_4 = (shift_sint8 a_1 ((l_strlen t_1 a_1))) in
+  (t_1[a_2] = 0) ->
+  (x <> 0) ->
+  ((x_1 + ((l_strcspn a_3 a_1))) = (x_2 + ((l_strcspn a a_1)))) ->
+  (x_2 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_1 <= (x_2 + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  (not (p_in_array t_1 a_1 x)) ->
+  ((is_uint64 (x_1 - x_2))) ->
+  ((addr_le a_2 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a x_3)))) ->
+  (forall a_5 : addr. ((addr_lt a_5 a_2)) -> ((addr_le a_1 a_5)) ->
+   (x <> t_1[a_5])) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_6)) ->
+   ((addr_le a_1 a_5)) -> ((addr_lt a_5 a_4)) -> (t_1[a_6] <> t_1[a_5])) ->
+  ((x_2 + ((to_uint64 (1 + x_1 - x_2)))) = (1 + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_4_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import A_StrSpn.A_StrSpn
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 12)":
+*)
+goal goal7:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_3] in
+  let x_1 = a_3.offset in
+  let x_2 = a_2.offset in
+  let x_3 = (l_strlen t_1 a_2) in
+  let a_6 = (shift_sint8 a ((l_strlen t_1 a))) in
+  (t_1[a_1] = 0) ->
+  (x <> 0) ->
+  ((x_1 + ((l_strcspn a_3 a))) = (x_2 + ((l_strcspn a_2 a)))) ->
+  (x_2 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_2 a_3)) ->
+  ((addr_le a_2 a_5)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  (not (p_in_array t_1 a x)) ->
+  ((addr_lt a_5 ((shift_sint8 a_3 1)))) ->
+  ((is_uint64 (x_1 - x_2))) ->
+  ((addr_lt a_4 a_6)) ->
+  ((addr_le a_1 a_6)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_3)))) ->
+  (forall a_7 : addr. ((addr_lt a_7 a_1)) -> ((addr_le a a_7)) ->
+   (x <> t_1[a_7])) ->
+  (forall a_8 a_7 : addr. ((addr_lt a_8 a_3)) -> ((addr_le a a_7)) ->
+   ((addr_le a_2 a_8)) -> ((addr_lt a_7 a_6)) -> (t_1[a_8] <> t_1[a_7])) ->
+  (t_1[a_5] <> t_1[a_4])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/strcspn.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_4_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_Strlen.A_Strlen
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/strcspn.c, line 12)":
+*)
+goal goal8:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_lt a_3 a_1)) ->
+  ((addr_le a a_2)) ->
+  ((addr_le a_1 a_3)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((addr_lt a_2 ((shift_sint8 a ((l_strlen t_1 a)))))) ->
+  (t_1[a_3] <> t_1[a_2])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 15) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_5_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import A_StrSpn.A_StrSpn
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 15)":
+*)
+goal goal9:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_3] in
+  let x_1 = a_3.offset in
+  let x_2 = a_2.offset in
+  let x_3 = (l_strlen t_1 a_2) in
+  let a_4 = (shift_sint8 a ((l_strlen t_1 a))) in
+  (t_1[a_1] = 0) ->
+  (x <> 0) ->
+  ((x_1 + ((l_strcspn a_3 a))) = (x_2 + ((l_strcspn a_2 a)))) ->
+  (x_2 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  (not (p_in_array t_1 a x)) ->
+  ((is_uint64 (x_1 - x_2))) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_3)))) ->
+  (forall a_5 : addr. ((addr_lt a_5 a_1)) -> ((addr_le a a_5)) ->
+   (x <> t_1[a_5])) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_5)) ->
+   ((addr_le a_2 a_6)) -> ((addr_lt a_5 a_4)) -> (t_1[a_6] <> t_1[a_5])) ->
+  ((p_valid_str t t_1 ((shift_sint8 a_3 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_6_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import A_StrSpn.A_StrSpn
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 16)":
+*)
+goal goal10:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_3] in
+  let x_1 = a_3.offset in
+  let x_2 = x_1 + ((l_strcspn a_3 a_1)) in
+  let x_3 = a.offset in
+  let x_4 = (l_strlen t_1 a) in
+  let x_5 = - x_3 in
+  let a_4 = (shift_sint8 a_1 ((l_strlen t_1 a_1))) in
+  (t_1[a_2] = 0) ->
+  (x <> 0) ->
+  (x_2 = (x_3 + ((l_strcspn a a_1)))) ->
+  (x_3 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_1 <= (x_3 + x_4)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  (not (p_in_array t_1 a_1 x)) ->
+  ((is_uint64 (x_1 - x_3))) ->
+  ((addr_le a_2 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a x_4)))) ->
+  (forall a_5 : addr. ((addr_lt a_5 a_2)) -> ((addr_le a_1 a_5)) ->
+   (x <> t_1[a_5])) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_6)) ->
+   ((addr_le a_1 a_5)) -> ((addr_lt a_5 a_4)) -> (t_1[a_6] <> t_1[a_5])) ->
+  ((x_3 + ((l_strcspn ((shift_sint8 a_3 1)) a_1))
+    + ((to_uint64 (1 + x_1 - x_3)))) = x_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 21) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_7_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 21)":
+*)
+goal goal11:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_1] in
+  let x_1 = t_1[a_3] in
+  let x_2 = a_3.offset in
+  let x_3 = a_2.offset in
+  let x_4 = (l_strlen t_1 a_2) in
+  let a_4 = (shift_sint8 a ((l_strlen t_1 a))) in
+  let a_5 = (shift_sint8 a_1 1) in
+  (x <> 0) ->
+  (x_1 <> 0) ->
+  (x_1 <> x) ->
+  ((x_2 + ((l_strcspn a_3 a))) = (x_3 + ((l_strcspn a_2 a)))) ->
+  (x_3 <= x_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_2 <= (x_3 + x_4)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((is_uint64 (x_2 - x_3))) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_4)))) ->
+  (((p_in_array t_1 a x_1)) -> ((p_in_array t_1 a_1 x_1))) ->
+  (forall a_6 : addr. ((addr_lt a_6 a_1)) -> ((addr_le a a_6)) ->
+   (x_1 <> t_1[a_6])) ->
+  (forall a_7 a_6 : addr. ((addr_lt a_7 a_3)) -> ((addr_le a a_6)) ->
+   ((addr_le a_2 a_7)) -> ((addr_lt a_6 a_4)) -> (t_1[a_7] <> t_1[a_6])) ->
+  (((addr_le a a_5)) /\ ((addr_le a_5 a_4)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/strcspn.c, line 21) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_7_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/strcspn.c, line 21)":
+*)
+goal goal12:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_1[a_2] in
+  let x_1 = a_2.offset in
+  let x_2 = a_1.offset in
+  let x_3 = (l_strlen t_1 a_1) in
+  let a_3 = (shift_sint8 a ((l_strlen t_1 a))) in
+  (x <> 0) ->
+  ((x_1 + ((l_strcspn a_2 a))) = (x_2 + ((l_strcspn a_1 a)))) ->
+  (x_2 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_1 <= (x_2 + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((is_uint64 (x_1 - x_2))) ->
+  ((addr_le a_2 ((shift_sint8 a_1 x_3)))) ->
+  (forall a_5 a_4 : addr. ((addr_lt a_5 a_2)) -> ((addr_le a a_4)) ->
+   ((addr_le a_1 a_5)) -> ((addr_lt a_4 a_3)) -> (t_1[a_5] <> t_1[a_4])) ->
+  (((addr_le a a)) /\ ((addr_le a a_3)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 22) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_8_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 22)":
+*)
+goal goal13:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let x = t_1[a_1] in
+  let x_1 = t_1[a_3] in
+  let x_2 = a_3.offset in
+  let x_3 = a_2.offset in
+  let x_4 = (l_strlen t_1 a_2) in
+  let a_5 = (shift_sint8 a ((l_strlen t_1 a))) in
+  (x <> 0) ->
+  (x_1 <> 0) ->
+  (x_1 <> x) ->
+  ((x_2 + ((l_strcspn a_3 a))) = (x_3 + ((l_strcspn a_2 a)))) ->
+  (x_3 <= x_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_2 <= (x_3 + x_4)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a a_4)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((addr_lt a_4 ((shift_sint8 a_1 1)))) ->
+  ((is_uint64 (x_2 - x_3))) ->
+  ((addr_le a_1 a_5)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_4)))) ->
+  (((p_in_array t_1 a x_1)) -> ((p_in_array t_1 a_1 x_1))) ->
+  (forall a_6 : addr. ((addr_lt a_6 a_1)) -> ((addr_le a a_6)) ->
+   (x_1 <> t_1[a_6])) ->
+  (forall a_7 a_6 : addr. ((addr_lt a_7 a_3)) -> ((addr_le a a_6)) ->
+   ((addr_le a_2 a_7)) -> ((addr_lt a_6 a_5)) -> (t_1[a_7] <> t_1[a_6])) ->
+  (t_1[a_4] <> x_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file src/strcspn.c, line 22) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_8_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant (file src/strcspn.c, line 22)":
+*)
+goal goal14:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_2] in
+  let x_1 = a_2.offset in
+  let x_2 = a_1.offset in
+  let x_3 = (l_strlen t_1 a_1) in
+  (x <> 0) ->
+  ((x_1 + ((l_strcspn a_2 a))) = (x_2 + ((l_strcspn a_1 a)))) ->
+  (x_2 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x_1 <= (x_2 + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_lt a_3 a)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a_1 a_2)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((is_uint64 (x_1 - x_2))) ->
+  ((addr_le a_2 ((shift_sint8 a_1 x_3)))) ->
+  (forall a_5 a_4 : addr. ((addr_lt a_5 a_2)) -> ((addr_le a a_4)) ->
+   ((addr_le a_1 a_5)) ->
+   ((addr_lt a_4 ((shift_sint8 a ((l_strlen t_1 a)))))) ->
+   (t_1[a_5] <> t_1[a_4])) ->
+  (t_1[a_3] <> x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 23) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_9_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 23)":
+*)
+goal goal15:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_1] in
+  let x_1 = t_1[a_3] in
+  let x_2 = a_3.offset in
+  let x_3 = a_2.offset in
+  let x_4 = (l_strlen t_1 a_2) in
+  let a_4 = (shift_sint8 a ((l_strlen t_1 a))) in
+  (x <> 0) ->
+  (x_1 <> 0) ->
+  (x_1 <> x) ->
+  ((x_2 + ((l_strcspn a_3 a))) = (x_3 + ((l_strcspn a_2 a)))) ->
+  (x_3 <= x_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_2 <= (x_3 + x_4)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((is_uint64 (x_2 - x_3))) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_4)))) ->
+  (((p_in_array t_1 a x_1)) -> ((p_in_array t_1 a_1 x_1))) ->
+  (forall a_5 : addr. ((addr_lt a_5 a_1)) -> ((addr_le a a_5)) ->
+   (x_1 <> t_1[a_5])) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_5)) ->
+   ((addr_le a_2 a_6)) -> ((addr_lt a_5 a_4)) -> (t_1[a_6] <> t_1[a_5])) ->
+  ((p_valid_str t t_1 ((shift_sint8 a_1 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/strcspn.c, line 24) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_inv_10_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import A_StrSpn.A_StrSpn
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file src/strcspn.c, line 24)":
+*)
+goal goal16:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_1] in
+  let x_1 = t_1[a_3] in
+  let x_2 = a_3.offset in
+  let x_3 = a_2.offset in
+  let x_4 = (l_strlen t_1 a_2) in
+  let a_4 = (shift_sint8 a ((l_strlen t_1 a))) in
+  (x <> 0) ->
+  (x_1 <> 0) ->
+  (x_1 <> x) ->
+  ((x_2 + ((l_strcspn a_3 a))) = (x_3 + ((l_strcspn a_2 a)))) ->
+  (x_3 <= x_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_2 <= (x_3 + x_4)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((p_in_array t_1 a x_1)) ->
+  ((p_in_array t_1 a_1 x_1)) ->
+  ((is_uint64 (x_2 - x_3))) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_4)))) ->
+  (forall a_5 : addr. ((addr_lt a_5 a_1)) -> ((addr_le a a_5)) ->
+   (x_1 <> t_1[a_5])) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_5)) ->
+   ((addr_le a_2 a_6)) -> ((addr_lt a_5 a_4)) -> (t_1[a_6] <> t_1[a_5])) ->
+  ((p_in_array t_1 ((shift_sint8 a_1 1)) x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion (file src/strcspn.c, line 30)            --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_assert
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Assertion (file src/strcspn.c, line 30)":
+*)
+goal goal17:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_1] in
+  let x_1 = t_1[a_3] in
+  let x_2 = a_3.offset in
+  let x_3 = a_2.offset in
+  let x_4 = (l_strlen t_1 a_2) in
+  let a_4 = (shift_sint8 a ((l_strlen t_1 a))) in
+  (x <> 0) ->
+  (x_1 <> 0) ->
+  (x_1 = x) ->
+  ((x_2 + ((l_strcspn a_3 a))) = (x_3 + ((l_strcspn a_2 a)))) ->
+  (x_3 <= x_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_2 <= (x_3 + x_4)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((is_uint64 (x_2 - x_3))) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_4)))) ->
+  (((p_in_array t_1 a x_1)) -> ((p_in_array t_1 a_1 x_1))) ->
+  (forall a_5 : addr. ((addr_lt a_5 a_1)) -> ((addr_le a a_5)) ->
+   (x_1 <> t_1[a_5])) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_5)) ->
+   ((addr_le a_2 a_6)) -> ((addr_lt a_5 a_4)) -> (t_1[a_6] <> t_1[a_5])) ->
+  ((p_in_array t_1 a x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion (file src/strcspn.c, line 33)            --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_assert_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Assertion (file src/strcspn.c, line 33)":
+*)
+goal goal18:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_3] in
+  let x_1 = a_3.offset in
+  let x_2 = a_2.offset in
+  let x_3 = (l_strlen t_1 a_2) in
+  let a_4 = (shift_sint8 a ((l_strlen t_1 a))) in
+  (t_1[a_1] = 0) ->
+  (x <> 0) ->
+  ((x_1 + ((l_strcspn a_3 a))) = (x_2 + ((l_strcspn a_2 a)))) ->
+  (x_2 <= x_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_3)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_sint8 x)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((is_uint64 (x_1 - x_2))) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_3)))) ->
+  (((p_in_array t_1 a x)) -> ((p_in_array t_1 a_1 x))) ->
+  (forall a_5 : addr. ((addr_lt a_5 a_1)) -> ((addr_le a a_5)) ->
+   (x <> t_1[a_5])) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_5)) ->
+   ((addr_le a_2 a_6)) -> ((addr_lt a_5 a_4)) -> (t_1[a_6] <> t_1[a_5])) ->
+  (not (p_in_array t_1 a x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file src/strcspn.c, line 28) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_loop_term_2_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file src/strcspn.c, line 28)":
+*)
+goal goal19:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_3 a_2 a_1 a : addr.
+  let x = t_1[a_1] in
+  let x_1 = t_1[a_3] in
+  let x_2 = a_3.offset in
+  let x_3 = a_2.offset in
+  let x_4 = (l_strlen t_1 a_2) in
+  let x_5 = (l_strlen t_1 a) in
+  let a_4 = (shift_sint8 a x_5) in
+  (x <> 0) ->
+  (x_1 <> 0) ->
+  (x_1 <> x) ->
+  ((x_2 + ((l_strcspn a_3 a))) = (x_3 + ((l_strcspn a_2 a)))) ->
+  (x_3 <= x_2) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_2 <= (x_3 + x_4)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a a_1)) ->
+  ((addr_le a_2 a_3)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_2)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((is_uint64 (x_2 - x_3))) ->
+  ((addr_le a_1 a_4)) ->
+  ((addr_le a_3 ((shift_sint8 a_2 x_4)))) ->
+  (((p_in_array t_1 a x_1)) -> ((p_in_array t_1 a_1 x_1))) ->
+  (forall a_5 : addr. ((addr_lt a_5 a_1)) -> ((addr_le a a_5)) ->
+   (x_1 <> t_1[a_5])) ->
+  (forall a_6 a_5 : addr. ((addr_lt a_6 a_3)) -> ((addr_le a a_5)) ->
+   ((addr_le a_2 a_6)) -> ((addr_lt a_5 a_4)) -> (t_1[a_6] <> t_1[a_5])) ->
+  ((a_1.offset) <= ((a.offset) + x_5))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'exists' (file src/strcspn.h, line 136) in 'strcspn' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_exists_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Post-condition for 'exists' (file src/strcspn.h, line 136) in 'strcspn'":
+*)
+goal goal20:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_3.offset in
+  let x_1 = a.offset in
+  let x_2 = (l_strlen t_1 a) in
+  let x_3 = t_1[a_3] in
+  let x_4 = t_1[a_4] in
+  let a_7 = (shift_sint8 a_1 ((l_strlen t_1 a_1))) in
+  let a_8 = (shift_sint8 a x_2) in
+  let x_5 = i + x_1 in
+  let x_6 = t_1[a_2] in
+  (t_1[a_6] = t_1[a_5]) ->
+  ((x + ((l_strcspn a_3 a_1))) = (x_1 + ((l_strcspn a a_1)))) ->
+  (x_1 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x <= (x_1 + x_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a a_3)) ->
+  ((addr_le a a_6)) ->
+  ((addr_le a_1 a_5)) ->
+  ((is_sint8 x_3)) ->
+  ((is_sint8 x_4)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_3)) ->
+  ((is_uint64 (x - x_1))) ->
+  ((addr_lt a_5 a_7)) ->
+  ((addr_lt a_6 a_8)) ->
+  ((addr_le a_3 a_8)) ->
+  (if (x_3 = 0) then (x_5 = x)
+   else ((a_4 = a_3) /\ (x_6 <> 0) /\ (x_4 = x_6) /\ (x_5 = (a_4.offset)) /\
+         ((addr_le a_1 a_2)) /\ ((p_valid_str t t_1 a_2)) /\
+         ((p_in_array t_1 a_1 x_4)) /\ ((p_in_array t_1 a_2 x_4)) /\
+         ((addr_le a_2 a_7)) /\
+         (forall a_9 : addr. ((addr_lt a_9 a_2)) -> ((addr_le a_1 a_9)) ->
+          (x_4 <> t_1[a_9])))) ->
+  (forall a_10 a_9 : addr. ((addr_lt a_10 a_3)) -> ((addr_le a a_10)) ->
+   ((addr_le a_1 a_9)) -> ((addr_lt a_9 a_7)) -> (t_1[a_10] <> t_1[a_9])) ->
+  (exists a_9 : addr. (t_1[(shift_sint8 a i)] = t_1[a_9]) /\
+   ((addr_le a_1 a_9)) /\ ((addr_lt a_9 a_7)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_exists' (file src/strcspn.h, line 142) in 'strcspn' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcspn_not_exists_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import A_StrCSpn.A_StrCSpn
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import Compound.Compound
+use import A_StrSpn.A_StrSpn
+
+(*
+goal WP "expl:Post-condition for 'not_exists' (file src/strcspn.h, line 142) in 'strcspn'":
+*)
+goal goal21:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_4.offset in
+  let x_1 = a.offset in
+  let x_2 = (l_strlen t_1 a) in
+  let x_3 = t_1[a_4] in
+  let x_4 = t_1[a_5] in
+  let a_6 = (shift_sint8 a x_2) in
+  let x_5 = i + x_1 in
+  let x_6 = t_1[a_3] in
+  let a_7 = (shift_sint8 a_1 ((l_strlen t_1 a_1))) in
+  ((x + ((l_strcspn a_4 a_1))) = (x_1 + ((l_strcspn a a_1)))) ->
+  (x_1 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (x <= (x_1 + x_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint64 i)) ->
+  ((addr_le a a_4)) ->
+  ((is_sint8 x_3)) ->
+  ((is_sint8 x_4)) ->
+  ((p_valid_str t t_1 a)) ->
+  ((p_valid_str t t_1 a_1)) ->
+  ((p_valid_str t t_1 a_4)) ->
+  ((is_uint64 (x - x_1))) ->
+  ((addr_le a_4 a_6)) ->
+  (if (x_3 = 0) then (x_5 = x)
+   else ((a_2 = a_1) /\ (a_5 = a_4) /\ (x_6 <> 0) /\ (x_4 = x_6) /\
+         (x_5 = (a_5.offset)) /\ ((addr_le a_2 a_3)) /\
+         ((p_valid_str t t_1 a_3)) /\ ((p_in_array t_1 a_2 x_4)) /\
+         ((p_in_array t_1 a_3 x_4)) /\
+         ((addr_le a_3 ((shift_sint8 a_2 ((l_strlen t_1 a_2)))))) /\
+         (forall a_8 : addr. ((addr_lt a_8 a_3)) -> ((addr_le a_2 a_8)) ->
+          (x_4 <> t_1[a_8])))) ->
+  (forall a_9 a_8 : addr. ((addr_lt a_9 a_4)) -> ((addr_le a a_9)) ->
+   ((addr_le a_1 a_8)) -> ((addr_lt a_8 a_7)) -> (t_1[a_9] <> t_1[a_8])) ->
+  (forall a_9 a_8 : addr. ((addr_le a a_9)) -> ((addr_le a_1 a_8)) ->
+   ((addr_lt a_8 a_7)) -> ((addr_lt a_9 a_6)) -> (t_1[a_9] <> t_1[a_8])) ->
+  (x_2 = i)
+
+end
+

@@ -1,0 +1,12 @@
+session fact = NTP4Verif +
+theories
+  "fact_FactImperative_test42qtvc"
+  "fact_FactRecursive_test0qtvc"
+  "fact_FactRecursive_fact_recqtvc"
+  "fact_FactImperative_test7qtvc"
+  "fact_FactRecursive_test7qtvc"
+  "fact_FactImperative_fact_impqtvc"
+  "fact_FactImperative_test0qtvc"
+  "fact_FactRecursive_test42qtvc"
+  "fact_FactImperative_test1qtvc"
+  "fact_FactRecursive_test1qtvc"

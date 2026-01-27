@@ -1,0 +1,24 @@
+theory toom_Toom_wmpn_toom22_mul_n_recqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.map_Const" "Why3STD.map_MapEq" "mach.c_C" "mach.int_Unsigned" "../../lib/isabelle/valuation_Valuation" "../../lib/isabelle/types_Config" "../../lib/isabelle/types_Types" "../../lib/isabelle/types_Int32Eq" "../../lib/isabelle/types_UInt64Eq" "../../lib/isabelle/lemmas_Lemmas" "../../lib/isabelle/compare_Compare" "../../lib/isabelle/util_Util" "../../lib/isabelle/ptralias_Alias" "../../lib/isabelle/util_UtilOld" "../../lib/isabelle/add_1_Add_1" "../../lib/isabelle/add_Add" "../../lib/isabelle/add_AddOld" "../../lib/isabelle/sub_1_Sub_1" "../../lib/isabelle/sub_SubOld" "../../lib/isabelle/mul_Mul" "../../lib/isabelle/mul_Mul_basecase" "../../lib/isabelle/logical_LogicalUtil" "../../lib/isabelle/logical_Logical"
+begin
+theorem wmpn_toom22_mul_n_rec'vc:
+  fixes x :: "64 word ptr"
+  fixes sz :: "32 word"
+  fixes y :: "64 word ptr"
+  fixes r :: "64 word ptr"
+  fixes scratch :: "64 word ptr"
+  fixes k :: "int"
+  assumes fact0: "valid x (sint sz)"
+  assumes fact1: "valid y (sint sz)"
+  assumes fact2: "valid r (sint sz + sint sz)"
+  assumes fact3: "writable r = True"
+  assumes fact4: "writable scratch = True"
+  assumes fact5: "(0 :: int) < sint sz"
+  assumes fact6: "(8 :: int) * sint sz < (2147483647 :: int)"
+  assumes fact7: "(0 :: int) \<le> k"
+  assumes fact8: "k \<le> (64 :: int)"
+  assumes fact9: "sint sz \<le> sint (29 :: 32 word) * (2 :: int) ^\<^sub>i k"
+  assumes fact10: "valid scratch ((2 :: int) * (sint sz + k))"
+  shows "if sint sz \<le> sint (29 :: 32 word) then (((0 :: int) < sint sz \<and> sint sz \<le> sint sz) \<and> valid x (sint sz) \<and> valid y (sint sz) \<and> valid r (sint sz + sint sz) \<and> writable r = True) \<and> (\<forall>(r1 :: 64 word ptr). length (data r1) = length (data r) \<and> offset r1 = offset r \<and> c_C.min r1 = c_C.min r \<and> c_C.max r1 = c_C.max r \<and> writable r1 = writable r \<and> zone1 r1 = zone1 r \<longrightarrow> value r1 (sint sz + sint sz) = value x (sint sz) * value y (sint sz) \<and> (\<forall>(j :: int). j < offset r1 \<or> offset r1 + (sint sz + sint sz) \<le> j \<longrightarrow> pelts r1 j = pelts r j) \<longrightarrow> value r1 (sint sz + sint sz) = value x (sint sz) * value y (sint sz) \<and> (\<forall>(j :: int). c_C.min r1 \<le> j \<and> j < offset r1 \<or> offset r1 + sint sz + sint sz \<le> j \<and> j < c_C.max r1 \<longrightarrow> pelts r1 j = pelts r j) \<and> c_C.min r1 = c_C.min r \<and> c_C.max r1 = c_C.max r \<and> plength r1 = plength r) else (((0 :: int) \<le> k + k + (1 :: int) \<and> k + k < k + k + (1 :: int)) \<and> valid x (sint sz) \<and> valid y (sint sz) \<and> valid r (sint sz + sint sz) \<and> sint (29 :: 32 word) < sint sz \<and> ((0 :: int) < k \<and> k \<le> (64 :: int)) \<and> sint sz \<le> sint (29 :: 32 word) * (2 :: int) ^\<^sub>i k \<and> valid scratch ((2 :: int) * (sint sz + k)) \<and> (writable r = True \<and> writable scratch = True) \<and> (8 :: int) * sint sz < (2147483647 :: int) \<and> ((2 :: int) < sint sz \<and> sint sz \<le> sint sz \<and> sint sz < sint sz + sint sz - (1 :: int)) \<and> (4 :: int) * sint sz < (5 :: int) * sint sz) \<and> (\<forall>(scratch1 :: 64 word ptr) (r1 :: 64 word ptr). offset scratch1 = offset scratch \<and> writable scratch1 = writable scratch \<and> zone1 scratch1 = zone1 scratch \<longrightarrow> offset r1 = offset r \<and> writable r1 = writable r \<and> zone1 r1 = zone1 r \<longrightarrow> c_C.min r1 = c_C.min r \<and> c_C.max r1 = c_C.max r \<and> plength r1 = plength r \<and> c_C.min scratch1 = c_C.min scratch \<and> c_C.max scratch1 = c_C.max scratch \<and> plength scratch1 = plength scratch \<and> value r1 (sint sz + sint sz) = value x (sint sz) * value y (sint sz) \<and> (\<forall>(j :: int). c_C.min r1 \<le> j \<and> j < offset r1 \<or> offset r1 + sint sz + sint sz \<le> j \<and> j < c_C.max r1 \<longrightarrow> pelts r1 j = pelts r j) \<and> (\<forall>(j :: int). c_C.min scratch1 \<le> j \<and> j < offset scratch1 \<longrightarrow> pelts scratch1 j = pelts scratch j) \<longrightarrow> value r1 (sint sz + sint sz) = value x (sint sz) * value y (sint sz) \<and> (\<forall>(j :: int). c_C.min r1 \<le> j \<and> j < offset r1 \<or> offset r1 + sint sz + sint sz \<le> j \<and> j < c_C.max r1 \<longrightarrow> pelts r1 j = pelts r j) \<and> (\<forall>(j :: int). c_C.min scratch1 \<le> j \<and> j < offset scratch1 \<longrightarrow> pelts scratch1 j = pelts scratch j) \<and> c_C.min r1 = c_C.min r \<and> c_C.max r1 = c_C.max r \<and> plength r1 = plength r \<and> c_C.min scratch1 = c_C.min scratch \<and> c_C.max scratch1 = c_C.max scratch \<and> plength scratch1 = plength scratch)"
+  sorry
+end

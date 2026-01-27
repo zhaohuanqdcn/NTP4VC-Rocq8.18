@@ -1,0 +1,25 @@
+(* ---------------------------------------------------------- *)
+(* --- Struct 'RealQuatVect_s'                            --- *)
+(* ---------------------------------------------------------- *)
+theory S12_RealQuatVect_s
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import S9_RealVect3_s.S9_RealVect3_s
+type s12_realquatvect_s = {
+  f12_realquatvect_s_scalar : real ;
+  f12_realquatvect_s_vect : s9_realvect3_s }
+
+predicate eqs12_realquatvect_s (s : s12_realquatvect_s)
+    (s_1 : s12_realquatvect_s) =
+    ((s_1.f12_realquatvect_s_scalar) = (s.f12_realquatvect_s_scalar)) /\
+    ((eqs9_realvect3_s (s.f12_realquatvect_s_vect)
+       (s_1.f12_realquatvect_s_vect)))
+
+end
+

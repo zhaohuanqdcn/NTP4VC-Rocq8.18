@@ -1,0 +1,1622 @@
+(* ---------------------------------------------------------- *)
+(* --- calls parse_algoid_params_generic parse_algoid_params_ecdsa_with
+  parse_algoid_params_ecPublicKey parse_algoid_params_rsa in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_stmt_calls_parse_algoid_pa___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Globals.Globals
+
+(*
+(*
+goal WP "expl:calls parse_algoid_params_generic parse_algoid_params_ecdsa_with
+  parse_algoid_params_ecPublicKey parse_algoid_params_rsa in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_2] in
+  let a_5 = (shift_uint8 a_2 i_3) in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = t_2[a_6] in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_4 <= i_1) ->
+  (0 <= i_2) ->
+  (0 <= i_4) ->
+  (i <= i_4) ->
+  ((i_3 + i_4) <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (2 <= i_3) ->
+  (3 <= i) ->
+  (i_2 <= 26) ->
+  (i <= (2147483648 + i_4)) ->
+  (i_4 <= (65535 + i)) ->
+  (i_4 <= (2147483647 + i)) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_2 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  ((0 < i_4) -> ((valid_rd t a_5 i_4))) ->
+  ((a_7 = ((global g_parse_algoid_params_ecpublickey_8419))) \/
+   (a_7 = ((global g_parse_algoid_params_ecdsa_with_8418))) \/
+   (a_7 = ((global g_parse_algoid_params_generic_8423))) \/
+   (a_7 = ((global g_parse_algoid_params_rsa_8424))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 2368) in 'parse_x509_AlgorithmIdentifier' (10/13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_post_part10
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 2368) in 'parse_x509_AlgorithmIdentifier' (10/13)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_2] in
+  let x = a_2.base in
+  let x_1 = a.base in
+  let a_5 = (shift_uint8 a_2 i_3) in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let x_2 = i + i_3 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (x <> x_1) ->
+  (a_5 <> null) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_ecdsa_with_8418))) ->
+  (((shift_uint8 a_2 x_2)) <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_3 <= i_1) ->
+  (0 <= i_2) ->
+  (x_2 <= i_1) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (2 <= i_3) ->
+  (3 <= i) ->
+  (i_2 <= 26) ->
+  ((-2147483648) <= x_2) ->
+  (x_2 <= 65535) ->
+  (x_2 <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_2 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  (exists i_4 : int. (a_4 = t_1[i_4]) /\ ((is_uint8 i_4)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 2368) in 'parse_x509_AlgorithmIdentifier' (11/13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_post_part11
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 2368) in 'parse_x509_AlgorithmIdentifier' (11/13)":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_4] in
+  let x = a_2.base in
+  let x_1 = a.base in
+  let a_5 = (shift_uint8 a_2 i_5) in
+  let x_2 = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let x_3 = i + i_1 + i_5 in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_5)) in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (x <> x_1) ->
+  (a_5 <> null) ->
+  (x_2 <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_ecpublickey_8419))) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_5 <= i_2) ->
+  (0 <= i_3) ->
+  (0 <= i_4) ->
+  (x_2 <= i_2) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_3 <= i_2) ->
+  (0 <= x_3) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_5) ->
+  (3 <= i_1) ->
+  (i_3 <= 5) ->
+  (i_4 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((-2147483648) <= x_3) ->
+  (x_3 <= 65535) ->
+  (x_3 <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_5)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x_2) -> ((valid_rd t a_5 x_2))) ->
+  ((a_7 <> null) -> (0 < i) -> ((valid_rd t a_7 i))) ->
+  (exists i_6 : int. (a_4 = t_1[i_6]) /\ ((is_uint8 i_6)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 2368) in 'parse_x509_AlgorithmIdentifier' (12/13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_post_part12
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 2368) in 'parse_x509_AlgorithmIdentifier' (12/13)":
+*)
+goal goal3:
+*)
+goal goal3:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_3] in
+  let a_5 = (shift_uint8 a_2 i_4) in
+  let x = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_4)) in
+  let x_1 = i + i_1 + i_4 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (x <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_generic_8423))) ->
+  (a_7 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_4 <= i_2) ->
+  (0 <= i_3) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_1 <= i_2) ->
+  (0 <= x_1) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_4) ->
+  (3 <= i_1) ->
+  (i_3 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((-2147483648) <= x_1) ->
+  (x_1 <= 65535) ->
+  (x_1 <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rd t a 4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x) -> ((valid_rd t a_5 x))) ->
+  ((0 < i) -> ((valid_rd t a_7 i))) ->
+  (exists i_5 : int. (a_4 = t_1[i_5]) /\ ((is_uint8 i_5)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 2368) in 'parse_x509_AlgorithmIdentifier' (13/13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_post_part13
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 2368) in 'parse_x509_AlgorithmIdentifier' (13/13)":
+*)
+goal goal4:
+*)
+goal goal4:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_3] in
+  let a_5 = (shift_uint8 a_2 i_4) in
+  let x = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_4)) in
+  let x_1 = i + i_1 + i_4 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (x <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_rsa_8424))) ->
+  (a_7 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_4 <= i_2) ->
+  (0 <= i_3) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_1 <= i_2) ->
+  (0 <= x_1) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_4) ->
+  (3 <= i_1) ->
+  (i_3 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((-2147483648) <= x_1) ->
+  (x_1 <= 65535) ->
+  (x_1 <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rd t a 4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x) -> ((valid_rd t a_5 x))) ->
+  ((0 < i) -> ((valid_rd t a_7 i))) ->
+  (exists i_5 : int. (a_4 = t_1[i_5]) /\ ((is_uint8 i_5)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 2369) in 'parse_x509_AlgorithmIdentifier' (20/26) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_post_2_part20
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 2369) in 'parse_x509_AlgorithmIdentifier' (20/26)":
+*)
+goal goal5:
+*)
+goal goal5:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_2] in
+  let x = a_2.base in
+  let x_1 = a.base in
+  let a_5 = (shift_uint8 a_2 i_3) in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let x_2 = i + i_3 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (x <> x_1) ->
+  (a_5 <> null) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_ecdsa_with_8418))) ->
+  (((shift_uint8 a_2 x_2)) <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_3 <= i_1) ->
+  (0 <= i_2) ->
+  (x_2 <= i_1) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (2 <= i_3) ->
+  (3 <= i) ->
+  (i_2 <= 26) ->
+  ((-2147483648) <= x_2) ->
+  (x_2 <= 65535) ->
+  (x_2 <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_2 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  (2 <= x_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 2369) in 'parse_x509_AlgorithmIdentifier' (22/26) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_post_2_part22
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 2369) in 'parse_x509_AlgorithmIdentifier' (22/26)":
+*)
+goal goal6:
+*)
+goal goal6:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_4] in
+  let x = a_2.base in
+  let x_1 = a.base in
+  let a_5 = (shift_uint8 a_2 i_5) in
+  let x_2 = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let x_3 = i + i_1 + i_5 in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_5)) in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (x <> x_1) ->
+  (a_5 <> null) ->
+  (x_2 <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_ecpublickey_8419))) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_5 <= i_2) ->
+  (0 <= i_3) ->
+  (0 <= i_4) ->
+  (x_2 <= i_2) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_3 <= i_2) ->
+  (0 <= x_3) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_5) ->
+  (3 <= i_1) ->
+  (i_3 <= 5) ->
+  (i_4 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((-2147483648) <= x_3) ->
+  (x_3 <= 65535) ->
+  (x_3 <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_5)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x_2)) ->
+  ((is_uint16 x_3)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x_2) -> ((valid_rd t a_5 x_2))) ->
+  ((a_7 <> null) -> (0 < i) -> ((valid_rd t a_7 i))) ->
+  (2 <= x_3)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 2369) in 'parse_x509_AlgorithmIdentifier' (24/26) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_post_2_part24
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 2369) in 'parse_x509_AlgorithmIdentifier' (24/26)":
+*)
+goal goal7:
+*)
+goal goal7:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_3] in
+  let a_5 = (shift_uint8 a_2 i_4) in
+  let x = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_4)) in
+  let x_1 = i + i_1 + i_4 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (x <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_generic_8423))) ->
+  (a_7 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_4 <= i_2) ->
+  (0 <= i_3) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_1 <= i_2) ->
+  (0 <= x_1) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_4) ->
+  (3 <= i_1) ->
+  (i_3 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((-2147483648) <= x_1) ->
+  (x_1 <= 65535) ->
+  (x_1 <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rd t a 4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((is_uint16 x_1)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x) -> ((valid_rd t a_5 x))) ->
+  ((0 < i) -> ((valid_rd t a_7 i))) ->
+  (2 <= x_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 2369) in 'parse_x509_AlgorithmIdentifier' (26/26) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_post_2_part26
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 2369) in 'parse_x509_AlgorithmIdentifier' (26/26)":
+*)
+goal goal8:
+*)
+goal goal8:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_3] in
+  let a_5 = (shift_uint8 a_2 i_4) in
+  let x = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_4)) in
+  let x_1 = i + i_1 + i_4 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (x <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_rsa_8424))) ->
+  (a_7 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_4 <= i_2) ->
+  (0 <= i_3) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_1 <= i_2) ->
+  (0 <= x_1) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_4) ->
+  (3 <= i_1) ->
+  (i_3 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((-2147483648) <= x_1) ->
+  (x_1 <= 65535) ->
+  (x_1 <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rd t a 4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((is_uint16 x_1)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x) -> ((valid_rd t a_5 x))) ->
+  ((0 < i) -> ((valid_rd t a_7 i))) ->
+  (2 <= x_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 2430) (1/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_assert_rte_unsigned_downca___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 2430) (1/4)":
+*)
+goal goal9:
+*)
+goal goal9:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_2] in
+  let x = a_2.base in
+  let x_1 = a.base in
+  let a_5 = (shift_uint8 a_2 i_3) in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let x_2 = i + i_3 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (x <> x_1) ->
+  (a_5 <> null) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_ecdsa_with_8418))) ->
+  (((shift_uint8 a_2 x_2)) <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (i_3 <= i_1) ->
+  (0 <= i_2) ->
+  (x_2 <= i_1) ->
+  (((region x_1)) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (2 <= i_3) ->
+  (3 <= i) ->
+  (i_2 <= 26) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_2 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  (x_2 <= 65535)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 2430) (2/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_assert_rte_unsigned_downca____2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 2430) (2/4)":
+*)
+goal goal10:
+*)
+goal goal10:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_4] in
+  let x = a_2.base in
+  let x_1 = a.base in
+  let a_5 = (shift_uint8 a_2 i_5) in
+  let x_2 = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let x_3 = i + i_1 + i_5 in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_5)) in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (x <> x_1) ->
+  (a_5 <> null) ->
+  (x_2 <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_ecpublickey_8419))) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_5 <= i_2) ->
+  (0 <= i_3) ->
+  (0 <= i_4) ->
+  (x_2 <= i_2) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region x)) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_3 <= i_2) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_5) ->
+  (3 <= i_1) ->
+  (i_3 <= 5) ->
+  (i_4 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_5)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x_2) -> ((valid_rd t a_5 x_2))) ->
+  ((a_7 <> null) -> (0 < i) -> ((valid_rd t a_7 i))) ->
+  (x_3 <= 65535)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 2430) (3/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_assert_rte_unsigned_downca____3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 2430) (3/4)":
+*)
+goal goal11:
+*)
+goal goal11:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_3] in
+  let a_5 = (shift_uint8 a_2 i_4) in
+  let x = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_4)) in
+  let x_1 = i + i_1 + i_4 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (x <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_generic_8423))) ->
+  (a_7 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_4 <= i_2) ->
+  (0 <= i_3) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_1 <= i_2) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_4) ->
+  (3 <= i_1) ->
+  (i_3 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rd t a 4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x) -> ((valid_rd t a_5 x))) ->
+  ((0 < i) -> ((valid_rd t a_7 i))) ->
+  (x_1 <= 65535)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 2430) (4/4) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_assert_rte_unsigned_downca____4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 2430) (4/4)":
+*)
+goal goal12:
+*)
+goal goal12:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_3] in
+  let a_5 = (shift_uint8 a_2 i_4) in
+  let x = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_4)) in
+  let x_1 = i + i_1 + i_4 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (x <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_rsa_8424))) ->
+  (a_7 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_4 <= i_2) ->
+  (0 <= i_3) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (x_1 <= i_2) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_4) ->
+  (3 <= i_1) ->
+  (i_3 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rd t a 4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x) -> ((valid_rd t a_5 x))) ->
+  ((0 < i) -> ((valid_rd t a_7 i))) ->
+  (x_1 <= 65535)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 748) in 'parse_OID'' in 'parse_x509_AlgorithmIdentifier' at call 'parse_OID' (file src/x509-parser.c, line 2403)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_call_parse_OID_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 748) in 'parse_OID'' in 'parse_x509_AlgorithmIdentifier' at call 'parse_OID' (file src/x509-parser.c, line 2403)
+":
+*)
+goal goal13:
+*)
+goal goal13:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = (shift_uint8 a_2 i_1) in
+  (i <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (0 < i_2) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  ((i_1 + i_2) <= i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (2 <= i_1) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_2 0)) i))) ->
+  ((valid_rd t a_4 i_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2309) in 'find_alg_by_oid'' in 'parse_x509_AlgorithmIdentifier' at call 'find_alg_by_oid' (file src/x509-parser.c, line 2410)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_call_find_alg_by_oid_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2309) in 'find_alg_by_oid'' in 'parse_x509_AlgorithmIdentifier' at call 'find_alg_by_oid' (file src/x509-parser.c, line 2410)
+":
+*)
+goal goal14:
+*)
+goal goal14:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = (shift_uint8 a_2 i_2) in
+  (i_1 <> 0) ->
+  (i_3 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (0 < i) ->
+  (0 <= i_1) ->
+  (i_2 <= i_1) ->
+  (i_3 <= i_1) ->
+  (0 <= i_3) ->
+  (i <= i_3) ->
+  ((i_2 + i_3) <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (2 <= i_2) ->
+  (3 <= i) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_3)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_2 0)) i_1))) ->
+  ((0 < i_3) -> ((valid_rd t a_4 i_3))) ->
+  ((valid_rd t a_4 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 1685) in 'parse_algoid_params_ecdsa_with'' in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_call_parse_algoid_params_e___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 1685) in 'parse_algoid_params_ecdsa_with'' in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423)
+":
+*)
+goal goal15:
+*)
+goal goal15:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_3] in
+  let a_5 = (shift_uint8 a_2 i_4) in
+  let x = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_4)) in
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (x <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_ecdsa_with_8418))) ->
+  (a_7 <> null) ->
+  (0 < i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_4 <= i_2) ->
+  (0 <= i_3) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  ((i + i_1 + i_4) <= i_2) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_4) ->
+  (3 <= i_1) ->
+  (i_3 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x) -> ((valid_rd t a_5 x))) ->
+  ((valid_rd t a_7 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 1870) in 'parse_algoid_params_ecPublicKey'' in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_call_parse_algoid_params_e____2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 1870) in 'parse_algoid_params_ecPublicKey'' in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423)
+":
+*)
+goal goal16:
+*)
+goal goal16:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_3] in
+  let a_5 = (shift_uint8 a_2 i_4) in
+  let x = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_4)) in
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (x <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_ecpublickey_8419))) ->
+  (a_7 <> null) ->
+  (0 < i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_4 <= i_2) ->
+  (0 <= i_3) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  ((i + i_1 + i_4) <= i_2) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_4) ->
+  (3 <= i_1) ->
+  (i_3 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x) -> ((valid_rd t a_5 x))) ->
+  ((valid_rd t a_7 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2105) in 'parse_algoid_params_generic'' in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_call_parse_algoid_params_g___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2105) in 'parse_algoid_params_generic'' in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423)
+":
+*)
+goal goal17:
+*)
+goal goal17:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_2] in
+  let a_5 = (shift_uint8 a_2 i_3) in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i + i_3)) in
+  let x = i_4 - i in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_4 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_generic_8423))) ->
+  (a_7 <> null) ->
+  (0 <= i) ->
+  (i < i_4) ->
+  (0 <= i_1) ->
+  (i_3 <= i_1) ->
+  (i_4 <= i_1) ->
+  (0 <= i_2) ->
+  (0 <= i_4) ->
+  ((i_3 + i_4) <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  (2 <= i_3) ->
+  (3 <= i) ->
+  (i_2 <= 26) ->
+  (i <= (2147483648 + i_4)) ->
+  (i_4 <= (65535 + i)) ->
+  (i_4 <= (2147483647 + i)) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_2 0)) i_1))) ->
+  ((0 < i) -> ((valid_rd t a_5 i))) ->
+  ((0 < i_4) -> ((valid_rd t a_5 i_4))) ->
+  ((valid_rd t a_7 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 2133) in 'parse_algoid_params_rsa'' in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_AlgorithmIdentifier_call_parse_algoid_params_r___
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Globals.Globals
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 2133) in 'parse_algoid_params_rsa'' in 'parse_x509_AlgorithmIdentifier' at instruction (file src/x509-parser.c, line 2423)
+":
+*)
+goal goal18:
+*)
+goal goal18:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map int addr.
+  forall t_2 : map addr addr.
+  forall a_3 a_2 a_1 a : addr.
+  let a_4 = t_1[i_3] in
+  let a_5 = (shift_uint8 a_2 i_4) in
+  let x = i + i_1 in
+  let a_6 = (shiftfield_f20_parse_algoid_params a_4) in
+  let a_7 = (shift_uint8 a_2 (i_1 + i_4)) in
+  (i_1 <> 0) ->
+  (i_2 <> 0) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (null <> a_2) ->
+  (a_4 <> null) ->
+  (a_5 <> null) ->
+  (x <> 0) ->
+  (t_2[a_6] = ((global g_parse_algoid_params_rsa_8424))) ->
+  (a_7 <> null) ->
+  (0 < i) ->
+  (0 <= i_1) ->
+  (0 <= i_2) ->
+  (i_4 <= i_2) ->
+  (0 <= i_3) ->
+  (x <= i_2) ->
+  (0 <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (((region (a_3.base))) <= 0) ->
+  ((i + i_1 + i_4) <= i_2) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_4) ->
+  (3 <= i_1) ->
+  (i_3 <= 26) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_4)) ->
+  ((valid_rw t a 4)) ->
+  ((valid_rw t a_3 1)) ->
+  ((separated a 4 a_1 1)) ->
+  ((separated a_2 1 a 4)) ->
+  ((separated a_3 1 a 4)) ->
+  ((is_uint16 x)) ->
+  ((valid_rd t a_6 1)) ->
+  ((0 < i_2) -> ((valid_rd t ((shift_uint8 a_2 0)) i_2))) ->
+  ((0 < i_1) -> ((valid_rd t a_5 i_1))) ->
+  ((0 < x) -> ((valid_rd t a_5 x))) ->
+  ((valid_rd t a_7 i))
+
+end
+

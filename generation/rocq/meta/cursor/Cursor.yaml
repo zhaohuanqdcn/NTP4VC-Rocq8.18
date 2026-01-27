@@ -1,0 +1,14 @@
+atoms:
+  cursor.Cursor.complete: [complete, Cursor.complete]
+  cursor.Cursor.permitted: [permitted, Cursor.permitted]
+  cursor.Cursor.visited: [visited, Cursor.visited]
+axioms:
+  cursor.Cursor.permitted_empty: [permitted_empty, Cursor.permitted_empty]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.cursor.Cursor
+prefix_ops: {}
+types:
+  cursor.Cursor.cursor: [cursor, Cursor.cursor]

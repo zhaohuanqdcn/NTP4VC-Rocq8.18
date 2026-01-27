@@ -1,0 +1,28 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.prover.lib.lean.Unification.Types
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.BacktrackArray.Types
+import pearl.prover.lib.lean.Predicates.Pred
+import pearl.prover.lib.lean.BacktrackArray.Logic
+import pearl.prover.lib.lean.Choice.Choice
+import pearl.prover.lib.lean.BacktrackArray.Impl
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+import pearl.prover.lib.lean.Firstorder_term_impl.Impl
+import pearl.prover.lib.lean.Unification.Logic
+open Classical
+open Lean4Why3
+namespace Unification_Impl_check_unified_free_var_listqtvc
+theorem check_unified_free_var_list'vc (t : Types.nlimpl_fo_term_list) (rhob : Types.t Types.sdata) (rho : Types.unifier_subst) (x : ℤ) (fact0 : Logic.nlimpl_fo_term_list_ok t) (fact1 : Logic.unifier_subst_ok rhob rho) (fact2 : ∀(y : ℤ), Spec.is_fo_term_free_var_in_fo_term_list y (Types.nlimpl_fo_term_list.model_fo_term_list_field t) → (0 : ℤ) ≤ y) : Logic.nlimpl_fo_term_list_ok t ∧ (∀(o1 : Types.cons_fo_term_list), Logic.cons_ok_fo_term_list o1 ∧ Logic.cons_rel_fo_term_list o1 t ∧ Logic.cons_open_rel_fo_term_list o1 t → (match o1 with | Types.cons_fo_term_list.NLC_FONil => ¬Spec.is_fo_term_free_var_in_fo_term_list x (Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field t) Spec.subst_id_symbol (Types.unifier_subst.unifier rho)) | Types.cons_fo_term_list.NLC_FOCons u q => (Logic.unifier_subst_ok rhob rho ∧ Logic.nlimpl_fo_term_ok u ∧ (∀(y : ℤ), Spec.is_fo_term_free_var_in_fo_term y (Types.nlimpl_fo_term.model_fo_term_field u) → (0 : ℤ) ≤ y)) ∧ (¬Spec.is_fo_term_free_var_in_fo_term x (Spec.subst_fo_term (Types.nlimpl_fo_term.model_fo_term_field u) Spec.subst_id_symbol (Types.unifier_subst.unifier rho)) → (Logic.nlimpl_fo_term_list_ok q ∧ Logic.unifier_subst_ok rhob rho ∧ (∀(y : ℤ), Spec.is_fo_term_free_var_in_fo_term_list y (Types.nlimpl_fo_term_list.model_fo_term_list_field q) → (0 : ℤ) ≤ y)) ∧ (¬Spec.is_fo_term_free_var_in_fo_term_list x (Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field q) Spec.subst_id_symbol (Types.unifier_subst.unifier rho)) → ¬Spec.is_fo_term_free_var_in_fo_term_list x (Spec.subst_fo_term_list (Types.nlimpl_fo_term_list.model_fo_term_list_field t) Spec.subst_id_symbol (Types.unifier_subst.unifier rho))))))
+  := sorry
+end Unification_Impl_check_unified_free_var_listqtvc

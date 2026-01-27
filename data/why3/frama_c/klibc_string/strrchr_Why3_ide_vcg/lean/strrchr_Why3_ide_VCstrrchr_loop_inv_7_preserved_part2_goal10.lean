@@ -1,0 +1,13 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import Why3.Cint.Cint
+import frama_c.klibc_string.lib.lean.A_Length.A_Length
+import frama_c.klibc_string.lib.lean.Axiomatic.Axiomatic
+import frama_c.klibc_string.lib.lean.Compound.Compound
+open Classical
+open Lean4Why3
+namespace strrchr_Why3_ide_VCstrrchr_loop_inv_7_preserved_part2_goal10
+theorem goal10 (t_1 : Memory.addr -> ℤ) (a : Memory.addr) (a_2 : Memory.addr) (a_1 : Memory.addr) (i_4 : ℤ) (i_3 : ℤ) (t : ℤ -> ℤ) (i_1 : ℤ) (i_2 : ℤ) (i : ℤ) : let x : ℤ := t_1 a; let x_1 : ℤ := t_1 a_2; let x_2 : ℤ := Memory.addr.base a_1; let x_3 : ℤ := Memory.addr.base a; let x_4 : ℤ := Memory.addr.offset a_1; let x_5 : ℤ := Memory.addr.offset a; let x_6 : ℤ := i_4 + x_4; let x_7 : ℤ := Memory.addr.offset a_2; let x_8 : ℤ := A_Length.l_length t_1 a_1; let a_3 : Memory.addr := Memory.shift a_1 x_8; let a_4 : Memory.addr := Memory.shift a_1 i_3; let x_9 : ℤ := t_1 a_4; ¬Memory.addr.mk (0 : ℤ) (0 : ℤ) = a_2 → ¬x = (0 : ℤ) → ¬x_1 = x → x_2 = x_3 → Memory.addr.base a_2 = x_3 → x_4 ≤ x_5 → Memory.region x_2 ≤ (0 : ℤ) → x_6 ≤ x_5 → x_7 < x_6 → x_5 ≤ x_4 + x_8 → -(128 : ℤ) ≤ x_1 → x_1 ≤ (127 : ℤ) → Memory.linked t → Memory.sconst t_1 → Memory.addr_le a_1 a → Memory.addr_le a_1 a_2 → Cint.is_sint8 x → Cint.is_sint8 x_1 → Cint.is_sint8 (t_1 (Memory.addr.mk (0 : ℤ) (0 : ℤ))) → Cint.is_sint32 x_1 → Axiomatic.p_length_of_str_is t t_1 a_1 i_1 → Axiomatic.p_length_of_str_is t t_1 a_1 i_2 → Memory.addr_le a a_3 → Memory.addr_le a_2 a_3 → (x_9 = x_1 → (0 : ℤ) ≤ i_3 → i_3 + x_4 < x_5 → (∀(i_5 : ℤ), ¬x_9 = x_1 ∧ i_3 < i_5 ∧ i_5 + x_4 < x_5) → a_4 = a_2) → t_1 (Memory.shift a_1 i) = x_1 ∨ i < (0 : ℤ) ∨ x_5 ≤ i + x_4 → (∀(i_5 : ℤ), let x_10 : ℤ := i_5 + x_4; x_7 < x_10 → x_10 < x_5 → ¬t_1 (Memory.shift a_1 i_5) = x_1) → ¬t_1 (Memory.shift a_1 i_4) = x_1
+  := sorry
+end strrchr_Why3_ide_VCstrrchr_loop_inv_7_preserved_part2_goal10

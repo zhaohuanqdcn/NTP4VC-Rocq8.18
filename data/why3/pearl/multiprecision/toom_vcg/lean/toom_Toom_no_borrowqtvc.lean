@@ -1,0 +1,31 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.c.C
+import Why3.mach.int.Unsigned
+import pearl.multiprecision.lib.lean.valuation.Valuation
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.compare.Compare
+import pearl.multiprecision.lib.lean.util.Util
+import pearl.multiprecision.lib.lean.ptralias.Alias
+import pearl.multiprecision.lib.lean.util.UtilOld
+import pearl.multiprecision.lib.lean.add_1.Add_1
+import pearl.multiprecision.lib.lean.add.Add
+import pearl.multiprecision.lib.lean.add.AddOld
+import pearl.multiprecision.lib.lean.sub_1.Sub_1
+import pearl.multiprecision.lib.lean.sub.SubOld
+import pearl.multiprecision.lib.lean.mul.Mul
+import pearl.multiprecision.lib.lean.mul.Mul_basecase
+import pearl.multiprecision.lib.lean.logical.LogicalUtil
+import pearl.multiprecision.lib.lean.logical.Logical
+open Classical
+open Lean4Why3
+namespace toom_Toom_no_borrowqtvc
+theorem no_borrow'vc (y : ℤ) (x : ℤ) (r : ℤ) (m : ℤ) (b : ℤ) (fact0 : (0 : ℤ) ≤ y) (fact1 : y ≤ x) (fact2 : (0 : ℤ) ≤ r) (fact3 : r < m) (fact4 : r - m * b = x - y) (fact5 : (0 : ℤ) ≤ b) : b = (0 : ℤ)
+  := sorry
+end toom_Toom_no_borrowqtvc

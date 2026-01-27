@@ -1,0 +1,47 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'result' in 'equal'                 --- *)
+(* ---------------------------------------------------------- *)
+theory VCequal_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'result' in 'equal'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[(shift_sint32 a i_1)] in
+  let x_1 = t_1[(shift_sint32 a_1 i_1)] in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  (((p_equalranges_1_ t_1 t_1 a_1 i a)) -> (i_1 = i)) ->
+  ((not (p_equalranges_1_ t_1 t_1 a_1 i a)) -> (x_1 <> x)) ->
+  ((not (p_equalranges_1_ t_1 t_1 a_1 i a)) -> (i_1 < i)) ->
+  ((not (p_equalranges_1_ t_1 t_1 a_1 i a)) ->
+   ((p_equalranges_1_ t_1 t_1 a_1 i_1 a))) ->
+  (((p_equalranges_1_ t_1 t_1 a_1 i a)) <-> (i_1 = i))
+
+end
+

@@ -1,0 +1,61 @@
+theory verifythis_2019_cartesian_trees_Top_all_descendant_rootqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.exn_Exn"
+begin
+axiomatization where Trans:   "z \<le> x"
+ if "y \<le> x"
+ and "z \<le> y"
+  for y :: "int"
+  and x :: "int"
+  and z :: "int"
+inductive sorted :: "int list \<Rightarrow> bool" where
+   Sorted_Nil: "sorted (Nil :: int list)"
+ | Sorted_One: "sorted (Cons x (Nil :: int list))" for x :: "int"
+ | Sorted_Two: "y \<le> x \<Longrightarrow> sorted (Cons y l) \<Longrightarrow> sorted (Cons x (Cons y l))" for y :: "int" and x :: "int" and l :: "int list"
+axiomatization where sorted_mem:   "(\<forall>(y :: int). y \<in> set l \<longrightarrow> y \<le> x) \<and> sorted l \<longleftrightarrow> sorted (Cons x l)"
+  for l :: "int list"
+  and x :: "int"
+axiomatization where sorted_append:   "sorted l1 \<and> sorted l2 \<and> (\<forall>(x :: int) (y :: int). x \<in> set l1 \<longrightarrow> y \<in> set l2 \<longrightarrow> y \<le> x) \<longleftrightarrow> sorted (l1 @ l2)"
+  for l1 :: "int list"
+  and l2 :: "int list"
+consts destruct :: "'xi list \<Rightarrow> 'xi \<times> 'xi list"
+axiomatization where destruct'def:   "case l of Cons h t \<Rightarrow> destruct l = (h, t) | _ \<Rightarrow> False"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+consts peek :: "'xi list \<Rightarrow> 'xi"
+axiomatization where peek'def:   "case destruct l of (h, _) \<Rightarrow> peek l = h"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+axiomatization where peek'spec:   "peek l \<in> set l"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+consts tail :: "'xi list \<Rightarrow> 'xi list"
+axiomatization where tail'def:   "case destruct l of (_, t) \<Rightarrow> tail l = t"
+ if "\<not>is_Nil l"
+  for l :: "'xi list"
+datatype  dir = dir'mk (left1: "int option") (right1: "int option")
+typedecl  dirs
+definition parent :: "dir list \<Rightarrow> int \<Rightarrow> int \<Rightarrow> _"
+  where "parent t p s \<longleftrightarrow> left1 (t ! nat p) = Some s \<or> right1 (t ! nat p) = Some s" for t p s
+inductive descendant :: "dir list \<Rightarrow> int \<Rightarrow> int \<Rightarrow> bool" where
+   Self: "p = s \<Longrightarrow> descendant t p s" for p :: "int" and s :: "int" and t :: "dir list"
+ | Son_left: "descendant t p s1 \<Longrightarrow> left1 (t ! nat s1) = Some s2 \<Longrightarrow> descendant t p s2" for t :: "dir list" and p :: "int" and s1 :: "int" and s2 :: "int"
+ | Son_right: "descendant t p s1 \<Longrightarrow> right1 (t ! nat s1) = Some s2 \<Longrightarrow> descendant t p s2" for t :: "dir list" and p :: "int" and s1 :: "int" and s2 :: "int"
+definition is_smallest :: "int list \<Rightarrow> int \<Rightarrow> _"
+  where "is_smallest a i \<longleftrightarrow> ((0 :: int) \<le> i \<and> i < int (length a)) \<and> (\<forall>(j :: int). (0 :: int) \<le> j \<and> j < int (length a) \<longrightarrow> a ! nat i \<le> a ! nat j)" for a i
+theorem all_descendant_root'vc:
+  fixes a :: "int list"
+  fixes dirs1 :: "dir list"
+  fixes j :: "int"
+  fixes root :: "int"
+  assumes fact0: "length a = length dirs1"
+  assumes fact1: "\<forall>(j :: int) (v :: int). (0 :: int) \<le> j \<and> j < int (length a) \<longrightarrow> (left1 (dirs1 ! nat j) = Some v \<longrightarrow> a ! nat j < a ! nat v \<and> ((0 :: int) \<le> v \<and> v < j) \<and> (\<forall>(x :: int). v < x \<and> x < j \<longrightarrow> a ! nat j < a ! nat x)) \<and> (right1 (dirs1 ! nat j) = Some v \<longrightarrow> a ! nat j < a ! nat v \<and> (j < v \<and> v < int (length a)) \<and> (\<forall>(x :: int). j < x \<and> x < v \<longrightarrow> a ! nat j < a ! nat x))"
+  assumes fact2: "\<forall>(i :: int) (j :: int). (0 :: int) \<le> i \<and> i < j \<and> j < int (length a) \<longrightarrow> \<not>a ! nat i = a ! nat j"
+  assumes fact3: "(0 :: int) \<le> j"
+  assumes fact4: "j < int (length a)"
+  assumes fact5: "(0 :: int) \<le> root"
+  assumes fact6: "root < int (length a)"
+  assumes fact7: "is_smallest a root"
+  assumes fact8: "\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> is_smallest a i \<or> (\<exists>(sm :: int). ((0 :: int) \<le> sm \<and> sm < int (length a)) \<and> parent dirs1 sm i)"
+  shows "descendant dirs1 root j"
+  sorry
+end

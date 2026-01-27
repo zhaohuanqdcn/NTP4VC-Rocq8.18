@@ -1,0 +1,30 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'PosOfChar'                              --- *)
+(* ---------------------------------------------------------- *)
+theory A_PosOfChar
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_posofchar (map addr int) addr int : int
+
+use import Cint.Cint
+use import Axiomatic1.Axiomatic1
+
+axiom Q_pos_of_char:
+  forall s : addr.
+  forall mchar_0 : map addr int.
+  forall malloc_0 : map int int.
+  forall c pos_0 : int.
+  ((is_sint32 c)) ->
+    ((p_exists_first_occurence_of_char malloc_0 mchar_0 s c pos_0)) ->
+    (((l_posofchar mchar_0 s c)) = pos_0)
+
+end
+

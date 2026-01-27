@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name word_common_factor_vcg)
+(theories Why3))

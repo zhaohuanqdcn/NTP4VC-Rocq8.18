@@ -1,0 +1,12 @@
+theory binary_search_vc_sp_BinarySearchAnyMidPoint_binary_searchqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref"
+begin
+theorem binary_search'vc:
+  fixes a :: "int list"
+  fixes v :: "int"
+  assumes fact0: "\<forall>(i1 :: int) (i2 :: int). (0 :: int) \<le> i1 \<and> i1 \<le> i2 \<and> i2 < int (length a) \<longrightarrow> a ! nat i1 \<le> a ! nat i2"
+  shows "let o1 :: int = int (length a) - (1 :: int) in (((0 :: int) \<le> (0 :: int) \<and> o1 < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> a ! nat i = v \<longrightarrow> (0 :: int) \<le> i \<and> i \<le> o1)) \<and> (\<forall>(l :: int) (u :: int). ((0 :: int) \<le> l \<and> u < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> a ! nat i = v \<longrightarrow> l \<le> i \<and> i \<le> u) \<longrightarrow> l \<le> u \<longrightarrow> (l \<le> u \<and> (\<forall>(m :: int). l \<le> m \<and> m \<le> u \<longrightarrow> ((0 :: int) \<le> m \<and> m < int (length a)) \<and> (\<not>a ! nat m < v \<longrightarrow> (0 :: int) \<le> m \<and> m < int (length a)))) \<and> (\<forall>(l1 :: int) (u1 :: int). (\<exists>(m :: int). (l \<le> m \<and> m \<le> u) \<and> (if a ! nat m < v then l1 = m + (1 :: int) \<and> u1 = u else (v < a ! nat m \<and> u1 = m - (1 :: int)) \<and> l1 = l)) \<longrightarrow> ((0 :: int) \<le> u - l \<and> u1 - l1 < u - l) \<and> ((0 :: int) \<le> l1 \<and> u1 < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> a ! nat i = v \<longrightarrow> l1 \<le> i \<and> i \<le> u1)))"
+  and "(\<exists>(l :: int) (u :: int). (((0 :: int) \<le> l \<and> u < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> a ! nat i = v \<longrightarrow> l \<le> i \<and> i \<le> u)) \<and> \<not>l \<le> u) \<longrightarrow> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> \<not>a ! nat i = v)"
+  and "\<forall>(r :: int). (\<exists>(l :: int) (u :: int). (((0 :: int) \<le> l \<and> u < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> a ! nat i = v \<longrightarrow> l \<le> i \<and> i \<le> u)) \<and> l \<le> u \<and> (l \<le> r \<and> r \<le> u) \<and> \<not>a ! nat r < v \<and> \<not>v < a ! nat r) \<longrightarrow> ((0 :: int) \<le> r \<and> r < int (length a)) \<and> a ! nat r = v"
+  sorry
+end

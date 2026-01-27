@@ -1,0 +1,19 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import Why3.mach.int.Unsigned
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.mpz.Z
+import pearl.multiprecision.lib.lean.mpz.Zutil
+open Classical
+open Lean4Why3
+namespace mpz_getset_Set_wmpz_get_uiqtvc
+theorem wmpz_get_ui'vc (mpz : Z.mpz_memo) (src : Z.mpz_ptr) (fact0 : Z.readers mpz src = (0 : ℤ)) : -(2 : ℤ) < Z.readers mpz src ∧ (∀(o1 : BitVec 32), BitVec.toInt o1 = Z.sgn mpz src * Z.abs_size mpz src → (BitVec.toInt o1 = (0 : ℤ) → o1 = (0 : BitVec 32)) → (if o1 = (0 : BitVec 32) then (0 : ℤ) = abs (Z.value_of src mpz) % ((18446744073709551615 : ℤ) + (1 : ℤ)) ∧ (∀(x : Z.mpz_ptr), Z.mpz_unchanged x mpz mpz) ∧ Z.readers mpz src = (0 : ℤ) else (0 : ℤ) ≤ Z.readers mpz src ∧ (∀(mpz1 : Z.mpz_memo), Z.abs_value_of mpz1 = Z.abs_value_of mpz ∧ Z.alloc mpz1 = Z.alloc mpz ∧ Z.abs_size mpz1 = Z.abs_size mpz ∧ Z.sgn mpz1 = Z.sgn mpz ∧ Z.zones mpz1 = Z.zones mpz → (∀(srcp : C.ptr (BitVec 64)), Z.readers mpz1 src = Z.readers mpz src + (1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬src = y → Z.readers mpz1 y = Z.readers mpz y) ∧ Lemmas.value srcp (Z.abs_size mpz1 src) = Z.abs_value_of mpz1 src ∧ C.plength srcp = Z.alloc mpz1 src ∧ C.offset srcp = (0 : ℤ) ∧ C.min srcp = (0 : ℤ) ∧ C.max srcp = C.plength srcp ∧ C.zone1 srcp = Z.zones mpz1 src → (C.min srcp ≤ C.offset srcp ∧ C.offset srcp < C.max srcp) ∧ (Z.zones mpz1 src = C.zone1 srcp ∧ (1 : ℤ) ≤ Z.readers mpz1 src ∧ C.min srcp = (0 : ℤ) ∧ C.max srcp = C.plength srcp) ∧ (∀(mpz2 : Z.mpz_memo), Z.abs_value_of mpz2 = Z.abs_value_of mpz1 ∧ Z.alloc mpz2 = Z.alloc mpz1 ∧ Z.abs_size mpz2 = Z.abs_size mpz1 ∧ Z.sgn mpz2 = Z.sgn mpz1 ∧ Z.zones mpz2 = Z.zones mpz1 → Z.readers mpz2 src = Z.readers mpz1 src - (1 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬y = src → Z.readers mpz2 y = Z.readers mpz1 y) → BitVec.toUInt (C.pelts srcp (C.offset srcp)) = abs (Z.value_of src mpz2) % ((18446744073709551615 : ℤ) + (1 : ℤ)) ∧ (∀(x : Z.mpz_ptr), Z.mpz_unchanged x mpz2 mpz) ∧ Z.readers mpz2 src = (0 : ℤ))))))
+  := sorry
+end mpz_getset_Set_wmpz_get_uiqtvc

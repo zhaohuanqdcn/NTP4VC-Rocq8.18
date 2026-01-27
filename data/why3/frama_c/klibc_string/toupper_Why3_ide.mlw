@@ -1,0 +1,198 @@
+(* ---------------------------------------------------------- *)
+(* --- Complete behaviors 'else', 'isupper', 'islower'    --- *)
+(* ---------------------------------------------------------- *)
+theory VCtoupper_complete_else_isupper_islower
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+use import Axiomatic2.Axiomatic2
+
+(*
+goal WP "expl:Complete behaviors 'else', 'isupper', 'islower'":
+*)
+goal goal0:
+  forall i : int.
+  let x = (to_uint8 i) in
+  (0 <= i) ->
+  (i <= 255) ->
+  ((is_sint32 i)) ->
+  (((p_is_lower x)) \/ ((p_is_upper x)) \/
+   ((not (p_is_lower x)) /\ (not (p_is_upper x))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Disjoint behaviors 'else', 'isupper', 'islower'    --- *)
+(* ---------------------------------------------------------- *)
+theory VCtoupper_disjoint_else_isupper_islower
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+use import Axiomatic2.Axiomatic2
+
+(*
+goal WP "expl:Disjoint behaviors 'else', 'isupper', 'islower'":
+*)
+goal goal1:
+  forall i : int.
+  let x = (to_uint8 i) in
+  (0 <= i) ->
+  (i <= 255) ->
+  ((is_sint32 i)) ->
+  ((not (p_is_lower x)) \/ (not (p_is_upper x)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns nothing in 'toupper'                       --- *)
+(* ---------------------------------------------------------- *)
+theory VCtoupper_assign_exit
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Assigns nothing in 'toupper'":
+*)
+goal goal2:
+  forall i : int.
+  (0 <= i) ->
+  (i <= 255) ->
+  ((is_sint32 i)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns nothing in 'toupper'                       --- *)
+(* ---------------------------------------------------------- *)
+theory VCtoupper_assign_normal
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+
+(*
+goal WP "expl:Assigns nothing in 'toupper'":
+*)
+goal goal3:
+  forall i : int.
+  (0 <= i) ->
+  (i <= 255) ->
+  ((is_sint32 i)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'else' (file /home/root/klibc_framac_wp/include/string.h, line 254) in 'toupper' --- *)
+(* ---------------------------------------------------------- *)
+theory VCtoupper_else_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+use import Axiomatic2.Axiomatic2
+
+(*
+goal WP "expl:Post-condition for 'else' (file /home/root/klibc_framac_wp/include/string.h, line 254) in 'toupper'":
+*)
+goal goal4:
+  forall i_1 i : int.
+  let x = (to_uint8 i_1) in
+  (0 <= i_1) ->
+  (i_1 <= 255) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  (not (p_is_lower x)) ->
+  (not (p_is_upper x)) ->
+  (i_1 = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'islower' (file /home/root/klibc_framac_wp/include/string.h, line 246) in 'toupper' --- *)
+(* ---------------------------------------------------------- *)
+theory VCtoupper_islower_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+use import Axiomatic2.Axiomatic2
+
+(*
+goal WP "expl:Post-condition for 'islower' (file /home/root/klibc_framac_wp/include/string.h, line 246) in 'toupper'":
+*)
+goal goal5:
+  forall i_1 i : int.
+  (0 <= i_1) ->
+  (i_1 <= 255) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((p_is_lower ((to_uint8 i_1)))) ->
+  ((32 + i) = i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'isupper' (file /home/root/klibc_framac_wp/include/string.h, line 250) in 'toupper' --- *)
+(* ---------------------------------------------------------- *)
+theory VCtoupper_isupper_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Cint.Cint
+use import Axiomatic2.Axiomatic2
+
+(*
+goal WP "expl:Post-condition for 'isupper' (file /home/root/klibc_framac_wp/include/string.h, line 250) in 'toupper'":
+*)
+goal goal6:
+  forall i_1 i : int.
+  (0 <= i_1) ->
+  (i_1 <= 255) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((p_is_upper ((to_uint8 i_1)))) ->
+  (i_1 = i)
+
+end
+

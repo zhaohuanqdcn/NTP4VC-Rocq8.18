@@ -1,0 +1,7 @@
+session bufs_differ_Why3_ide = NTP4Verif +
+theories
+  "bufs_differ_Why3_ide_VCbufs_differ_loop_inv_2_preserved_goal1"
+  "bufs_differ_Why3_ide_VCbufs_differ_assert_rte_mem_access_2_goal4"
+  "bufs_differ_Why3_ide_VCbufs_differ_assert_rte_mem_access_goal3"
+  "bufs_differ_Why3_ide_VCbufs_differ_loop_inv_2_established_goal2"
+  "bufs_differ_Why3_ide_VCbufs_differ_loop_inv_established_part2_goal0"

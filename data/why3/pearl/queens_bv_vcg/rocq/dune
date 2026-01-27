@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name queens_bv_vcg)
+(theories Why3 queens_bv_vcg.queens_bv Why3.why3.Ref Why3.why3.WellFounded))

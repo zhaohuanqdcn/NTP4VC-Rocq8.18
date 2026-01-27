@@ -1,0 +1,628 @@
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (1/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_assign_exit_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+goal WP "expl:Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (1/7)":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  (t_1[a_1] = 0) ->
+  (t_2[a_2] = 48) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 t_2[(shift_sint8 a 1)])) ->
+  ((valid_rd t a_2 3)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (2/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_assign_exit_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import A_Ctype.A_Ctype
+use import Cint.Cint
+
+(*
+goal WP "expl:Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (2/7)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_2[(shift_sint8 a 1)] in
+  (t_1[a_1] = 0) ->
+  (t_2[a_2] = 48) ->
+  (((l_tolower x)) = 120) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint8 i_1)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 t_3[(shift_sint8 a 2)])) ->
+  ((valid_rd t a_2 3)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (7/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_assign_exit_part7
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (7/7)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_12 t_11 t_10 t_9 t_8 t_7 t_6 t_5 t_4 t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_1] in
+  let x_1 = t_9[a_2] in
+  let x_2 = t_10[(shift_sint8 a 1)] in
+  let x_3 = t_11[(shift_sint8 a 2)] in
+  (t_7[a_1] = 16) ->
+  (t_12[a_2] = 48) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_8)) ->
+  ((is_uint8 i)) ->
+  ((is_sint8 i_1)) ->
+  ((is_uint32 x)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_1)) ->
+  ((is_sint8 x_2)) ->
+  ((is_sint8 x_3)) ->
+  ((valid_rd t a_2 3)) ->
+  (if (x = 0)
+   then ((t_2 = t_1) /\ (t_9 = t_8) /\
+         (if (x_1 = 48)
+          then ((t_10 = t_9) /\ (((l_tolower x_2)) = i_1) /\
+                (if (i_1 = 120)
+                 then ((((p_isxdigit x_3)) <-> (i <> 0)) /\
+                       (if (i = 0) then (t_5[a_1 <- 8] = t_7)
+                        else (t_6[a_1 <- 16] = t_7)))
+                 else (t_4[a_1 <- 8] = t_7)))
+          else ((t_3 = t_2) /\ (t_12 = t_9) /\ (t_3[a_1 <- 10] = t_7))))
+   else ((t_7 = t_1) /\ (t_12 = t_8))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (1/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_assign_normal_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (1/8)":
+*)
+goal goal3:
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_2[(shift_sint8 a 1)] in
+  (t_1[a_1] = 0) ->
+  (t_2[a_2] = 48) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 3)) ->
+  ((is_sint8 ((l_tolower x)))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (2/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_assign_normal_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import A_Ctype.A_Ctype
+use import Cint.Cint
+
+(*
+goal WP "expl:Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (2/8)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_2[(shift_sint8 a 1)] in
+  let x_1 = t_3[(shift_sint8 a 2)] in
+  (t_1[a_1] = 0) ->
+  (t_2[a_2] = 48) ->
+  (((l_tolower x)) = 120) ->
+  (((p_isxdigit x_1)) <-> (i <> 0)) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint8 i)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rd t a_2 3)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (7/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_assign_normal_part7
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Assigns (file src/_parse_integer_fixup_radix.h, line 15) in '_parse_integer_fixup_radix' (7/8)":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_12 t_11 t_10 t_9 t_8 t_7 t_6 t_5 t_4 t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_1[a_1] in
+  let x_1 = t_9[a_2] in
+  let a_3 = (shift_sint8 a 1) in
+  let x_2 = t_10[a_3] in
+  let x_3 = t_11[(shift_sint8 a 2)] in
+  let x_4 = t_12[a_3] in
+  (t_7[a_1] = 16) ->
+  (t_12[a_2] = 48) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_8)) ->
+  ((is_uint8 i)) ->
+  ((is_sint8 i_1)) ->
+  ((is_uint32 x)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_1)) ->
+  ((is_sint8 x_2)) ->
+  ((is_sint8 x_3)) ->
+  ((is_sint8 x_4)) ->
+  ((valid_rd t a_2 3)) ->
+  ((is_sint8 ((l_tolower x_4)))) ->
+  (if (x = 0)
+   then ((t_2 = t_1) /\ (t_9 = t_8) /\
+         (if (x_1 = 48)
+          then ((t_10 = t_9) /\ (((l_tolower x_2)) = i_1) /\
+                (if (i_1 = 120)
+                 then ((((p_isxdigit x_3)) <-> (i <> 0)) /\
+                       (if (i = 0) then (t_5[a_1 <- 8] = t_7)
+                        else (t_6[a_1 <- 16] = t_7)))
+                 else (t_4[a_1 <- 8] = t_7)))
+          else ((t_3 = t_2) /\ (t_12 = t_9) /\ (t_3[a_1 <- 10] = t_7))))
+   else ((t_7 = t_1) /\ (t_12 = t_8))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 19) in '_parse_integer_fixup_radix' --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_guess_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_IntBase.A_IntBase
+use import Compound.Compound
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 19) in '_parse_integer_fixup_radix'":
+*)
+goal goal6:
+  forall p_3 p_2 p_1 p : bool.
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_15 t_14 t_13 t_12 t_11 t_10 t_9 t_8 t_7 t_6 t_5 t_4 t_3 t_2 t_1
+    : map addr int.
+  forall a_1 a : addr.
+  let x = t_6[a_1] in
+  let x_1 = t_8[a_1] in
+  let a_2 = (shift_sint8 a 0) in
+  let x_2 = t_9[a_2] in
+  let a_3 = (shift_sint8 a 1) in
+  (t_1[a_1] = 0) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_9)) ->
+  ((is_uint8 i)) ->
+  ((is_sint8 i_1)) ->
+  ((is_sint8 i_2)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_is_hex t_15 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_2)) ->
+  ((valid_rd t a_2 3)) ->
+  (if (x_2 = 48)
+   then ((t_10 = t_9) /\ (((l_tolower t_10[a_3])) = i_1) /\
+         (if (i_1 = 120)
+          then ((p=True) /\ (p_2=True) /\
+                (((p_isxdigit t_11[(shift_sint8 a 2)])) <-> (i <> 0)) /\
+                (if (i = 0) then (t_4[a_1 <- 8] = t_6)
+                 else (t_5[a_1 <- 16] = t_6)))
+          else ((p=True) /\ (p_2=True) /\ (t_3[a_1 <- 8] = t_6))))
+   else ((p=True) /\ (p_2=True) /\ (t_2 = t_1) /\ (t_12 = t_9) /\
+         (t_2[a_1 <- 10] = t_6))) ->
+  (if (x = 16)
+   then (((p_1=True) <-> (p=True)) /\ ((p_3=True) <-> (p_2=True)) /\
+         (t_7 = t_6) /\ (t_13 = t_12) /\
+         (if (t_13[a_2] = 48)
+          then ((p_1=True) /\ (p_3=True) /\ (t_14 = t_13) /\
+                (((l_tolower t_14[a_3])) = i_2))
+          else ((p_1=True) /\ (p_3=True) /\ (t_8 = t_7) /\ (t_15 = t_13))))
+   else ((p=True) /\ (p_2=True) /\ (t_8 = t_6) /\ (t_15 = t_12))) ->
+  (x_1 = 16)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 20) in '_parse_integer_fixup_radix' --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_guess_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_IntBase.A_IntBase
+use import Compound.Compound
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 20) in '_parse_integer_fixup_radix'":
+*)
+goal goal7:
+  forall p_3 p_2 p_1 p : bool.
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_15 t_14 t_13 t_12 t_11 t_10 t_9 t_8 t_7 t_6 t_5 t_4 t_3 t_2 t_1
+    : map addr int.
+  forall a_1 a : addr.
+  let x = t_6[a_1] in
+  let x_1 = t_8[a_1] in
+  let a_2 = (shift_sint8 a 0) in
+  let x_2 = t_9[a_2] in
+  let a_3 = (shift_sint8 a 1) in
+  (t_1[a_1] = 0) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_9)) ->
+  ((is_uint8 i)) ->
+  ((is_sint8 i_1)) ->
+  ((is_sint8 i_2)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_is_oct t_15 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_2)) ->
+  ((valid_rd t a_2 3)) ->
+  (if (x_2 = 48)
+   then ((t_10 = t_9) /\ (((l_tolower t_10[a_3])) = i_1) /\
+         (if (i_1 = 120)
+          then ((p=True) /\ (p_2=True) /\
+                (((p_isxdigit t_11[(shift_sint8 a 2)])) <-> (i <> 0)) /\
+                (if (i = 0) then (t_4[a_1 <- 8] = t_6)
+                 else (t_5[a_1 <- 16] = t_6)))
+          else ((p=True) /\ (p_2=True) /\ (t_3[a_1 <- 8] = t_6))))
+   else ((p=True) /\ (p_2=True) /\ (t_2 = t_1) /\ (t_12 = t_9) /\
+         (t_2[a_1 <- 10] = t_6))) ->
+  (if (x = 16)
+   then (((p_1=True) <-> (p=True)) /\ ((p_3=True) <-> (p_2=True)) /\
+         (t_7 = t_6) /\ (t_13 = t_12) /\
+         (if (t_13[a_2] = 48)
+          then ((p_1=True) /\ (p_3=True) /\ (t_14 = t_13) /\
+                (((l_tolower t_14[a_3])) = i_2))
+          else ((p_1=True) /\ (p_3=True) /\ (t_8 = t_7) /\ (t_15 = t_13))))
+   else ((p=True) /\ (p_2=True) /\ (t_8 = t_6) /\ (t_15 = t_12))) ->
+  (x_1 = 8)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 21) in '_parse_integer_fixup_radix' --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_guess_post_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import A_IntBase.A_IntBase
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 21) in '_parse_integer_fixup_radix'":
+*)
+goal goal8:
+  forall p_3 p_2 p_1 p : bool.
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_12 t_11 t_10 t_9 t_8 t_7 t_6 t_5 t_4 t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let x = t_5[a_1] in
+  let x_1 = t_7[a_1] in
+  let a_3 = (shift_sint8 a 1) in
+  let x_2 = t_8[a_3] in
+  let x_3 = (l_tolower x_2) in
+  (t_1[a_1] = 0) ->
+  (t_8[a_2] = 48) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_8)) ->
+  ((is_uint8 i)) ->
+  ((is_sint8 i_1)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_is_dec t_12 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_2)) ->
+  ((valid_rd t a_2 3)) ->
+  ((is_sint8 x_3)) ->
+  (if (x_3 = 120)
+   then ((p=True) /\ (p_2=True) /\
+         (((p_isxdigit t_9[(shift_sint8 a 2)])) <-> (i <> 0)) /\
+         (if (i = 0) then (t_3[a_1 <- 8] = t_5) else (t_4[a_1 <- 16] = t_5)))
+   else ((p=True) /\ (p_2=True) /\ (t_2[a_1 <- 8] = t_5))) ->
+  (if (x = 16)
+   then (((p_1=True) <-> (p=True)) /\ ((p_3=True) <-> (p_2=True)) /\
+         (t_6 = t_5) /\
+         (if (t_10[a_2] = 48)
+          then ((p_1=True) /\ (p_3=True) /\ (t_11 = t_10) /\
+                (((l_tolower t_11[a_3])) = i_1))
+          else ((p_1=True) /\ (p_3=True) /\ (t_7 = t_6) /\ (t_12 = t_10))))
+   else ((p=True) /\ (p_2=True) /\ (t_7 = t_5))) ->
+  (x_1 = 10)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 22) in '_parse_integer_fixup_radix' --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_guess_post_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import A_IntBase.A_IntBase
+use import Compound.Compound
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 22) in '_parse_integer_fixup_radix'":
+*)
+goal goal9:
+  forall p_3 p_2 p_1 p : bool.
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_13 t_12 t_11 t_10 t_9 t_8 t_7 t_6 t_5 t_4 t_3 t_2 t_1
+    : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_6[a_1] in
+  let a_3 = (shift_sint8 a 0) in
+  let x_1 = t_7[a_3] in
+  let a_4 = (shift_sint8 a 1) in
+  let a_5 = (shift_sint8 a 2) in
+  (t_1[a_1] = 0) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_7)) ->
+  ((is_uint8 i)) ->
+  ((is_sint8 i_1)) ->
+  ((is_sint8 i_2)) ->
+  ((is_uint32 x)) ->
+  ((p_is_hex t_13 a)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rd t a_3 3)) ->
+  (if (x_1 = 48)
+   then ((t_8 = t_7) /\ (((l_tolower t_8[a_4])) = i_1) /\
+         (if (i_1 = 120)
+          then ((p=True) /\ (p_2=True) /\
+                (((p_isxdigit t_9[a_5])) <-> (i <> 0)) /\
+                (if (i = 0) then (t_4[a_1 <- 8] = t_6)
+                 else (t_5[a_1 <- 16] = t_6)))
+          else ((p=True) /\ (p_2=True) /\ (t_3[a_1 <- 8] = t_6))))
+   else ((p=True) /\ (p_2=True) /\ (t_2 = t_1) /\ (t_10 = t_7) /\
+         (t_2[a_1 <- 10] = t_6))) ->
+  (if (x = 16)
+   then (((p_1=True) <-> (p=True)) /\ ((p_3=True) <-> (p_2=True)) /\
+         (t_11 = t_10) /\
+         (if (t_11[a_3] = 48)
+          then ((p_1=True) /\ (p_3=True) /\ (t_12 = t_11) /\
+                (((l_tolower t_12[a_4])) = i_2) /\
+                (if (i_2 = 120) then (a_5 = a_2) else (a_2 = a)))
+          else ((p_1=True) /\ (p_3=True) /\ (a_2 = a) /\ (t_13 = t_11))))
+   else ((p=True) /\ (p_2=True) /\ (a_2 = a) /\ (t_13 = t_10))) ->
+  (a_5 = a_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 23) in '_parse_integer_fixup_radix' --- *)
+(* ---------------------------------------------------------- *)
+theory VC_parse_integer_fixup_radix_guess_post_5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Compound.Compound
+use import A_Ctype.A_Ctype
+use import Cint.Cint
+use import A_IntBase.A_IntBase
+
+(*
+goal WP "expl:Post-condition for 'guess' (file src/_parse_integer_fixup_radix.h, line 23) in '_parse_integer_fixup_radix'":
+*)
+goal goal10:
+  forall i : int.
+  forall t : map int int.
+  forall t_9 t_8 t_7 t_6 t_5 t_4 t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a 0) in
+  let a_3 = (shift_sint8 a 1) in
+  let x = t_8[a_3] in
+  let x_1 = t_6[a_3] in
+  let x_2 = (l_tolower x_1) in
+  (t_1[a_1] = 0) ->
+  (t_5[a_1] = 16) ->
+  (t_6[a_2] = 48) ->
+  (t_8[a_2] = 48) ->
+  (((l_tolower x)) = 120) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_6)) ->
+  ((is_uint8 i)) ->
+  ((valid_rw t a_1 1)) ->
+  ((is_sint8 x_1)) ->
+  ((is_sint8 x)) ->
+  ((valid_rd t a_2 3)) ->
+  ((is_sint8 x_2)) ->
+  (if (x_2 = 120)
+   then ((((p_isxdigit t_7[(shift_sint8 a 2)])) <-> (i <> 0)) /\
+         (if (i = 0) then (t_3[a_1 <- 8] = t_5) else (t_4[a_1 <- 16] = t_5)))
+   else (t_2[a_1 <- 8] = t_5)) ->
+  (((p_is_oct t_9 a)) \/ ((p_is_dec t_9 a))) ->
+  false
+
+end
+

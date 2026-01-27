@@ -1,0 +1,117 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'full' in 'stack_full'              --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_full_post_full
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition 'full' in 'stack_full'":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let x = (l_size t_1 a) in
+  let a_1 = (shiftfield_f1_stack_capacity a) in
+  let x_1 = t_1[a_1] in
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rd t a_1 1)) ->
+  (((p_full t_1 a)) <-> (x_1 = x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'not_full' in 'stack_full'          --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_full_post_not_full
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition 'not_full' in 'stack_full'":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let x = (l_size t_1 a) in
+  let a_1 = (shiftfield_f1_stack_capacity a) in
+  let x_1 = t_1[a_1] in
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((is_uint32 x_1)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rd t a_1 1)) ->
+  ((not (p_full t_1 a)) <-> (x_1 <> x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file stack_full.c, line 6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_full_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file stack_full.c, line 6)":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let a_1 = (shiftfield_f1_stack_capacity a) in
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 ((l_size t_1 a)))) ->
+  ((is_uint32 t_1[a_1])) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rd t a_1 1))
+
+end
+

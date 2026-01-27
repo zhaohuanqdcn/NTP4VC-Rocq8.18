@@ -1,0 +1,14 @@
+session vstte12_combinators = NTP4Verif +
+theories
+  "vstte12_combinators_Combinators_reductionqtvc"
+  "vstte12_combinators_Combinators_ks_even_oddqtvc"
+  "vstte12_combinators_Combinators_eqqtvc"
+  "vstte12_combinators_Combinators_ksqtvc"
+  "vstte12_combinators_Combinators_irreducible_is_valueqtvc"
+  "vstte12_combinators_Combinators_reduce_stepqtvc"
+  "vstte12_combinators_Combinators_reduction3qtvc"
+  "vstte12_combinators_Combinators_subst_c_commuteqtvc"
+  "vstte12_combinators_Combinators_test_SKKqtvc"
+  "vstte12_combinators_Combinators_reduction2qtvc"
+  "vstte12_combinators_Combinators_subst_cqtvc"
+  "vstte12_combinators_Combinators_value_in_contextqtvc"

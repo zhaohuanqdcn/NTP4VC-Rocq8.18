@@ -1,0 +1,42 @@
+(* ---------------------------------------------------------- *)
+(* --- Memory Compound Updates                            --- *)
+(* ---------------------------------------------------------- *)
+theory Compound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function shift_sint8 (p : addr) (k : int) : addr = (shift p k)
+
+function shiftfield_f16__io_file_pvt_ibytes (p : addr) : addr = (shift p 7)
+
+function shiftfield_f16__io_file_pvt_pub (p : addr) : addr = (shift p 0)
+
+function shiftfield_f12__io_file__io_eof (p : addr) : addr = (shift p 1)
+
+function shiftfield_f12__io_file__io_error (p : addr) : addr = (shift p 2)
+
+function shiftfield_f16__io_file_pvt_obytes (p : addr) : addr = (shift p 8)
+
+function shiftfield_f16__io_file_pvt_buf (p : addr) : addr = (shift p 5)
+
+function shiftfield_f16__io_file_pvt_bufsiz (p : addr) : addr = (shift p 9)
+
+function shiftfield_f16__io_file_pvt_prev (p : addr) : addr = (shift p 3)
+
+function shiftfield_f16__io_file_pvt_next (p : addr) : addr = (shift p 4)
+
+function shiftfield_f16__io_file_pvt_data (p : addr) : addr = (shift p 6)
+
+function shiftfield_f12__io_file__io_fileno (p : addr) : addr = (shift p 0)
+
+function shiftfield_f16__io_file_pvt_bufmode (p : addr) : addr = (shift p 10)
+
+end
+

@@ -1,0 +1,5 @@
+session decrease1 = NTP4Verif +
+theories
+  "decrease1_Decrease1_search_recqtvc"
+  "decrease1_Decrease1_decrease1_inductionqtvc"
+  "decrease1_Decrease1_searchqtvc"

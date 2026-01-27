@@ -1,0 +1,18 @@
+session leftist_heap = NTP4Verif +
+theories
+  "leftist_heap_LeftistHeap_mergeqtvc"
+  "leftist_heap_TreeRank"
+  "leftist_heap_Size"
+  "leftist_heap_Occ"
+  "leftist_heap_LeftistHeap_le_root_transqtvc"
+  "leftist_heap_LeftistHeap_find_minqtvc"
+  "leftist_heap_LeftistHeap_root_is_miminumqtvc"
+  "leftist_heap_LeftistHeap_insertqtvc"
+  "leftist_heap_LeftistHeap_emptyqtvc"
+  "leftist_heap_LeftistHeap_make_nqtvc"
+  "leftist_heap_Size_size_emptyqtvc"
+  "leftist_heap_Occ_occ_nonnegqtvc"
+  "leftist_heap_LeftistHeap_is_emptyqtvc"
+  "leftist_heap_Size_size_nonnegqtvc"
+  "leftist_heap_LeftistHeap_delete_minqtvc"
+  "leftist_heap_LeftistHeap_rankqtvc"

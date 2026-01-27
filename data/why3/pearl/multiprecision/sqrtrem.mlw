@@ -1,0 +1,440 @@
+module Sqrt
+
+  use array.Array
+  use map.Map
+  use mach.c.C
+  use ref.Ref
+  use mach.int.Int32
+  use import mach.int.UInt64GMP as Limb
+  use int.EuclideanDivision
+  use int.Int
+  use int.Power
+  use types.Types
+  use types.Int32Eq
+  use types.UInt64Eq
+  use lemmas.Lemmas
+  use compare.Compare
+  use util.UtilOld
+  use add_1.Add_1
+  use add.AddOld
+  use sub_1.Sub_1
+  use sub.SubOld
+  use mul.Mul
+  use logical.LogicalUtil
+  use logical.Logical
+  use div.Div
+  use sqrt.Sqrt1
+  use ptralias.Alias
+
+  use real.ExpLog (* have to use real to be able to remove log2/log10... *)
+  meta remove_prop lemma log10_increasing
+  meta remove_prop lemma log2_increasing
+  meta remove_logic function log10 (* kills CVC3 *)
+  meta remove_logic function log2  (* same *)
+  meta remove_prop axiom log_increasing
+  meta remove_prop lemma exp_sum_opposite
+  meta remove_prop axiom exp_increasing
+  meta remove_prop axiom exp_positive
+  meta remove_prop axiom exp_inv
+
+  let ghost same_mod (a b:int) : unit
+    requires { 0 <= a }
+    requires { 0 < b }
+    ensures  { ComputerDivision.mod a b = EuclideanDivision.mod a b }
+  = ()
+
+  let wmpn_sqrtrem2 (sp rp np: ptr limb) : limb
+    requires { valid rp 1 }
+    requires { valid sp 1 }
+    requires { valid np 2 }
+    requires { (pelts np)[offset np + 1] >= power 2 (Limb.length - 2) }
+    requires { writable sp /\ writable rp }
+    ensures  { value np 2
+               = (pelts sp)[offset sp] * (pelts sp)[offset sp]
+                  + result * radix + (pelts rp)[offset rp] }
+    ensures  { (pelts rp)[offset rp] + result * radix <= 2 * (pelts sp)[offset sp] }
+    ensures  { 0 <= result <= 1 }
+  =
+    let np0 = C.get np in
+    let ghost np1 = C.get_ofs np 1 in
+    let ref sp0 = sqrt1 rp (C.get_ofs np 1) in
+    let ref rp0 = C.get rp in
+    let ghost orp = pure { rp0 } in
+    let ghost osp = pure { sp0 } in
+    let prec = (Limb.of_int Limb.length) / 2 in (* prec = 32 *)
+    let nph = lsr_mod np0 (prec + 1) in
+    rp0 <- lsl rp0 (prec - 1) + nph;
+    label Div in
+    let ref q = Limb.(/) rp0 sp0 in
+    begin
+      ensures { if old q = power 2 prec
+                then q = power 2 prec - 1
+                else q = old q }
+      ensures { q < power 2 prec }
+      let rq = lsr_mod q prec in
+      q <- q - rq
+    end;
+    let u = rp0 - (q * sp0) in
+    sp0 <- lsl sp0 prec + q;
+    let uh = lsr_mod u (prec - 1) in
+    let ref cc = to_int64 uh in
+    let npl = np0 % (lsl 1 (prec + 1)) in
+    let ul = lsl_mod_ext u (prec + 1) in
+    rp0 <- ul + npl;
+    let q2 = q * q in
+    begin ensures { rp0 + radix * cc = old (rp0 + radix * cc) - q2 }
+      label S in
+      if rp0 < q2 then cc <- Int64.(-) cc 1;
+      rp0 <- sub_mod rp0 q2;
+    end;
+    label Adjust in
+    let ghost sp0a = pure { sp0 } in
+    if Int64.(<) cc 0 (* cc = -1 *)
+    then begin
+      begin ensures { rp0 + radix * cc = old (rp0 + radix * cc) + sp0 }
+            ensures { cc >= 0 \/ rp0 = old rp0 + sp0 }
+        rp0 <- add_mod rp0 sp0;
+        if rp0 < sp0 then cc <- Int64.(+) cc 1;
+      end;
+      sp0 <- sp0 - 1;
+      begin ensures { rp0 + radix * cc = old (rp0 + radix * cc) + sp0 }
+            ensures { cc >= 0 }
+        label A2 in
+        rp0 <- add_mod rp0 sp0;
+        if rp0 < sp0 then cc <- Int64.(+) cc 1
+      end;
+    end;
+    C.set rp rp0;
+    C.set sp sp0;
+    of_int64 cc
+
+  use toom.Toom
+
+  let rec partial wmpn_dc_sqrtrem (sp np: ptr limb) (n:int32) (scratch: ptr limb) : limb
+    requires { valid np (n+n) }
+    requires { valid sp n }
+    requires { 1 <= n }
+    requires { valid scratch (1 + div n 2) }
+    requires { (pelts np)[offset np + n + n - 1] >= power 2 (Limb.length - 2) }
+    requires { writable sp /\ writable scratch /\ writable np }
+    requires { 4 * n < max_int32 }
+(*    writes   { np, sp, scratch }*)
+    ensures  { (value sp n) * (value sp n)
+               + value np n + (power radix n) * result
+               = old value np (n+n) }
+    ensures  { value np n + power radix n * result <= 2 * value sp n }
+    ensures  { (pelts sp)[offset sp + n-1] >= power 2 (Limb.length - 1) }
+    ensures  { 0 <= result <= 1 }
+    ensures  { max np = old max np }
+    ensures  { min np = old min np }
+    ensures  { plength np = old plength np }
+    ensures  { max scratch = old max scratch }
+    ensures  { min scratch = old min scratch }
+    ensures  { plength scratch = old plength scratch }
+    ensures  { max sp = old max sp }
+    ensures  { min sp = old min sp }
+    ensures  { plength sp = old plength sp }
+    variant  { n }
+  = label Start in
+    if n = 1
+    then
+      let r = wmpn_sqrtrem2 sp scratch np in
+      C.set np (C.get scratch);
+      r
+    else begin
+      let l = n / 2 in
+      let h = n - l in
+      let ghost vn = value np (int32'int n + int32'int n) in
+      let np' = C.incr_split np (l+l) in
+      let ghost n0 = value np (int32'int l) in
+      let ghost n1 = value_sub (pelts np) (offset np + int32'int l)
+                               (offset np + int32'int l + int32'int l) in
+      let ghost n'' = pure { n0 + power radix l * n1 } in
+      let ghost n' = pure { value np' (h+h) } in
+      begin ensures { power radix (n+n) <= 4 * vn }
+        ()
+      end;
+      let spl = C.incr_split sp l in
+      label Rec in
+      let ref q = wmpn_dc_sqrtrem spl np' h scratch in
+      begin ensures { power radix l <= 2 * value spl h }
+        let ghost ts = pure { 2 * (value spl h + 1) } in ()
+      end;
+      let ghost r' = value np' (int32'int h) + power radix (int32'int h) * (l2i q) in
+      label Sub in
+      begin ensures {    (q = 1 /\ value np' h = r' - value spl h)
+                      \/ (q = 0 /\ value np' h = r') }
+      if (q <> 0) then begin
+        let (ghost b) = wmpn_sub_n_in_place np' spl h in ()
+        end
+      end;
+      label Join1 in
+      let ghost onp = { np } in
+      let ghost onp' = { np' } in
+      join np np';
+      let npl = C.incr_split np l in
+      label DivS in
+      wmpn_tdiv_qr_in_place scratch 0 npl n spl h;
+      let sl = get_ofs scratch l in
+      q <- q + sl;
+      let sh = C.get scratch in
+      let ref c = to_int64 (sh % 2) in
+      let (ghost r) = wmpn_rshift_sep sp scratch l 1 in
+      label Div2 in
+      let st = C.get_ofs sp (l-1) in
+      let ql = lsl_mod_ext q (Limb.of_int Limb.length - 1) in
+      let qh = lsr_mod q 1 in
+      C.set_ofs sp (l-1) (st + ql);
+      (* TODO if (UNLIKELY ((sp[0] & approx) != 0)) /* (sp[0] & mask) > 1 */
+	return 1; /* Remainder is non-zero */ *)
+      q <- qh;
+      begin
+        ensures { n1 + power radix l * r'
+                  = 2 * value spl h * (value sp l + power radix l * q)
+                    + value npl h + power radix h * c }
+        ensures { 0 <= c <= 1 }
+        ensures { 0 <= value npl h + power radix h * c < 2 * value spl h }
+        if not (Int64.(=) c 0)
+        then begin
+          let c' = wmpn_add_n_in_place npl spl h in
+          c <- to_int64 c';
+          end
+      end;
+      let ghost dq = pure { value sp l + power radix l * q } in
+      let ghost s' = pure { value spl h } in
+      let ghost r'' = pure { value npl h + power radix h * c } in
+      let ghost onp = pure { np } in
+      let ghost onpl = pure { npl } in
+      join np npl;
+      let npn = C.incr_split np n in
+      let (ghost _) = wmpn_mul npn sp l sp l 64 in
+      let ll = 2 * l in
+      label Sub2 in
+      let ghost onp = pure { np } in
+      let bo = wmpn_sub_n_in_place np npn ll in
+      let b = q + bo in
+      begin ensures { value np n + power radix n * c
+                      = n0 + power radix l * r'' - dq * dq }
+            ensures { - 1 <= c <= 1 }
+        if l = h
+        then begin
+          c <- Int64.(-) c (to_int64 b);
+        end
+        else begin
+          let nll = C.incr np ll in
+          label Borrow in
+          let ghost onp = pure { np } in
+          let bo = wmpn_sub_1_in_place nll 1 b in
+          c <- Int64.(-) c (to_int64 bo);
+        end
+      end;
+      let ghost vs = pure { dq + power radix l * s' } in
+      let ghost vr = pure { power radix l * r'' + n0 - dq * dq } in
+      label Adjust in
+      if (Int64.(<) c 0)
+      then begin
+        q <- wmpn_add_1_in_place spl h q;
+        let ghost osp = pure { sp } in
+        let ghost ospl = pure { spl } in
+        join sp spl;
+        let c' = wmpn_addmul_1 np sp n 2 in
+        c <- Int64.(+) c (to_int64 (2 * q + c'));
+        c <- Int64.(-) c (to_int64 (wmpn_sub_1_in_place np n 1));
+        label AdjS in
+        let bo = wmpn_sub_1_in_place sp n 1 in
+        q <- q - bo;
+      end
+      else begin
+        let ghost osp = pure { sp } in
+        let ghost ospl = pure { spl } in
+        join sp spl;
+        let ghost vs = pure { value sp n } in ()
+      end;
+      let ghost onp = pure { np } in
+      join np npn;
+      let ghost sqrt = pure { value sp n } in
+      of_int64 c
+    end
+
+  use toom.Toom
+
+  let ghost function ceilhalf (n:int)
+    ensures { 2 * result >= n }
+    ensures { 2 * (result + 1) > n }
+  = ComputerDivision.div (n+1) 2
+
+  (* TODO rp = NULL case? *)
+
+  let ghost sqrt_norm (n nn c s s0 s1 : int) : unit
+    requires { 0 <= c }
+    requires { 0 < n }
+    requires { 0 <= s }
+    requires { 0 <= s0 < power 2 c }
+    requires { nn = power 2 (2 * c) * n }
+    requires { s1 = power 2 c * s + s0 }
+    requires { s1 * s1 <= nn < (s1 + 1) * (s1 + 1) }
+    ensures  { s * s <= n < (s+1) * (s+1) }
+  = ()
+
+  let rec partial wmpn_sqrtrem (sp rp np: ptr limb) (n: int32) : int32
+    requires { valid sp (ceilhalf n) }
+    requires { valid rp n }
+    requires { valid np n }
+    requires { writable sp /\ writable rp /\ writable np }
+    requires { 1 <= n }
+    requires { 4 * n < max_int32 }
+    requires { (pelts np)[offset np + n - 1] > 0 }
+    ensures  { value np n = value sp (ceilhalf n) * value sp (ceilhalf n)
+                            + value rp result }
+    ensures  { 0 <= result <= n }
+    ensures  { value rp result <= 2 * value sp (ceilhalf n) }
+    ensures  { result > 0 -> (pelts rp)[offset rp + result - 1] > 0 }
+    ensures  { forall j. (pelts np)[j] = old (pelts np)[j] }
+    ensures  { max np = old max np }
+    ensures  { min np = old min np }
+    ensures  { plength np = old plength np }
+    ensures  { max rp = old max rp }
+    ensures  { min rp = old min rp }
+    ensures  { plength rp = old plength rp }
+    ensures  { max sp = old max sp }
+    ensures  { min sp = old min sp }
+    ensures  { plength sp = old plength sp }
+    variant  { n }
+  =
+    label Start in
+    let ghost k = ceilhalf (int32'int n) in
+    let high = C.get_ofs np (n-1) in
+    let ref c = (of_int32 (count_leading_zeros high)) / 2 in
+    if n = 1
+    then begin
+      if c = 0
+      (* TODO if high & 0xc000_0000_0000_0000 *)
+      then begin
+        let s = sqrt1 rp high in
+        C.set sp s;
+      end
+      else begin
+        let nh = lsl high (2 * c) in
+        let ncc = sqrt1 rp nh in
+        let cc = lsr_mod ncc c in
+        let ghost s0 = pure { mod ncc (power 2 c) } in
+        C.set sp cc;
+        C.set rp (high - cc * cc);
+      end;
+      let res = if C.get rp = 0 then 0 else 1 in
+      return res
+    end;
+    let ref tn = (n + 1) / 2 in
+    let ref rn : int32 = 0 in
+    let adj = to_int32 ((of_int32 n) % 2) in
+    let scratch = salloc (UInt32.(+) (UInt32.(/) (UInt32.of_int32 tn) 2) 1) in
+    if (adj <> 0 || c <> 0)
+    then begin
+      let ref tp = salloc (UInt32.(*) 2 (UInt32.of_int32 tn)) in
+      C.set tp 0;
+      begin ensures { value tp (n+adj)
+                      = power 2 (2 * c) * power radix adj * value np n }
+            ensures { 4 * value tp (n+adj) >= power radix (n+adj) }
+            ensures { max tp = old max tp }
+            ensures { plength tp = old plength tp }
+            ensures { min np = old min np /\ max np = old max np
+                      /\ plength np = old plength np }
+            ensures  { forall j. (pelts np)[j] = old (pelts np)[j] }
+        let ghost otp = pure { tp } in
+        let tpa = C.incr_split tp adj in
+        label Shift in
+        (if c <> 0
+        then begin
+          label Shift in
+          let (ghost h) = wmpn_lshift_sep tpa np n (2 * c) in ()
+        end
+        else begin
+          wmpn_copyi tpa np n;
+        end);
+        let otpa = pure { tpa } in
+        join tp tpa;
+      end;
+      c <- c + (if adj <> 0 then 32 else 0);
+      let ghost h = pure { (pelts tp)[tn + tn - 1] } in
+      let ghost vn = pure { value np n } in
+      let ghost vn1 = pure { value tp (n+adj) } in
+      let ref rl = wmpn_dc_sqrtrem sp tp tn scratch in
+      let ghost vs = pure { value sp tn } in
+      let ghost vr = pure { value tp tn + power radix tn * rl } in
+      let ghost vs0 = pure { mod vs (power 2 c) } in
+      let s0 = salloc 1 in
+      let s00 = (C.get sp) % (lsl 1 c) in
+      C.set s0 s00;
+      let rc = wmpn_addmul_1 tp sp tn (2 * s00) in
+      rl <- rl + rc;
+      let ghost otp = pure { tp } in
+      let ref cc = wmpn_submul_1 tp s0 1 s00 in
+      begin ensures { value tp tn + power radix tn * rl
+                      = vr + 2 * vs0 * vs - vs0 * vs0 }
+        if tn > 1
+        then begin
+          label Sub in
+          let tp1 = C.incr tp 1 in
+          let ghost otp = pure { tp } in
+          let ghost otp1 = pure { tp1 } in
+          cc <- wmpn_sub_1_in_place tp1 (tn - 1) cc;
+        end
+        else begin
+        end;
+        rl <- rl - cc
+      end;
+      let (ghost r) = wmpn_rshift sp sp tn c in
+      let ghost vsq = pure { div vs (power 2 c) } in
+      let ghost q = pure { div r (power 2 (Limb.length - c)) } in
+      let ghost vsp = pure { value sp tn } in
+      begin ensures { 0 < vn }
+        ()
+      end;
+      let ref c2 = lsl c 1 in
+      begin ensures { power 2 c2 * (vn - vsp * vsp)
+                      = value tp tn }
+            ensures { 0 <= c2 < 64 }
+            ensures { valid tp tn }
+            ensures { 0 < tn <= k+1 }
+        if c2 < 64
+        then tn <- tn + 1
+        else begin
+          let tp1 = C.incr tp 1 in
+          c2 <- c2 - 64;
+          tp <- tp1
+        end
+      end;
+      begin ensures { value rp rn = vn - vsp * vsp }
+            ensures { 0 < rn <= k+1 }
+            ensures { min rp = old min rp /\ max rp = old max rp
+                      /\ plength rp = old plength rp }
+        if (not (c2 = 0))
+        then begin
+          label Shift in
+          let (ghost b) = wmpn_rshift_sep rp tp tn c2 in ()
+        end
+        else wmpn_copyi rp tp tn;
+        rn <- tn
+      end
+    end
+    else begin
+      wmpn_copyi rp np n;
+      let h = wmpn_dc_sqrtrem sp rp tn scratch in
+      C.set_ofs rp tn h;
+      rn <- tn + to_int32 h;
+    end;
+    let ghost orp = pure { rp } in
+    let ghost orn = pure { rn } in
+    while C.get_ofs rp (rn - 1) = 0 do
+      invariant { value rp rn = value orp orn }
+      invariant { 1 <= rn <= orn }
+      variant   { rn }
+      rn <- rn - 1;
+      if rn = 0
+      then begin
+        break
+      end
+    done;
+    rn
+
+end

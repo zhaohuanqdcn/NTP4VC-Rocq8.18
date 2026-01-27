@@ -1,0 +1,47 @@
+theory hillel_challenge_FulcrumNoOverflow_sum_boundsqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.int_Sum"
+begin
+typedecl  big
+consts q :: "big \<Rightarrow> 32 word"
+consts r :: "big \<Rightarrow> 32 word"
+consts v :: "big \<Rightarrow> int"
+axiomatization where big'invariant'0:   "-((2147483647 :: int) + (1 :: int)) \<le> sint (q self)"
+  for self :: "big"
+axiomatization where big'invariant'1:   "sint (q self) \<le> (2147483647 :: int) + (1 :: int) - (1 :: int)"
+  for self :: "big"
+axiomatization where big'invariant'2:   "(0 :: int) \<le> sint (r self)"
+  for self :: "big"
+axiomatization where big'invariant'3:   "sint (r self) \<le> (2147483647 :: int) + (1 :: int) - (1 :: int)"
+  for self :: "big"
+axiomatization where big'invariant'4:   "v self = sint (q self) * ((2147483647 :: int) + (1 :: int)) + sint (r self)"
+  for self :: "big"
+definition big'eq :: "big \<Rightarrow> big \<Rightarrow> _"
+  where "big'eq a b \<longleftrightarrow> q a = q b \<and> r a = r b \<and> v a = v b" for a b
+axiomatization where big'inj:   "a = b"
+ if "big'eq a b"
+  for a :: "big"
+  and b :: "big"
+consts big_zero :: "unit \<Rightarrow> big"
+axiomatization where big_zero'def'0:   "q (big_zero x) = (0 :: 32 word)"
+  for x :: "unit"
+axiomatization where big_zero'def'1:   "r (big_zero x) = (0 :: 32 word)"
+  for x :: "unit"
+axiomatization where big_zero'def'2:   "v (big_zero x) = (0 :: int)"
+  for x :: "unit"
+consts fc :: "32 word array32 \<Rightarrow> int \<Rightarrow> int"
+axiomatization where fc'def:   "fc a i = sint (array32_elts a i)"
+  for a :: "32 word array32"
+  and i :: "int"
+definition sum :: "32 word array32 \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int"
+  where "sum a l u = int_Sum.sum (fc a) l u" for a l u
+theorem sum_bounds'vc:
+  fixes l :: "int"
+  fixes u :: "int"
+  fixes a :: "32 word array32"
+  assumes fact0: "(0 :: int) \<le> l"
+  assumes fact1: "l \<le> u"
+  assumes fact2: "u \<le> sint (array32_length a)"
+  shows "(u - l) * sint (Groups.uminus_class.uminus (2147483648 :: 32 word)) \<le> sum a l u"
+  and "sum a l u \<le> (u - l) * sint (2147483647 :: 32 word)"
+  sorry
+end

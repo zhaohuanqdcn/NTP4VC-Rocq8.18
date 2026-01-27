@@ -1,0 +1,7 @@
+session fenwick = NTP4Verif +
+theories
+  "fenwick_Fenwick_queryqtvc"
+  "fenwick_Fenwick_addqtvc"
+  "fenwick_Fenwick_fen_compactqtvc"
+  "fenwick_Fenwick_makeqtvc"
+  "fenwick_Fenwick_sum_decqtvc"

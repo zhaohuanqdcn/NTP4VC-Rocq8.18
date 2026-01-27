@@ -1,0 +1,640 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 853) in 'parse_integer' (16/24) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_post_part16
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Cbits.Cbits
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 853) in 'parse_integer' (16/24)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_1) in
+  let x_2 = i_1 + i_2 in
+  let a_3 = (shift_uint8 a_1 (1 + i_1)) in
+  let x_3 = t_1[a_3] in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (t_1[a_2] = 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (x_2 <= i) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  ((-2147483648) <= x_2) ->
+  (x_2 <= 65535) ->
+  (x_2 <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  ((is_uint8 x_3)) ->
+  ((bit_test x_3 7)) ->
+  ((valid_rd t a_3 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  (3 <= x_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 853) in 'parse_integer' (20/24) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_post_part20
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Cbits.Cbits
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 853) in 'parse_integer' (20/24)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_1) in
+  let x_2 = i_1 + i_2 in
+  let a_3 = (shift_uint8 a_1 (1 + i_1)) in
+  let x_3 = t_1[a_3] in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (t_1[a_2] = 255) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (x_2 <= i) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  ((-2147483648) <= x_2) ->
+  (x_2 <= 65535) ->
+  (x_2 <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  ((is_uint8 x_3)) ->
+  (not (bit_test x_3 7)) ->
+  ((valid_rd t a_3 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  (3 <= x_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 853) in 'parse_integer' (22/24) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_post_part22
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 853) in 'parse_integer' (22/24)":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_1) in
+  let x_2 = t_1[a_2] in
+  let x_3 = i_1 + i_2 in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (x_2 <> 0) ->
+  (x_2 <> 255) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (x_3 <= i) ->
+  (0 <= x_3) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  ((-2147483648) <= x_3) ->
+  (x_3 <= 65535) ->
+  (x_3 <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((is_uint16 x_3)) ->
+  ((is_uint8 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  (3 <= x_3)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 853) in 'parse_integer' (24/24) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_post_part24
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 853) in 'parse_integer' (24/24)":
+*)
+goal goal3:
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let x_2 = i_1 + i_2 in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (x_2 <= i) ->
+  (0 <= x_2) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (i_2 <= 1) ->
+  ((-2147483648) <= x_2) ->
+  (x_2 <= 65535) ->
+  (x_2 <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((is_uint16 x_2)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  (3 <= x_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 899) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 899)":
+*)
+goal goal4:
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  ((i_1 + i_2) <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a_1 i_1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 899) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 899)":
+*)
+goal goal5:
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_1) in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (t_1[a_2] = 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  ((i_1 + i_2) <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rd t a_2 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a_1 (1 + i_1))) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 905) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_assert_rte_mem_access_3_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 905) (2/2)":
+*)
+goal goal6:
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_1) in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (t_1[a_2] = 255) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  ((i_1 + i_2) <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rd t a_2 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a_1 (1 + i_1))) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 912) (2/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_assert_rte_unsigned_downcast_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Cbits.Cbits
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 912) (2/5)":
+*)
+goal goal7:
+*)
+goal goal7:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_1) in
+  let x_2 = i_1 + i_2 in
+  let a_3 = (shift_uint8 a_1 (1 + i_1)) in
+  let x_3 = t_1[a_3] in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (t_1[a_2] = 0) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (x_2 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rd t a_2 1)) ->
+  ((is_uint8 x_3)) ->
+  ((bit_test x_3 7)) ->
+  ((valid_rd t a_3 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  (x_2 <= 65535)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 912) (3/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_assert_rte_unsigned_downcast_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Cbits.Cbits
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 912) (3/5)":
+*)
+goal goal8:
+*)
+goal goal8:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_1) in
+  let x_2 = i_1 + i_2 in
+  let a_3 = (shift_uint8 a_1 (1 + i_1)) in
+  let x_3 = t_1[a_3] in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (t_1[a_2] = 255) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (x_2 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rd t a_2 1)) ->
+  ((is_uint8 x_3)) ->
+  (not (bit_test x_3 7)) ->
+  ((valid_rd t a_3 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  (x_2 <= 65535)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 912) (4/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_assert_rte_unsigned_downcast_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 912) (4/5)":
+*)
+goal goal9:
+*)
+goal goal9:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let a_2 = (shift_uint8 a_1 i_1) in
+  let x_2 = t_1[a_2] in
+  let x_3 = i_1 + i_2 in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (x_2 <> 0) ->
+  (x_2 <> 255) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (x_3 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((is_uint8 x_2)) ->
+  ((valid_rd t a_2 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  (x_3 <= 65535)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 912) (5/5) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_integer_assert_rte_unsigned_downcast_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,unsigned_downcast' (file src/x509-parser.c, line 912) (5/5)":
+*)
+goal goal10:
+*)
+goal goal10:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let x_2 = i_1 + i_2 in
+  (i <> 0) ->
+  (i_2 <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (i_2 <= i) ->
+  (x_2 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_1) ->
+  (i_2 <= 1) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((valid_rw t a 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  (x_2 <= 65535)
+
+end
+

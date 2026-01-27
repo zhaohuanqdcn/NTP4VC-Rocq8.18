@@ -1,0 +1,30 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'Strchrnul'                              --- *)
+(* ---------------------------------------------------------- *)
+theory A_Strchrnul
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+function l_strchrnul (map addr int) addr int : addr
+axiom fix_l_strchrnul:
+  forall str_0 : addr.
+  forall mchar_0 : map addr int.
+  forall c : int.
+  let x = mchar_0[str_0] in let a = (l_strchrnul mchar_0 str_0 c) in
+    if (x = c) then (a = str_0)
+    else (if (x = 0) then (a = str_0)
+          else (((l_strchrnul mchar_0 ((shift_sint8 str_0 1)) c)) = a))
+
+use import Cint.Cint
+use import A_Strlen.A_Strlen
+
+end
+

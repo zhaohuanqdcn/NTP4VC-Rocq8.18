@@ -1,0 +1,14 @@
+session sin_cos = NTP4Verif +
+theories
+  "sin_cos_SinCosSingle_cos_square_plus_sine_squareqtvc"
+  "sin_cos_SinCosSingle_r_cos_thetaqtvc"
+  "sin_cos_SinCosSingle_raytracerqtvc"
+  "sin_cos_SinCosSingle_sin_simple_exampleqtvc"
+  "sin_cos_SinCosDouble_raytracerqtvc"
+  "sin_cos_SinCosSingle_cos_and_sine_exampleqtvc"
+  "sin_cos_SinCosSingle_kinematicsqtvc"
+  "sin_cos_SinCosDouble_kinematicsqtvc"
+  "sin_cos_SinCosDouble_cos_simple_exampleqtvc"
+  "sin_cos_SinCosSingle_cos_simple_exampleqtvc"
+  "sin_cos_SinCosDouble_cos_and_sine_exampleqtvc"
+  "sin_cos_SinCosDouble_sin_simple_exampleqtvc"

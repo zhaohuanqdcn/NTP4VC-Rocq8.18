@@ -1,0 +1,7 @@
+session dyck = NTP4Verif +
+theories
+  "dyck_Check_is_dyckqtvc"
+  "dyck_Dyck"
+  "dyck_Dyck_dyck_word_firstqtvc"
+  "dyck_Check_is_dyck_recqtvc"
+  "dyck_Check_same_prefixqtvc"

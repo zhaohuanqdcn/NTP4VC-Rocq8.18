@@ -1,0 +1,134 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file max_seq.h, line 13) in 'max_seq' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmax_seq_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file max_seq.h, line 13) in 'max_seq'":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_1) in
+  let x = t_1[a_1] in
+  (0 < i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (0 <= i_2) ->
+  (i_2 < i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_maxelement t_1 a i i_1)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_1 1)) ->
+  ((p_strictupperbound_2_ t_1 a i_1 x)) ->
+  (t_1[(shift_sint32 a i_2)] <= x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file max_seq.h, line 14) in 'max_seq' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmax_seq_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file max_seq.h, line 14) in 'max_seq'":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i_1) in
+  let x = t_1[a_1] in
+  (0 < i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_maxelement t_1 a i i_1)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_1 1)) ->
+  ((p_strictupperbound_2_ t_1 a i_1 x)) ->
+  (exists i_2 : int. (x = t_1[(shift_sint32 a i_2)]) /\ (0 <= i_2) /\
+   (i_2 < i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file max_seq.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmax_seq_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file max_seq.c, line 7)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a i) in
+  let x = t_1[a_1] in
+  (0 < i_1) ->
+  (0 <= i) ->
+  (i < i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_maxelement t_1 a i_1 i)) ->
+  ((is_sint32 x)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i_1)) ->
+  ((p_strictupperbound_2_ t_1 a i x)) ->
+  ((valid_rd t a_1 1))
+
+end
+

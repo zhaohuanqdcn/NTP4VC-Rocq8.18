@@ -1,0 +1,10 @@
+atoms:
+  int.Fact.fact: [fact, int_Fact.fact]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.int_Fact
+prefix_ops: {}
+types: {}

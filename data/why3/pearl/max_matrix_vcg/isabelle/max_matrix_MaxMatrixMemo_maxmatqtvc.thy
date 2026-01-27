@@ -1,0 +1,77 @@
+theory max_matrix_MaxMatrixMemo_maxmatqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.map_Const" "./max_matrix_Bitset" "./max_matrix_HashTable"
+begin
+typedecl 'a t
+consts contents :: "'a t \<Rightarrow> int \<Rightarrow> 'a"
+consts create :: "'a \<Rightarrow> 'a t"
+axiomatization where create'spec:   "contents (create x) = (const :: 'a \<Rightarrow> int \<Rightarrow> 'a) x"
+  for x :: "'a"
+consts mixfix_lbrb :: "'a t \<Rightarrow> int \<Rightarrow> 'a"
+axiomatization where mixfix_lbrb'spec:   "mixfix_lbrb m k = contents m k"
+  for m :: "'a t"
+  and k :: "int"
+consts mixfix_lblsmnrb :: "'a t \<Rightarrow> int \<Rightarrow> 'a \<Rightarrow> 'a t"
+axiomatization where mixfix_lblsmnrb'spec:   "contents (mixfix_lblsmnrb m k v) = (contents m)(k := v)"
+  for m :: "'a t"
+  and k :: "int"
+  and v :: "'a"
+consts n :: "int"
+axiomatization where n'def'0:   "(0 :: int) \<le> n"
+axiomatization where n'def'1:   "n \<le> max_matrix_Bitset.size"
+consts m :: "int t t"
+axiomatization where m'def:   "(0 :: int) \<le> mixfix_lbrb (mixfix_lbrb m i) j"
+ if "(0 :: int) \<le> i"
+ and "i < n"
+ and "(0 :: int) \<le> j"
+ and "j < n"
+  for i :: "int"
+  and j :: "int"
+typedecl  mapii
+definition solution :: "(int \<Rightarrow> int) \<Rightarrow> int \<Rightarrow> _"
+  where "solution s i \<longleftrightarrow> (\<forall>(k :: int). i \<le> k \<and> k < n \<longrightarrow> (0 :: int) \<le> s k \<and> s k < n) \<and> (\<forall>(k1 :: int) (k2 :: int). i \<le> k1 \<and> k1 < k2 \<and> k2 < n \<longrightarrow> \<not>s k1 = s k2)" for s i
+definition f :: "(int \<Rightarrow> int) \<Rightarrow> int \<Rightarrow> int"
+  where "f s i = mixfix_lbrb (mixfix_lbrb m i) (s i)" for s i
+consts sum :: "(int \<Rightarrow> int) \<Rightarrow> int \<Rightarrow> int \<Rightarrow> int"
+axiomatization where Sum_def_empty:   "sum c i j = (0 :: int)"
+ if "j \<le> i"
+  for j :: "int"
+  and i :: "int"
+  and c :: "int \<Rightarrow> int"
+axiomatization where Sum_def_non_empty:   "sum c i j = f c i + sum c (i + (1 :: int)) j"
+ if "i < j"
+  for i :: "int"
+  and j :: "int"
+  and c :: "int \<Rightarrow> int"
+axiomatization where Sum_right_extension:   "sum c i j = sum c i (j - (1 :: int)) + f c (j - (1 :: int))"
+ if "i < j"
+  for i :: "int"
+  and j :: "int"
+  and c :: "int \<Rightarrow> int"
+axiomatization where Sum_transitivity:   "sum c i j = sum c i k + sum c k j"
+ if "i \<le> k"
+ and "k \<le> j"
+  for i :: "int"
+  and k :: "int"
+  and j :: "int"
+  and c :: "int \<Rightarrow> int"
+axiomatization where Sum_eq:   "sum c1 i j = sum c2 i j"
+ if "\<forall>(k :: int). i \<le> k \<and> k < j \<longrightarrow> f c1 k = f c2 k"
+  for i :: "int"
+  and j :: "int"
+  and c1 :: "int \<Rightarrow> int"
+  and c2 :: "int \<Rightarrow> int"
+typedecl  key
+typedecl  "value"
+definition pre :: "int \<times> max_matrix_Bitset.set \<Rightarrow> _"
+  where "pre k \<longleftrightarrow> (case k of (i, c) \<Rightarrow> ((0 :: int) \<le> i \<and> i \<le> n) \<and> cardinal c = n - i \<and> (\<forall>(k1 :: int). mem k1 c \<longrightarrow> (0 :: int) \<le> k1 \<and> k1 < n))" for k
+definition post :: "int \<times> max_matrix_Bitset.set \<Rightarrow> int \<times> int t \<Rightarrow> _"
+  where "post k v \<longleftrightarrow> (case k of (i, c) \<Rightarrow> (case v of (r, sol) \<Rightarrow> (0 :: int) \<le> r \<and> solution (contents sol) i \<and> (\<forall>(k1 :: int). i \<le> k1 \<and> k1 < n \<longrightarrow> mem (mixfix_lbrb sol k1) c) \<and> r = sum (contents sol) i n \<and> (\<forall>(s :: int \<Rightarrow> int). solution s i \<longrightarrow> (\<forall>(k1 :: int). i \<le> k1 \<and> k1 < n \<longrightarrow> mem (s k1) c) \<longrightarrow> sum s i n \<le> r)))" for k v
+typedecl  table
+definition inv :: "(int \<times> max_matrix_Bitset.set, int \<times> int t) max_matrix_HashTable.t \<Rightarrow> _"
+  where "inv t1 \<longleftrightarrow> (\<forall>(k :: int \<times> max_matrix_Bitset.set) (v :: int \<times> int t). max_matrix_HashTable.mixfix_lbrb t1 k = Some v \<longrightarrow> post k v)" for t1
+theorem maxmat'vc:
+  fixes table1 :: "(int \<times> max_matrix_Bitset.set, int \<times> int t) max_matrix_HashTable.t"
+  assumes fact0: "\<forall>(k :: int \<times> max_matrix_Bitset.set). max_matrix_HashTable.mixfix_lbrb table1 k = None"
+  shows "let o1 :: int = n in ((0 :: int) \<le> o1 \<and> o1 \<le> max_matrix_Bitset.size) \<and> (let o2 :: max_matrix_Bitset.set = below o1 in (\<forall>(x :: int). mem x o2 \<longleftrightarrow> (0 :: int) \<le> x \<and> x < o1) \<longrightarrow> (pre (0 :: int, o2) \<and> inv table1) \<and> (\<forall>(table2 :: (int \<times> max_matrix_Bitset.set, int \<times> int t) max_matrix_HashTable.t) (o3 :: int) (o4 :: int t). post (0 :: int, o2) (o3, o4) \<and> inv table2 \<longrightarrow> (\<exists>(s :: int \<Rightarrow> int). solution s (0 :: int) \<and> o3 = sum s (0 :: int) n) \<and> (\<forall>(s :: int \<Rightarrow> int). solution s (0 :: int) \<longrightarrow> sum s (0 :: int) n \<le> o3)))"
+  sorry
+end

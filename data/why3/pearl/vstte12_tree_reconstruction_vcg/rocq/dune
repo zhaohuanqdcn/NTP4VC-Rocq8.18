@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name vstte12_tree_reconstruction_vcg)
+(theories Why3 vstte12_tree_reconstruction_vcg.vstte12_tree_reconstruction))

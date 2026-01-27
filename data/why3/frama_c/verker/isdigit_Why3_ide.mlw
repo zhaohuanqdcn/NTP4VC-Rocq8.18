@@ -1,0 +1,29 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/ctype.h, line 99) in 'isdigit' --- *)
+(* ---------------------------------------------------------- *)
+theory VCisdigit_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Post-condition (file src/ctype.h, line 99) in 'isdigit'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  (if (48 <= i_1) then (if (i_1 <= 57) then (i = 1) else (i = 0))
+   else (i = 0)) ->
+  (((p_isdigit i_1)) <-> (i <> 0))
+
+end
+

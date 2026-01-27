@@ -1,0 +1,152 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/check_bytes8.h, line 24) in 'check_bytes8_0'' in 'memchr_inv' at call 'check_bytes8_0' (file src/memchr_inv.c, line 13)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemchr_inv_call_check_bytes8_0_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/check_bytes8.h, line 24) in 'check_bytes8_0'' in 'memchr_inv' at call 'check_bytes8_0' (file src/memchr_inv.c, line 13)
+":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  (((region (a_1.base))) <= 0) ->
+  (i <= 16) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) ((to_uint32 i))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/check_bytes8.h, line 24) in 'check_bytes8_0'' in 'memchr_inv' at call 'check_bytes8_0' (file src/memchr_inv.c, line 32)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemchr_inv_call_check_bytes8_0_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/check_bytes8.h, line 24) in 'check_bytes8_0'' in 'memchr_inv' at call 'check_bytes8_0' (file src/memchr_inv.c, line 32)
+":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = (to_uint32 ((mod ((int_of_addr a_1)) 8))) in
+  (x <> 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (17 <= i) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((valid_rd t ((shift_uint8 a 0)) ((to_uint32 (8 - x)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/check_bytes8.h, line 24) in 'check_bytes8_0'' in 'memchr_inv' at call 'check_bytes8_0' (file src/memchr_inv.c, line 43)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemchr_inv_call_check_bytes8_0_pre_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/check_bytes8.h, line 24) in 'check_bytes8_0'' in 'memchr_inv' at call 'check_bytes8_0' (file src/memchr_inv.c, line 43)
+":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t_1 t : map int int.
+  forall t_2 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = t_2[a] in
+  (i <> 0) ->
+  (x <> i_1) ->
+  (((to_uint32 ((mod ((int_of_addr a_2)) 8)))) = 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (17 <= i_2) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint64 i_1)) ->
+  ((is_uint64 i_2)) ->
+  ((is_uint64 x)) ->
+  ((valid_rw t ((shift_sint8 a_2 0)) i_2)) ->
+  ((valid_rd t_1 ((shift_uint8 a_1 0)) 8))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/check_bytes8.h, line 24) in 'check_bytes8_0'' in 'memchr_inv' at call 'check_bytes8_0' (file src/memchr_inv.c, line 48)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemchr_inv_call_check_bytes8_0_pre_4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/check_bytes8.h, line 24) in 'check_bytes8_0'' in 'memchr_inv' at call 'check_bytes8_0' (file src/memchr_inv.c, line 48)
+":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t_1 t : map int int.
+  forall a_1 a : addr.
+  (((to_uint32 ((mod ((int_of_addr a_1)) 8)))) = 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (17 <= i) ->
+  ((linked t)) ->
+  ((is_uint64 i)) ->
+  ((is_uint64 i_1)) ->
+  ((valid_rw t ((shift_sint8 a_1 0)) i)) ->
+  ((valid_rd t_1 ((shift_uint8 a 0)) ((to_uint32 ((mod i_1 8))))))
+
+end
+

@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name ropes_vcg.ropes)
+(theories Why3))

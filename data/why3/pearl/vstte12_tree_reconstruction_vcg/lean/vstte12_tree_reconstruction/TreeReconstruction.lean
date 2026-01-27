@@ -1,0 +1,6 @@
+import Why3.Base
+import pearl.vstte12_tree_reconstruction_vcg.lean.vstte12_tree_reconstruction.Tree
+open Classical
+open Lean4Why3
+namespace TreeReconstruction
+end TreeReconstruction

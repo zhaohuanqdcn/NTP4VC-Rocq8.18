@@ -1,0 +1,16 @@
+atoms:
+  mach.fxp.Fxp.fxp'eq: [fxp'eq, fxp_Fxp.fxp'eq]
+  mach.fxp.Fxp.iexp: [iexp, fxp_Fxp.iexp]
+  mach.fxp.Fxp.ival: [ival, fxp_Fxp.ival]
+  mach.fxp.Fxp.pow2: [pow2, fxp_Fxp.pow2]
+  mach.fxp.Fxp.rval: [rval, fxp_Fxp.rval]
+  mach.fxp.Fxp.trunc_at: [trunc_at, fxp_Fxp.trunc_at]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: mach.fxp_Fxp
+prefix_ops: {}
+types:
+  mach.fxp.Fxp.fxp: [fxp, fxp_Fxp.fxp]

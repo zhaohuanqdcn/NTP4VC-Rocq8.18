@@ -1,0 +1,29 @@
+(* non-negative integers. For mutual induction using size variant. *)
+
+module Nat
+
+  use int.Int
+
+  type nat = ONat | SNat nat
+
+  function nat_to_int (n:nat) : int = match n with
+    | ONat -> 0 | SNat n -> 1 + nat_to_int n end
+
+  function add_nat (n1 n2:nat) : nat = match n1 with
+    | ONat -> n2 | SNat n1 -> SNat (add_nat n1 n2) end
+
+  let ghost nat_to_int_nonnegative (n:nat) : unit
+    ensures { nat_to_int n >= 0 }
+  = ()
+
+  let ghost add_nat_simulate_add_int (n1 n2:nat) : unit
+    ensures { nat_to_int (add_nat n1 n2) = nat_to_int n1 + nat_to_int n2 }
+  = ()
+
+  constant one_nat : nat = SNat ONat
+
+  let ghost one_nat_value () : unit
+    ensures { nat_to_int one_nat = 1 }
+  = ()
+
+end

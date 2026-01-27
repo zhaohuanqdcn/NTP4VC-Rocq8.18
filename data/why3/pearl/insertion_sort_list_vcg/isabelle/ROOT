@@ -1,0 +1,5 @@
+session insertion_sort_list = NTP4Verif +
+theories
+  "insertion_sort_list_InsertionSort_insertqtvc"
+  "insertion_sort_list_InsertionSort_insertion_sortqtvc"
+  "insertion_sort_list_InsertionSort_Trans"

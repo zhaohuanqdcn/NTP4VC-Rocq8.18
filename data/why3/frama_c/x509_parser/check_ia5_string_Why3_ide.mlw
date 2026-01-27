@@ -1,0 +1,97 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file src/x509-parser.c, line 3032) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_ia5_string_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Preservation of Invariant (file src/x509-parser.c, line 3032)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_1) in
+  let x = t_1[a_1] in
+  (i <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (i_1 < i) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  ((-1) <= i_1) ->
+  (i_1 <= 65534) ->
+  (i_1 <= 2147483646) ->
+  (x <= 127) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 (1 + i_1))) ->
+  ((is_uint8 x)) ->
+  ((valid_rd t a_1 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  (forall i_3 : int. (0 <= i_3) -> (i_3 < i_1) ->
+   (t_1[(shift_uint8 a i_3)] <= 127)) ->
+  (t_1[(shift_uint8 a i_2)] <= 127)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 3038) --- *)
+(* ---------------------------------------------------------- *)
+theory VCcheck_ia5_string_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 3038)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_1) in
+  (i <> 0) ->
+  (null <> a) ->
+  (0 <= i) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint8 t_1[a_1])) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  (forall i_2 : int. (0 <= i_2) -> (i_2 < i_1) ->
+   (t_1[(shift_uint8 a i_2)] <= 127)) ->
+  ((valid_rd t a_1 1))
+
+end
+

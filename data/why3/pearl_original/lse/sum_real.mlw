@@ -1,0 +1,62 @@
+(*
+
+module Extras
+
+  use real.RealInfix
+  use real.Abs
+
+  let ghost err_compose (x x' x'' a b:real)
+    requires { 0. <=. a }
+    requires {
+      abs (x'' -. x') <=. abs x' *. a /\
+      abs (x' -. x) <=. b /\
+      abs x' <=. abs x +. b
+    }
+    ensures {
+      abs (x'' -. x) <=. a *. abs x +. b *. (1. +. a)
+    }
+  = assert { abs x' <=. abs x +. abs b }
+
+end
+
+*)
+
+module Sum
+
+  use int.Int
+  use real.RealInfix
+
+  let rec function sum (f: int -> real) (a b: int) : real
+    variant { b - a }
+  = if (b <= a) then 0.0 else sum f a (b - 1) +. f (b - 1)
+
+
+  use real.Abs
+
+  function abs_fun (f:int -> real) : int -> real = fun i -> abs (f i)
+
+  (* lemma on sum of absolute values *)
+  let rec ghost sum_abs (f g: int -> real) (a b: int)
+    variant { b - a }
+    requires { a <= b }
+    requires { forall i. a <= i < b -> g i = abs (f i) }
+    ensures { abs (sum f a b) <=. sum g a b }
+  = if a < b then sum_abs f g a (b - 1)
+
+  let rec ghost sum_strictly_pos (f: int -> real) (a b:int)
+    variant { b - a }
+    requires { a < b }
+    requires { forall i. a <= i < b -> 0. <. f i }
+    ensures { 0. <. sum f a b }
+  = if a < b-1 then sum_strictly_pos f a (b - 1)
+
+  use real.FromInt
+
+  let rec ghost sum_bounds (min max:real) (f:int -> real) (a b:int)
+    requires { a <= b /\ forall i. a <= i < b -> min <=. f i <=. max }
+    variant { b - a }
+    ensures { from_int (b-a) *. min <=. sum f a b <=. from_int (b-a) *. max }
+  = if (a < b) then sum_bounds min max f a (b - 1)
+
+
+end

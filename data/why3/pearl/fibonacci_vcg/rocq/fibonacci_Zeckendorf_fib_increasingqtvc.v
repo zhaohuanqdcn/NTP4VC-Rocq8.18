@@ -1,0 +1,36 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.why3.Ref.Ref.
+Require Import Why3.int.Fibonacci.
+Require Import fibonacci_vcg.fibonacci.SmallestFibAbove.
+Open Scope Z_scope.
+Program Fixpoint sum (l : list Z) : Z :=
+match l with | [] => 0%Z | cons k r => fib k + sum r end.
+Admit Obligations.
+Program Fixpoint wf (min : Z) (l : list Z) : Prop :=
+match l with | [] => True | cons k r => min ≤ k ∧ wf (k + 2%Z) r end.
+Admit Obligations.
+Theorem fib_increasing'vc (k1 : Z) (k2 : Z) (fact0 : 0%Z ≤ k1) (fact1 : k1 ≤ k2) : fib k1 ≤ fib k2.
+Admitted.

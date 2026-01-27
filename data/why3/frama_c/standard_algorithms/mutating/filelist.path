@@ -1,0 +1,13 @@
+fill
+swap
+swap_ranges
+copy
+copy_backward
+reverse_copy
+reverse
+rotate_copy
+rotate
+replace_copy
+replace
+remove_copy
+random_shuffle

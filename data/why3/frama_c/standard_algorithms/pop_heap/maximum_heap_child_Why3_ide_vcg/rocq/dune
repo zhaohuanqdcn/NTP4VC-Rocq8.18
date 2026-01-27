@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.pop_heap.maximum_heap_child_Why3_ide_vcg)
+(theories Why3 Why3.Cint Why3.Memory pop_heap.Compound Why3.Qed pop_heap.Axiomatic pop_heap.A_Count pop_heap.Axiomatic1))

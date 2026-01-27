@@ -1,0 +1,6 @@
+session bvsum = NTP4Verif +
+theories
+  "bvsum_PureBV_g"
+  "bvsum_PureBV_add_bvqtvc"
+  "bvsum_Mixed_add_bv_intqtvc"
+  "bvsum_Mixed_add_bvqtvc"

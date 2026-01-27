@@ -1,0 +1,10 @@
+theory binary_search_BinarySearchBranchless_binary_searchqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref"
+begin
+theorem binary_search'vc:
+  fixes a :: "int list"
+  fixes v :: "int"
+  assumes fact0: "\<forall>(i1 :: int) (i2 :: int). (0 :: int) \<le> i1 \<and> i1 \<le> i2 \<and> i2 < int (length a) \<longrightarrow> a ! nat i1 \<le> a ! nat i2"
+  shows "let o1 :: int = int (length a) in if o1 = (0 :: int) then \<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> \<not>a ! nat i = v else (((0 :: int) \<le> (0 :: int) \<and> (0 :: int) + o1 \<le> int (length a) \<and> (1 :: int) \<le> o1) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> a ! nat i = v \<longrightarrow> a ! (0 :: nat) \<le> v \<and> i < (0 :: int) + o1)) \<and> (\<forall>(s :: int) (l :: int). ((0 :: int) \<le> l \<and> l + s \<le> int (length a) \<and> (1 :: int) \<le> s) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> a ! nat i = v \<longrightarrow> a ! nat l \<le> v \<and> i < l + s) \<longrightarrow> (if (1 :: int) < s then \<not>(2 :: int) = (0 :: int) \<and> (let h :: int = s cdiv (2 :: int); m :: int = l + h in ((0 :: int) \<le> m \<and> m < int (length a)) \<and> (\<forall>(o2 :: int). (if v < a ! nat m then o2 = l else o2 = m) \<longrightarrow> ((0 :: int) \<le> s \<and> s - h < s) \<and> ((0 :: int) \<le> o2 \<and> o2 + (s - h) \<le> int (length a) \<and> (1 :: int) \<le> s - h) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> a ! nat i = v \<longrightarrow> a ! nat o2 \<le> v \<and> i < o2 + (s - h)))) else ((0 :: int) \<le> l \<and> l < int (length a)) \<and> (if a ! nat l = v then (((0 :: int) \<le> l \<and> l < int (length a)) \<and> a ! nat l = v) \<and> (\<forall>(i :: int). l < i \<and> i < int (length a) \<longrightarrow> \<not>a ! nat i = v) else \<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> \<not>a ! nat i = v)))"
+  sorry
+end

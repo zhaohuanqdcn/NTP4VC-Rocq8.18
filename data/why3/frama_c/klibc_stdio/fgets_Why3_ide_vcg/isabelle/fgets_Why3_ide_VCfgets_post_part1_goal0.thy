@@ -1,0 +1,32 @@
+theory fgets_Why3_ide_VCfgets_post_part1_goal0
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "../../lib/isabelle/Compound_Compound" "Why3STD.Cint_Cint" "../../lib/isabelle/Axiomatic3_Axiomatic3"
+begin
+theorem goal0:
+  fixes a_2 :: "addr"
+  fixes a_13 :: "addr"
+  fixes a_14 :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes a_5 :: "addr"
+  fixes t_2 :: "addr \<Rightarrow> int"
+  fixes a_4 :: "addr"
+  fixes a_6 :: "addr"
+  fixes a_7 :: "addr"
+  fixes a_10 :: "addr"
+  fixes t_4 :: "addr \<Rightarrow> int"
+  fixes t_6 :: "addr \<Rightarrow> addr"
+  fixes a_11 :: "addr"
+  fixes i_1 :: "int"
+  fixes a :: "addr"
+  fixes a_15 :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes t_3 :: "addr \<Rightarrow> int"
+  fixes i :: "int"
+  fixes a_1 :: "addr"
+  fixes a_3 :: "addr"
+  fixes a_12 :: "addr"
+  fixes t_5 :: "addr \<Rightarrow> addr"
+  fixes a_9 :: "addr"
+  fixes a_8 :: "addr"
+  shows "let a_16 :: addr = shift a_2 (0 :: int); a_17 :: addr = shift a_13 (0 :: int); x :: int = base a_14; x_1 :: int = t_1 (shift a_5 (7 :: int)); x_2 :: int = t_2 (shift a_4 (7 :: int)); x_3 :: int = t_2 (shift a_6 (7 :: int)); x_4 :: int = t_2 (shift a_7 (7 :: int)); x_5 :: int = t_2 (shift a_10 (7 :: int)); x_6 :: int = t_4 (t_6 (shift a_11 (6 :: int))) in \<not>i_1 = (0 :: int) \<longrightarrow> \<not>a_16 = Mk_addr (0 :: int) (0 :: int) \<longrightarrow> a_16 = shift a (0 :: int) \<longrightarrow> \<not>a_17 = Mk_addr (0 :: int) (0 :: int) \<longrightarrow> a_17 = a_16 \<longrightarrow> base a_15 = x \<longrightarrow> region (base a_13) \<le> (0 :: int) \<longrightarrow> region x \<le> (0 :: int) \<longrightarrow> (2 :: int) \<le> i_1 \<longrightarrow> framed t_6 \<longrightarrow> linked t \<longrightarrow> sconst t_3 \<longrightarrow> is_sint32 i \<longrightarrow> is_sint32 i_1 \<longrightarrow> addr_le a_15 a_14 \<longrightarrow> is_uint32 x_1 \<longrightarrow> is_uint32 x_2 \<longrightarrow> is_uint32 x_3 \<longrightarrow> is_uint32 x_4 \<longrightarrow> is_uint32 x_5 \<longrightarrow> p_valid_io_file_pvt t t_6 t_2 a_1 \<longrightarrow> p_valid_io_file_pvt t t_6 t_2 a_3 \<longrightarrow> p_valid_io_file_pvt t t_6 t_2 a_12 \<longrightarrow> addr_le a_14 (shift a_15 i) \<longrightarrow> is_sint8 x_6 \<longrightarrow> p_valid_file t t_2 a_16 \<longrightarrow> ((0 :: int) < x_5 \<longrightarrow> x_6 = -(1 :: int)) \<longrightarrow> ((0 :: int) < x_4 \<longrightarrow> t_5 (shift a_9 (6 :: int)) = shift (t_6 (shift a_8 (6 :: int))) (1 :: int)) \<longrightarrow> ((0 :: int) < x_2 \<longrightarrow> x_3 = (1 :: int) + x_1) \<longrightarrow> Mk_addr (0 :: int) (0 :: int) = a_14"
+  sorry
+end

@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name airborne.float_rates_of_euler_dot.float_rates_of_euler_dot_Why3_ide_vcg)
+(theories float_rates_of_euler_dot.Axiomatic15 Why3.Memory Why3.Cfloat Why3.Qed Why3.Square Why3.Cmath float_rates_of_euler_dot.Compound Why3))

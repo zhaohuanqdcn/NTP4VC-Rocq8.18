@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name vstte12_bfs_vcg)
+(theories Why3 vstte12_bfs_vcg.vstte12_bfs Why3.why3.Ref))

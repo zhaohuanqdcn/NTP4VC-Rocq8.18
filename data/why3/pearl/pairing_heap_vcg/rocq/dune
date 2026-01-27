@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name pairing_heap_vcg)
+(theories Why3 pairing_heap_vcg.pairing_heap))

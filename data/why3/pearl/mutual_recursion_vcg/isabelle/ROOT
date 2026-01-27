@@ -1,0 +1,6 @@
+session mutual_recursion = NTP4Verif +
+theories
+  "mutual_recursion_Top_f2qtvc"
+  "mutual_recursion_Top_mqtvc"
+  "mutual_recursion_Top_f1qtvc"
+  "mutual_recursion_Top_fqtvc"

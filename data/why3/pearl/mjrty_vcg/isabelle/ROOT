@@ -1,0 +1,6 @@
+session mjrty = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "mjrty_Mjrty"
+  "mjrty_Mjrty_mjrtyqtvc"

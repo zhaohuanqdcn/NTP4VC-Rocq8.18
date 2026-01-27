@@ -1,0 +1,343 @@
+(** {1 Kleene Algebra Definition and Relational Kleene Algebra }
+
+Author: Quentin Garchery (Université Paris-Saclay)
+*)
+
+module SemiRing
+
+  use int.Int
+
+  type t
+  constant zero : t
+  constant one : t
+  function (+) t t : t
+  function (*) t t : t
+
+  clone export algebra.CommutativeMonoid with type t = t, constant unit = zero,
+  function op = (+), axiom .
+
+  clone algebra.Monoid with type t = t, constant unit = one,
+  function op = (*), axiom .
+
+  axiom Mul_zero_l : forall x. zero * x = zero
+  axiom Mul_zero_r : forall x. x * zero = zero
+
+  axiom Mul_distr_l : forall x y z : t. x * (y + z) = x * y + x * z
+  axiom Mul_distr_r : forall x y z : t. (y + z) * x = y * x + z * x
+
+  let rec ghost function (^) (x : t) (n : int) : t
+    requires { n >= 0 }
+    variant { n }
+  =
+    if n = 0 then pure{one} else let r = x ^ (n-1) in pure {x * r}
+
+  clone int.Exponentiation with type t = t, constant one = one,
+  function (*) = (*), function power = (^), lemma .
+end
+
+
+module Dioid
+
+  clone export SemiRing with axiom .
+
+  axiom Idem : forall x : t. x + x = x
+
+  predicate (<=) (x : t) (y : t) = x + y = y
+
+  let ghost le_refl (x: t) : unit
+    ensures { x <= x }
+  = ()
+
+  let ghost le_antisym (x y: t) : unit
+    requires { x <= y }
+    requires { y <= x }
+    ensures { x = y }
+  = ()
+
+  let ghost le_trans (x y z: t) : unit
+    requires { x <= y }
+    requires { y <= z }
+    ensures { x <= z }
+  = ()
+
+  let ghost zero_le (x: t) : unit
+    ensures { zero <= x }
+  = ()
+
+  let ghost le_compat_add (x y z: t) : unit
+    requires { x <= y }
+    ensures { x + z <= y + z }
+  = ()
+
+  let ghost le_add (x y: t) : unit
+    ensures { x <= x + y }
+  = ()
+
+  let ghost le_add_le (x y z: t) : unit
+    requires { x <= z }
+    requires { y <= z }
+    ensures { x + y <= z }
+  = ()
+
+  let ghost add_le (x y z: t) : unit
+    requires { x + y <= z }
+    ensures { x <= z }
+  = ()
+
+  let ghost le_compat_add_left (x y z: t) : unit
+    requires { x <= y }
+    ensures { z * x <= z * y }
+  = ()
+
+  let ghost le_compat_add_right (x y z: t) : unit
+    requires { x <= y }
+    ensures { x * z <= y * z }
+  = ()
+end
+
+
+module KleeneAlgebra
+
+  use int.Int
+
+  clone export Dioid with axiom .
+
+  (* We denote x^* as !x *)
+  function (!_) t : t
+
+  axiom Star_unfold_left : forall x. one + x * !x <= !x
+
+  axiom Star_unfold_right : forall x. one + !x * x <= !x
+
+  axiom Star_induct_left : forall x y z. z + x * y <= y -> !x * z <= y
+
+  axiom Star_induct_right : forall x y z. z + y * x <= y -> z * !x <= y
+
+  let ghost one_le_star (x: t) : unit
+    ensures { one <= !x }
+  = ()
+
+  let ghost mul_var_le_star (x: t) : unit
+    ensures { x * !x <= !x }
+  = ()
+
+  let ghost var_mul_le_star (x: t) : unit
+    ensures { !x * x <= !x }
+  = ()
+
+  let ghost power_le_star (i: int) (x: t) : unit
+    requires { i >= 0 }
+    ensures { x ^ i <= !x }
+  = ()
+
+  let ghost star_mul_star (x: t) : unit
+    ensures { !x * !x = !x }
+  = ()
+
+  let ghost star_star (x: t) : unit
+    ensures { !(!x) = !x }
+  = ()
+
+  let ghost star_unfold_left (x: t) : unit
+    ensures { one + x * !x = !x }
+  = ()
+
+  let ghost star_unfold_right (x: t) : unit
+    ensures { one + !x * x = !x }
+  = ()
+
+  let ghost star_le (x y: t) : unit
+    requires { x <= y }
+    ensures { !x <= !y }
+  = ()
+
+  let ghost le_star_left_right (x y z: t) : unit
+    requires { z * x <= y * z }
+    ensures { z * !x <= !y * z }
+  = ()
+
+  let ghost le_star_right_left (x y z: t) : unit
+    requires { x * z <= z * y }
+    ensures { !x * z <= z * !y }
+  = ()
+
+  let ghost slide_left (x y: t) : unit
+    ensures { !(x + y) = !x * !(y * !x) }
+  = ()
+
+  let ghost slide_right (x y: t) : unit
+    ensures { !(x + y) = !(!x * y) * !x }
+  = ()
+
+  (** Conway's equality: a way to cut x^* in slices of size x^n *)
+
+  let rec ghost function sum_pow (x : t) (a b: int) : t
+    requires { b >= a >= 0 }
+    variant { b - a }
+  = if b = a then pure{zero} else
+    let m1 = sum_pow x a (b - 1) in
+    let m2 = x ^ (b - 1) in
+    pure {m1 + m2}
+
+  let ghost sum_pow_left (x: t) (a b: int) : unit
+    requires { b > a >= 0 }
+    ensures { sum_pow x a b = x^a + sum_pow x (Int.(+) a 1) b }
+  = ()
+
+  let ghost mul_sum_pow (x: t) (a b: int) : unit
+    requires { b >= a >= 0 }
+    ensures { sum_pow x a b * x = sum_pow x (Int.(+) a 1) (Int.(+) b 1) }
+  = ()
+
+  let ghost sum_pow_le_star (x: t) (a b: int) : unit
+    requires { b >= a >= 0 }
+    ensures { sum_pow x a b <= !x }
+  = ()
+
+  let ghost conway_equality (x: t) (n: int) : unit
+    requires { n >= 1 }
+    ensures { !x = !(x^n) * sum_pow x 0 n }
+  = ()
+end
+
+
+module RelAlgebra
+
+  use int.Int
+
+  use set.Set
+
+  (* Relational Algebra: sets of pairs of the same type *)
+
+  type a
+
+  type t = set (a, a)
+
+  (** Specify zero, one, +, * and ! in terms of membership *)
+
+  constant zero : t = empty
+  let ghost zero_def (x: (a, a)) : unit
+    ensures { not mem x zero }
+  = ()
+
+  constant one : t = map (fun a -> (a, a)) all
+  let ghost one_def (x : a) : unit
+    ensures { mem (x, x) one }
+  = ()
+
+  let ghost function post (s : t) (x : a)
+    ensures { forall y. mem y result <-> mem (x, y) s }
+  =
+    map (fun p -> let (_, a2) = p in a2)
+    (filter s (fun p -> let (a1, _) = p in pure{a1 = x}))
+
+  let ghost function pre (s : t) (y : a)
+    ensures { forall x. mem x result <-> mem (x, y) s }
+  =
+    map (fun p -> let (a1, _) = p in a1)
+    (filter s (fun p -> let (_, a2) = p in pure {a2 = y}))
+
+  let ghost function (+) (s1 s2 : t)
+    ensures { forall x. mem x result <-> mem x s1 \/ mem x s2 }
+  =
+    union s1 s2
+
+  let ghost function (*) (s1 s2 : t)
+    ensures { forall a1 a2. mem (a1, a2) result <->
+                            exists x. mem (a1, x) s1 /\ mem (x, a2) s2 }
+  =
+    filter all
+    (fun p -> let (a1, a2) = p in
+    not (disjoint (post s1 a1) (pre s2 a2)))
+
+  let ghost unit_l (x: t) : unit
+    ensures { one * x = x }
+  = ()
+
+  let ghost unit_r (x: t) : unit
+    ensures { x * one = x }
+  = ()
+
+  let ghost assoc_mul (x y z: t) : unit
+    ensures { x * y * z = x * (y * z) }
+  = ()
+
+  clone Dioid with type t = t, constant zero = zero,
+  constant one = one, function (+) = (+), function (*) = (*), lemma .
+
+  let ghost le_mem (x y: t) : unit
+    ensures { x <= y <-> forall u. mem u x -> mem u y }
+  = ()
+
+  inductive in_star t (a, a) =
+   | Star_0 : forall x s. in_star s (x, x)
+   | Star_s : forall x y z s. in_star s (x, y) -> mem (y, z) s -> in_star s (x, z)
+
+  let ghost function (!_) (s : t) =
+      filter all (in_star s)
+
+  let ghost power_in_star (s : t) (i: int) (p : (a, a)) : unit
+    requires { i >= 0 }
+    requires { mem p (s ^ i) }
+    ensures { mem p !s }
+  = ()
+
+  let ghost star_in_power (s: t) (x y: a) : unit
+    requires { in_star s (x, y) }
+    ensures { exists i. i >= 0 /\ mem (x, y) (s ^ i) }
+  = ()
+
+  let ghost star_spec (s : t) (p : (a, a)) : unit
+    ensures { mem p !s <-> exists i. i >= 0 /\ mem p (s ^ i) }
+  = ()
+
+  let ghost star_unfold_l (x: t) (u: (a, a)) : unit
+    requires { mem u (one + x * !x) }
+    ensures { mem u !x }
+  = ()
+
+  let ghost star_unfold_r (x: t) (u: (a, a)) : unit
+    requires { mem u (one + !x * x) }
+    ensures { mem u !x }
+  = ()
+
+  let ghost star_induct_left_ind (x y z: t) (i: int) : unit
+    requires { i >= 0 }
+    requires { z + x * y <= y }
+    ensures { x^i * z <= y }
+  = ()
+
+  let ghost star_induct_left_lem (x y z: t) (i: int) : unit
+    requires { i >= 0 }
+    requires { z + x * y <= y }
+    ensures { forall u. mem u (x^i * z) -> mem u y }
+  = ()
+
+  let ghost star_induct_left (x y z: t) : unit
+    requires { z + x * y <= y }
+    ensures { !x * z <= y }
+  = ()
+
+  let ghost star_induct_right_ind (x y z: t) (i: int) : unit
+    requires { i >= 0 }
+    requires { z + y * x <= y }
+    ensures { z * x^i <= y }
+  = ()
+
+  let ghost star_induct_right_lem (x y z: t) (i: int) : unit
+    requires { i >= 0 }
+    requires { z + y * x <= y }
+    ensures { forall u. mem u (z * x^i) -> mem u y }
+  = ()
+
+  let ghost star_induct_right (x y z: t) : unit
+    requires { z + y * x <= y }
+    ensures { z * !x <= y }
+  = ()
+
+  (** Prove that this forms a Kleene Algebra *)
+
+  clone KleeneAlgebra with type t = t, constant zero = zero,
+  constant one = one, function (+) = (+), function (*) = (*),
+  function (!_) = (!_), lemma .
+end

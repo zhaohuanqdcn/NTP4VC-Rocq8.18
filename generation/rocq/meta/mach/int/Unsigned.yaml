@@ -1,0 +1,19 @@
+atoms:
+  mach.int.Unsigned.in_bounds: [in_bounds, Unsigned.in_bounds]
+  mach.int.Unsigned.max: [max, Unsigned.max]
+  mach.int.Unsigned.radix: [radix, Unsigned.radix]
+  mach.int.Unsigned.to_int: [to_int, Unsigned.to_int]
+  mach.int.Unsigned.zero_unsigned: [zero_unsigned, Unsigned.zero_unsigned]
+axioms:
+  mach.int.Unsigned.extensionality: [extensionality, Unsigned.extensionality]
+  mach.int.Unsigned.radix_def: [radix_def, Unsigned.radix_def]
+  mach.int.Unsigned.to_int_in_bounds: [to_int_in_bounds, Unsigned.to_int_in_bounds]
+  mach.int.Unsigned.zero_unsigned_is_zero: [zero_unsigned_is_zero, Unsigned.zero_unsigned_is_zero]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.mach.int.Unsigned
+prefix_ops: {}
+types:
+  mach.int.Unsigned.t: [t, Unsigned.t]

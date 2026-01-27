@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name unraveling_a_card_trick_vcg.unraveling_a_card_trick)
+(theories Why3))

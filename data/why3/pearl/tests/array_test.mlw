@@ -1,0 +1,22 @@
+module TestArray
+
+  use int.Int
+  use array.Array
+
+  let test_append () =
+    let a1 = make 17 2 in
+    a1[3] <- 4;
+    let a2 = make 25 3 in
+    let a  = append a1 a2 in
+    ()
+
+  let test_fill () =
+    let a = make 17 True in
+    fill a 10 4 False
+
+  let test_blit () =
+    let a1 = make 17 True in
+    let a2 = make 25 False in
+    blit a1 10 a2 17 7
+
+end

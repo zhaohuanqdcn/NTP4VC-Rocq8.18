@@ -1,0 +1,12 @@
+atoms:
+  mach.array.ArrayInt63.elts: [elts, array_ArrayInt63.elts]
+  mach.array.ArrayInt63.size: [size, array_ArrayInt63.size]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: mach.array_ArrayInt63
+prefix_ops: {}
+types:
+  mach.array.ArrayInt63.array63: [array63, array_ArrayInt63.array63]

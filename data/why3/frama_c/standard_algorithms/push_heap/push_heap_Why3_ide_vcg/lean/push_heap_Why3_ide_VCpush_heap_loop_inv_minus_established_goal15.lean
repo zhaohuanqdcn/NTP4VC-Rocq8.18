@@ -1,0 +1,14 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import Why3.Cint.Cint
+import frama_c.standard_algorithms.push_heap.lib.lean.Compound.Compound
+import frama_c.standard_algorithms.push_heap.lib.lean.Axiomatic.Axiomatic
+import frama_c.standard_algorithms.push_heap.lib.lean.Axiomatic1.Axiomatic1
+import frama_c.standard_algorithms.push_heap.lib.lean.A_Count.A_Count
+open Classical
+open Lean4Why3
+namespace push_heap_Why3_ide_VCpush_heap_loop_inv_minus_established_goal15
+theorem goal15 (i : ℤ) (a : Memory.addr) (t_1 : Memory.addr -> ℤ) (t : ℤ -> ℤ) : let x : ℤ := i - (1 : ℤ); let x_1 : ℤ := Axiomatic.l_heapparent x; let a_1 : Memory.addr := Memory.shift a x_1; let x_2 : ℤ := t_1 a_1; let a_2 : Memory.addr := Memory.shift a x; let x_3 : ℤ := t_1 a_2; let a_3 : Memory.addr := Memory.shift a (Cint.to_uint32 x); let m : Memory.addr -> ℤ := Function.update t_1 a_2 x_2; (0 : ℤ) < i → Memory.region (Memory.addr.base a) ≤ (0 : ℤ) → (0 : ℤ) < x_1 → x_2 < x_3 → (2 : ℤ) ≤ i → Memory.linked t → Cint.is_uint32 i → Memory.valid_rw t (Memory.shift a (0 : ℤ)) i → Cint.is_uint32 x_1 → Axiomatic.p_isheap t_1 a x → Cint.is_uint32 (Axiomatic.l_heapparent x_1) → Cint.is_sint32 x_3 → Cint.is_sint32 x_2 → Memory.valid_rd t a_3 (1 : ℤ) → Memory.valid_rd t a_1 (1 : ℤ) → Memory.valid_rw t a_3 (1 : ℤ) → Cint.is_sint32 (m a_1) → Axiomatic1.p_multisetminus m t_1 a i x_3
+  := sorry
+end push_heap_Why3_ide_VCpush_heap_loop_inv_minus_established_goal15

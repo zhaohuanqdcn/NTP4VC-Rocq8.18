@@ -1,0 +1,32 @@
+theory fclose_Why3_ide_VCfclose_assign_exit_part8_goal6
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "../../lib/isabelle/Compound_Compound" "Why3STD.Cint_Cint" "../../lib/isabelle/Axiomatic3_Axiomatic3"
+begin
+theorem goal6:
+  fixes a_2 :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes a_4 :: "addr"
+  fixes i :: "int"
+  fixes a_5 :: "addr"
+  fixes i_1 :: "int"
+  fixes a_6 :: "addr"
+  fixes i_2 :: "int"
+  fixes a_7 :: "addr"
+  fixes i_3 :: "int"
+  fixes a_16 :: "addr"
+  fixes t_2 :: "addr \<Rightarrow> addr"
+  fixes a :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  fixes i_4 :: "int"
+  fixes a_1 :: "addr"
+  fixes a_3 :: "addr"
+  fixes a_8 :: "addr"
+  fixes a_9 :: "addr"
+  fixes a_13 :: "addr"
+  fixes a_10 :: "addr"
+  fixes a_12 :: "addr"
+  fixes a_11 :: "addr"
+  fixes a_14 :: "addr"
+  fixes a_15 :: "addr"
+  shows "let a_17 :: addr = shift a_2 (0 :: int); x :: int = (t_1(shift a_7 (7 :: int) := i_3, shift (shift a_6 (0 :: int)) (1 :: int) := i_2, shift (shift a_5 (0 :: int)) (2 :: int) := i_1, shift a_4 (8 :: int) := i)) (shift (shift a_16 (0 :: int)) (0 :: int)); a_18 :: addr = shift a_16 (3 :: int); a_19 :: addr = shift ((t_2(shift (t_2 (shift a_16 (4 :: int))) (3 :: int) := t_2 a_18)) a_18) (4 :: int) in a_17 = shift a (0 :: int) \<longrightarrow> region (base a_2) \<le> (0 :: int) \<longrightarrow> (0 :: int) \<le> x \<longrightarrow> framed t_2 \<longrightarrow> linked t \<longrightarrow> is_sint32 i_4 \<longrightarrow> p_valid_io_file_pvt t t_2 t_1 a_1 \<longrightarrow> p_valid_io_file_pvt t t_2 t_1 a_3 \<longrightarrow> p_valid_io_file_pvt t t_2 t_1 a_8 \<longrightarrow> is_sint32 x \<longrightarrow> \<not>invalid t a_19 (1 :: int) \<longrightarrow> i_4 = -(1 :: int) \<or> i_4 = (0 :: int) \<longrightarrow> a_17 = Mk_addr (0 :: int) (0 :: int) \<or> shift a_9 (0 :: int) = a_17 \<longrightarrow> a_19 = shift a_13 (7 :: int) \<or> a_19 = shift a_10 (8 :: int) \<or> a_19 = shift (shift a_12 (0 :: int)) (1 :: int) \<or> a_19 = shift (shift a_11 (0 :: int)) (2 :: int) \<or> a_19 = shift (t_2 (shift a_14 (3 :: int))) (4 :: int) \<or> a_19 = shift (t_2 (shift a_15 (4 :: int))) (3 :: int)"
+  sorry
+end

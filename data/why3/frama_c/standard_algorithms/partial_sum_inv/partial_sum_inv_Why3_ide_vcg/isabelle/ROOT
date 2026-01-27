@@ -1,0 +1,7 @@
+session partial_sum_inv_Why3_ide = NTP4Verif +
+theories
+  "partial_sum_inv_Why3_ide_VCpartial_sum_inv_call_adjacent_difference_pre_separated_goal3"
+  "partial_sum_inv_Why3_ide_VCpartial_sum_inv_post_unchanged_goal0"
+  "partial_sum_inv_Why3_ide_VCpartial_sum_inv_call_adjacent_difference_pre_bounds_goal4"
+  "partial_sum_inv_Why3_ide_VCpartial_sum_inv_call_adjacent_difference_pre_valid_goal2"
+  "partial_sum_inv_Why3_ide_VCpartial_sum_inv_call_partial_sum_pre_valid_goal1"

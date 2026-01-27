@@ -1,0 +1,12 @@
+session search = NTP4Verif +
+theories
+  "search_Path_path_inversionqtvc"
+  "search_Path_shorter_pathqtvc"
+  "search_Path_path_lengthqtvc"
+  "search_Path_path_inversion_rightqtvc"
+  "search_Path_path_firstqtvc"
+  "search_Dfs_dfs_maxqtvc"
+  "search_Path"
+  "search_Bfs_bfsqtvc"
+  "search_Path_path_lastqtvc"
+  "search_Dfs_dfsqtvc"

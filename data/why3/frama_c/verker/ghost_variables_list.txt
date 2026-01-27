@@ -1,0 +1,16 @@
+Ghost Variables in Verker Benchmark - Complete List
+=====================================================
+
+Total: 2 goals with ghost variables
+
+1. strcmp_Why3_ide.mlw : strcmp_Why3_ide_VCstrcmp_post_goal0
+   Ghost variables: p, p_1 (both bool type)
+   Location: data/why3/frama_c/verker/strcmp_Why3_ide.mlw
+
+2. strpbrk_Why3_ide.mlw : strpbrk_Why3_ide_VCstrpbrk_found_post_3_goal21
+   Ghost variable: a_5 (addr type)
+   Location: data/why3/frama_c/verker/strpbrk_Why3_ide.mlw
+
+---
+Analysis date: 2026-01-09
+Analyzed files: All post-condition goals in test_set.manifest

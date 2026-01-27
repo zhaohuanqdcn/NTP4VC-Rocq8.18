@@ -1,0 +1,360 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Variables                                   --- *)
+(* ---------------------------------------------------------- *)
+theory Globals
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function k_known_dn_oids_8603 : int = -8604
+
+function k_known_ext_oids_8681 : int = -8682
+
+function k_known_kp_oids_8644 : int = -8645
+
+function g_parse_rdn_val_cn_8589 : int = 8590
+
+function g_parse_rdn_val_x520name_8590 : int = 8591
+
+function g_parse_rdn_val_serial_8591 : int = 8592
+
+function g_parse_rdn_val_country_8592 : int = 8593
+
+function g_parse_rdn_val_locality_8593 : int = 8594
+
+function g_parse_rdn_val_state_8594 : int = 8595
+
+function g_parse_rdn_val_org_8595 : int = 8596
+
+function g_parse_rdn_val_org_unit_8596 : int = 8597
+
+function g_parse_rdn_val_title_8597 : int = 8598
+
+function g_parse_rdn_val_dn_qual_8598 : int = 8599
+
+function g_parse_rdn_val_pseudo_8602 : int = 8603
+
+function g_parse_rdn_val_dc_8601 : int = 8602
+
+function k_null_encoded_val_8560 : int = -8561
+
+function k__id_kp_anyeku_8637 : int = -8638
+
+function g_parse_algoid_params_generic_8423 : int = 8424
+
+function g_parse_algoid_params_ecdsa_with_8418 : int = 8419
+
+function g_parse_algoid_params_ecpublickey_8419 : int = 8420
+
+function g_parse_algoid_params_rsa_8424 : int = 8425
+
+function g_parse_ext_aia_8617 : int = 8618
+
+function g_parse_ext_aki_8618 : int = 8619
+
+function g_parse_ext_ski_8619 : int = 8620
+
+function g_parse_ext_keyusage_8621 : int = 8622
+
+function g_parse_ext_certpolicies_8628 : int = 8629
+
+function g_parse_ext_policymapping_8629 : int = 8630
+
+function g_parse_ext_san_8630 : int = 8631
+
+function g_parse_ext_ian_8631 : int = 8632
+
+function g_parse_ext_subjectdirattr_8632 : int = 8633
+
+function g_parse_ext_basicconstraints_8633 : int = 8634
+
+function g_parse_ext_nameconstraints_8635 : int = 8636
+
+function g_parse_ext_policyconstraints_8636 : int = 8637
+
+function g_parse_ext_eku_8646 : int = 8647
+
+function g_parse_ext_crldp_8649 : int = 8650
+
+function g_parse_ext_inhibitanypolicy_8650 : int = 8651
+
+function g_parse_ext_bad_oid_8667 : int = 8668
+
+function g_parse_sig_ecdsa_8417 : int = 8418
+
+function g_parse_sig_generic_8422 : int = 8423
+
+function l_param_7105 : int = 7106
+
+function g_parse_subjectpubkey_ec_8420 : int = 8421
+
+function g_parse_subjectpubkey_rsa_8421 : int = 8422
+
+use import Memory.Memory
+
+axiom Q_K_known_dn_oids_8603_region: ((region k_known_dn_oids_8603)) = 0
+
+axiom Q_K_known_dn_oids_8603_linked:
+  forall t : map int int. ((linked t)) -> (t[k_known_dn_oids_8603] = 48)
+
+axiom Q_K_known_ext_oids_8681_region: ((region k_known_ext_oids_8681)) = 0
+
+axiom Q_K_known_ext_oids_8681_linked:
+  forall t : map int int. ((linked t)) -> (t[k_known_ext_oids_8681] = 87)
+
+axiom Q_K_known_kp_oids_8644_region: ((region k_known_kp_oids_8644)) = 0
+
+axiom Q_K_known_kp_oids_8644_linked:
+  forall t : map int int. ((linked t)) -> (t[k_known_kp_oids_8644] = 14)
+
+axiom Q_G_parse_rdn_val_cn_8589_region:
+  ((region g_parse_rdn_val_cn_8589)) = 0
+
+axiom Q_G_parse_rdn_val_cn_8589_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_rdn_val_cn_8589] = 1)
+
+axiom Q_G_parse_rdn_val_x520name_8590_region:
+  ((region g_parse_rdn_val_x520name_8590)) = 0
+
+axiom Q_G_parse_rdn_val_x520name_8590_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_rdn_val_x520name_8590] = 1)
+
+axiom Q_G_parse_rdn_val_serial_8591_region:
+  ((region g_parse_rdn_val_serial_8591)) = 0
+
+axiom Q_G_parse_rdn_val_serial_8591_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_rdn_val_serial_8591] = 1)
+
+axiom Q_G_parse_rdn_val_country_8592_region:
+  ((region g_parse_rdn_val_country_8592)) = 0
+
+axiom Q_G_parse_rdn_val_country_8592_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_rdn_val_country_8592] = 1)
+
+axiom Q_G_parse_rdn_val_locality_8593_region:
+  ((region g_parse_rdn_val_locality_8593)) = 0
+
+axiom Q_G_parse_rdn_val_locality_8593_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_rdn_val_locality_8593] = 1)
+
+axiom Q_G_parse_rdn_val_state_8594_region:
+  ((region g_parse_rdn_val_state_8594)) = 0
+
+axiom Q_G_parse_rdn_val_state_8594_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_rdn_val_state_8594] = 1)
+
+axiom Q_G_parse_rdn_val_org_8595_region:
+  ((region g_parse_rdn_val_org_8595)) = 0
+
+axiom Q_G_parse_rdn_val_org_8595_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_rdn_val_org_8595] = 1)
+
+axiom Q_G_parse_rdn_val_org_unit_8596_region:
+  ((region g_parse_rdn_val_org_unit_8596)) = 0
+
+axiom Q_G_parse_rdn_val_org_unit_8596_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_rdn_val_org_unit_8596] = 1)
+
+axiom Q_G_parse_rdn_val_title_8597_region:
+  ((region g_parse_rdn_val_title_8597)) = 0
+
+axiom Q_G_parse_rdn_val_title_8597_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_rdn_val_title_8597] = 1)
+
+axiom Q_G_parse_rdn_val_dn_qual_8598_region:
+  ((region g_parse_rdn_val_dn_qual_8598)) = 0
+
+axiom Q_G_parse_rdn_val_dn_qual_8598_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_rdn_val_dn_qual_8598] = 1)
+
+axiom Q_G_parse_rdn_val_pseudo_8602_region:
+  ((region g_parse_rdn_val_pseudo_8602)) = 0
+
+axiom Q_G_parse_rdn_val_pseudo_8602_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_rdn_val_pseudo_8602] = 1)
+
+axiom Q_G_parse_rdn_val_dc_8601_region:
+  ((region g_parse_rdn_val_dc_8601)) = 0
+
+axiom Q_G_parse_rdn_val_dc_8601_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_rdn_val_dc_8601] = 1)
+
+axiom Q_K_null_encoded_val_8560_region:
+  ((region k_null_encoded_val_8560)) = 0
+
+axiom Q_K_null_encoded_val_8560_linked:
+  forall t : map int int. ((linked t)) -> (t[k_null_encoded_val_8560] = 2)
+
+axiom Q_K__id_kp_anyEKU_8637_region: ((region k__id_kp_anyeku_8637)) = 0
+
+axiom Q_K__id_kp_anyEKU_8637_linked:
+  forall t : map int int. ((linked t)) -> (t[k__id_kp_anyeku_8637] = 10)
+
+axiom Q_G_parse_algoid_params_generic_8423_region:
+  ((region g_parse_algoid_params_generic_8423)) = 0
+
+axiom Q_G_parse_algoid_params_generic_8423_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_algoid_params_generic_8423] = 1)
+
+axiom Q_G_parse_algoid_params_ecdsa_with_8418_region:
+  ((region g_parse_algoid_params_ecdsa_with_8418)) = 0
+
+axiom Q_G_parse_algoid_params_ecdsa_with_8418_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_algoid_params_ecdsa_with_8418] = 1)
+
+axiom Q_G_parse_algoid_params_ecPublicKey_8419_region:
+  ((region g_parse_algoid_params_ecpublickey_8419)) = 0
+
+axiom Q_G_parse_algoid_params_ecPublicKey_8419_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_algoid_params_ecpublickey_8419] = 1)
+
+axiom Q_G_parse_algoid_params_rsa_8424_region:
+  ((region g_parse_algoid_params_rsa_8424)) = 0
+
+axiom Q_G_parse_algoid_params_rsa_8424_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_algoid_params_rsa_8424] = 1)
+
+axiom Q_G_parse_ext_AIA_8617_region: ((region g_parse_ext_aia_8617)) = 0
+
+axiom Q_G_parse_ext_AIA_8617_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_ext_aia_8617] = 1)
+
+axiom Q_G_parse_ext_AKI_8618_region: ((region g_parse_ext_aki_8618)) = 0
+
+axiom Q_G_parse_ext_AKI_8618_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_ext_aki_8618] = 1)
+
+axiom Q_G_parse_ext_SKI_8619_region: ((region g_parse_ext_ski_8619)) = 0
+
+axiom Q_G_parse_ext_SKI_8619_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_ext_ski_8619] = 1)
+
+axiom Q_G_parse_ext_keyUsage_8621_region:
+  ((region g_parse_ext_keyusage_8621)) = 0
+
+axiom Q_G_parse_ext_keyUsage_8621_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_ext_keyusage_8621] = 1)
+
+axiom Q_G_parse_ext_certPolicies_8628_region:
+  ((region g_parse_ext_certpolicies_8628)) = 0
+
+axiom Q_G_parse_ext_certPolicies_8628_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_ext_certpolicies_8628] = 1)
+
+axiom Q_G_parse_ext_policyMapping_8629_region:
+  ((region g_parse_ext_policymapping_8629)) = 0
+
+axiom Q_G_parse_ext_policyMapping_8629_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_ext_policymapping_8629] = 1)
+
+axiom Q_G_parse_ext_SAN_8630_region: ((region g_parse_ext_san_8630)) = 0
+
+axiom Q_G_parse_ext_SAN_8630_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_ext_san_8630] = 1)
+
+axiom Q_G_parse_ext_IAN_8631_region: ((region g_parse_ext_ian_8631)) = 0
+
+axiom Q_G_parse_ext_IAN_8631_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_ext_ian_8631] = 1)
+
+axiom Q_G_parse_ext_subjectDirAttr_8632_region:
+  ((region g_parse_ext_subjectdirattr_8632)) = 0
+
+axiom Q_G_parse_ext_subjectDirAttr_8632_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_ext_subjectdirattr_8632] = 1)
+
+axiom Q_G_parse_ext_basicConstraints_8633_region:
+  ((region g_parse_ext_basicconstraints_8633)) = 0
+
+axiom Q_G_parse_ext_basicConstraints_8633_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_ext_basicconstraints_8633] = 1)
+
+axiom Q_G_parse_ext_nameConstraints_8635_region:
+  ((region g_parse_ext_nameconstraints_8635)) = 0
+
+axiom Q_G_parse_ext_nameConstraints_8635_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_ext_nameconstraints_8635] = 1)
+
+axiom Q_G_parse_ext_policyConstraints_8636_region:
+  ((region g_parse_ext_policyconstraints_8636)) = 0
+
+axiom Q_G_parse_ext_policyConstraints_8636_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_ext_policyconstraints_8636] = 1)
+
+axiom Q_G_parse_ext_EKU_8646_region: ((region g_parse_ext_eku_8646)) = 0
+
+axiom Q_G_parse_ext_EKU_8646_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_ext_eku_8646] = 1)
+
+axiom Q_G_parse_ext_CRLDP_8649_region: ((region g_parse_ext_crldp_8649)) = 0
+
+axiom Q_G_parse_ext_CRLDP_8649_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_ext_crldp_8649] = 1)
+
+axiom Q_G_parse_ext_inhibitAnyPolicy_8650_region:
+  ((region g_parse_ext_inhibitanypolicy_8650)) = 0
+
+axiom Q_G_parse_ext_inhibitAnyPolicy_8650_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_ext_inhibitanypolicy_8650] = 1)
+
+axiom Q_G_parse_ext_bad_oid_8667_region:
+  ((region g_parse_ext_bad_oid_8667)) = 0
+
+axiom Q_G_parse_ext_bad_oid_8667_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_ext_bad_oid_8667] = 1)
+
+axiom Q_G_parse_sig_ecdsa_8417_region: ((region g_parse_sig_ecdsa_8417)) = 0
+
+axiom Q_G_parse_sig_ecdsa_8417_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_sig_ecdsa_8417] = 1)
+
+axiom Q_G_parse_sig_generic_8422_region:
+  ((region g_parse_sig_generic_8422)) = 0
+
+axiom Q_G_parse_sig_generic_8422_linked:
+  forall t : map int int. ((linked t)) -> (t[g_parse_sig_generic_8422] = 1)
+
+axiom Q_L_param_7105_region: ((region l_param_7105)) = 2
+
+axiom Q_L_param_7105_linked:
+  forall t : map int int. ((linked t)) -> (t[l_param_7105] = 0)
+
+axiom Q_G_parse_subjectpubkey_ec_8420_region:
+  ((region g_parse_subjectpubkey_ec_8420)) = 0
+
+axiom Q_G_parse_subjectpubkey_ec_8420_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_subjectpubkey_ec_8420] = 1)
+
+axiom Q_G_parse_subjectpubkey_rsa_8421_region:
+  ((region g_parse_subjectpubkey_rsa_8421)) = 0
+
+axiom Q_G_parse_subjectpubkey_rsa_8421_linked:
+  forall t : map int int. ((linked t)) ->
+    (t[g_parse_subjectpubkey_rsa_8421] = 1)
+
+end
+

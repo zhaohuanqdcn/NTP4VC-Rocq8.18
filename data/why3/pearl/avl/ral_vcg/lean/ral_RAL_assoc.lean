@@ -1,0 +1,17 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.avl.lib.lean.avl.SelectionTypes
+open Classical
+open Lean4Why3
+namespace ral_RAL_assoc
+axiom balancing : ℕ
+axiom balancing'def : (0 : ℤ) < Int.ofNat balancing
+axiom m : Type
+axiom inhabited_axiom_m : Inhabited m
+attribute [instance] inhabited_axiom_m
+axiom t : Type
+axiom inhabited_axiom_t : Inhabited t
+attribute [instance] inhabited_axiom_t
+theorem assoc (a : ℤ) (b : ℤ) (c : ℤ) : a + (b + c) = a + b + c
+  := sorry
+end ral_RAL_assoc

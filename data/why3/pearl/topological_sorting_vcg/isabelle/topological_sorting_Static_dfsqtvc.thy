@@ -1,0 +1,53 @@
+theory topological_sorting_Static_dfsqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "Why3STD.map_Const" "./topological_sorting_Graph"
+begin
+typedecl  set
+consts to_fset :: "set \<Rightarrow> vertex fset"
+consts choose1 :: "set \<Rightarrow> vertex"
+axiomatization where choose'spec:   "choose1 s |\<in>| to_fset s"
+ if "\<not>to_fset s = fempty"
+  for s :: "set"
+typedecl  set1
+consts to_fset1 :: "set1 \<Rightarrow> vertex fset"
+consts mk :: "vertex fset \<Rightarrow> set1"
+axiomatization where mk'spec:   "to_fset1 (mk s) = s"
+  for s :: "vertex fset"
+consts choose2 :: "set1 \<Rightarrow> vertex"
+axiomatization where choose'spec1:   "choose2 s |\<in>| to_fset1 s"
+ if "\<not>to_fset1 s = fempty"
+  for s :: "set1"
+typedecl 'a t
+consts contents :: "'a t \<Rightarrow> vertex \<Rightarrow> 'a"
+consts create :: "'a \<Rightarrow> 'a t"
+axiomatization where create'spec:   "contents (create x) = (const :: 'a \<Rightarrow> vertex \<Rightarrow> 'a) x"
+  for x :: "'a"
+consts mixfix_lbrb :: "'a t \<Rightarrow> vertex \<Rightarrow> 'a"
+axiomatization where mixfix_lbrb'spec:   "mixfix_lbrb m k = contents m k"
+  for m :: "'a t"
+  and k :: "vertex"
+consts mixfix_lblsmnrb :: "'a t \<Rightarrow> vertex \<Rightarrow> 'a \<Rightarrow> 'a t"
+axiomatization where mixfix_lblsmnrb'spec:   "contents (mixfix_lblsmnrb m k v) = (contents m)(k := v)"
+  for m :: "'a t"
+  and k :: "vertex"
+  and v :: "'a"
+consts defined_sort :: "int t \<Rightarrow> vertex fset"
+axiomatization where defined_sort'spec:   "v |\<in>| defined_sort m \<longleftrightarrow> (0 :: int) \<le> mixfix_lbrb m v"
+  for v :: "vertex"
+  and m :: "int t"
+definition partial_sort :: "graph \<Rightarrow> int t \<Rightarrow> _"
+  where "partial_sort g m \<longleftrightarrow> (\<forall>(v :: vertex) (u :: vertex). (u, v) |\<in>| edges g \<longrightarrow> (0 :: int) \<le> mixfix_lbrb m v \<longrightarrow> (0 :: int) \<le> mixfix_lbrb m u \<and> mixfix_lbrb m u < mixfix_lbrb m v)" for g m
+definition inv :: "graph \<Rightarrow> int t \<Rightarrow> int \<Rightarrow> _"
+  where "inv g m next \<longleftrightarrow> defined_sort m |\<subseteq>| vertices g \<and> (0 :: int) \<le> next \<and> partial_sort g m \<and> (\<forall>(v :: vertex). v |\<in>| defined_sort m \<longrightarrow> mixfix_lbrb m v < next)" for g m "next"
+theorem dfs'vc:
+  fixes g :: "graph"
+  fixes "values" :: "int t"
+  fixes "next" :: "int"
+  fixes v :: "vertex"
+  fixes seen :: "set1"
+  assumes fact0: "inv g values next"
+  assumes fact1: "v |\<in>| vertices g"
+  assumes fact2: "to_fset1 seen |\<subseteq>| vertices g"
+  assumes fact3: "\<not>v |\<in>| to_fset1 seen"
+  shows "let o1 :: int = mixfix_lbrb values v in o1 = contents values v \<longrightarrow> (if o1 < (0 :: int) then \<forall>(p :: set). to_fset p = preds g v \<longrightarrow> (\<forall>(seen1 :: set1). to_fset1 seen1 = finsert v (to_fset1 seen) \<and> (if v |\<in>| to_fset1 seen then fcard (to_fset1 seen1) = fcard (to_fset1 seen) else int (fcard (to_fset1 seen1)) = int (fcard (to_fset1 seen)) + (1 :: int)) \<longrightarrow> (inv g values next \<and> preds g v |-| to_fset p |\<subseteq>| defined_sort values \<and> defined_sort values |\<subseteq>| defined_sort values \<and> to_fset p |\<subseteq>| preds g v) \<and> (\<forall>(p1 :: set) (next1 :: int) (values1 :: int t). inv g values1 next1 \<and> preds g v |-| to_fset p1 |\<subseteq>| defined_sort values1 \<and> defined_sort values |\<subseteq>| defined_sort values1 \<and> to_fset p1 |\<subseteq>| preds g v \<and> (\<forall>(x :: vertex). x |\<in>| to_fset1 seen1 \<longrightarrow> mixfix_lbrb values1 x = mixfix_lbrb values x) \<longrightarrow> (if \<not>to_fset p1 = fempty then \<not>to_fset p1 = fempty \<and> (\<forall>(p2 :: set). let u :: vertex = choose1 p1 in u |\<in>| to_fset p1 \<and> to_fset p2 = fset_remove u (to_fset p1) \<longrightarrow> (((0 :: int) \<le> int (fcard (vertices g)) - int (fcard (to_fset1 seen)) \<and> int (fcard (vertices g)) - int (fcard (to_fset1 seen1)) < int (fcard (vertices g)) - int (fcard (to_fset1 seen))) \<and> inv g values1 next1 \<and> u |\<in>| vertices g \<and> to_fset1 seen1 |\<subseteq>| vertices g) \<and> (\<forall>(next2 :: int) (values2 :: int t). defined_sort values1 |\<subseteq>| defined_sort values2 \<and> ((0 :: int) \<le> mixfix_lbrb values2 u \<and> mixfix_lbrb values2 u \<le> next2) \<and> inv g values2 next2 \<and> (\<forall>(x :: vertex). x |\<in>| to_fset1 seen1 \<longrightarrow> mixfix_lbrb values1 x = mixfix_lbrb values2 x) \<longrightarrow> ((0 :: int) \<le> int (fcard (to_fset p1)) \<and> fcard (to_fset p2) < fcard (to_fset p1)) \<and> inv g values2 next2 \<and> preds g v |-| to_fset p2 |\<subseteq>| defined_sort values2 \<and> defined_sort values |\<subseteq>| defined_sort values2 \<and> to_fset p2 |\<subseteq>| preds g v \<and> (\<forall>(x :: vertex). x |\<in>| to_fset1 seen1 \<longrightarrow> mixfix_lbrb values2 x = mixfix_lbrb values x))) else defined_sort values |\<subseteq>| defined_sort (mixfix_lblsmnrb values1 v next1) \<and> ((0 :: int) \<le> mixfix_lbrb (mixfix_lblsmnrb values1 v next1) v \<and> mixfix_lbrb (mixfix_lblsmnrb values1 v next1) v \<le> next1 + (1 :: int)) \<and> inv g (mixfix_lblsmnrb values1 v next1) (next1 + (1 :: int)) \<and> (\<forall>(x :: vertex). x |\<in>| to_fset1 seen \<longrightarrow> mixfix_lbrb values x = mixfix_lbrb (mixfix_lblsmnrb values1 v next1) x)))) else defined_sort values |\<subseteq>| defined_sort values \<and> ((0 :: int) \<le> mixfix_lbrb values v \<and> mixfix_lbrb values v \<le> next) \<and> inv g values next)"
+  sorry
+end

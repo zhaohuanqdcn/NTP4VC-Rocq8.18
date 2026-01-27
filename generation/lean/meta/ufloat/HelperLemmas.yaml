@@ -1,0 +1,14 @@
+atoms: {}
+axioms:
+  ufloat.HelperLemmas.cos_of_approx: HelperLemmas.cos_of_approx
+  ufloat.HelperLemmas.log10_1_minus_x: HelperLemmas.log10_1_minus_x
+  ufloat.HelperLemmas.log2_1_minus_x: HelperLemmas.log2_1_minus_x
+  ufloat.HelperLemmas.log_1_minus_x: HelperLemmas.log_1_minus_x
+  ufloat.HelperLemmas.sin_of_approx: HelperLemmas.sin_of_approx
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.ufloat.HelperLemmas
+prefix_ops: {}
+types: {}

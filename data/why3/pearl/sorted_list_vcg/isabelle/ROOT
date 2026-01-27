@@ -1,0 +1,4 @@
+session sorted_list = NTP4Verif +
+theories
+  "sorted_list_FindInSortedList_sorted_not_memqtvc"
+  "sorted_list_FindInSortedList_findqtvc"

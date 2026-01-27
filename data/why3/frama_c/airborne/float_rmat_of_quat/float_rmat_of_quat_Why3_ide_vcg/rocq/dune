@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name airborne.float_rmat_of_quat.float_rmat_of_quat_Why3_ide_vcg)
+(theories Why3.Memory float_rmat_of_quat.Axiomatic17 Why3.Cfloat float_rmat_of_quat.Axiomatic15 Why3.Qed float_rmat_of_quat.Compound Why3.Cmath float_rmat_of_quat.S10_RealRMat_s float_rmat_of_quat.Axiomatic19 Why3))

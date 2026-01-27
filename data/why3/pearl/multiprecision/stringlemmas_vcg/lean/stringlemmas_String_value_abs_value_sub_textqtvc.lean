@@ -1,0 +1,21 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import pearl.multiprecision.lib.lean.stringlemmas.String_lemmas
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import Why3.mach.int.Unsigned
+import Why3.mach.c.C
+import Why3.mach.c.String
+import Why3.mach.c.UChar
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.stringlemmas.Conversions
+open Classical
+open Lean4Why3
+namespace stringlemmas_String_value_abs_value_sub_textqtvc
+theorem abs_value_sub_text'vc (n : ℤ) (m : ℤ) (fact0 : n < m) : (0 : ℤ) ≤ m - n ∧ m - (1 : ℤ) - n < m - n
+  := sorry
+end stringlemmas_String_value_abs_value_sub_textqtvc

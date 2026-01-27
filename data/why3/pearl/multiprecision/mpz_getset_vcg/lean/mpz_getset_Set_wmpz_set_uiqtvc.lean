@@ -1,0 +1,19 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import Why3.mach.int.Unsigned
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.mpz.Z
+import pearl.multiprecision.lib.lean.mpz.Zutil
+open Classical
+open Lean4Why3
+namespace mpz_getset_Set_wmpz_set_uiqtvc
+theorem wmpz_set_ui'vc (mpz : Z.mpz_memo) (dst : Z.mpz_ptr) (src : BitVec 64) (fact0 : (1 : ℤ) ≤ Z.alloc mpz dst) (fact1 : Z.readers mpz dst = (0 : ℤ)) : Z.readers mpz dst = (0 : ℤ) ∧ (1 : ℤ) ≤ Z.alloc mpz dst ∧ (∀(mpz1 : Z.mpz_memo), Z.sgn mpz1 = Z.sgn mpz → (∀(dstp : C.ptr (BitVec 64)), (∀(y : Z.mpz_ptr), ¬y = dst → Z.mpz_unchanged y mpz1 mpz) ∧ Z.readers mpz1 dst = -(1 : ℤ) ∧ Z.abs_value_of mpz1 dst = Lemmas.value dstp (Z.abs_size mpz1 dst) ∧ Z.zones mpz1 dst = C.zone1 dstp ∧ C.offset dstp = (0 : ℤ) ∧ C.plength dstp = Z.alloc mpz1 dst ∧ C.min dstp = (0 : ℤ) ∧ C.max dstp = C.plength dstp ∧ C.writable dstp = true ∧ Z.abs_size mpz1 dst = Z.abs_size mpz dst ∧ Lemmas.value dstp (Z.abs_size mpz dst) = Z.abs_value_of mpz dst ∧ (if Z.alloc mpz dst < (1 : ℤ) then Z.alloc mpz1 dst = (1 : ℤ) else Z.alloc mpz1 dst = Z.alloc mpz dst) → ((C.min dstp ≤ C.offset dstp ∧ C.offset dstp < C.max dstp) ∧ C.writable dstp = true) ∧ (∀(dstp1 : C.ptr (BitVec 64)), List.length (C.data dstp1) = List.length (C.data dstp) ∧ C.offset dstp1 = C.offset dstp ∧ C.min dstp1 = C.min dstp ∧ C.max dstp1 = C.max dstp ∧ C.writable dstp1 = C.writable dstp ∧ C.zone1 dstp1 = C.zone1 dstp → C.pelts dstp1 = Function.update (C.pelts dstp) (C.offset dstp1) src → (BitVec.toUInt src = (0 : ℤ) → src = (0 : BitVec 64)) → (∀(size : BitVec 32), (if ¬src = (0 : BitVec 64) then size = (1 : BitVec 32) else size = (0 : BitVec 32)) → (Z.zones mpz1 dst = C.zone1 dstp1 ∧ Z.readers mpz1 dst = -(1 : ℤ) ∧ C.offset dstp1 = (0 : ℤ) ∧ C.min dstp1 = (0 : ℤ) ∧ C.max dstp1 = C.plength dstp1 ∧ abs (BitVec.toInt size) ≤ C.plength dstp1 ∧ C.plength dstp1 = Z.alloc mpz1 dst ∧ (¬BitVec.toInt size = (0 : ℤ) → HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat (abs (BitVec.toInt size) - (1 : ℤ))) ≤ Lemmas.value dstp1 (abs (BitVec.toInt size)))) ∧ (∀(mpz2 : Z.mpz_memo), Z.alloc mpz2 = Z.alloc mpz1 ∧ Z.readers mpz2 = Z.readers mpz1 ∧ Z.zones mpz2 = Z.zones mpz1 → (∀(y : Z.mpz_ptr), ¬y = dst → Z.mpz_unchanged y mpz2 mpz1) ∧ (Z.sgn mpz2 dst = (1 : ℤ)) = ((0 : ℤ) ≤ BitVec.toInt size) ∧ (Z.sgn mpz2 dst = -(1 : ℤ)) = (BitVec.toInt size < (0 : ℤ)) ∧ Z.abs_size mpz2 dst = abs (BitVec.toInt size) ∧ Z.abs_value_of mpz2 dst = Lemmas.value dstp1 (abs (BitVec.toInt size)) → (Z.zones mpz2 dst = C.zone1 dstp1 ∧ Z.readers mpz2 dst = -(1 : ℤ) ∧ C.min dstp1 = (0 : ℤ) ∧ C.max dstp1 = C.plength dstp1 ∧ Z.abs_value_of mpz2 dst = Lemmas.value dstp1 (Z.abs_size mpz2 dst)) ∧ (∀(mpz3 : Z.mpz_memo), Z.abs_value_of mpz3 = Z.abs_value_of mpz2 ∧ Z.alloc mpz3 = Z.alloc mpz2 ∧ Z.abs_size mpz3 = Z.abs_size mpz2 ∧ Z.sgn mpz3 = Z.sgn mpz2 ∧ Z.zones mpz3 = Z.zones mpz2 → Z.readers mpz3 dst = (0 : ℤ) ∧ (∀(y : Z.mpz_ptr), ¬y = dst → Z.readers mpz3 y = Z.readers mpz2 y) → Z.value_of dst mpz3 = BitVec.toUInt src ∧ (∀(x : Z.mpz_ptr), ¬x = dst → Z.mpz_unchanged x mpz3 mpz) ∧ Z.readers mpz3 dst = (0 : ℤ)))))))
+  := sorry
+end mpz_getset_Set_wmpz_set_uiqtvc

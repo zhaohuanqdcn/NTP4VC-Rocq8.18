@@ -1,0 +1,259 @@
+import Mathlib
+
+open Classical
+
+namespace Lean4Why3
+
+instance {n : Nat} : HShiftLeft (BitVec n) Int (BitVec n) where
+  hShiftLeft x k := x <<< k.toNat
+
+instance {n : Nat} : HShiftRight (BitVec n) Int (BitVec n) where
+  hShiftRight x k := x >>> k.toNat
+
+abbrev sshiftRight'i {n : ℕ} (a : BitVec n) (s : Int) : BitVec n := a.sshiftRight s.toNat
+
+abbrev make_str_i (size : Int) := String.mk (List.replicate (Int.toNat size) 'a')
+abbrev _root_.List.create_i {α} (n : ℤ) (f : ℤ -> α) := (List.range n.toNat).map f
+abbrev _root_.List.create {α} (n : ℕ) (f : ℕ -> α) := (List.range n).map f
+
+abbrev _root_.Bool.imp (a b : Bool) : Bool := !a || b
+
+abbrev _root_.List.replicate_i {α} (n : ℤ) (x : α) := List.replicate (Int.toNat n) x
+
+abbrev take_i {α : Type} (n : ℤ) (l : List α) := List.take n.toNat l
+abbrev drop_i {α : Type} (n : ℤ) (l : List α) := List.drop n.toNat l
+
+abbrev getElem_i! {α : Type} [Inhabited α] (l : List α) (i : Int) := l[i.toNat]!
+abbrev getElem_i? {α : Type} (l : List α) (i : Int) := l[i.toNat]?
+
+abbrev length_i {α : Type} (l : List α) := Int.ofNat l.length
+abbrev slice {α : Type} (l : List α) (i j : Nat) : List α :=
+  (l.drop i).take (j - i)
+abbrev slice_i {α : Type} (l : List α) (i j : Int) : List α :=
+  (l.drop i.toNat).take (j.toNat - i.toNat)
+
+abbrev Sorted {α : Type} [LE α] (l : List α) := List.Sorted LE.le l
+abbrev _root_.List.set_i {α : Type} (l : List α) (n : ℤ) (a : α) :=
+  List.set l n.toNat a
+
+abbrev implication (P : Prop) (Q : Prop) := P -> Q
+
+noncomputable def map_occ {α : Type} (v : α) (m : Int -> α) (l u : Int)
+  := {n | l ≤ n ∧ n < u ∧ m n = v }.ncard
+noncomputable abbrev map_occ_i {α : Type} (v : α) (m : Int -> α) (l u : Int)
+  := Int.ofNat (map_occ (v : α) (m : Int -> α) (l : Int) u)
+
+abbrev _root_.BitVec.toUInt {n : Nat} (x : BitVec n) := Int.ofNat x.toNat
+
+abbrev int'16_max : BitVec 16 := 32767
+abbrev int'16_min : BitVec 16 := -32768
+abbrev int'31_max : BitVec 31 := 1073741823
+abbrev int'31_min : BitVec 31 := -1073741824
+abbrev int'32_max : BitVec 32 := 2147483647
+abbrev int'32_min : BitVec 32 := -2147483648
+abbrev int'63_max : BitVec 63 := 4611686018427387903
+abbrev int'63_min : BitVec 63 := -4611686018427387904
+abbrev int'64_max : BitVec 64 := 9223372036854775807
+abbrev int'64_min : BitVec 64 := -9223372036854775808
+abbrev uint'16_max : BitVec 16 := 65535
+abbrev uint'16_min : BitVec 16 := 0
+abbrev uint'31_max : BitVec 31 := 2147483647
+abbrev uint'31_min : BitVec 31 := 0
+abbrev uint'32_max : BitVec 32 := 4294967295
+abbrev uint'32_min : BitVec 32 := 0
+abbrev uint'63_max : BitVec 63 := 9223372036854775807
+abbrev uint'63_min : BitVec 63 := 0
+abbrev uint'64_max : BitVec 64 := 18446744073709551615
+abbrev uint'64_min : BitVec 64 := 0
+
+abbrev int'16_in_bounds (x : Int) := int'16_min.toInt ≤ x ∧ x ≤ int'16_max.toInt
+abbrev int'31_in_bounds (x : Int) := int'31_min.toInt ≤ x ∧ x ≤ int'31_max.toInt
+abbrev int'32_in_bounds (x : Int) := int'32_min.toInt ≤ x ∧ x ≤ int'32_max.toInt
+abbrev int'63_in_bounds (x : Int) := int'63_min.toInt ≤ x ∧ x ≤ int'63_max.toInt
+abbrev int'64_in_bounds (x : Int) := int'64_min.toInt ≤ x ∧ x ≤ int'64_max.toInt
+abbrev uint'8_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ 256
+abbrev uint'16_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'16_max.toUInt
+abbrev uint'31_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'31_max.toUInt
+abbrev uint'32_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'32_max.toUInt
+abbrev uint'63_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'63_max.toUInt
+abbrev uint'64_in_bounds (x : Int) := 0 ≤ x ∧ x ≤ int'64_max.toUInt
+
+axiom array31 : Type -> Type
+axiom array32 : Type -> Type
+axiom array63 : Type -> Type
+
+axiom array31_elts : {α : Type} -> array31 α -> Int -> α
+axiom array32_elts : {α : Type} -> array32 α -> Int -> α
+axiom array63_elts : {α : Type} -> array63 α -> List α
+
+noncomputable abbrev array63_nth {α : Type} [Inhabited α] (a : array63 α) (i : Int) := (array63_elts a)[i.toNat]!
+
+axiom array31_length : {α : Type} -> array31 α -> BitVec 31
+axiom array32_length : {α : Type} -> array32 α -> BitVec 32
+axiom array63_length : {α : Type} -> array63 α -> BitVec 63
+
+abbrev is_none {α : Type} (x : Option α) := x = none
+abbrev is_nil {α : Type} (x : List α) := x = []
+
+abbrev _root_.List.rev_append {α : Type} (a : List α) (b : List α) := a.reverse ++ b
+abbrev _root_.Finset.is_empty {α : Type} (s : Finset α) := s = ∅
+abbrev _root_.Finset.filter' {α : Type} (s : Finset α) (p : α → Prop) [DecidablePred p] : Finset α
+  := Finset.filter p s
+
+abbrev _root_.Finset.card_i {α : Type} (s : Finset α) := Int.ofNat s.card
+
+abbrev int_power (x : Int) (n : Int) := x ^ n.toNat
+abbrev bv2_power (n : Int) := Int.ofNat (2 ^ n.toNat)
+
+abbrev take_bit_i {n : Nat} (x : BitVec n) (i : Int) := x[i.toNat]!
+abbrev take_bit_bv {n m : Nat} (x : BitVec n) (i : BitVec m) := x[i.toNat]!
+
+noncomputable def _root_.Finset.pick! {α} [Inhabited α] (s : Finset α) : α :=
+  if h : s.Nonempty then Classical.choose h else default
+noncomputable def _root_.Set.pick! {α} [Inhabited α] (s : Finset α) : α :=
+  if h : s.Nonempty then Classical.choose h else default
+
+noncomputable abbrev _root_.BitVec.eq_sub {m : Nat} (a b : BitVec m) (i n : Nat) :=
+  BitVec.extractLsb (i+n-1) i a = BitVec.extractLsb (i+n-1) i b
+
+noncomputable abbrev _root_.BitVec.eq_sub_i {m : Nat} (a b : BitVec m) (i n : Int) :=
+  BitVec.eq_sub a b i.toNat n.toNat
+
+noncomputable abbrev _root_.BitVec.eq_sub_bv {m : Nat} {m1 : Nat} {m2 : Nat} (a b : BitVec m) (i : BitVec m1) (n : BitVec m2) :=
+  BitVec.eq_sub a b i.toNat n.toNat
+
+abbrev w8_size_bv := (8 : BitVec 8)
+abbrev w16_size_bv := (16 : BitVec 16)
+abbrev w32_size_bv := (32 : BitVec 32)
+abbrev w64_size_bv := (64 : BitVec 64)
+abbrev w128_size_bv := (128 : BitVec 128)
+abbrev w256_size_bv := (256 : BitVec 256)
+abbrev w8_size_i := (8 : Int)
+abbrev w16_size_i := (16 : Int)
+abbrev w32_size_i := (32 : Int)
+abbrev w64_size_i := (64 : Int)
+abbrev w128_size_i := (128 : Int)
+abbrev w256_size_i := (256 : Int)
+
+abbrev _root_.Finset.erase' {α : Type} [DecidableEq α] (a : α) (s : Finset α) : Finset α
+  := Finset.erase s a
+
+abbrev _root_.BitVec.sge {n : ℕ} (x y : BitVec n) := BitVec.sle y x
+abbrev _root_.BitVec.sgt {n : ℕ} (x y : BitVec n) := BitVec.slt y x
+
+abbrev _root_.BitVec.sshiftRight_i {n : ℕ} (x : BitVec n) (s : ℤ) := BitVec.sshiftRight x s.toNat
+abbrev _root_.BitVec.sshiftRight_bv {n m : ℕ} (x : BitVec n) (s : BitVec m)
+  := BitVec.sshiftRight x s.toNat
+
+abbrev _root_.BitVec.rotateLeft_i {w : ℕ} (x : BitVec w) (n : ℤ) := BitVec.rotateLeft x n.toNat
+abbrev _root_.BitVec.rotateLeft_nv {w w2 : ℕ} (x : BitVec w) (n : BitVec w2)
+  := BitVec.rotateLeft x n.toNat
+
+abbrev _root_.BitVec.rotateRight_i {w : ℕ} (x : BitVec w) (n : ℤ) := BitVec.rotateRight x n.toNat
+abbrev _root_.BitVec.rotateRight_nv {w w2 : ℕ} (x : BitVec w) (n : BitVec w2)
+  := BitVec.rotateRight x n.toNat
+
+abbrev _root_.Multiset.count_i {α : Type} [DecidableEq α] (a : α) (s : Multiset α)
+  := Int.ofNat (s.count a)
+
+abbrev _root_.Multiset.card_i {α : Type} (S : Multiset α) := Int.ofNat S.card
+
+abbrev _root_.Int.gcd_i (a : ℤ) (b : ℤ) := Int.ofNat (Int.gcd a b)
+
+abbrev _root_.Int.Prime (p : ℤ) := Nat.Prime p.toNat
+abbrev _root_.Int.Coprime (a b : ℤ) := Nat.Coprime a.toNat b.toNat
+
+abbrev _root_.Set.remove {α : Type} (x : α) (A : Set α) := A \ {x}
+abbrev _root_.Set.filter {α : Type} (S : Set α) (P : α -> Bool) := {x ∈ S | P x }
+
+abbrev _root_.Option.the {α : Type} [Inhabited α] (opt : Option α) := opt.getD default
+
+noncomputable abbrev _root_.Finmap.lookup! {K : Type} {V : Type} [Inhabited V] (m : Finmap (fun _ : K => V)) (k : K) :=
+  (Finmap.lookup k m).getD default
+
+noncomputable abbrev _root_.Finmap.mapsto {K V : Type} (k : K) (v : V) (m : Finmap (fun _ : K => V))
+  := Finmap.lookup k m = some v
+
+abbrev _root_.Finmap.is_empty {K V : Type} (m : Finmap (fun _ : K => V)) := m = ∅
+abbrev _root_.Finmap.size {K V : Type} (m : Finmap (fun _ : K => V)) := m.keys.card
+
+abbrev _root_.Finset.min'' {α} [Inhabited α] [LinearOrder α] (s : Finset α) : α :=
+  match s.min with
+  | ⊤        => default
+  | .some a  => a
+
+abbrev _root_.Finset.max'' {α} [Inhabited α] [LinearOrder α] (s : Finset α) : α :=
+  match s.max with
+  | ⊥        => default
+  | .some a  => a
+
+abbrev arrayExchange {α} [Inhabited α] (a1 a2 : List α) (i j : Int) : Prop :=
+  let i' := i.toNat
+  let j' := j.toNat
+  a1 = (a2.set i' a1[j']!).set j' (a1[i']!)
+
+abbrev _root_.List.permut_sub {α} (a1 a2 : List α) (l u : ℕ) : Prop :=
+  a1.length = a2.length ∧ (0 ≤ l ∧ l ≤ a1.length) ∧ (0 ≤ u ∧ u ≤ a1.length) ∧
+  List.Perm (slice a1 l u) (slice a2 l u)
+
+abbrev _root_.List.permut_sub' {α} (a1 a2 : List α) (l u : ℕ) : Prop :=
+  a1.length = a2.length ∧ slice a1 0 l = slice a2 0 l ∧
+  slice a1 u a1.length = slice a2 u a1.length ∧
+  List.Perm (slice a1 l u) (slice a2 l u)
+
+abbrev _root_.List.foldr' {α β} (f : α -> β -> β) (l : List α) (x : β) := List.foldr f x l
+
+abbrev _root_.Int.to_Real (z : ℤ) : ℝ := z
+
+abbrev _root_.List.mem' {α} (eq : α -> α -> Bool) (x : α) (l : List α) := List.all l (eq x)
+
+noncomputable abbrev _root_.Real.truncate (x : ℝ) : ℤ := if 0 ≤ x then Int.floor x  else Int.ceil x
+
+alias _root_.Math.abs := abs
+
+end Lean4Why3
+
+open Classical
+open Lean4Why3
+
+namespace WellFounded
+inductive acc { α : Type} : (α -> α -> Bool) -> α -> Prop where
+ | acc_x (r : α -> α -> Bool) (x : α) : (∀(y : α), r y x = true → acc r y) → acc r x
+noncomputable def well_founded {α : Type} [Inhabited α] (r : α -> α -> Bool) := ∀(x : α), acc r x
+end WellFounded
+namespace Ref
+structure ref (α : Type) where
+  contents : α
+axiom inhabited_axiom_ref {α : Type} [Inhabited α] : Inhabited (ref α)
+attribute [instance] inhabited_axiom_ref
+end Ref
+namespace S
+axiom succ : Finset ℤ -> Finset ℤ
+axiom succ_def (i : ℤ) (s : Finset ℤ) : (i ∈ succ s) = ((1 : ℤ) ≤ i ∧ i - (1 : ℤ) ∈ s)
+axiom pred : Finset ℤ -> Finset ℤ
+axiom pred_def (i : ℤ) (s : Finset ℤ) : (i ∈ pred s) = ((0 : ℤ) ≤ i ∧ i + (1 : ℤ) ∈ s)
+end S
+namespace Solution
+axiom n : ℤ
+axiom solution : Type
+axiom inhabited_axiom_solution : Inhabited solution
+attribute [instance] inhabited_axiom_solution
+noncomputable def eq_prefix {α : Type} [Inhabited α] (t : ℤ -> α) (u : ℤ -> α) (i : ℤ) := ∀(k : ℤ), (0 : ℤ) ≤ k ∧ k < i → t k = u k
+noncomputable def partial_solution (k : ℤ) (s : ℤ -> ℤ) := ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < k → ((0 : ℤ) ≤ s i ∧ s i < n) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < i → ¬s i = s j ∧ ¬s i - s j = i - j ∧ ¬s i - s j = j - i)
+noncomputable def lt_sol (s1 : ℤ -> ℤ) (s2 : ℤ -> ℤ) := ∃(i : ℤ), ((0 : ℤ) ≤ i ∧ i < n) ∧ eq_prefix s1 s2 i ∧ s1 i < s2 i
+axiom solutions : Type
+axiom inhabited_axiom_solutions : Inhabited solutions
+attribute [instance] inhabited_axiom_solutions
+noncomputable def sorted (s : ℤ -> ℤ -> ℤ) (a : ℤ) (b : ℤ) := ∀(i : ℤ) (j : ℤ), a ≤ i ∧ i < j ∧ j < b → lt_sol (s i) (s j)
+end Solution
+namespace BitsSpec
+axiom t : Type
+axiom inhabited_axiom_t : Inhabited t
+attribute [instance] inhabited_axiom_t
+axiom mdl : t -> Finset ℤ
+axiom t'invariant (i : ℤ) (self : t) (fact0 : i ∈ mdl self) : (0 : ℤ) ≤ i ∧ i < (32 : ℤ)
+end BitsSpec
+namespace queens_bv_NQueensBits_tqtvc
+theorem t'vc (k : ℤ) (a : BitsSpec.t) (s : ℤ) (col : ℤ -> ℤ) (b : BitsSpec.t) (c : BitsSpec.t) (sol : ℤ -> ℤ -> ℤ) (fact0 : Solution.n ≤ (32 : ℤ)) (fact1 : (0 : ℤ) ≤ k) (fact2 : k + Int.ofNat (Finset.card (BitsSpec.mdl a)) = Solution.n) (fact3 : (0 : ℤ) ≤ s) (fact4 : ∀(i : ℤ), (i ∈ BitsSpec.mdl a) = (((0 : ℤ) ≤ i ∧ i < Solution.n) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < k → ¬col j = i))) (fact5 : ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < (32 : ℤ) → (¬i ∈ BitsSpec.mdl b) = (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < k → ¬i - col j = k - j)) (fact6 : ∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < (32 : ℤ) → (¬i ∈ BitsSpec.mdl c) = (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < k → ¬i - col j = j - k)) (fact7 : Solution.partial_solution k col) : if ¬BitsSpec.mdl a = ∅ then ∀(o1 : BitsSpec.t), BitsSpec.mdl o1 = BitsSpec.mdl a \ BitsSpec.mdl b → (∀(o2 : BitsSpec.t), BitsSpec.mdl o2 = BitsSpec.mdl o1 \ BitsSpec.mdl c → ((¬BitsSpec.mdl o2 = ∅ → -(1 : ℤ) < Finset.min'' (BitsSpec.mdl o2)) ∧ ((0 : ℤ) = s - s ∧ (0 : ℤ) ≤ s - s) ∧ BitsSpec.mdl o2 ⊆ (BitsSpec.mdl a \ BitsSpec.mdl b) \ BitsSpec.mdl c ∧ Solution.partial_solution k col ∧ Solution.sorted sol s s ∧ (∀(i : ℤ), i ∈ BitsSpec.mdl o2 ∧ ¬i ∈ BitsSpec.mdl o2 → i ≤ -(1 : ℤ)) ∧ (∀(i : ℤ), s ≤ i ∧ i < s → Solution.partial_solution Solution.n (sol i) ∧ Solution.eq_prefix col (sol i) k ∧ (0 : ℤ) ≤ sol i k ∧ sol i k ≤ -(1 : ℤ)) ∧ (∀(u : ℤ -> ℤ), Solution.partial_solution Solution.n u ∧ Solution.eq_prefix col u k ∧ (0 : ℤ) ≤ u k ∧ u k ≤ -(1 : ℤ) → u k ∈ BitsSpec.mdl o2 ∧ ¬u k ∈ BitsSpec.mdl o2 ∧ (∃(i : ℤ), (s ≤ i ∧ i < s) ∧ Solution.eq_prefix u (sol i) Solution.n)) ∧ Solution.eq_prefix col col k ∧ Solution.eq_prefix sol sol s) ∧ (∀(min : ℤ) (e : BitsSpec.t) (s1 : ℤ) (sol1 : ℤ -> ℤ -> ℤ) (col1 : ℤ -> ℤ), (¬BitsSpec.mdl e = ∅ → min < Finset.min'' (BitsSpec.mdl e)) ∧ (0 : ℤ) ≤ s1 - s ∧ BitsSpec.mdl e ⊆ (BitsSpec.mdl a \ BitsSpec.mdl b) \ BitsSpec.mdl c ∧ Solution.partial_solution k col1 ∧ Solution.sorted sol1 s s1 ∧ (∀(i : ℤ), i ∈ BitsSpec.mdl o2 ∧ ¬i ∈ BitsSpec.mdl e → i ≤ min) ∧ (∀(i : ℤ), s ≤ i ∧ i < s1 → Solution.partial_solution Solution.n (sol1 i) ∧ Solution.eq_prefix col1 (sol1 i) k ∧ (0 : ℤ) ≤ sol1 i k ∧ sol1 i k ≤ min) ∧ (∀(u : ℤ -> ℤ), Solution.partial_solution Solution.n u ∧ Solution.eq_prefix col1 u k ∧ (0 : ℤ) ≤ u k ∧ u k ≤ min → u k ∈ BitsSpec.mdl o2 ∧ ¬u k ∈ BitsSpec.mdl e ∧ (∃(i : ℤ), (s ≤ i ∧ i < s1) ∧ Solution.eq_prefix u (sol1 i) Solution.n)) ∧ Solution.eq_prefix col col1 k ∧ Solution.eq_prefix sol sol1 s → (if ¬BitsSpec.mdl e = ∅ then ¬BitsSpec.mdl e = ∅ ∧ (∀(d : BitsSpec.t), BitsSpec.mdl d = insert (Finset.min'' (BitsSpec.mdl e)) (∅ : Finset ℤ) → BitsSpec.mdl d = insert (Finset.min'' (BitsSpec.mdl d)) (∅ : Finset ℤ) ∧ (∀(o3 : BitsSpec.t), BitsSpec.mdl o3 = insert (Finset.min'' (BitsSpec.mdl d)) (BitsSpec.mdl b) → (∀(b' : BitsSpec.t), BitsSpec.mdl b' = Finset.erase (S.succ (BitsSpec.mdl o3)) (32 : ℤ) → BitsSpec.mdl d = insert (Finset.min'' (BitsSpec.mdl d)) (∅ : Finset ℤ) ∧ (∀(o4 : BitsSpec.t), BitsSpec.mdl o4 = insert (Finset.min'' (BitsSpec.mdl d)) (BitsSpec.mdl c) → (∀(c' : BitsSpec.t), BitsSpec.mdl c' = S.pred (BitsSpec.mdl o4) → (let o5 : ℤ := k + (1 : ℤ); BitsSpec.mdl d = insert (Finset.min'' (BitsSpec.mdl d)) (∅ : Finset ℤ) ∧ (∀(o6 : BitsSpec.t), BitsSpec.mdl o6 = insert (Finset.min'' (BitsSpec.mdl d)) (BitsSpec.mdl c) → (∀(o7 : BitsSpec.t), BitsSpec.mdl o7 = S.pred (BitsSpec.mdl o6) → BitsSpec.mdl d = insert (Finset.min'' (BitsSpec.mdl d)) (∅ : Finset ℤ) ∧ (∀(o8 : BitsSpec.t), BitsSpec.mdl o8 = insert (Finset.min'' (BitsSpec.mdl d)) (BitsSpec.mdl b) → (∀(o9 : BitsSpec.t), BitsSpec.mdl o9 = Finset.erase (S.succ (BitsSpec.mdl o8)) (32 : ℤ) → (BitsSpec.mdl d = insert (Finset.min'' (BitsSpec.mdl d)) (∅ : Finset ℤ) ∧ Finset.min'' (BitsSpec.mdl d) ∈ BitsSpec.mdl a) ∧ (∀(o10 : BitsSpec.t), BitsSpec.mdl o10 = Finset.erase (BitsSpec.mdl a) (Finset.min'' (BitsSpec.mdl d)) → (((0 : ℤ) ≤ Int.ofNat (Finset.card (BitsSpec.mdl a)) ∧ Finset.card (BitsSpec.mdl o10) < Finset.card (BitsSpec.mdl a)) ∧ Solution.n ≤ (32 : ℤ) ∧ (0 : ℤ) ≤ o5 ∧ o5 + Int.ofNat (Finset.card (BitsSpec.mdl o10)) = Solution.n ∧ (0 : ℤ) ≤ s1 ∧ (∀(i : ℤ), (i ∈ BitsSpec.mdl o10) = (((0 : ℤ) ≤ i ∧ i < Solution.n) ∧ (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < o5 → ¬Function.update col1 k (Finset.min'' (BitsSpec.mdl e)) j = i))) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < (32 : ℤ) → (¬i ∈ BitsSpec.mdl o9) = (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < o5 → ¬i - Function.update col1 k (Finset.min'' (BitsSpec.mdl e)) j = o5 - j)) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < (32 : ℤ) → (¬i ∈ BitsSpec.mdl o7) = (∀(j : ℤ), (0 : ℤ) ≤ j ∧ j < o5 → ¬i - Function.update col1 k (Finset.min'' (BitsSpec.mdl e)) j = j - o5)) ∧ Solution.partial_solution o5 (Function.update col1 k (Finset.min'' (BitsSpec.mdl e)))) ∧ (∀(s2 : ℤ) (sol2 : ℤ -> ℤ -> ℤ) (col2 : ℤ -> ℤ), (0 : ℤ) ≤ s2 - s1 ∧ Solution.sorted sol2 s1 s2 ∧ (∀(i : ℤ), s1 ≤ i ∧ i < s2 → Solution.partial_solution Solution.n (sol2 i) ∧ Solution.eq_prefix col2 (sol2 i) o5) ∧ (∀(u : ℤ -> ℤ), Solution.partial_solution Solution.n u ∧ Solution.eq_prefix col2 u o5 → (∃(i : ℤ), (s1 ≤ i ∧ i < s2) ∧ Solution.eq_prefix u (sol2 i) Solution.n)) ∧ Solution.eq_prefix (Function.update col1 k (Finset.min'' (BitsSpec.mdl e))) col2 o5 ∧ Solution.eq_prefix sol1 sol2 s1 → (BitsSpec.mdl d = insert (Finset.min'' (BitsSpec.mdl d)) (∅ : Finset ℤ) ∧ Finset.min'' (BitsSpec.mdl d) ∈ BitsSpec.mdl e) ∧ (∀(o11 : BitsSpec.t), BitsSpec.mdl o11 = Finset.erase (BitsSpec.mdl e) (Finset.min'' (BitsSpec.mdl d)) → ((0 : ℤ) ≤ Int.ofNat (Finset.card (BitsSpec.mdl e)) ∧ Finset.card (BitsSpec.mdl o11) < Finset.card (BitsSpec.mdl e)) ∧ (¬BitsSpec.mdl o11 = ∅ → Finset.min'' (BitsSpec.mdl e) < Finset.min'' (BitsSpec.mdl o11)) ∧ (s1 - s + (s2 - s1) = s2 - s ∧ (0 : ℤ) ≤ s2 - s) ∧ BitsSpec.mdl o11 ⊆ (BitsSpec.mdl a \ BitsSpec.mdl b) \ BitsSpec.mdl c ∧ Solution.partial_solution k col2 ∧ Solution.sorted sol2 s s2 ∧ (∀(i : ℤ), i ∈ BitsSpec.mdl o2 ∧ ¬i ∈ BitsSpec.mdl o11 → i ≤ Finset.min'' (BitsSpec.mdl e)) ∧ (∀(i : ℤ), s ≤ i ∧ i < s2 → Solution.partial_solution Solution.n (sol2 i) ∧ Solution.eq_prefix col2 (sol2 i) k ∧ (0 : ℤ) ≤ sol2 i k ∧ sol2 i k ≤ Finset.min'' (BitsSpec.mdl e)) ∧ (∀(u : ℤ -> ℤ), Solution.partial_solution Solution.n u ∧ Solution.eq_prefix col2 u k ∧ (0 : ℤ) ≤ u k ∧ u k ≤ Finset.min'' (BitsSpec.mdl e) → u k ∈ BitsSpec.mdl o2 ∧ ¬u k ∈ BitsSpec.mdl o11 ∧ (∃(i : ℤ), (s ≤ i ∧ i < s2) ∧ Solution.eq_prefix u (sol2 i) Solution.n)) ∧ Solution.eq_prefix col col2 k ∧ Solution.eq_prefix sol sol2 s))))))))))))) else (0 : ℤ) ≤ s1 - s ∧ Solution.sorted sol1 s s1 ∧ (∀(i : ℤ), s ≤ i ∧ i < s1 → Solution.partial_solution Solution.n (sol1 i) ∧ Solution.eq_prefix col1 (sol1 i) k) ∧ (∀(u : ℤ -> ℤ), Solution.partial_solution Solution.n u ∧ Solution.eq_prefix col1 u k → (∃(i : ℤ), (s ≤ i ∧ i < s1) ∧ Solution.eq_prefix u (sol1 i) Solution.n)) ∧ Solution.eq_prefix col col1 k ∧ Solution.eq_prefix sol sol1 s))) else ((1 : ℤ) = s + (1 : ℤ) - s ∧ (0 : ℤ) ≤ s + (1 : ℤ) - s) ∧ Solution.sorted (Function.update sol s col) s (s + (1 : ℤ)) ∧ (∀(i : ℤ), s ≤ i ∧ i < s + (1 : ℤ) → Solution.partial_solution Solution.n (Function.update sol s col i) ∧ Solution.eq_prefix col (Function.update sol s col i) k) ∧ (∀(u : ℤ -> ℤ), Solution.partial_solution Solution.n u ∧ Solution.eq_prefix col u k → (∃(i : ℤ), (s ≤ i ∧ i < s + (1 : ℤ)) ∧ Solution.eq_prefix u (Function.update sol s col i) Solution.n)) ∧ Solution.eq_prefix col col k ∧ Solution.eq_prefix sol (Function.update sol s col) s
+  := sorry
+end queens_bv_NQueensBits_tqtvc

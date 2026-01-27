@@ -1,0 +1,49 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'fabsf'' in 'float_mat_inv_2d' at call 'fabsf' (file math/pprz_algebra_float.c, line 793)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_mat_inv_2d_call_fabsf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'fabsf'' in 'float_mat_inv_2d' at call 'fabsf' (file math/pprz_algebra_float.c, line 793)
+":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a_1 a : addr.
+  let a_2 = (shift_float32 a 0) in
+  let r = t_1[a_2] in
+  let r_1 = t_1[(shift_float32 a 1)] in
+  let r_2 = t_1[(shift_float32 a 2)] in
+  let r_3 = t_1[(shift_float32 a 3)] in
+  let r_4 = (add_float32 ((mul_float32 r r_3)) (-. ((mul_float32 r_1 r_2)))) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_float32 r_2)) ->
+  ((is_float32 r_3)) ->
+  ((valid_rd t a_2 4)) ->
+  ((valid_rw t ((shift_float32 a_1 0)) 4)) ->
+  ((is_float32 r_4)) ->
+  ((is_finite32 r_4))
+
+end
+

@@ -1,0 +1,327 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 4154) in 'parse_Time' (14/16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_Time_post_part14
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 4154) in 'parse_Time' (14/16)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_8.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let x_5 = a_4.base in
+  let x_6 = a_5.base in
+  let x_7 = a_6.base in
+  let x_8 = a_7.base in
+  let a_9 = (shift_uint8 a_8 0) in
+  let x_9 = t_1[a_2 <- i][a_4 <- i_1][a_5 <- i_2][a_7 <- i_3][a_3 <- i_4][a
+              <- i_5][a_6 <- 15][a_1 <- 23][a_6] in
+  (a_1 <> a) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (a_4 <> a) ->
+  (a_4 <> a_1) ->
+  (a_4 <> a_2) ->
+  (a_4 <> a_3) ->
+  (i_6 <> 0) ->
+  (a_5 <> a) ->
+  (a_5 <> a_1) ->
+  (a_5 <> a_2) ->
+  (a_5 <> a_3) ->
+  (a_5 <> a_4) ->
+  (a_6 <> a) ->
+  (a_6 <> a_1) ->
+  (a_6 <> a_2) ->
+  (a_6 <> a_3) ->
+  (a_6 <> a_4) ->
+  (a_6 <> a_5) ->
+  (a_7 <> a) ->
+  (a_7 <> a_1) ->
+  (a_7 <> a_2) ->
+  (a_7 <> a_3) ->
+  (a_7 <> a_4) ->
+  (a_7 <> a_5) ->
+  (a_7 <> a_6) ->
+  (null <> a_8) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (x <> x_5) ->
+  (x <> x_6) ->
+  (x <> x_7) ->
+  (x <> x_8) ->
+  (t_1[a_9] = 23) ->
+  (0 <= i_6) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x_5)) <= 0) ->
+  (((region x_6)) <= 0) ->
+  (((region x_7)) <= 0) ->
+  (((region x_8)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_6) ->
+  (15 <= i_6) ->
+  ((linked t)) ->
+  ((is_uint16 i_6)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((valid_rw t a_4 1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((valid_rw t a_7 1)) ->
+  ((valid_rd t a_9 1)) ->
+  ((separated a 1 a_9 i_6)) ->
+  ((separated a_2 1 a_9 i_6)) ->
+  ((separated a_3 1 a_9 i_6)) ->
+  ((separated a_4 1 a_9 i_6)) ->
+  ((separated a_5 1 a_9 i_6)) ->
+  ((separated a_6 1 a_9 i_6)) ->
+  ((separated a_7 1 a_9 i_6)) ->
+  ((is_uint16 x_9)) ->
+  ((0 < i_6) -> ((valid_rd t a_9 i_6))) ->
+  (x_9 <= i_6)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/x509-parser.c, line 4154) in 'parse_Time' (15/16) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_Time_post_part15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Post-condition (file src/x509-parser.c, line 4154) in 'parse_Time' (15/16)":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_8.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let x_5 = a_4.base in
+  let x_6 = a_5.base in
+  let x_7 = a_6.base in
+  let x_8 = a_7.base in
+  let a_9 = (shift_uint8 a_8 0) in
+  let x_9 = t_1[a_2 <- i][a_4 <- i_1][a_5 <- i_2][a_7 <- i_3][a_3 <- i_4][a
+              <- i_5][a_6 <- 17][a_1 <- 24][a_6] in
+  (a_1 <> a) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (a_4 <> a) ->
+  (a_4 <> a_1) ->
+  (a_4 <> a_2) ->
+  (a_4 <> a_3) ->
+  (i_6 <> 0) ->
+  (a_5 <> a) ->
+  (a_5 <> a_1) ->
+  (a_5 <> a_2) ->
+  (a_5 <> a_3) ->
+  (a_5 <> a_4) ->
+  (a_6 <> a) ->
+  (a_6 <> a_1) ->
+  (a_6 <> a_2) ->
+  (a_6 <> a_3) ->
+  (a_6 <> a_4) ->
+  (a_6 <> a_5) ->
+  (a_7 <> a) ->
+  (a_7 <> a_1) ->
+  (a_7 <> a_2) ->
+  (a_7 <> a_3) ->
+  (a_7 <> a_4) ->
+  (a_7 <> a_5) ->
+  (a_7 <> a_6) ->
+  (null <> a_8) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (x <> x_5) ->
+  (x <> x_6) ->
+  (x <> x_7) ->
+  (x <> x_8) ->
+  (t_1[a_9] = 24) ->
+  (0 <= i_6) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x_5)) <= 0) ->
+  (((region x_6)) <= 0) ->
+  (((region x_7)) <= 0) ->
+  (((region x_8)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i_6) ->
+  (17 <= i_6) ->
+  ((linked t)) ->
+  ((is_uint16 i_6)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((valid_rw t a_4 1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((valid_rw t a_7 1)) ->
+  ((valid_rd t a_9 1)) ->
+  ((separated a 1 a_9 i_6)) ->
+  ((separated a_2 1 a_9 i_6)) ->
+  ((separated a_3 1 a_9 i_6)) ->
+  ((separated a_4 1 a_9 i_6)) ->
+  ((separated a_5 1 a_9 i_6)) ->
+  ((separated a_6 1 a_9 i_6)) ->
+  ((separated a_7 1 a_9 i_6)) ->
+  ((is_uint16 x_9)) ->
+  ((0 < i_6) -> ((valid_rd t a_9 i_6))) ->
+  (x_9 <= i_6)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 4177) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_Time_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 4177)":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let x = a_8.base in
+  let x_1 = a.base in
+  let x_2 = a_1.base in
+  let x_3 = a_2.base in
+  let x_4 = a_3.base in
+  let x_5 = a_4.base in
+  let x_6 = a_5.base in
+  let x_7 = a_6.base in
+  let x_8 = a_7.base in
+  let a_9 = (shift_uint8 a_8 0) in
+  (a_1 <> a) ->
+  (a_2 <> a) ->
+  (a_2 <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> a_1) ->
+  (a_3 <> a_2) ->
+  (a_4 <> a) ->
+  (a_4 <> a_1) ->
+  (a_4 <> a_2) ->
+  (a_4 <> a_3) ->
+  (i <> 0) ->
+  (a_5 <> a) ->
+  (a_5 <> a_1) ->
+  (a_5 <> a_2) ->
+  (a_5 <> a_3) ->
+  (a_5 <> a_4) ->
+  (a_6 <> a) ->
+  (a_6 <> a_1) ->
+  (a_6 <> a_2) ->
+  (a_6 <> a_3) ->
+  (a_6 <> a_4) ->
+  (a_6 <> a_5) ->
+  (a_7 <> a) ->
+  (a_7 <> a_1) ->
+  (a_7 <> a_2) ->
+  (a_7 <> a_3) ->
+  (a_7 <> a_4) ->
+  (a_7 <> a_5) ->
+  (a_7 <> a_6) ->
+  (null <> a_8) ->
+  (x <> x_1) ->
+  (x <> x_2) ->
+  (x <> x_3) ->
+  (x <> x_4) ->
+  (x <> x_5) ->
+  (x <> x_6) ->
+  (x <> x_7) ->
+  (x <> x_8) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x_2)) <= 0) ->
+  (((region x_3)) <= 0) ->
+  (((region x_4)) <= 0) ->
+  (((region x_5)) <= 0) ->
+  (((region x_6)) <= 0) ->
+  (((region x_7)) <= 0) ->
+  (((region x_8)) <= 0) ->
+  (((region x)) <= 0) ->
+  (2 <= i) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((valid_rw t a_4 1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((valid_rw t a_7 1)) ->
+  ((0 < i) -> ((valid_rd t a_9 i))) ->
+  ((valid_rd t a_9 1))
+
+end
+

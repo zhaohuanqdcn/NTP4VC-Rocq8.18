@@ -1,0 +1,18 @@
+session strlcpy_Why3_ide = NTP4Verif +
+theories
+  "strlcpy_Why3_ide_VCstrlcpy_size_is_lower_src_assign_normal_part6_goal15"
+  "strlcpy_Why3_ide_VCstrlcpy_assert_3_goal4"
+  "strlcpy_Why3_ide_VCstrlcpy_call_memcpy_pre_4_goal8"
+  "strlcpy_Why3_ide_VCstrlcpy_call_memcpy_pre_goal5"
+  "strlcpy_Why3_ide_VCstrlcpy_assert_goal2"
+  "strlcpy_Why3_ide_VCstrlcpy_call_memcpy_pre_3_goal7"
+  "strlcpy_Why3_ide_VCstrlcpy_size_is_lower_src_assign_normal_part5_goal14"
+  "strlcpy_Why3_ide_VCstrlcpy_complete_zero_size_size_is_greater_src_size_is_lo____goal0"
+  "strlcpy_Why3_ide_VCstrlcpy_call_memcpy_pre_2_goal6"
+  "strlcpy_Why3_ide_VCstrlcpy_disjoint_zero_size_size_is_greater_src_size_is_lo____goal1"
+  "strlcpy_Why3_ide_VCstrlcpy_assert_2_goal3"
+  "strlcpy_Why3_ide_VCstrlcpy_size_is_lower_src_assign_exit_part5_goal13"
+  "strlcpy_Why3_ide_VCstrlcpy_size_is_greater_src_post_2_goal10"
+  "strlcpy_Why3_ide_VCstrlcpy_size_is_lower_src_post_goal12"
+  "strlcpy_Why3_ide_VCstrlcpy_size_is_greater_src_post_goal9"
+  "strlcpy_Why3_ide_VCstrlcpy_size_is_greater_src_assign_normal_part6_goal11"

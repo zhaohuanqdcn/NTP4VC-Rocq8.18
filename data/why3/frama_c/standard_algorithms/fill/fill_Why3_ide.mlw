@@ -1,0 +1,319 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'constant' in 'fill'                --- *)
+(* ---------------------------------------------------------- *)
+theory VCfill_post_constant
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'constant' in 'fill'":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a 0) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_1 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t a_1 i_1)) ->
+  ((p_constantrange ((havoc t_1 t_2 a_1 i_1)) a 0 i_2 i)) ->
+  ((p_constantrange ((havoc t_1 t_2 a_1 i_2)) a 0 i_2 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file fill.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfill_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file fill.c, line 7)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a 0) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 (1 + i_2))) ->
+  ((valid_rw t a_1 i_1)) ->
+  ((valid_rw t ((shift_sint32 a i_2)) 1)) ->
+  ((p_constantrange ((havoc t_1 t_2 a_1 i_1)) a 0 i_2 i)) ->
+  ((-1) <= i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file fill.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfill_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file fill.c, line 7)":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'constant' (file fill.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfill_loop_inv_constant_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'constant' (file fill.c, line 8)":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let x = 1 + i_2 in
+  let a_1 = (shift_sint32 a 0) in
+  let a_2 = (shift_sint32 a i_2) in
+  let a_3 = (havoc t_1 t_2 a_1 i_1) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((is_uint32 x)) ->
+  ((valid_rw t a_1 i_1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_constantrange a_3 a 0 i_2 i)) ->
+  ((p_constantrange a_3[a_2 <- i] a 0 x i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'constant' (file fill.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfill_loop_inv_constant_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'constant' (file fill.c, line 8)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  ((p_constantrange t_1 a 0 0 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file fill.c, line 13)  --- *)
+(* ---------------------------------------------------------- *)
+theory VCfill_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file fill.c, line 13)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a 0) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t a_1 i_1)) ->
+  ((p_constantrange ((havoc t_1 t_2 a_1 i_1)) a 0 i_2 i)) ->
+  ((valid_rw t ((shift_sint32 a i_2)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file fill.c, line 12) --- *)
+(* ---------------------------------------------------------- *)
+theory VCfill_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file fill.c, line 12)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a 0) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t a_1 i_1)) ->
+  ((valid_rw t ((shift_sint32 a i_2)) 1)) ->
+  ((p_constantrange ((havoc t_1 t_2 a_1 i_1)) a 0 i_2 i)) ->
+  (i_2 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file fill.c, line 9) (2/2)           --- *)
+(* ---------------------------------------------------------- *)
+theory VCfill_loop_assign_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Loop assigns (file fill.c, line 9) (2/2)":
+*)
+goal goal7:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint32 a 0) in
+  let a_2 = (shift_sint32 a i_2) in
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t a_1 i_1)) ->
+  ((valid_rw t a_2 1)) ->
+  (not (invalid t a_2 1)) ->
+  ((p_constantrange ((havoc t_1 t_2 a_1 i_1)) a 0 i_2 i)) ->
+  ((included a_2 1 a_1 i_1))
+
+end
+

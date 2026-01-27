@@ -1,0 +1,40 @@
+(* ---------------------------------------------------------- *)
+(* --- Memory Compound Updates                            --- *)
+(* ---------------------------------------------------------- *)
+theory Compound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function shiftfield_f1_cpumask_bits (p : addr) : addr = (shift p 0)
+
+function shift_uint8 (p : addr) (k : int) : addr = (shift p k)
+
+function shift_cpumask (p : addr) (k : int) : addr = (shift p k)
+
+function shiftfield_f5_lb_env_dst_rq (p : addr) : addr = (shift p 2)
+
+function shiftfield_f4_rq_ttwu_pending (p : addr) : addr = (shift p 1)
+
+function shiftfield_f4_rq_nr_running (p : addr) : addr = (shift p 0)
+
+function shiftfield_f5_lb_env_dst_cpu (p : addr) : addr = (shift p 1)
+
+function shiftfield_f5_lb_env_sd (p : addr) : addr = (shift p 0)
+
+function shiftfield_f3_sched_domain_flags (p : addr) : addr = (shift p 1)
+
+function shiftfield_f3_sched_domain_groups (p : addr) : addr = (shift p 0)
+
+function shiftfield_f5_lb_env_cpus (p : addr) : addr = (shift p 4)
+
+function shiftfield_f5_lb_env_idle (p : addr) : addr = (shift p 3)
+
+end
+

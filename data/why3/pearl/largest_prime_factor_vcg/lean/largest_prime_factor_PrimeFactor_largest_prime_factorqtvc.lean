@@ -1,0 +1,8 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+open Classical
+open Lean4Why3
+namespace largest_prime_factor_PrimeFactor_largest_prime_factorqtvc
+theorem largest_prime_factor'vc (n : ℤ) (fact0 : (2 : ℤ) ≤ n) : (2 : ℤ) ≤ n ∧ (2 : ℤ) ≤ (2 : ℤ) ∧ (2 : ℤ) ≤ n ∧ (∀(i : ℤ), (2 : ℤ) ≤ i ∧ i < (2 : ℤ) → ¬i ∣  n) ∧ (∀(d : ℤ), ((2 : ℤ) ≤ d ∧ d ≤ n) ∧ d ∣  n ∧ (∀(i : ℤ), (2 : ℤ) ≤ i ∧ i < d → ¬i ∣  n) → ¬d = (0 : ℤ) ∧ (let o1 : ℤ := Int.tdiv n d; (((1 : ℤ) ≤ o1 ∧ o1 ≤ n) ∧ ((2 : ℤ) ≤ d ∧ d ≤ n) ∧ d ∣  n ∧ Nat.Prime (Int.toNat d) ∧ (∀(i : ℤ), i ∣  o1 ∧ (2 : ℤ) ≤ i → d ≤ i ∧ i ∣  n) ∧ (∀(i : ℤ), Nat.Prime (Int.toNat i) ∧ i ∣  n ∧ d < i → i ∣  o1)) ∧ (∀(target : ℤ) (factor : ℤ), ((1 : ℤ) ≤ target ∧ target ≤ n) ∧ ((2 : ℤ) ≤ factor ∧ factor ≤ n) ∧ factor ∣  n ∧ Nat.Prime (Int.toNat factor) ∧ (∀(i : ℤ), i ∣  target ∧ (2 : ℤ) ≤ i → factor ≤ i ∧ i ∣  n) ∧ (∀(i : ℤ), Nat.Prime (Int.toNat i) ∧ i ∣  n ∧ factor < i → i ∣  target) → (if (2 : ℤ) ≤ target then ((2 : ℤ) ≤ target ∧ ((2 : ℤ) ≤ factor ∧ factor ≤ target) ∧ (∀(i : ℤ), (2 : ℤ) ≤ i ∧ i < factor → ¬i ∣  target)) ∧ (∀(d1 : ℤ), (factor ≤ d1 ∧ d1 ≤ target) ∧ d1 ∣  target ∧ (∀(i : ℤ), (2 : ℤ) ≤ i ∧ i < d1 → ¬i ∣  target) → ¬d1 = (0 : ℤ) ∧ ((0 : ℤ) ≤ target ∧ Int.tdiv target d1 < target) ∧ ((1 : ℤ) ≤ Int.tdiv target d1 ∧ Int.tdiv target d1 ≤ n) ∧ ((2 : ℤ) ≤ d1 ∧ d1 ≤ n) ∧ d1 ∣  n ∧ Nat.Prime (Int.toNat d1) ∧ (∀(i : ℤ), i ∣  Int.tdiv target d1 ∧ (2 : ℤ) ≤ i → d1 ≤ i ∧ i ∣  n) ∧ (∀(i : ℤ), Nat.Prime (Int.toNat i) ∧ i ∣  n ∧ d1 < i → i ∣  Int.tdiv target d1)) else Nat.Prime (Int.toNat factor) ∧ factor ∣  n ∧ (∀(i : ℤ), factor < i ∧ i ≤ n → ¬(Nat.Prime (Int.toNat i) ∧ i ∣  n))))))
+  := sorry
+end largest_prime_factor_PrimeFactor_largest_prime_factorqtvc

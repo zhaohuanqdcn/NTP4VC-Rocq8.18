@@ -1,0 +1,16 @@
+theory vstte10_queens_NQueens63_count_bt_queensqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref"
+begin
+definition is_board :: "63 word array63 \<Rightarrow> int \<Rightarrow> _"
+  where "is_board board pos \<longleftrightarrow> (\<forall>(q :: int). (0 :: int) \<le> q \<and> q < pos \<longrightarrow> (0 :: int) \<le> sint (array63_elts board ! nat q) \<and> sint (array63_elts board ! nat q) < sint (array63_length board))" for board pos
+theorem count_bt_queens'vc:
+  fixes pos :: "63 word"
+  fixes board :: "63 word array63"
+  fixes solutions :: "nat"
+  assumes fact0: "(0 :: int) \<le> sint pos"
+  assumes fact1: "sint pos \<le> sint (array63_length board)"
+  assumes fact2: "is_board board (sint pos)"
+  assumes fact3: "sint pos = sint (array63_length board) \<longrightarrow> pos = array63_length board"
+  shows "if pos = array63_length board then \<forall>(o1 :: nat). int o1 = int solutions + (1 :: int) \<longrightarrow> is_board board (sint pos) else (((0 :: int) \<le> (0 :: int) \<and> (0 :: int) \<le> sint (array63_length board)) \<and> is_board board (sint pos)) \<and> (\<forall>(i :: 63 word) (board1 :: 63 word array63). array63_length board1 = array63_length board \<longrightarrow> ((0 :: int) \<le> sint i \<and> sint i \<le> sint (array63_length board)) \<and> is_board board1 (sint pos) \<longrightarrow> (if sint i < sint (array63_length board) then ((0 :: int) \<le> sint pos \<and> sint pos < sint (array63_length board1)) \<and> (\<forall>(board2 :: 63 word array63). array63_length board2 = array63_length board1 \<longrightarrow> array63_elts board2 = (array63_elts board1)[nat (sint pos) := i] \<longrightarrow> (((0 :: int) \<le> sint pos \<and> sint pos < sint (array63_length board2)) \<and> is_board board2 (sint pos + (1 :: int))) \<and> (\<forall>(o1 :: bool). if o1 = True then int'63_in_bounds (sint pos + (1 :: int)) \<and> (\<forall>(o2 :: 63 word). sint o2 = sint pos + (1 :: int) \<longrightarrow> (((0 :: int) \<le> sint (array63_length board) - sint pos \<and> sint (array63_length board) - sint o2 < sint (array63_length board) - sint pos) \<and> array63_length board2 = array63_length board \<and> ((0 :: int) \<le> sint o2 \<and> sint o2 \<le> sint (array63_length board)) \<and> is_board board2 (sint o2)) \<and> (\<forall>(board3 :: 63 word array63). array63_length board3 = array63_length board2 \<longrightarrow> is_board board3 (sint o2) \<longrightarrow> int'63_in_bounds (sint i + (1 :: int)) \<and> (\<forall>(o3 :: 63 word). sint o3 = sint i + (1 :: int) \<longrightarrow> ((0 :: int) \<le> sint (array63_length board) - sint i \<and> sint (array63_length board) - sint o3 < sint (array63_length board) - sint i) \<and> ((0 :: int) \<le> sint o3 \<and> sint o3 \<le> sint (array63_length board)) \<and> is_board board3 (sint pos)))) else int'63_in_bounds (sint i + (1 :: int)) \<and> (\<forall>(o2 :: 63 word). sint o2 = sint i + (1 :: int) \<longrightarrow> ((0 :: int) \<le> sint (array63_length board) - sint i \<and> sint (array63_length board) - sint o2 < sint (array63_length board) - sint i) \<and> ((0 :: int) \<le> sint o2 \<and> sint o2 \<le> sint (array63_length board)) \<and> is_board board2 (sint pos)))) else is_board board1 (sint pos)))"
+  sorry
+end

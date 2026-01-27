@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name snapshotable_trees_vcg.snapshotable_trees)
+(theories Why3))

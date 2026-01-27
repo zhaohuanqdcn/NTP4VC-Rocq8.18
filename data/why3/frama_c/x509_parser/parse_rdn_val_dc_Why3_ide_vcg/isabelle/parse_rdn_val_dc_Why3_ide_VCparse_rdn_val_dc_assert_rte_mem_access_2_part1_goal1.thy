@@ -1,0 +1,31 @@
+theory parse_rdn_val_dc_Why3_ide_VCparse_rdn_val_dc_assert_rte_mem_access_2_part1_goal1
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal1:
+  fixes i :: "int"
+  fixes i_1 :: "int"
+  fixes a :: "addr"
+  fixes t :: "int \<Rightarrow> int"
+  assumes fact0: "\<not>i = (0 :: int)"
+  assumes fact1: "\<not>i = (3 :: int)"
+  assumes fact2: "\<not>i_1 = (0 :: int)"
+  assumes fact3: "\<not>Mk_addr (0 :: int) (0 :: int) = a"
+  assumes fact4: "(0 :: int) \<le> i"
+  assumes fact5: "region (base a) \<le> (0 :: int)"
+  assumes fact6: "-(2147483646 :: int) \<le> i"
+  assumes fact7: "-(2147483645 :: int) \<le> i"
+  assumes fact8: "(2 :: int) \<le> i"
+  assumes fact9: "(3 :: int) \<le> i"
+  assumes fact10: "i \<le> (65 :: int)"
+  assumes fact11: "i \<le> (65537 :: int)"
+  assumes fact12: "i \<le> (65538 :: int)"
+  assumes fact13: "linked t"
+  assumes fact14: "is_uint16 i"
+  assumes fact15: "is_sint32 i_1"
+  assumes fact16: "is_uint16 (i - (3 :: int))"
+  assumes fact17: "is_uint16 (i - (2 :: int))"
+  assumes fact18: "valid_rd t (shift a (2 :: int)) (1 :: int)"
+  assumes fact19: "(0 :: int) < i \<longrightarrow> valid_rd t (shift a (0 :: int)) i"
+  shows "valid_rd t (shift a ((3 :: int) + to_sint32 (i - (4 :: int)))) (1 :: int)"
+  sorry
+end

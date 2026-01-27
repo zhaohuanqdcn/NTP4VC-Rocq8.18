@@ -1,0 +1,8 @@
+session residual = NTP4Verif +
+theories
+  "residual_Residual_accepts_epsilonqtvc"
+  "residual_Residual_decide_memqtvc"
+  "residual_Residual_inversion_mem_star_genqtvc"
+  "residual_Residual_inversion_mem_starqtvc"
+  "residual_ResidualOCaml_decideqtvc"
+  "residual_Residual_residualqtvc"

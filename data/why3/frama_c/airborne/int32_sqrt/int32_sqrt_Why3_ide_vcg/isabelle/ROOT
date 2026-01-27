@@ -1,0 +1,10 @@
+session int32_sqrt_Why3_ide = NTP4Verif +
+theories
+  "int32_sqrt_Why3_ide_VCint32_sqrt_loop_inv_4_preserved_goal5"
+  "int32_sqrt_Why3_ide_VCint32_sqrt_loop_inv_established_goal2"
+  "int32_sqrt_Why3_ide_VCint32_sqrt_loop_inv_preserved_goal1"
+  "int32_sqrt_Why3_ide_VCint32_sqrt_loop_inv_3_preserved_goal4"
+  "int32_sqrt_Why3_ide_VCint32_sqrt_result_bounded_post_goal7"
+  "int32_sqrt_Why3_ide_VCint32_sqrt_loop_inv_2_preserved_goal3"
+  "int32_sqrt_Why3_ide_VCint32_sqrt_loop_term_decrease_goal6"
+  "int32_sqrt_Why3_ide_VCint32_sqrt_post_goal0"

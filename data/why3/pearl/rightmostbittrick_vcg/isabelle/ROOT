@@ -1,0 +1,7 @@
+session rightmostbittrick = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "rightmostbittrick_Rmbt"
+  "rightmostbittrick_Rmbt_rightmost_bit_trickqtvc"
+  "rightmostbittrick_Rmbt_rightmost_position_setqtvc"

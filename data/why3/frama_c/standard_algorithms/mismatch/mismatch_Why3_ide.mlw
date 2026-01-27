@@ -1,0 +1,443 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file mismatch.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file mismatch.c, line 8)":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_1) in
+  let x = t_1[a_2] in
+  let a_3 = (shift_sint32 a i_1) in
+  let x_1 = t_1[a_3] in
+  (x = x_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_1 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 (1 + i_1))) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 x)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 i_1 a)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  ((valid_rd t a_2 1)) ->
+  ((-1) <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file mismatch.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file mismatch.c, line 8)":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'equal' (file mismatch.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_loop_inv_equal_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'equal' (file mismatch.c, line 9)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_1) in
+  let x = t_1[a_2] in
+  let a_3 = (shift_sint32 a i_1) in
+  let x_1 = t_1[a_3] in
+  let x_2 = 1 + i_1 in
+  (x = x_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_1 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 x_2)) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 x)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 i_1 a)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  ((valid_rd t a_2 1)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 x_2 a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'equal' (file mismatch.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_loop_inv_equal_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'equal' (file mismatch.c, line 9)":
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 0 a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file mismatch.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file mismatch.c, line 14)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_1) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 t_1[(shift_sint32 a i_1)])) ->
+  ((is_sint32 t_1[a_2])) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 i_1 a)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  ((valid_rd t a_2 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file mismatch.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file mismatch.c, line 14)":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a i_1) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 t_1[a_2])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 i_1)])) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 i_1 a)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  ((valid_rd t a_2 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file mismatch.c, line 13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file mismatch.c, line 13)":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_1) in
+  let x = t_1[a_2] in
+  let a_3 = (shift_sint32 a i_1) in
+  let x_1 = t_1[a_3] in
+  (x = x_1) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 x)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 i_1 a)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  ((valid_rd t a_2 1)) ->
+  (i_1 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'all_equal' 'result' in 'mismatch' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_all_equal_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'all_equal' 'result' in 'mismatch'":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a_1 i_1) in
+  let x = t_1[a_2] in
+  let a_3 = (shift_sint32 a i_1) in
+  let x_1 = t_1[a_3] in
+  (x <> x_1) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 x_1)) ->
+  ((is_sint32 x)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 i a)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 i_1 a)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t a_3 1)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  ((valid_rd t a_2 1)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'some_not_equal' 'bound' in 'mismatch' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_some_not_equal_post_bound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'some_not_equal' 'bound' in 'mismatch'":
+*)
+goal goal8:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 t_1[(shift_sint32 a i_1)])) ->
+  ((is_sint32 t_1[(shift_sint32 a_1 i_1)])) ->
+  (not (p_equalranges_1_ t_1 t_1 a_1 i a)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 i_1 a)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'some_not_equal' 'result' in 'mismatch' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmismatch_some_not_equal_post_result
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'some_not_equal' 'result' in 'mismatch'":
+*)
+goal goal9:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[(shift_sint32 a i_1)] in
+  let x_1 = t_1[(shift_sint32 a_1 i_1)] in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 x)) ->
+  ((is_sint32 x_1)) ->
+  (not (p_equalranges_1_ t_1 t_1 a_1 i a)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 i_1 a)) ->
+  ((valid_rd t ((shift_sint32 a 0)) i)) ->
+  ((valid_rd t ((shift_sint32 a_1 0)) i)) ->
+  (x_1 <> x)
+
+end
+

@@ -1,0 +1,52 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'DifferenceAxiomatic'                    --- *)
+(* ---------------------------------------------------------- *)
+theory A_DifferenceAxiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_difference (map addr int) addr int : int
+
+use import Cint.Cint
+
+axiom Q_TL_Difference:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall n : int
+  [(l_difference mint_0 a n)].
+  (is_sint32 ((l_difference mint_0 a n)))
+
+use import Compound.Compound
+
+axiom Q_DifferenceEmptyOrSingle:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall n : int.
+  (n <= 0) -> (mint_0[(shift_sint32 a 0)] = ((l_difference mint_0 a n)))
+
+axiom Q_DifferenceNext:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall n : int.
+  (0 < n) ->
+    (mint_0[(shift_sint32 a n)]
+       = (((l_difference mint_0 a n)) + mint_0[(shift_sint32 a (n - 1))]))
+
+use import Axiomatic.Axiomatic
+
+axiom Q_DifferenceRead:
+  forall a : addr.
+  forall mint_0 mint_1 : map addr int.
+  forall n : int.
+  ((p_unchanged_2_ mint_0 mint_1 a (1 + n))) ->
+    (((l_difference mint_1 a n)) = ((l_difference mint_0 a n)))
+
+end
+

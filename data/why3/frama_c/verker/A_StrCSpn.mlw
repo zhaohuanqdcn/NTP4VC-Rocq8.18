@@ -1,0 +1,42 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'StrCSpn'                                --- *)
+(* ---------------------------------------------------------- *)
+theory A_StrCSpn
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_strcspn addr addr : int
+
+axiom Q_strcspn_base_case:
+  forall reject_0 s : addr.
+  forall mchar_0 : map addr int.
+  (mchar_0[s] = 0) -> (((l_strcspn s reject_0)) = 0)
+
+use import A_StrSpn.A_StrSpn
+
+axiom Q_strcspn_in_reject:
+  forall reject_0 s : addr.
+  forall mchar_0 : map addr int.
+  let x = mchar_0[s] in (x <> 0) -> ((p_in_array mchar_0 reject_0 x)) ->
+    (((l_strcspn s reject_0)) = 0)
+
+use import Compound.Compound
+
+axiom Q_strcspn_not_in_reject:
+  forall reject_0 s : addr.
+  forall mchar_0 : map addr int.
+  let x = mchar_0[s] in (x <> 0) -> (not (p_in_array mchar_0 reject_0 x)) ->
+    ((1 + ((l_strcspn ((shift_sint8 s 1)) reject_0)))
+       = ((l_strcspn s reject_0)))
+
+use import A_Strlen.A_Strlen
+
+end
+

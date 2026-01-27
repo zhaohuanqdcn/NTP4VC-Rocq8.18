@@ -1,0 +1,19 @@
+import Why3.Base
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+open Classical
+open Lean4Why3
+namespace Firstorder_term_impl_Impl_destruct_fo_termqtvc
+theorem destruct_fo_term'vc (t : Types.nlimpl_fo_term) (fact0 : Logic.nlimpl_fo_term_ok t) : let fv0 : ℤ := Types.nlimpl_fo_term.nlfree_var_symbol_set_abstraction_fo_term_field t; let o1 : Types.nl_fo_term ℤ ℤ := Types.nlimpl_fo_term.nlrepr_fo_term_field t; (match o1 with | Types.nl_fo_term.NLFVar_fo_term v0 => True | Types.nl_fo_term.NLBruijn_fo_term v0 => False | Types.nl_fo_term.NL_App v0 v1 => (match Types.nlimpl_fo_term.model_fo_term_field t with | Spec.fo_term.Var_fo_term x0 => False | Spec.fo_term.App x0 x1 => True)) ∧ (∀(result : Types.cons_fo_term), (match o1 with | Types.nl_fo_term.NLFVar_fo_term v0 => result = Types.cons_fo_term.NLCVar_fo_term v0 | Types.nl_fo_term.NLBruijn_fo_term v0 => False | Types.nl_fo_term.NL_App v0 v1 => (match Types.nlimpl_fo_term.model_fo_term_field t with | Spec.fo_term.Var_fo_term x0 => False | Spec.fo_term.App x0 x1 => result = Types.cons_fo_term.NLC_App (Types.nlimpl_symbol.mk v0 fv0 (Spec.rename_symbol x0 Func.identity)) (Types.nlimpl_fo_term_list.mk v1 fv0 (Types.nlimpl_fo_term.nlfree_var_fo_term_set_abstraction_fo_term_field t) (Spec.rename_fo_term_list x1 Func.identity Func.identity)))) → Logic.cons_ok_fo_term result ∧ Logic.cons_rel_fo_term result t ∧ Logic.cons_open_rel_fo_term result t)
+  := sorry
+end Firstorder_term_impl_Impl_destruct_fo_termqtvc

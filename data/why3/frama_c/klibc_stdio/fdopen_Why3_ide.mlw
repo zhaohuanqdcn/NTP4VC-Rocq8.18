@@ -1,0 +1,68 @@
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file fdopen.c, line 24) in 'fdopen'       --- *)
+(* ---------------------------------------------------------- *)
+theory VCfdopen_assign_exit
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assigns (file fdopen.c, line 24) in 'fdopen'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((null = a) \/ (exists i_1 : int. (p_length_of_str_is t t_1 a i_1))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file fdopen.c, line 24) in 'fdopen'       --- *)
+(* ---------------------------------------------------------- *)
+theory VCfdopen_assign_normal
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assigns (file fdopen.c, line 24) in 'fdopen'":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((null = a) \/ (exists i_1 : int. (p_length_of_str_is t t_1 a i_1))) ->
+  false
+
+end
+

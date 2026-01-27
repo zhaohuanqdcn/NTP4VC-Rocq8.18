@@ -1,0 +1,5 @@
+session parse_ext_AIA_Why3_ide = NTP4Verif +
+theories
+  "parse_ext_AIA_Why3_ide_VCparse_ext_AIA_loop_inv_established_goal1"
+  "parse_ext_AIA_Why3_ide_VCparse_ext_AIA_loop_inv_preserved_goal0"
+  "parse_ext_AIA_Why3_ide_VCparse_ext_AIA_loop_term_decrease_goal2"

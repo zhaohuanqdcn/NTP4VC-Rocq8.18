@@ -1,0 +1,31 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.c.C
+import Why3.mach.int.Unsigned
+import pearl.multiprecision.lib.lean.valuation.Valuation
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.compare.Compare
+import pearl.multiprecision.lib.lean.util.Util
+import pearl.multiprecision.lib.lean.ptralias.Alias
+import pearl.multiprecision.lib.lean.util.UtilOld
+import pearl.multiprecision.lib.lean.add_1.Add_1
+import pearl.multiprecision.lib.lean.add.Add
+import pearl.multiprecision.lib.lean.add.AddOld
+import pearl.multiprecision.lib.lean.sub_1.Sub_1
+import pearl.multiprecision.lib.lean.sub.SubOld
+import pearl.multiprecision.lib.lean.mul.Mul
+import pearl.multiprecision.lib.lean.mul.Mul_basecase
+import pearl.multiprecision.lib.lean.logical.LogicalUtil
+import pearl.multiprecision.lib.lean.logical.Logical
+open Classical
+open Lean4Why3
+namespace toom_Toom_no_borrow_ptrqtvc
+theorem no_borrow_ptr'vc (ny : ℤ) (nx : ℤ) (y : C.ptr (BitVec 64)) (x : C.ptr (BitVec 64)) (r : C.ptr (BitVec 64)) (b : BitVec 64) (fact0 : (0 : ℤ) < ny) (fact1 : ny ≤ nx) (fact2 : Lemmas.value y ny ≤ Lemmas.value x nx) (fact3 : Lemmas.value r nx - HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat nx) * BitVec.toUInt b = Lemmas.value x nx - Lemmas.value y ny) (fact4 : (0 : ℤ) ≤ BitVec.toUInt b) : BitVec.toUInt b = (0 : ℤ)
+  := sorry
+end toom_Toom_no_borrow_ptrqtvc

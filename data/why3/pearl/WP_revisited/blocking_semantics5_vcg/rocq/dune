@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name WP_revisited.blocking_semantics5_vcg)
+(theories Why3 WP_revisited.blocking_semantics5 Why3.map))

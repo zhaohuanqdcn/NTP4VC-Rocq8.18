@@ -1,0 +1,9 @@
+session isqrt = NTP4Verif +
+theories
+  "isqrt_Square_sqr_non_negqtvc"
+  "isqrt_NewtonMethod_sqrtqtvc"
+  "isqrt_Square"
+  "isqrt_Simple_isqrtqtvc"
+  "isqrt_Simple_mainqtvc"
+  "isqrt_Square_sqr_sumqtvc"
+  "isqrt_Square_sqr_increasingqtvc"

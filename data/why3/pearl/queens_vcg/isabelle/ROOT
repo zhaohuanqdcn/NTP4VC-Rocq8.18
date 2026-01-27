@@ -1,0 +1,9 @@
+session queens = NTP4Verif +
+theories
+  "queens_Solution_no_duplicateqtvc"
+  "queens_NQueensSetsTermination_tqtvc"
+  "queens_S"
+  "queens_Solution_partial_solution_eq_prefixqtvc"
+  "queens_NQueensSets_queens3qtvc"
+  "queens_Solution"
+  "queens_NQueensSets_t3qtvc"

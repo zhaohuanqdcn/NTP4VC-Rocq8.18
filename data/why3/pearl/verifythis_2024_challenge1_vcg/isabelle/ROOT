@@ -1,0 +1,13 @@
+session verifythis_2024_challenge1 = NTP4Verif +
+theories
+  "verifythis_2024_challenge1_Top_decompose_sigmaqtvc"
+  "verifythis_2024_challenge1_Top_copy_chunkqtvc"
+  "verifythis_2024_challenge1_Top_distinct_subsegmentsqtvc"
+  "verifythis_2024_challenge1_Top_smart_array_copy_0bqtvc"
+  "verifythis_2024_challenge1_Top_frame_permutation_pairqtvc"
+  "verifythis_2024_challenge1_Top_decompose_tau_sigmaqtvc"
+  "verifythis_2024_challenge1_Top_smart_array_copy_0qtvc"
+  "verifythis_2024_challenge1_Top_all_subsegments_permqtvc"
+  "verifythis_2024_challenge1_Top_all_subsegmentsqtvc"
+  "verifythis_2024_challenge1_Top_smart_array_copy_1qtvc"
+  "verifythis_2024_challenge1_Top_frame_subsegmentqtvc"

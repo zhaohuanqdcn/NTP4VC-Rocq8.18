@@ -1,0 +1,32 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import Why3.Qed.Qed.
+Require Import Why3.Memory.Memory.
+Require Import should_we_balance.A_thread_variables_properties.A_thread_variables_properties.
+Require Import Why3.Cint.Cint.
+Require Import should_we_balance.Compound.Compound.
+Open Scope Z_scope.
+Theorem goal0 (a_1 : addr) (i_2 : Z) (t_1 : addr -> Z) (a : addr) (i : Z) (i_1 : Z) (t : Z -> Z) : let a_2 : addr := shift a_1 i_2 in let x : Z := t_1 a_2 in let a_3 : addr := shift a i_2 in i_2 < i -> i_1 ≤ i_2 -> i ≤ l_size -> region (base a) ≤ 0%Z -> region (base a_1) ≤ 0%Z -> linked t -> is_uint32 i -> is_uint32 i_1 -> is_uint32 i_2 -> is_uint8 x -> valid_rd t (shift a 0%Z) i -> valid_rd t (shift a_1 0%Z) i -> valid_rd t a_2 1%Z -> x = 0%Z ∨ x = 1%Z -> x = 0%Z ∨ t_1 a_3 = 0%Z ∧ valid_rd t a_3 1%Z -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 < i_2 -> t_1 (shift a i_3) = 0%Z ∨ t_1 (shift a_1 i_3) = 0%Z) -> i_1 ≤ to_uint32 (1%Z + i_2).
+Admitted.

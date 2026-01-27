@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name airborne.float_quat_inv_comp_norm_shortest.float_quat_inv_comp_norm_shortest_Why3_ide_vcg)
+(theories Why3.Cfloat float_quat_inv_comp_norm_shortest.S3_FloatQuat Why3.Qed Why3.Cmath Why3))

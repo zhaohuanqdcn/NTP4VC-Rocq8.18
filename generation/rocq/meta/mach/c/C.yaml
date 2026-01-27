@@ -1,0 +1,27 @@
+atoms:
+  mach.c.C.data: [data, C.data]
+  mach.c.C.in_bounds: [in_bounds, C.in_bounds]
+  mach.c.C.in_us_bounds: [in_us_bounds, C.in_us_bounds]
+  mach.c.C.is_not_null: [is_not_null, C.is_not_null]
+  mach.c.C.max: [max, C.max]
+  mach.c.C.min: [min, C.min]
+  mach.c.C.null_zone: [null_zone, C.null_zone]
+  mach.c.C.offset: [offset, C.offset]
+  mach.c.C.pelts: [pelts, C.pelts]
+  mach.c.C.plength: [plength, C.plength]
+  mach.c.C.valid: [valid, C.valid]
+  mach.c.C.valid_ptr_shift: [valid_ptr_shift, C.valid_ptr_shift]
+  mach.c.C.writable: [writable, C.writable]
+  mach.c.C.zone1: [zone1, C.zone1]
+axioms:
+  mach.c.C.is_not_null'spec: [is_not_null'spec, C.is_not_null'spec]
+  mach.c.C.valid_itv_to_shift: [valid_itv_to_shift, C.valid_itv_to_shift]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.mach.c.C
+prefix_ops: {}
+types:
+  mach.c.C.ptr: [ptr, C.ptr]
+  mach.c.C.zone: [zone, C.zone]

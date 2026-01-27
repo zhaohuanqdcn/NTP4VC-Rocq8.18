@@ -1,0 +1,41 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #15)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_bound_int32rmat (mint_0 : map addr int) (rm_0 : addr)
+    (bound_0 : int) =
+    let a = (shiftfield_f12_int32rmat_m rm_0) in
+    let x = mint_0[(shift_sint32 a 0)] in
+    let x_1 = mint_0[(shift_sint32 a 1)] in
+    let x_2 = mint_0[(shift_sint32 a 2)] in
+    let x_3 = mint_0[(shift_sint32 a 3)] in
+    let x_4 = mint_0[(shift_sint32 a 4)] in
+    let x_5 = mint_0[(shift_sint32 a 5)] in
+    let x_6 = mint_0[(shift_sint32 a 6)] in
+    let x_7 = mint_0[(shift_sint32 a 7)] in
+    let x_8 = mint_0[(shift_sint32 a 8)] in (x <= bound_0) /\
+    (x_1 <= bound_0) /\ (x_2 <= bound_0) /\ (x_3 <= bound_0) /\
+    (x_4 <= bound_0) /\ (x_5 <= bound_0) /\ (x_6 <= bound_0) /\
+    (x_7 <= bound_0) /\ (x_8 <= bound_0) /\ (0 <= (bound_0 + x)) /\
+    (0 <= (bound_0 + x_1)) /\ (0 <= (bound_0 + x_2)) /\
+    (0 <= (bound_0 + x_3)) /\ (0 <= (bound_0 + x_4)) /\
+    (0 <= (bound_0 + x_5)) /\ (0 <= (bound_0 + x_6)) /\
+    (0 <= (bound_0 + x_7)) /\ (0 <= (bound_0 + x_8))
+
+predicate p_rvalid_bound_int32rmat (malloc_0 : map int int)
+    (mint_0 : map addr int) (rm_0 : addr) (bound_0 : int) =
+    ((valid_rd malloc_0 rm_0 9)) /\ ((p_bound_int32rmat mint_0 rm_0 bound_0))
+
+end
+

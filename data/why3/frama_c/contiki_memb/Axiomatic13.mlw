@@ -1,0 +1,71 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #13)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic13
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_valid_memb (malloc_0 : map int int) (mptr_0 : map addr addr)
+    (mint_0 : map addr int) (m : addr) =
+    let x = mint_0[(shiftfield_f1_memb_size m)] in
+    let x_1 = mint_0[(shiftfield_f1_memb_num m)] in let x_2 = x_1 * x in
+    let a = mptr_0[(shiftfield_f1_memb_count m)] in
+    let a_1 = mptr_0[(shiftfield_f1_memb_mem m)] in
+    let a_2 = (shift_sint8 a 0) in let a_3 = (shift_sint8 a_1 0) in
+    (0 < x) /\ (x_2 <= 2147483647) /\ ((valid_rw malloc_0 m 4)) /\
+    ((valid_rw malloc_0 a 1)) /\ ((valid_rw malloc_0 a_1 1)) /\
+    ((valid_rw malloc_0 a_2 x_1)) /\ ((valid_rw malloc_0 a_3 x_2)) /\
+    ((separated a_2 x_1 a_3 x_2))
+
+predicate p__memb_full (mptr_0 : map addr addr) (mchar_0 : map addr int)
+    (mint_0 : map addr int) (m : addr) =
+    forall i : int. (0 <= i) -> (i < mint_0[(shiftfield_f1_memb_num m)]) ->
+    (mchar_0[(shift_sint8 mptr_0[(shiftfield_f1_memb_count m)] i)] <> 0)
+
+function l__memb_index (mptr_0 : map addr addr) (mint_0 : map addr int)
+    (m : addr) (ptr_0 : addr) : int =
+    (div ((ptr_0.offset) - (mptr_0[(shiftfield_f1_memb_mem m)].offset))
+      mint_0[(shiftfield_f1_memb_size m)])
+
+function l__memb_ptr (mptr_0 : map addr addr) (mint_0 : map addr int)
+    (m : addr) (index_0 : int) : addr =
+    (shift_sint8 mptr_0[(shiftfield_f1_memb_mem m)]
+      (index_0 * mint_0[(shiftfield_f1_memb_size m)]))
+
+predicate p__memb_has (mptr_0 : map addr addr) (mint_0 : map addr int)
+    (m : addr) (ptr_0 : addr) =
+    exists i : int. (((l__memb_ptr mptr_0 mint_0 m i)) = ptr_0) /\
+    (0 <= i) /\ (i < mint_0[(shiftfield_f1_memb_num m)])
+
+predicate p__memb_allocated (mptr_0 : map addr addr) (mchar_0 : map addr int)
+    (mint_0 : map addr int) (m : addr) (ptr_0 : addr) =
+    (mchar_0[(shift_sint8 mptr_0[(shiftfield_f1_memb_count m)]
+               ((l__memb_index mptr_0 mint_0 m ptr_0)))] <> 0) /\
+    ((p__memb_has mptr_0 mint_0 m ptr_0))
+
+use import A_OccArray.A_OccArray
+
+function l__memb_numfree (mptr_0 : map addr addr) (mchar_0 : map addr int)
+    (mint_0 : map addr int) (m : addr) : int =
+    (l_occ_a mchar_0 0 mptr_0[(shiftfield_f1_memb_count m)] 0
+      mint_0[(shiftfield_f1_memb_num m)])
+
+predicate p__memb_empty (mptr_0 : map addr addr) (mchar_0 : map addr int)
+    (mint_0 : map addr int) (m : addr) =
+    forall i : int. (0 <= i) -> (i < mint_0[(shiftfield_f1_memb_num m)]) ->
+    (mchar_0[(shift_sint8 mptr_0[(shiftfield_f1_memb_count m)] i)] = 0)
+
+lemma Q_mult_simplification:
+  forall a b : int.
+  (0 < b) -> (0 <= a) -> (((div (a * b) b)) = a)
+
+end
+

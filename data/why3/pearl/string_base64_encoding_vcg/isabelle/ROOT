@@ -1,0 +1,16 @@
+session string_base64_encoding = NTP4Verif +
+theories
+  "string_base64_encoding_Base64_int2b64qtvc"
+  "string_base64_encoding_Base64_b642intqtvc"
+  "string_base64_encoding_Base64_calc_pad_mod3qtvc"
+  "string_base64_encoding_Base64_encoding_valid_b64qtvc"
+  "string_base64_encoding_Base64_encodeqtvc"
+  "string_base64_encoding_Base64_calc_padqtvc"
+  "string_base64_encoding_Base64_encode_uniqueqtvc"
+  "string_base64_encoding_Base64_decode_encodeqtvc"
+  "string_base64_encoding_Base64_eq_symbolqtvc"
+  "string_base64_encoding_Base64_decode_uniqueqtvc"
+  "string_base64_encoding_Base64_get_padqtvc"
+  "string_base64_encoding_Base64_decodeqtvc"
+  "string_base64_encoding_Base64_int2b64_valid_4_charqtvc"
+  "string_base64_encoding_Base64_b642int_int2b64qtvc"

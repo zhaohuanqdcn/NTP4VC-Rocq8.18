@@ -1,0 +1,8 @@
+session same_fringe = NTP4Verif +
+theories
+  "same_fringe_SameFringe_test1qtvc"
+  "same_fringe_SameFringe_enumqtvc"
+  "same_fringe_SameFringe_same_fringeqtvc"
+  "same_fringe_Test_test1qtvc"
+  "same_fringe_SameFringe_eq_enumqtvc"
+  "same_fringe_SameFringe_benchqtvc"

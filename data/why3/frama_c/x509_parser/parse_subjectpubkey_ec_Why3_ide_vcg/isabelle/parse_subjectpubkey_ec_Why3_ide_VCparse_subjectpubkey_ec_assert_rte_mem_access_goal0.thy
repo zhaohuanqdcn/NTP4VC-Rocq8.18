@@ -1,0 +1,30 @@
+theory parse_subjectpubkey_ec_Why3_ide_VCparse_subjectpubkey_ec_assert_rte_mem_access_goal0
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal0:
+  fixes i :: "int"
+  fixes i_2 :: "int"
+  fixes a_1 :: "addr"
+  fixes i_1 :: "int"
+  fixes a :: "addr"
+  fixes t_1 :: "addr \<Rightarrow> addr"
+  fixes t :: "int \<Rightarrow> int"
+  assumes fact0: "\<not>i = (0 :: int)"
+  assumes fact1: "\<not>i_2 = (0 :: int)"
+  assumes fact2: "\<not>Mk_addr (0 :: int) (0 :: int) = a_1"
+  assumes fact3: "(0 :: int) \<le> i"
+  assumes fact4: "i_1 \<le> i"
+  assumes fact5: "i_2 \<le> i"
+  assumes fact6: "i_1 + i_2 \<le> i"
+  assumes fact7: "region (base a) \<le> (0 :: int)"
+  assumes fact8: "region (base a_1) \<le> (0 :: int)"
+  assumes fact9: "(2 :: int) \<le> i_1"
+  assumes fact10: "framed t_1"
+  assumes fact11: "linked t"
+  assumes fact12: "is_uint16 i"
+  assumes fact13: "is_uint16 i_1"
+  assumes fact14: "is_uint16 i_2"
+  assumes fact15: "(0 :: int) < i \<longrightarrow> valid_rd t (shift a_1 (0 :: int)) i"
+  shows "valid_rd t (shift a_1 i_1) (1 :: int)"
+  sorry
+end

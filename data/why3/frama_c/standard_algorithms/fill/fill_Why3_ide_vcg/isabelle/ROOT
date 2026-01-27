@@ -1,0 +1,10 @@
+session fill_Why3_ide = NTP4Verif +
+theories
+  "fill_Why3_ide_VCfill_post_constant_goal0"
+  "fill_Why3_ide_VCfill_loop_inv_constant_preserved_goal3"
+  "fill_Why3_ide_VCfill_assert_rte_mem_access_goal5"
+  "fill_Why3_ide_VCfill_loop_inv_constant_established_goal4"
+  "fill_Why3_ide_VCfill_assert_rte_unsigned_overflow_goal6"
+  "fill_Why3_ide_VCfill_loop_inv_bound_established_goal2"
+  "fill_Why3_ide_VCfill_loop_inv_bound_preserved_goal1"
+  "fill_Why3_ide_VCfill_loop_assign_part2_goal7"

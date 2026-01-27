@@ -1,0 +1,28 @@
+theory Firstorder_term_spec_Spec_renaming_composition_lemma_fo_term_listqtvc
+  imports "NTP4Verif.NTP4Verif" "../../lib/isabelle/Nat_Nat" "../../lib/isabelle/Functions_Config" "../../lib/isabelle/Functions_Func" "../../lib/isabelle/OptionFuncs_Funcs" "../../lib/isabelle/Sum_Sum" "../../lib/isabelle/Firstorder_symbol_spec_Spec"
+begin
+datatype ('b0, 'b3) fo_term_list = FONil | FOCons "('b0, 'b3) fo_term" "('b0, 'b3) fo_term_list"
+     and ('b0, 'b3) fo_term = Var_fo_term "'b3" | App "'b0 symbol" "('b0, 'b3) fo_term_list"
+fun nat_size_fo_term_list :: "('b0, 'b3) fo_term_list \<Rightarrow> Nat_Nat.nat"  and nat_size_fo_term :: "('b0, 'b3) fo_term \<Rightarrow> Nat_Nat.nat"  and size_fo_term_list :: "('b0, 'b3) fo_term_list \<Rightarrow> int"  and size_fo_term :: "('b0, 'b3) fo_term \<Rightarrow> int"
+  where "nat_size_fo_term_list (FONil :: ('b0, 'b3) fo_term_list) = (let s :: Nat_Nat.nat = SNat ONat in s)"
+      | "nat_size_fo_term_list (FOCons v0 v1) = (let s :: Nat_Nat.nat = SNat ONat; s1 :: Nat_Nat.nat = add_nat (nat_size_fo_term_list v1) s; s2 :: Nat_Nat.nat = add_nat (nat_size_fo_term v0) s1 in s2)" for v0 v1
+      | "nat_size_fo_term (Var_fo_term v0) = SNat ONat" for v0
+      | "nat_size_fo_term (App v0 v1) = (let s :: Nat_Nat.nat = SNat ONat; s1 :: Nat_Nat.nat = add_nat (nat_size_fo_term_list v1) s; s2 :: Nat_Nat.nat = add_nat (nat_size_symbol v0) s1 in s2)" for v0 v1
+      | "size_fo_term_list (FONil :: ('b0, 'b3) fo_term_list) = (let s :: int = 1 :: int in s)"
+      | "size_fo_term_list (FOCons v0 v1) = (let s :: int = 1 :: int; s1 :: int = size_fo_term_list v1 + s; s2 :: int = size_fo_term v0 + s1 in s2)" for v0 v1
+      | "size_fo_term (Var_fo_term v0) = (1 :: int)" for v0
+      | "size_fo_term (App v0 v1) = (let s :: int = 1 :: int; s1 :: int = size_fo_term_list v1 + s; s2 :: int = size_symbol v0 + s1 in s2)" for v0 v1
+fun rename_fo_term_list :: "('b0, 'b3) fo_term_list \<Rightarrow> ('b0 \<Rightarrow> 'c0) \<Rightarrow> ('b3 \<Rightarrow> 'c3) \<Rightarrow> ('c0, 'c3) fo_term_list"  and rename_fo_term :: "('b0, 'b3) fo_term \<Rightarrow> ('b0 \<Rightarrow> 'c0) \<Rightarrow> ('b3 \<Rightarrow> 'c3) \<Rightarrow> ('c0, 'c3) fo_term"
+  where "rename_fo_term_list (FONil :: ('b0, 'b3) fo_term_list) s0 s3 = (FONil :: ('c0, 'c3) fo_term_list)" for s0 s3
+      | "rename_fo_term_list (FOCons v0 v1) s0 s3 = FOCons (rename_fo_term v0 s0 s3) (rename_fo_term_list v1 s0 s3)" for v0 v1 s0 s3
+      | "rename_fo_term (Var_fo_term v0) s0 s3 = Var_fo_term (s3 v0)" for v0 s0 s3
+      | "rename_fo_term (App v0 v1) s0 s3 = App (rename_symbol v0 s0) (rename_fo_term_list v1 s0 s3)" for v0 v1 s0 s3
+theorem renaming_composition_lemma_fo_term_list'vc:
+  fixes t :: "('b0, 'b3) fo_term_list"
+  fixes s10 :: "'b0 \<Rightarrow> 'c0"
+  fixes s13 :: "'b3 \<Rightarrow> 'c3"
+  fixes s20 :: "'c0 \<Rightarrow> 'd0"
+  fixes s23 :: "'c3 \<Rightarrow> 'd3"
+  shows "rename_fo_term_list (rename_fo_term_list t s10 s13) s20 s23 = rename_fo_term_list t (compose s20 s10) (compose s23 s13)"
+  sorry
+end

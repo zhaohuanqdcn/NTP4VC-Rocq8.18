@@ -1,0 +1,11 @@
+session verifythis_PrefixSumRec = NTP4Verif +
+theories
+  "verifythis_PrefixSumRec_PrefixSumRec_downsweepqtvc"
+  "verifythis_PrefixSumRec_PrefixSumRec_upsweepqtvc"
+  "verifythis_PrefixSumRec_PrefixSumRec_benchqtvc"
+  "verifythis_PrefixSumRec_PrefixSumRec_test_harnessqtvc"
+  "verifythis_PrefixSumRec_PrefixSumRec_is_power_of_2_1qtvc"
+  "verifythis_PrefixSumRec_PrefixSumRec_div_mod_2qtvc"
+  "verifythis_PrefixSumRec_PrefixSumRec_compute_sumsqtvc"
+  "verifythis_PrefixSumRec_PrefixSumRec_phase1_frame2qtvc"
+  "verifythis_PrefixSumRec_PrefixSumRec_phase1_frameqtvc"

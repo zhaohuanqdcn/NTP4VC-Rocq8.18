@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name sumrange_vcg.sumrange)
+(theories Why3))

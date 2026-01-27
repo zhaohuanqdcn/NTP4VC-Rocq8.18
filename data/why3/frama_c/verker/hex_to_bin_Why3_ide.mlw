@@ -1,0 +1,194 @@
+(* ---------------------------------------------------------- *)
+(* --- Assigns nothing in 'hex_to_bin'                    --- *)
+(* ---------------------------------------------------------- *)
+theory VChex_to_bin_assign_exit
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Cint.Cint
+
+(*
+goal WP "expl:Assigns nothing in 'hex_to_bin'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  ((is_sint8 i)) ->
+  ((is_sint8 i_1)) ->
+  ((i <= 47) \/ ((i_1 = i) /\ (58 <= i_1))) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns nothing in 'hex_to_bin' (2/4)              --- *)
+(* ---------------------------------------------------------- *)
+theory VChex_to_bin_assign_normal_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Assigns nothing in 'hex_to_bin' (2/4)":
+*)
+goal goal1:
+  forall i : int.
+  ((is_sint8 i)) ->
+  ((is_sint8 ((l_tolower i)))) ->
+  ((i <= 47) \/ (58 <= i)) ->
+  false
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'fail' (file src/hex2bin.h, line 38) in 'hex_to_bin' --- *)
+(* ---------------------------------------------------------- *)
+theory VChex_to_bin_fail_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Post-condition for 'fail' (file src/hex2bin.h, line 38) in 'hex_to_bin'":
+*)
+goal goal2:
+  forall i_5 i_4 i_3 i_2 i_1 i : int.
+  let x = (l_tolower i_4) in
+  let x_1 = 87 + i in
+  let x_2 = 87 + i_1 in
+  ((is_sint8 i_2)) ->
+  ((is_sint8 i_3)) ->
+  ((is_sint8 i_4)) ->
+  ((is_sint8 i_5)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  (not (p_isxdigit i_2)) ->
+  (if (48 <= i_2)
+   then ((i_3 = i_2) /\
+         (if (i_3 <= 57) then ((i_1 = i) /\ ((48 + i_1) = i_3))
+          else ((i_4 = i_3) /\ (x = i_5) /\
+                (if (97 <= i_5)
+                 then (if (i_5 <= 102) then ((x_1 = i_5) /\ (x_2 = i_5))
+                       else ((i = (-1)) /\ (i_1 = (-1))))
+                 else ((i = (-1)) /\ (i_1 = (-1)))))))
+   else ((i_4 = i_2) /\ (x = i_5) /\
+         (if (97 <= i_5)
+          then (if (i_5 <= 102) then ((x_1 = i_5) /\ (x_2 = i_5))
+                else ((i = (-1)) /\ (i_1 = (-1))))
+          else ((i = (-1)) /\ (i_1 = (-1)))))) ->
+  (i_1 = (-1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'to_digit' (file src/hex2bin.h, line 34) in 'hex_to_bin' --- *)
+(* ---------------------------------------------------------- *)
+theory VChex_to_bin_to_digit_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+
+(*
+goal WP "expl:Post-condition for 'to_digit' (file src/hex2bin.h, line 34) in 'hex_to_bin'":
+*)
+goal goal3:
+  forall i_3 i_2 i_1 i : int.
+  let x = (l_tolower i_3) in
+  let x_1 = 87 + i in
+  let x_2 = 87 + i_1 in
+  ((is_sint8 i_2)) ->
+  ((is_sint8 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((p_isxdigit i_3)) ->
+  (if (48 <= i_3)
+   then (if (i_3 <= 57) then ((i_1 = i) /\ ((48 + i_1) = i_3))
+         else ((x = i_2) /\
+               (if (97 <= i_2)
+                then (if (i_2 <= 102) then ((x_1 = i_2) /\ (x_2 = i_2))
+                      else ((i = (-1)) /\ (i_1 = (-1))))
+                else ((i = (-1)) /\ (i_1 = (-1))))))
+   else ((x = i_2) /\
+         (if (97 <= i_2)
+          then (if (i_2 <= 102) then ((x_1 = i_2) /\ (x_2 = i_2))
+                else ((i = (-1)) /\ (i_1 = (-1))))
+          else ((i = (-1)) /\ (i_1 = (-1)))))) ->
+  ((0 <= i_1) /\ (i_1 <= 15))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'to_digit' (file src/hex2bin.h, line 35) in 'hex_to_bin' --- *)
+(* ---------------------------------------------------------- *)
+theory VChex_to_bin_to_digit_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+use import A_HexToBin.A_HexToBin
+
+(*
+goal WP "expl:Post-condition for 'to_digit' (file src/hex2bin.h, line 35) in 'hex_to_bin'":
+*)
+goal goal4:
+  forall i_3 i_2 i_1 i : int.
+  let x = (l_tolower i_3) in
+  let x_1 = 87 + i in
+  let x_2 = 87 + i_1 in
+  ((is_sint8 i_2)) ->
+  ((is_sint8 i_3)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((p_isxdigit i_3)) ->
+  (if (48 <= i_3)
+   then (if (i_3 <= 57) then ((i_1 = i) /\ ((48 + i_1) = i_3))
+         else ((x = i_2) /\
+               (if (97 <= i_2)
+                then (if (i_2 <= 102) then ((x_1 = i_2) /\ (x_2 = i_2))
+                      else ((i = (-1)) /\ (i_1 = (-1))))
+                else ((i = (-1)) /\ (i_1 = (-1))))))
+   else ((x = i_2) /\
+         (if (97 <= i_2)
+          then (if (i_2 <= 102) then ((x_1 = i_2) /\ (x_2 = i_2))
+                else ((i = (-1)) /\ (i_1 = (-1))))
+          else ((i = (-1)) /\ (i_1 = (-1)))))) ->
+  (((l_hex_to_bin i_3)) = i_1)
+
+end
+

@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.stack_pop_wd.stack_pop_wd_Why3_ide_vcg)
+(theories stack_pop_wd.Axiomatic Why3 Why3.Cint Why3.Memory stack_pop_wd.Compound Why3.Qed))

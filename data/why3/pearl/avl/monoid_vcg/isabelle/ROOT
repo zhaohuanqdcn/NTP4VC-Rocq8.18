@@ -1,0 +1,10 @@
+session monoid = NTP4Verif +
+theories
+  "monoid_MonoidSumDef_agg_sing_coreqtvc"
+  "monoid_MonoidSumDef_agg_cat"
+  "monoid_MonoidSumDef_agg_empty"
+  "monoid_MonoidSumDef_agg_catqtvc"
+  "monoid_MonoidSumDef_agg_sing"
+  "monoid_MonoidSumDef_assoc"
+  "monoid_MonoidSumDef_aggqtvc"
+  "monoid_MonoidSumDef_neutral"

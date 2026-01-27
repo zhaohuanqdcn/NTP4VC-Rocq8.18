@@ -1,0 +1,30 @@
+theory division_HoareSound_A7
+  imports "NTP4Verif.NTP4Verif"
+begin
+axiomatization where A1:   "x + y = y + x"
+  for x :: "int"
+  and y :: "int"
+axiomatization where A2:   "x * y = y * x"
+  for x :: "int"
+  and y :: "int"
+axiomatization where A3:   "x + y + z = x + (y + z)"
+  for x :: "int"
+  and y :: "int"
+  and z :: "int"
+axiomatization where A4:   "x * y * z = x * (y * z)"
+  for x :: "int"
+  and y :: "int"
+  and z :: "int"
+axiomatization where A5:   "x * (y + z) = x * y + x * z"
+  for x :: "int"
+  and y :: "int"
+  and z :: "int"
+axiomatization where A6:   "x - y + y = x"
+ if "y \<le> x"
+  for y :: "int"
+  and x :: "int"
+theorem A7:
+  fixes x :: "int"
+  shows "x + (0 :: int) = x"
+  sorry
+end

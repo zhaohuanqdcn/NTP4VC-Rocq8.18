@@ -1,0 +1,42 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'cosf'' in 'float_rmat_of_axis_angle' at initialization of 'can' (file math/pprz_algebra_float.c, line 177)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_rmat_of_axis_angle_call_cosf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Axiomatic15.Axiomatic15
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'cosf'' in 'float_rmat_of_axis_angle' at initialization of 'can' (file math/pprz_algebra_float.c, line 177)
+":
+*)
+goal goal0:
+  forall r : real.
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_float32 r)) ->
+  ((p_rvalid_floatvect3 t t_1 a)) ->
+  ((is_float32 t_1[(shiftfield_f2_floatvect3_x a)])) ->
+  ((is_float32 t_1[(shiftfield_f2_floatvect3_y a)])) ->
+  ((is_float32 t_1[(shiftfield_f2_floatvect3_z a)])) ->
+  ((is_finite32 r))
+
+end
+

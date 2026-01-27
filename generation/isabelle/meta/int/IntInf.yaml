@@ -1,0 +1,16 @@
+atoms:
+  int.IntInf.Finite: [Finite, int_IntInf.Finite, int_IntInf.t.Finite]
+  int.IntInf.Infinite: [Infinite, int_IntInf.Infinite, int_IntInf.t.Infinite]
+  int.IntInf.add: [add, int_IntInf.add]
+  int.IntInf.eq: [eq, int_IntInf.eq]
+  int.IntInf.le: [le, int_IntInf.le]
+  int.IntInf.lt: [lt, int_IntInf.lt]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.int_IntInf
+prefix_ops: {}
+types:
+  int.IntInf.t: [t, int_IntInf.t]

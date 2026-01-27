@@ -1,0 +1,53 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'Count'                                  --- *)
+(* ---------------------------------------------------------- *)
+theory A_Count
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_count_1_ (map addr int) addr int int int : int
+
+use import Cint.Cint
+
+axiom Q_CountSectionEmpty:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall m n v : int.
+  (n <= m) -> ((is_sint32 v)) -> (((l_count_1_ mint_0 a m n v)) = 0)
+
+use import Compound.Compound
+
+axiom Q_CountSectionHit:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall m n v : int.
+  let x = n - 1 in (mint_0[(shift_sint32 a x)] = v) -> (m < n) ->
+    ((is_sint32 v)) ->
+    ((1 + ((l_count_1_ mint_0 a m x v))) = ((l_count_1_ mint_0 a m n v)))
+
+axiom Q_CountSectionMiss:
+  forall a : addr.
+  forall mint_0 : map addr int.
+  forall m n v : int.
+  let x = n - 1 in (mint_0[(shift_sint32 a x)] <> v) -> (m < n) ->
+    ((is_sint32 v)) ->
+    (((l_count_1_ mint_0 a m x v)) = ((l_count_1_ mint_0 a m n v)))
+
+use import Axiomatic.Axiomatic
+
+axiom Q_CountSectionRead:
+  forall a : addr.
+  forall mint_0 mint_1 : map addr int.
+  forall m n v : int.
+  ((is_sint32 v)) -> ((p_unchanged_1_ mint_0 mint_1 a m n)) ->
+    (((l_count_1_ mint_1 a m n v)) = ((l_count_1_ mint_0 a m n v)))
+
+end
+

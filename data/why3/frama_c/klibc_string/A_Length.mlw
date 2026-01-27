@@ -1,0 +1,27 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'Length'                                 --- *)
+(* ---------------------------------------------------------- *)
+theory A_Length
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_length (map addr int) addr : int
+
+use import Axiomatic.Axiomatic
+
+axiom Q_string_length:
+  forall s : addr.
+  forall mchar_0 : map addr int.
+  forall malloc_0 : map int int.
+  forall n : int.
+  ((p_length_of_str_is malloc_0 mchar_0 s n)) -> (((l_length mchar_0 s)) = n)
+
+end
+

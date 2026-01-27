@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name my_cosine_vcg)
+(theories Why3.floating_point Why3))

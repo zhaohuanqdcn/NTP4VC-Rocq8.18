@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name flexible_arrays_vcg)
+(theories Why3.bintree flexible_arrays_vcg.flexible_arrays Why3))

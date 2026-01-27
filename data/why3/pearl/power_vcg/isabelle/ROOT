@@ -1,0 +1,6 @@
+session power = NTP4Verif +
+theories
+  "power_FastExponentiation_fast_expqtvc"
+  "power_FastExponentiation_power_evenqtvc"
+  "power_FastExponentiation_fast_exp_2qtvc"
+  "power_FastExponentiation_fast_exp_imperativeqtvc"

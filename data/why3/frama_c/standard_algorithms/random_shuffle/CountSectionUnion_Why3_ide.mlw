@@ -1,0 +1,200 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 13) in 'CountSectionUnion' --- *)
+(* ---------------------------------------------------------- *)
+theory VCCountSectionUnion_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Count.A_Count
+
+(*
+goal WP "expl:Post-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 13) in 'CountSectionUnion'":
+*)
+goal goal0:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_2 <= i) ->
+  (i_4 <= i) ->
+  (i_1 <= i_2) ->
+  (i <= i_4) ->
+  (i_2 <= i_4) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_4)) ->
+  ((is_sint32 i_3)) ->
+  (forall i_5 : int. ((is_sint32 i_5)) ->
+   ((((l_count_1_ t a i_1 i_2 i_5)) + ((l_count_1_ t a i_2 i_4 i_5)))
+      = ((l_count_1_ t a i_1 i_4 i_5)))) ->
+  ((((l_count_1_ t a i_1 i_2 i_3)) + ((l_count_1_ t a i_2 i_4 i_3)))
+     = ((l_count_1_ t a i_1 i_4 i_3)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 18) --- *)
+(* ---------------------------------------------------------- *)
+theory VCCountSectionUnion_loop_inv_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Count.A_Count
+
+(*
+goal WP "expl:Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 18)":
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  let x = (to_uint32 (1 + i_3)) in
+  (i_1 <= i) ->
+  (i_3 <= i) ->
+  (i_2 <= i_1) ->
+  (i_3 < i) ->
+  (i_1 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  (forall i_4 : int. ((is_sint32 i_4)) ->
+   ((((l_count_1_ t a i_1 i_3 i_4)) + ((l_count_1_ t a i_2 i_1 i_4)))
+      = ((l_count_1_ t a i_2 i_3 i_4)))) ->
+  ((x <= i) /\ (i_1 <= x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 19) --- *)
+(* ---------------------------------------------------------- *)
+theory VCCountSectionUnion_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Count.A_Count
+
+(*
+goal WP "expl:Preservation of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 19)":
+*)
+goal goal2:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  let x = (to_uint32 (1 + i_3)) in
+  (i_1 <= i) ->
+  (i_3 <= i) ->
+  (i_2 <= i_1) ->
+  (i_3 < i) ->
+  (i_1 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_4)) ->
+  (forall i_5 : int. ((is_sint32 i_5)) ->
+   ((((l_count_1_ t a i_1 i_3 i_5)) + ((l_count_1_ t a i_2 i_1 i_5)))
+      = ((l_count_1_ t a i_2 i_3 i_5)))) ->
+  ((((l_count_1_ t a i_2 i_1 i_4)) + ((l_count_1_ t a i_1 x i_4)))
+     = ((l_count_1_ t a i_2 x i_4)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 19) --- *)
+(* ---------------------------------------------------------- *)
+theory VCCountSectionUnion_loop_inv_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Count.A_Count
+
+(*
+goal WP "expl:Establishment of Invariant (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 19)":
+*)
+goal goal3:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_3 <= i) ->
+  (i_1 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_3)) ->
+  ((is_sint32 i_2)) ->
+  (((l_count_1_ t a i_3 i_3 i_2)) = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 24) --- *)
+(* ---------------------------------------------------------- *)
+theory VCCountSectionUnion_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import A_Count.A_Count
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/Logic/CountSectionLemmas.h, line 24)":
+*)
+goal goal4:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map addr int.
+  forall a : addr.
+  (i_2 <= i) ->
+  (i_3 <= i) ->
+  (i_1 <= i_2) ->
+  (i_3 < i) ->
+  (i_2 <= i_3) ->
+  (((region (a.base))) <= 0) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 i_3)) ->
+  (forall i_4 : int. ((is_sint32 i_4)) ->
+   ((((l_count_1_ t a i_1 i_2 i_4)) + ((l_count_1_ t a i_2 i_3 i_4)))
+      = ((l_count_1_ t a i_1 i_3 i_4)))) ->
+  (i_3 < ((to_uint32 (1 + i_3))))
+
+end
+

@@ -1,0 +1,10 @@
+atoms:
+  bintree.Height.height: [height, bintree_Height.height]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.bintree_Height
+prefix_ops: {}
+types: {}

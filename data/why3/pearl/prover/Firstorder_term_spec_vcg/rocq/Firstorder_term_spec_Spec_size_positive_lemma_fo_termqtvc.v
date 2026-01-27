@@ -1,0 +1,55 @@
+From Stdlib Require Import Strings.String.
+From Stdlib Require Import String Ascii.
+From Stdlib Require Arith.
+From stdpp Require Import base.
+From stdpp Require Import fin_maps.
+From stdpp Require Import gmap.
+From stdpp Require Import base gmultiset.
+From Stdlib Require Classical.
+From Stdlib Require Import ZArith.
+From stdpp.bitvector Require Import definitions tactics.
+From Stdlib Require Import Sorting.Sorted.
+From Stdlib Require Import Reals.Rbasic_fun.
+From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
+From Stdlib Require Import Reals.Rdefinitions.
+From stdpp Require Import list_relations.
+From stdpp Require Import list_numbers.
+From stdpp Require Import functions.
+From Stdlib Require Import ClassicalEpsilon.
+From stdpp Require Import base decidable.
+From Stdlib Require Import ZArith.Zeuclid.
+From Stdlib Require Import ZArith.Znumtheory.
+From stdpp Require Import propset.
+From Stdlib Require Import Reals.
+Require Import Why3.Base.
+Require Import prover.Nat.Nat.
+Require Import prover.Functions.Config.
+Require Import prover.Functions.Func.
+Require Import prover.OptionFuncs.Funcs.
+Require Import prover.Sum.Sum.
+Require Import prover.Firstorder_symbol_spec.Spec.
+Open Scope Z_scope.
+Inductive fo_term_list (ty'b0 : Type) (ty'b3 : Type) :=
+  | FONil : fo_term_list ty'b0 ty'b3
+  | FOCons : fo_term ty'b0 ty'b3 -> fo_term_list ty'b0 ty'b3 -> fo_term_list ty'b0 ty'b3
+with fo_term (ty'b0 : Type) (ty'b3 : Type) :=
+  | Var_fo_term : ty'b3 -> fo_term ty'b0 ty'b3
+  | App : symbol ty'b0 -> fo_term_list ty'b0 ty'b3 -> fo_term ty'b0 ty'b3.
+Axiom fo_term_list_inhabited : forall  {ty'b0 : Type} `{Inhabited ty'b0} {ty'b3 : Type} `{Inhabited ty'b3}, Inhabited (fo_term_list ty'b0 ty'b3).
+Global Existing Instance fo_term_list_inhabited.
+Arguments FONil {ty'b0} {ty'b3}.
+Arguments FOCons {ty'b0} {ty'b3}.
+Axiom fo_term_inhabited : forall  {ty'b0 : Type} `{Inhabited ty'b0} {ty'b3 : Type} `{Inhabited ty'b3}, Inhabited (fo_term ty'b0 ty'b3).
+Global Existing Instance fo_term_inhabited.
+Arguments Var_fo_term {ty'b0} {ty'b3}.
+Arguments App {ty'b0} {ty'b3}.
+Axiom nat_size_fo_term_list : forall {ty'b0 : Type} `{Inhabited ty'b0} {ty'b3 : Type} `{Inhabited ty'b3}, fo_term_list ty'b0 ty'b3 -> Nat.nat.
+Axiom nat_size_fo_term : forall {ty'b0 : Type} `{Inhabited ty'b0} {ty'b3 : Type} `{Inhabited ty'b3}, fo_term ty'b0 ty'b3 -> Nat.nat.
+Axiom size_fo_term_list : forall {ty'b0 : Type} `{Inhabited ty'b0} {ty'b3 : Type} `{Inhabited ty'b3}, fo_term_list ty'b0 ty'b3 -> Z.
+Axiom size_fo_term : forall {ty'b0 : Type} `{Inhabited ty'b0} {ty'b3 : Type} `{Inhabited ty'b3}, fo_term ty'b0 ty'b3 -> Z.
+Axiom nat_size_fo_term_list_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (t : fo_term_list ty'b0 ty'b3), nat_size_fo_term_list t = (match t with | FONil => (let s : Nat.nat := SNat ONat in s) | FOCons v0 v1 => (let s : Nat.nat := SNat ONat in let s1 : Nat.nat := add_nat (nat_size_fo_term_list v1) s in let s2 : Nat.nat := add_nat (nat_size_fo_term v0) s1 in s2) end).
+Axiom nat_size_fo_term_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (t : fo_term ty'b0 ty'b3), nat_size_fo_term t = (match t with | Var_fo_term v0 => SNat ONat | App v0 v1 => (let s : Nat.nat := SNat ONat in let s1 : Nat.nat := add_nat (nat_size_fo_term_list v1) s in let s2 : Nat.nat := add_nat (nat_size_symbol v0) s1 in s2) end).
+Axiom size_fo_term_list_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (t : fo_term_list ty'b0 ty'b3), size_fo_term_list t = (match t with | FONil => (let s : Z := 1%Z in s) | FOCons v0 v1 => (let s : Z := 1%Z in let s1 : Z := size_fo_term_list v1 + s in let s2 : Z := size_fo_term v0 + s1 in s2) end).
+Axiom size_fo_term_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (t : fo_term ty'b0 ty'b3), size_fo_term t = (match t with | Var_fo_term v0 => 1%Z | App v0 v1 => (let s : Z := 1%Z in let s1 : Z := size_fo_term_list v1 + s in let s2 : Z := size_symbol v0 + s1 in s2) end).
+Theorem size_positive_lemma_fo_term'vc {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (t : fo_term ty'b0 ty'b3) : 0%Z < size_fo_term t.
+Admitted.

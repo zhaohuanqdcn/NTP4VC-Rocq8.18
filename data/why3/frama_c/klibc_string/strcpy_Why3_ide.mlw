@@ -1,0 +1,1201 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file strcpy.c, line 17) in 'strcpy' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition (file strcpy.c, line 17) in 'strcpy'":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_3) in
+  let x_4 = (l_length a_4 a) in
+  let x_5 = 1 + ((l_length t_2 a)) in
+  let a_5 = (shift_sint8 a_2 x_3) in
+  let a_6 = a_4[a_5 <- 0] in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_4[a_1] = 0) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_4)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_3)) ->
+  ((valid_rw t a_3 x_5)) ->
+  ((separated ((shift_sint8 a 0)) x_5 a_3 x_5)) ->
+  ((addr_le a_2 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_4)))) ->
+  ((addr_le a_5 ((shift_sint8 a_2 x_4)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_1 <> x_2) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  (exists i_3 : int. ((p_length_of_str_is t a_6 a i_3)) /\
+   ((p_length_of_str_is t a_6 a_2 i_3)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file strcpy.c, line 18) in 'strcpy' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition (file strcpy.c, line 18) in 'strcpy'":
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_3) in
+  let a_5 = (shift_sint8 a_2 x_3) in
+  let a_6 = a_4[a_5 <- 0] in
+  let x_4 = (l_length a_4 a) in
+  let x_5 = 1 + ((l_length t_2 a)) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_4[a_1] = 0) ->
+  (0 <= i_2) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (i_2 <= ((l_length a_6 a))) ->
+  (x_1 <= (x_2 + x_4)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_3)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_3)) ->
+  ((valid_rw t a_3 x_5)) ->
+  ((separated ((shift_sint8 a 0)) x_5 a_3 x_5)) ->
+  ((addr_le a_2 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_4)))) ->
+  ((addr_le a_5 ((shift_sint8 a_2 x_4)))) ->
+  ((a_1 <> a) -> (i_3 <> 0)) ->
+  ((x_1 <> x_2) -> (i_3 <> 0)) ->
+  (forall i_4 : int. (0 <= i_4) -> ((i_4 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_4)] = a_4[(shift_sint8 a i_4)])) ->
+  (forall i_4 : int. (0 <= i_4) -> ((i_4 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_4)] <> 0)) ->
+  (a_6[(shift_sint8 a_2 i_2)] = a_6[(shift_sint8 a i_2)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strcpy.c, line 33) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_4_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file strcpy.c, line 33) (1/2)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = - x_2 in
+  let x_4 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_4) in
+  let a_5 = a_4[a_1] in
+  let x_5 = (l_length a_4 a) in
+  let x_6 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_4) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_5)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_4)) ->
+  ((is_sint32 (1 + x_1 - x_2))) ->
+  ((valid_rw t a_3 x_6)) ->
+  ((separated ((shift_sint8 a 0)) x_6 a_3 x_6)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_5)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_5)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_1 <> x_2) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  (x_2 <= (1 + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strcpy.c, line 33) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_4_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file strcpy.c, line 33) (2/2)":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = - x_2 in
+  let x_4 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_4) in
+  let a_5 = a_4[a_1] in
+  let x_5 = (l_length a_4 a) in
+  let x_6 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_4) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_5)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_4)) ->
+  ((is_sint32 (1 + x_1 - x_2))) ->
+  ((valid_rw t a_3 x_6)) ->
+  ((separated ((shift_sint8 a 0)) x_6 a_3 x_6)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_5)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_5)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_1 <> x_2) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  (x_1 < (x_2 + ((l_length a_4[a_6 <- a_5] a))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strcpy.c, line 33) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_4_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Establishment of Invariant (file strcpy.c, line 33) (2/2)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = (l_length t_1 a) in
+  let x_1 = 1 + x in
+  (a_1 <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((valid_rw t a_2 x_1)) ->
+  ((separated ((shift_sint8 a 0)) x_1 a_2 x_1)) ->
+  (0 <= x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strcpy.c, line 37) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_8_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file strcpy.c, line 37) (1/2)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = - x_2 in
+  let x_4 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_4) in
+  let a_5 = a_4[a_1] in
+  let x_5 = (l_length a_4 a) in
+  let x_6 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_4) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_5)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_4)) ->
+  ((valid_rw t a_3 x_6)) ->
+  ((separated ((shift_sint8 a 0)) x_6 a_3 x_6)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_5)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_5)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_1 <> x_2) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  ((addr_le a_2 ((shift_sint8 a_2 (1 + x_1 - x_2)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strcpy.c, line 37) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_8_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file strcpy.c, line 37) (2/2)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = - x_2 in
+  let x_4 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_4) in
+  let a_5 = a_4[a_1] in
+  let x_5 = (l_length a_4 a) in
+  let x_6 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_4) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_5)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_4)) ->
+  ((valid_rw t a_3 x_6)) ->
+  ((separated ((shift_sint8 a 0)) x_6 a_3 x_6)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_5)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_5)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_1 <> x_2) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  ((addr_le ((shift_sint8 a_2 (1 + x_1 - x_2)))
+     ((shift_sint8 a_2 ((l_length a_4[a_6 <- a_5] a))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strcpy.c, line 37) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_8_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Establishment of Invariant (file strcpy.c, line 37) (1/2)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = 1 + ((l_length t_1 a)) in
+  (a_1 <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((valid_rw t a_2 x)) ->
+  ((separated ((shift_sint8 a 0)) x a_2 x)) ->
+  ((addr_le a_1 a_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strcpy.c, line 37) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_8_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Establishment of Invariant (file strcpy.c, line 37) (2/2)":
+*)
+goal goal8:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = (l_length t_1 a) in
+  let x_1 = 1 + x in
+  (a_1 <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((valid_rw t a_2 x_1)) ->
+  ((separated ((shift_sint8 a 0)) x_1 a_2 x_1)) ->
+  ((addr_le a_1 ((shift_sint8 a_1 x))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strcpy.c, line 38) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_9_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file strcpy.c, line 38) (1/2)":
+*)
+goal goal9:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_3) in
+  let a_5 = a_4[a_1] in
+  let x_4 = (l_length a_4 a) in
+  let x_5 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_3) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_4)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_3)) ->
+  ((valid_rw t a_3 x_5)) ->
+  ((separated ((shift_sint8 a 0)) x_5 a_3 x_5)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_4)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_4)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_1 <> x_2) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  ((addr_le a ((shift_sint8 a_1 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strcpy.c, line 38) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_9_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file strcpy.c, line 38) (2/2)":
+*)
+goal goal10:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_3) in
+  let a_5 = a_4[a_1] in
+  let x_4 = (l_length a_4 a) in
+  let x_5 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_3) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_4)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_3)) ->
+  ((valid_rw t a_3 x_5)) ->
+  ((separated ((shift_sint8 a 0)) x_5 a_3 x_5)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_4)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_4)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_1 <> x_2) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  ((addr_le ((shift_sint8 a_1 1))
+     ((shift_sint8 a ((l_length a_4[a_6 <- a_5] a))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strcpy.c, line 38) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_9_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Establishment of Invariant (file strcpy.c, line 38) (1/2)":
+*)
+goal goal11:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = 1 + ((l_length t_1 a)) in
+  (a_1 <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((valid_rw t a_2 x)) ->
+  ((separated ((shift_sint8 a 0)) x a_2 x)) ->
+  ((addr_le a a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file strcpy.c, line 38) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_9_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Establishment of Invariant (file strcpy.c, line 38) (2/2)":
+*)
+goal goal12:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = (l_length t_1 a) in
+  let x_1 = 1 + x in
+  (a_1 <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((valid_rw t a_2 x_1)) ->
+  ((separated ((shift_sint8 a 0)) x_1 a_2 x_1)) ->
+  ((addr_le a ((shift_sint8 a x))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strcpy.c, line 41) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_12_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file strcpy.c, line 41)":
+*)
+goal goal13:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = - x_2 in
+  let x_4 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_4) in
+  let a_5 = a_4[a_1] in
+  let x_5 = (l_length a_4 a) in
+  let x_6 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_4) in
+  let a_7 = a_4[a_6 <- a_5] in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (0 <= i_2) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((i_2 + x_2) <= x_1) ->
+  (x_1 <= (x_2 + x_5)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_3)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_4)) ->
+  ((is_sint32 (1 + x_1 - x_2))) ->
+  ((valid_rw t a_3 x_6)) ->
+  ((separated ((shift_sint8 a 0)) x_6 a_3 x_6)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_5)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_5)))) ->
+  ((a_1 <> a) -> (i_3 <> 0)) ->
+  ((x_1 <> x_2) -> (i_3 <> 0)) ->
+  (forall i_4 : int. (0 <= i_4) -> ((i_4 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_4)] = a_4[(shift_sint8 a i_4)])) ->
+  (forall i_4 : int. (0 <= i_4) -> ((i_4 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_4)] <> 0)) ->
+  (a_7[(shift_sint8 a_2 i_2)] = a_7[(shift_sint8 a i_2)])
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file strcpy.c, line 42) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_inv_13_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant (file strcpy.c, line 42)":
+*)
+goal goal14:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = - x_2 in
+  let x_4 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_4) in
+  let a_5 = a_4[a_1] in
+  let x_5 = (l_length a_4 a) in
+  let x_6 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_4) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (0 <= i_2) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  ((i_2 + x_2) <= x_1) ->
+  (x_1 <= (x_2 + x_5)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_3)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_4)) ->
+  ((is_sint32 (1 + x_1 - x_2))) ->
+  ((valid_rw t a_3 x_6)) ->
+  ((separated ((shift_sint8 a 0)) x_6 a_3 x_6)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_5)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_5)))) ->
+  ((a_1 <> a) -> (i_3 <> 0)) ->
+  ((x_1 <> x_2) -> (i_3 <> 0)) ->
+  (forall i_4 : int. (0 <= i_4) -> ((i_4 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_4)] = a_4[(shift_sint8 a i_4)])) ->
+  (forall i_4 : int. (0 <= i_4) -> ((i_4 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_4)] <> 0)) ->
+  (a_4[a_6 <- a_5][(shift_sint8 a i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file strcpy.c, line 43) (5/5)        --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_assign_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Loop assigns (file strcpy.c, line 43) (5/5)":
+*)
+goal goal15:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = - x_2 in
+  let x_4 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_4) in
+  let a_5 = a_4[a_1] in
+  let x_5 = (l_length a_4 a) in
+  let x_6 = 1 + x_1 - x_2 in
+  let x_7 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_4) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_5)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_4)) ->
+  ((is_sint32 x_6)) ->
+  ((valid_rw t a_3 x_7)) ->
+  ((separated ((shift_sint8 a 0)) x_7 a_3 x_7)) ->
+  ((addr_le a_2 a_6)) ->
+  (not (invalid t a_6 1)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_5)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_5)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_1 <> x_2) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  ((included a_6 1 a_3 x_6))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file strcpy.c, line 16) in 'strcpy' (5/11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_assign_part05
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Assigns (file strcpy.c, line 16) in 'strcpy' (5/11)":
+*)
+goal goal16:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint8 a_1 0) in
+  let x = 1 + ((l_length t_1 a)) in
+  (a_1 <> a) ->
+  (0 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_1 <= 2000) ->
+  (i_2 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint32 i)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((p_length_of_str_is t t_1 a i_2)) ->
+  (not (invalid t a_2 i)) ->
+  ((valid_rw t a_2 x)) ->
+  ((separated ((shift_sint8 a 0)) x a_2 x)) ->
+  (i <= x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file strcpy.c, line 16) in 'strcpy' (11/11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_assign_part11
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assigns (file strcpy.c, line 16) in 'strcpy' (11/11)":
+*)
+goal goal17:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let x_1 = a.offset in
+  let x_2 = a_1.offset in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_3 = x_2 - x_1 in
+  let a_4 = (havoc t_1 t_2 a_3 x_3) in
+  let x_4 = (l_length a_4 a) in
+  let x_5 = 1 + ((l_length t_2 a)) in
+  let a_5 = (shift_sint8 a_2 x_3) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (x_1 <= x_2) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_2 <= (x_1 + x_4)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_3)) ->
+  ((valid_rw t a_3 x_5)) ->
+  ((separated ((shift_sint8 a 0)) x_5 a_3 x_5)) ->
+  ((addr_le a_2 a_5)) ->
+  (not (invalid t a_5 1)) ->
+  ((addr_le a_1 ((shift_sint8 a x_4)))) ->
+  ((addr_le a_5 ((shift_sint8 a_2 x_4)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_2 <> x_1) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_1) < x_2) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_1) < x_2) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  ((included a_5 1 a_3 x_5))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file strcpy.c, line 47) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrcpy_loop_term_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file strcpy.c, line 47)":
+*)
+goal goal18:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a_2 a_1 a : addr.
+  let x = a.base in
+  let a_3 = (shift_sint8 a_2 0) in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  let x_3 = x_1 - x_2 in
+  let a_4 = (havoc t_1 t_2 a_3 x_3) in
+  let a_5 = a_4[a_1] in
+  let x_4 = (l_length a_4 a) in
+  let x_5 = 1 + ((l_length t_2 a)) in
+  let a_6 = (shift_sint8 a_2 x_3) in
+  (a_2 <> a) ->
+  ((a_1.base) = x) ->
+  (a_5 <> 0) ->
+  (x_2 <= x_1) ->
+  (((region x)) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (x_1 <= (x_2 + x_4)) ->
+  (i <= 2000) ->
+  (i_1 <= 2000) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_sint8 i_2)) ->
+  ((addr_le a a_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_2 a i)) ->
+  ((p_length_of_str_is t t_2 a i_1)) ->
+  ((is_sint32 x_3)) ->
+  ((valid_rw t a_3 x_5)) ->
+  ((separated ((shift_sint8 a 0)) x_5 a_3 x_5)) ->
+  ((addr_le a_2 a_6)) ->
+  ((is_sint8 a_5)) ->
+  ((addr_le a_1 ((shift_sint8 a x_4)))) ->
+  ((addr_le a_6 ((shift_sint8 a_2 x_4)))) ->
+  ((a_1 <> a) -> (i_2 <> 0)) ->
+  ((x_1 <> x_2) -> (i_2 <> 0)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a_2 i_3)] = a_4[(shift_sint8 a i_3)])) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_1) ->
+   (a_4[(shift_sint8 a i_3)] <> 0)) ->
+  (x_1 <= (x_2 + ((l_length a_4[a_6 <- a_5] a))))
+
+end
+

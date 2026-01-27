@@ -1,0 +1,10 @@
+session dijkstra = NTP4Verif +
+theories
+  "dijkstra_DijkstraShortestPath_completeness_lemmaqtvc"
+  "dijkstra_DijkstraShortestPath_path_inversionqtvc"
+  "dijkstra_DijkstraShortestPath_inside_or_exitqtvc"
+  "dijkstra_DijkstraShortestPath_shortest_path_codeqtvc"
+  "dijkstra_DijkstraShortestPath_relaxqtvc"
+  "dijkstra_DijkstraShortestPath_path_shortest_pathqtvc"
+  "dijkstra_DijkstraShortestPath_main_lemmaqtvc"
+  "dijkstra_DijkstraShortestPath_length_nonnegqtvc"

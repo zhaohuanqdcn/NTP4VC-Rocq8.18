@@ -1,0 +1,298 @@
+(**
+
+{1 VerifyThis @ ETAPS 2018 competition
+   Challenge 3: Array-Based Queuing Lock}
+
+Author: Raphaël Rieu-Helft (LRI, Université Paris Sud)
+*)
+
+module ABQL
+
+use array.Array
+use int.Int
+use ref.Refint
+use int.EuclideanDivision
+use option.Option
+
+val constant n : int
+axiom N_val: 2 <= n
+
+val constant k : int
+axiom K_val: 2 <= k
+
+type tick =
+  { b : int;                         (* ticket number *)
+    ghost v : int;                   (* unbounded ticket number *) }
+  invariant { 0 <= v /\ 0 <= b < k*n /\ b = mod v (k*n) }
+  by { b = 0; v = 0 }
+
+let fetch_and_add (r:ref tick)
+  ensures { !r.v = old !r.v + 1 }
+  ensures { result = old !r }
+=
+  let res = !r in
+  r := { v = res.v + 1; b = mod (res.b + 1) (k*n) };
+  res
+
+predicate lt (tick1 tick2: tick) = tick1.v < tick2.v
+
+use import seq.Seq as S
+use seq.Mem
+use seq.FreeMonoid
+
+predicate sorted (s: seq tick) =
+  forall i j. 0 <= i < j < length s -> lt s[i] s[j]
+
+predicate consecutive (l: seq tick) =
+  forall i. 0 < i < length l -> l[i].v = l[i-1].v + 1
+(*
+| Consecutive_Nil : consecutive Nil
+  | Consecutive_One : forall t. consecutive (Cons t Nil)
+  | Consecutive_Two : forall t1 t2 l.
+                      t2.v = t1.v + 1 -> consecutive (Cons t2 l)
+                                      -> consecutive (Cons t1 (Cons t2 l))
+*)
+
+function last (l: seq tick) : option tick =
+  if length l = 0 then None else Some l[length l - 1]
+(*
+= match l with
+  | Nil -> None
+  | Cons x Nil -> Some x
+  | Cons _ l -> last l
+  end
+*)
+
+let ghost last_push (l: seq tick) (x:tick) : unit
+  ensures { last (l ++ (cons x empty)) = Some x }
+= ()
+
+let ghost consecutive_last_push (l: seq tick) (x:tick) : unit
+  requires { consecutive l }
+  requires { match last l with
+             | None -> true
+             | Some y -> x.v = y.v + 1 end }
+  ensures  { consecutive (l ++ (cons x empty)) }
+= ()
+
+function hd (l: seq tick) : option tick =
+  if length l = 0 then None else Some l[0]
+
+let ghost hd_push () : unit
+  ensures { forall l,x:tick. hd l = None \/ hd (l ++ (cons x empty)) = hd l }
+= ()
+
+let ghost consecutive_implies_sorted (l: seq tick) (i j: int) : unit
+  requires { consecutive l }
+  requires { 0 <= i < j < length l }
+  ensures  { lt l[i] l[j] }
+= ()
+
+(*
+  we associate a program counter to each thread
+
+  I: idle
+  function acquire
+    A1: var my_ticket = fetch_and_add (next,1)
+    A2: while not pass[my_ticket] do () done;
+    A3: return my_ticket
+
+  W: working (with lock)
+  function release(my_ticket)
+    R1: pass[my_ticket] = false
+    R2: pass[my_ticket+1 mod N] = true
+*)
+
+type pc = A1 | A2 | A3 | R1 | R2 | I | W
+
+predicate has_ticket (pc:pc) =
+  match pc with
+    | A1 | I -> false
+    | _ -> true
+  end
+
+predicate has_lock (pc:pc) =
+  match pc with
+    | A3 | W | R1 | R2 -> true
+    | _ -> false
+  end
+
+type nondet_source
+type rng = abstract { mutable source : nondet_source }
+val random : rng
+
+val scheduler () : int
+  ensures { 0 <= result < n }
+  writes  { random }
+
+use array.NumOfEq
+use queue.Queue
+use array.Array
+
+let ghost numof_equiv (a1 a2: array 'a) (v:'a) (l u: int) : unit
+  requires { forall i. l <= i < u -> a1[i]=v <-> a2[i]=v }
+  ensures  { numof a1 v l u = numof a2 v l u }
+= ()
+
+let ghost numof_add (a: array 'a) (v:'a) (l u: int) (i:int) : unit
+  requires { l <= i < u }
+  requires { a[i] <> v }
+  ensures  { numof a[i <- v] v l u = numof a v l u + 1 }
+= ()
+
+let ghost mod_diff () : unit
+  ensures { forall a b c:int. c > 0 -> mod a c = mod b c -> mod (a-b) c = 0 }
+= ()
+
+let main () : unit
+  diverges
+=
+  let pass = Array.make (k*n) false in
+  pass[0] <- true;
+  let next = ref { v = 0; b = 0 } in
+  let pcs = Array.make n I in
+  let memo : array (option tick) = Array.make n None in
+      (* value of my_ticket if set *)
+  let owners : array (option int) = Array.make (k*n) None in
+      (* who owns which ticket *)
+  let ghost lock_holder : ref int = ref (-1) in
+  let ghost waiting_list = Queue.create () in
+  let ghost active_tick = ref None in
+  while true do
+    invariant { [@expl:safety]
+                forall th. 0 <= th < n -> th <> !lock_holder ->
+                not has_lock (pcs[th]) }
+    invariant { -1 <= !lock_holder < n }
+    invariant { forall b. 0 <= b < k*n ->
+                       match owners[b] with
+                          | None -> true
+                          | Some th -> 0 <= th < n
+                                       /\ match memo[th] with
+                                          | None -> false
+                                          | Some tick -> tick.b = b end
+                       end }
+    invariant { forall tick. pass[tick.b] ->
+                  match owners[tick.b] with
+                    | None -> !lock_holder = -1
+                    | Some th ->  !lock_holder = -1 \/ !lock_holder = th end }
+    invariant { 0 <= !lock_holder < n ->
+                match pcs[!lock_holder] with
+                | A3 | W | R1 ->
+                  match memo[!lock_holder] with
+                    | None -> false
+                    | Some tick -> pass[tick.b] end
+                | R2 -> forall b. 0 <= b < k * n -> not pass[b]
+                | _ -> false end }
+    invariant { forall b1 b2. 0 <= b1 < k*n -> 0 <= b2 < k*n ->
+                       pass[b1] = true /\ pass[b2] = true ->
+                       b1 = b2 }
+    invariant { 0 <= !lock_holder < n ->
+                  has_lock (pcs[!lock_holder]) /\
+                  match memo[!lock_holder] with
+                    | None -> false
+                    | Some tick -> !active_tick = Some tick end }
+    invariant { forall th. 0 <= th < n ->
+                       match memo[th] with
+                         | Some tick -> owners[tick.b] = Some th
+                         | None -> true end }
+    invariant { forall th. 0 <= th < n ->
+                          (memo[th] <> None <->
+                          has_ticket (pcs[th])) }
+    invariant { forall tick. mem tick waiting_list ->
+                       match owners[tick.b] with
+                         | None -> false
+                         | Some th -> pcs[th] = A2
+                                      /\ memo[th] = Some tick end }
+    invariant { forall th. 0 <= th < n ->
+                       match memo[th] with
+                         | Some tick -> mem tick waiting_list
+                                        \/ !active_tick = Some tick
+                         | None -> true end }
+    invariant { forall th. 0 <= th < n -> not has_lock pcs[th] ->
+                       match memo[th] with
+                         | None -> pcs[th] <> A2
+                         | Some tick -> mem tick waiting_list end }
+    invariant { consecutive waiting_list } (* also implies unicity *)
+    invariant { S.length waiting_list = numof pcs A2 0 n }
+    invariant { forall tick. mem tick waiting_list ->
+                       !next.v - S.length waiting_list <= tick.v < !next.v }
+    invariant { match last waiting_list with
+                      | None -> true
+                      | Some t -> t.v = !next.v - 1 end}
+    invariant { match hd waiting_list with
+                      | None -> true
+                      | Some t -> t.v = !next.v - S.length waiting_list end }
+    invariant { match !active_tick with
+                      | None -> !lock_holder = -1
+                      | Some tick ->
+                          (match hd waiting_list with
+                             | None -> !next.v = tick.v + 1
+                             | Some t -> t.v = tick.v + 1 end)
+                          /\ tick.v = !next.v - S.length waiting_list - 1
+                          /\ 0 <= !lock_holder < n
+                          /\ memo[!lock_holder] = Some tick end }
+    invariant { 0 <= S.length waiting_list <= n }
+   (* invariant { length waiting_list = n \/ owners[!next.b] = None } *)
+    invariant { [@expl:liveness]
+              !lock_holder = - 1 ->
+                 (* someone is in the critical section... *)
+                 ((if S.length waiting_list = 0
+                   then false
+                   else let tick = S.get waiting_list 0 in
+                        pass[tick.b] = true)
+                 (* ...or someone has a ticket to the critical section... *)
+              \/ (exists th. 0 <= th < n /\ memo[th] = None
+                                         /\ pass[!next.b] = true)
+                                         /\ waiting_list = empty)
+                 (* ...or someone can take one *) }
+    let th = scheduler () in (*choose a thread*)
+    (* make it progress by 1 step *)
+    label Step in
+    match pcs[th] with
+      | I ->
+          pcs[th] <- A1
+      | A1 ->
+          let tick = fetch_and_add next in
+          owners[tick.b] <- Some th;
+          memo[th] <- Some tick;
+          pcs[th] <- A2;
+          push tick waiting_list;
+      | A2 ->
+          match memo[th] with
+          | None -> absurd
+          | Some tick ->
+             if pass[tick.b]
+             then begin
+               active_tick := Some tick;
+               lock_holder := th;
+               pcs[th] <- A3; (* progress only with lock *)
+               let ghost tick' = safe_pop waiting_list in ()
+               end
+          end
+      | A3 -> pcs[th] <- W
+      | W -> pcs[th] <- R1 (* move to release *)
+      | R1 ->
+          match memo[th] with
+            | None -> absurd
+            | Some tick ->
+                pass[tick.b] <- false;
+                pcs[th] <- R2
+          end
+      | R2 ->
+          match memo[th] with
+            | None -> absurd
+            | Some tick ->
+                let nt = mod (tick.b + 1) (k*n) in
+                lock_holder := -1;
+                pass[nt] <- true;
+                memo[th] <- None;
+                owners[tick.b] <- None;
+                active_tick := None;
+                pcs[th] <- I;
+          end
+      end
+  done
+
+
+
+end

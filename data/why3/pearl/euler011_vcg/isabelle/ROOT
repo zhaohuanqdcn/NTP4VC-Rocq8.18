@@ -1,0 +1,7 @@
+session euler011 = NTP4Verif +
+theories
+  "euler011_ProductFour_find_maxqtvc"
+  "euler011_ProductFour_right_diag_cqtvc"
+  "euler011_ProductFour_line_cqtvc"
+  "euler011_ProductFour_left_diag_cqtvc"
+  "euler011_ProductFour_column_cqtvc"

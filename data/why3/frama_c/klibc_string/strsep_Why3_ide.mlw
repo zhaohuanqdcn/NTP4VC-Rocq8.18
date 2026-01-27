@@ -1,0 +1,1093 @@
+(* ---------------------------------------------------------- *)
+(* --- Complete behaviors 'not_found', 'found', 'null'    --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_complete_not_found_found_null
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Complete behaviors 'not_found', 'found', 'null'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_1 = (l_length t_1 a_2) in
+  let x_2 = 1 + x_1 in
+  (a_2 <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((separated a 1 a_3 x)) ->
+  ((separated a_2 1 a_3 x)) ->
+  ((separated a 1 a_4 x_2)) ->
+  ((separated a_4 x_2 a_3 x)) ->
+  ((separated a_2 1 a_4 x_2)) ->
+  ((a_2 = null) \/ ((valid_rw t a_2 1))) ->
+  ((a_2 = null) \/ (exists i_2 : int. (p_length_of_str_is t t_1 a_2 i_2))) ->
+  ((a_2 = null) \/
+   (((valid_rw t a_2 1)) /\
+    (exists i_2 : int. (p_length_of_str_is t t_1 a_1 i_2)) /\
+    (exists i_2 : int. (p_length_of_str_is t t_1 a_2 i_2)) /\
+    (forall i_2 : int. (0 <= i_2) -> (i_2 < x_1) ->
+     (not (p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_2)])))) \/
+   (((valid_rw t a_2 1)) /\
+    (exists i_2 : int. (p_length_of_str_is t t_1 a_1 i_2)) /\
+    (exists i_2 : int. (p_length_of_str_is t t_1 a_2 i_2)) /\
+    (exists i_2 : int. (0 <= i_2) /\ (i_2 < x_1) /\
+     ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_2)])))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Disjoint behaviors 'not_found', 'found', 'null' (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_disjoint_not_found_found_null_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Disjoint behaviors 'not_found', 'found', 'null' (1/2)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_1 = (l_length t_1 a_2) in
+  let x_2 = 1 + x_1 in
+  (a_2 <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((separated a 1 a_3 x)) ->
+  ((separated a_2 1 a_3 x)) ->
+  ((separated a 1 a_4 x_2)) ->
+  ((separated a_4 x_2 a_3 x)) ->
+  ((separated a_2 1 a_4 x_2)) ->
+  ((a_2 = null) \/ ((valid_rw t a_2 1))) ->
+  ((a_2 = null) \/ (exists i_2 : int. (p_length_of_str_is t t_1 a_2 i_2))) ->
+  ((a_2 <> null) \/ (not (valid_rw t a_2 1)) \/
+   (forall i_2 : int. not (p_length_of_str_is t t_1 a_1 i_2)) \/
+   (forall i_2 : int. not (p_length_of_str_is t t_1 a_2 i_2)) \/
+   (forall i_2 : int. (i_2 < 0) \/ (x_1 <= i_2) \/
+    (not (p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_2)]))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Disjoint behaviors 'not_found', 'found', 'null' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_disjoint_not_found_found_null_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Disjoint behaviors 'not_found', 'found', 'null' (2/2)":
+*)
+goal goal2:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_1 = (l_length t_1 a_2) in
+  let x_2 = 1 + x_1 in
+  (a_2 <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((separated a 1 a_3 x)) ->
+  ((separated a_2 1 a_3 x)) ->
+  ((separated a 1 a_4 x_2)) ->
+  ((separated a_4 x_2 a_3 x)) ->
+  ((separated a_2 1 a_4 x_2)) ->
+  ((a_2 = null) \/ ((valid_rw t a_2 1))) ->
+  ((a_2 = null) \/ (exists i_2 : int. (p_length_of_str_is t t_1 a_2 i_2))) ->
+  ((a_2 <> null) \/ (not (valid_rw t a_2 1)) \/
+   (forall i_2 : int. not (p_length_of_str_is t t_1 a_1 i_2)) \/
+   (forall i_2 : int. not (p_length_of_str_is t t_1 a_2 i_2)) \/
+   (exists i_2 : int. (0 <= i_2) /\ (i_2 < x_1) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_2)]))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 135) in 'strpbrk'' in 'strsep' at call 'strpbrk' (file strsep.c, line 59)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_call_strpbrk_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/klibc_framac_wp/include/string.h, line 135) in 'strpbrk'' in 'strsep' at call 'strpbrk' (file strsep.c, line 59)
+":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_1 = 1 + ((l_length t_1 a_2)) in
+  (a_2 <> a) ->
+  (a_2 <> null) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i)) ->
+  ((separated a 1 a_3 x)) ->
+  ((separated a_2 1 a_3 x)) ->
+  ((separated a 1 a_4 x_1)) ->
+  ((separated a_4 x_1 a_3 x)) ->
+  ((separated a_2 1 a_4 x_1)) ->
+  (exists i_3 : int. (p_length_of_str_is t t_1 a_1 i_3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 28) in 'strsep' (1/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_2_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 28) in 'strsep' (1/3)":
+*)
+goal goal4:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let x = (l_length t_1 a_2) in
+  let x_1 = t_1[(shift_sint8 a_2 (-1))] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x_2 = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 1 + x in
+  (a_2 <> a) ->
+  (0 <= i_4) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_4 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((is_sint8 t_1[a_2])) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((is_sint8 x_1)) ->
+  ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_4)])) ->
+  ((separated a 1 a_3 x_2)) ->
+  ((separated a_2 1 a_3 x_2)) ->
+  ((separated a 1 a_4 x_3)) ->
+  ((separated a_4 x_3 a_3 x_2)) ->
+  ((separated a_2 1 a_4 x_3)) ->
+  (x_1 = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 28) in 'strsep' (3/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_2_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 28) in 'strsep' (3/3)":
+*)
+goal goal5:
+  let a = (shift_sint8 null (-1)) in
+  forall i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_2 a_1 : addr.
+  let a_3 = t_2[a_1] in
+  let x = (l_length t_1 a_3) in
+  let x_1 = t_1[null] in
+  let x_2 = t_1[a] in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 1 + ((l_length t_1 a_2)) in
+  let a_5 = (shift_sint8 a_3 0) in
+  let x_4 = 1 + x in
+  (a_3 <> a_1) ->
+  (a_3 <> null) ->
+  (0 <= i_5) ->
+  (((region (a_1.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (i_5 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((p_length_of_str_is t t_1 a_2 i_7)) ->
+  ((is_sint8 x_2)) ->
+  ((p_length_of_str_is t t_1 a_3 i)) ->
+  ((p_length_of_str_is t t_1 a_3 i_4)) ->
+  ((p_length_of_str_is t t_1 a_3 i_6)) ->
+  ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_5)])) ->
+  ((separated a_1 1 a_4 x_3)) ->
+  ((separated a_3 1 a_4 x_3)) ->
+  ((separated a_1 1 a_5 x_4)) ->
+  ((separated a_5 x_4 a_4 x_3)) ->
+  ((separated a_3 1 a_5 x_4)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_8)]))) ->
+   ((a_3.base) = 0)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_8)]))) ->
+   ((p_char_in_str t_1 a_2 x_1))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_8)]))) ->
+   (((addr_le a_3 null)) /\ ((addr_lt null ((shift_sint8 a_3 x)))))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_8)]))) ->
+   (forall i_8 : int. (0 <= i_8) -> ((i_8 + (a_3.offset)) < 0) ->
+    (not (p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_8)])))) ->
+  (x_2 = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 29) in 'strsep' (1/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_3_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 29) in 'strsep' (1/3)":
+*)
+goal goal6:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let x = (l_length t_1 a_2) in
+  let x_1 = t_1[a_2] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x_2 = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 1 + x in
+  (a_2 <> a) ->
+  (0 <= i_4) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_4 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((is_sint8 t_1[(shift_sint8 a_2 (-1))])) ->
+  ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_4)])) ->
+  ((separated a 1 a_3 x_2)) ->
+  ((separated a_2 1 a_3 x_2)) ->
+  ((separated a 1 a_4 x_3)) ->
+  ((separated a_4 x_3 a_3 x_2)) ->
+  ((separated a_2 1 a_4 x_3)) ->
+  ((p_char_in_str t_1 a_1 x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 29) in 'strsep' (2/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_3_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 29) in 'strsep' (2/3)":
+*)
+goal goal7:
+  forall i_8 i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_2 a_1 a : addr.
+  let a_3 = t_2[a] in
+  let x = (l_length t_1 a_3) in
+  let x_1 = t_1[a_1] in
+  let x_2 = t_1[(shift_sint8 a_1 1)] in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 1 + ((l_length t_1 a_2)) in
+  let a_5 = (shift_sint8 a_3 0) in
+  let x_4 = 1 + x in
+  (null <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> null) ->
+  ((a_3.base) = (a_1.base)) ->
+  (0 <= i) ->
+  (0 <= i_6) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (i < x) ->
+  (i_6 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rw t a 1)) ->
+  ((addr_le a_3 a_1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((p_length_of_str_is t t_1 a_2 i_4)) ->
+  ((p_length_of_str_is t t_1 a_2 i_8)) ->
+  ((p_char_in_str t_1 a_2 x_1)) ->
+  ((is_sint8 x_2)) ->
+  ((p_length_of_str_is t t_1 a_3 i_1)) ->
+  ((p_length_of_str_is t t_1 a_3 i_5)) ->
+  ((p_length_of_str_is t t_1 a_3 i_7)) ->
+  ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i)])) ->
+  ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_6)])) ->
+  ((addr_lt a_1 ((shift_sint8 a_3 x)))) ->
+  ((separated a 1 a_4 x_3)) ->
+  ((separated a_3 1 a_4 x_3)) ->
+  ((separated a 1 a_5 x_4)) ->
+  ((separated a_5 x_4 a_4 x_3)) ->
+  ((separated a_3 1 a_5 x_4)) ->
+  (forall i_9 : int. (0 <= i_9) -> ((i_9 + (a_3.offset)) < (a_1.offset)) ->
+   (not (p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_9)]))) ->
+  ((p_char_in_str t_1[a_1 <- 0] a_2 x_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 29) in 'strsep' (3/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_3_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 29) in 'strsep' (3/3)":
+*)
+goal goal8:
+  forall i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let x = (l_length t_1 a_2) in
+  let x_1 = t_1[null] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x_2 = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 1 + x in
+  (a_2 <> a) ->
+  (a_2 <> null) ->
+  (0 <= i_5) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_5 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_1 i_3)) ->
+  ((p_length_of_str_is t t_1 a_1 i_7)) ->
+  ((is_sint8 t_1[(shift_sint8 null (-1))])) ->
+  ((p_length_of_str_is t t_1 a_2 i)) ->
+  ((p_length_of_str_is t t_1 a_2 i_4)) ->
+  ((p_length_of_str_is t t_1 a_2 i_6)) ->
+  ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_5)])) ->
+  ((separated a 1 a_3 x_2)) ->
+  ((separated a_2 1 a_3 x_2)) ->
+  ((separated a 1 a_4 x_3)) ->
+  ((separated a_4 x_3 a_3 x_2)) ->
+  ((separated a_2 1 a_4 x_3)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   ((a_2.base) = 0)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   ((p_char_in_str t_1 a_1 x_1))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   (((addr_le a_2 null)) /\ ((addr_lt null ((shift_sint8 a_2 x)))))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   (forall i_8 : int. (0 <= i_8) -> ((i_8 + (a_2.offset)) < 0) ->
+    (not (p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)])))) ->
+  ((p_char_in_str t_1 a_1 x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 30) in 'strsep' (3/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_4_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 30) in 'strsep' (3/3)":
+*)
+goal goal9:
+  forall i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let x = (l_length t_1 a_2) in
+  let x_1 = t_1[null] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x_2 = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 1 + x in
+  let x_4 = a_2.base in
+  (a_2 <> a) ->
+  (a_2 <> null) ->
+  (0 <= i_5) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_5 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_1 i_3)) ->
+  ((p_length_of_str_is t t_1 a_1 i_7)) ->
+  ((p_length_of_str_is t t_1 a_2 i)) ->
+  ((p_length_of_str_is t t_1 a_2 i_4)) ->
+  ((p_length_of_str_is t t_1 a_2 i_6)) ->
+  ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_5)])) ->
+  ((separated a 1 a_3 x_2)) ->
+  ((separated a_2 1 a_3 x_2)) ->
+  ((separated a 1 a_4 x_3)) ->
+  ((separated a_4 x_3 a_3 x_2)) ->
+  ((separated a_2 1 a_4 x_3)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) -> (x_4 = 0)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   ((p_char_in_str t_1 a_1 x_1))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   (((addr_le a_2 null)) /\ ((addr_lt null ((shift_sint8 a_2 x)))))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   (forall i_8 : int. (0 <= i_8) -> ((i_8 + (a_2.offset)) < 0) ->
+    (not (p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)])))) ->
+  (x_4 = 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (1/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_5_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (1/6)":
+*)
+goal goal10:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let x = (l_length t_1 a_2) in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x_1 = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_2 = 1 + x in
+  (a_2 <> a) ->
+  (0 <= i_4) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_4 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((is_sint8 t_1[a_2])) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((is_sint8 t_1[(shift_sint8 a_2 (-1))])) ->
+  ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_4)])) ->
+  ((separated a 1 a_3 x_1)) ->
+  ((separated a_2 1 a_3 x_1)) ->
+  ((separated a 1 a_4 x_2)) ->
+  ((separated a_4 x_2 a_3 x_1)) ->
+  ((separated a_2 1 a_4 x_2)) ->
+  ((addr_lt a_2 a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (2/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_5_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (2/6)":
+*)
+goal goal11:
+  forall i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let x = (l_length t_1 a_2) in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x_1 = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_2 = 1 + x in
+  (a_2 <> a) ->
+  (0 <= i_4) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_4 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((valid_rw t a 1)) ->
+  ((is_sint8 t_1[a_2])) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((is_sint8 t_1[(shift_sint8 a_2 (-1))])) ->
+  ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_4)])) ->
+  ((separated a 1 a_3 x_1)) ->
+  ((separated a_2 1 a_3 x_1)) ->
+  ((separated a 1 a_4 x_2)) ->
+  ((separated a_4 x_2 a_3 x_1)) ->
+  ((separated a_2 1 a_4 x_2)) ->
+  ((addr_lt a_2 ((shift_sint8 a_2 x))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (3/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_5_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (3/6)":
+*)
+goal goal12:
+  forall i_8 i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_2 a_1 a : addr.
+  let a_3 = t_2[a] in
+  let x = (l_length t_1 a_3) in
+  let x_1 = t_1[a_1] in
+  let a_4 = (shift_sint8 a_1 1) in
+  let a_5 = (shift_sint8 a_2 0) in
+  let x_2 = 1 + ((l_length t_1 a_2)) in
+  let a_6 = (shift_sint8 a_3 0) in
+  let x_3 = 1 + x in
+  (null <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> null) ->
+  ((a_3.base) = (a_1.base)) ->
+  (0 <= i) ->
+  (0 <= i_6) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (i < x) ->
+  (i_6 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rw t a 1)) ->
+  ((addr_le a_3 a_1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((p_length_of_str_is t t_1 a_2 i_4)) ->
+  ((p_length_of_str_is t t_1 a_2 i_8)) ->
+  ((p_char_in_str t_1 a_2 x_1)) ->
+  ((is_sint8 t_1[a_4])) ->
+  ((p_length_of_str_is t t_1 a_3 i_1)) ->
+  ((p_length_of_str_is t t_1 a_3 i_5)) ->
+  ((p_length_of_str_is t t_1 a_3 i_7)) ->
+  ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i)])) ->
+  ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_6)])) ->
+  ((addr_lt a_1 ((shift_sint8 a_3 x)))) ->
+  ((separated a 1 a_5 x_2)) ->
+  ((separated a_3 1 a_5 x_2)) ->
+  ((separated a 1 a_6 x_3)) ->
+  ((separated a_6 x_3 a_5 x_2)) ->
+  ((separated a_3 1 a_6 x_3)) ->
+  (forall i_9 : int. (0 <= i_9) -> ((i_9 + (a_3.offset)) < (a_1.offset)) ->
+   (not (p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_9)]))) ->
+  ((addr_lt a_3 a_4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (4/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_5_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Axiomatic1.Axiomatic1
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (4/6)":
+*)
+goal goal13:
+  forall i_8 i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_2 a_1 a : addr.
+  let a_3 = t_2[a] in
+  let x = (l_length t_1 a_3) in
+  let x_1 = t_1[a_1] in
+  let a_4 = (shift_sint8 a_1 1) in
+  let a_5 = (shift_sint8 a_2 0) in
+  let x_2 = 1 + ((l_length t_1 a_2)) in
+  let a_6 = (shift_sint8 a_3 0) in
+  let x_3 = 1 + x in
+  (null <> a_1) ->
+  (a_3 <> a) ->
+  (a_3 <> null) ->
+  ((a_3.base) = (a_1.base)) ->
+  (0 <= i) ->
+  (0 <= i_6) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_2.base))) <= 0) ->
+  (i < x) ->
+  (i_6 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rw t a 1)) ->
+  ((addr_le a_3 a_1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((p_length_of_str_is t t_1 a_2 i_2)) ->
+  ((p_length_of_str_is t t_1 a_2 i_3)) ->
+  ((p_length_of_str_is t t_1 a_2 i_4)) ->
+  ((p_length_of_str_is t t_1 a_2 i_8)) ->
+  ((p_char_in_str t_1 a_2 x_1)) ->
+  ((is_sint8 t_1[a_4])) ->
+  ((p_length_of_str_is t t_1 a_3 i_1)) ->
+  ((p_length_of_str_is t t_1 a_3 i_5)) ->
+  ((p_length_of_str_is t t_1 a_3 i_7)) ->
+  ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i)])) ->
+  ((p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_6)])) ->
+  ((addr_lt a_1 ((shift_sint8 a_3 x)))) ->
+  ((separated a 1 a_5 x_2)) ->
+  ((separated a_3 1 a_5 x_2)) ->
+  ((separated a 1 a_6 x_3)) ->
+  ((separated a_6 x_3 a_5 x_2)) ->
+  ((separated a_3 1 a_6 x_3)) ->
+  (forall i_9 : int. (0 <= i_9) -> ((i_9 + (a_3.offset)) < (a_1.offset)) ->
+   (not (p_char_in_str t_1 a_2 t_1[(shift_sint8 a_3 i_9)]))) ->
+  ((addr_lt a_4 ((shift_sint8 a_3 ((l_length t_1[a_1 <- 0] a_3))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (5/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_5_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (5/6)":
+*)
+goal goal14:
+  forall i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let x = (l_length t_1 a_2) in
+  let x_1 = t_1[null] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x_2 = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 1 + x in
+  (a_2 <> a) ->
+  (a_2 <> null) ->
+  (0 <= i_5) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_5 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_1 i_3)) ->
+  ((p_length_of_str_is t t_1 a_1 i_7)) ->
+  ((is_sint8 t_1[(shift_sint8 null (-1))])) ->
+  ((p_length_of_str_is t t_1 a_2 i)) ->
+  ((p_length_of_str_is t t_1 a_2 i_4)) ->
+  ((p_length_of_str_is t t_1 a_2 i_6)) ->
+  ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_5)])) ->
+  ((separated a 1 a_3 x_2)) ->
+  ((separated a_2 1 a_3 x_2)) ->
+  ((separated a 1 a_4 x_3)) ->
+  ((separated a_4 x_3 a_3 x_2)) ->
+  ((separated a_2 1 a_4 x_3)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   ((a_2.base) = 0)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   ((p_char_in_str t_1 a_1 x_1))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   (((addr_le a_2 null)) /\ ((addr_lt null ((shift_sint8 a_2 x)))))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   (forall i_8 : int. (0 <= i_8) -> ((i_8 + (a_2.offset)) < 0) ->
+    (not (p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)])))) ->
+  ((addr_lt a_2 null))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (6/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrsep_found_post_5_part6
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition for 'found' (file strsep.c, line 31) in 'strsep' (6/6)":
+*)
+goal goal15:
+  forall i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = t_2[a] in
+  let x = (l_length t_1 a_2) in
+  let x_1 = t_1[null] in
+  let a_3 = (shift_sint8 a_1 0) in
+  let x_2 = 1 + ((l_length t_1 a_1)) in
+  let a_4 = (shift_sint8 a_2 0) in
+  let x_3 = 1 + x in
+  let a_5 = (shift_sint8 a_2 x) in
+  (a_2 <> a) ->
+  (a_2 <> null) ->
+  (0 <= i_5) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_5 < x) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_sint8 x_1)) ->
+  ((valid_rw t a 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_1 i_3)) ->
+  ((p_length_of_str_is t t_1 a_1 i_7)) ->
+  ((is_sint8 t_1[(shift_sint8 null (-1))])) ->
+  ((p_length_of_str_is t t_1 a_2 i)) ->
+  ((p_length_of_str_is t t_1 a_2 i_4)) ->
+  ((p_length_of_str_is t t_1 a_2 i_6)) ->
+  ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_5)])) ->
+  ((separated a 1 a_3 x_2)) ->
+  ((separated a_2 1 a_3 x_2)) ->
+  ((separated a 1 a_4 x_3)) ->
+  ((separated a_4 x_3 a_3 x_2)) ->
+  ((separated a_2 1 a_4 x_3)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   ((a_2.base) = 0)) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   ((p_char_in_str t_1 a_1 x_1))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   (((addr_le a_2 null)) /\ ((addr_lt null a_5)))) ->
+  ((exists i_8 : int. (0 <= i_8) /\ (i_8 < x) /\
+    ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)]))) ->
+   (forall i_8 : int. (0 <= i_8) -> ((i_8 + (a_2.offset)) < 0) ->
+    (not (p_char_in_str t_1 a_1 t_1[(shift_sint8 a_2 i_8)])))) ->
+  ((addr_lt null a_5))
+
+end
+

@@ -1,0 +1,10 @@
+atoms: {}
+axioms:
+  bintree.InorderLength.inorder_length: InorderLength.inorder_length
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.bintree.InorderLength
+prefix_ops: {}
+types: {}

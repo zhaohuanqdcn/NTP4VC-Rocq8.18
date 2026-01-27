@@ -1,0 +1,28 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #15)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+predicate p_valid_size (n : int) = (0 <= n) /\ (n <= 2147483646)
+
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+predicate p_rvalid_float_mat_2_ (malloc_0 : map int int)
+    (mptr_0 : map addr addr) (a : addr) (m : int) (n : int) =
+    ((p_valid_size m)) /\ ((p_valid_size n)) /\
+    ((valid_rd malloc_0 ((shift_ptr a 0)) m)) /\
+    (forall i : int. (0 <= i) -> (i < m) -> ((is_sint32 i)) ->
+     ((valid_rd malloc_0 ((shift_float32 mptr_0[(shift_ptr a i)] 0)) n)))
+
+end
+

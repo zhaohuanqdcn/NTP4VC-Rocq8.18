@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name add_list_vcg)
+(theories Why3 add_list_vcg.add_list Why3.why3.Ref))

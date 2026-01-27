@@ -1,0 +1,13 @@
+session memb_init_Why3_ide = NTP4Verif +
+theories
+  "memb_init_Why3_ide_VCmemb_init_post_2_goal0"
+  "memb_init_Why3_ide_VCmemb_init_assign_normal_part2_goal8"
+  "memb_init_Why3_ide_VCmemb_init_assert_rte_mem_access_goal1"
+  "memb_init_Why3_ide_VCmemb_init_assert_rte_mem_access_3_goal3"
+  "memb_init_Why3_ide_VCmemb_init_assert_rte_signed_overflow_2_goal6"
+  "memb_init_Why3_ide_VCmemb_init_assert_rte_mem_access_4_goal4"
+  "memb_init_Why3_ide_VCmemb_init_assign_exit_part2_goal7"
+  "memb_init_Why3_ide_VCmemb_init_call_memset_pre_valid_s_goal9"
+  "memb_init_Why3_ide_VCmemb_init_assert_rte_signed_overflow_goal5"
+  "memb_init_Why3_ide_VCmemb_init_call_memset_pre_valid_s_2_goal10"
+  "memb_init_Why3_ide_VCmemb_init_assert_rte_mem_access_2_goal2"

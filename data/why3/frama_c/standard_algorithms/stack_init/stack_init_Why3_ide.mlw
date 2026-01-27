@@ -1,0 +1,296 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'invariant' in 'stack_init'         --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_init_post_invariant
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'invariant' in 'stack_init'":
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shiftfield_f1_stack_capacity a_1) in
+  let a_3 = (shiftfield_f1_stack_obj a_1) in
+  let a_4 = (shiftfield_f1_stack_size a_1) in
+  let a_5 = (shift_sint32 a 0) in
+  (0 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 3)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((valid_rw t a_4 1)) ->
+  ((valid_rw t a_5 i)) ->
+  ((separated a_1 3 a_5 i)) ->
+  ((p_invariant t t_2[a_3 <- a] t_1[a_2 <- i][a_4 <- 0] a_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'capacity' in 'stack_init'          --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_init_post_capacity
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'capacity' in 'stack_init'":
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shiftfield_f1_stack_capacity a_1) in
+  let a_3 = (shiftfield_f1_stack_size a_1) in
+  let a_4 = (shift_sint32 a 0) in
+  (0 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 3)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t ((shiftfield_f1_stack_obj a_1)) 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((valid_rw t a_4 i)) ->
+  ((separated a_1 3 a_4 i)) ->
+  (((l_capacity t_1[a_2 <- i][a_3 <- 0] a_1)) = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'empty' in 'stack_init'             --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_init_post_empty
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'empty' in 'stack_init'":
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shiftfield_f1_stack_capacity a_1) in
+  let a_3 = (shiftfield_f1_stack_size a_1) in
+  let a_4 = (shift_sint32 a 0) in
+  (0 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 3)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t ((shiftfield_f1_stack_obj a_1)) 1)) ->
+  ((valid_rw t a_3 1)) ->
+  ((valid_rw t a_4 i)) ->
+  ((separated a_1 3 a_4 i)) ->
+  ((p_empty t_1[a_2 <- i][a_3 <- 0] a_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'storage' in 'stack_init'           --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_init_post_storage
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'storage' in 'stack_init'":
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shiftfield_f1_stack_obj a_1) in
+  let a_3 = (shift_sint32 a 0) in
+  (0 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 3)) ->
+  ((valid_rw t ((shiftfield_f1_stack_capacity a_1)) 1)) ->
+  ((valid_rw t a_2 1)) ->
+  ((valid_rw t ((shiftfield_f1_stack_size a_1)) 1)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_1 3 a_3 i)) ->
+  (((l_storage t_1[a_2 <- a] a_1)) = a)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file stack_init.c, line 6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_init_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file stack_init.c, line 6)":
+*)
+goal goal4:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  (0 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 3)) ->
+  ((valid_rw t a_2 i)) ->
+  ((separated a_1 3 a_2 i)) ->
+  ((valid_rw t ((shiftfield_f1_stack_obj a_1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file stack_init.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_init_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file stack_init.c, line 7)":
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  (0 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 3)) ->
+  ((valid_rw t ((shiftfield_f1_stack_obj a_1)) 1)) ->
+  ((valid_rw t a_2 i)) ->
+  ((separated a_1 3 a_2 i)) ->
+  ((valid_rw t ((shiftfield_f1_stack_capacity a_1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file stack_init.c, line 8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_init_assert_rte_mem_access_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file stack_init.c, line 8)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  (0 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_1 3)) ->
+  ((valid_rw t ((shiftfield_f1_stack_capacity a_1)) 1)) ->
+  ((valid_rw t ((shiftfield_f1_stack_obj a_1)) 1)) ->
+  ((valid_rw t a_2 i)) ->
+  ((separated a_1 3 a_2 i)) ->
+  ((valid_rw t ((shiftfield_f1_stack_size a_1)) 1))
+
+end
+

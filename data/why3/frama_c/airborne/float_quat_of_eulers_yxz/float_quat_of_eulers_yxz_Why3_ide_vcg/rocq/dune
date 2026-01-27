@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name airborne.float_quat_of_eulers_yxz.float_quat_of_eulers_yxz_Why3_ide_vcg)
+(theories Why3.Cfloat Why3 float_quat_of_eulers_yxz.Axiomatic15 float_quat_of_eulers_yxz.Compound Why3.Memory Why3.Qed Why3.Cmath Why3.Square))

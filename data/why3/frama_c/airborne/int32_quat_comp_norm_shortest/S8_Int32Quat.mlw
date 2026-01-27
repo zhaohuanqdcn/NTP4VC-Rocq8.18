@@ -1,0 +1,20 @@
+(* ---------------------------------------------------------- *)
+(* --- Struct 'Int32Quat'                                 --- *)
+(* ---------------------------------------------------------- *)
+theory S8_Int32Quat
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+type s8_int32quat = {
+  f8_int32quat_qi : int ;
+  f8_int32quat_qx : int ;
+  f8_int32quat_qy : int ;
+  f8_int32quat_qz : int }
+
+end
+

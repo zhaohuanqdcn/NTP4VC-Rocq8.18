@@ -1,0 +1,16 @@
+atoms:
+  mach.matrix.Matrix63.columns: [columns, matrix_Matrix63.columns]
+  mach.matrix.Matrix63.elts: [elts, matrix_Matrix63.elts]
+  mach.matrix.Matrix63.get_unsafe: [get_unsafe, matrix_Matrix63.get_unsafe]
+  mach.matrix.Matrix63.rows: [rows, matrix_Matrix63.rows]
+  mach.matrix.Matrix63.set_unsafe: [set_unsafe, matrix_Matrix63.set_unsafe]
+  mach.matrix.Matrix63.valid_index: [valid_index, matrix_Matrix63.valid_index]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: mach.matrix_Matrix63
+prefix_ops: {}
+types:
+  mach.matrix.Matrix63.matrix: [matrix, matrix_Matrix63.matrix]

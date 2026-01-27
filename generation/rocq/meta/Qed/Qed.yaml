@@ -1,0 +1,28 @@
+atoms:
+  Qed.Qed.eqb: [eqb, Qed.eqb]
+  Qed.Qed.match_bool: [match_bool, Qed.match_bool]
+  Qed.Qed.neqb: [neqb, Qed.neqb]
+  Qed.Qed.rleq: [rleq, Qed.rleq]
+  Qed.Qed.rlt: [rlt, Qed.rlt]
+  Qed.Qed.zleq: [zleq, Qed.zleq]
+  Qed.Qed.zlt: [zlt, Qed.zlt]
+axioms:
+  Qed.Qed.c_euclidian: [c_euclidian, Qed.c_euclidian]
+  Qed.Qed.cdiv_cases: [cdiv_cases, Qed.cdiv_cases]
+  Qed.Qed.cdiv_inv: [cdiv_inv, Qed.cdiv_inv]
+  Qed.Qed.cdiv_neutral: [cdiv_neutral, Qed.cdiv_neutral]
+  Qed.Qed.cmod_cases: [cmod_cases, Qed.cmod_cases]
+  Qed.Qed.cmod_remainder: [cmod_remainder, Qed.cmod_remainder]
+  Qed.Qed.eqb1: [eqb1, Qed.eqb1]
+  Qed.Qed.neqb1: [neqb1, Qed.neqb1]
+  Qed.Qed.rleq1: [rleq1, Qed.rleq1]
+  Qed.Qed.rlt1: [rlt1, Qed.rlt1]
+  Qed.Qed.zleq1: [zleq1, Qed.zleq1]
+  Qed.Qed.zlt1: [zlt1, Qed.zlt1]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.Qed.Qed
+prefix_ops: {}
+types: {}

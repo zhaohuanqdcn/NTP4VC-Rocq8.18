@@ -1,0 +1,152 @@
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file src/x509-parser.c, line 6804) --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_ext_basicConstraints_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file src/x509-parser.c, line 6804)":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let x_2 = i - 6 in
+  (i <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483648) <= i) ->
+  (6 <= i) ->
+  (8 <= i) ->
+  (i <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 15)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rw t ((shiftfield_f22_bc_critical a)) 1)) ->
+  ((valid_rd t ((shift_uint8 a_1 x_2)) 5)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a_1 (i - 1))) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 49) in 'bufs_differ'' in 'parse_ext_basicConstraints' at call 'bufs_differ' (file src/x509-parser.c, line 6782)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_ext_basicConstraints_call_bufs_differ_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 49) in 'bufs_differ'' in 'parse_ext_basicConstraints' at call 'bufs_differ' (file src/x509-parser.c, line 6782)
+":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let x_2 = i - 3 in
+  (i <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483648) <= i) ->
+  (3 <= i) ->
+  (5 <= i) ->
+  (i <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 15)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rw t ((shiftfield_f22_bc_critical a)) 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a_1 x_2)) 3))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 49) in 'bufs_differ'' in 'parse_ext_basicConstraints' at call 'bufs_differ' (file src/x509-parser.c, line 6791)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_ext_basicConstraints_call_bufs_differ_pre_2_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 49) in 'bufs_differ'' in 'parse_ext_basicConstraints' at call 'bufs_differ' (file src/x509-parser.c, line 6791)
+":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a.base in
+  let x_2 = i - 6 in
+  (i <> 0) ->
+  (null <> a_1) ->
+  (x <> x_1) ->
+  (0 <= i) ->
+  (((region x_1)) <= 0) ->
+  (((region x)) <= 0) ->
+  ((-2147483648) <= i) ->
+  (6 <= i) ->
+  (8 <= i) ->
+  (i <= 2147483647) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((valid_rw t a 15)) ->
+  ((is_uint16 x_2)) ->
+  ((valid_rw t ((shiftfield_f22_bc_critical a)) 1)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a_1 0)) i))) ->
+  ((valid_rd t ((shift_uint8 a_1 x_2)) 5))
+
+end
+

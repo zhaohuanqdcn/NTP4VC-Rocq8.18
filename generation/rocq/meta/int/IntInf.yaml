@@ -1,0 +1,20 @@
+atoms:
+  int.IntInf.Finite: [Finite, IntInf.Finite]
+  int.IntInf.Infinite: [Infinite, IntInf.Infinite]
+  int.IntInf.add: [add, IntInf.add]
+  int.IntInf.eq: [eq, IntInf.eq]
+  int.IntInf.le: [le, IntInf.le]
+  int.IntInf.lt: [lt, IntInf.lt]
+axioms:
+  int.IntInf.Antisymm: [Antisymm, IntInf.Antisymm]
+  int.IntInf.Refl: [Refl, IntInf.Refl]
+  int.IntInf.Total: [Total, IntInf.Total]
+  int.IntInf.Trans: [Trans, IntInf.Trans]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.int.IntInf
+prefix_ops: {}
+types:
+  int.IntInf.t: [t, IntInf.t]

@@ -1,0 +1,151 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'sqrtf'' in 'float_quat_differential' at initialization of 'v_norm' (file math/pprz_algebra_float.c, line 404)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_differential_call_sqrtf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic15.Axiomatic15
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'sqrtf'' in 'float_quat_differential' at initialization of 'v_norm' (file math/pprz_algebra_float.c, line 404)
+":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a_1 a : addr.
+  let r = t_1[(shiftfield_f7_floatrates_p a)] in
+  let r_1 = t_1[(shiftfield_f7_floatrates_q a)] in
+  let r_2 = t_1[(shiftfield_f7_floatrates_r a)] in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((p_valid_floatquat t t_1 a_1)) ->
+  ((p_rvalid_floatrates t t_1 a)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_float32 r_2)) ->
+  ((is_finite32
+     ((add_float32
+        ((add_float32 ((mul_float32 r r)) ((mul_float32 r_1 r_1))))
+        ((mul_float32 r_2 r_2))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'arg_positive' in 'sqrtf'' in 'float_quat_differential' at initialization of 'v_norm' (file math/pprz_algebra_float.c, line 404)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_differential_call_sqrtf_pre_arg_positive
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic15.Axiomatic15
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'arg_positive' in 'sqrtf'' in 'float_quat_differential' at initialization of 'v_norm' (file math/pprz_algebra_float.c, line 404)
+":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a_1 a : addr.
+  let r = t_1[(shiftfield_f7_floatrates_p a)] in
+  let r_1 = t_1[(shiftfield_f7_floatrates_q a)] in
+  let r_2 = t_1[(shiftfield_f7_floatrates_r a)] in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((p_valid_floatquat t t_1 a_1)) ->
+  ((p_rvalid_floatrates t t_1 a)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((is_float32 r_2)) ->
+  (0.0
+     <=. ((add_float32
+            ((add_float32 ((mul_float32 r r)) ((mul_float32 r_1 r_1))))
+            ((mul_float32 r_2 r_2)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'cos'' in 'float_quat_differential' at call 'cos' (file math/pprz_algebra_float.c, line 405)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_differential_call_cos_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'cos'' in 'float_quat_differential' at call 'cos' (file math/pprz_algebra_float.c, line 405)
+":
+*)
+goal goal2:
+  forall r_1 r : real.
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a_1 a : addr.
+  let r_2 = t_1[(shiftfield_f7_floatrates_p a)] in
+  let r_3 = t_1[(shiftfield_f7_floatrates_q a)] in
+  let r_4 = t_1[(shiftfield_f7_floatrates_r a)] in
+  let r_5 = (add_float32
+              ((add_float32 ((mul_float32 r_2 r_2)) ((mul_float32 r_3 r_3))))
+              ((mul_float32 r_4 r_4))) in
+  (0.0 <=. r) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (0.0 <=. r_5) ->
+  ((linked t)) ->
+  ((is_finite32 r)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_1)) ->
+  ((p_valid_floatquat t t_1 a_1)) ->
+  ((p_rvalid_floatrates t t_1 a)) ->
+  ((is_float32 r_2)) ->
+  ((is_float32 r_3)) ->
+  ((is_float32 r_4)) ->
+  ((is_finite32 r_5)) ->
+  ((is_finite64 ((div_float64 ((to_float64 ((mul_float32 r_1 r)))) 2.0))))
+
+end
+

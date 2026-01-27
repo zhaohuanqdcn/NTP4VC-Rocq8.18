@@ -1,0 +1,28 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import pearl.prover.lib.lean.Unification.Types
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.BacktrackArray.Types
+import pearl.prover.lib.lean.Predicates.Pred
+import pearl.prover.lib.lean.BacktrackArray.Logic
+import pearl.prover.lib.lean.Choice.Choice
+import pearl.prover.lib.lean.BacktrackArray.Impl
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Impl
+import pearl.prover.lib.lean.Firstorder_term_spec.Spec
+import pearl.prover.lib.lean.Firstorder_term_impl.Types
+import pearl.prover.lib.lean.Firstorder_term_impl.Logic
+import pearl.prover.lib.lean.Firstorder_term_impl.Impl
+import pearl.prover.lib.lean.Unification.Logic
+open Classical
+open Lean4Why3
+namespace Unification_Impl_conflictsqtvc
+theorem conflicts'vc (lv : List Types.sdata) (rhob : Types.t Types.sdata) (rho : Types.unifier_subst) (fact0 : Logic.list_forall Logic.sdata_inv lv) (fact1 : Logic.unifier_subst_ok rhob rho) : match lv with | ([] : List Types.sdata) => Logic.unifier_subst_ok rhob rho ∧ Logic.precede rhob rhob | List.cons (Types.sdata.Assign _) q => Logic.list_forall Logic.sdata_inv q ∧ Logic.unifier_subst_ok rhob rho | List.cons (Types.sdata.PConflict t1 t2) q => (Logic.sdata_inv (Types.sdata.PConflict t1 t2) = true ∧ Logic.unifier_subst_ok rhob rho) ∧ (∀(rhob1 : Types.t Types.sdata), Types.t.inv rhob1 = Types.t.inv rhob → (Logic.unifier_subst_ok rhob1 rho ∧ Logic.precede rhob rhob1 → (Logic.list_forall Logic.sdata_inv q ∧ Logic.unifier_subst_ok rhob1 rho) ∧ (∀(rhob2 : Types.t Types.sdata), Types.t.inv rhob2 = Types.t.inv rhob1 → (Logic.unifier_subst_ok rhob2 rho ∧ Logic.precede rhob1 rhob2 → Logic.unifier_subst_ok rhob2 rho ∧ Logic.precede rhob rhob2) ∧ (Logic.correct rhob2 ∧ Logic.precede rhob1 rhob2 → Logic.correct rhob2 ∧ Logic.precede rhob rhob2))) ∧ (Logic.precede rhob rhob1 ∧ Logic.correct rhob1 → Logic.correct rhob1 ∧ Logic.precede rhob rhob1))
+  := sorry
+end Unification_Impl_conflictsqtvc

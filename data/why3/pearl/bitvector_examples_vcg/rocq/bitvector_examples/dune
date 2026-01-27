@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name bitvector_examples_vcg.bitvector_examples)
+(theories Why3 Why3.why3.Ref Why3.why3.WellFounded))

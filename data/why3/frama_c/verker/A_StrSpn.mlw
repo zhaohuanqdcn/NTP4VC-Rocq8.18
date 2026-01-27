@@ -1,0 +1,44 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'StrSpn'                                 --- *)
+(* ---------------------------------------------------------- *)
+theory A_StrSpn
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import A_Strlen.A_Strlen
+
+predicate p_in_array (mchar_0 : map addr int) (s : addr) (c : int) =
+    exists a : addr. (mchar_0[a] = c) /\ ((addr_le s a)) /\
+    ((addr_lt a ((shift_sint8 s ((l_strlen mchar_0 s))))))
+
+function l_strspn addr addr : int
+
+use import Cint.Cint
+
+axiom Q_strspn_base_case:
+  forall accept_0 s : addr.
+  forall mchar_0 : map addr int.
+  (mchar_0[s] = 0) -> (((l_strspn s accept_0)) = 0)
+
+axiom Q_strspn_not_in_accept:
+  forall accept_0 s : addr.
+  forall mchar_0 : map addr int.
+  let x = mchar_0[s] in (x <> 0) -> (not (p_in_array mchar_0 accept_0 x)) ->
+    (((l_strspn s accept_0)) = 0)
+
+axiom Q_strspn_in_accept:
+  forall accept_0 s : addr.
+  forall mchar_0 : map addr int.
+  let x = mchar_0[s] in (x <> 0) -> ((p_in_array mchar_0 accept_0 x)) ->
+    ((1 + ((l_strspn ((shift_sint8 s 1)) accept_0)))
+       = ((l_strspn s accept_0)))
+
+end
+

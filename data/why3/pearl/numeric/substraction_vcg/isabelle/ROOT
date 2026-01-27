@@ -1,0 +1,6 @@
+session substraction = NTP4Verif +
+theories
+  "substraction_SubstractionDouble_substraction_errorsqtvc"
+  "substraction_SubstractionSingle_substraction_errorsqtvc"
+  "substraction_SubstractionSingle_substraction_errors_basicqtvc"
+  "substraction_SubstractionDouble_substraction_errors_basicqtvc"

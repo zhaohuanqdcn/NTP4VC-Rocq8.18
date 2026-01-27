@@ -1,0 +1,13 @@
+session division = NTP4Verif +
+theories
+  "division_HoareSound_A5"
+  "division_HoareSound_A4"
+  "division_Division_divisionqtvc"
+  "division_HoareSound_A8"
+  "division_HoareSound_A1"
+  "division_HoareSound_A6"
+  "division_HoareSound_A7"
+  "division_HoareSound_A3"
+  "division_HoareSound_A2"
+  "division_Hoare_divisionqtvc"
+  "division_HoareSound_A9"

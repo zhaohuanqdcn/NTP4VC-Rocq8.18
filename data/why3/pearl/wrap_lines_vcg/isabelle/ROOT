@@ -1,0 +1,8 @@
+session wrap_lines = NTP4Verif +
+theories
+  "wrap_lines_WrapLinesOCaml_spaceqtvc"
+  "wrap_lines_WrapLinesOCaml_newlineqtvc"
+  "wrap_lines_WrapLines_wrap_linesqtvc"
+  "wrap_lines_WrapLines_wrap_lines_plusqtvc"
+  "wrap_lines_WrapLinesOCaml_infix_eqqtrefnqtvc"
+  "wrap_lines_WrapLines_index_ofqtvc"

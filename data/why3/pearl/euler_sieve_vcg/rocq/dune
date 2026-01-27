@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name euler_sieve_vcg)
+(theories Why3 euler_sieve_vcg.euler_sieve Why3.mach.array Why3.why3.Ref))

@@ -1,0 +1,22 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #12)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic12
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+predicate p_bmatch (mint_0 : map addr int) (b1_0 : addr) (b2_0 : addr)
+    (n : int) =
+    forall i : int. (0 <= i) -> (i < n) ->
+    (mint_0[(shift_uint8 b2_0 i)] = mint_0[(shift_uint8 b1_0 i)])
+
+end
+

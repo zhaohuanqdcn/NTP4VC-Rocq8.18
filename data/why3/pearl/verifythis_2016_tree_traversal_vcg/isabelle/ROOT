@@ -1,0 +1,16 @@
+session verifythis_2016_tree_traversal = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "verifythis_2016_tree_traversal_TreeShape_ext_curqtvc"
+  "verifythis_2016_tree_traversal_Memory"
+  "verifythis_2016_tree_traversal_Iterative_openingqtvc"
+  "verifythis_2016_tree_traversal_TreeShape"
+  "verifythis_2016_tree_traversal_TreeShape_ext_setqtvc"
+  "verifythis_2016_tree_traversal_Iterative_markTreeqtvc"
+  "verifythis_2016_tree_traversal_Recursive_markTreeqtvc"
+  "verifythis_2016_tree_traversal_Iterative_stack_size_posqtvc"
+  "verifythis_2016_tree_traversal_TreeShape_not_belowqtvc"
+  "verifythis_2016_tree_traversal_TreeShape_unicityqtvc"
+  "verifythis_2016_tree_traversal_Iterative_continuingqtvc"
+  "verifythis_2016_tree_traversal_Iterative_closingqtvc"

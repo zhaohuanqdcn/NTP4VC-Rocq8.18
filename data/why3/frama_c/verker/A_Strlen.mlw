@@ -1,0 +1,38 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'Strlen'                                 --- *)
+(* ---------------------------------------------------------- *)
+theory A_Strlen
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+predicate p_valid_str (malloc_0 : map int int) (mchar_0 : map addr int)
+    (s : addr) =
+    exists i : int. (mchar_0[(shift_sint8 s i)] = 0) /\ ((is_uint64 i)) /\
+    ((valid_rw malloc_0 ((shift_sint8 s 0)) (1 + i))) /\
+    (forall j : int. (j <= i) -> is_sint8 (mchar_0[(shift_sint8 s j)]))
+
+function l_strlen (map addr int) addr : int
+axiom fix_l_strlen:
+  forall s : addr.
+  forall mchar_0 : map addr int.
+  let x = (l_strlen mchar_0 s) in
+    if (mchar_0[(shift_sint8 s 0)] = 0) then (x = 0)
+    else (((to_uint64 (1 + ((l_strlen mchar_0 ((shift_sint8 s 1))))))) = x)
+
+axiom Q_TL_strlen:
+  forall s : addr.
+  forall mchar_0 : map addr int
+  [(l_strlen mchar_0 s)].
+  (is_uint64 ((l_strlen mchar_0 s)))
+
+end
+

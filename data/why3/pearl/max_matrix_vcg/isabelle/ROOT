@@ -1,0 +1,10 @@
+session max_matrix = NTP4Verif +
+theories
+  "max_matrix_MaxMatrixMemo_sum_indqtvc"
+  "max_matrix_Bitset"
+  "max_matrix_MaxMatrixMemo_memoqtvc"
+  "max_matrix_HashTable"
+  "max_matrix_MaxMatrixMemo_mqtvc"
+  "max_matrix_MaxMatrixMemo_nqtvc"
+  "max_matrix_MaxMatrixMemo_maximumqtvc"
+  "max_matrix_MaxMatrixMemo_maxmatqtvc"

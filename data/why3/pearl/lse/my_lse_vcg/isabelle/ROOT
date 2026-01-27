@@ -1,0 +1,5 @@
+session my_lse = NTP4Verif +
+theories
+  "my_lse_LSE_lse_accuracyqtvc"
+  "my_lse_LSE_u_exp_funqtvc"
+  "my_lse_LSE_exp_funqtvc"

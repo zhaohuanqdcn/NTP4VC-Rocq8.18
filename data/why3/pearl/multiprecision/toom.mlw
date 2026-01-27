@@ -1,0 +1,843 @@
+module Toom
+
+  use array.Array
+  use map.Map
+  use mach.c.C
+  use ref.Ref
+  use mach.int.Int32
+  use import mach.int.UInt64GMP as Limb
+  use int.Int
+  use int.Power
+  use valuation.Valuation
+  use int.ComputerDivision
+  use types.Types
+  use types.Int32Eq
+  use types.UInt64Eq
+  use lemmas.Lemmas
+  use compare.Compare
+  use util.Util
+  use util.UtilOld
+  use add_1.Add_1
+  use add.AddOld
+  use sub_1.Sub_1
+  use sub.SubOld
+  use mul.Mul
+  use mul.Mul_basecase
+  use logical.Logical
+
+let constant toom22_threshold : int32 = 29
+
+let ghost no_borrow (x y r b m:int) : unit
+  requires { 0 <= y <= x }
+  requires { 0 <= r < m }
+  requires { r - m * b = x - y }
+  requires { 0 <= b }
+  ensures  { b = 0 }
+= ()
+
+let ghost no_borrow_ptr (x y r: ptr limb) (nx ny:int) (b:limb) : unit
+  requires { 0 < ny <= nx }
+  requires { value y ny <= value x nx }
+  requires { value r nx - (power radix nx) * b = value x nx - value y ny }
+  requires { 0 <= b }
+  ensures  { b = 0 }
+= ()
+
+let rec partial wmpn_toom22_mul (r x:ptr limb) (sx:int32) (y:ptr limb) (sy:int32)
+                        (scratch: ptr limb) (ghost k: int) : unit
+  requires { valid x sx }
+  requires { valid y sy }
+  requires { valid r (sx + sy) }
+  requires { toom22_threshold < sy }
+  requires { 0 < k <= 64 }
+  requires { sx <= toom22_threshold * power 2 k }
+  requires { valid scratch (2 * (sx + k)) } (*TODO faire en fonction de sy *)
+  requires { writable r /\ writable scratch }
+  requires { 8 * sx < max_int32 }
+  requires { 2 < sy <= sx < sy + sy - 1 }
+  requires { 4 * sx < 5 * sy }
+  ensures  { min r = old min r }
+  ensures  { max r = old max r }
+  ensures  { plength r = old plength r }
+  ensures  { min scratch = old min scratch }
+  ensures  { max scratch = old max scratch }
+  ensures  { plength scratch = old plength scratch }
+  ensures  { value r (sx + sy) = value x sx * value y sy }
+  ensures  { forall j. min r <= j < offset r \/ offset r + sx + sy <= j < max r
+                       -> (pelts r)[j] = old (pelts r)[j] }
+  ensures  { forall j. min scratch <= j < offset scratch
+                       -> (pelts scratch)[j] = old (pelts scratch)[j] }
+  variant { k + k }
+=
+  let s = sx / 2 in (* TODO sx >> 1 *)
+  let n = sx - s in
+  let t = sy - n in
+  let x0 = x in
+  let x1 = C.incr x n in
+  let y0 = y in
+  let y1 = C.incr y n in
+  let ghost a0 = value x0 (int32'int n) in
+  let ghost a1 = value x1 (int32'int s) in
+  let ghost b0 = value y0 (int32'int n) in
+  let ghost b1 = value y1 (int32'int t) in
+  let ghost m = power radix (int32'int n) in
+  let r' = decr_split r 0 in
+  let ro = C.incr_split r (sx + sy) in
+  let scratch' = decr_split scratch 0 in
+  let s_out = C.incr_split scratch (n + n) in
+  let vinf = C.incr_split r (n + n) in
+  label ASM1 in
+  let xsm1 = r in
+  let ysm1 = C.incr_split r n in
+  let vm1_neg = ref false in
+  begin ensures { (!vm1_neg /\ value xsm1 n = a1 - a0)
+                  \/ (not !vm1_neg /\ value xsm1 n = a0 - a1) }
+        ensures { min scratch = old min scratch }
+        ensures { max scratch = old max scratch }
+        ensures { plength scratch = old plength scratch }
+    if (s = n)
+    then
+      if begin ensures { result <->  value x0 n < value x1 n }
+           (wmpn_cmp x0 x1 n) < 0
+         end
+      then begin
+        let (ghost b) = wmpn_sub_n xsm1 x1 x0 n in
+        vm1_neg := true end
+      else let (ghost b) = wmpn_sub_n xsm1 x0 x1 n in
+           ()
+    else
+      (* n-s=1*)
+      if ((get_ofs x0 s) = 0) &&
+         ((wmpn_cmp x0 x1 s) < 0)
+      then begin
+        let (ghost b) = wmpn_sub_n xsm1 x1 x0 s in
+        set_ofs xsm1 s 0;
+        vm1_neg := true;
+        end
+      else begin
+        let b = wmpn_sub_n xsm1 x0 x1 s in
+        label Borrow in
+        let lx = get_ofs x0 s in
+        set_ofs xsm1 s (lx - b);
+        end
+  end;
+  label BSM1 in
+  begin ensures { (!vm1_neg = (!vm1_neg at BSM1) /\ value ysm1 n = b0 - b1)
+                  \/ (!vm1_neg = not (!vm1_neg at BSM1) /\ value ysm1 n = b1 - b0) }
+        ensures { value xsm1 n = (value xsm1 n at BSM1) }
+        ensures { min scratch = old min scratch }
+        ensures { max scratch = old max scratch }
+        ensures { plength scratch = old plength scratch }
+    if (t = n)
+    then
+      if begin ensures { result <-> value y0 n < value y1 n }
+           (wmpn_cmp y0 y1 n) < 0
+         end
+      then begin
+        let (ghost b) = wmpn_sub_n ysm1 y1 y0 n in
+        vm1_neg := not !vm1_neg end
+      else
+        let (ghost b) = wmpn_sub_n ysm1 y0 y1 n in
+        ();
+    else
+      let y0t = C.incr y0 t in
+      let c0 = ((wmpn_zero_p y0t (n - t)) = 1) in
+      let c1 = ((wmpn_cmp y0 y1 t) < 0) in
+      if c0 && c1
+      then begin
+        let (ghost b) = wmpn_sub_n ysm1 y1 y0 t in
+        label Zero in
+        let ghost ysm1z = { ysm1 } in
+        let ysm1t = C.incr ysm1 t in
+        wmpn_zero ysm1t (n - t);
+        vm1_neg := not !vm1_neg end
+      else begin
+        let (ghost b) = wmpn_sub ysm1 y0 n y1 t in ()
+        end
+  end;
+  let ghost asm1_abs = value xsm1 (int32'int n) in
+  let ghost bsm1_abs = value ysm1 (int32'int n) in
+  label RecM1 in
+  wmpn_toom22_mul_n_rec scratch xsm1 ysm1 s_out n (k-1);
+  join r ysm1;
+  let v0 = r in
+  label Rec in
+  begin ensures { value scratch (n+n) = asm1_abs * bsm1_abs }
+        ensures { value v0 (n+n) = a0 * b0 }
+        ensures { value vinf (s+t) = a1 * b1 }
+        ensures { min scratch = old min scratch }
+        ensures { max scratch = old max scratch }
+        ensures { plength scratch = old plength scratch }
+        ensures { min s_out = old min s_out }
+        ensures { max s_out = old max s_out }
+        ensures { min vinf = old min vinf }
+        ensures { max vinf = old max vinf }
+        ensures { plength vinf = old plength vinf }
+        ensures { min r = old min r }
+        ensures { max r = old max r }
+        ensures { plength r = old plength r }
+    let ghost valid_monotonous (s n:int32) : unit
+      requires { valid s_out (2*(n+(k-1))) }
+      requires { 0 <= s <= n }
+      ensures  { valid s_out (2*(s+(k-1))) }
+    = () in
+    (if s > t
+     then wmpn_toom22_mul_rec vinf x1 s y1 t s_out (k-1)
+     else wmpn_toom22_mul_n_rec vinf x1 y1 s_out s (k-1));
+    wmpn_toom22_mul_n_rec v0 x0 y0 s_out n (k-1);
+  end;
+  label Adds in
+  let v0n = incr_split v0 n in
+  let vinfn = incr_split vinf n in
+  let ghost lv0 = value v0 (int32'int n) in
+  let ghost hv0 = value v0n (int32'int n) in
+  let ghost lvinf = value vinf (int32'int n) in
+  let ghost hvinf = value vinfn (int32'int s + int32'int t- int32'int n) in
+  let cy = ref (wmpn_add_n_in_place vinf v0n n) in
+  let c = wmpn_add_n v0n vinf v0 n in
+  let cy2 = c + !cy in
+  label Add3 in
+  let c' = wmpn_add_in_place vinf n vinfn ((s+t) - n) in
+  cy := !cy + c';
+  label JoinMid in
+  let ghost v0nj = { v0n } in
+  let ghost vinfj = { vinf } in
+  join v0n vinf;
+  label AddSub in
+  begin ensures { !cy <= 3 (*2?*)
+                   /\ value v0n (n+n) = a1 * b1 + a0 * b0 - (a0 - a1)*(b0 - b1)
+                                      + hv0 + m * lvinf - m * cy2 - m * m * !cy
+                  \/ !cy = radix - 1
+                      /\ value v0n (n+n) = a1 * b1 + a0 * b0  - (a0 - a1)*(b0 - b1)
+                         + hv0 + m * lvinf - m * cy2 + m * m
+                      /\ !cy at AddSub = 0 }
+    if !vm1_neg
+    then
+      let c'' = wmpn_add_n_in_place v0n scratch (n+n) in
+      cy := !cy + c'';
+    else
+      let b = wmpn_sub_n_in_place v0n scratch (n+n) in
+      cy := sub_mod !cy b;
+  end;
+  label Join in
+  let ghost rj = { r } in
+  let ghost v0nj = { v0n } in
+  let ghost vinfnj = { vinfn } in
+  join r v0n;
+  label JoinH in
+  let ghost rh = { r } in
+  join r vinfn;
+  join scratch s_out;
+  let vinf0 = C.incr r (n+n) in
+  let ghost m' = power radix (p2i s + p2i t - p2i n) in
+  begin ensures { value r (sx + sy) + m * m * cy2  < m * m * m * m' }
+        ensures { value x sx * value y sy < m * m * m * m' }
+  end;
+  let ghost ri = { r } in
+  label IncrM in
+  wmpn_incr vinf0 (s + t) cy2;
+  let rh = { r } in
+  let vinfn = C.incr r (3 * n) in
+  label IncrH in
+  if ([@likely] !cy <= 3)
+  then begin
+    wmpn_incr vinfn ((s + t) - n) !cy;
+  end
+  else begin
+    wmpn_decr_1 vinfn ((s + t) - n);
+  end;
+  label JoinRight in
+  let rf = { r } in
+  C.join r ro;
+  label JoinLeft in
+  C.join_r r' r;
+  C.join_r scratch' scratch
+
+
+  (* Choose which multiplication algorithm is called recursively.
+     Equivalent to the macros WMPN_TOOM22_MUL_REC and WMPN_TOOM22_MUL_N_REC
+     respectively, in wmpn_toom22_mul.c *)
+with partial wmpn_toom22_mul_rec (r x: ptr limb) (sx:int32) (y:ptr limb) (sy: int32)
+                         (scratch:ptr limb) (ghost k: int)
+     : unit
+  requires { valid x sx }
+  requires { valid y sy }
+  requires { valid r (sx + sy) }
+  requires { writable r /\ writable scratch }
+  requires { 0 < sy <= sx <= sy + sy }
+  requires { 8 * sx < max_int32 }
+  requires { 0 <= k <= 64 }
+  requires { sx <= toom22_threshold * power 2 k }
+  requires { valid scratch (2 * (sx + k)) }
+  ensures  { value r (sx + sy) = value x sx * value y sy }
+  ensures  { forall j. min r <= j < offset r \/ offset r + sx + sy <= j < max r
+                       -> (pelts r)[j] = old (pelts r)[j] }
+  ensures  { forall j. min scratch <= j < offset scratch
+             -> (pelts scratch)[j] = old (pelts scratch)[j] }
+  ensures  { min r = old min r }
+  ensures  { max r = old max r }
+  ensures  { plength r = old plength r }
+  ensures  { min scratch = old min scratch }
+  ensures  { max scratch = old max scratch }
+  ensures  { plength scratch = old plength scratch }
+  variant  { k + k + 1 }
+=
+  if sy <= toom22_threshold
+  then wmpn_mul_basecase r x sx y sy
+  else
+    if (4 * sx < 5 * sy) (* ? *)
+    then wmpn_toom22_mul r x sx y sy scratch k
+    else wmpn_toom32_mul r x sx y sy scratch k
+
+with partial wmpn_toom22_mul_n_rec (r x y scratch: ptr limb) (sz:int32) (ghost k: int) : unit
+  requires { valid x sz }
+  requires { valid y sz }
+  requires { valid r (sz + sz) }
+  requires { writable r /\ writable scratch }
+  requires { 0 < sz }
+  requires { 8 * sz < max_int32 }
+  requires { 0 <= k <= 64 }
+  requires { sz <= toom22_threshold * power 2 k }
+  requires { valid scratch (2 * (sz + k)) }
+  ensures  { value r (sz + sz) = value x sz * value y sz }
+  ensures  { forall j. min r <= j < offset r \/ offset r + sz + sz <= j < max r
+                       -> (pelts r)[j] = old (pelts r)[j] }
+  ensures  { forall j. min scratch <= j < offset scratch
+             -> (pelts scratch)[j] = old (pelts scratch)[j] }
+  ensures  { min r = old min r }
+  ensures  { max r = old max r }
+  ensures  { plength r = old plength r }
+  ensures  { min scratch = old min scratch }
+  ensures  { max scratch = old max scratch }
+  ensures  { plength scratch = old plength scratch }
+  variant  { k + k + 1 }
+=
+  if sz <= toom22_threshold
+  then wmpn_mul_basecase r x sz y sz
+  else wmpn_toom22_mul r x sz y sz scratch k
+
+with partial wmpn_toom32_mul (r x:ptr limb) (sx:int32) (y:ptr limb) (sy:int32)
+                     (scratch: ptr limb) (ghost k: int) : unit
+  requires { valid x sx }
+  requires { valid y sy }
+  requires { valid r (sx + sy) }
+  requires { writable r /\ writable scratch }
+  requires { toom22_threshold < sy }
+  requires { 0 < k <= 64 }
+  requires { sx <= toom22_threshold * power 2 k }
+  requires { valid scratch (2 * (sx + k)) }
+  requires { 8 * sx < max_int32 }
+  requires { 4 < sy + 2 <= sx }
+  requires { sx + 6 <= 3 * sy }
+  ensures  { min r = old min r }
+  ensures  { max r = old max r }
+  ensures  { plength r = old plength r }
+  ensures  { min scratch = old min scratch }
+  ensures  { max scratch = old max scratch }
+  ensures  { plength scratch = old plength scratch }
+  ensures  { value r (sx + sy) = value x sx * value y sy }
+  ensures  { forall j. min r <= j < offset r \/ offset r + sx + sy <= j < max r
+                       -> (pelts r)[j] = old (pelts r)[j] }
+  ensures  { forall j. min scratch <= j < offset scratch
+                       -> (pelts scratch)[j] = old (pelts scratch)[j] }
+  variant { k + k }
+=
+  let n = 1 + (if 2 * sx >= 3 * sy
+               then (sx - 1) / 3
+               else (sy - 1) / 2) in
+  let s = sx - 2 * n in
+  let t = sy - n in
+  let x0 = x in
+  let x1 = C.incr x n in
+  let x2 = C.incr x1 n in
+  let y0 = y in
+  let y1 = C.incr y n in
+  let ghost a0 = value x0 (int32'int n) in
+  let ghost a1 = value x1 (int32'int n) in
+  let ghost a2 = value x2 (int32'int s) in
+  let ghost b0 = value y0 (int32'int n) in
+  let ghost b1 = value y1 (int32'int t) in
+  let ghost m  = power radix (int32'int n) in
+  let rol = decr_split r 0 in
+  let ror = incr_split r (sx + sy) in
+  let sol = decr_split scratch 0 in
+  let sor = incr_split scratch ((n + n) + 1) in
+  (* xp1 | yp1 | xm1 | ym1 *)
+  let xp1 = r in                  (* x(1) = a0 + a1 + a2  *)
+  let yp1 = incr_split r n in     (* y(1) = b0 + b1       *)
+  let xm1 = incr_split yp1 n in   (* x(-1) = a0 - a1 + a2 *)
+  let ym1 = incr_split xm1 n in   (* y(-1) = b0 - b1      *)
+  let v1  = scratch in            (* x(1)*y(1)            *)
+  let vm1 = r in                  (* x(-1)*y(-1)          *)
+  let xp1_hi = ref 0 in           (* high limb of xp1     *)
+  let yp1_hi = ref 0 in           (* high bit of yp1      *)
+  let hi = ref 0 in               (* high bit of xm1      *)
+  let vm1_neg = ref false in      (* negate vm1 ?         *)
+  begin ensures { value xp1 n + m * !xp1_hi = a0 + a1 + a2 }
+        ensures { (!vm1_neg /\ value xm1 n + m * !hi = a1 - (a0 + a2))
+                  \/ (not !vm1_neg /\ value xm1 n + m * !hi = a0 - a1 + a2) }
+        ensures { 0 <= !xp1_hi <= 2 }
+        ensures { 0 <= !hi <= 1 }
+    xp1_hi := wmpn_add xp1 x0 n x2 s;
+    begin
+      let cmp = wmpn_cmp xp1 x1 n in
+      if (*begin ensures { result <-> a0 + a2 < a1 }*)
+           !xp1_hi = 0
+           && (cmp < 0)
+         (*end*)
+      then begin
+        let (ghost b) = wmpn_sub_n xm1 x1 xp1 n in
+        hi := 0;
+        vm1_neg := true end
+      else begin
+        let b = wmpn_sub_n xm1 xp1 x1 n in
+        hi := !xp1_hi - b;
+        end
+    end;
+    label Addx1 in
+    let c = wmpn_add_n_in_place xp1 x1 n in
+    xp1_hi := !xp1_hi + c;
+  end;
+  label B1 in
+  begin ensures { value yp1 n + m * !yp1_hi = b0 + b1 }
+        ensures { (!vm1_neg = (!vm1_neg at B1) /\ value ym1 n = b0 - b1)
+                  \/ (!vm1_neg = not (!vm1_neg at B1) /\ value ym1 n = b1 - b0) }
+        ensures { 0 <= !yp1_hi <= 1 }
+    if (t = n)
+    then begin
+      yp1_hi := wmpn_add_n yp1 y0 y1 n;
+      let cmp = wmpn_cmp y0 y1 n in
+      if (cmp < 0)
+      then begin
+        let (ghost b) = wmpn_sub_n ym1 y1 y0 n in
+        vm1_neg := not !vm1_neg end
+      else begin
+        let (ghost b) = wmpn_sub_n ym1 y0 y1 n in
+        ()
+        end
+      end
+    else begin
+      yp1_hi := wmpn_add yp1 y0 n y1 t;
+      let y0t = C.incr y0 t in
+      let c0 = ((wmpn_zero_p y0t (n - t)) = 1) in
+      let cmp = wmpn_cmp y0 y1 t in
+      let c1 = (cmp < 0) in
+      if c0 && c1
+      then begin
+        let (ghost b) = wmpn_sub_n ym1 y1 y0 t in
+        let ghost ym1z = { ym1 } in
+        let ym1t = C.incr ym1 t in
+        label Zero in
+        wmpn_zero ym1t (n - t);
+        vm1_neg := not !vm1_neg end
+      else begin
+        let (ghost b) = wmpn_sub ym1 y0 n y1 t in
+        ()
+        end;
+      end
+  end;
+  let ghost am1_abs = value xm1 (int32'int n) + m * (uint64'int !hi) in
+  let ghost bm1_abs = value ym1 (int32'int n) in
+  label RecP1 in
+  wmpn_toom22_mul_n_rec v1 xp1 yp1 sor n (k-1);
+  let cy = ref 0 in
+  begin ensures { value scratch (2 * n) + power radix (n + n) * !cy
+                  = (a0 + a1 + a2) * (b0 + b1) }
+    begin ensures { value scratch (n + n) + power radix (n + n) * !cy
+                    = (a0 + a1 + a2) * (value yp1 n) }
+          ensures { 0 <= !cy <= 3 }
+          (* actually 2, but this is enough to prove there is no overflow *)
+    if (!xp1_hi = 1)
+    then begin
+      let sa = { scratch } in
+      let sn = C.incr scratch n in
+      label Adjust1 in
+      let c = wmpn_add_n_in_place sn yp1 n in
+      cy := c end
+    else begin
+      if (!xp1_hi = 2)
+      then begin
+      let sa = { scratch } in
+      let sn = C.incr scratch n in
+      label Adjust2 in
+      let c = wmpn_addmul_1 sn yp1 n 2 in
+      cy := c end
+    else () end
+    end;
+    begin ensures { value scratch (n + n) + power radix (n + n) * !cy
+                    = (a0 + a1 + a2) * (b0 + b1) }
+    if not (!yp1_hi = 0)
+    then begin
+      let sa = { scratch } in
+      let sn = C.incr scratch n in
+      label Adjust3 in
+      let c = wmpn_add_n_in_place sn xp1 n in
+      cy := !xp1_hi * !yp1_hi + c + !cy;
+      end
+      else ()
+    end;
+  end;
+  label RecM1 in
+  join vm1 yp1;
+  wmpn_toom22_mul_n_rec vm1 xm1 ym1 sor n (k-1);
+  begin ensures { value vm1 (2*n) + m * m * !hi = am1_abs * bm1_abs }
+        ensures { min r = old min r }
+        ensures { max r = old max r }
+        ensures { plength r = old plength r }
+        ensures { 0 <= !hi <= 1 }
+  if (not (!hi = 0))
+  then begin
+    label HiSplit in
+    let vm1n = incr_split vm1 n in
+    let vm1l = { vm1 } in
+    label HiAdd in
+    let c = wmpn_add_n_in_place vm1n ym1 n in
+    label HiJoin in
+    let vm1nj = { vm1n } in
+    join vm1 vm1n;
+    hi := c;
+    end
+  end;
+  let ghost vx0 = a0 * b0 in
+  let ghost vx1 = a1 * b0 + a0 * b1 in
+  let ghost vx2 = a2 * b0 + a1 * b1 in
+  let ghost vx3 = a2 * b1 in
+  begin ensures { value scratch (2*n + 1) = vx0 + vx2 }
+        ensures { if !vm1_neg
+                  then am1_abs*bm1_abs = (a0 - a1 + a2) * (b1 - b0)
+                  else am1_abs*bm1_abs = (a0 - a1 + a2) * (b0 - b1) }
+    begin ensures { value scratch (2*n + 1) = 2 * (vx0 + vx2) }
+          ensures { if !vm1_neg
+                    then am1_abs*bm1_abs = (a0 - a1 + a2) * (b1 - b0)
+                    else am1_abs*bm1_abs = (a0 - a1 + a2) * (b0 - b1) }
+    if !vm1_neg
+    then begin
+      label Sub in
+      let b = wmpn_sub_n_in_place scratch vm1 (2*n) in
+      let r, ghost b' = sub_with_borrow !cy !hi b in
+      label Set in
+      set_ofs scratch (2*n) r;
+      end
+    else begin
+      label Add in
+      let c = wmpn_add_n_in_place scratch vm1 (2*n) in
+      let r, ghost c' = add_with_carry !cy !hi c in
+      label Set in
+      set_ofs scratch (2*n) r;
+    end
+    end;
+    label Shift in
+    let s = (2 * n) + 1 in
+    let (ghost low) = wmpn_rshift scratch scratch s 1 in ()
+  end;
+  let ghost vy = vx1 + vx3 + (vx0 + vx2) * m in
+  join xm1 ym1;
+  (* (    r    |    xm1  ) *)
+  let ghost ss = (2 * n) + 1 in
+  let vy0 = scratch in
+  let ghost l02 = value scratch (int32'int n) in
+  let vy1 = xm1 in
+  let vy2 = incr_split scratch n in
+  let ghost h02 = value vy2 (int32'int n) in
+  let t02 = get_ofs vy2 n in
+  begin ensures { value vy0 n + m * value vy1 n + m * m * value vy2 (n+1) = vy }
+        ensures { value vy2 (n+1) < (power radix n) * 6 }
+  label Vy in
+  let os = { vy0 } in
+  let c = wmpn_add_n vy1 vy0 vy2 n in
+  wmpn_incr vy2 (n+1) (c + t02);
+  let vm1n = incr vm1 n in
+  begin ensures { value vy0 n + m * value vy1 n + m * m * value vy2 (n+1)
+                  = old (value vy0 n + m * value vy1 n + m * m * value vy2 (n+1))
+                    - (vx0 - vx1 + vx2 - vx3) }
+        ensures { value vy2 (n+1) < (power radix n) * 6 }
+  label Vm1 in
+  let ovy2 = { vy2 } in
+  if !vm1_neg
+  then begin
+    let c1 = wmpn_add_n_in_place scratch vm1 n in
+    let c2 = wmpn_add_n_in_place vy1 vm1n n in
+    hi := !hi + c2;
+    let c3 = wmpn_add_1_in_place vy1 n c1 in
+    hi := !hi + c3;
+    wmpn_incr vy2 (n+1) !hi;
+    end
+  else begin
+    let b1 = wmpn_sub_n_in_place scratch vm1 n in
+    let b2 = wmpn_sub_n_in_place vy1 vm1n n in
+    hi := !hi + b2;
+    let b3 = wmpn_sub_1_in_place vy1 n b1 in
+    hi := !hi + b3;
+    wmpn_decr vy2 (n+1) !hi;
+    end;
+  end
+  end;
+  label Split3 in
+  let ghost ovy1 = { vy1 } in
+  wmpn_toom22_mul_n_rec r x y sor n (k-1);
+  let r3n = incr_split xm1 n in
+  begin
+    ensures { value r3n (s+t) = vx3 }
+    ensures { min r3n = old min r3n /\ max r3n = old max r3n }
+    ensures { plength r3n = old plength r3n }
+    if (s > t)
+    then let (ghost _) = wmpn_mul r3n x2 s y1 t (k-1) in ()
+    else let (ghost _) = wmpn_mul r3n y1 t x2 s (k-1) in ()
+  end;
+  let ghost or = { r } in
+  let r1n = incr_split r n in
+  let ghost or3n = { r3n } in
+  let r4n = incr_split r3n n in
+  let r2n = xm1 in
+  let ghost vvy0 = value vy0 (int32'int n) in
+  let ghost vvy1 = value vy1 (int32'int n) in
+  let ghost vvy2 = value vy2 (int32'int n+1) in
+  label R1 in
+  let bo1 = wmpn_sub_n_in_place r1n r3n n in
+  let bo = ref bo1 in
+  let ly2 = get_ofs vy2 n in
+  let h = ref (Limb.to_int64 (ly2 + bo1)) in
+  label R2 in
+  let bo2 = wmpn_sub_n_in_place r2n r n in
+  let bo2' = wmpn_sub_1_in_place r2n n !bo in
+  bo := bo2 + bo2';
+  label R3 in
+  let bo3 = wmpn_sub_n r3n vy2 r1n n in
+  let bo3' = wmpn_sub_1_in_place r3n n !bo in
+  bo := bo3 + bo3';
+  h := Int64.(-) !h (Limb.to_int64 !bo);
+  label Join3 in
+  let ghost or1n = { r1n } in
+  let ghost or2n = { r2n } in
+  let ghost or3n = { r3n } in
+  join r2n r3n;
+  join r1n r2n;
+  label Addy0 in
+  let c = wmpn_add_in_place r1n (3 * n) scratch n in
+  h := Int64.(+) !h (Limb.to_int64 c);
+  label Join1 in
+  let ghost or = { r } in
+  let ghost or1n = { r1n } in
+  join r r1n;
+  let rs = s + t - n in
+  begin ensures { value r (4*n) + m * m * m * m * value r4n rs
+                  = (value x sx) * (value y sy) }
+  if [@extraction:likely] (s + t > n)
+  then begin
+    let r2n = incr r (2 * n) in
+    label Sub2 in
+    let ghost or = { r } in
+    let b = wmpn_sub_in_place r2n (2 * n) r4n rs in
+    h := Int64.(-) !h (Limb.to_int64 b);
+    (if Int64.(<) !h 0
+    then begin
+      wmpn_decr r4n rs (Limb.of_int64 (Int64.(-_) !h))
+      end
+    else begin
+      wmpn_incr r4n rs (Limb.of_int64 !h)
+      end)
+  end
+  else begin
+    ()
+  end
+  end;
+  label Join4 in
+  let ghost or = { r } in
+  let ghost or4n = { r4n } in
+  join r r4n;
+  join scratch vy2;
+  join scratch sor;
+  join_r sol scratch;
+  label JoinR in
+  let ghost or = { r } in
+  join r ror;
+  label JoinL in
+  join_r rol r;
+
+  with partial wmpn_mul (r x:ptr limb) (sx:int32) (y:ptr limb) (sy:int32) (ghost k: int) : limb
+    requires { valid x sx }
+    requires { valid y sy }
+    requires { valid r (sx + sy) }
+    requires { writable r }
+    requires { 0 < sy <= sx }
+    requires { 8 * sx < max_int32 }
+    requires { sx <= toom22_threshold * power 2 k }
+    requires { 0 <= k <= 64 }
+    ensures  { min r = old min r }
+    ensures  { max r = old max r }
+    ensures  { plength r = old plength r }
+    ensures  { value r (sx + sy) = value x sx * value y sy }
+    ensures  { result = (pelts r)[offset r + sx + sy - 1] }
+    ensures  { forall j. min r <= j < offset r \/ offset r + sx + sy <= j < max r
+                         -> (pelts r)[j] = old (pelts r)[j] }
+    variant  { k+k+1 }
+  =
+    if sy <= toom22_threshold
+    then
+    (* TODO block product if sx large, for memory locality according to GMP *)
+     wmpn_mul_basecase r x sx y sy
+    else begin
+      (* this would be faster with salloc *)
+      (*let ghost k = 64 in*) (* is always enough *)
+      let scratch = salloc (UInt32.of_int32 ((5 * sy) + 128)) in
+      (* c_assert (is_not_null scratch); *)
+      let rol = decr_split r 0 in
+      let ror = incr_split r (sx + sy) in
+      if ((2 * sx) >= (5 * sy))
+      then begin
+        let un = ref sx in
+        let su = (3 * sy) / 2 in
+        let ghost sr = su + sy in
+        let ws = salloc (UInt32.of_int32 (4 * sy)) in
+        (* c_assert (is_not_null ws); *)
+        wmpn_toom32_mul r x su y sy scratch k;
+        un := !un - su;
+        let up = ref (C.incr x su) in
+        let rp = ref (C.incr r su) in
+        let ghost ou = ref su in
+        let ghost or = ref sr in
+        while (!un >= (2 * sy)) do (* 5/2?*)
+          invariant { min_int32 <= 2 * !un <= max_int32 }
+          invariant { !ou + !un = sx }
+          invariant { !or = !ou + sy }
+          invariant { su <= !ou < sx }
+          invariant { !un < sx }
+          invariant { 2 * sy - su <= !un }
+          invariant { value r !or = value x !ou * value y sy }
+          invariant { offset !rp = offset r + !ou }
+          invariant { offset !up = offset x + !ou }
+          invariant { min !up = min x /\ max !up = max x }
+          invariant { plength !up = plength x }
+          invariant { min !rp = min r /\ max !rp = max r }
+          invariant { plength !rp = plength r }
+          invariant { writable !rp }
+          invariant { min ws = 0 /\ max ws = plength ws = 4 * sy }
+          invariant { min scratch = 0 /\ max scratch = plength scratch }
+          invariant { plength scratch = 5 * sy + 128 }
+          invariant { pelts !rp = pelts r }
+          invariant { pelts !up = pelts x }
+          variant { p2i !un }
+          (*wmpn_copyi ws !rp sy;
+          let rr = rp.contents in
+          wmpn_toom32_mul rr !up y scratch su sy k;
+          let cy = wmpn_add_in_place rr ws sy sy in
+          let rpn = C.incr rr sy in
+          wmpn_incr rpn cy su;
+          un := !un - su;
+          up.contents <- C.incr !up su;
+          ou := !ou + su;
+          or := !or + su;
+          rp.contents <- C.incr !rp su;*)
+          label StartLoop in
+          let ghost o_r = { r } in
+          let ghost rrp = !rp in
+          let ghost o_rp = { rrp } in (* TODO why not { !rp } ? *)
+          wmpn_toom32_mul ws !up su y sy scratch k;
+          let cy = wmpn_add_n_in_place !rp ws sy in
+          let rpn = C.incr !rp sy in
+          let wsy = C.incr ws sy in
+          let orp = { rpn } in
+          label Copy in
+          wmpn_copyi rpn wsy su;
+          label Incr in
+          let orp = { rpn } in
+          wmpn_incr rpn su cy;
+          un := !un - su;
+          up.contents <- C.incr !up su;
+          ou := !ou + su;
+          or := !or + su;
+          rp.contents <- C.incr !rp su;
+        done;
+ (*       wmpn_copyi ws !rp sy;*)
+        (* sy <= !un <= 2.5 * sy *)
+        let ghost o_r = { r } in
+        let ghost rrp = !rp in
+        let ghost o_rp = { rrp } in (* TODO why not { !rp } ? *)
+        begin
+          ensures { value ws (!un + sy) = value !up !un * value y sy }
+          ensures { min ws = old min ws /\ max ws = old max ws
+                    /\ plength ws = old plength ws }
+          ensures { min scratch = old min scratch
+                    /\ max scratch = old max scratch
+                    /\ plength scratch = old plength scratch }
+          if sy <= !un
+          then begin
+            if ((4 * !un) < (5 * sy))
+            then wmpn_toom22_mul ws !up !un y sy scratch k
+            else wmpn_toom32_mul ws !up !un y sy scratch k
+          end
+          else let _ = wmpn_mul ws y sy !up !un (k-1) in ()
+        end;
+        let cy = wmpn_add_n_in_place !rp ws sy in
+        let rpn = C.incr !rp sy in
+        let wsy = C.incr ws sy in
+        let orp = { rpn } in
+        label Copy in
+        wmpn_copyi rpn wsy !un;
+        let ghost sr = sy + !un in
+        let orp = { rpn } in
+        label Incr in
+        wmpn_incr rpn !un cy;
+        sfree ws;
+      end
+      else begin
+        if ((4 * sx) < (5 * sy))
+        then wmpn_toom22_mul r x sx y sy scratch k
+        else wmpn_toom32_mul r x sx y sy scratch k
+      end;
+      sfree scratch;
+      label JoinR in
+      let ghost or = { r } in
+      join r ror;
+      label JoinL in
+      join_r rol r;
+    end;
+  C.get_ofs r (sx + sy - 1)
+        (* sy <= !un <= 2.5 * sy *)
+       (* if sy <= !un
+        then begin
+           if ((4 * !un) < (5 * sy))
+           then wmpn_toom22_mul ws !up y scratch !un sy k
+           else wmpn_toom32_mul ws !up y scratch !un sy k
+        end
+        else wmpn_mul ws y !up sy !un (k-1);
+        let cy = wmpn_add_in_place !rp ws sy sy in
+        let rpn = C.incr !rp sy in
+        wmpn_copyi rpn (C.incr ws sy) !un;
+        wmpn_incr rpn cy !un;
+        sfree ws;
+      end
+      else begin
+        if ((4 * sx) < (5 * sy))
+        then wmpn_toom22_mul r x y scratch sx sy k
+        else wmpn_toom32_mul r x y scratch sx sy k
+      end;
+      sfree scratch
+    end*)
+
+  (** `wmpn_mul_n r x y sz` multiplies `(x, sz)` and `(y, sz)` and
+  writes the result to `(r, 2*sz)`. `r` must not overlap with either
+  `x` or `y`. Corresponds to `mpn_mul_n`.  *)
+  let partial wmpn_mul_n (r x y:t) (sz:int32) (ghost k: int) : unit
+    requires { sz > 0 }
+    requires { valid x sz }
+    requires { valid y sz }
+    requires { valid r (sz + sz) }
+    requires { writable r }
+    requires { 8 * sz < max_int32 }
+    requires { sz <= toom22_threshold * power 2 k }
+    requires { 0 <= k <= 64 }
+    ensures { value r (sz + sz) = value x sz * value y sz }
+    ensures  { min r = old min r }
+    ensures  { max r = old max r }
+    ensures  { plength r = old plength r }
+    ensures  { forall j. min r <= j < offset r \/ offset r + sz + sz <= j < max r
+                         -> (pelts r)[j] = old (pelts r)[j] }
+  =
+    if sz <= toom22_threshold
+    then wmpn_mul_basecase r x sz y sz
+    else
+      let ws = salloc (UInt32.of_int32 (2 * (sz + 64))) in
+      wmpn_toom22_mul r x sz y sz ws 64
+
+end

@@ -1,0 +1,5 @@
+session parse_printable_string_Why3_ide = NTP4Verif +
+theories
+  "parse_printable_string_Why3_ide_VCparse_printable_string_assert_rte_mem_access_goal0"
+  "parse_printable_string_Why3_ide_VCparse_printable_string_assert_rte_mem_access_2_goal1"
+  "parse_printable_string_Why3_ide_VCparse_printable_string_call_check_printable_string_pre_goal2"

@@ -1,0 +1,13 @@
+session verifythis_2017_tree_buffer = NTP4Verif +
+theories
+  "verifythis_2017_tree_buffer_Caterpillar_cat_addqtvc"
+  "verifythis_2017_tree_buffer_Spec"
+  "verifythis_2017_tree_buffer_Caterpillar_catqtvc"
+  "verifythis_2017_tree_buffer_Caterpillar_cat_emptyqtvc"
+  "verifythis_2017_tree_buffer_RealTime_rt_addqtvc"
+  "verifythis_2017_tree_buffer_RealTime_rtqtvc"
+  "verifythis_2017_tree_buffer_Spec_take_lemmaqtvc"
+  "verifythis_2017_tree_buffer_Caterpillar_cat_getqtvc"
+  "verifythis_2017_tree_buffer_RealTime_rt_emptyqtvc"
+  "verifythis_2017_tree_buffer_RealTime_rt_getqtvc"
+  "verifythis_2017_tree_buffer_RealTime_process_queueqtvc"

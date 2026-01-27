@@ -1,0 +1,16 @@
+atoms:
+  matrix.Matrix.columns: [columns, matrix_Matrix.columns]
+  matrix.Matrix.elts: [elts, matrix_Matrix.elts]
+  matrix.Matrix.get: [get, matrix_Matrix.get]
+  matrix.Matrix.rows: [rows, matrix_Matrix.rows]
+  matrix.Matrix.update: [update, matrix_Matrix.update]
+  matrix.Matrix.valid_index: [valid_index, matrix_Matrix.valid_index]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.matrix_Matrix
+prefix_ops: {}
+types:
+  matrix.Matrix.matrix: [matrix, matrix_Matrix.matrix]

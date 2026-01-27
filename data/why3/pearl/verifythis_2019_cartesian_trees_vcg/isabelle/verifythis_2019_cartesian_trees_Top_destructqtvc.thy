@@ -1,0 +1,25 @@
+theory verifythis_2019_cartesian_trees_Top_destructqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.exn_Exn"
+begin
+axiomatization where Trans:   "z \<le> x"
+ if "y \<le> x"
+ and "z \<le> y"
+  for y :: "int"
+  and x :: "int"
+  and z :: "int"
+inductive sorted :: "int list \<Rightarrow> bool" where
+   Sorted_Nil: "sorted (Nil :: int list)"
+ | Sorted_One: "sorted (Cons x (Nil :: int list))" for x :: "int"
+ | Sorted_Two: "y \<le> x \<Longrightarrow> sorted (Cons y l) \<Longrightarrow> sorted (Cons x (Cons y l))" for y :: "int" and x :: "int" and l :: "int list"
+axiomatization where sorted_mem:   "(\<forall>(y :: int). y \<in> set l \<longrightarrow> y \<le> x) \<and> sorted l \<longleftrightarrow> sorted (Cons x l)"
+  for l :: "int list"
+  and x :: "int"
+axiomatization where sorted_append:   "sorted l1 \<and> sorted l2 \<and> (\<forall>(x :: int) (y :: int). x \<in> set l1 \<longrightarrow> y \<in> set l2 \<longrightarrow> y \<le> x) \<longleftrightarrow> sorted (l1 @ l2)"
+  for l1 :: "int list"
+  and l2 :: "int list"
+theorem destruct'vc:
+  fixes l :: "'xi list"
+  assumes fact0: "\<not>is_Nil l"
+  shows "case l of Cons h t \<Rightarrow> True | _ \<Rightarrow> False"
+  sorry
+end

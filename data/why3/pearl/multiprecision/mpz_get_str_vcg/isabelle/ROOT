@@ -1,0 +1,5 @@
+session mpz_get_str = NTP4Verif +
+theories
+  "mpz_get_str_Zget_str_pow_monqtvc"
+  "mpz_get_str_Zget_str_pow_mon_strictqtvc"
+  "mpz_get_str_Zget_str_wmpz_get_strqtvc"

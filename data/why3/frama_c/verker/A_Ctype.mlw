@@ -1,0 +1,101 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'Ctype'                                  --- *)
+(* ---------------------------------------------------------- *)
+theory A_Ctype
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+predicate p_islower (c : int) = (97 <= c) /\ (c <= 122)
+
+predicate p_isupper (c : int) = (65 <= c) /\ (c <= 90)
+
+predicate p_isalpha (c : int) = ((p_islower c)) \/ ((p_isupper c))
+
+predicate p_isdigit (c : int) = (48 <= c) /\ (c <= 57)
+
+predicate p_isodigit (c : int) = (48 <= c) /\ (c <= 55)
+
+predicate p_isalnum (c : int) = ((p_isalpha c)) \/ ((p_isdigit c))
+
+predicate p_isspace (c : int) =
+    (c = 9) \/ (c = 10) \/ (c = 12) \/ (c = 13) \/ (c = 32)
+
+predicate p_isxdigit (c : int) =
+    ((p_isdigit c)) \/ ((65 <= c) /\ (c <= 70)) \/ ((97 <= c) /\ (c <= 102))
+
+function l_tolower int : int
+
+function l_toupper int : int
+
+axiom Q_a: ((l_tolower 65)) = 97
+
+axiom Q_b: ((l_tolower 66)) = 98
+
+axiom Q_c: ((l_tolower 67)) = 99
+
+axiom Q_d: ((l_tolower 68)) = 100
+
+axiom Q_e: ((l_tolower 69)) = 101
+
+axiom Q_f: ((l_tolower 70)) = 102
+
+axiom Q_g: ((l_tolower 71)) = 103
+
+axiom Q_h: ((l_tolower 72)) = 104
+
+axiom Q_i: ((l_tolower 73)) = 105
+
+axiom Q_j: ((l_tolower 74)) = 106
+
+axiom Q_k: ((l_tolower 75)) = 107
+
+axiom Q_l: ((l_tolower 76)) = 108
+
+axiom Q_m: ((l_tolower 77)) = 109
+
+axiom Q_n: ((l_tolower 78)) = 110
+
+axiom Q_o: ((l_tolower 79)) = 111
+
+axiom Q_p: ((l_tolower 80)) = 112
+
+axiom Q_q: ((l_tolower 81)) = 113
+
+axiom Q_r: ((l_tolower 82)) = 114
+
+axiom Q_s: ((l_tolower 83)) = 115
+
+axiom Q_t: ((l_tolower 84)) = 116
+
+axiom Q_u: ((l_tolower 85)) = 117
+
+axiom Q_v: ((l_tolower 86)) = 118
+
+axiom Q_w: ((l_tolower 87)) = 119
+
+axiom Q_x: ((l_tolower 88)) = 120
+
+axiom Q_y: ((l_tolower 89)) = 121
+
+axiom Q_z: ((l_tolower 90)) = 122
+
+axiom Q_pl: forall c : int. (not (p_isupper c)) -> (((l_tolower c)) = c)
+
+axiom Q_pu: forall c : int. (not (p_islower c)) -> (((l_toupper c)) = c)
+
+axiom Q_tl:
+  forall c : int.
+  (not (p_islower c)) -> (((l_toupper ((l_tolower c)))) = c)
+
+axiom Q_tu:
+  forall c : int.
+  (not (p_isupper c)) -> (((l_tolower ((l_toupper c)))) = c)
+
+end
+

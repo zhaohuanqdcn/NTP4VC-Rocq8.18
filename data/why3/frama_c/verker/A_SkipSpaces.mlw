@@ -1,0 +1,31 @@
+(* ---------------------------------------------------------- *)
+(* --- Axiomatic 'SkipSpaces'                             --- *)
+(* ---------------------------------------------------------- *)
+theory A_SkipSpaces
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function l_skip_spaces addr : addr
+
+use import Compound.Compound
+
+axiom Q_skip_spaces_def:
+  forall str_0 : addr.
+  forall mchar_0 : map addr int.
+  let x = mchar_0[str_0] in let a = (l_skip_spaces str_0) in
+    if ((x = 32) \/ (x = 23654) \/ (x = 23662) \/ (x = 23666) \/ (x = 23668))
+    then (((l_skip_spaces ((shift_sint8 str_0 1)))) = a) else (a = str_0)
+
+use import A_Strlen.A_Strlen
+use import Cint.Cint
+use import A_Ctype.A_Ctype
+
+end
+

@@ -1,0 +1,192 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 8482) in 'parse_x509_tbsCertificate'' in 'parse_x509_cert' at call 'parse_x509_tbsCertificate' (file src/x509-parser.c, line 9140)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_cert_call_parse_x509_tbsCertificate_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 8482) in 'parse_x509_tbsCertificate'' in 'parse_x509_cert' at call 'parse_x509_tbsCertificate' (file src/x509-parser.c, line 9140)
+":
+*)
+goal goal0:
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_1) in
+  let x = i - i_1 in
+  (i <> 0) ->
+  (null <> a) ->
+  (a_1 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  (i <= (65535 + i_1)) ->
+  (i <= (2147483647 + i_1)) ->
+  (i_1 <= (2147483648 + i)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 x)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  ((valid_rd t a_1 x))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 8812) in 'parse_x509_signatureAlgorithm'' in 'parse_x509_cert' at call 'parse_x509_signatureAlgorithm' (file src/x509-parser.c, line 9150)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_cert_call_parse_x509_signatureAlgorithm_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 8812) in 'parse_x509_signatureAlgorithm'' in 'parse_x509_cert' at call 'parse_x509_signatureAlgorithm' (file src/x509-parser.c, line 9150)
+":
+*)
+goal goal1:
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let a_1 = (shift_uint8 a i_1) in
+  let x = i_1 + i_2 in
+  let a_2 = (shift_uint8 a x) in
+  let x_1 = 2147483648 + i in
+  let x_2 = - i_1 in
+  let x_3 = i - i_1 in
+  let x_4 = i - i_1 - i_2 in
+  (i <> 0) ->
+  (i_1 <> i) ->
+  (null <> a) ->
+  (a_1 <> null) ->
+  (a_2 <> null) ->
+  (0 <= i) ->
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (x < i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  (2 <= i_2) ->
+  (i <= (65535 + i_1)) ->
+  (i <= (2147483647 + i_1)) ->
+  (i_1 <= x_1) ->
+  (x <= x_1) ->
+  (i <= (65535 + i_1 + i_2)) ->
+  (i <= (2147483647 + i_1 + i_2)) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 x_3)) ->
+  ((is_uint16 x_4)) ->
+  ((0 < i) -> ((valid_rd t ((shift_uint8 a 0)) i))) ->
+  ((i_1 < i) -> ((valid_rd t a_1 x_3))) ->
+  ((valid_rd t a_2 x_4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file src/x509-parser.c, line 9050) in 'parse_x509_signatureValue'' in 'parse_x509_cert' at call 'parse_x509_signatureValue' (file src/x509-parser.c, line 9160)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCparse_x509_cert_call_parse_x509_signatureValue_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+
+(*
+(*
+goal WP "expl:Instance of 'Pre-condition (file src/x509-parser.c, line 9050) in 'parse_x509_signatureValue'' in 'parse_x509_cert' at call 'parse_x509_signatureValue' (file src/x509-parser.c, line 9160)
+":
+*)
+goal goal2:
+*)
+goal goal2:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let a_2 = (shift_uint8 a_1 i_2) in
+  let x_1 = - i in
+  let a_3 = (shift_uint8 a_1 (i_1 - i)) in
+  let a_4 = (shift_uint8 a_1 (i_1 + i_3 - i)) in
+  let x_2 = i - i_3 in
+  let x_3 = - i_2 in
+  let x_4 = i_1 - i_2 in
+  (i <> 0) ->
+  (i_1 <> 0) ->
+  (i_2 <> i_1) ->
+  (null <> a_1) ->
+  (x <> (a.base)) ->
+  (a_2 <> null) ->
+  (a_3 <> null) ->
+  (a_4 <> null) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_3 < i) ->
+  (((region x)) <= 0) ->
+  ((-2147483648) <= i) ->
+  (2 <= i_2) ->
+  (2 <= i_3) ->
+  (i <= 65535) ->
+  (i <= 2147483647) ->
+  (i <= (65535 + i_3)) ->
+  (i <= (2147483647 + i_3)) ->
+  (i_1 <= (65535 + i_2)) ->
+  (i_1 <= (2147483647 + i_2)) ->
+  (i_2 <= (2147483648 + i_1)) ->
+  (i_3 <= (2147483648 + i)) ->
+  ((2 + i + i_2) <= i_1) ->
+  ((linked t)) ->
+  ((is_uint16 i)) ->
+  ((is_uint16 i_1)) ->
+  ((is_uint16 i_2)) ->
+  ((is_uint16 i_3)) ->
+  ((is_uint16 x_2)) ->
+  ((is_uint16 x_4)) ->
+  ((is_uint16 (i_1 - i - i_2))) ->
+  ((0 < i_1) -> ((valid_rd t ((shift_uint8 a_1 0)) i_1))) ->
+  ((i_2 < i_1) -> ((valid_rd t a_2 x_4))) ->
+  ((0 < i) -> ((valid_rd t a_3 i))) ->
+  ((valid_rd t a_4 x_2))
+
+end
+

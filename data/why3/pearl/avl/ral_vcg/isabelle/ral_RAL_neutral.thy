@@ -1,0 +1,17 @@
+theory ral_RAL_neutral
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref" "../../lib/isabelle/avl_SelectionTypes"
+begin
+consts balancing :: "nat"
+axiomatization where balancing'def:   "(0 :: int) < int balancing"
+typedecl  m
+typedecl  t
+axiomatization where assoc:   "a + (b + c) = a + b + c"
+  for a :: "int"
+  and b :: "int"
+  and c :: "int"
+theorem neutral:
+  fixes x :: "int"
+  shows "x + (0 :: int) = x"
+  and "x = (0 :: int) + x"
+  sorry
+end

@@ -1,0 +1,31 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions (continued #15)                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic15
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+predicate p_finite_floatvect3 (mflt_0 : map addr real) (v : addr) =
+    ((is_finite32 mflt_0[(shiftfield_f2_floatvect3_x v)])) /\
+    ((is_finite32 mflt_0[(shiftfield_f2_floatvect3_y v)])) /\
+    ((is_finite32 mflt_0[(shiftfield_f2_floatvect3_z v)]))
+
+predicate p_rvalid_floatvect3 (malloc_0 : map int int)
+    (mflt_0 : map addr real) (v : addr) =
+    ((p_finite_floatvect3 mflt_0 v)) /\ ((valid_rd malloc_0 v 3))
+
+end
+

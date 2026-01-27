@@ -1,0 +1,4 @@
+session stack_empty_Why3_ide = NTP4Verif +
+theories
+  "stack_empty_Why3_ide_VCstack_empty_post_not_empty_goal1"
+  "stack_empty_Why3_ide_VCstack_empty_post_empty_goal0"

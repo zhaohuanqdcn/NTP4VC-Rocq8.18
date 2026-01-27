@@ -1,0 +1,725 @@
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (1/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_exit_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (1/6)":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_10 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_5) in
+  let a_12 = (shiftfield_f12__io_file__io_eof a_11) in
+  (a_10 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_11 = a_10) ->
+  (((region (a_5.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_4)) ->
+  ((p_valid_file t t_1 a_10)) ->
+  (not (invalid t a_12 1)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_9))) \/
+   (a_12 = ((shiftfield_f16__io_file_pvt_obytes a_6))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_eof a_10))) \/
+   (((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12) \/
+   (((shiftfield_f12__io_file__io_error a_10)) = a_12) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_7)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (2/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_exit_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (2/6)":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_10 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_5) in
+  let a_12 = (shiftfield_f12__io_file__io_error a_11) in
+  (a_10 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_11 = a_10) ->
+  (((region (a_5.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_4)) ->
+  ((p_valid_file t t_1 a_10)) ->
+  (not (invalid t a_12 1)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_9))) \/
+   (a_12 = ((shiftfield_f16__io_file_pvt_obytes a_6))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_eof a_10))) \/
+   (a_12 =
+    ((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_8))))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_error a_10))) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_7)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (3/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_exit_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (3/6)":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_12 = (shiftfield_f16__io_file_pvt_ibytes a_4) in
+  (a_11 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((shiftfield_f16__io_file_pvt_pub a_6)) = a_11) ->
+  (((region (a_6.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_5)) ->
+  (not (invalid t a_12 1)) ->
+  ((p_valid_file t t_1 a_11)) ->
+  ((((shiftfield_f16__io_file_pvt_ibytes a_10)) = a_12) \/
+   (((shiftfield_f16__io_file_pvt_obytes a_7)) = a_12) \/
+   (((shiftfield_f12__io_file__io_eof a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_9)))) = a_12) \/
+   (((shiftfield_f12__io_file__io_error a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (4/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_exit_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (4/6)":
+*)
+goal goal3:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_12 = (shiftfield_f16__io_file_pvt_obytes a_4) in
+  (a_11 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((shiftfield_f16__io_file_pvt_pub a_6)) = a_11) ->
+  (((region (a_6.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_5)) ->
+  (not (invalid t a_12 1)) ->
+  ((p_valid_file t t_1 a_11)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_10))) \/
+   (((shiftfield_f16__io_file_pvt_obytes a_7)) = a_12) \/
+   (((shiftfield_f12__io_file__io_eof a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_9)))) = a_12) \/
+   (((shiftfield_f12__io_file__io_error a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (5/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_exit_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (5/6)":
+*)
+goal goal4:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_12 = (shiftfield_f12__io_file__io_eof
+               ((shiftfield_f16__io_file_pvt_pub a_4))) in
+  (a_11 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((shiftfield_f16__io_file_pvt_pub a_6)) = a_11) ->
+  (((region (a_6.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_5)) ->
+  ((p_valid_file t t_1 a_11)) ->
+  (not (invalid t a_12 1)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_10))) \/
+   (a_12 = ((shiftfield_f16__io_file_pvt_obytes a_7))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_eof a_11))) \/
+   (((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_9)))) = a_12) \/
+   (((shiftfield_f12__io_file__io_error a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (6/6) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_exit_part6
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (6/6)":
+*)
+goal goal5:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_12 = (shiftfield_f12__io_file__io_error
+               ((shiftfield_f16__io_file_pvt_pub a_4))) in
+  (a_11 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((shiftfield_f16__io_file_pvt_pub a_6)) = a_11) ->
+  (((region (a_6.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_5)) ->
+  ((p_valid_file t t_1 a_11)) ->
+  (not (invalid t a_12 1)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_10))) \/
+   (a_12 = ((shiftfield_f16__io_file_pvt_obytes a_7))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_eof a_11))) \/
+   (a_12 =
+    ((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_9))))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_error a_11))) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (1/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_normal_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (1/8)":
+*)
+goal goal6:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_10 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_5) in
+  let a_12 = (shiftfield_f12__io_file__io_eof a_11) in
+  (a_10 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_11 = a_10) ->
+  (((region (a_5.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_4)) ->
+  ((p_valid_file t t_1 a_10)) ->
+  (not (invalid t a_12 1)) ->
+  ((i = (-1)) \/ (i = 0)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_9))) \/
+   (a_12 = ((shiftfield_f16__io_file_pvt_obytes a_6))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_eof a_10))) \/
+   (((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12) \/
+   (((shiftfield_f12__io_file__io_error a_10)) = a_12) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_7)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (2/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_normal_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (2/8)":
+*)
+goal goal7:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_10 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_5) in
+  let a_12 = (shiftfield_f12__io_file__io_error a_11) in
+  (a_10 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_11 = a_10) ->
+  (((region (a_5.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_4)) ->
+  ((p_valid_file t t_1 a_10)) ->
+  (not (invalid t a_12 1)) ->
+  ((i = (-1)) \/ (i = 0)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_9))) \/
+   (a_12 = ((shiftfield_f16__io_file_pvt_obytes a_6))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_eof a_10))) \/
+   (a_12 =
+    ((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_8))))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_error a_10))) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_7)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (3/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_normal_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (3/8)":
+*)
+goal goal8:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_12 = (shiftfield_f16__io_file_pvt_ibytes a_4) in
+  (a_11 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((shiftfield_f16__io_file_pvt_pub a_6)) = a_11) ->
+  (((region (a_6.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_5)) ->
+  (not (invalid t a_12 1)) ->
+  ((p_valid_file t t_1 a_11)) ->
+  ((i = (-1)) \/ (i = 0)) ->
+  ((((shiftfield_f16__io_file_pvt_ibytes a_10)) = a_12) \/
+   (((shiftfield_f16__io_file_pvt_obytes a_7)) = a_12) \/
+   (((shiftfield_f12__io_file__io_eof a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_9)))) = a_12) \/
+   (((shiftfield_f12__io_file__io_error a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (4/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_normal_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (4/8)":
+*)
+goal goal9:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_12 = (shiftfield_f16__io_file_pvt_obytes a_4) in
+  (a_11 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((shiftfield_f16__io_file_pvt_pub a_6)) = a_11) ->
+  (((region (a_6.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_5)) ->
+  (not (invalid t a_12 1)) ->
+  ((p_valid_file t t_1 a_11)) ->
+  ((i = (-1)) \/ (i = 0)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_10))) \/
+   (((shiftfield_f16__io_file_pvt_obytes a_7)) = a_12) \/
+   (((shiftfield_f12__io_file__io_eof a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_9)))) = a_12) \/
+   (((shiftfield_f12__io_file__io_error a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (5/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_normal_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (5/8)":
+*)
+goal goal10:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_12 = (shiftfield_f12__io_file__io_eof
+               ((shiftfield_f16__io_file_pvt_pub a_4))) in
+  (a_11 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((shiftfield_f16__io_file_pvt_pub a_6)) = a_11) ->
+  (((region (a_6.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_5)) ->
+  ((p_valid_file t t_1 a_11)) ->
+  (not (invalid t a_12 1)) ->
+  ((i = (-1)) \/ (i = 0)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_10))) \/
+   (a_12 = ((shiftfield_f16__io_file_pvt_obytes a_7))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_eof a_11))) \/
+   (((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_9)))) = a_12) \/
+   (((shiftfield_f12__io_file__io_error a_11)) = a_12) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (6/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_normal_part6
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (6/8)":
+*)
+goal goal11:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_10 a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_12 = (shiftfield_f12__io_file__io_error
+               ((shiftfield_f16__io_file_pvt_pub a_4))) in
+  (a_11 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((shiftfield_f16__io_file_pvt_pub a_6)) = a_11) ->
+  (((region (a_6.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_5)) ->
+  ((p_valid_file t t_1 a_11)) ->
+  (not (invalid t a_12 1)) ->
+  ((i = (-1)) \/ (i = 0)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_10))) \/
+   (a_12 = ((shiftfield_f16__io_file_pvt_obytes a_7))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_eof a_11))) \/
+   (a_12 =
+    ((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_9))))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_error a_11))) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_8)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file rewind.c, line 10) in 'rewind' (8/8) --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_assign_normal_part8
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Assigns (file rewind.c, line 10) in 'rewind' (8/8)":
+*)
+goal goal12:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_9 a_8 a_7 a_6 a_5 a_4 a_3 a_2 a_1 a : addr.
+  let a_10 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  let a_11 = (shiftfield_f16__io_file_pvt_pub a_5) in
+  let a_12 = (shiftfield_f12__io_file__io_error a_11) in
+  (a_10 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (a_11 = a_10) ->
+  (((region (a_5.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_4)) ->
+  ((p_valid_file t t_1 a_10)) ->
+  (not (invalid t a_12 1)) ->
+  ((a_12 = ((shiftfield_f16__io_file_pvt_ibytes a_9))) \/
+   (a_12 = ((shiftfield_f16__io_file_pvt_obytes a_6))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_eof a_10))) \/
+   (a_12 =
+    ((shiftfield_f12__io_file__io_eof
+       ((shiftfield_f16__io_file_pvt_pub a_8))))) \/
+   (a_12 = ((shiftfield_f12__io_file__io_error a_10))) \/
+   (((shiftfield_f12__io_file__io_error
+       ((shiftfield_f16__io_file_pvt_pub a_7)))) = a_12))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file fseek.c, line 8) in 'fseek'' in 'rewind' at call 'fseek' (file rewind.c, line 16)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_call_fseek_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file fseek.c, line 8) in 'fseek'' in 'rewind' at call 'fseek' (file rewind.c, line 16)
+":
+*)
+goal goal13:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let a_5 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  (a_5 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_file t t_1 a_5)) ->
+  (((shiftfield_f16__io_file_pvt_pub a_4)) = a_5)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file fseek.c, line 9) in 'fseek'' in 'rewind' at call 'fseek' (file rewind.c, line 16)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCrewind_call_fseek_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic3.Axiomatic3
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file fseek.c, line 9) in 'fseek'' in 'rewind' at call 'fseek' (file rewind.c, line 16)
+":
+*)
+goal goal14:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a_4 a_3 a_2 a_1 a : addr.
+  let a_5 = (shiftfield_f16__io_file_pvt_pub a_2) in
+  (a_5 = ((shiftfield_f16__io_file_pvt_pub a))) ->
+  (((region (a_2.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_1)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_3)) ->
+  ((p_valid_file t t_1 a_5)) ->
+  ((p_valid_io_file_pvt t t_2 t_1 a_4))
+
+end
+

@@ -1,0 +1,7 @@
+session ccursor = NTP4Verif +
+theories
+  "ccursor_PtrCursor_nextqtvc"
+  "ccursor_PtrCursor_cursorqtvc"
+  "ccursor_PtrCursor_create_cursorqtvc"
+  "ccursor_PtrCursor_free_cursorqtvc"
+  "ccursor_PtrCursor_mainqtvc"

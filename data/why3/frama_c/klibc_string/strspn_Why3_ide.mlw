@@ -1,0 +1,136 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file strspn.c, line 14) in 'strspn' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrspn_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import A_Length.A_Length
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition (file strspn.c, line 14) in 'strspn'":
+*)
+goal goal0:
+  forall i_7 i_6 i_5 i_4 i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = (l_length t_1 a) in
+  let x_1 = t_1[(shift_sint8 a i)] in
+  (0 <= i) ->
+  (0 <= i_7) ->
+  (i_7 < i) ->
+  (i <= x) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((p_length_of_str_is t t_1 a i_3)) ->
+  ((p_length_of_str_is t t_1 a i_5)) ->
+  ((p_length_of_str_is t t_1 a_1 i_2)) ->
+  ((p_length_of_str_is t t_1 a_1 i_4)) ->
+  ((p_length_of_str_is t t_1 a_1 i_6)) ->
+  ((is_sint8 x_1)) ->
+  (not (p_char_in_str t_1 a_1 x_1)) ->
+  ((separated ((shift_sint8 a 0)) (1 + x) ((shift_sint8 a_1 0))
+     (1 + ((l_length t_1 a_1))))) ->
+  (forall i_8 : int. (0 <= i_8) -> (i_8 < i) ->
+   ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a i_8)]))) ->
+  ((p_char_in_str t_1 a_1 t_1[(shift_sint8 a i_7)]))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file strxspn.c, line 12) in '__strxspn'' in 'strspn' at call '__strxspn' (file strspn.c, line 20)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrspn_call___strxspn_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file strxspn.c, line 12) in '__strxspn'' in 'strspn' at call '__strxspn' (file strspn.c, line 20)
+":
+*)
+goal goal1:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_2)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_3)) ->
+  ((separated ((shift_sint8 a 0)) (1 + ((l_length t_1 a)))
+     ((shift_sint8 a_1 0)) (1 + ((l_length t_1 a_1))))) ->
+  (exists i_4 : int. (p_length_of_str_is t t_1 a i_4))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file strxspn.c, line 13) in '__strxspn'' in 'strspn' at call '__strxspn' (file strspn.c, line 20)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCstrspn_call___strxspn_pre_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file strxspn.c, line 13) in '__strxspn'' in 'strspn' at call '__strxspn' (file strspn.c, line 20)
+":
+*)
+goal goal2:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_2)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((p_length_of_str_is t t_1 a_1 i_3)) ->
+  ((separated ((shift_sint8 a 0)) (1 + ((l_length t_1 a)))
+     ((shift_sint8 a_1 0)) (1 + ((l_length t_1 a_1))))) ->
+  (exists i_4 : int. (p_length_of_str_is t t_1 a_1 i_4))
+
+end
+

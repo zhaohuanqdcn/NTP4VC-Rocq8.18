@@ -1,0 +1,9 @@
+theory blocking_semantics5_TestSemantics_Test55
+  imports "NTP4Verif.NTP4Verif" "Why3STD.map_Const" "../../lib/isabelle/blocking_semantics5_Syntax" "../../lib/isabelle/blocking_semantics5_SemOp"
+begin
+consts x :: "ident"
+consts y :: "mident"
+theorem Test55:
+  shows "eval_term ((const :: value \<Rightarrow> mident \<Rightarrow> value) (Vint (0 :: int))) (Cons (x, Vint (42 :: int)) (Nil :: (ident \<times> value) list)) (Tbin (Tvar x) Oplus (Tvalue (Vint (13 :: int)))) = Vint (55 :: int)"
+  sorry
+end

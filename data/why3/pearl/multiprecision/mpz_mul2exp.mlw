@@ -1,0 +1,79 @@
+module Zmul2exp
+
+use int.Int
+use int.EuclideanDivision
+use int.Power
+use map.Map
+use mach.int.Int32GMP
+use ref.Ref
+use mach.c.C
+use lemmas.Lemmas
+use util.Util
+use util.UtilOld
+use ptralias.Alias
+use compare.Compare
+use import mach.int.UInt64GMP as Limb
+use types.Types
+use types.Int32Eq
+use types.UInt64Eq
+use logical.LogicalUtil
+use logical.Logical
+use logical.LogicalOld as OL
+use int.Abs
+use mpz.Z
+use mpz.Zutil
+
+let partial wmpz_mul_2exp (r u:mpz_ptr) (cnt: limb) : unit
+  requires { mpz.alloc[r] >= 1 /\ mpz.alloc[u] >= 1 }
+  requires { mpz.readers[r] = 0 /\ mpz.readers[u] = 0 }
+  requires { mpz.abs_size[u] + div cnt 64 + 1 <= max_int32 }
+  ensures  { value_of r mpz = old (value_of u mpz * power 2 cnt) }
+  ensures  { forall x. x <> r -> mpz_unchanged x mpz (old mpz) }
+  ensures  { mpz.readers[r] = 0 /\ mpz.readers[u] = 0 }
+=
+  let ghost ompz = pure { mpz } in
+  let un = abs_size_of u in
+  let limb_cnt = Limb.to_int32 (cnt / 64) in
+  let ref rn = un + limb_cnt in
+  if un = 0 then set_size_0 r
+  else begin
+    let rp = wmpz_realloc r (rn + 1) in
+    let c = cnt % 64 in
+    if mpz_eq u r
+    then begin
+      if c <> 0
+      then begin
+        let rl = C.incr rp limb_cnt in
+        label Shift in
+        let rlimb = wmpn_lshift rl rp un c in
+        label Set in
+        C.set_ofs rp rn rlimb;
+        rn <- rn + (if rlimb <> 0 then 1 else 0);
+    end end
+    else begin
+      unchanged u mpz ompz;
+      let up = get_read_ptr u in
+      if c <> 0
+      then begin
+        let rl = C.incr rp limb_cnt in
+        label Shift in
+        let rlimb = OL.wmpn_lshift rl up un c in
+        label Set in
+        C.set_ofs rp rn rlimb;
+        rn <- rn + (if rlimb <> 0 then 1 else 0);
+      end else begin
+        let rl = C.incr rp limb_cnt in
+        wmpn_copyi rl up un;
+      end;
+      release_reader u up
+    end;
+    let ghost orp = pure { rp } in
+    wmpn_zero rp limb_cnt;
+    let ghost nrn = if size_of u >= 0 then rn else -rn in
+    label Size in
+    set_size r (if size_of u >= 0 then rn else -rn) rp;
+    release_writer r rp;
+  end
+
+
+end

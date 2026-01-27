@@ -1,0 +1,8 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+open Classical
+open Lean4Why3
+namespace array_max_ArrayMax_maxqtvc
+theorem max'vc (a : List ℤ) (fact0 : (0 : ℤ) < Int.ofNat (List.length a)) : let o1 : ℤ := Int.ofNat (List.length a) - (1 : ℤ); (((0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) ≤ o1 ∧ o1 < Int.ofNat (List.length a)) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < (0 : ℤ) ∨ o1 < i ∧ i < Int.ofNat (List.length a) → a[Int.toNat i]! ≤ max (a[(0 : ℕ)]!) (a[Int.toNat o1]!))) ∧ (∀(y : ℤ) (x : ℤ), ((0 : ℤ) ≤ x ∧ x ≤ y ∧ y < Int.ofNat (List.length a)) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < x ∨ y < i ∧ i < Int.ofNat (List.length a) → a[Int.toNat i]! ≤ max (a[Int.toNat x]!) (a[Int.toNat y]!)) → (if ¬x = y then ((0 : ℤ) ≤ y ∧ y < Int.ofNat (List.length a)) ∧ ((0 : ℤ) ≤ x ∧ x < Int.ofNat (List.length a)) ∧ (if a[Int.toNat x]! ≤ a[Int.toNat y]! then ((0 : ℤ) ≤ y - x ∧ y - (x + (1 : ℤ)) < y - x) ∧ ((0 : ℤ) ≤ x + (1 : ℤ) ∧ x + (1 : ℤ) ≤ y ∧ y < Int.ofNat (List.length a)) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < x + (1 : ℤ) ∨ y < i ∧ i < Int.ofNat (List.length a) → a[Int.toNat i]! ≤ max (a[Int.toNat (x + (1 : ℤ))]!) (a[Int.toNat y]!)) else ((0 : ℤ) ≤ y - x ∧ y - (1 : ℤ) - x < y - x) ∧ ((0 : ℤ) ≤ x ∧ x ≤ y - (1 : ℤ) ∧ y - (1 : ℤ) < Int.ofNat (List.length a)) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < x ∨ y - (1 : ℤ) < i ∧ i < Int.ofNat (List.length a) → a[Int.toNat i]! ≤ max (a[Int.toNat x]!) (a[Int.toNat (y - (1 : ℤ))]!))) else ((0 : ℤ) ≤ x ∧ x < Int.ofNat (List.length a)) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < Int.ofNat (List.length a) → a[Int.toNat i]! ≤ a[Int.toNat x]!)))
+  := sorry
+end array_max_ArrayMax_maxqtvc

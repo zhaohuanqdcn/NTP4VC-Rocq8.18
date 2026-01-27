@@ -1,0 +1,35 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.c.C
+import Why3.mach.int.Unsigned
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.compare.Compare
+import pearl.multiprecision.lib.lean.valuation.Valuation
+import pearl.multiprecision.lib.lean.util.Util
+import pearl.multiprecision.lib.lean.ptralias.Alias
+import pearl.multiprecision.lib.lean.util.UtilOld
+import pearl.multiprecision.lib.lean.add.Add
+import pearl.multiprecision.lib.lean.add.AddOld
+import pearl.multiprecision.lib.lean.sub.SubOld
+import pearl.multiprecision.lib.lean.mul.Mul
+import pearl.multiprecision.lib.lean.mul.Mul_basecase
+import pearl.multiprecision.lib.lean.logical.LogicalUtil
+import pearl.multiprecision.lib.lean.logical.Logical
+import pearl.multiprecision.lib.lean.logical.LogicalOld
+import pearl.multiprecision.lib.lean.div.Div
+import pearl.multiprecision.lib.lean.toom.Toom
+import pearl.multiprecision.lib.lean.add_1.Add_1
+import pearl.multiprecision.lib.lean.sub_1.Sub_1
+open Classical
+open Lean4Why3
+namespace powm_Powm_binvert_limbqtvc
+noncomputable def redc (ur : ℤ) (u : ℤ) (n : ℤ) (m : ℤ) := ur % m = HPow.hPow ((18446744073709551615 : ℤ) + (1 : ℤ)) (Int.toNat n) * u % m
+theorem binvert_limb'vc (n : BitVec 64) (fact0 : Odd (BitVec.toUInt n)) : (∀(n1 : ℤ) (inv : ℤ) (prec : ℤ), ((0 : ℤ) ≤ n1 ∧ (0 : ℤ) ≤ inv) ∧ inv * n1 % HPow.hPow (2 : ℤ) (Int.toNat prec) = (1 : ℤ) ∧ (0 : ℤ) ≤ (2 : ℤ) * prec ∧ (2 : ℤ) * prec ≤ (64 : ℤ) → ((2 : ℤ) * inv - inv * (inv * n1)) % ((18446744073709551615 : ℤ) + (1 : ℤ)) * n1 % HPow.hPow (2 : ℤ) (Int.toNat ((2 : ℤ) * prec)) = (1 : ℤ)) ∧ ¬(2 : ℤ) = (0 : ℤ) ∧ uint'64_in_bounds (Int.tdiv (BitVec.toUInt n) (2 : ℤ)) ∧ (∀(o1 : BitVec 64), BitVec.toUInt o1 = Int.tdiv (BitVec.toUInt n) (2 : ℤ) → (¬(128 : ℤ) = (0 : ℤ) ∧ uint'64_in_bounds (Int.tmod (BitVec.toUInt o1) (128 : ℤ))) ∧ (∀(h : BitVec 64), BitVec.toUInt h = Int.tmod (BitVec.toUInt o1) (128 : ℤ) → ((0 : ℤ) ≤ BitVec.toUInt h ∧ BitVec.toUInt h < (128 : ℤ)) ∧ (∀(o2 : BitVec 64), ((0 : ℤ) ≤ BitVec.toUInt o2 ∧ BitVec.toUInt o2 < (256 : ℤ)) ∧ BitVec.toUInt o2 * ((2 : ℤ) * BitVec.toUInt h + (1 : ℤ)) % HPow.hPow (2 : ℤ) (8 : ℕ) = (1 : ℤ) → (∀(o3 : BitVec 64), BitVec.toUInt o3 = BitVec.toUInt o2 * BitVec.toUInt n % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o4 : BitVec 64), BitVec.toUInt o4 = BitVec.toUInt o2 * BitVec.toUInt o3 % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o5 : BitVec 64), BitVec.toUInt o5 = (2 : ℤ) * BitVec.toUInt o2 % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o6 : BitVec 64), BitVec.toUInt o6 = (BitVec.toUInt o5 - BitVec.toUInt o4) % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o7 : BitVec 64), BitVec.toUInt o7 = BitVec.toUInt o6 * BitVec.toUInt n % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o8 : BitVec 64), BitVec.toUInt o8 = BitVec.toUInt o6 * BitVec.toUInt o7 % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o9 : BitVec 64), BitVec.toUInt o9 = (2 : ℤ) * BitVec.toUInt o6 % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o10 : BitVec 64), BitVec.toUInt o10 = (BitVec.toUInt o9 - BitVec.toUInt o8) % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o11 : BitVec 64), BitVec.toUInt o11 = BitVec.toUInt o10 * BitVec.toUInt n % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o12 : BitVec 64), BitVec.toUInt o12 = BitVec.toUInt o10 * BitVec.toUInt o11 % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o13 : BitVec 64), BitVec.toUInt o13 = (2 : ℤ) * BitVec.toUInt o10 % ((18446744073709551615 : ℤ) + (1 : ℤ)) → (∀(o14 : BitVec 64), BitVec.toUInt o14 = (BitVec.toUInt o13 - BitVec.toUInt o12) % ((18446744073709551615 : ℤ) + (1 : ℤ)) → BitVec.toUInt o14 * BitVec.toUInt n % ((18446744073709551615 : ℤ) + (1 : ℤ)) = (1 : ℤ))))))))))))))))
+  := sorry
+end powm_Powm_binvert_limbqtvc

@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name vstte12_combinators_vcg)
+(theories Why3))

@@ -1,0 +1,17 @@
+atoms:
+  pqueue.PqueueNoDup.elts: [elts, PqueueNoDup.elts]
+  pqueue.PqueueNoDup.le: [le, PqueueNoDup.le]
+  pqueue.PqueueNoDup.minimal_elt: [minimal_elt, PqueueNoDup.minimal_elt]
+axioms:
+  pqueue.PqueueNoDup.Refl: [Refl, PqueueNoDup.Refl]
+  pqueue.PqueueNoDup.Total: [Total, PqueueNoDup.Total]
+  pqueue.PqueueNoDup.Trans: [Trans, PqueueNoDup.Trans]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.pqueue.PqueueNoDup
+prefix_ops: {}
+types:
+  pqueue.PqueueNoDup.elt: [elt, PqueueNoDup.elt]
+  pqueue.PqueueNoDup.t: [t, PqueueNoDup.t]

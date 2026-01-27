@@ -1,0 +1,40 @@
+atoms:
+  Memory.Memory.Mk_addr: [Mk_addr, Memory_Memory.Mk_addr, Memory_Memory.addr.Mk_addr]
+  Memory.Memory.addr_le: [addr_le, Memory_Memory.addr_le]
+  Memory.Memory.addr_le_bool: [addr_le_bool, Memory_Memory.addr_le_bool]
+  Memory.Memory.addr_lt: [addr_lt, Memory_Memory.addr_lt]
+  Memory.Memory.addr_lt_bool: [addr_lt_bool, Memory_Memory.addr_lt_bool]
+  Memory.Memory.addr_of_int: [addr_of_int, Memory_Memory.addr_of_int]
+  Memory.Memory.base: [base, Memory_Memory.base, Memory_Memory.addr.base]
+  Memory.Memory.base_index: [base_index, Memory_Memory.base_index]
+  Memory.Memory.base_offset: [base_offset, Memory_Memory.base_offset]
+  Memory.Memory.eqmem: [eqmem, Memory_Memory.eqmem]
+  Memory.Memory.framed: [framed, Memory_Memory.framed]
+  Memory.Memory.havoc: [havoc, Memory_Memory.havoc]
+  Memory.Memory.included: [included, Memory_Memory.included]
+  Memory.Memory.int_of_addr: [int_of_addr, Memory_Memory.int_of_addr]
+  Memory.Memory.invalid: [invalid, Memory_Memory.invalid]
+  Memory.Memory.linked: [linked, Memory_Memory.linked]
+  Memory.Memory.offset: [offset, Memory_Memory.offset, Memory_Memory.addr.offset]
+  Memory.Memory.region: [region, Memory_Memory.region]
+  Memory.Memory.sconst: [sconst, Memory_Memory.sconst]
+  Memory.Memory.separated: [separated, Memory_Memory.separated]
+  Memory.Memory.shift: [shift, Memory_Memory.shift]
+  Memory.Memory.shift_ptr: [shift_ptr, Memory_Memory.shift_ptr]
+  Memory.Memory.shift_sint16: [shift_sint16, Memory_Memory.shift_sint16]
+  Memory.Memory.shift_sint32: [shift_sint32, Memory_Memory.shift_sint32]
+  Memory.Memory.shift_sint64: [shift_sint64, Memory_Memory.shift_sint64]
+  Memory.Memory.shift_uint16: [shift_uint16, Memory_Memory.shift_uint16]
+  Memory.Memory.shift_uint32: [shift_uint32, Memory_Memory.shift_uint32]
+  Memory.Memory.shift_uint64: [shift_uint64, Memory_Memory.shift_uint64]
+  Memory.Memory.valid_rd: [valid_rd, Memory_Memory.valid_rd]
+  Memory.Memory.valid_rw: [valid_rw, Memory_Memory.valid_rw]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.Memory_Memory
+prefix_ops: {}
+types:
+  Memory.Memory.addr: [addr, Memory_Memory.addr]

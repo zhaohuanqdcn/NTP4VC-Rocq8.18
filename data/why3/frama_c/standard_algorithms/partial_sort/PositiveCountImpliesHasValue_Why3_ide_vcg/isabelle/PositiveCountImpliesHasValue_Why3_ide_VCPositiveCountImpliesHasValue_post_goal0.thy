@@ -1,0 +1,24 @@
+theory PositiveCountImpliesHasValue_Why3_ide_VCPositiveCountImpliesHasValue_post_goal0
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "../../lib/isabelle/A_Count_A_Count" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/Axiomatic_Axiomatic" "../../lib/isabelle/Axiomatic1_Axiomatic1"
+begin
+theorem goal0:
+  fixes i_3 :: "int"
+  fixes i_1 :: "int"
+  fixes i_2 :: "int"
+  fixes a :: "addr"
+  fixes t :: "addr \<Rightarrow> int"
+  fixes i :: "int"
+  assumes fact0: "i_3 \<le> i_1"
+  assumes fact1: "i_2 < i_1"
+  assumes fact2: "i_1 \<le> i_3"
+  assumes fact3: "i_2 \<le> i_3"
+  assumes fact4: "region (base a) \<le> (0 :: int)"
+  assumes fact5: "(0 :: int) < l_count_1' t a i_2 i_1 i"
+  assumes fact6: "is_uint32 i_1"
+  assumes fact7: "is_uint32 i_2"
+  assumes fact8: "is_uint32 i_3"
+  assumes fact9: "is_sint32 i"
+  assumes fact10: "(\<forall>(i_4 :: int). i_2 \<le> i_4 \<longrightarrow> i_4 < i_3 \<longrightarrow> \<not>t (shift a i_4) = i) \<longrightarrow> l_count_1' t a i_2 i_3 i = (0 :: int)"
+  shows "p_hasvalue_1' t a i_2 i_3 i"
+  sorry
+end

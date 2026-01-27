@@ -1,0 +1,5 @@
+session parse_Time_Why3_ide = NTP4Verif +
+theories
+  "parse_Time_Why3_ide_VCparse_Time_assert_rte_mem_access_goal2"
+  "parse_Time_Why3_ide_VCparse_Time_post_part14_goal0"
+  "parse_Time_Why3_ide_VCparse_Time_post_part15_goal1"

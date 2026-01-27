@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name bitcount_vcg)
+(theories Why3.why3.Ref Why3.why3.WellFounded Why3.int bitcount_vcg.bitcount Why3 Why3.mach.bv))

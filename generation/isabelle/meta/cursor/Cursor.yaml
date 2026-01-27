@@ -1,0 +1,13 @@
+atoms:
+  cursor.Cursor.complete: [complete, cursor_Cursor.complete]
+  cursor.Cursor.permitted: [permitted, cursor_Cursor.permitted]
+  cursor.Cursor.visited: [visited, cursor_Cursor.visited]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.cursor_Cursor
+prefix_ops: {}
+types:
+  cursor.Cursor.cursor: [cursor, cursor_Cursor.cursor]

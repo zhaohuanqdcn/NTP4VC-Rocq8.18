@@ -1,0 +1,19 @@
+atoms:
+  mach.matrix.Matrix63.columns: [Matrix63.columns]
+  mach.matrix.Matrix63.elts: [Matrix63.elts]
+  mach.matrix.Matrix63.get_unsafe: [Matrix63.get_unsafe]
+  mach.matrix.Matrix63.rows: [Matrix63.rows]
+  mach.matrix.Matrix63.set_unsafe: [Matrix63.set_unsafe]
+  mach.matrix.Matrix63.valid_index: [Matrix63.valid_index]
+axioms:
+  mach.matrix.Matrix63.get_unsafe'spec: Matrix63.get_unsafe'spec
+  mach.matrix.Matrix63.matrix'invariant: Matrix63.matrix'invariant
+  mach.matrix.Matrix63.set_unsafe'spec: Matrix63.set_unsafe'spec
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.mach.matrix.Matrix63
+prefix_ops: {}
+types:
+  mach.matrix.Matrix63.matrix: [Matrix63.matrix]

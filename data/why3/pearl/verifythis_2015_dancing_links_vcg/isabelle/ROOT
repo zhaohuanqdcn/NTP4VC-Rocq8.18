@@ -1,0 +1,8 @@
+session verifythis_2015_dancing_links = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "verifythis_2015_dancing_links_DancingLinks"
+  "verifythis_2015_dancing_links_DancingLinks_put_backqtvc"
+  "verifythis_2015_dancing_links_DancingLinks_dllqtvc"
+  "verifythis_2015_dancing_links_DancingLinks_removeqtvc"

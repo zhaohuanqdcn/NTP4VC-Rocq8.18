@@ -1,0 +1,110 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.mach.matrix.Matrix63
+import Why3.debug.Debug
+open Classical
+open Lean4Why3
+namespace lineardecision_LinearEquationsDecision_linear_decisionqtvc
+axiom coeff : Type
+axiom inhabited_axiom_coeff : Inhabited coeff
+attribute [instance] inhabited_axiom_coeff
+axiom a : Type
+axiom inhabited_axiom_a : Inhabited a
+attribute [instance] inhabited_axiom_a
+axiom infix_pl : a -> a -> a
+axiom infix_as : a -> a -> a
+axiom prefix_mn : a -> a
+axiom azero : a
+axiom aone : a
+axiom ale : a -> a -> Prop
+axiom Assoc (x : a) (y : a) (z : a) : infix_pl (infix_pl x y) z = infix_pl x (infix_pl y z)
+axiom Unit_def_l (x : a) : infix_pl azero x = x
+axiom Unit_def_r (x : a) : infix_pl x azero = x
+axiom Inv_def_l (x : a) : infix_pl (prefix_mn x) x = azero
+axiom Inv_def_r (x : a) : infix_pl x (prefix_mn x) = azero
+axiom Comm (x : a) (y : a) : infix_pl x y = infix_pl y x
+axiom Assoc1 (x : a) (y : a) (z : a) : infix_as (infix_as x y) z = infix_as x (infix_as y z)
+axiom Mul_distr_l (x : a) (y : a) (z : a) : infix_as x (infix_pl y z) = infix_pl (infix_as x y) (infix_as x z)
+axiom Mul_distr_r (y : a) (z : a) (x : a) : infix_as (infix_pl y z) x = infix_pl (infix_as y x) (infix_as z x)
+axiom Comm1 (x : a) (y : a) : infix_as x y = infix_as y x
+axiom Unitary (x : a) : infix_as aone x = x
+axiom NonTrivialRing : ¬azero = aone
+axiom Refl (x : a) : ale x x
+axiom Trans (x : a) (y : a) (z : a) (fact0 : ale x y) (fact1 : ale y z) : ale x z
+axiom Antisymm (x : a) (y : a) (fact0 : ale x y) (fact1 : ale y x) : x = y
+axiom Total (x : a) (y : a) : ale x y ∨ ale y x
+axiom ZeroLessOne : ale azero aone
+axiom CompatOrderAdd (x : a) (y : a) (z : a) (fact0 : ale x y) : ale (infix_pl x z) (infix_pl y z)
+axiom CompatOrderMult (x : a) (y : a) (z : a) (fact0 : ale x y) (fact1 : ale azero z) : ale (infix_as x z) (infix_as y z)
+axiom infix_mn : a -> a -> a
+axiom sub_def (a1 : a) (a2 : a) : infix_mn a1 a2 = infix_pl a1 (prefix_mn a2)
+axiom vars : Type
+axiom inhabited_axiom_vars : Inhabited vars
+attribute [instance] inhabited_axiom_vars
+axiom cvars : Type
+axiom inhabited_axiom_cvars : Inhabited cvars
+attribute [instance] inhabited_axiom_cvars
+axiom interp : coeff -> cvars -> a
+axiom czero : coeff
+axiom cone : coeff
+axiom zero_def (y : cvars) : interp czero y = azero
+axiom one_def (y : cvars) : interp cone y = aone
+axiom eq : coeff -> coeff -> Prop
+axiom eq'spec (a1 : coeff) (b : coeff) (y : cvars) (fact0 : eq a1 b) : interp a1 y = interp b y
+axiom vars1 : Type
+axiom inhabited_axiom_vars1 : Inhabited vars1
+attribute [instance] inhabited_axiom_vars1
+inductive expr where
+  | Term : coeff -> ℤ -> expr
+  | Add : expr -> expr -> expr
+  | Cst : coeff -> expr
+axiom inhabited_axiom_expr : Inhabited expr
+attribute [instance] inhabited_axiom_expr
+noncomputable def valid_expr : expr -> Prop
+  | (expr.Term x i) => (0 : ℤ) ≤ i
+  | (expr.Cst x) => True
+  | (expr.Add e1 e2) => valid_expr e1 ∧ valid_expr e2
+noncomputable def expr_bound : expr -> ℤ -> Prop
+  | (expr.Term x i), b => (0 : ℤ) ≤ i ∧ i ≤ b
+  | (expr.Cst x), b => True
+  | (expr.Add e1 e2), b => expr_bound e1 b ∧ expr_bound e2 b
+noncomputable def interp1 : expr -> (ℤ -> a) -> cvars -> a
+  | (expr.Term c v), y, z => infix_as (interp c z) (y v)
+  | (expr.Add e1 e2), y, z => infix_pl (interp1 e1 y z) (interp1 e2 y z)
+  | (expr.Cst c), y, z => interp c z
+axiom equality : Type
+axiom inhabited_axiom_equality : Inhabited equality
+attribute [instance] inhabited_axiom_equality
+axiom context : Type
+axiom inhabited_axiom_context : Inhabited context
+attribute [instance] inhabited_axiom_context
+noncomputable def valid_eq (eq1 : expr × expr) := match eq1 with | (e1, e2) => valid_expr e1 ∧ valid_expr e2
+noncomputable def eq_bound (eq1 : expr × expr) (b : ℤ) := match eq1 with | (e1, e2) => expr_bound e1 b ∧ expr_bound e2 b
+noncomputable def valid_ctx : List (expr × expr) -> Prop
+  | ([] : List (expr × expr)) => True
+  | (List.cons eq1 t) => valid_eq eq1 ∧ valid_ctx t
+noncomputable def ctx_bound : List (expr × expr) -> ℤ -> Prop
+  | ([] : List (expr × expr)), b => True
+  | (List.cons eq1 t), b => eq_bound eq1 b ∧ ctx_bound t b
+noncomputable def interp_eq (g : expr × expr) (y : ℤ -> a) (z : cvars) := if match g with | (g1, g2) => interp1 g1 y z = interp1 g2 y z then true else false
+noncomputable def interp_ctx : List (expr × expr) -> expr × expr -> (ℤ -> a) -> cvars -> Bool
+  | l, g, y, z => if match l with | ([] : List (expr × expr)) => interp_eq g y z = true | List.cons h t => interp_eq h y z = true → interp_ctx t g y z = true then true else false
+axiom infix_eqeq : array63 coeff -> array63 coeff -> Prop
+axiom infix_eqeq'spec (a1 : array63 coeff) (b : array63 coeff) (fact0 : infix_eqeq a1 b) : array63_length a1 = array63_length b ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < BitVec.toInt (array63_length a1) → eq ((array63_elts a1)[Int.toNat i]!) ((array63_elts b)[Int.toNat i]!))
+axiom max_var : expr -> ℤ
+axiom max_var'def (e : expr) (fact0 : valid_expr e) : match e with | expr.Term _ i => max_var e = i | expr.Cst _ => max_var e = (0 : ℤ) | expr.Add e1 e2 => max_var e = max (max_var e1) (max_var e2)
+axiom max_var'spec'0 (e : expr) (fact0 : valid_expr e) : (0 : ℤ) ≤ max_var e
+axiom max_var'spec (e : expr) (fact0 : valid_expr e) : expr_bound e (max_var e)
+axiom max_var_e : expr × expr -> ℤ
+axiom max_var_e'def (e : expr × expr) (fact0 : valid_eq e) : match e with | (e1, e2) => max_var_e e = max (max_var e1) (max_var e2)
+axiom max_var_e'spec'0 (e : expr × expr) (fact0 : valid_eq e) : (0 : ℤ) ≤ max_var_e e
+axiom max_var_e'spec (e : expr × expr) (fact0 : valid_eq e) : eq_bound e (max_var_e e)
+axiom max_var_ctx : List (expr × expr) -> ℤ
+axiom max_var_ctx'def (l : List (expr × expr)) (fact0 : valid_ctx l) : match l with | ([] : List (expr × expr)) => max_var_ctx l = (0 : ℤ) | List.cons e t => max_var_ctx l = max (max_var_e e) (max_var_ctx t)
+axiom max_var_ctx'spec'0 (l : List (expr × expr)) (fact0 : valid_ctx l) : (0 : ℤ) ≤ max_var_ctx l
+axiom max_var_ctx'spec (l : List (expr × expr)) (fact0 : valid_ctx l) : ctx_bound l (max_var_ctx l)
+noncomputable def atom (e : expr) := match e with | expr.Add _ _ => False | _ => True
+axiom to_list :  {α : Type} -> [Inhabited α] -> array63 α -> BitVec 63 -> BitVec 63 -> List α
+theorem linear_decision'vc (g : expr) (g1 : expr) (l : List (expr × expr)) : let g2 : expr × expr := (g, g1); valid_ctx l ∧ valid_eq g2 ∧ Int.ofNat (List.length l) < (100000 : ℤ) → valid_ctx l ∧ (let o1 : ℤ := max_var_ctx l; (0 : ℤ) ≤ o1 ∧ ctx_bound l o1 → valid_eq g2 ∧ (let o2 : ℤ := max_var_e g2; (0 : ℤ) ≤ o2 ∧ eq_bound g2 o2 → (let nv : ℤ := max o2 o1; (¬(100000 : ℤ) ≤ nv → nv < (100000 : ℤ)) ∧ (nv < (100000 : ℤ) → int'63_in_bounds nv ∧ (∀(nv1 : BitVec 63), BitVec.toInt nv1 = nv → (let o3 : ℤ := Int.ofNat (List.length l); int'63_in_bounds o3 ∧ (∀(ll : BitVec 63), BitVec.toInt ll = o3 → int'63_in_bounds (BitVec.toInt nv1 + (1 : ℤ)) ∧ (∀(o4 : BitVec 63), BitVec.toInt o4 = BitVec.toInt nv1 + (1 : ℤ) → ((0 : ℤ) ≤ BitVec.toInt ll ∧ (0 : ℤ) ≤ BitVec.toInt o4) ∧ (∀(a1 : Matrix63.matrix coeff), Matrix63.rows a1 = ll ∧ Matrix63.columns a1 = o4 ∧ (∀(i : ℤ) (j : ℤ), ((0 : ℤ) ≤ i ∧ i < BitVec.toInt ll) ∧ (0 : ℤ) ≤ j ∧ j < BitVec.toInt o4 → Matrix63.get_unsafe a1 i j = czero) → (0 : ℤ) ≤ BitVec.toInt ll ∧ (∀(b : array63 coeff), (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < BitVec.toInt ll → (array63_elts b)[Int.toNat i]! = czero) ∧ array63_length b = ll → int'63_in_bounds (BitVec.toInt nv1 + (1 : ℤ)) ∧ (∀(o5 : BitVec 63), BitVec.toInt o5 = BitVec.toInt nv1 + (1 : ℤ) → (0 : ℤ) ≤ BitVec.toInt o5 ∧ (∀(v : array63 coeff), (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < BitVec.toInt o5 → (array63_elts v)[Int.toNat i]! = czero) ∧ array63_length v = o5 → (∀(a2 : Matrix63.matrix coeff), Matrix63.rows a2 = Matrix63.rows a1 ∧ Matrix63.columns a2 = Matrix63.columns a1 → (∀(ex : expr) (i : BitVec 63), ((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i < Int.ofNat (List.length l)) ∧ expr_bound ex (BitVec.toInt nv1) → (match ex with | expr.Cst c => True | expr.Term c j => int'63_in_bounds j ∧ (∀(j1 : BitVec 63), BitVec.toInt j1 = j → Matrix63.valid_index a2 i j1 ∧ (∀(o6 : coeff), (∀(v1 : cvars), interp o6 v1 = infix_pl (interp (Matrix63.get_unsafe a2 (BitVec.toInt i) (BitVec.toInt j1)) v1) (interp c v1)) → Matrix63.valid_index a2 i j1)) | expr.Add e1 e2 => ((match ex with | expr.Term _ _ => False | expr.Add f f1 => f = e1 ∨ f1 = e1 | expr.Cst _ => False) ∧ ((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i < Int.ofNat (List.length l)) ∧ expr_bound e1 (BitVec.toInt nv1)) ∧ (match ex with | expr.Term _ _ => False | expr.Add f f1 => f = e2 ∨ f1 = e2 | expr.Cst _ => False) ∧ ((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i < Int.ofNat (List.length l)) ∧ expr_bound e2 (BitVec.toInt nv1)))) ∧ (∀(b1 : array63 coeff), array63_length b1 = array63_length b → (∀(ctx : List (expr × expr)) (i : BitVec 63), ctx_bound ctx (BitVec.toInt nv1) ∧ Int.ofNat (List.length l) - BitVec.toInt i = Int.ofNat (List.length ctx) ∧ (0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i ≤ Int.ofNat (List.length l) → (match ctx with | ([] : List (expr × expr)) => True | List.cons e t => (∀(ex : expr) (c : coeff), (∀(y : ℤ -> a) (z : cvars), (interp_eq e y z = true) = (interp_eq (ex, expr.Cst c) y z = true)) ∧ (∀(b2 : ℤ), eq_bound e b2 → expr_bound ex b2) → (let o6 : coeff := czero; (eq c o6 → (∀(y : cvars), interp c y = interp o6 y)) → (if ¬eq c o6 then ((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i < BitVec.toInt (array63_length b1)) ∧ (∀(o7 : coeff), (∀(v1 : cvars), interp o7 v1 = infix_pl (interp ((array63_elts b1)[Int.toNat (BitVec.toInt i)]!) v1) (interp c v1)) → ((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i < BitVec.toInt (array63_length b1)) ∧ (∀(b2 : array63 coeff), array63_length b2 = array63_length b1 → array63_elts b2 = List.set (array63_elts b1) (Int.toNat (BitVec.toInt i)) o7 → (((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i < Int.ofNat (List.length l)) ∧ expr_bound ex (BitVec.toInt nv1)) ∧ int'63_in_bounds (BitVec.toInt i + (1 : ℤ)) ∧ (∀(o8 : BitVec 63), BitVec.toInt o8 = BitVec.toInt i + (1 : ℤ) → ((0 : ℤ) ≤ Int.ofNat (List.length l) - BitVec.toInt i ∧ Int.ofNat (List.length l) - BitVec.toInt o8 < Int.ofNat (List.length l) - BitVec.toInt i) ∧ ctx_bound t (BitVec.toInt nv1) ∧ Int.ofNat (List.length l) - BitVec.toInt o8 = Int.ofNat (List.length t) ∧ (0 : ℤ) ≤ BitVec.toInt o8 ∧ BitVec.toInt o8 ≤ Int.ofNat (List.length l)))) ∧ int'63_in_bounds (BitVec.toInt i + (1 : ℤ)) ∧ (∀(o7 : BitVec 63), BitVec.toInt o7 = BitVec.toInt i + (1 : ℤ) → ((0 : ℤ) ≤ Int.ofNat (List.length l) - BitVec.toInt i ∧ Int.ofNat (List.length l) - BitVec.toInt o7 < Int.ofNat (List.length l) - BitVec.toInt i) ∧ ctx_bound t (BitVec.toInt nv1) ∧ Int.ofNat (List.length l) - BitVec.toInt o7 = Int.ofNat (List.length t) ∧ (0 : ℤ) ≤ BitVec.toInt o7 ∧ BitVec.toInt o7 ≤ Int.ofNat (List.length l)) else (((0 : ℤ) ≤ BitVec.toInt i ∧ BitVec.toInt i < Int.ofNat (List.length l)) ∧ expr_bound ex (BitVec.toInt nv1)) ∧ int'63_in_bounds (BitVec.toInt i + (1 : ℤ)) ∧ (∀(o7 : BitVec 63), BitVec.toInt o7 = BitVec.toInt i + (1 : ℤ) → ((0 : ℤ) ≤ Int.ofNat (List.length l) - BitVec.toInt i ∧ Int.ofNat (List.length l) - BitVec.toInt o7 < Int.ofNat (List.length l) - BitVec.toInt i) ∧ ctx_bound t (BitVec.toInt nv1) ∧ Int.ofNat (List.length l) - BitVec.toInt o7 = Int.ofNat (List.length t) ∧ (0 : ℤ) ≤ BitVec.toInt o7 ∧ BitVec.toInt o7 ≤ Int.ofNat (List.length l))))) ∧ int'63_in_bounds (BitVec.toInt i + (1 : ℤ)) ∧ (∀(o6 : BitVec 63), BitVec.toInt o6 = BitVec.toInt i + (1 : ℤ) → ((0 : ℤ) ≤ Int.ofNat (List.length l) - BitVec.toInt i ∧ Int.ofNat (List.length l) - BitVec.toInt o6 < Int.ofNat (List.length l) - BitVec.toInt i) ∧ ctx_bound t (BitVec.toInt nv1) ∧ Int.ofNat (List.length l) - BitVec.toInt o6 = Int.ofNat (List.length t) ∧ (0 : ℤ) ≤ BitVec.toInt o6 ∧ BitVec.toInt o6 ≤ Int.ofNat (List.length l))))) ∧ (∀(v1 : array63 coeff), array63_length v1 = array63_length v → (∀(ex : expr), expr_bound ex (BitVec.toInt nv1) → (match ex with | expr.Cst c => True | expr.Term c j => int'63_in_bounds j ∧ (∀(j1 : BitVec 63), BitVec.toInt j1 = j → ((0 : ℤ) ≤ BitVec.toInt j1 ∧ BitVec.toInt j1 < BitVec.toInt (array63_length v1)) ∧ (∀(o6 : coeff), (∀(v2 : cvars), interp o6 v2 = infix_pl (interp ((array63_elts v1)[Int.toNat (BitVec.toInt j1)]!) v2) (interp c v2)) → (0 : ℤ) ≤ BitVec.toInt j1 ∧ BitVec.toInt j1 < BitVec.toInt (array63_length v1))) | expr.Add e1 e2 => ((match ex with | expr.Term _ _ => False | expr.Add f f1 => f = e1 ∨ f1 = e1 | expr.Cst _ => False) ∧ expr_bound e1 (BitVec.toInt nv1)) ∧ (match ex with | expr.Term _ _ => False | expr.Add f f1 => f = e2 ∨ f1 = e2 | expr.Cst _ => False) ∧ expr_bound e2 (BitVec.toInt nv1)))) ∧ (ctx_bound l (BitVec.toInt nv1) ∧ Int.ofNat (List.length l) - (0 : ℤ) = Int.ofNat (List.length l) ∧ (0 : ℤ) ≤ (0 : ℤ) ∧ (0 : ℤ) ≤ Int.ofNat (List.length l)) ∧ (∀(b1 : array63 coeff) (a2 : Matrix63.matrix coeff), array63_length b1 = array63_length b → Matrix63.rows a2 = Matrix63.rows a1 ∧ Matrix63.columns a2 = Matrix63.columns a1 → (∀(ex : expr) (d : coeff), (∀(y : ℤ -> a) (z : cvars), (interp_eq g2 y z = true) = (interp_eq (ex, expr.Cst d) y z = true)) ∧ (∀(b2 : ℤ), eq_bound g2 b2 → expr_bound ex b2) → expr_bound ex (BitVec.toInt nv1) ∧ (∀(v1 : array63 coeff), array63_length v1 = array63_length v → (Matrix63.rows a2 = array63_length b1 ∧ BitVec.toInt (Matrix63.columns a2) < (4611686018427387903 : ℤ)) ∧ (∀(ab : Matrix63.matrix coeff), Matrix63.rows ab = Matrix63.rows a2 ∧ BitVec.toInt (Matrix63.columns ab) = BitVec.toInt (Matrix63.columns a2) + (1 : ℤ) ∧ (∀(i : ℤ) (j : ℤ), (0 : ℤ) ≤ i ∧ i < BitVec.toInt (Matrix63.rows a2) → (0 : ℤ) ≤ j ∧ j < BitVec.toInt (Matrix63.columns a2) → Matrix63.elts ab i j = Matrix63.elts a2 i j) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < BitVec.toInt (Matrix63.rows a2) → Matrix63.elts ab i (BitVec.toInt (Matrix63.columns a2)) = (array63_elts b1)[Int.toNat i]!) → BitVec.toInt (array63_length v1) < (4611686018427387903 : ℤ) ∧ (∀(cd : array63 coeff), BitVec.toInt (array63_length cd) = BitVec.toInt (array63_length v1) + (1 : ℤ) ∧ (∀(k : ℤ), (0 : ℤ) ≤ k ∧ k < BitVec.toInt (array63_length v1) → (array63_elts cd)[Int.toNat k]! = (array63_elts v1)[Int.toNat k]!) ∧ (array63_elts cd)[Int.toNat (BitVec.toInt (array63_length v1))]! = d → (∀(ab' : Matrix63.matrix coeff), Matrix63.rows ab' = Matrix63.columns ab ∧ Matrix63.columns ab' = Matrix63.rows ab → (Matrix63.rows ab' = array63_length cd ∧ BitVec.toInt (Matrix63.columns ab') < (4611686018427387903 : ℤ)) ∧ (∀(o6 : Matrix63.matrix coeff), Matrix63.rows o6 = Matrix63.rows ab' ∧ BitVec.toInt (Matrix63.columns o6) = BitVec.toInt (Matrix63.columns ab') + (1 : ℤ) ∧ (∀(i : ℤ) (j : ℤ), (0 : ℤ) ≤ i ∧ i < BitVec.toInt (Matrix63.rows ab') → (0 : ℤ) ≤ j ∧ j < BitVec.toInt (Matrix63.columns ab') → Matrix63.elts o6 i j = Matrix63.elts ab' i j) ∧ (∀(i : ℤ), (0 : ℤ) ≤ i ∧ i < BitVec.toInt (Matrix63.rows ab') → Matrix63.elts o6 i (BitVec.toInt (Matrix63.columns ab')) = (array63_elts cd)[Int.toNat i]!) → ((1 : ℤ) ≤ BitVec.toInt (Matrix63.rows o6) ∧ (1 : ℤ) ≤ BitVec.toInt (Matrix63.columns o6)) ∧ (∀(o7 : Matrix63.matrix coeff), Matrix63.rows o7 = Matrix63.rows o6 ∧ Matrix63.columns o7 = Matrix63.columns o6 → (∀(o8 : Option (array63 coeff)), (match o8 with | Option.some r => array63_length r = Matrix63.columns o7 | Option.none => True) → (match o8 with | Option.some r => ((0 : ℤ) ≤ (0 : ℤ) ∧ BitVec.toInt ll ≤ BitVec.toInt (array63_length r)) ∧ ((∀(y : ℤ -> a) (z : cvars), interp_ctx l g2 y z = true) → (∀(y : ℤ -> a) (z : cvars), interp_ctx l g2 y z = true)) | Option.none => True))))))))))))))))))))))
+  := sorry
+end lineardecision_LinearEquationsDecision_linear_decisionqtvc

@@ -1,0 +1,6 @@
+session ISet = NTP4Verif +
+theories
+  "ISet_Impl_removeqtvc"
+  "ISet_Impl_mergeqtvc"
+  "ISet_Impl_insertqtvc"
+  "ISet_Logic_iset_ok_charqtvc"

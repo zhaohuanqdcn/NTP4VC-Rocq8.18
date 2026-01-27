@@ -1,0 +1,10 @@
+session int32_quat_inv_comp_Why3_ide = NTP4Verif +
+theories
+  "int32_quat_inv_comp_Why3_ide_VCint32_quat_inv_comp_max_norm_post_goal4"
+  "int32_quat_inv_comp_Why3_ide_VCint32_quat_inv_comp_general_post_3_goal2"
+  "int32_quat_inv_comp_Why3_ide_VCint32_quat_inv_comp_max_norm_post_3_goal6"
+  "int32_quat_inv_comp_Why3_ide_VCint32_quat_inv_comp_general_post_goal0"
+  "int32_quat_inv_comp_Why3_ide_VCint32_quat_inv_comp_max_norm_post_2_goal5"
+  "int32_quat_inv_comp_Why3_ide_VCint32_quat_inv_comp_general_post_4_goal3"
+  "int32_quat_inv_comp_Why3_ide_VCint32_quat_inv_comp_general_post_2_goal1"
+  "int32_quat_inv_comp_Why3_ide_VCint32_quat_inv_comp_max_norm_post_4_goal7"

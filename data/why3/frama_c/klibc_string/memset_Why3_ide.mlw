@@ -1,0 +1,357 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file /home/root/klibc_framac_wp/include/string.h, line 87) in 'memset' --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition (file /home/root/klibc_framac_wp/include/string.h, line 87) in 'memset'":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  let a_2 = (havoc t_1 t_2 a_1 i) in
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  ((-128) <= i_2) ->
+  (i_2 <= 127) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_1 i)) ->
+  (forall i_3 : int. (0 <= i_3) -> (i_3 < i) ->
+   (a_2[(shift_sint8 a i_3)] = i_2)) ->
+  (a_2[(shift_sint8 a i_1)] = i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memset.c, line 29) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memset.c, line 29) (1/2)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-128) <= i_2) ->
+  (i_2 <= 127) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_1 i_1)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + i) < i_1) ->
+   (((havoc t_1 t_2 a_1 (i_1 - i)))[(shift_sint8 a i_3)] = i_2)) ->
+  (((to_uint32 (i - 1))) <= i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memset.c, line 30) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memset.c, line 30)":
+*)
+goal goal2:
+  forall i_3 i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  let x = i_1 - i in
+  let a_2 = (havoc t_1 t_2 a_1 x) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (0 <= i_2) ->
+  (((region (a.base))) <= 0) ->
+  ((i_2 + ((to_uint32 (i - 1)))) < i_1) ->
+  ((-128) <= i_3) ->
+  (i_3 <= 127) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i_3)) ->
+  ((valid_rw t a_1 i_1)) ->
+  (forall i_4 : int. (0 <= i_4) -> ((i_4 + i) < i_1) ->
+   (a_2[(shift_sint8 a i_4)] = i_3)) ->
+  (a_2[((shift_sint8 a x)) <- (to_sint8 i_3)][(shift_sint8 a i_2)] = i_3)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file memset.c, line 31) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_inv_3_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Preservation of Invariant (file memset.c, line 31)":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-128) <= i_2) ->
+  (i_2 <= 127) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_1 i_1)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + i) < i_1) ->
+   (((havoc t_1 t_2 a_1 (i_1 - i)))[(shift_sint8 a i_3)] = i_2)) ->
+  ((1 + ((to_uint32 (i - 1)))) = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file memset.c, line 32) (2/4)        --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_assign_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file memset.c, line 32) (2/4)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  let x = i_1 - i in
+  (i <> 0) ->
+  (0 <= i) ->
+  (i < i_1) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-128) <= i_2) ->
+  (i_2 <= 127) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_1 i_1)) ->
+  (not (invalid t a_1 x)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + i) < i_1) ->
+   (((havoc t_1 t_2 a_1 x))[(shift_sint8 a i_3)] = i_2)) ->
+  (((to_uint32 (i - 1))) <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file memset.c, line 32) (4/4)        --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_assign_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Loop assigns (file memset.c, line 32) (4/4)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  let x = i_1 - i in
+  let a_2 = (shift_sint8 a x) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-128) <= i_2) ->
+  (i_2 <= 127) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_1 i_1)) ->
+  (not (invalid t a_2 1)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + i) < i_1) ->
+   (((havoc t_1 t_2 a_1 x))[(shift_sint8 a i_3)] = i_2)) ->
+  ((included a_2 1 a_1 (i_1 - ((to_uint32 (i - 1))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file /home/root/klibc_framac_wp/include/string.h, line 86) in 'memset' (3/3) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_assign_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assigns (file /home/root/klibc_framac_wp/include/string.h, line 86) in 'memset' (3/3)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i < i_1) ->
+  (0 <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-128) <= i_2) ->
+  (i_2 <= 127) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_1 i_1)) ->
+  (not (invalid t a_1 (i_1 - i))) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Decreasing of Loop variant at loop (file memset.c, line 35) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmemset_loop_term_decrease
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Decreasing of Loop variant at loop (file memset.c, line 35)":
+*)
+goal goal7:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_2 t_1 : map addr int.
+  forall a : addr.
+  let a_1 = (shift_sint8 a 0) in
+  (i <> 0) ->
+  (0 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  ((-128) <= i_2) ->
+  (i_2 <= 127) ->
+  ((linked t)) ->
+  ((sconst t_2)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_sint32 i_2)) ->
+  ((valid_rw t a_1 i_1)) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + i) < i_1) ->
+   (((havoc t_1 t_2 a_1 (i_1 - i)))[(shift_sint8 a i_3)] = i_2)) ->
+  (((to_uint32 (i - 1))) < i)
+
+end
+

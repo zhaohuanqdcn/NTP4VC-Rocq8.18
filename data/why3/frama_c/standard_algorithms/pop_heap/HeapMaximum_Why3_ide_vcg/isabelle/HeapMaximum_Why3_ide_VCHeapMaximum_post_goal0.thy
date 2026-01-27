@@ -1,0 +1,20 @@
+theory HeapMaximum_Why3_ide_VCHeapMaximum_post_goal0
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "Why3STD.Cint_Cint" "../../lib/isabelle/Axiomatic_Axiomatic" "../../lib/isabelle/Compound_Compound"
+begin
+theorem goal0:
+  fixes i :: "int"
+  fixes i_1 :: "int"
+  fixes a :: "addr"
+  fixes t :: "addr \<Rightarrow> int"
+  assumes fact0: "(0 :: int) < i"
+  assumes fact1: "i_1 \<le> i"
+  assumes fact2: "(0 :: int) \<le> i_1"
+  assumes fact3: "i \<le> i_1"
+  assumes fact4: "region (base a) \<le> (0 :: int)"
+  assumes fact5: "is_uint32 i"
+  assumes fact6: "is_uint32 i_1"
+  assumes fact7: "p_isheap t a i"
+  assumes fact8: "\<forall>(i_2 :: int). (0 :: int) \<le> i_2 \<longrightarrow> i_2 < i_1 \<longrightarrow> t (shift a i_2) \<le> t (shift a (0 :: int))"
+  shows "p_maxelement t a i_1 (0 :: int)"
+  sorry
+end

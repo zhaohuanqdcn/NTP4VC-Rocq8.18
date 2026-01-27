@@ -1,0 +1,9 @@
+theory array_max_ArrayMax_maxqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref"
+begin
+theorem max'vc:
+  fixes a :: "int list"
+  assumes fact0: "(0 :: int) < int (length a)"
+  shows "let o1 :: int = int (length a) - (1 :: int) in (((0 :: int) \<le> (0 :: int) \<and> (0 :: int) \<le> o1 \<and> o1 < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < (0 :: int) \<or> o1 < i \<and> i < int (length a) \<longrightarrow> a ! nat i \<le> max (a ! (0 :: nat)) (a ! nat o1))) \<and> (\<forall>(y :: int) (x :: int). ((0 :: int) \<le> x \<and> x \<le> y \<and> y < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < x \<or> y < i \<and> i < int (length a) \<longrightarrow> a ! nat i \<le> max (a ! nat x) (a ! nat y)) \<longrightarrow> (if \<not>x = y then ((0 :: int) \<le> y \<and> y < int (length a)) \<and> ((0 :: int) \<le> x \<and> x < int (length a)) \<and> (if a ! nat x \<le> a ! nat y then ((0 :: int) \<le> y - x \<and> y - (x + (1 :: int)) < y - x) \<and> ((0 :: int) \<le> x + (1 :: int) \<and> x + (1 :: int) \<le> y \<and> y < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < x + (1 :: int) \<or> y < i \<and> i < int (length a) \<longrightarrow> a ! nat i \<le> max (a ! nat (x + (1 :: int))) (a ! nat y)) else ((0 :: int) \<le> y - x \<and> y - (1 :: int) - x < y - x) \<and> ((0 :: int) \<le> x \<and> x \<le> y - (1 :: int) \<and> y - (1 :: int) < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < x \<or> y - (1 :: int) < i \<and> i < int (length a) \<longrightarrow> a ! nat i \<le> max (a ! nat x) (a ! nat (y - (1 :: int))))) else ((0 :: int) \<le> x \<and> x < int (length a)) \<and> (\<forall>(i :: int). (0 :: int) \<le> i \<and> i < int (length a) \<longrightarrow> a ! nat i \<le> a ! nat x)))"
+  sorry
+end

@@ -1,0 +1,14 @@
+atoms: {}
+axioms:
+  mach.c.StrlenLemmas.strlen_0: StrlenLemmas.strlen_0
+  mach.c.StrlenLemmas.strlen_at_null: StrlenLemmas.strlen_at_null
+  mach.c.StrlenLemmas.strlen_before_null: StrlenLemmas.strlen_before_null
+  mach.c.StrlenLemmas.strlen_not_0: StrlenLemmas.strlen_not_0
+  mach.c.StrlenLemmas.strlen_sup: StrlenLemmas.strlen_sup
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.mach.c.StrlenLemmas
+prefix_ops: {}
+types: {}

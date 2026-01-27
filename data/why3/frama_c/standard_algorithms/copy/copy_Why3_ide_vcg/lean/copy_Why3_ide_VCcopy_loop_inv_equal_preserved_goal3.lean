@@ -1,0 +1,12 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import Why3.Cint.Cint
+import frama_c.standard_algorithms.copy.lib.lean.Compound.Compound
+import frama_c.standard_algorithms.copy.lib.lean.Axiomatic.Axiomatic
+open Classical
+open Lean4Why3
+namespace copy_Why3_ide_VCcopy_loop_inv_equal_preserved_goal3
+theorem goal3 (i_1 : ℤ) (a_1 : Memory.addr) (a : Memory.addr) (t_1 : Memory.addr -> ℤ) (t_2 : Memory.addr -> ℤ) (i : ℤ) (t : ℤ -> ℤ) : let x : ℤ := (1 : ℤ) + i_1; let a_2 : Memory.addr := Memory.shift a_1 (0 : ℤ); let a_3 : Memory.addr := Memory.shift a_1 i_1; let a_4 : Memory.addr := Memory.shift a (0 : ℤ); let a_5 : Memory.addr := Memory.shift a i_1; let a_6 : Memory.addr -> ℤ := Memory.havoc t_1 t_2 a_4 i; i_1 ≤ i → (0 : ℤ) ≤ i_1 → i_1 < i → Memory.region (Memory.addr.base a) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_1) ≤ (0 : ℤ) → i_1 ≤ (4294967294 : ℤ) → Memory.linked t → Cint.is_uint32 i → Cint.is_uint32 i_1 → Cint.is_uint32 x → Memory.valid_rd t a_2 i → Memory.valid_rd t a_3 (1 : ℤ) → Memory.valid_rw t a_4 i → Memory.valid_rw t a_5 (1 : ℤ) → Memory.separated a_2 i a (1 : ℤ) → Axiomatic.p_equalranges_1' a_6 t_2 a_1 i_1 a → Axiomatic.p_unchanged_1' a_6 t_2 a_1 i_1 i → Axiomatic.p_equalranges_1' (Function.update a_6 a_5 (a_6 a_3)) t_2 a_1 x a
+  := sorry
+end copy_Why3_ide_VCcopy_loop_inv_equal_preserved_goal3

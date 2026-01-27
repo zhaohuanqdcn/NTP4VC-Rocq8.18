@@ -1,0 +1,15 @@
+theory duplets_Duplets_dupletqtvc
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Ref_Ref"
+begin
+definition is_duplet :: "int list \<Rightarrow> int \<Rightarrow> int \<Rightarrow> _"
+  where "is_duplet a i j \<longleftrightarrow> ((0 :: int) \<le> i \<and> i < j \<and> j < int (length a)) \<and> a ! nat i = a ! nat j" for a i j
+definition eq_opt :: "int \<Rightarrow> int option \<Rightarrow> _"
+  where "eq_opt x o1 \<longleftrightarrow> (case o1 of None \<Rightarrow> False | Some v \<Rightarrow> v = x)" for x o1
+theorem duplet'vc:
+  fixes a :: "int list"
+  fixes except :: "int option"
+  assumes fact0: "(2 :: int) \<le> int (length a)"
+  assumes fact1: "\<exists>(i :: int) (j :: int). is_duplet a i j \<and> \<not>eq_opt (a ! nat i) except"
+  shows "let o1 :: int = int (length a) - (2 :: int) in ((0 :: int) \<le> o1 + (1 :: int) \<longrightarrow> (\<forall>(k :: int) (l :: int). ((0 :: int) \<le> k \<and> k < (0 :: int)) \<and> k < l \<and> l < int (length a) \<longrightarrow> \<not>eq_opt (a ! nat k) except \<longrightarrow> \<not>is_duplet a k l) \<and> (\<forall>(i :: int). ((0 :: int) \<le> i \<and> i \<le> o1) \<and> (\<forall>(k :: int) (l :: int). ((0 :: int) \<le> k \<and> k < i) \<and> k < l \<and> l < int (length a) \<longrightarrow> \<not>eq_opt (a ! nat k) except \<longrightarrow> \<not>is_duplet a k l) \<longrightarrow> ((0 :: int) \<le> i \<and> i < int (length a)) \<and> (let v :: int = a ! nat i in if eq_opt v except then \<forall>(k :: int) (l :: int). ((0 :: int) \<le> k \<and> k < i + (1 :: int)) \<and> k < l \<and> l < int (length a) \<longrightarrow> \<not>eq_opt (a ! nat k) except \<longrightarrow> \<not>is_duplet a k l else let o2 :: int = int (length a) - (1 :: int); o3 :: int = i + (1 :: int) in (o3 \<le> o2 + (1 :: int) \<longrightarrow> (\<forall>(l :: int). i < l \<and> l < o3 \<longrightarrow> \<not>is_duplet a i l) \<and> (\<forall>(j :: int). (o3 \<le> j \<and> j \<le> o2) \<and> (\<forall>(l :: int). i < l \<and> l < j \<longrightarrow> \<not>is_duplet a i l) \<longrightarrow> ((0 :: int) \<le> j \<and> j < int (length a)) \<and> (if a ! nat j = v then is_duplet a i j \<and> \<not>eq_opt (a ! nat i) except else \<forall>(l :: int). i < l \<and> l < j + (1 :: int) \<longrightarrow> \<not>is_duplet a i l)) \<and> ((\<forall>(l :: int). i < l \<and> l < o2 + (1 :: int) \<longrightarrow> \<not>is_duplet a i l) \<longrightarrow> (\<forall>(k :: int) (l :: int). ((0 :: int) \<le> k \<and> k < i + (1 :: int)) \<and> k < l \<and> l < int (length a) \<longrightarrow> \<not>eq_opt (a ! nat k) except \<longrightarrow> \<not>is_duplet a k l))) \<and> (o2 + (1 :: int) < o3 \<longrightarrow> (\<forall>(k :: int) (l :: int). ((0 :: int) \<le> k \<and> k < i + (1 :: int)) \<and> k < l \<and> l < int (length a) \<longrightarrow> \<not>eq_opt (a ! nat k) except \<longrightarrow> \<not>is_duplet a k l)))) \<and> \<not>(\<forall>(k :: int) (l :: int). ((0 :: int) \<le> k \<and> k < o1 + (1 :: int)) \<and> k < l \<and> l < int (length a) \<longrightarrow> \<not>eq_opt (a ! nat k) except \<longrightarrow> \<not>is_duplet a k l)) \<and> \<not>o1 + (1 :: int) < (0 :: int)"
+  sorry
+end

@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.heap_sort.heap_sort_Why3_ide_vcg)
+(theories heap_sort.Axiomatic Why3 Why3.Cint heap_sort.A_Count Why3.Memory heap_sort.Compound heap_sort.Axiomatic1 Why3.Qed))

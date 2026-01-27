@@ -1,0 +1,177 @@
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'sinf'' in 'float_quat_of_eulers_yxz' at initialization of 's_phi2' (file math/pprz_algebra_float.c, line 575)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_of_eulers_yxz_call_sinf_pre_finite_arg
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic15.Axiomatic15
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Cfloat.Cfloat
+use import Compound.Compound
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'sinf'' in 'float_quat_of_eulers_yxz' at initialization of 's_phi2' (file math/pprz_algebra_float.c, line 575)
+":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a : addr.
+  let r = t_1[(shiftfield_f6_floateulers_phi a)] in
+  let r_1 = (div_float32 r 2.0) in
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((p_rvalid_floateulers t t_1 a)) ->
+  ((is_float32 r)) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_psi a)])) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_theta a)])) ->
+  ((is_float32 r_1)) ->
+  ((is_finite32 r_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'sinf'' in 'float_quat_of_eulers_yxz' at initialization of 's_theta2' (file math/pprz_algebra_float.c, line 577)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_of_eulers_yxz_call_sinf_pre_finite_arg_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Square.Square
+use import real.Square
+use import real.Trigonometry
+use import Cfloat.Cfloat
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'sinf'' in 'float_quat_of_eulers_yxz' at initialization of 's_theta2' (file math/pprz_algebra_float.c, line 577)
+":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a : addr.
+  let r = t_1[(shiftfield_f6_floateulers_phi a)] in
+  let r_1 = (div_float32 r 2.0) in
+  let r_2 = (sin r_1) in
+  let r_3 = (cos r_1) in
+  let r_4 = t_1[(shiftfield_f6_floateulers_theta a)] in
+  let r_5 = (div_float32 r_4 2.0) in
+  (((region (a.base))) <= 0) ->
+  (r_2 <=. 1.0) ->
+  (r_3 <=. 1.0) ->
+  ((-.1.0) <=. r_2) ->
+  ((-.1.0) <=. r_3) ->
+  ((linked t)) ->
+  ((p_rvalid_floateulers t t_1 a)) ->
+  ((is_float32 r)) ->
+  ((is_float32 t_1[(shiftfield_f6_floateulers_psi a)])) ->
+  ((is_float32 r_4)) ->
+  ((is_finite32 r_1)) ->
+  ((is_float32 r_1)) ->
+  ((is_float32 r_5)) ->
+  ((is_finite32 r_2)) ->
+  ((is_finite32 r_3)) ->
+  ((is_float32 r_2)) ->
+  ((is_float32 r_3)) ->
+  ((is_finite32 r_5))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition 'finite_arg' in 'sinf'' in 'float_quat_of_eulers_yxz' at initialization of 's_psi2' (file math/pprz_algebra_float.c, line 579)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCfloat_quat_of_eulers_yxz_call_sinf_pre_finite_arg_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Qed.Qed
+use import int.Abs as IAbs
+use import Cmath.Cmath
+use import real.Abs as RAbs
+use import Square.Square
+use import real.Square
+use import real.Trigonometry
+use import Cfloat.Cfloat
+use import Compound.Compound
+use import Axiomatic15.Axiomatic15
+
+(*
+goal WP "expl:Instance of 'Pre-condition 'finite_arg' in 'sinf'' in 'float_quat_of_eulers_yxz' at initialization of 's_psi2' (file math/pprz_algebra_float.c, line 579)
+":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_1 : map addr real.
+  forall a : addr.
+  let r = t_1[(shiftfield_f6_floateulers_phi a)] in
+  let r_1 = (div_float32 r 2.0) in
+  let r_2 = (sin r_1) in
+  let r_3 = t_1[(shiftfield_f6_floateulers_theta a)] in
+  let r_4 = (div_float32 r_3 2.0) in
+  let r_5 = (sin r_4) in
+  let r_6 = (cos r_1) in
+  let r_7 = (cos r_4) in
+  let r_8 = t_1[(shiftfield_f6_floateulers_psi a)] in
+  let r_9 = (div_float32 r_8 2.0) in
+  (((region (a.base))) <= 0) ->
+  (r_2 <=. 1.0) ->
+  (r_5 <=. 1.0) ->
+  (r_6 <=. 1.0) ->
+  (r_7 <=. 1.0) ->
+  ((-.1.0) <=. r_2) ->
+  ((-.1.0) <=. r_5) ->
+  ((-.1.0) <=. r_6) ->
+  ((-.1.0) <=. r_7) ->
+  ((linked t)) ->
+  ((p_rvalid_floateulers t t_1 a)) ->
+  ((is_float32 r)) ->
+  ((is_float32 r_8)) ->
+  ((is_float32 r_3)) ->
+  ((is_finite32 r_1)) ->
+  ((is_finite32 r_4)) ->
+  ((is_float32 r_1)) ->
+  ((is_float32 r_9)) ->
+  ((is_float32 r_4)) ->
+  ((is_finite32 r_2)) ->
+  ((is_finite32 r_5)) ->
+  ((is_finite32 r_6)) ->
+  ((is_finite32 r_7)) ->
+  ((is_float32 r_2)) ->
+  ((is_float32 r_5)) ->
+  ((is_float32 r_6)) ->
+  ((is_float32 r_7)) ->
+  ((is_finite32 r_9))
+
+end
+

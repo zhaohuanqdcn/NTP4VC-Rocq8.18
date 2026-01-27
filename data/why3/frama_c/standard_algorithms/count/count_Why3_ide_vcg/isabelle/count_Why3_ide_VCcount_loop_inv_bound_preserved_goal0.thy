@@ -1,0 +1,14 @@
+theory count_Why3_ide_VCcount_loop_inv_bound_preserved_goal0
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory" "../../lib/isabelle/Axiomatic1_Axiomatic1" "../../lib/isabelle/A_Count_A_Count" "Why3STD.Cint_Cint" "../../lib/isabelle/Compound_Compound" "../../lib/isabelle/Axiomatic_Axiomatic"
+begin
+theorem goal0:
+  fixes t_1 :: "addr \<Rightarrow> int"
+  fixes a :: "addr"
+  fixes i_2 :: "int"
+  fixes i :: "int"
+  fixes i_1 :: "int"
+  fixes t :: "int \<Rightarrow> int"
+  fixes i_3 :: "int"
+  shows "let x :: int = l_count_1' t_1 a (0 :: int) i_2 i; a_1 :: addr = shift a i_2; x_1 :: int = t_1 a_1 in i_2 \<le> i_1 \<longrightarrow> (0 :: int) \<le> i_2 \<longrightarrow> i_2 < i_1 \<longrightarrow> region (base a) \<le> (0 :: int) \<longrightarrow> x \<le> i_2 \<longrightarrow> (0 :: int) \<le> x \<longrightarrow> i_2 \<le> (4294967294 :: int) \<longrightarrow> linked t \<longrightarrow> is_uint32 i_1 \<longrightarrow> is_uint32 i_2 \<longrightarrow> is_uint32 i_3 \<longrightarrow> is_sint32 i \<longrightarrow> is_uint32 ((1 :: int) + i_2) \<longrightarrow> is_sint32 x_1 \<longrightarrow> valid_rd t (shift a (0 :: int)) i_1 \<longrightarrow> valid_rd t a_1 (1 :: int) \<longrightarrow> is_uint32 x \<longrightarrow> \<not>x_1 = i \<or> l_count_1' t_1 a (0 :: int) i_2 x_1 = i_3 \<and> i_3 \<le> (4294967294 :: int) \<longrightarrow> -(1 :: int) \<le> i_2"
+  sorry
+end

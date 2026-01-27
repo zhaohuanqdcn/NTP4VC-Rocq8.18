@@ -1,0 +1,68 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/_parse_integer.h, line 16) in 'div_u64_rem_0' --- *)
+(* ---------------------------------------------------------- *)
+theory VCdiv_u64_rem_0_post
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition (file src/_parse_integer.h, line 16) in 'div_u64_rem_0'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let x = (mod i_1 i) in
+  (i <> 0) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint64 i_1)) ->
+  ((valid_rw t a 1)) ->
+  (x = ((to_uint32 x)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition (file src/_parse_integer.h, line 17) in 'div_u64_rem_0' --- *)
+(* ---------------------------------------------------------- *)
+theory VCdiv_u64_rem_0_post_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Axiomatic3.Axiomatic3
+use import Memory.Memory
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition (file src/_parse_integer.h, line 17) in 'div_u64_rem_0'":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall a : addr.
+  let x = (div i_1 i) in
+  (i <> 0) ->
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint64 i_1)) ->
+  ((valid_rw t a 1)) ->
+  (x = ((to_uint64 x)))
+
+end
+

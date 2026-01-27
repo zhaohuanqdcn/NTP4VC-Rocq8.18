@@ -1,0 +1,50 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Definitions                                 --- *)
+(* ---------------------------------------------------------- *)
+theory Axiomatic
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+
+function l_size (mint_0 : map addr int) (s : addr) : int =
+    mint_0[(shiftfield_f1_stack_size s)]
+
+predicate p_empty (mint_0 : map addr int) (s : addr) =
+    ((l_size mint_0 s)) = 0
+
+function l_storage (mptr_0 : map addr addr) (s : addr) : addr =
+    mptr_0[(shiftfield_f1_stack_obj s)]
+
+function l_capacity (mint_0 : map addr int) (s : addr) : int =
+    mint_0[(shiftfield_f1_stack_capacity s)]
+
+predicate p_invariant (malloc_0 : map int int) (mptr_0 : map addr addr)
+    (mint_0 : map addr int) (s : addr) =
+    let x = (l_capacity mint_0 s) in let x_1 = (l_size mint_0 s) in
+    let a = (shift_sint32 ((l_storage mptr_0 s)) 0) in (0 < x) /\
+    (x_1 <= x) /\ (0 <= x_1) /\ ((valid_rw malloc_0 a x)) /\
+    ((separated s 3 a x))
+
+use import Cint.Cint
+
+axiom Q_TL_Size:
+  forall s : addr.
+  forall mint_0 : map addr int
+  [(l_size mint_0 s)].
+  (is_uint32 ((l_size mint_0 s)))
+
+axiom Q_TL_Capacity:
+  forall s : addr.
+  forall mint_0 : map addr int
+  [(l_capacity mint_0 s)].
+  (is_uint32 ((l_capacity mint_0 s)))
+
+end
+

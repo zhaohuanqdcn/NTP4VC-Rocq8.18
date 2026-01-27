@@ -1,0 +1,1306 @@
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 20) (1/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_2_preserved_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 20) (1/7)":
+*)
+goal goal0:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  (t_1[a] = 43) ->
+  (x = (a.base)) ->
+  (0 <= i_2) ->
+  (((region x)) <= 0) ->
+  ((i_2 + x_1) <= x_2) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_1) < x_2) ->
+   (t_1[(shift_sint8 a_1 i_3)] <> 0)) ->
+  (t_1[(shift_sint8 a_1 i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 20) (2/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_2_preserved_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 20) (2/7)":
+*)
+goal goal1:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  (t_1[a] = 97) ->
+  (x = (a.base)) ->
+  (0 <= i_2) ->
+  (((region x)) <= 0) ->
+  ((i_2 + x_1) <= x_2) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_1) < x_2) ->
+   (t_1[(shift_sint8 a_1 i_3)] <> 0)) ->
+  (t_1[(shift_sint8 a_1 i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 20) (3/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_2_preserved_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 20) (3/7)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  (t_1[a] = 101) ->
+  (x = (a.base)) ->
+  (0 <= i_2) ->
+  (((region x)) <= 0) ->
+  ((i_2 + x_1) <= x_2) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_1) < x_2) ->
+   (t_1[(shift_sint8 a_1 i_3)] <> 0)) ->
+  (t_1[(shift_sint8 a_1 i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 20) (4/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_2_preserved_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 20) (4/7)":
+*)
+goal goal3:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  (t_1[a] = 114) ->
+  (x = (a.base)) ->
+  (0 <= i_2) ->
+  (((region x)) <= 0) ->
+  ((i_2 + x_1) <= x_2) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_1) < x_2) ->
+   (t_1[(shift_sint8 a_1 i_3)] <> 0)) ->
+  (t_1[(shift_sint8 a_1 i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 20) (5/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_2_preserved_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 20) (5/7)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  (t_1[a] = 119) ->
+  (x = (a.base)) ->
+  (0 <= i_2) ->
+  (((region x)) <= 0) ->
+  ((i_2 + x_1) <= x_2) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_1) < x_2) ->
+   (t_1[(shift_sint8 a_1 i_3)] <> 0)) ->
+  (t_1[(shift_sint8 a_1 i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 20) (6/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_2_preserved_part6
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 20) (6/7)":
+*)
+goal goal5:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = a_1.offset in
+  let x_2 = a.offset in
+  (t_1[a] = 120) ->
+  (x = (a.base)) ->
+  (0 <= i_2) ->
+  (((region x)) <= 0) ->
+  ((i_2 + x_1) <= x_2) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_1) < x_2) ->
+   (t_1[(shift_sint8 a_1 i_3)] <> 0)) ->
+  (t_1[(shift_sint8 a_1 i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 20) (7/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_2_preserved_part7
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 20) (7/7)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a_1.base in
+  let x_2 = a_1.offset in
+  let x_3 = a.offset in
+  (x <> 0) ->
+  (x <> 43) ->
+  (x <> 97) ->
+  (x <> 101) ->
+  (x <> 114) ->
+  (x <> 119) ->
+  (x <> 120) ->
+  (x_1 = (a.base)) ->
+  (0 <= i_2) ->
+  (((region x_1)) <= 0) ->
+  ((i_2 + x_2) <= x_3) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_3 : int. (0 <= i_3) -> ((i_3 + x_2) < x_3) ->
+   (t_1[(shift_sint8 a_1 i_3)] <> 0)) ->
+  (t_1[(shift_sint8 a_1 i_2)] <> 0)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (1/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part01
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (1/14)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  (t_1[a] = 43) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le a_1 ((shift_sint8 a 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (2/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part02
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (2/14)":
+*)
+goal goal8:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let a_2 = (shift_sint8 a_1 ((l_length t_1 a_1))) in
+  (t_1[a] = 43) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a a_2)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le ((shift_sint8 a 1)) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (3/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part03
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (3/14)":
+*)
+goal goal9:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  (t_1[a] = 97) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le a_1 ((shift_sint8 a 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (4/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part04
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (4/14)":
+*)
+goal goal10:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let a_2 = (shift_sint8 a_1 ((l_length t_1 a_1))) in
+  (t_1[a] = 97) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a a_2)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le ((shift_sint8 a 1)) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (5/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part05
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (5/14)":
+*)
+goal goal11:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  (t_1[a] = 101) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le a_1 ((shift_sint8 a 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (6/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part06
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (6/14)":
+*)
+goal goal12:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let a_2 = (shift_sint8 a_1 ((l_length t_1 a_1))) in
+  (t_1[a] = 101) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a a_2)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le ((shift_sint8 a 1)) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (7/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part07
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (7/14)":
+*)
+goal goal13:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  (t_1[a] = 114) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le a_1 ((shift_sint8 a 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (8/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part08
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (8/14)":
+*)
+goal goal14:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let a_2 = (shift_sint8 a_1 ((l_length t_1 a_1))) in
+  (t_1[a] = 114) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a a_2)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le ((shift_sint8 a 1)) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (9/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part09
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (9/14)":
+*)
+goal goal15:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  (t_1[a] = 119) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le a_1 ((shift_sint8 a 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (10/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part10
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (10/14)":
+*)
+goal goal16:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let a_2 = (shift_sint8 a_1 ((l_length t_1 a_1))) in
+  (t_1[a] = 119) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a a_2)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le ((shift_sint8 a 1)) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (11/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part11
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (11/14)":
+*)
+goal goal17:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  (t_1[a] = 120) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le a_1 ((shift_sint8 a 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (12/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part12
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (12/14)":
+*)
+goal goal18:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let a_2 = (shift_sint8 a_1 ((l_length t_1 a_1))) in
+  (t_1[a] = 120) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a a_2)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le ((shift_sint8 a 1)) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (13/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part13
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (13/14)":
+*)
+goal goal19:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a_1.base in
+  (x <> 0) ->
+  (x <> 43) ->
+  (x <> 97) ->
+  (x <> 101) ->
+  (x <> 114) ->
+  (x <> 119) ->
+  (x <> 120) ->
+  (x_1 = (a.base)) ->
+  (((region x_1)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 ((l_length t_1 a_1)))))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le a_1 ((shift_sint8 a 1))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant (file fopen.c, line 21) (14/14) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_preserved_part14
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Preservation of Invariant (file fopen.c, line 21) (14/14)":
+*)
+goal goal20:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a_1.base in
+  let a_2 = (shift_sint8 a_1 ((l_length t_1 a_1))) in
+  (x <> 0) ->
+  (x <> 43) ->
+  (x <> 97) ->
+  (x <> 101) ->
+  (x <> 114) ->
+  (x <> 119) ->
+  (x <> 120) ->
+  (x_1 = (a.base)) ->
+  (((region x_1)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a a_2)) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + (a_1.offset)) < (a.offset)) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  ((addr_le ((shift_sint8 a 1)) a_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file fopen.c, line 21) (1/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_established_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant (file fopen.c, line 21) (1/2)":
+*)
+goal goal21:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((addr_le a a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant (file fopen.c, line 21) (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_inv_3_established_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Establishment of Invariant (file fopen.c, line 21) (2/2)":
+*)
+goal goal22:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((p_length_of_str_is t t_1 a i)) ->
+  ((p_length_of_str_is t t_1 a i_1)) ->
+  ((addr_le a ((shift_sint8 a ((l_length t_1 a))))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file fopen.c, line 27) (1/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_term_positive_part1
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file fopen.c, line 27) (1/7)":
+*)
+goal goal23:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = (l_length t_1 a_1) in
+  let x_2 = a_1.offset in
+  let x_3 = a.offset in
+  (t_1[a] = 43) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_1)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_2) < x_3) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  (x_3 <= (x_2 + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file fopen.c, line 27) (2/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_term_positive_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file fopen.c, line 27) (2/7)":
+*)
+goal goal24:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = (l_length t_1 a_1) in
+  let x_2 = a_1.offset in
+  let x_3 = a.offset in
+  (t_1[a] = 97) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_1)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_2) < x_3) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  (x_3 <= (x_2 + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file fopen.c, line 27) (3/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_term_positive_part3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file fopen.c, line 27) (3/7)":
+*)
+goal goal25:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = (l_length t_1 a_1) in
+  let x_2 = a_1.offset in
+  let x_3 = a.offset in
+  (t_1[a] = 101) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_1)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_2) < x_3) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  (x_3 <= (x_2 + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file fopen.c, line 27) (4/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_term_positive_part4
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file fopen.c, line 27) (4/7)":
+*)
+goal goal26:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = (l_length t_1 a_1) in
+  let x_2 = a_1.offset in
+  let x_3 = a.offset in
+  (t_1[a] = 114) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_1)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_2) < x_3) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  (x_3 <= (x_2 + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file fopen.c, line 27) (5/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_term_positive_part5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file fopen.c, line 27) (5/7)":
+*)
+goal goal27:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = (l_length t_1 a_1) in
+  let x_2 = a_1.offset in
+  let x_3 = a.offset in
+  (t_1[a] = 119) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_1)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_2) < x_3) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  (x_3 <= (x_2 + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file fopen.c, line 27) (6/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_term_positive_part6
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file fopen.c, line 27) (6/7)":
+*)
+goal goal28:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = a_1.base in
+  let x_1 = (l_length t_1 a_1) in
+  let x_2 = a_1.offset in
+  let x_3 = a.offset in
+  (t_1[a] = 120) ->
+  (x = (a.base)) ->
+  (((region x)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_1)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_2) < x_3) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  (x_3 <= (x_2 + x_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Positivity of Loop variant at loop (file fopen.c, line 27) (7/7) --- *)
+(* ---------------------------------------------------------- *)
+theory VC__parse_open_mode_loop_term_positive_part7
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import A_Length.A_Length
+
+(*
+goal WP "expl:Positivity of Loop variant at loop (file fopen.c, line 27) (7/7)":
+*)
+goal goal29:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let x = t_1[a] in
+  let x_1 = a_1.base in
+  let x_2 = (l_length t_1 a_1) in
+  let x_3 = a_1.offset in
+  let x_4 = a.offset in
+  (x <> 0) ->
+  (x <> 43) ->
+  (x <> 97) ->
+  (x <> 101) ->
+  (x <> 114) ->
+  (x <> 119) ->
+  (x <> 120) ->
+  (x_1 = (a.base)) ->
+  (((region x_1)) <= 0) ->
+  ((linked t)) ->
+  ((sconst t_1)) ->
+  ((addr_le a_1 a)) ->
+  ((is_sint8 x)) ->
+  ((p_length_of_str_is t t_1 a_1 i)) ->
+  ((p_length_of_str_is t t_1 a_1 i_1)) ->
+  ((addr_le a ((shift_sint8 a_1 x_2)))) ->
+  (forall i_2 : int. (0 <= i_2) -> ((i_2 + x_3) < x_4) ->
+   (t_1[(shift_sint8 a_1 i_2)] <> 0)) ->
+  (x_4 <= (x_3 + x_2))
+
+end
+

@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name verifythis_2024_challenge1_vcg)
+(theories Why3))

@@ -1,0 +1,117 @@
+module LSE
+
+  (* from Why3 standard library *)
+  use int.Int
+  use real.RealInfix
+  use real.Abs
+  use real.FromInt
+  use real.ExpLog
+
+
+  (* from this development *)
+  use udouble.UDouble  (* unbounded doubles *)
+
+  use my_exp_log.ExpLogApprox
+  use my_exp_log.ExpLogLemmas
+
+  use sum_real.Sum as SumReal
+  use my_sum.Sum as USum
+
+  (** [exp_fun a i = exp (a i)] *)
+  let ghost function exp_fun (a:int -> udouble) : int -> real =
+    fun i -> exp ((USum.real_fun a) i)
+
+  (** [u_exp_fun a i = exp (a i)] in unbound floating-point *)
+  let ghost function u_exp_fun (a: int -> udouble) : int -> udouble =
+    fun i -> u_exp (a i)
+
+  (** Sum of approximate exponentials
+      [u_sum_of_u_exp(a,n) = exp a(m) + ... + exp a(n-1)] *)
+  let ghost function u_sum_of_u_exp (a: int -> udouble) (m n:int) : udouble =
+    USum.u_sum (u_exp_fun a) m n
+
+  (** The LSE function itself, exact computation
+      [lse(a,n) = log (exp a(0) + ... + exp a(size-1))] *)
+  let ghost function lse_exact (f : int -> udouble) (size : int) =
+    log (SumReal.sum (exp_fun f) 0 size)
+
+  (** The LSE function, floating-point approximation *)
+  function u_lse [@inline:trivial] (a: int -> udouble) (size:int) : udouble
+    = u_log (u_sum_of_u_exp a 0 size)
+
+(*
+  val u_lse (a:int -> udouble) (size:int) : udouble
+    ensures { result = u_lse a size }
+*)
+
+  (* use sum_real.Extras as Extras (\* need exp > 0, err_compose *\) *)
+  use my_sum.Combine as Combine (* need for u_sum_accuracy_combine_pos *)
+  use my_sum.Bound as B (* needed for u_sum_constant_bounds *)
+
+  (* BEGIN{th_lse_accuracy} *)
+  let ghost lse_accuracy (a:int -> udouble) (size:int) : unit
+    requires { 1 <= size }
+    requires { from_int (size - 1) <=. 0x1p51 }
+    requires { forall i. 0 <= i < size -> abs (to_real (a i)) <=. exp_max_value }
+    requires { exp exp_max_value *. (1.0 +. exp_error) *. from_int size *. (1.0 +. eps *. from_int (size - 1))
+               <=. log_max_value }
+    ensures {
+      let err = exp_error +. eps *. from_int (size - 1) *. (1. +. exp_error) in
+      abs (to_real (u_lse a size) -. lse_exact a size) <=.
+      log_error *. abs (lse_exact a size) -. log (1. -. err) *. (1. +. log_error)
+    }
+  (* END{th_lse_accuracy} *)
+  = ()
+
+
+end
+
+
+(*
+
+module LSEJ3Axiomatic
+  use int.Int
+  use ufloat.UDouble
+  use cfloat.Safe64
+  use u_sum.SumUDouble
+  use u_sum.J3Axiomatic
+  use my_exp_log_approx.ExpLogApprox
+  use LSE
+  use real.Abs
+  use real.RealInfix
+  use real.ExpLog
+  use real.FromInt
+
+  type double = Safe64.t
+
+  (* These additionnal constructions have to be used because of the lack of higher order support in ACSL logic types *)
+  let ghost function u_sum_of_u_exp [@inline:trivial] (f: int -> double) (a b :int) : udouble
+  = u_sum_of_u_exp (ufun f) a b
+  let ghost function lse_exact' [@inline:trivial] (f:int -> double) (size:int) : real = lse_exact (ufun f) size
+  let ghost function lse_udouble [@inline:trivial] (f: int -> double) (size:int) : udouble
+    = u_lse (ufun f) size
+
+  predicate no_overflow_pre [@inline:trivial] (s:double) (f:int -> double) (size_ub a b:int)
+  =
+    0 <= b - a <= size_ub /\
+    to_udouble s = (u_sum_of_u_exp f a b) /\
+    forall i. a <= i < b -> abs (to_real (f i)) <=. 708.
+
+  predicate no_overflow_post [@inline:trivial] (s:double) (size_ub:int)
+  = abs (to_real s) <=. (u_exp_ub *. from_int size_ub) *. (1. +. eps *. from_int (size_ub - 1))
+
+  let ghost no_overflow (s : double) (f: int -> double) (size_ub a b : int) : unit
+    requires { no_overflow_pre s f size_ub a b }
+    ensures { no_overflow_post s size_ub }
+  = ()
+
+  let ghost lse_udouble_err (a:int -> double) (size:int) : unit
+    requires { 1 <= size <= max_size }
+    ensures {
+      let err = exp_error +. eps *. from_int (size - 1) *. (1. +. exp_error) in
+      abs (UDouble.to_real (lse_udouble a size) -. lse_exact (ufun a) size) <=.
+      log_error *. abs (lse_exact (ufun a) size) -. log (1. -. err) *. (1. +. log_error)
+    }
+  = ()
+end
+*)

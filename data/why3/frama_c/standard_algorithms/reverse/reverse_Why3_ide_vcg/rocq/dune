@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.reverse.reverse_Why3_ide_vcg)
+(theories reverse.Compound Why3 reverse.Axiomatic Why3.Cint Why3.Memory Why3.Qed))

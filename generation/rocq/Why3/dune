@@ -1,0 +1,4 @@
+(coq.theory
+ (name Why3)
+ (package Why3Bench)
+ (theories Stdlib stdpp stdpp.bitvector))

@@ -1,0 +1,10 @@
+session lse = NTP4Verif +
+theories
+  "lse_LSE_lseqtvc"
+  "lse_Helpers_lt_compat_order_mult_lqtvc"
+  "lse_Helpers_sum_of_fun_le_sum_of_abs_funqtvc"
+  "lse_Helpers_exp_approx_posqtvc"
+  "lse_LSE_exp_of_fqtvc"
+  "lse_Helpers_sum_strictly_posqtvc"
+  "lse_Helpers_usum_strictly_posqtvc"
+  "lse_Helpers_usum_recqtvc"

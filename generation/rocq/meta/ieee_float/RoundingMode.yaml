@@ -1,0 +1,16 @@
+atoms:
+  ieee_float.RoundingMode.RNA: [RNA, RoundingMode.RNA]
+  ieee_float.RoundingMode.RNE: [RNE, RoundingMode.RNE]
+  ieee_float.RoundingMode.RTN: [RTN, RoundingMode.RTN]
+  ieee_float.RoundingMode.RTP: [RTP, RoundingMode.RTP]
+  ieee_float.RoundingMode.RTZ: [RTZ, RoundingMode.RTZ]
+  ieee_float.RoundingMode.to_nearest: [to_nearest, RoundingMode.to_nearest]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.ieee_float.RoundingMode
+prefix_ops: {}
+types:
+  ieee_float.RoundingMode.mode: [mode, RoundingMode.mode]

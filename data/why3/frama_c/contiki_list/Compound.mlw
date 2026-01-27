@@ -1,0 +1,92 @@
+(* ---------------------------------------------------------- *)
+(* --- Memory Compound Updates                            --- *)
+(* ---------------------------------------------------------- *)
+theory Compound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function shift_ptr (p : addr) (k : int) : addr = (shift p k)
+
+function shiftfield_f1_list_next (p : addr) : addr = (shift p 0)
+
+function shiftfield_f1_list_x (p : addr) : addr = (shift p 1)
+
+function shiftfield_f1_list_y (p : addr) : addr = (shift p 2)
+
+function shiftfield_f1_list_z (p : addr) : addr = (shift p 3)
+
+use import S1_list.S1_list
+
+function load_s1_list (p : addr) (mflt_0 : map addr real)
+    (mptr_0 : map addr addr) : s1_list =
+    { f1_list_next = mptr_0[(shiftfield_f1_list_next p)] ;
+      f1_list_x = mflt_0[(shiftfield_f1_list_x p)] ;
+      f1_list_y = mflt_0[(shiftfield_f1_list_y p)] ;
+      f1_list_z = mflt_0[(shiftfield_f1_list_z p)] }
+
+axiom Q_Load_S1_list_update_Mflt:
+  forall p q : addr.
+  forall mptr_0 : map addr addr.
+  forall mflt_0 : map addr real.
+  forall v : real
+  [(load_s1_list p mflt_0[q <- v] mptr_0)].
+  ((separated p 4 q 1)) ->
+    (((load_s1_list p mflt_0[q <- v] mptr_0)) =
+     ((load_s1_list p mflt_0 mptr_0)))
+
+axiom Q_Load_S1_list_eqmem_Mflt:
+  forall p q : addr.
+  forall mptr_0 : map addr addr.
+  forall mflt_0 mflt_1 : map addr real.
+  forall k : int
+  [(eqmem mflt_0 mflt_1 q k),(load_s1_list p mflt_0 mptr_0)|
+    (eqmem mflt_0 mflt_1 q k),(load_s1_list p mflt_1 mptr_0)].
+  ((included p 4 q k)) -> ((eqmem mflt_0 mflt_1 q k)) ->
+    (((load_s1_list p mflt_1 mptr_0)) = ((load_s1_list p mflt_0 mptr_0)))
+
+axiom Q_Load_S1_list_havoc_Mflt:
+  forall p q : addr.
+  forall mptr_0 : map addr addr.
+  forall mflt_0 mflt_1 mflt_2 : map addr real.
+  forall k : int
+  [(load_s1_list p mflt_0 mptr_0)|(load_s1_list p mflt_1 mptr_0)].
+  (((havoc mflt_2 mflt_0 q k)) = mflt_1) -> ((separated p 4 q k)) ->
+    (((load_s1_list p mflt_1 mptr_0)) = ((load_s1_list p mflt_0 mptr_0)))
+
+axiom Q_Load_S1_list_update_Mptr:
+  forall p q v : addr.
+  forall mptr_0 : map addr addr.
+  forall mflt_0 : map addr real
+  [(load_s1_list p mflt_0 mptr_0[q <- v])].
+  ((separated p 4 q 1)) ->
+    (((load_s1_list p mflt_0 mptr_0[q <- v])) =
+     ((load_s1_list p mflt_0 mptr_0)))
+
+axiom Q_Load_S1_list_eqmem_Mptr:
+  forall p q : addr.
+  forall mptr_0 mptr_1 : map addr addr.
+  forall mflt_0 : map addr real.
+  forall k : int
+  [(eqmem mptr_0 mptr_1 q k),(load_s1_list p mflt_0 mptr_0)|
+    (eqmem mptr_0 mptr_1 q k),(load_s1_list p mflt_0 mptr_1)].
+  ((included p 4 q k)) -> ((eqmem mptr_0 mptr_1 q k)) ->
+    (((load_s1_list p mflt_0 mptr_1)) = ((load_s1_list p mflt_0 mptr_0)))
+
+axiom Q_Load_S1_list_havoc_Mptr:
+  forall p q : addr.
+  forall mptr_0 mptr_1 mptr_2 : map addr addr.
+  forall mflt_0 : map addr real.
+  forall k : int
+  [(load_s1_list p mflt_0 mptr_0)|(load_s1_list p mflt_0 mptr_1)].
+  (((havoc mptr_2 mptr_0 q k)) = mptr_1) -> ((separated p 4 q k)) ->
+    (((load_s1_list p mflt_0 mptr_1)) = ((load_s1_list p mflt_0 mptr_0)))
+
+end
+

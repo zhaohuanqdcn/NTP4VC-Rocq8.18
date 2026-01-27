@@ -1,0 +1,75 @@
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file list_item_next.c, line 20) --- *)
+(* ---------------------------------------------------------- *)
+theory VClist_item_next_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file list_item_next.c, line 20)":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((p_linked_n t t_1 a a_1 i_1 i null)) ->
+  ((valid_rd t ((shiftfield_f1_list_next a)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_empty' (file list_item_next.c, line 14) in 'list_item_next' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VClist_item_next_not_empty_post_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition for 'not_empty' (file list_item_next.c, line 14) in 'list_item_next' (2/2)":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr addr.
+  forall a_1 a : addr.
+  (null <> a) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((framed t_1)) ->
+  ((linked t)) ->
+  ((is_sint32 i)) ->
+  ((is_sint32 i_1)) ->
+  ((p_linked_n t t_1 a a_1 i_1 i null)) ->
+  ((p_linked_n t t_1 t_1[(shiftfield_f1_list_next a)] a_1 (1 + i_1) (i - 1)
+     null))
+
+end
+

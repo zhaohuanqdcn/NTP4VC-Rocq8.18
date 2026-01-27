@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name verifythis_fm2012_LRS_vcg)
+(theories Why3 verifythis_fm2012_LRS_vcg.verifythis_fm2012_LRS Why3.why3.Ref Why3.map))

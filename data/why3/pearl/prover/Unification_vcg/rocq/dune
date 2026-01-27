@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name prover.Unification_vcg)
+(theories prover.Firstorder_term_impl prover.Sum prover.Nat prover.Functions prover.Choice prover.Firstorder_term_spec prover.Firstorder_symbol_impl Why3.why3.Ref prover.Firstorder_symbol_spec Why3 prover.Predicates prover.OptionFuncs prover.Unification prover.BacktrackArray))

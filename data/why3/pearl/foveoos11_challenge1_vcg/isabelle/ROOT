@@ -1,0 +1,6 @@
+session foveoos11_challenge1 = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "foveoos11_challenge1_Max"
+  "foveoos11_challenge1_Max_maxqtvc"

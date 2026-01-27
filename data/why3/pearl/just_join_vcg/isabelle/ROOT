@@ -1,0 +1,13 @@
+session just_join = NTP4Verif +
+theories
+  "just_join_Top_split_lastqtvc"
+  "just_join_Top_heightqtvc"
+  "just_join_Top_join_rightqtvc"
+  "just_join_Top_deleteqtvc"
+  "just_join_Top_join2qtvc"
+  "just_join_Top_rotate_rightqtvc"
+  "just_join_Top_join_leftqtvc"
+  "just_join_Top_splitqtvc"
+  "just_join_Top_joinqtvc"
+  "just_join_Top_insertqtvc"
+  "just_join_Top_rotate_leftqtvc"

@@ -1,0 +1,14 @@
+session resizable_array = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "resizable_array_ResizableArraySpec"
+  "resizable_array_Test_test2qtvc"
+  "resizable_array_ResizableArrayImplem"
+  "resizable_array_ResizableArrayImplem_resizeqtvc"
+  "resizable_array_ResizableArrayImplem_mixfix_lbrblsmnqtvc"
+  "resizable_array_ResizableArrayImplem_makeqtvc"
+  "resizable_array_ResizableArrayImplem_mixfix_lbrbqtvc"
+  "resizable_array_Test_test1qtvc"
+  "resizable_array_ResizableArrayImplem_rarrayqtvc"
+  "resizable_array_ResizableArrayImplem_appendqtvc"

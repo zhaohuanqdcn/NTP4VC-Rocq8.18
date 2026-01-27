@@ -1,0 +1,9 @@
+session toupper_Why3_ide = NTP4Verif +
+theories
+  "toupper_Why3_ide_VCtoupper_disjoint_else_isupper_islower_goal1"
+  "toupper_Why3_ide_VCtoupper_isupper_post_goal6"
+  "toupper_Why3_ide_VCtoupper_assign_exit_goal2"
+  "toupper_Why3_ide_VCtoupper_else_post_goal4"
+  "toupper_Why3_ide_VCtoupper_complete_else_isupper_islower_goal0"
+  "toupper_Why3_ide_VCtoupper_islower_post_goal5"
+  "toupper_Why3_ide_VCtoupper_assign_normal_goal3"

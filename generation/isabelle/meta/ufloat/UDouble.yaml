@@ -1,0 +1,47 @@
+atoms:
+  ufloat.UDouble.eps: [eps, ufloat_UDouble.eps]
+  ufloat.UDouble.eta: [eta, ufloat_UDouble.eta]
+  ufloat.UDouble.infix_slsldot: [infix_slsldot, ufloat_UDouble.infix_slsldot]
+  ufloat.UDouble.infix_slslsldot: [infix_slslsldot, ufloat_UDouble.infix_slslsldot]
+  ufloat.UDouble.is_exact: [is_exact, ufloat_UDouble.is_exact]
+  ufloat.UDouble.is_positive_power_of_2: [is_positive_power_of_2, ufloat_UDouble.is_positive_power_of_2]
+  ufloat.UDouble.of_int: [of_int, ufloat_UDouble.of_int]
+  ufloat.UDouble.to_real: [to_real, ufloat_UDouble.to_real]
+  ufloat.UDouble.u0: [u0, ufloat_UDouble.u0]
+  ufloat.UDouble.u1: [u1, ufloat_UDouble.u1]
+  ufloat.UDouble.u1024: [u1024, ufloat_UDouble.u1024]
+  ufloat.UDouble.u128: [u128, ufloat_UDouble.u128]
+  ufloat.UDouble.u16: [u16, ufloat_UDouble.u16]
+  ufloat.UDouble.u16384: [u16384, ufloat_UDouble.u16384]
+  ufloat.UDouble.u2: [u2, ufloat_UDouble.u2]
+  ufloat.UDouble.u2048: [u2048, ufloat_UDouble.u2048]
+  ufloat.UDouble.u256: [u256, ufloat_UDouble.u256]
+  ufloat.UDouble.u32: [u32, ufloat_UDouble.u32]
+  ufloat.UDouble.u32768: [u32768, ufloat_UDouble.u32768]
+  ufloat.UDouble.u4: [u4, ufloat_UDouble.u4]
+  ufloat.UDouble.u4096: [u4096, ufloat_UDouble.u4096]
+  ufloat.UDouble.u512: [u512, ufloat_UDouble.u512]
+  ufloat.UDouble.u64: [u64, ufloat_UDouble.u64]
+  ufloat.UDouble.u65536: [u65536, ufloat_UDouble.u65536]
+  ufloat.UDouble.u8: [u8, ufloat_UDouble.u8]
+  ufloat.UDouble.u8192: [u8192, ufloat_UDouble.u8192]
+  ufloat.UDouble.uadd: [uadd, ufloat_UDouble.uadd]
+  ufloat.UDouble.udiv: [udiv, ufloat_UDouble.udiv]
+  ufloat.UDouble.udiv_closure: [udiv_closure, ufloat_UDouble.udiv_closure]
+  ufloat.UDouble.udiv_exact: [udiv_exact, ufloat_UDouble.udiv_exact]
+  ufloat.UDouble.uminus: [uminus, ufloat_UDouble.uminus]
+  ufloat.UDouble.umul: [umul, ufloat_UDouble.umul]
+  ufloat.UDouble.uone: [uone, ufloat_UDouble.uone]
+  ufloat.UDouble.uround: [uround, ufloat_UDouble.uround]
+  ufloat.UDouble.usub: [usub, ufloat_UDouble.usub]
+  ufloat.UDouble.utwo: [utwo, ufloat_UDouble.utwo]
+  ufloat.UDouble.uzero: [uzero, ufloat_UDouble.uzero]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.ufloat_UDouble
+prefix_ops: {}
+types:
+  ufloat.UDouble.udouble: [udouble, ufloat_UDouble.udouble]

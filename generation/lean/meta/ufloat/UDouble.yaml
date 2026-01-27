@@ -1,0 +1,87 @@
+atoms:
+  ufloat.UDouble.eps: [UDouble.eps]
+  ufloat.UDouble.eta: [UDouble.eta]
+  ufloat.UDouble.infix_slsldot: [UDouble.infix_slsldot]
+  ufloat.UDouble.infix_slslsldot: [UDouble.infix_slslsldot]
+  ufloat.UDouble.is_exact: [UDouble.is_exact]
+  ufloat.UDouble.is_positive_power_of_2: [UDouble.is_positive_power_of_2]
+  ufloat.UDouble.of_int: [UDouble.of_int]
+  ufloat.UDouble.to_real: [UDouble.to_real]
+  ufloat.UDouble.u0: [UDouble.u0]
+  ufloat.UDouble.u1: [UDouble.u1]
+  ufloat.UDouble.u1024: [UDouble.u1024]
+  ufloat.UDouble.u128: [UDouble.u128]
+  ufloat.UDouble.u16: [UDouble.u16]
+  ufloat.UDouble.u16384: [UDouble.u16384]
+  ufloat.UDouble.u2: [UDouble.u2]
+  ufloat.UDouble.u2048: [UDouble.u2048]
+  ufloat.UDouble.u256: [UDouble.u256]
+  ufloat.UDouble.u32: [UDouble.u32]
+  ufloat.UDouble.u32768: [UDouble.u32768]
+  ufloat.UDouble.u4: [UDouble.u4]
+  ufloat.UDouble.u4096: [UDouble.u4096]
+  ufloat.UDouble.u512: [UDouble.u512]
+  ufloat.UDouble.u64: [UDouble.u64]
+  ufloat.UDouble.u65536: [UDouble.u65536]
+  ufloat.UDouble.u8: [UDouble.u8]
+  ufloat.UDouble.u8192: [UDouble.u8192]
+  ufloat.UDouble.uadd: [UDouble.uadd]
+  ufloat.UDouble.udiv: [UDouble.udiv]
+  ufloat.UDouble.udiv_closure: [UDouble.udiv_closure]
+  ufloat.UDouble.udiv_exact: [UDouble.udiv_exact]
+  ufloat.UDouble.uminus: [UDouble.uminus]
+  ufloat.UDouble.umul: [UDouble.umul]
+  ufloat.UDouble.uone: [UDouble.uone]
+  ufloat.UDouble.uround: [UDouble.uround]
+  ufloat.UDouble.usub: [UDouble.usub]
+  ufloat.UDouble.utwo: [UDouble.utwo]
+  ufloat.UDouble.uzero: [UDouble.uzero]
+axioms:
+  ufloat.UDouble.div_by_positive_power_of_2_is_exact: UDouble.div_by_positive_power_of_2_is_exact
+  ufloat.UDouble.eps_bounds: UDouble.eps_bounds
+  ufloat.UDouble.eta_bounds: UDouble.eta_bounds
+  ufloat.UDouble.infix_slsldot'def: UDouble.infix_slsldot'def
+  ufloat.UDouble.infix_slslsldot'def: UDouble.infix_slslsldot'def
+  ufloat.UDouble.to_real_of_int: UDouble.to_real_of_int
+  ufloat.UDouble.to_real_u0: UDouble.to_real_u0
+  ufloat.UDouble.to_real_u1: UDouble.to_real_u1
+  ufloat.UDouble.to_real_u1024: UDouble.to_real_u1024
+  ufloat.UDouble.to_real_u128: UDouble.to_real_u128
+  ufloat.UDouble.to_real_u16: UDouble.to_real_u16
+  ufloat.UDouble.to_real_u16384: UDouble.to_real_u16384
+  ufloat.UDouble.to_real_u2: UDouble.to_real_u2
+  ufloat.UDouble.to_real_u2048: UDouble.to_real_u2048
+  ufloat.UDouble.to_real_u256: UDouble.to_real_u256
+  ufloat.UDouble.to_real_u32: UDouble.to_real_u32
+  ufloat.UDouble.to_real_u32768: UDouble.to_real_u32768
+  ufloat.UDouble.to_real_u4: UDouble.to_real_u4
+  ufloat.UDouble.to_real_u4096: UDouble.to_real_u4096
+  ufloat.UDouble.to_real_u512: UDouble.to_real_u512
+  ufloat.UDouble.to_real_u64: UDouble.to_real_u64
+  ufloat.UDouble.to_real_u65536: UDouble.to_real_u65536
+  ufloat.UDouble.to_real_u8: UDouble.to_real_u8
+  ufloat.UDouble.to_real_u8192: UDouble.to_real_u8192
+  ufloat.UDouble.uadd'spec: UDouble.uadd'spec
+  ufloat.UDouble.uadd'spec'0: UDouble.uadd'spec'0
+  ufloat.UDouble.uadd'spec'1: UDouble.uadd'spec'1
+  ufloat.UDouble.udiv'def: UDouble.udiv'def
+  ufloat.UDouble.udiv'spec: UDouble.udiv'spec
+  ufloat.UDouble.udiv_closure_def: UDouble.udiv_closure_def
+  ufloat.UDouble.udiv_exact'def: UDouble.udiv_exact'def
+  ufloat.UDouble.udiv_exact'spec: UDouble.udiv_exact'spec
+  ufloat.UDouble.uminus'spec: UDouble.uminus'spec
+  ufloat.UDouble.umul'spec: UDouble.umul'spec
+  ufloat.UDouble.uone_spec: UDouble.uone_spec
+  ufloat.UDouble.usub'spec: UDouble.usub'spec
+  ufloat.UDouble.usub'spec'0: UDouble.usub'spec'0
+  ufloat.UDouble.usub'spec'1: UDouble.usub'spec'1
+  ufloat.UDouble.utwo_spec: UDouble.utwo_spec
+  ufloat.UDouble.uzero_spec: UDouble.uzero_spec
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3.ufloat.UDouble
+prefix_ops: {}
+types:
+  ufloat.UDouble.udouble: [UDouble.udouble]

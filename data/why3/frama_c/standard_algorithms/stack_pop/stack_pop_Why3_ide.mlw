@@ -1,0 +1,344 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'valid' in 'stack_pop'              --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_pop_post_valid
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition 'valid' in 'stack_pop'":
+*)
+goal goal0:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let a_1 = (shiftfield_f1_stack_size a) in
+  let x = t_1[a_1] in
+  (0 < x) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  (not (p_empty t_1 a)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((p_invariant t t_2 t_1[a_1 <- x - 1] a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file stack_pop.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_pop_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file stack_pop.c, line 7)":
+*)
+goal goal1:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  (not (p_empty t_1 a)) ->
+  ((valid_rw t a 3)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rw t ((shiftfield_f1_stack_size a)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file stack_pop.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_pop_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file stack_pop.c, line 7)":
+*)
+goal goal2:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  (not (p_empty t_1 a)) ->
+  ((valid_rw t a 3)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rd t ((shiftfield_f1_stack_size a)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file stack_pop.c, line 7) --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_pop_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file stack_pop.c, line 7)":
+*)
+goal goal3:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let x = t_1[(shiftfield_f1_stack_size a)] in
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  (not (p_empty t_1 a)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  (0 < x)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'empty' 'unchanged' in 'stack_pop' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_pop_empty_post_unchanged
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition for 'empty' 'unchanged' in 'stack_pop'":
+*)
+goal goal4:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  ((p_empty t_1 a)) ->
+  ((valid_rw t a 3)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((p_unchanged_2_ t_1 t_1 ((l_storage t_2 a)) ((l_size t_1 a))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_empty' 'size' in 'stack_pop' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_pop_not_empty_post_size
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'not_empty' 'size' in 'stack_pop'":
+*)
+goal goal5:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let a_1 = (shiftfield_f1_stack_size a) in
+  let x = t_1[a_1] in
+  (0 < x) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  (not (p_empty t_1 a)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((1 + ((l_size t_1[a_1 <- x - 1] a))) = ((l_size t_1 a)))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_empty' 'full' in 'stack_pop' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_pop_not_empty_post_full
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'not_empty' 'full' in 'stack_pop'":
+*)
+goal goal6:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let a_1 = (shiftfield_f1_stack_size a) in
+  let x = t_1[a_1] in
+  (0 < x) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  (not (p_empty t_1 a)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_1 1)) ->
+  (not (p_full t_1[a_1 <- x - 1] a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_empty' 'unchanged' in 'stack_pop' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_pop_not_empty_post_unchanged
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'not_empty' 'unchanged' in 'stack_pop'":
+*)
+goal goal7:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let a_1 = (shiftfield_f1_stack_size a) in
+  let x = t_1[a_1] in
+  let m = t_1[a_1 <- x - 1] in
+  (0 < x) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  (not (p_empty t_1 a)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_1 1)) ->
+  ((p_unchanged_2_ m t_1 ((l_storage t_2 a)) ((l_size m a))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition for 'not_empty' 'capacity' in 'stack_pop' --- *)
+(* ---------------------------------------------------------- *)
+theory VCstack_pop_not_empty_post_capacity
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+use import Cint.Cint
+
+(*
+goal WP "expl:Post-condition for 'not_empty' 'capacity' in 'stack_pop'":
+*)
+goal goal8:
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall t_2 : map addr addr.
+  forall a : addr.
+  let a_1 = (shiftfield_f1_stack_size a) in
+  let x = t_1[a_1] in
+  (0 < x) ->
+  (((region (a.base))) <= 0) ->
+  ((framed t_2)) ->
+  ((linked t)) ->
+  (not (p_empty t_1 a)) ->
+  ((valid_rw t a 3)) ->
+  ((is_uint32 x)) ->
+  ((p_invariant t t_2 t_1 a)) ->
+  ((valid_rd t a_1 1)) ->
+  ((valid_rw t a_1 1)) ->
+  (((l_capacity t_1[a_1 <- x - 1] a)) = ((l_capacity t_1 a)))
+
+end
+

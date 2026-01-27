@@ -1,0 +1,864 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'equal' in 'swap_ranges'            --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_post_equal
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'equal' in 'swap_ranges'":
+*)
+goal goal0:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i)) a_3 i) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_3 i a_2 i)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_1 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_1 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_1 i)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_1 i)) ->
+  ((p_equalranges_1_ ((havoc t_2 ((havoc t_1 t_3 a_2 i_1)) a_3 i_1)) t_3 a_1
+     i_1 a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'equal' in 'swap_ranges'            --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_post_equal_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Post-condition 'equal' in 'swap_ranges'":
+*)
+goal goal1:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i)) a_3 i) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i <= i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_3 i a_2 i)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_1 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_1 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_1 i)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_1 i)) ->
+  ((p_equalranges_1_ ((havoc t_2 ((havoc t_1 t_3 a_2 i_1)) a_3 i_1)) t_3 a
+     i_1 a_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'bound' (file swap_ranges.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_bound_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'bound' (file swap_ranges.c, line 9)":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i_1)) a_3 i_1) in
+  let a_5 = (shift_sint32 a i_2) in
+  let a_6 = (shift_sint32 a_1 i_2) in
+  let a_7 = a_4[a_5] in
+  let a_8 = a_4[a_5 <- i][a_6 <- a_7][a_5] in
+  let a_9 = a_4[a_6] in
+  (a_8 = a_9) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 (1 + i_2))) ->
+  ((valid_rw t a_2 i_1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_3 i_1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((separated a_3 i_1 a_2 i_1)) ->
+  ((is_sint32 a_7)) ->
+  ((is_sint32 a_9)) ->
+  ((is_sint32 a_8)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_2 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_2 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_2 i_1)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_2 i_1)) ->
+  ((-1) <= i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'bound' (file swap_ranges.c, line 9) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_bound_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+
+(*
+goal WP "expl:Establishment of Invariant 'bound' (file swap_ranges.c, line 9)":
+*)
+goal goal3:
+  forall i : int.
+  forall t : map int int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_3 i a_2 i)) ->
+  (0 <= i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'equal' (file swap_ranges.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_equal_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'equal' (file swap_ranges.c, line 10)":
+*)
+goal goal4:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i_1)) a_3 i_1) in
+  let a_5 = (shift_sint32 a i_2) in
+  let a_6 = (shift_sint32 a_1 i_2) in
+  let a_7 = a_4[a_5] in
+  let a_8 = a_4[a_5 <- i][a_6 <- a_7] in
+  let a_9 = a_8[a_5] in
+  let a_10 = a_4[a_6] in
+  let x = 1 + i_2 in
+  (a_9 = a_10) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 x)) ->
+  ((valid_rw t a_2 i_1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_3 i_1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((separated a_3 i_1 a_2 i_1)) ->
+  ((is_sint32 a_7)) ->
+  ((is_sint32 a_10)) ->
+  ((is_sint32 a_9)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_2 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_2 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_2 i_1)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_2 i_1)) ->
+  ((p_equalranges_1_ a_8 t_3 a_1 x a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'equal' (file swap_ranges.c, line 10) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_equal_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'equal' (file swap_ranges.c, line 10)":
+*)
+goal goal5:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_3 i a_2 i)) ->
+  ((p_equalranges_1_ t_1 t_1 a_1 0 a))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'equal' (file swap_ranges.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_equal_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'equal' (file swap_ranges.c, line 11)":
+*)
+goal goal6:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i_1)) a_3 i_1) in
+  let a_5 = (shift_sint32 a i_2) in
+  let a_6 = (shift_sint32 a_1 i_2) in
+  let a_7 = a_4[a_5] in
+  let a_8 = a_4[a_5 <- i][a_6 <- a_7] in
+  let a_9 = a_8[a_5] in
+  let a_10 = a_4[a_6] in
+  let x = 1 + i_2 in
+  (a_9 = a_10) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 x)) ->
+  ((valid_rw t a_2 i_1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_3 i_1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((separated a_3 i_1 a_2 i_1)) ->
+  ((is_sint32 a_7)) ->
+  ((is_sint32 a_10)) ->
+  ((is_sint32 a_9)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_2 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_2 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_2 i_1)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_2 i_1)) ->
+  ((p_equalranges_1_ a_8 t_3 a x a_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'equal' (file swap_ranges.c, line 11) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_equal_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'equal' (file swap_ranges.c, line 11)":
+*)
+goal goal7:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_3 i a_2 i)) ->
+  ((p_equalranges_1_ t_1 t_1 a 0 a_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'unchanged' (file swap_ranges.c, line 13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_unchanged_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'unchanged' (file swap_ranges.c, line 13)":
+*)
+goal goal8:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i_1)) a_3 i_1) in
+  let a_5 = (shift_sint32 a i_2) in
+  let a_6 = (shift_sint32 a_1 i_2) in
+  let a_7 = a_4[a_5] in
+  let a_8 = a_4[a_5 <- i][a_6 <- a_7] in
+  let a_9 = a_8[a_5] in
+  let a_10 = a_4[a_6] in
+  let x = 1 + i_2 in
+  (a_9 = a_10) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 x)) ->
+  ((valid_rw t a_2 i_1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_3 i_1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((separated a_3 i_1 a_2 i_1)) ->
+  ((is_sint32 a_7)) ->
+  ((is_sint32 a_10)) ->
+  ((is_sint32 a_9)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_2 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_2 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_2 i_1)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_2 i_1)) ->
+  ((p_unchanged_1_ a_8 t_3 a_1 x i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'unchanged' (file swap_ranges.c, line 13) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_unchanged_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'unchanged' (file swap_ranges.c, line 13)":
+*)
+goal goal9:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_3 i a_2 i)) ->
+  ((p_unchanged_1_ t_1 t_1 a_1 0 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Preservation of Invariant 'unchanged' (file swap_ranges.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_unchanged_2_preserved
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Preservation of Invariant 'unchanged' (file swap_ranges.c, line 14)":
+*)
+goal goal10:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i_1)) a_3 i_1) in
+  let a_5 = (shift_sint32 a i_2) in
+  let a_6 = (shift_sint32 a_1 i_2) in
+  let a_7 = a_4[a_5] in
+  let a_8 = a_4[a_5 <- i][a_6 <- a_7] in
+  let a_9 = a_8[a_5] in
+  let a_10 = a_4[a_6] in
+  let x = 1 + i_2 in
+  (a_9 = a_10) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((is_uint32 x)) ->
+  ((valid_rw t a_2 i_1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_3 i_1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((separated a_3 i_1 a_2 i_1)) ->
+  ((is_sint32 a_7)) ->
+  ((is_sint32 a_10)) ->
+  ((is_sint32 a_9)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_2 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_2 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_2 i_1)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_2 i_1)) ->
+  ((p_unchanged_1_ a_8 t_3 a x i_1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Establishment of Invariant 'unchanged' (file swap_ranges.c, line 14) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_inv_unchanged_2_established
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Establishment of Invariant 'unchanged' (file swap_ranges.c, line 14)":
+*)
+goal goal11:
+  forall i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_3 i a_2 i)) ->
+  ((p_unchanged_1_ t_1 t_1 a 0 i))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file swap_ranges.c, line 19) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_assert_rte_unsigned_overflow
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file swap_ranges.c, line 19)":
+*)
+goal goal12:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i_1)) a_3 i_1) in
+  let a_5 = (shift_sint32 a i_2) in
+  let a_6 = (shift_sint32 a_1 i_2) in
+  let a_7 = a_4[a_5] in
+  let a_8 = a_4[a_5 <- i][a_6 <- a_7][a_5] in
+  let a_9 = a_4[a_6] in
+  (a_8 = a_9) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((valid_rw t a_2 i_1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_3 i_1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((separated a_3 i_1 a_2 i_1)) ->
+  ((is_sint32 a_7)) ->
+  ((is_sint32 a_9)) ->
+  ((is_sint32 a_8)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_2 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_2 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_2 i_1)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_2 i_1)) ->
+  (i_2 <= 4294967294)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Loop assigns (file swap_ranges.c, line 16) (2/2)   --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_loop_assign_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Compound.Compound
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Loop assigns (file swap_ranges.c, line 16) (2/2)":
+*)
+goal goal13:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i_1)) a_3 i_1) in
+  let a_5 = (shift_sint32 a i_2) in
+  let a_6 = (shift_sint32 a_1 i_2) in
+  let a_7 = a_4[a_5] in
+  let a_8 = a_4[a_5 <- i][a_6 <- a_7][a_5] in
+  let a_9 = a_4[a_6] in
+  (a_8 = a_9) ->
+  (i_2 <= i_1) ->
+  (0 <= i_2) ->
+  (i_2 < i_1) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  (i_2 <= 4294967294) ->
+  ((linked t)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((valid_rw t a_2 i_1)) ->
+  ((valid_rw t a_5 1)) ->
+  ((valid_rw t a_3 i_1)) ->
+  ((valid_rw t a_6 1)) ->
+  ((separated a_3 i_1 a_2 i_1)) ->
+  ((is_sint32 a_7)) ->
+  ((is_sint32 a_9)) ->
+  ((is_sint32 a_8)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_2 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_2 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_2 i_1)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_2 i_1)) ->
+  (((not (invalid t a_5 1)) ->
+    (((included a_5 1 a_2 i_1)) \/ ((included a_5 1 a_3 i_1)))) /\
+   ((not (invalid t a_6 1)) ->
+    (((included a_6 1 a_2 i_1)) \/ ((included a_6 1 a_3 i_1)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assigns (file swap_ranges.h, line 12) in 'swap_ranges' (2/2) --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_assign_exit_part2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Assigns (file swap_ranges.h, line 12) in 'swap_ranges' (2/2)":
+*)
+goal goal14:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a i_1) in
+  let a_4 = (shift_sint32 a_1 0) in
+  let a_5 = (shift_sint32 a_1 i_1) in
+  let a_6 = (havoc t_2 ((havoc t_1 t_3 a_2 i)) a_4 i) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 1)) ->
+  ((valid_rw t a_4 i)) ->
+  ((valid_rw t a_5 1)) ->
+  ((separated a_4 i a_2 i)) ->
+  ((p_equalranges_1_ a_6 t_3 a i_1 a_1)) ->
+  ((p_equalranges_1_ a_6 t_3 a_1 i_1 a)) ->
+  ((p_unchanged_1_ a_6 t_3 a i_1 i)) ->
+  ((p_unchanged_1_ a_6 t_3 a_1 i_1 i)) ->
+  (((not (invalid t a_3 1)) ->
+    (((included a_3 1 a_2 i)) \/ ((included a_3 1 a_4 i)))) /\
+   ((not (invalid t a_5 1)) ->
+    (((included a_5 1 a_2 i)) \/ ((included a_5 1 a_4 i)))))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/mutating/swap/swap.h, line 8) in 'swap'' in 'swap_ranges' at call 'swap' (file swap_ranges.c, line 20)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_call_swap_pre
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/mutating/swap/swap.h, line 8) in 'swap'' in 'swap_ranges' at call 'swap' (file swap_ranges.c, line 20)
+":
+*)
+goal goal15:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i)) a_3 i) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_3 i a_2 i)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_1 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_1 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_1 i)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_1 i)) ->
+  ((valid_rw t ((shift_sint32 a_1 i_1)) 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Instance of 'Pre-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/mutating/swap/swap.h, line 9) in 'swap'' in 'swap_ranges' at call 'swap' (file swap_ranges.c, line 20)
+ --- *)
+(* ---------------------------------------------------------- *)
+theory VCswap_ranges_call_swap_pre_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Compound.Compound
+use import Axiomatic.Axiomatic
+
+(*
+goal WP "expl:Instance of 'Pre-condition (file /home/root/new-auto-active/acsl-by-example/StandardAlgorithms/mutating/swap/swap.h, line 9) in 'swap'' in 'swap_ranges' at call 'swap' (file swap_ranges.c, line 20)
+":
+*)
+goal goal16:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_3 t_2 t_1 : map addr int.
+  forall a_1 a : addr.
+  let a_2 = (shift_sint32 a 0) in
+  let a_3 = (shift_sint32 a_1 0) in
+  let a_4 = (havoc t_2 ((havoc t_1 t_3 a_2 i)) a_3 i) in
+  (i_1 <= i) ->
+  (0 <= i_1) ->
+  (i_1 < i) ->
+  (((region (a.base))) <= 0) ->
+  (((region (a_1.base))) <= 0) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((valid_rw t a_2 i)) ->
+  ((valid_rw t a_3 i)) ->
+  ((separated a_3 i a_2 i)) ->
+  ((p_equalranges_1_ a_4 t_3 a i_1 a_1)) ->
+  ((p_equalranges_1_ a_4 t_3 a_1 i_1 a)) ->
+  ((p_unchanged_1_ a_4 t_3 a i_1 i)) ->
+  ((p_unchanged_1_ a_4 t_3 a_1 i_1 i)) ->
+  ((valid_rw t ((shift_sint32 a i_1)) 1))
+
+end
+

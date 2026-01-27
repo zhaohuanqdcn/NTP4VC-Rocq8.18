@@ -1,0 +1,6 @@
+session mpz_getset = NTP4Verif +
+theories
+  "mpz_getset_Set_wmpz_set_siqtvc"
+  "mpz_getset_Set_wmpz_set_uiqtvc"
+  "mpz_getset_Set_abs_castqtvc"
+  "mpz_getset_Set_wmpz_get_uiqtvc"

@@ -1,0 +1,9 @@
+session verifythis_2017_odd_even_sort_rearranging = NTP4Verif +
+theories
+  "verifythis_2017_odd_even_sort_rearranging_Top_local_order_implies_sort_subqtvc"
+  "verifythis_2017_odd_even_sort_rearranging_Top_decompose_entropyqtvc"
+  "verifythis_2017_odd_even_sort_rearranging_Top_array_maxqtvc"
+  "verifythis_2017_odd_even_sort_rearranging_Top_inst_extqtvc"
+  "verifythis_2017_odd_even_sort_rearranging_Top_my_swapqtvc"
+  "verifythis_2017_odd_even_sort_rearranging_Top_odd_even_sortqtvc"
+  "verifythis_2017_odd_even_sort_rearranging_Top_entropy_posqtvc"

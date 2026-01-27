@@ -1,0 +1,15 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import Why3.Cint.Cint
+import frama_c.contiki_list.lib.lean.Compound.Compound
+import frama_c.contiki_list.lib.lean.S1_list.S1_list
+import frama_c.contiki_list.lib.lean.Axiomatic.Axiomatic
+import frama_c.contiki_list.lib.lean.A_Index_of_item.A_Index_of_item
+import frama_c.contiki_list.lib.lean.Axiomatic1.Axiomatic1
+open Classical
+open Lean4Why3
+namespace list_remove_Why3_ide_VClist_remove_assert_rte_signed_overflow_7_part2_goal26
+theorem goal26 (t_2 : Memory.addr -> Memory.addr) (a_1 : Memory.addr) (a : Memory.addr) (i_1 : ℤ) (i_2 : ℤ) (a_2 : Memory.addr) (i : ℤ) (t : ℤ -> ℤ) (t_1 : Memory.addr -> ℝ) : let a_3 : Memory.addr := t_2 a_1; let a_4 : Memory.addr := Memory.shift a (0 : ℤ); let a_5 : Memory.addr := t_2 a_4; let x : ℤ := i_1 + i_2; let a_6 : Memory.addr := Memory.shift a_2 (0 : ℤ); let x_1 : ℤ := i + i_1; ¬a_3 = Memory.addr.mk (0 : ℤ) (0 : ℤ) → ¬a_5 = Memory.addr.mk (0 : ℤ) (0 : ℤ) → ¬a_5 = a_3 → (0 : ℤ) ≤ i → i_2 ≤ i → (0 : ℤ) ≤ i_1 → (0 : ℤ) ≤ i_2 → Memory.region (Memory.addr.base a_1) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_2) ≤ (0 : ℤ) → Memory.region (Memory.addr.base a_5) ≤ (0 : ℤ) → -(2147483648 : ℤ) ≤ i_2 → i ≤ (2147483645 : ℤ) → i_2 ≤ (2147483647 : ℤ) → Memory.framed t_2 → Memory.linked t → Cint.is_sint32 i → Cint.is_sint32 i_1 → Memory.valid_rd t a_1 (1 : ℤ) → Memory.valid_rw t a_1 (1 : ℤ) → Cint.is_sint32 x → Memory.valid_rd t a_4 (1 : ℤ) → Memory.valid_rw t a_4 (1 : ℤ) → Memory.valid_rw t a_6 (2147483646 : ℤ) → Memory.separated a_1 (1 : ℤ) a_6 (2147483646 : ℤ) → Memory.separated a_3 (4 : ℤ) a_6 (2147483646 : ℤ) → Memory.valid_rd t (Memory.shift a_5 (0 : ℤ)) (1 : ℤ) → Axiomatic.p_linked_n t t_2 a_3 a_2 i_1 i (Memory.addr.mk (0 : ℤ) (0 : ℤ)) → Axiomatic.p_linked_n t t_2 a_3 a_2 i_1 i_2 a → Cint.is_sint32 (A_Index_of_item.l_index_of t_2 a_5 a_2 i_1 x_1) → Axiomatic.p_linked_n t t_2 a a_2 x (1 : ℤ) a_5 → Axiomatic.p_linked_n t t_2 a_5 a_2 ((1 : ℤ) + i_1 + i_2) (i - (1 : ℤ) - i_2) (Memory.addr.mk (0 : ℤ) (0 : ℤ)) → Axiomatic1.p_unchanged t t_2 t_1 t t_2 t_1 a_2 i_1 x → (∀(i_3 : ℤ), i_1 ≤ i_3 → i_3 ≤ x → ¬t_2 (Memory.shift a_2 i_3) = a_5) → (∀(i_3 : ℤ), i_1 ≤ i_3 → i_3 < x_1 → Memory.separated a_1 (1 : ℤ) (t_2 (Memory.shift a_2 i_3)) (4 : ℤ)) → (∀(i_3 : ℤ), i_1 ≤ i_3 → i_3 < x → Memory.separated a_5 (4 : ℤ) (t_2 (Memory.shift a_2 i_3)) (4 : ℤ)) → (∀(i_3 : ℤ), i_1 ≤ i_3 → i_3 < x_1 → Memory.separated (t_2 (Memory.shift a_2 i_3)) (4 : ℤ) a_6 (2147483646 : ℤ)) → (∀(i_3 : ℤ), let a_7 : Memory.addr := t_2 (Memory.shift a_2 i_3); ¬a_7 = a_5 → i_1 ≤ i_3 → i_3 < x_1 → Memory.separated a_5 (4 : ℤ) a_7 (4 : ℤ)) → (∀(i_4 : ℤ) (i_3 : ℤ), ¬i_4 = i_3 → i_1 ≤ i_3 → i_1 ≤ i_4 → i_3 < x_1 → i_4 < x_1 → ¬t_2 (Memory.shift a_2 i_4) = t_2 (Memory.shift a_2 i_3)) → (∀(i_4 : ℤ) (i_3 : ℤ), ¬i_4 = i_3 → i_1 ≤ i_3 → i_1 ≤ i_4 → i_3 < x_1 → i_4 < x_1 → Memory.separated (t_2 (Memory.shift a_2 i_4)) (4 : ℤ) (t_2 (Memory.shift a_2 i_3)) (4 : ℤ)) → i ≤ (2147483647 : ℤ) + Cint.to_sint32 i_2
+  := sorry
+end list_remove_Why3_ide_VClist_remove_assert_rte_signed_overflow_7_part2_goal26

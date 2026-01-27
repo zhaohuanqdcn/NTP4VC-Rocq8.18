@@ -1,0 +1,8 @@
+theory vstte12_ring_buffer_Harness_harnessqtvc
+  imports "NTP4Verif.NTP4Verif" "./vstte12_ring_buffer_RingBuffer"
+begin
+theorem harness'vc:
+  shows "(0 :: int) < (10 :: int)"
+  and "\<forall>(b :: int buffer). vstte12_ring_buffer_RingBuffer.size b = (10 :: int) \<and> sequence b = (Nil :: int list) \<longrightarrow> len b < vstte12_ring_buffer_RingBuffer.size b \<and> (\<forall>(b1 :: int buffer). length (data b1) = length (data b) \<longrightarrow> first b = first b1 \<longrightarrow> len b1 = len b + (1 :: int) \<and> sequence b1 = sequence b @ Cons (1 :: int) (Nil :: int list) \<longrightarrow> len b1 < vstte12_ring_buffer_RingBuffer.size b1 \<and> (\<forall>(b2 :: int buffer). length (data b2) = length (data b1) \<longrightarrow> first b1 = first b2 \<longrightarrow> len b2 = len b1 + (1 :: int) \<and> sequence b2 = sequence b1 @ Cons (2 :: int) (Nil :: int list) \<longrightarrow> len b2 < vstte12_ring_buffer_RingBuffer.size b2 \<and> (\<forall>(b3 :: int buffer). length (data b3) = length (data b2) \<longrightarrow> first b2 = first b3 \<longrightarrow> len b3 = len b2 + (1 :: int) \<and> sequence b3 = sequence b2 @ Cons (3 :: int) (Nil :: int list) \<longrightarrow> (0 :: int) < len b3 \<and> (\<forall>(b4 :: int buffer). data b3 = data b4 \<longrightarrow> (\<forall>(x :: int). len b4 = len b3 - (1 :: int) \<and> (case sequence b3 of Nil \<Rightarrow> False | Cons x1 l \<Rightarrow> x = x1 \<and> sequence b4 = l) \<longrightarrow> (0 :: int) < len b4 \<and> (\<forall>(b5 :: int buffer). data b4 = data b5 \<longrightarrow> (\<forall>(x1 :: int). len b5 = len b4 - (1 :: int) \<and> (case sequence b4 of Nil \<Rightarrow> False | Cons x2 l \<Rightarrow> x1 = x2 \<and> sequence b5 = l) \<longrightarrow> (0 :: int) < len b5)))))))"
+  sorry
+end

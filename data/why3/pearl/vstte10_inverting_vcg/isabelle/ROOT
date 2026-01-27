@@ -1,0 +1,8 @@
+session vstte10_inverting = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "vstte10_inverting_Test_testqtvc"
+  "vstte10_inverting_InvertingAnInjection"
+  "vstte10_inverting_InvertingAnInjection_inverting2qtvc"
+  "vstte10_inverting_InvertingAnInjection_invertingqtvc"

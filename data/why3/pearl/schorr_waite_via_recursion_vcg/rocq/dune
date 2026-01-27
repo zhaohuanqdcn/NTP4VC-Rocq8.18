@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-pearl)
+(name schorr_waite_via_recursion_vcg)
+(theories schorr_waite_via_recursion_vcg.schorr_waite_via_recursion Why3 Why3.why3.Ref Why3.map))

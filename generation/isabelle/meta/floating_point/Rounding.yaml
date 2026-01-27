@@ -1,0 +1,17 @@
+atoms:
+  floating_point.Rounding.Down: [Down, floating_point_Rounding.Down, floating_point_Rounding.mode.Down]
+  floating_point.Rounding.NearestTiesToAway: [NearestTiesToAway, floating_point_Rounding.NearestTiesToAway,
+    floating_point_Rounding.mode.NearestTiesToAway]
+  floating_point.Rounding.NearestTiesToEven: [NearestTiesToEven, floating_point_Rounding.NearestTiesToEven,
+    floating_point_Rounding.mode.NearestTiesToEven]
+  floating_point.Rounding.ToZero: [ToZero, floating_point_Rounding.ToZero, floating_point_Rounding.mode.ToZero]
+  floating_point.Rounding.Up: [Up, floating_point_Rounding.Up, floating_point_Rounding.mode.Up]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: Why3STD.floating_point_Rounding
+prefix_ops: {}
+types:
+  floating_point.Rounding.mode: [mode, floating_point_Rounding.mode]

@@ -1,0 +1,8 @@
+session balance = NTP4Verif +
+theories
+  "balance_Puzzle8_solve3qtvc"
+  "balance_Roberval"
+  "balance_NoCheating_solve8qtvc"
+  "balance_Puzzle8_solve8qtvc"
+  "balance_NoCheating_solve3qtvc"
+  "balance_Puzzle12_solve12qtvc"

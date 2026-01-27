@@ -1,0 +1,3 @@
+session cubic_root = NTP4Verif +
+theories
+  "cubic_root_CubicRoot_cubic_rootqtvc"

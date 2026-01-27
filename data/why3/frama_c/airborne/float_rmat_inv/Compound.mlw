@@ -1,0 +1,24 @@
+(* ---------------------------------------------------------- *)
+(* --- Memory Compound Updates                            --- *)
+(* ---------------------------------------------------------- *)
+theory Compound
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+
+function shift_sint8 (p : addr) (k : int) : addr = (shift p k)
+
+function shift_sint32 (p : addr) (k : int) : addr = (shift p k)
+
+function shiftfield_f5_floatrmat_m (p : addr) : addr = (shift p 0)
+
+function shift_float32 (p : addr) (k : int) : addr = (shift p k)
+
+end
+

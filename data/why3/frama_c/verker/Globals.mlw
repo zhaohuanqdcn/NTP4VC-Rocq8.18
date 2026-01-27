@@ -1,0 +1,24 @@
+(* ---------------------------------------------------------- *)
+(* --- Global Variables                                   --- *)
+(* ---------------------------------------------------------- *)
+theory Globals
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+
+function g_ccmp_2604 : int = 2605
+
+use import Memory.Memory
+
+axiom Q_G_ccmp_2604_region: ((region g_ccmp_2604)) = 0
+
+axiom Q_G_ccmp_2604_linked:
+  forall t : map int int. ((linked t)) -> (t[g_ccmp_2604] = 1)
+
+end
+

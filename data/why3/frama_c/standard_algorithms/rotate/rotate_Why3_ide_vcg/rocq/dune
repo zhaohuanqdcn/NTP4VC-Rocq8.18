@@ -1,0 +1,4 @@
+(coq.theory
+(package Why3Bench-frama_c)
+(name standard_algorithms.rotate.rotate_Why3_ide_vcg)
+(theories rotate.Axiomatic Why3 Why3.Cint Why3.Memory rotate.Compound Why3.Qed))

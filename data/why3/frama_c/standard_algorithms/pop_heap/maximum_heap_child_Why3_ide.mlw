@@ -1,0 +1,381 @@
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'max' in 'maximum_heap_child'       --- *)
+(* ---------------------------------------------------------- *)
+theory VCmaximum_heap_child_post_max
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+use import Axiomatic1.Axiomatic1
+
+(*
+goal WP "expl:Post-condition 'max' in 'maximum_heap_child'":
+*)
+goal goal0:
+  forall p : bool.
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 2 * i in
+  let x_1 = 1 + x in
+  let a_1 = (shift_sint32 a x_1) in
+  let x_2 = 2 + x in
+  let a_2 = (shift_sint32 a x_2) in
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  ((2 + i) <= i_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  (if (i <= 2147483646)
+   then ((0 < i_1) /\ (i <= 2147483647) /\ (((to_uint32 x)) <= 4294967293) /\
+         (if ((4 + x) <= i_1)
+          then ((p=False) /\ ((valid_rd t a_1 1)) /\ ((valid_rd t a_2 1)) /\
+                (if (t_1[a_2] <= t_1[a_1]) then (x_1 = i_2) else (x_2 = i_2)))
+          else (x_1 = i_2))) else (i_2 = i_1)) ->
+  ((p_heapmaximumchild t_1 a i_1 i i_2))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'less' in 'maximum_heap_child'      --- *)
+(* ---------------------------------------------------------- *)
+theory VCmaximum_heap_child_post_less
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition 'less' in 'maximum_heap_child'":
+*)
+goal goal1:
+  forall p : bool.
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 2 * i in
+  let x_1 = 1 + x in
+  let a_1 = (shift_sint32 a x_1) in
+  let x_2 = 2 + x in
+  let a_2 = (shift_sint32 a x_2) in
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  ((2 + i) <= i_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  (if (i <= 2147483646)
+   then ((0 < i_1) /\ (i <= 2147483647) /\ (((to_uint32 x)) <= 4294967293) /\
+         (if ((4 + x) <= i_1)
+          then ((p=False) /\ ((valid_rd t a_1 1)) /\ ((valid_rd t a_2 1)) /\
+                (if (t_1[a_2] <= t_1[a_1]) then (x_1 = i_2) else (x_2 = i_2)))
+          else (x_1 = i_2))) else (i_2 = i_1)) ->
+  (i < i_2)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Post-condition 'less' in 'maximum_heap_child'      --- *)
+(* ---------------------------------------------------------- *)
+theory VCmaximum_heap_child_post_less_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Post-condition 'less' in 'maximum_heap_child'":
+*)
+goal goal2:
+  forall i_2 i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 2 * i in
+  let x_1 = 2 + x in
+  let a_1 = (shift_sint32 a x_1) in
+  let x_2 = t_1[a_1] in
+  let x_3 = 1 + x in
+  let a_2 = (shift_sint32 a x_3) in
+  (0 < i_1) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  (i <= 2147483646) ->
+  (i <= 2147483647) ->
+  (((to_uint32 x)) <= 4294967293) ->
+  ((2 + i) <= i_1) ->
+  ((2 + i_2) <= i_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((is_uint32 i_2)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((is_uint32 x_1)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  ((is_sint32 x_2)) ->
+  (if ((4 + x) <= i_1)
+   then (((valid_rd t a_2 1)) /\ ((valid_rd t a_1 1)) /\
+         (if (x_2 <= t_1[a_2]) then (x_3 = i_2) else (x_1 = i_2)))
+   else (x_3 = i_2)) ->
+  (((l_heapparent i_2)) = i)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file maximum_heap_child.h, line 25) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmaximum_heap_child_assert_rte_unsigned_overflow_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file maximum_heap_child.h, line 25)":
+*)
+goal goal3:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  (i <= 2147483646) ->
+  ((2 + i) <= i_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  (i <= 2147483647)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file maximum_heap_child.h, line 25) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmaximum_heap_child_assert_rte_unsigned_overflow_3
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file maximum_heap_child.h, line 25)":
+*)
+goal goal4:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  (i <= 2147483646) ->
+  ((2 + i) <= i_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  (((to_uint32 (2 * i))) <= 4294967293)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,unsigned_overflow' (file maximum_heap_child.h, line 28) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmaximum_heap_child_assert_rte_unsigned_overflow_5
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,unsigned_overflow' (file maximum_heap_child.h, line 28)":
+*)
+goal goal5:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 2 * i in
+  let x_1 = 2 + x in
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  (i <= 2147483646) ->
+  (i <= 2147483647) ->
+  (((to_uint32 x)) <= 4294967293) ->
+  ((2 + i) <= i_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((is_uint32 x_1)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  ((is_sint32 t_1[(shift_sint32 a x_1)])) ->
+  (0 < i_1)
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file maximum_heap_child.h, line 30) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmaximum_heap_child_assert_rte_mem_access
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file maximum_heap_child.h, line 30)":
+*)
+goal goal6:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 2 * i in
+  let x_1 = 1 + x in
+  let x_2 = 2 + x in
+  let a_1 = (shift_sint32 a x_1) in
+  (0 < i_1) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  (i <= 2147483646) ->
+  (i <= 2147483647) ->
+  (((to_uint32 x)) <= 4294967293) ->
+  ((2 + i) <= i_1) ->
+  ((4 + x) <= i_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((is_uint32 x_1)) ->
+  ((is_uint32 x_2)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  ((is_sint32 t_1[a_1])) ->
+  ((is_sint32 t_1[(shift_sint32 a x_2)])) ->
+  ((valid_rd t a_1 1))
+
+end
+
+(* ---------------------------------------------------------- *)
+(* --- Assertion 'rte,mem_access' (file maximum_heap_child.h, line 30) --- *)
+(* ---------------------------------------------------------- *)
+theory VCmaximum_heap_child_assert_rte_mem_access_2
+  
+use import bool.Bool
+use import int.Int
+use import int.ComputerDivision
+use import real.RealInfix
+use import Qed.Qed
+use import int.Abs as IAbs
+use import map.Map
+use import Memory.Memory
+use import Cint.Cint
+use import Axiomatic.Axiomatic
+use import Compound.Compound
+
+(*
+goal WP "expl:Assertion 'rte,mem_access' (file maximum_heap_child.h, line 30)":
+*)
+goal goal7:
+  forall i_1 i : int.
+  forall t : map int int.
+  forall t_1 : map addr int.
+  forall a : addr.
+  let x = 2 * i in
+  let x_1 = 2 + x in
+  let a_1 = (shift_sint32 a x_1) in
+  (0 < i_1) ->
+  (0 <= i) ->
+  (((region (a.base))) <= 0) ->
+  (2 <= i_1) ->
+  (i <= 2147483646) ->
+  (i <= 2147483647) ->
+  (((to_uint32 x)) <= 4294967293) ->
+  ((2 + i) <= i_1) ->
+  ((4 + x) <= i_1) ->
+  ((linked t)) ->
+  ((is_uint32 i)) ->
+  ((is_uint32 i_1)) ->
+  ((p_isheap t_1 a i_1)) ->
+  ((is_uint32 x_1)) ->
+  ((valid_rw t ((shift_sint32 a 0)) i_1)) ->
+  ((is_sint32 t_1[a_1])) ->
+  ((valid_rd t a_1 1))
+
+end
+

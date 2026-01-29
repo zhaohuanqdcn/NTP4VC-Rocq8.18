@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import verifythis_2016_matrix_multiplication.matrices.MyMatrix.
@@ -68,4 +68,5 @@ Axiom lm_distribute_def : forall (l1 : list mono) (l2 : list mono), lm_distribut
 Axiom lm_opp : list mono -> list mono.
 Axiom lm_opp_def : forall (l : list mono), lm_opp l = (match l with | [] => ([] : list mono) | cons x q => lm_merge ([] : list mono) (cons (mono'mk (m_prod x) (if decide (¬ m_pos x = true) then true else false)) ([] : list mono)) (lm_opp q) end).
 Theorem lm_opp_ok'vc (r : Z) (c : Z) (f : Z -> mat Z) (l : list mono) (fact0 : 0%Z ≤ r) (fact1 : 0%Z ≤ c) (fact2 : lm_vld f r c l) : (match l with | [] => True | cons x q => ((match l with | [] => False | cons _ f1 => f1 = q end) ∧ 0%Z ≤ r ∧ 0%Z ≤ c ∧ lm_vld f r c q) ∧ (let o1 : list mono := lm_opp q in lm_vld f r c o1 ∧ lm_mdl f r c o1 = opp (lm_mdl f r c q) -> (0%Z ≤ r ∧ 0%Z ≤ c ∧ lm_vld f r c ([] : list mono)) ∧ lm_vld f r c (cons (mono'mk (m_prod x) (if decide (m_pos x = true) then false else true)) ([] : list mono)) ∧ lm_vld f r c o1) end) ∧ (∀(result : list mono), (match l with | [] => result = ([] : list mono) | cons x q => (let o1 : list mono := lm_opp q in (lm_vld f r c o1 ∧ lm_mdl f r c o1 = opp (lm_mdl f r c q)) ∧ (let o2 : list mono := cons (mono'mk (m_prod x) (if decide (m_pos x = true) then false else true)) ([] : list mono) in let o3 : list mono := ([] : list mono) in result = lm_merge o3 o2 o1 ∧ lm_vld f r c result ∧ lm_mdl f r c result = add (lm_mdl f r c o3) (add (lm_mdl f r c o2) (lm_mdl f r c o1)))) end) -> (result = lm_opp l ∧ lm_vld f r c result) ∧ lm_mdl f r c result = opp (lm_mdl f r c l)).
+Proof.
 Admitted.

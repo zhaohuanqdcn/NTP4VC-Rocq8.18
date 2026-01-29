@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.debug.Debug.
@@ -52,4 +52,5 @@ match e with | Lit n => n | Var v => y v | Plus e1 e2 => interp_exp e1 y + inter
 Admit Obligations.
 Definition minterp (t1 : Z * Z * exp) (y : Z -> Z) : R := match t1 with | (q, e) => Rmult (qinterp q) (Rpower (Rdefinitions.IZR (18446744073709551615%Z + 1%Z)) (Rdefinitions.IZR (interp_exp e y))) end.
 Theorem madd'vc (b : Z) (b1 : Z) (b2 : exp) (a : Z) (a1 : Z) (a2 : exp) : let b3 : Z * Z * exp := ((b, b1), b2) in let a3 : Z * Z * exp := ((a, a1), a2) in let x : Z * Z := (b, b1) in let x1 : Z * Z := (a, a1) in if decide (req x1 (0%Z, 1%Z)) then ∀(y : Z -> Z), minterp b3 y = Rplus (minterp a3 y) (minterp b3 y) else if decide (req x (0%Z, 1%Z)) then ∀(y : Z -> Z), minterp a3 y = Rplus (minterp a3 y) (minterp b3 y) else (∀(y : Z -> Z), interp_exp a2 y = interp_exp b2 y) -> (∀(q : Z) (q1 : Z), let q2 : Z * Z := (q, q1) in (∀(y : Z -> R), rinterp q2 y = Rplus (rinterp x1 y) (rinterp x y)) -> (∀(y : Z -> Z), minterp (q2, a2) y = Rplus (minterp a3 y) (minterp b3 y))).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.NumOf.
@@ -67,4 +67,5 @@ Definition t'eq (a : t) (b : t) := size a = size b ∧ data a = data b ∧ view 
 Axiom t'inj : forall  (a : t) (b : t) (fact0 : t'eq a b), a = b.
 Definition next (n : Z) (i : Z) : Z := let i1 : Z := i + 1%Z in if decide (i1 = n) then 0%Z else i1.
 Theorem find'vc (x : key) (a : list key) (fact0 : neq x dummy) (fact1 : let n : Z := Z.of_nat (length a) in 0%Z < n ∧ 0%Z < numof a 0%Z n) : let n : Z := Z.of_nat (length a) in 0%Z < n ∧ (let b : Z := bucket x n in 0%Z ≤ b ∧ b < n -> (∀(i : Z), (0%Z ≤ i ∧ i < n) ∧ 0%Z < numof a 0%Z n ∧ (∀(j : Z), 0%Z ≤ j ∧ j < n -> between b j i -> neq (nth (Z.to_nat j) a inhabitant) x ∧ neq (nth (Z.to_nat j) a inhabitant) dummy) ∧ (if decide (b ≤ i) then numof a b i = 0%Z else numof a b n = numof a 0%Z i ∧ numof a 0%Z i = 0%Z) -> (let o1 : key := dummy in (0%Z ≤ i ∧ i < Z.of_nat (length a)) ∧ (let o2 : key := nth (Z.to_nat i) a inhabitant in eq o2 o1 = (keym1 o2 = keym1 o1) -> (¬ eq o2 o1 -> 0%Z ≤ i ∧ i < Z.of_nat (length a)) ∧ (∀(o3 : bool), (if decide (eq o2 o1) then o3 = true else let o4 : key := nth (Z.to_nat i) a inhabitant in o3 = (if decide (eq o4 x) then true else false) ∧ (o3 = true) = (keym1 o4 = keym1 x)) -> (¬ o3 = true -> (let o4 : Z := next n i in (0%Z ≤ (if decide (b ≤ i) then n - i + b else b - i) ∧ (if decide (b ≤ o4) then n - o4 + b else b - o4) < (if decide (b ≤ i) then n - i + b else b - i)) ∧ (0%Z ≤ o4 ∧ o4 < n) ∧ 0%Z < numof a 0%Z n ∧ (∀(j : Z), 0%Z ≤ j ∧ j < n -> between b j o4 -> neq (nth (Z.to_nat j) a inhabitant) x ∧ neq (nth (Z.to_nat j) a inhabitant) dummy) ∧ (if decide (b ≤ o4) then numof a b o4 = 0%Z else numof a b n = numof a 0%Z o4 ∧ numof a 0%Z o4 = 0%Z))) ∧ (∀(result : Z), (if decide (o3 = true) then result = i else (0%Z ≤ result ∧ result < n) ∧ (eq (nth (Z.to_nat result) a inhabitant) dummy ∨ eq (nth (Z.to_nat result) a inhabitant) x) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < n -> between b j result -> neq (nth (Z.to_nat j) a inhabitant) x ∧ neq (nth (Z.to_nat j) a inhabitant) dummy)) -> (0%Z ≤ result ∧ result < n) ∧ (eq (nth (Z.to_nat result) a inhabitant) dummy ∨ eq (nth (Z.to_nat result) a inhabitant) x) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < n -> between b j result -> neq (nth (Z.to_nat j) a inhabitant) x ∧ neq (nth (Z.to_nat j) a inhabitant) dummy)))))) ∧ ((0%Z ≤ b ∧ b < n) ∧ 0%Z < numof a 0%Z n ∧ (∀(j : Z), 0%Z ≤ j ∧ j < n -> between b j b -> neq (nth (Z.to_nat j) a inhabitant) x ∧ neq (nth (Z.to_nat j) a inhabitant) dummy) ∧ (if decide (b ≤ b) then numof a b b = 0%Z else numof a b n = numof a 0%Z b ∧ numof a 0%Z b = 0%Z)) ∧ (∀(result : Z), (0%Z ≤ result ∧ result < n) ∧ (eq (nth (Z.to_nat result) a inhabitant) dummy ∨ eq (nth (Z.to_nat result) a inhabitant) x) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < n -> between b j result -> neq (nth (Z.to_nat j) a inhabitant) x ∧ neq (nth (Z.to_nat j) a inhabitant) dummy) -> (0%Z ≤ result ∧ result < Z.of_nat (length a)) ∧ (eq (nth (Z.to_nat result) a inhabitant) dummy ∨ eq (nth (Z.to_nat result) a inhabitant) x) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < Z.of_nat (length a) -> between (bucket x (Z.of_nat (length a))) j result -> neq (nth (Z.to_nat j) a inhabitant) x ∧ neq (nth (Z.to_nat j) a inhabitant) dummy))).
+Proof.
 Admitted.

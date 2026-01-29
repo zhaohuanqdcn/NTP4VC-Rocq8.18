@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.MapEq.
@@ -39,4 +39,5 @@ Axiom Total : forall  (x : elt) (y : elt), le x y ∨ le y x.
 Definition sorted_sub (a : list elt) (l : Z) (u : Z) := ∀(i1 : Z) (i2 : Z), l ≤ i1 ∧ i1 < i2 ∧ i2 < u -> le (nth (Z.to_nat i1) a inhabitant) (nth (Z.to_nat i2) a inhabitant).
 Definition sorted (a : list elt) := ∀(i1 : Z) (i2 : Z), 0%Z ≤ i1 ∧ i1 < i2 ∧ i2 < Z.of_nat (length a) -> le (nth (Z.to_nat i1) a inhabitant) (nth (Z.to_nat i2) a inhabitant).
 Theorem mergesort'vc (tmp : list elt) (a : list elt) (fact0 : length tmp = length a) (fact1 : ∀(i : Z), 0%Z ≤ i ∧ i < Z.of_nat (length tmp) -> nth (Z.to_nat i) tmp inhabitant = nth (Z.to_nat i) a inhabitant) : let o1 : Z := Z.of_nat (length a) in (0%Z ≤ 0%Z ∧ 0%Z ≤ o1 ∧ o1 ≤ Z.of_nat (length a) ∧ length a = length tmp) ∧ (∀(a1 : list elt), length a1 = length a -> sorted_sub a1 0%Z o1 ∧ permut_sub' a a1 0%nat (Z.to_nat o1) -> sorted a1 ∧ a ≡ₚ a1).
+Proof.
 Admitted.

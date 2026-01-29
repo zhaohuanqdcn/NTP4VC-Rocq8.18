@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom t : Type.
@@ -115,4 +115,5 @@ Definition eq' (x1 : list m) (x2 : list m) := ∀(y : Z -> t), interp' x1 y = in
 Definition append_mon (m1 : m) (m2 : m) : m := match (m1, m2) with | (M a1 l1, M a2 l2) => M (infix_as' a1 a2) (l1 ++ l2) end.
 Axiom append_mon'spec : forall  (m1 : m) (m2 : m) (y : Z -> t), interp' (cons (append_mon m1 m2) ([] : list m)) y = infix_as (interp' (cons m1 ([] : list m)) y) (interp' (cons m2 ([] : list m)) y).
 Theorem mul_mon'vc (x : list m) (mon1 : m) : (match x with | [] => True | cons m1 r => True end) ∧ (∀(result : list m), (match x with | [] => result = ([] : list m) | cons m1 r => (let mr : m := append_mon m1 mon1 in (∀(y : Z -> t), interp' (cons mr ([] : list m)) y = infix_as (interp' (cons m1 ([] : list m)) y) (interp' (cons mon1 ([] : list m)) y)) ∧ (∃(lr : list m), (∀(y : Z -> t), interp' lr y = infix_as (interp' r y) (interp' (cons mon1 ([] : list m)) y)) ∧ result = cons mr lr)) end) -> (∀(y : Z -> t), interp' result y = infix_as (interp' x y) (interp' (cons mon1 ([] : list m)) y))).
+Proof.
 Admitted.

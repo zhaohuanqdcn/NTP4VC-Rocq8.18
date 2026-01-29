@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -140,4 +140,5 @@ Axiom max_var_ctx'spec'0 : forall  (l : list (expr * expr)) (fact0 : valid_ctx l
 Axiom max_var_ctx'spec : forall  (l : list (expr * expr)) (fact0 : valid_ctx l), ctx_bound l (max_var_ctx l).
 Definition atom (e : expr) := match e with | Add _ _ => False | _ => True end.
 Theorem mul_eq'vc (o1 : expr) (c : coeff) (e2 : expr) (o2 : expr) (e1 : expr) (y : Z -> a) (z : cvars) (fact0 : ∀(y : Z -> a) (z : cvars), interp1 o1 y z = infix_as (interp c z) (interp1 e2 y z)) (fact1 : valid_expr e2 -> valid_expr o1) (fact2 : ∀(y : Z -> a) (z : cvars), interp1 o2 y z = infix_as (interp c z) (interp1 e1 y z)) (fact3 : valid_expr e1 -> valid_expr o2) (fact4 : interp_eq (e1, e2) y z = true) : interp_eq (o2, o1) y z = true.
+Proof.
 Admitted.

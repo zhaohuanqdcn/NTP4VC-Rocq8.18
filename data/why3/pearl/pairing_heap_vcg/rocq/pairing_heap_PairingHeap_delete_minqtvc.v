@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import pairing_heap_vcg.pairing_heap.HeapType.
 Require Import pairing_heap_vcg.pairing_heap.Size.
@@ -62,4 +62,5 @@ Definition minimum_heap (hh : heap1) : elt := minimum (h hh).
 Axiom empty : heap1.
 Axiom empty'def : size_heap (h empty) = 0%Z ∧ (∀(e : elt), ¬ mem e (h empty)).
 Theorem delete_min'vc (hh : heap1) (fact0 : 0%Z < size_heap (h hh)) : let o1 : raw_heap := h hh in (match o1 with | E => False | H (T _ l) => heap_list l end) ∧ (∀(result : heap1), (match o1 with | E => False | H (T _ l) => size_heap (h result) = size_list l ∧ (∀(x : elt), occ_heap x (h result) = occ_list x l) end) -> occ_heap (minimum (h hh)) (h result) = occ_heap (minimum (h hh)) (h hh) - 1%Z ∧ (∀(y : elt), ¬ y = minimum (h hh) -> occ_heap y (h result) = occ_heap y (h hh)) ∧ size_heap (h result) = size_heap (h hh) - 1%Z).
+Proof.
 Admitted.

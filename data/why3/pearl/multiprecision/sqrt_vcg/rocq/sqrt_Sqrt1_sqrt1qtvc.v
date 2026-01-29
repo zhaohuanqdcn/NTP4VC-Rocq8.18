@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -36,4 +36,5 @@ Require Import multiprecision.types.UInt64Eq.
 Require Import Why3.mach.fxp.Fxp.
 Open Scope Z_scope.
 Theorem sqrt1'vc (rp : ptr (bv 64%N)) (a0 : bv 64%N) (a : fxp) (fact0 : valid rp 1%Z) (fact1 : 4611686018427387904%Z ≤ bv_unsigned a0) (fact2 : writable rp = true) (fact3 : ival a = a0) (fact4 : rval a = Rmult (Rdefinitions.IZR (bv_unsigned a0)) (Fxp.pow2 (- 64%Z))) (fact5 : iexp a = - 64%Z) : Rle (Rdiv 1%R 4) (rval a) ∧ Rle (rval a) (Rdiv 18446744073709551615%R 18446744073709551616) ∧ iexp a = - 64%Z ∧ (∀(x0 : fxp), iexp x0 = - 8%Z ∧ (256%Z ≤ bv_unsigned (ival x0) ∧ bv_unsigned (ival x0) ≤ 511%Z) ∧ (Rle 1%R (rval x0) ∧ Rle (rval x0) 2%R) ∧ (let rsa : R := Rdiv 1%R (sqrt (rval a)) in let e0 : R := Rdiv (Rminus (rval x0) rsa) rsa in Rle (Ropp (Rdiv 281%R 100000)) e0 ∧ Rle e0 (Rdiv 531%R 200000)) -> (Rle 0%R (rval a) ∧ Rle (rval a) (Rmult (Rdefinitions.IZR 18446744073709551615%Z) (Fxp.pow2 (iexp a)))) ∧ (∀(a1 : fxp), rval a1 = trunc_at (rval a) (iexp a + 31%Z) ∧ iexp a1 = iexp a + 31%Z -> (∀(o1 : fxp), ival o1 = (196608%bv : bv 64%N) ∧ rval o1 = Rmult (Rdefinitions.IZR 196608%Z) (Fxp.pow2 (- 49%Z)) ∧ iexp o1 = - 49%Z -> (∀(o2 : fxp), ival o2 = (562949953421312%bv : bv 64%N) ∧ rval o2 = Rmult (Rdefinitions.IZR 562949953421312%Z) (Fxp.pow2 (- 49%Z)) ∧ iexp o2 = - 49%Z -> iexp o2 = iexp o1 ∧ (∀(m1 : fxp), rval m1 = Rminus (rval o2) (rval o1) ∧ iexp m1 = iexp o2 -> (∀(o3 : fxp), rval o3 = Rmult (rval x0) (rval x0) ∧ iexp o3 = iexp x0 + iexp x0 -> (∀(o4 : fxp), rval o4 = Rmult (rval o3) (rval a1) ∧ iexp o4 = iexp o3 + iexp a1 -> iexp m1 = iexp o4 ∧ (∀(t1' : fxp), rval t1' = Rminus (rval m1) (rval o4) ∧ iexp t1' = iexp m1 -> (Rle (Rmult (Rdefinitions.IZR (- 9223372036854775808%Z)) (Fxp.pow2 (iexp t1'))) (rval t1') ∧ Rle (rval t1') (Rmult (Rdefinitions.IZR 9223372036854775807%Z) (Fxp.pow2 (iexp t1')))) ∧ (∀(t1 : fxp), rval t1 = trunc_at (rval t1') (iexp t1' + 16%Z) ∧ iexp t1 = iexp t1' + 16%Z -> (∀(o5 : fxp), rval o5 = Rmult (rval x0) (rval t1) ∧ iexp o5 = iexp x0 + iexp t1 -> (Rle (Rmult (Rdefinitions.IZR (- 9223372036854775808%Z)) (Fxp.pow2 (iexp o5))) (rval o5) ∧ Rle (rval o5) (Rmult (Rdefinitions.IZR 9223372036854775807%Z) (Fxp.pow2 (iexp o5)))) ∧ (∀(o6 : fxp), rval o6 = trunc_at (Rmult (rval o5) (Fxp.pow2 (- 1%Z))) (iexp o5 + 18%Z - 1%Z) ∧ iexp o6 = iexp o5 + 18%Z - 1%Z -> (∀(o7 : fxp), rval o7 = rval x0 ∧ iexp o7 = iexp x0 - bv_unsigned (16%bv : bv 64%N) -> iexp o7 = iexp o6 ∧ (∀(x1 : fxp), rval x1 = Rplus (rval o7) (rval o6) ∧ iexp x1 = iexp o7 -> (Rle 0%R (rval a) ∧ Rle (rval a) (Rmult (Rdefinitions.IZR 18446744073709551615%Z) (Fxp.pow2 (iexp a)))) ∧ (∀(a2 : fxp), rval a2 = trunc_at (rval a) (iexp a + 24%Z) ∧ iexp a2 = iexp a + 24%Z -> (∀(u1 : fxp), rval u1 = Rmult (rval x1) (rval a2) ∧ iexp u1 = iexp x1 + iexp a2 -> (Rle 0%R (rval u1) ∧ Rle (rval u1) (Rmult (Rdefinitions.IZR 18446744073709551615%Z) (Fxp.pow2 (iexp u1)))) ∧ (∀(u2 : fxp), rval u2 = trunc_at (rval u1) (iexp u1 + 25%Z) ∧ iexp u2 = iexp u1 + 25%Z -> (∀(m2 : fxp), ival m2 = (2473901162496%bv : bv 64%N) ∧ rval m2 = Rmult (Rdefinitions.IZR 2473901162496%Z) (Fxp.pow2 (- 78%Z)) ∧ iexp m2 = - 78%Z -> (∀(o8 : fxp), rval o8 = Rmult (rval u2) (rval u2) ∧ iexp o8 = iexp u2 + iexp u2 -> (∀(o9 : fxp), rval o9 = rval a ∧ iexp o9 = iexp a - bv_unsigned (14%bv : bv 64%N) -> iexp o9 = iexp o8 ∧ (∀(o10 : fxp), rval o10 = Rminus (rval o9) (rval o8) ∧ iexp o10 = iexp o9 -> iexp o10 = iexp m2 ∧ (∀(t2' : fxp), rval t2' = Rminus (rval o10) (rval m2) ∧ iexp t2' = iexp o10 -> (Rle (Rmult (Rdefinitions.IZR (- 9223372036854775808%Z)) (Fxp.pow2 (iexp t2'))) (rval t2') ∧ Rle (rval t2') (Rmult (Rdefinitions.IZR 9223372036854775807%Z) (Fxp.pow2 (iexp t2')))) ∧ (∀(t2 : fxp), rval t2 = trunc_at (rval t2') (iexp t2' + 24%Z) ∧ iexp t2 = iexp t2' + 24%Z -> (∀(o11 : fxp), rval o11 = Rmult (rval x1) (rval t2) ∧ iexp o11 = iexp x1 + iexp t2 -> (Rle (Rmult (Rdefinitions.IZR (- 9223372036854775808%Z)) (Fxp.pow2 (iexp o11))) (rval o11) ∧ Rle (rval o11) (Rmult (Rdefinitions.IZR 9223372036854775807%Z) (Fxp.pow2 (iexp o11)))) ∧ (∀(o12 : fxp), rval o12 = trunc_at (Rmult (rval o11) (Fxp.pow2 (- 1%Z))) (iexp o11 + 15%Z - 1%Z) ∧ iexp o12 = iexp o11 + 15%Z - 1%Z -> iexp u1 = iexp o12 ∧ (∀(x2 : fxp), rval x2 = Rplus (rval u1) (rval o12) ∧ iexp x2 = iexp u1 -> (Rle 0%R (rval x2) ∧ Rle (rval x2) (Rmult (Rdefinitions.IZR 18446744073709551615%Z) (Fxp.pow2 (iexp x2)))) ∧ (∀(x : fxp), rval x = trunc_at (rval x2) (iexp x2 + 32%Z) ∧ iexp x = iexp x2 + 32%Z -> (let o13 : bv 64%N := ival x in uint'64_in_bounds (bv_unsigned o13 * bv_unsigned o13) ∧ (∀(o14 : bv 64%N), bv_unsigned o14 = bv_unsigned o13 * bv_unsigned o13 -> uint'64_in_bounds (bv_unsigned a0 - 1%Z) ∧ (∀(o15 : bv 64%N), bv_unsigned o15 = bv_unsigned a0 - 1%Z -> uint'64_in_bounds (2%Z * bv_unsigned o13) ∧ (∀(o16 : bv 64%N), bv_unsigned o16 = 2%Z * bv_unsigned o13 -> uint'64_in_bounds (bv_unsigned o14 + bv_unsigned o16) ∧ (∀(o17 : bv 64%N), bv_unsigned o17 = bv_unsigned o14 + bv_unsigned o16 -> (if decide (bv_unsigned o17 ≤ bv_unsigned o15) then uint'64_in_bounds (2%Z * bv_unsigned o13) ∧ (∀(o18 : bv 64%N), bv_unsigned o18 = 2%Z * bv_unsigned o13 -> uint'64_in_bounds (bv_unsigned o14 + bv_unsigned o18) ∧ (∀(o19 : bv 64%N), bv_unsigned o19 = bv_unsigned o14 + bv_unsigned o18 -> uint'64_in_bounds (bv_unsigned o19 + 1%Z) ∧ (∀(o20 : bv 64%N), bv_unsigned o20 = bv_unsigned o19 + 1%Z -> uint'64_in_bounds (bv_unsigned o13 + 1%Z) ∧ (∀(o21 : bv 64%N), bv_unsigned o21 = bv_unsigned o13 + 1%Z -> uint'64_in_bounds (bv_unsigned a0 - bv_unsigned o20) ∧ (∀(o22 : bv 64%N), bv_unsigned o22 = bv_unsigned a0 - bv_unsigned o20 -> ((min rp ≤ offset rp ∧ offset rp < C.max rp) ∧ writable rp = true) ∧ (∀(rp1 : ptr (bv 64%N)), length (data rp1) = length (data rp) ∧ offset rp1 = offset rp ∧ min rp1 = min rp ∧ C.max rp1 = C.max rp ∧ writable rp1 = writable rp ∧ zone1 rp1 = zone1 rp -> pelts rp1 = fun_updt (pelts rp) (offset rp1) o22 -> (bv_unsigned o21 * bv_unsigned o21 ≤ bv_unsigned a0 ∧ bv_unsigned a0 < (bv_unsigned o21 + 1%Z) * (bv_unsigned o21 + 1%Z)) ∧ bv_unsigned o21 * bv_unsigned o21 + bv_unsigned (pelts rp1 (offset rp1)) = bv_unsigned a0 ∧ bv_unsigned (pelts rp1 (offset rp1)) ≤ 2%Z * bv_unsigned o21)))))) else uint'64_in_bounds (bv_unsigned a0 - bv_unsigned o14) ∧ (∀(o18 : bv 64%N), bv_unsigned o18 = bv_unsigned a0 - bv_unsigned o14 -> ((min rp ≤ offset rp ∧ offset rp < C.max rp) ∧ writable rp = true) ∧ (∀(rp1 : ptr (bv 64%N)), length (data rp1) = length (data rp) ∧ offset rp1 = offset rp ∧ min rp1 = min rp ∧ C.max rp1 = C.max rp ∧ writable rp1 = writable rp ∧ zone1 rp1 = zone1 rp -> pelts rp1 = fun_updt (pelts rp) (offset rp1) o18 -> (bv_unsigned o13 * bv_unsigned o13 ≤ bv_unsigned a0 ∧ bv_unsigned a0 < (bv_unsigned o13 + 1%Z) * (bv_unsigned o13 + 1%Z)) ∧ bv_unsigned o13 * bv_unsigned o13 + bv_unsigned (pelts rp1 (offset rp1)) = bv_unsigned a0 ∧ bv_unsigned (pelts rp1 (offset rp1)) ≤ 2%Z * bv_unsigned o13)))))))))))))))))))))))))))))))))).
+Proof.
 Admitted.

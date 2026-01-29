@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Inductive color :=
@@ -52,4 +52,5 @@ Definition mapaddleft (s : gset (list color)) (nr : Z) : gset (list color) := gs
 Definition reciprocal {β : Type} {α : Type} `{Inhabited β} `{Countable β} `{Inhabited α} `{Countable α} (f : α -> β) (g : β -> α) := ∀(y : α), g (f y) = y.
 Definition rmleft (nr : Z) (c : list color) : list color := drop (Z.to_nat (nr + 1%Z)) c.
 Theorem disjoint_union'vc (s1 : gset (list color)) (s2 : gset (list color)) (fact0 : ∀(x : list color), x ∈ s1 -> ¬ x ∈ s2) : (¬ s1 = ∅ -> (let x : list color := gset_pick_em s1 in let s1' : gset (list color) := remove_set x s1 in (0%Z ≤ Z.of_nat (size s1) ∧ Z.of_nat (size s1') < Z.of_nat (size s1)) ∧ (∀(x1 : list color), x1 ∈ s1' -> ¬ x1 ∈ insert_set x s2))) ∧ (∀(result : gset (list color)), (if decide (s1 = ∅) then result = s2 else let x : list color := gset_pick_em s1 in let s1' : gset (list color) := remove_set x s1 in let s2' : gset (list color) := insert_set x s2 in let u : gset (list color) := s1' ∪ s2' in Z.of_nat (size u) = Z.of_nat (size s1') + Z.of_nat (size s2') ∧ result = u) -> result = s1 ∪ s2 ∧ Z.of_nat (size result) = Z.of_nat (size s1) + Z.of_nat (size s2)).
+Proof.
 Admitted.

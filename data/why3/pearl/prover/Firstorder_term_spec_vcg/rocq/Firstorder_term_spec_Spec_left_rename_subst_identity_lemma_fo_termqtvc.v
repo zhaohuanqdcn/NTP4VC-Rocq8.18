@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import prover.Nat.Nat.
 Require Import prover.Functions.Config.
@@ -67,4 +67,5 @@ Axiom subst_compose_fo_term_definition : forall  {ty'c3 : Type} {ty'd0 : Type} {
 Axiom subst_id_fo_term : forall {ty'b0 : Type} `{Inhabited ty'b0} {ty'b3 : Type} `{Inhabited ty'b3}, ty'b3 -> fo_term ty'b0 ty'b3.
 Axiom subst_id_fo_term_definition : forall  {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (x : ty'b3), (subst_id_fo_term : ty'b3 -> fo_term ty'b0 ty'b3) x = Var_fo_term x.
 Theorem left_rename_subst_identity_lemma_fo_term'vc {ty'b0 : Type} {ty'b3 : Type} {ty'c0 : Type} {ty'c3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} `{Inhabited ty'c0} `{Inhabited ty'c3} (s0 : ty'b0 -> ty'c0) (s3 : ty'b3 -> ty'c3) : rename_subst_fo_term (subst_id_fo_term : ty'b3 -> fo_term ty'b0 ty'b3) s0 s3 = compose (subst_id_fo_term : ty'c3 -> fo_term ty'c0 ty'c3) s3.
+Proof.
 Admitted.

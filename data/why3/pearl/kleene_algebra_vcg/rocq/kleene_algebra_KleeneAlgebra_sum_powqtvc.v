@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom t : Type.
@@ -64,4 +64,5 @@ Axiom Star_unfold_right : forall  (x : t), infix_lseq (infix_pl one (infix_as (p
 Axiom Star_induct_left : forall  (z : t) (x : t) (y : t) (fact0 : infix_lseq (infix_pl z (infix_as x y)) y), infix_lseq (infix_as (prefix_ex x) z) y.
 Axiom Star_induct_right : forall  (z : t) (y : t) (x : t) (fact0 : infix_lseq (infix_pl z (infix_as y x)) y), infix_lseq (infix_as z (prefix_ex x)) y.
 Theorem sum_pow'vc (a : Z) (b : Z) (fact0 : a ≤ b) (fact1 : 0%Z ≤ a) (fact2 : ¬ b = a) : let o1 : Z := b - 1%Z in ((0%Z ≤ b - a ∧ o1 - a < b - a) ∧ a ≤ o1 ∧ 0%Z ≤ a) ∧ 0%Z ≤ b - 1%Z.
+Proof.
 Admitted.

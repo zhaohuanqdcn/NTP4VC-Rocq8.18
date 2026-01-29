@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Open Scope Z_scope.
@@ -136,4 +136,5 @@ Definition sub (a : mat) (b : mat) : mat := add a (opp b).
 Axiom mul_atom : mat -> mat -> Z -> Z -> Z -> Z.
 Axiom mul_atom'def : forall  (a : mat) (b : mat) (i : Z) (j : Z) (k : Z), mul_atom a b i j k = get a i k * get b k j.
 Theorem atom_oob'vc (i : Z) (j : Z) (a : mat) (k : Z) (b : mat) (fact0 : 0%Z ≤ i) (fact1 : 0%Z ≤ j) (fact2 : row_zeros a i ≤ k ∨ col_zeros b j ≤ k) : mul_atom a b i j k = 0%Z.
+Proof.
 Admitted.

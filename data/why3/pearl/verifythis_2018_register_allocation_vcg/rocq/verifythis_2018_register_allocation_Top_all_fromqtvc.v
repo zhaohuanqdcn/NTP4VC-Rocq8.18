@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.ocaml.Exceptions.
 Open Scope Z_scope.
@@ -58,4 +58,5 @@ Axiom merge'spec'1 : forall  (v : var) (u : var) (g : t set) (fact0 : ¬ v = u) 
 Axiom merge'spec'0 : forall  (v : var) (u : var) (g : t set) (k : var) (fact0 : ¬ v = u) (fact1 : v ∈ dom (to_fmap g)) (fact2 : u ∈ dom (to_fmap g)) (fact3 : k ∈ dom (to_fmap (merge v u g))) (fact4 : ¬ k = u), to_fset (lookup_gmap_total (to_fmap (merge v u g)) k) = to_fset (replace v u (lookup_gmap_total (to_fmap g) k)).
 Axiom merge'spec : forall  (v : var) (u : var) (g : t set) (fact0 : ¬ v = u) (fact1 : v ∈ dom (to_fmap g)) (fact2 : u ∈ dom (to_fmap g)), size_i (to_fmap (merge v u g)) = size_i (to_fmap g) - 1%Z.
 Theorem all_from'vc (s : set) (a : t var) : (¬ to_fset s = ∅ -> ¬ to_fset s = ∅ ∧ (let k : var := choose1 s in k ∈ to_fset s -> (∀(sk : set), to_fset sk = remove_set k (to_fset s) ∧ (if decide (k ∈ to_fset s) then Z.of_nat (size (to_fset sk)) = Z.of_nat (size (to_fset s)) - 1%Z else size (to_fset sk) = size (to_fset s)) -> 0%Z ≤ Z.of_nat (size (to_fset s)) ∧ Z.of_nat (size (to_fset sk)) < Z.of_nat (size (to_fset s))))) ∧ (∀(result : set), (if decide (to_fset s = ∅) then to_fset result = (∅ : gset var) ∧ Z.of_nat (size (to_fset result)) = 0%Z else let k : var := choose1 s in k ∈ to_fset s ∧ (∃(sk : set), (to_fset sk = remove_set k (to_fset s) ∧ (if decide (k ∈ to_fset s) then Z.of_nat (size (to_fset sk)) = Z.of_nat (size (to_fset s)) - 1%Z else size (to_fset sk) = size (to_fset s))) ∧ (∃(allk : set), (∀(v : var), (v ∈ to_fset allk) = (∃(k1 : var), k1 ∈ to_fset sk ∧ to_fmap a !! k1 = Some v)) ∧ (if decide (k ∈ dom (to_fmap a)) then let o1 : var := lookup_gmap_total (to_fmap a) k in o1 = lookup_gmap_total (to_fmap a) k ∧ to_fset result = insert_set o1 (to_fset allk) ∧ (if decide (o1 ∈ to_fset allk) then size (to_fset result) = size (to_fset allk) else Z.of_nat (size (to_fset result)) = Z.of_nat (size (to_fset allk)) + 1%Z) else result = allk)))) -> (∀(v : var), (v ∈ to_fset result) = (∃(k : var), k ∈ to_fset s ∧ to_fmap a !! k = Some v))).
+Proof.
 Admitted.

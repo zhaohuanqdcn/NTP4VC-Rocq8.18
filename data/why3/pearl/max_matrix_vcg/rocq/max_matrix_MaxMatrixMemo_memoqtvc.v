@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -73,4 +73,5 @@ Axiom table_countable : Countable table.
 Global Existing Instance table_countable.
 Definition inv (t1 : HashTable.t (Z * set) (Z * t Z)) := ∀(k : Z * set) (v : Z * t Z), HashTable.mixfix_lbrb t1 k = Some v -> post k v.
 Theorem memo'vc (i : Z) (c : set) (table1 : HashTable.t (Z * set) (Z * t Z)) (fact0 : pre (i, c)) (fact1 : inv table1) : let o1 : Z * set := (i, c) in (∀(result : Z) (result1 : t Z), let result2 : Z * t Z := (result, result1) in HashTable.mixfix_lbrb table1 o1 = Some result2 -> post (i, c) result2 ∧ inv table1) ∧ (HashTable.mixfix_lbrb table1 o1 = None -> ((0%Z ≤ 2%Z * n - 2%Z * i + 1%Z ∧ 2%Z * n - 2%Z * i < 2%Z * n - 2%Z * i + 1%Z) ∧ pre (i, c) ∧ inv table1) ∧ (∀(table2 : HashTable.t (Z * set) (Z * t Z)) (r : Z) (r1 : t Z), let r2 : Z * t Z := (r, r1) in post (i, c) r2 ∧ inv table2 -> (let o2 : Z * set := (i, c) in ∀(table3 : HashTable.t (Z * set) (Z * t Z)), HashTable.mixfix_lbrb table3 o2 = Some r2 ∧ (∀(k' : Z * set), ¬ k' = o2 -> HashTable.mixfix_lbrb table3 k' = HashTable.mixfix_lbrb table2 k') -> post (i, c) r2 ∧ inv table3))).
+Proof.
 Admitted.

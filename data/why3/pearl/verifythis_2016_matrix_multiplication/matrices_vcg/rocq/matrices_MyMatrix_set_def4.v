@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom mat : Type -> Type.
@@ -41,4 +41,5 @@ Axiom set_def1 : forall  {α : Type} `{Inhabited α} (i : Z) (m : mat α) (j : Z
 Axiom set_def2 : forall  {α : Type} `{Inhabited α} (i : Z) (m : mat α) (j : Z) (v : α) (fact0 : 0%Z ≤ i) (fact1 : i < rows m) (fact2 : 0%Z ≤ j) (fact3 : j < cols m), cols (set m i j v) = cols m.
 Axiom set_def3 : forall  {α : Type} `{Inhabited α} (i : Z) (m : mat α) (j : Z) (v : α) (fact0 : 0%Z ≤ i) (fact1 : i < rows m) (fact2 : 0%Z ≤ j) (fact3 : j < cols m), get (set m i j v) i j = v.
 Theorem set_def4 {α : Type} `{Inhabited α} (i : Z) (m : mat α) (j : Z) (i' : Z) (j' : Z) (v : α) (fact0 : 0%Z ≤ i) (fact1 : i < rows m) (fact2 : 0%Z ≤ j) (fact3 : j < cols m) (fact4 : 0%Z ≤ i') (fact5 : i' < rows m) (fact6 : 0%Z ≤ j') (fact7 : j' < cols m) (fact8 : ¬ i = i' ∨ ¬ j = j') : get (set m i j v) i' j' = get m i' j'.
+Proof.
 Admitted.

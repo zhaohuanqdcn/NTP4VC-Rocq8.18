@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.ocaml.Exceptions.
 Require Import Why3.bintree.Tree.
@@ -46,4 +46,5 @@ Program Fixpoint inorder (s : list loc) (t1 : Tree.tree Z) : list loc :=
 match t1 with | Empty => ([] : list loc) | Node l p r => inorder s l ++ cons (nth (Z.to_nat p) s inhabitant) (inorder s r) end.
 Admit Obligations.
 Theorem size'vc (prev : t loc) (next : t loc) (s : list loc) (head : loc) (ihead : Z) (fact0 : dll (to_fmap prev) (to_fmap next) s head ihead (Z.of_nat (length s))) : (¬ head = null -> (let o1 : Z := ihead + 1%Z in head ∈ dom (to_fmap next) ∧ (let o2 : loc := lookup_gmap_total (to_fmap next) head in o2 = lookup_gmap_total (to_fmap next) head -> (0%Z ≤ Z.of_nat (length s) - ihead ∧ Z.of_nat (length s) - o1 < Z.of_nat (length s) - ihead) ∧ dll (to_fmap prev) (to_fmap next) s o2 o1 (Z.of_nat (length s))))) ∧ (∀(result : Z), (if decide (head = null) then result = 0%Z else lookup_gmap_total (to_fmap next) head = lookup_gmap_total (to_fmap next) head ∧ result = 1%Z + (Z.of_nat (length s) - (ihead + 1%Z))) -> result = Z.of_nat (length s) - ihead).
+Proof.
 Admitted.

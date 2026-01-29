@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -139,4 +139,5 @@ Global Existing Instance t5_inhabited.
 Axiom t5_countable : Countable t5.
 Global Existing Instance t5_countable.
 Theorem mem'vc (o1 : option t) (t6 : t4 unit) (k0 : t) (result : bool) (fact0 : match o1 with | None => ¬ domn (m3 t6) k0 = true | Some d => 0%Z < card (m3 t6) ∧ eq d k0 ∧ domn (m3 t6) k0 = true ∧ func (m3 t6) k0 = d end) (fact1 : match o1 with | None => result = false | _ => result = true end) : (result = true) = (domn (m3 t6) k0 = true) ∧ (result = true -> (∀(k : t), eq k k0 -> domn (m3 t6) k = true)) ∧ (∀(k : t), eq k k0 ∧ domn (m3 t6) k = true -> result = true) ∧ (result = true -> 0%Z < card (m3 t6)).
+Proof.
 Admitted.

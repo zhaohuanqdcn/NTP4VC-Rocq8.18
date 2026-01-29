@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -108,4 +108,5 @@ Axiom m3 : Type -> Type.
 Axiom m3_inhabited : forall  {α : Type} `{Inhabited α}, Inhabited (m3 α).
 Global Existing Instance m3_inhabited.
 Theorem set'vc {α : Type} `{Inhabited α} (n : Z) (l : t2 α) (d : α) (fact0 : 0%Z ≤ n) (fact1 : n < Z.of_nat (length (seq (m2 l)))) : let o1 : selector := selector'mk n false in selection_possible o1 (seq (m2 l)) ∧ (∀(r : split α) (res : t2 α), seq (m2 res) = node_model (left1 r) d (right1 r) ∧ (selected o1 r ∧ rebuild r = seq (m2 l)) ∧ hgt (m2 res) - hgt (m2 l) ≤ 1%Z ∧ 0%Z ≤ hgt (m2 res) - hgt (m2 l) -> seq (m2 res) = set_list (seq (m2 l)) (Z.to_nat n) d ∧ length (seq (m2 res)) = length (seq (m2 l)) ∧ (∀(i : Z), (0%Z ≤ i ∧ i < Z.of_nat (length (seq (m2 l)))) ∧ ¬ i = n -> nth (Z.to_nat i) (seq (m2 res)) inhabitant = nth (Z.to_nat i) (seq (m2 l)) inhabitant) ∧ nth (Z.to_nat n) (seq (m2 res)) inhabitant = d).
+Proof.
 Admitted.

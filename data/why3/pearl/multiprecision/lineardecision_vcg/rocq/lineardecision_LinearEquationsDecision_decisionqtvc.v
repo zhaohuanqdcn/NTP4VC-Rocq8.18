@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -186,4 +186,5 @@ Program Fixpoint valid_ctx' (ctx : list (expr' * expr')) : Prop :=
 match ctx with | [] => True | cons eq1 t => valid_eq' eq1 ∧ valid_ctx' t end.
 Admit Obligations.
 Theorem decision'vc (g : expr') (g1 : expr') (l : list (expr' * expr')) : let g2 : expr' * expr' := (g, g1) in valid_ctx' l ∧ valid_eq' g2 ∧ Z.of_nat (length l) < 100000%Z -> (∀(sl : list (expr * expr)) (sg : expr) (sg1 : expr), (let rg : expr * expr := (sg, sg1) in (valid_ctx' l -> valid_eq' g2 -> valid_ctx sl ∧ valid_eq rg) ∧ length sl = length l ∧ (∀(y : Z -> a) (z : cvars), interp_ctx sl rg y z = interp_ctx' l g2 y z)) -> (let sg2 : expr * expr := (sg, sg1) in (valid_ctx sl ∧ valid_eq sg2 ∧ Z.of_nat (length sl) < 100000%Z) ∧ ((∀(y : Z -> a) (z : cvars), interp_ctx sl sg2 y z = true) -> (∀(y : Z -> a) (z : cvars), interp_ctx' l g2 y z = true)))).
+Proof.
 Admitted.

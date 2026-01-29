@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom t : Type.
@@ -148,4 +148,5 @@ match (l1, l2) with | ([], []) => true | ([], _) => false | (_, []) => false | (
 Admit Obligations.
 Axiom same'spec : forall  (l1 : list Z) (l2 : list Z) (fact0 : same l1 l2 = true), eq_mon l1 l2.
 Theorem insert_mon'vc (x : list m) (m1 : m) : (match x with | [] => True | cons x1 x2 => (match x1 with | M x3 x4 => (match m1 with | M x5 x6 => (let o1 : bool := same x6 x4 in (o1 = true -> eq_mon x6 x4) -> ¬ o1 = true -> ¬ le_mon x6 x4 = true -> 0%Z ≤ Z.of_nat (length x) ∧ Z.of_nat (length x2) < Z.of_nat (length x)) end) end) end) ∧ (∀(result : list m), (match x with | [] => result = cons m1 ([] : list m) | cons x1 x2 => (match x1 with | M x3 x4 => (match m1 with | M x5 x6 => (let o1 : bool := same x6 x4 in (o1 = true -> eq_mon x6 x4) ∧ (if decide (o1 = true) then let s : t1 := infix_pl' x5 x3 in eq0 s = (s = zero1) ∧ (if decide (eq0 s) then result = x2 else result = cons (M s x6) x2) else if decide (le_mon x6 x4 = true) then result = cons m1 x else ∃(o2 : list m), eq' o2 (cons m1 x2) ∧ result = cons (M x3 x4) o2)) end) end) end) -> eq' result (cons m1 x)).
+Proof.
 Admitted.

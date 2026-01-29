@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.bintree.Tree.
 Require Import Why3.bintree.Size.
@@ -48,4 +48,5 @@ Admit Obligations.
 Axiom empty : tree elt.
 Axiom empty'def : heap empty ∧ inv empty ∧ Size.size empty = 0%Z ∧ (∀(e : elt), ¬ mem e empty).
 Theorem diff'vc (t : tree elt) (m : Z) (fact0 : inv t) (fact1 : 0%Z ≤ m) (fact2 : m ≤ Size.size t) (fact3 : Size.size t ≤ m + 1%Z) : (match t with | Empty => True | Node l _ r => ¬ m = 0%Z -> ¬ 2%Z = 0%Z ∧ (if decide (Z.quot m 2%Z = 1%Z) then ¬ 2%Z = 0%Z ∧ (let o1 : Z := Z.rem m 2%Z in (match t with | Empty => False | Node f _ f1 => f = l ∨ f1 = l end) ∧ inv l ∧ 0%Z ≤ o1 ∧ o1 ≤ Size.size l ∧ Size.size l ≤ o1 + 1%Z) else ¬ 2%Z = 0%Z ∧ (let o1 : Z := Z.rem (m - 1%Z) 2%Z in (match t with | Empty => False | Node f _ f1 => f = r ∨ f1 = r end) ∧ inv r ∧ 0%Z ≤ o1 ∧ o1 ≤ Size.size r ∧ Size.size r ≤ o1 + 1%Z)) end) ∧ (∀(result : Z), (match t with | Empty => result = 0%Z | Node l _ r => (if decide (m = 0%Z) then result = 1%Z else if decide (Z.quot m 2%Z = 1%Z) then Size.size l = Z.rem m 2%Z + result else Size.size r = Z.rem (m - 1%Z) 2%Z + result) end) -> Size.size t = m + result).
+Proof.
 Admitted.

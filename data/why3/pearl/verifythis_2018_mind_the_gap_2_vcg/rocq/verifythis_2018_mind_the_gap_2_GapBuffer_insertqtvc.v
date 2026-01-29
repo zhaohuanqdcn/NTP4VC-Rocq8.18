@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom char : Type.
@@ -46,4 +46,5 @@ Axiom contents'def : forall  (b : buffer) (i : Z), contents b i = (if decide (0%
 Definition same_contents (b1 : buffer) (b2 : buffer) := len_contents b1 = len_contents b2 ∧ (∀(i : Z), 0%Z ≤ i ∧ i < len_contents b1 -> contents b1 i = contents b2 i).
 Definition contents_inserted (newb : buffer) (oldb : buffer) (x : char) (pos : Z) := len_contents newb = len_contents oldb + 1%Z ∧ (0%Z ≤ pos ∧ pos ≤ len_contents oldb) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < pos -> contents newb i = contents oldb i) ∧ contents newb pos = x ∧ (∀(i : Z), pos < i ∧ i < len_contents newb -> contents newb i = contents oldb (i - 1%Z)).
 Theorem insert'vc (b : buffer) (x : char) : if decide (l b = r b) then ∀(b1 : buffer), l b = l b1 -> l b1 = l b ∧ r b1 = r b + 42%Z ∧ same_contents b1 b -> (let o1 : Z := l b1 in let o2 : list char := data b1 in (0%Z ≤ o1 ∧ o1 < Z.of_nat (length o2)) ∧ (length (set_list o2 (Z.to_nat o1) x) = length o2 -> length (set_list o2 (Z.to_nat o1) x) = length (data b1) -> nth_i (set_list o2 (Z.to_nat o1) x) = fun_updt (nth_i o2) o1 x -> (∀(b2 : buffer), (0%Z ≤ l b1 + 1%Z ∧ l b1 + 1%Z ≤ r b1 ∧ r b1 ≤ Z.of_nat (length (set_list o2 (Z.to_nat o1) x))) ∧ (r b1 = r b2 ∧ l b1 + 1%Z = l b2 ∧ set_list o2 (Z.to_nat o1) x = data b2 -> l b2 = l b + 1%Z ∧ contents_inserted b2 b x (l b))))) else let o1 : Z := l b in let o2 : list char := data b in (0%Z ≤ o1 ∧ o1 < Z.of_nat (length o2)) ∧ (length (set_list o2 (Z.to_nat o1) x) = length o2 -> length (set_list o2 (Z.to_nat o1) x) = length (data b) -> nth_i (set_list o2 (Z.to_nat o1) x) = fun_updt (nth_i o2) o1 x -> (∀(b1 : buffer), (0%Z ≤ l b + 1%Z ∧ l b + 1%Z ≤ r b ∧ r b ≤ Z.of_nat (length (set_list o2 (Z.to_nat o1) x))) ∧ (r b = r b1 ∧ l b + 1%Z = l b1 ∧ set_list o2 (Z.to_nat o1) x = data b1 -> l b1 = l b + 1%Z ∧ contents_inserted b1 b x (l b)))).
+Proof.
 Admitted.

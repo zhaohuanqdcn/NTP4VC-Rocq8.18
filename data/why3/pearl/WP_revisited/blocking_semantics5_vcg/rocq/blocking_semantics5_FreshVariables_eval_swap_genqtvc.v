@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import WP_revisited.blocking_semantics5.Syntax.
 Require Import WP_revisited.blocking_semantics5.SemOp.
@@ -38,4 +38,5 @@ Program Fixpoint fresh_in_fmla (id1 : ident) (f : fmla) : Prop :=
 match f with | Fterm e => fresh_in_term id1 e | Fand f1 f2 => fresh_in_fmla id1 f1 ∧ fresh_in_fmla id1 f2 | Fimplies f1 f2 => fresh_in_fmla id1 f1 ∧ fresh_in_fmla id1 f2 | Fnot f1 => fresh_in_fmla id1 f1 | Flet y t f1 => ¬ id1 = y ∧ fresh_in_term id1 t ∧ fresh_in_fmla id1 f1 | Fforall y _ f1 => ¬ id1 = y ∧ fresh_in_fmla id1 f1 end.
 Admit Obligations.
 Theorem eval_swap_gen'vc (id1 : ident) (id2 : ident) (sigma : mident -> value) (l : list (ident * value)) (v1 : value) (v2 : value) (pi : list (ident * value)) (f : fmla) (fact0 : ¬ id1 = id2) : eval_fmla sigma (l ++ cons (id1, v1) (cons (id2, v2) pi)) f = eval_fmla sigma (l ++ cons (id2, v2) (cons (id1, v1) pi)) f.
+Proof.
 Admitted.

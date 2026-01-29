@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.string.StringBuffer.
 Open Scope Z_scope.
@@ -28,4 +28,5 @@ Definition int2b64 (i : Z) : ascii := if decide (0%Z ≤ i ∧ i ≤ 25%Z) then 
 Definition valid_b64_char (c : ascii) := 65%Z ≤ Z.of_nat (Ascii.nat_of_ascii c) ∧ Z.of_nat (Ascii.nat_of_ascii c) ≤ 90%Z ∨ 97%Z ≤ Z.of_nat (Ascii.nat_of_ascii c) ∧ Z.of_nat (Ascii.nat_of_ascii c) ≤ 122%Z ∨ 48%Z ≤ Z.of_nat (Ascii.nat_of_ascii c) ∧ Z.of_nat (Ascii.nat_of_ascii c) ≤ 57%Z ∨ Z.of_nat (Ascii.nat_of_ascii c) = 43%Z ∨ Z.of_nat (Ascii.nat_of_ascii c) = 47%Z.
 Definition b642int (c : ascii) : Z := if decide (65%Z ≤ Z.of_nat (Ascii.nat_of_ascii c) ∧ Z.of_nat (Ascii.nat_of_ascii c) ≤ 90%Z) then Z.of_nat (Ascii.nat_of_ascii c) - 65%Z else if decide (97%Z ≤ Z.of_nat (Ascii.nat_of_ascii c) ∧ Z.of_nat (Ascii.nat_of_ascii c) ≤ 122%Z) then Z.of_nat (Ascii.nat_of_ascii c) - 97%Z + 26%Z else if decide (48%Z ≤ Z.of_nat (Ascii.nat_of_ascii c) ∧ Z.of_nat (Ascii.nat_of_ascii c) ≤ 57%Z) then Z.of_nat (Ascii.nat_of_ascii c) - 48%Z + 52%Z else if decide (Z.of_nat (Ascii.nat_of_ascii c) = 43%Z) then 62%Z else if decide (Z.of_nat (Ascii.nat_of_ascii c) = 47%Z) then 63%Z else if decide (c = Ascii.ascii_of_nat (Z.to_nat (bv_signed (61%bv : bv 63%N)))) then 0%Z else 64%Z.
 Theorem b642int_int2b64'vc (i : Z) (fact0 : 0%Z ≤ i) (fact1 : i < 64%Z) : b642int (int2b64 i) = i.
+Proof.
 Admitted.

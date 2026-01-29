@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import pairing_heap_vcg.pairing_heap.HeapType.
 Require Import pairing_heap_vcg.pairing_heap.Size.
@@ -62,4 +62,5 @@ Definition minimum_heap (hh : heap1) : elt := minimum (h hh).
 Axiom empty : heap1.
 Axiom empty'def : size_heap (h empty) = 0%Z ∧ (∀(e : elt), ¬ mem e (h empty)).
 Theorem merge'vc (h2 : heap1) (h1 : heap1) : let o1 : raw_heap := h h2 in let o2 : raw_heap := h h1 in (match o1 with | E => (match o2 with | E => heap o1 | _ => heap o2 end) | H x => (match x with | T x1 x2 => (match o2 with | E => heap o1 | H x3 => (match x3 with | T x4 x5 => (if decide (le x4 x1) then heap (H (T x4 (cons (T x1 x2) x5))) else heap (H (T x1 (cons (T x4 x5) x2)))) end) end) end) end) ∧ (∀(result : heap1), (match o1 with | E => (match o2 with | E => h result = o1 | _ => h result = o2 end) | H x => (match x with | T x1 x2 => (match o2 with | E => h result = o1 | H x3 => (match x3 with | T x4 x5 => (if decide (le x4 x1) then h result = H (T x4 (cons (T x1 x2) x5)) else h result = H (T x1 (cons (T x4 x5) x2))) end) end) end) end) -> size_heap (h result) = size_heap (h h1) + size_heap (h h2) ∧ (∀(x : elt), occ_heap x (h result) = occ_heap x (h h1) + occ_heap x (h h2))).
+Proof.
 Admitted.

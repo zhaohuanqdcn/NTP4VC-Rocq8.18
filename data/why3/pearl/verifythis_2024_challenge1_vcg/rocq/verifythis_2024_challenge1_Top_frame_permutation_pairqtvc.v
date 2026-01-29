@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Definition permutation (l : Z) (p : list Z) := (0%Z ≤ l ∧ l ≤ Z.of_nat (length p)) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < l -> 0%Z ≤ nth (Z.to_nat i) p inhabitant ∧ nth (Z.to_nat i) p inhabitant < l) ∧ (∀(i : Z) (j : Z), 0%Z ≤ i ∧ i < l -> 0%Z ≤ j ∧ j < l -> ¬ i = j -> ¬ nth (Z.to_nat i) p inhabitant = nth (Z.to_nat j) p inhabitant).
@@ -41,4 +41,5 @@ Definition copy_perm (src : list elt) (dst : list elt) (size : Z) (p : list Z) (
 Definition copy_subsegment (src : list elt) (dst : list elt) (s : Z) (k : Z) (l : Z) (j : Z) (sigma : list Z) (tau : list Z) (p : list Z) (invp : list Z) := let start : Z := s * (k * l) in let starts : Z := start + nth (Z.to_nat j) sigma inhabitant * k in let startd : Z := start + nth (Z.to_nat (nth (Z.to_nat j) sigma inhabitant)) tau inhabitant * k in copy_to src dst starts startd k ∧ (∀(i : Z), 0%Z ≤ i ∧ i < k -> nth (Z.to_nat (startd + i)) p inhabitant = starts + i) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < k -> nth (Z.to_nat (starts + i)) invp inhabitant = startd + i).
 Definition frame {α : Type} `{Inhabited α} (a1 : list α) (a2 : list α) (ofs : Z) (len : Z) := length a2 = length a1 ∧ (∀(i : Z), 0%Z ≤ i ∧ i < ofs -> nth (Z.to_nat i) a2 inhabitant = nth (Z.to_nat i) a1 inhabitant) ∧ (∀(i : Z), ofs + len ≤ i ∧ i < Z.of_nat (length a2) -> nth (Z.to_nat i) a2 inhabitant = nth (Z.to_nat i) a1 inhabitant).
 Theorem frame_permutation_pair'vc (op : list Z) (p : list Z) (oinvp : list Z) (invp : list Z) (start : Z) (start1 : Z) (k : Z) (start2 : Z) (fact0 : length op = length p) (fact1 : length p = length oinvp) (fact2 : length oinvp = length invp) (fact3 : 0%Z ≤ start) (fact4 : start ≤ start1) (fact5 : start1 ≤ start1 + k) (fact6 : start1 + k ≤ Z.of_nat (length p)) (fact7 : 0%Z ≤ start) (fact8 : start ≤ start2) (fact9 : start2 ≤ start2 + k) (fact10 : start2 + k ≤ Z.of_nat (length p)) (fact11 : permutation_pair start op oinvp) (fact12 : frame op p start1 k) (fact13 : frame oinvp invp start2 k) : permutation_pair start p invp.
+Proof.
 Admitted.

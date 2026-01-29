@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Inductive term :=
@@ -73,4 +73,5 @@ Admit Obligations.
 Axiom subst_c'spec : forall  (c : context) (ct : context) (fact0 : is_context c) (fact1 : is_context ct), is_context (subst_c c ct).
 Definition irreducible (t : term) := ∀(t' : term), ¬ infix_mnmngt t t'.
 Theorem reduce_step'vc (c : context) (t : term) (fact0 : is_context c) : match t with | App t1 t2 => (let o1 : context := Left Hole t2 in let o2 : context := subst_c c o1 in (is_context c ∧ is_context o1 -> is_context o2) -> ((match t with | S => False | K => False | App f f1 => f = t1 ∨ f1 = t1 end) ∧ is_context o2) ∧ (∀(o3 : term), infix_mnmngt (subst o2 t1) (subst o2 o3) -> infix_mnmngt (subst c t) (subst c (App o3 t2))) ∧ (is_value t1 -> (let o3 : context := Right t1 Hole in let o4 : context := subst_c c o3 in (is_context c ∧ is_context o3 -> is_context o4) -> ((match t with | S => False | K => False | App f f1 => f = t2 ∨ f1 = t2 end) ∧ is_context o4) ∧ (∀(o5 : term), infix_mnmngt (subst o4 t2) (subst o4 o5) -> infix_mnmngt (subst c t) (subst c (App t1 o5))) ∧ (is_value t2 -> (match t1 with | App K v => infix_mnmngt (subst c t) (subst c v) | App (App S v1) v2 => infix_mnmngt (subst c t) (subst c (App (App v1 t2) (App v2 t2))) | _ => is_value t end))))) | _ => is_value t end.
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -46,4 +46,5 @@ Axiom max_var_e''def : forall  (e : LinearDecisionIntMP.expr' * LinearDecisionIn
 Axiom max_var_e''spec'0 : forall  (e : LinearDecisionIntMP.expr' * LinearDecisionIntMP.expr') (fact0 : LinearDecisionIntMP.valid_eq' e), 0%Z ≤ max_var_e' e.
 Axiom max_var_e''spec : forall  (e : LinearDecisionIntMP.expr' * LinearDecisionIntMP.expr') (fact0 : LinearDecisionIntMP.valid_eq' e), eq_bound' e (max_var_e' e).
 Theorem max_var_ctx''vc (l : list (LinearDecisionIntMP.expr' * LinearDecisionIntMP.expr')) (fact0 : LinearDecisionIntMP.valid_ctx' l) : (match l with | [] => True | cons e t => ((match l with | [] => False | cons _ f => f = t end) ∧ LinearDecisionIntMP.valid_ctx' t) ∧ (∀(o1 : Z), 0%Z ≤ o1 ∧ ctx_bound' t o1 -> LinearDecisionIntMP.valid_eq' e) end) ∧ (∀(result : Z), (match l with | [] => result = 0%Z | cons e t => (∃(o1 : Z), (0%Z ≤ o1 ∧ ctx_bound' t o1) ∧ (let o2 : Z := max_var_e' e in (0%Z ≤ o2 ∧ eq_bound' e o2) ∧ result = Z.max o2 o1)) end) -> 0%Z ≤ result ∧ ctx_bound' l result).
+Proof.
 Admitted.

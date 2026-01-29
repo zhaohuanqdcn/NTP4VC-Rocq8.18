@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import verifythis_2016_matrix_multiplication.matrices.MyMatrix.
@@ -53,4 +53,5 @@ Definition m_collapse (l : list mono) (m : mono) : list mono := match l with | [
 Axiom lm_collapse : list mono -> list mono -> list mono.
 Axiom lm_collapse_def : forall (acc : list mono) (l : list mono), lm_collapse acc l = (match l with | [] => acc | cons x q => lm_collapse (m_collapse acc x) q end).
 Theorem lm_collapse_ok'vc (f : Z -> mat Z) (r : Z) (c : Z) (acc : list mono) (l : list mono) (fact0 : lm_vld f r c acc) (fact1 : lm_vld f r c l) (fact2 : 0%Z ≤ r) (fact3 : 0%Z ≤ c) : (match l with | [] => True | cons x q => ((lm_vld f r c acc ∧ l_vld f r c (m_prod x)) ∧ 0%Z ≤ r ∧ 0%Z ≤ c) ∧ (let o1 : list mono := m_collapse acc x in lm_vld f r c o1 ∧ lm_mdl f r c o1 = add (lm_mdl f r c acc) (m_mdl f x) -> (match l with | [] => False | cons _ f1 => f1 = q end) ∧ (lm_vld f r c o1 ∧ lm_vld f r c q) ∧ 0%Z ≤ r ∧ 0%Z ≤ c) end) ∧ (∀(result : list mono), (match l with | [] => result = acc | cons x q => (let o1 : list mono := m_collapse acc x in (lm_vld f r c o1 ∧ lm_mdl f r c o1 = add (lm_mdl f r c acc) (m_mdl f x)) ∧ result = lm_collapse o1 q ∧ lm_vld f r c result ∧ lm_mdl f r c result = add (lm_mdl f r c o1) (lm_mdl f r c q)) end) -> (result = lm_collapse acc l ∧ lm_vld f r c result) ∧ lm_mdl f r c result = add (lm_mdl f r c acc) (lm_mdl f r c l)).
+Proof.
 Admitted.

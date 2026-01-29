@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom elt : Type.
@@ -49,4 +49,5 @@ Program Fixpoint enum_elements (e : enum) : list elt :=
 match e with | Done => ([] : list elt) | Next x r e1 => cons x (elements r ++ enum_elements e1) end.
 Admit Obligations.
 Theorem eq_enum'vc (e2 : enum) (e1 : enum) : (match e2 with | Done => (match e1 with | Done => True | _ => True end) | Next x x1 x2 => (match e1 with | Next x3 x4 x5 => x3 = x -> (∀(o1 : enum), enum_elements o1 = elements x1 ++ enum_elements x2 -> (∀(o2 : enum), enum_elements o2 = elements x4 ++ enum_elements x5 -> 0%Z ≤ Z.of_nat (length (enum_elements e1)) ∧ Z.of_nat (length (enum_elements o2)) < Z.of_nat (length (enum_elements e1)))) | _ => True end) end) ∧ (∀(result : bool), (match e2 with | Done => (match e1 with | Done => result = true | _ => result = false end) | Next x x1 x2 => (match e1 with | Next x3 x4 x5 => (if decide (x3 = x) then ∃(o1 : enum), enum_elements o1 = elements x1 ++ enum_elements x2 ∧ (∃(o2 : enum), enum_elements o2 = elements x4 ++ enum_elements x5 ∧ result = (if decide (enum_elements o2 = enum_elements o1) then true else false)) else result = false) | _ => result = false end) end) -> (result = true) = (enum_elements e1 = enum_elements e2)).
+Proof.
 Admitted.

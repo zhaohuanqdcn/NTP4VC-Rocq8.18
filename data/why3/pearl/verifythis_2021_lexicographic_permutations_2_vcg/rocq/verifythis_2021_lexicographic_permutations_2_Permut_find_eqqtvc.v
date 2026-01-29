@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.map.MapEq.
 Require Import Why3.map.MapExchange.
@@ -32,4 +32,5 @@ Definition sorted (a : list Z) := ∀(i1 : Z) (i2 : Z), 0%Z ≤ i1 ∧ i1 < i2 �
 Definition le (a1 : list Z) (a2 : list Z) := length a1 = length a2 ∧ (∃(i : Z), (0%Z ≤ i ∧ i ≤ Z.of_nat (length a1)) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < i -> nth (Z.to_nat j) a1 inhabitant = nth (Z.to_nat j) a2 inhabitant) ∧ (i < Z.of_nat (length a1) -> nth (Z.to_nat i) a1 inhabitant < nth (Z.to_nat i) a2 inhabitant)).
 Definition lt (a1 : list Z) (a2 : list Z) := le a1 a2 ∧ ¬ a1 = a2.
 Theorem find_eq'vc (a1 : list Z) (a2 : list Z) (i : Z) (fact0 : length a1 = length a2) (fact1 : 0%Z ≤ i) (fact2 : i ≤ Z.of_nat (length a1)) (fact3 : drop 0%nat (take (Z.to_nat i - 0%nat) a1) = drop 0%nat (take (Z.to_nat i - 0%nat) a2)) : let o1 : Z := Z.of_nat (length a1) in (¬ i = o1 -> (0%Z ≤ i ∧ i < Z.of_nat (length a2)) ∧ 0%Z ≤ i ∧ i < Z.of_nat (length a1)) ∧ (∀(o2 : bool), (if decide (i = o1) then o2 = true else o2 = (if decide (nth (Z.to_nat i) a1 inhabitant = nth (Z.to_nat i) a2 inhabitant) then false else true)) -> (¬ o2 = true -> (let o3 : Z := i + 1%Z in (0%Z ≤ Z.of_nat (length a1) - i ∧ Z.of_nat (length a1) - o3 < Z.of_nat (length a1) - i) ∧ length a1 = length a2 ∧ (0%Z ≤ o3 ∧ o3 ≤ Z.of_nat (length a1)) ∧ drop 0%nat (take (Z.to_nat o3 - 0%nat) a1) = drop 0%nat (take (Z.to_nat o3 - 0%nat) a2))) ∧ (∀(result : Z), (if decide (o2 = true) then result = i else (0%Z ≤ result ∧ result ≤ Z.of_nat (length a1)) ∧ drop 0%nat (take (Z.to_nat result - 0%nat) a1) = drop 0%nat (take (Z.to_nat result - 0%nat) a2) ∧ (result < Z.of_nat (length a1) -> ¬ nth (Z.to_nat result) a1 inhabitant = nth (Z.to_nat result) a2 inhabitant)) -> (0%Z ≤ result ∧ result ≤ Z.of_nat (length a1)) ∧ drop 0%nat (take (Z.to_nat result - 0%nat) a1) = drop 0%nat (take (Z.to_nat result - 0%nat) a2) ∧ (result < Z.of_nat (length a1) -> ¬ nth (Z.to_nat result) a1 inhabitant = nth (Z.to_nat result) a2 inhabitant))).
+Proof.
 Admitted.

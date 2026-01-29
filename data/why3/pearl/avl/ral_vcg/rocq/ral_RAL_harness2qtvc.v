@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -108,4 +108,5 @@ Axiom m3 : Type -> Type.
 Axiom m3_inhabited : forall  {α : Type} `{Inhabited α}, Inhabited (m3 α).
 Global Existing Instance m3_inhabited.
 Theorem harness2'vc (a : t2 Z) (a1 : t2 Z) (a2 : t2 Z) (o1 : option (Z * t2 Z)) (fact0 : seq (m2 a) = ([] : list Z)) (fact1 : seq (m2 a1) = cons 2%Z (seq (m2 a))) (fact2 : seq (m2 a2) = seq (m2 a1) ++ [3%Z]) (fact3 : match o1 with | None => seq (m2 a2) = ([] : list Z) | Some (hd, tl) => seq (m2 a2) = cons hd (seq (m2 tl)) end) : (match o1 with | None => False | Some (d, tl) => d = 2%Z end) ∧ (∀(b : t2 Z), (match o1 with | None => False | Some (d, tl) => b = tl end) -> (∀(a3 : t2 Z), seq (m2 a3) = seq (m2 b) ++ seq (m2 a2) -> nth 1%nat (seq (m2 a3)) inhabitant = 2%Z)).
+Proof.
 Admitted.

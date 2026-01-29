@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.map.Const.
 Require Import Why3.map.MapExt.
@@ -43,4 +43,5 @@ Definition ext (s : propset loc) (memo1 : kind -> loc -> loc) (memo2 : kind -> l
 Definition unchanged (memo1 : kind -> loc -> loc) (memo2 : kind -> loc -> loc) := ∀(k : kind) (x : loc), memo1 k x = memo2 k x.
 Definition was_marked (t : tree loc) (memo1 : loc -> bool) (memo2 : loc -> bool) := (∀(l : loc), l ∈ footprint t -> memo2 l = true) ∧ (∀(l : loc), ¬ l ∈ footprint t -> memo2 l = memo1 l).
 Theorem ext_set'vc (s : propset loc) (memo1 : kind -> loc -> loc) (memo2 : kind -> loc -> loc) (t : tree loc) (c : loc) (p : loc) (fact0 : ext s memo1 memo2) (fact1 : footprint t ⊆ s) (fact2 : is_tree memo1 t c p) : is_tree memo2 t c p.
+Proof.
 Admitted.

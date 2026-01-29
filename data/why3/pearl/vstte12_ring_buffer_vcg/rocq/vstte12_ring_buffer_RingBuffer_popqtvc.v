@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom buffer : Type -> Type.
@@ -35,4 +35,5 @@ Definition buffer'eq {α : Type} `{Inhabited α} (a : buffer α) (b : buffer α)
 Axiom buffer'inj : forall  {α : Type} `{Inhabited α} (a : buffer α) (b : buffer α) (fact0 : buffer'eq a b), a = b.
 Definition size {α : Type} `{Inhabited α} (b : buffer α) : Z := Z.of_nat (length (data b)).
 Theorem pop'vc {α : Type} `{Inhabited α} (b : buffer α) (fact0 : 0%Z < len b) : match sequence b with | [] => False | cons _ s => (0%Z ≤ first b ∧ first b < Z.of_nat (length (data b))) ∧ (let r : α := nth (Z.to_nat (first b)) (data b) inhabitant in ∀(b1 : buffer α), if decide (first b + 1%Z = Z.of_nat (length (data b))) then ∀(b2 : buffer α), (let size1 : Z := Z.of_nat (length (data b)) in (0%Z ≤ 0%Z ∧ 0%Z < size1) ∧ (0%Z ≤ len b - 1%Z ∧ len b - 1%Z ≤ size1) ∧ len b - 1%Z = Z.of_nat (length s) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < len b - 1%Z -> (0%Z + i < size1 -> nth_error_i s i = Some (nth (Z.to_nat (0%Z + i)) (data b) inhabitant)) ∧ (0%Z ≤ 0%Z + i - size1 -> nth_error_i s i = Some (nth (Z.to_nat (0%Z + i - size1)) (data b) inhabitant)))) ∧ (s = sequence b2 ∧ data b = data b2 ∧ len b - 1%Z = len b2 ∧ 0%Z = first b2 -> len b2 = len b - 1%Z ∧ (match sequence b with | [] => False | cons x l => r = x ∧ sequence b2 = l end)) else (let size1 : Z := Z.of_nat (length (data b)) in (0%Z ≤ first b + 1%Z ∧ first b + 1%Z < size1) ∧ (0%Z ≤ len b - 1%Z ∧ len b - 1%Z ≤ size1) ∧ len b - 1%Z = Z.of_nat (length s) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < len b - 1%Z -> (first b + 1%Z + i < size1 -> nth_error_i s i = Some (nth (Z.to_nat (first b + 1%Z + i)) (data b) inhabitant)) ∧ (0%Z ≤ first b + 1%Z + i - size1 -> nth_error_i s i = Some (nth (Z.to_nat (first b + 1%Z + i - size1)) (data b) inhabitant)))) ∧ (s = sequence b1 ∧ data b = data b1 ∧ len b - 1%Z = len b1 ∧ first b + 1%Z = first b1 -> len b1 = len b - 1%Z ∧ (match sequence b with | [] => False | cons x l => r = x ∧ sequence b1 = l end))) end.
+Proof.
 Admitted.

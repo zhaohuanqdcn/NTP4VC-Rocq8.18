@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import prover.Firstorder_term_impl.Types.
 Require Import prover.Nat.Nat.
@@ -61,4 +61,5 @@ Axiom bound_depth_of_fo_term_in_fo_term_list_def : forall {ty'b0 : Type} {ty'b3 
 Axiom bound_depth_of_symbol_in_fo_term_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (t : nl_fo_term ty'b0 ty'b3), bound_depth_of_symbol_in_fo_term t = (match t with | NLFVar_fo_term v0 => 0%Z | NLBruijn_fo_term v0 => 0%Z | NL_App v0 v1 => (let b : Z := bound_depth_of_symbol_in_symbol v0 in let a : Z := b in let b1 : Z := bound_depth_of_symbol_in_fo_term_list v1 in let a1 : Z := (if decide (b1 < a) then a else b1) in a1) end).
 Axiom bound_depth_of_fo_term_in_fo_term_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (t : nl_fo_term ty'b0 ty'b3), bound_depth_of_fo_term_in_fo_term t = (match t with | NLFVar_fo_term v0 => 0%Z | NLBruijn_fo_term v0 => 1%Z + v0 | NL_App v0 v1 => (let b : Z := bound_depth_of_fo_term_in_fo_term_list v1 in let a : Z := b in a) end).
 Theorem bound_depth_of_fo_term_in_fo_term_list_nonnegative'vc {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (t : nl_fo_term_list ty'b0 ty'b3) (fact0 : correct_indexes_fo_term_list t) : 0%Z ≤ bound_depth_of_fo_term_in_fo_term_list t.
+Proof.
 Admitted.

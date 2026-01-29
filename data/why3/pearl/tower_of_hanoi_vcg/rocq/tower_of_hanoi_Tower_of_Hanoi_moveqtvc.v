@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Inductive sorted : list Z -> Prop :=
@@ -48,4 +48,5 @@ Axiom tower'invariant : forall  (self : tower), sorted (rod self).
 Definition tower'eq (a : tower) (b : tower) := rod a = rod b.
 Axiom tower'inj : forall  (a : tower) (b : tower) (fact0 : tower'eq a b), a = b.
 Theorem move'vc (a : tower) (x : Z) (s : list Z) (b : tower) (fact0 : rod a = cons x s) (fact1 : match rod b with | [] => True | cons y _ => x < y end) : match rod a with | cons x1 r => (∀(a1 : tower) (b1 : tower), sorted r ∧ (r = rod a1 -> sorted (cons x1 (rod b)) ∧ (cons x1 (rod b) = rod b1 -> rod a1 = s ∧ rod b1 = cons x (rod b)))) | [] => False end.
+Proof.
 Admitted.

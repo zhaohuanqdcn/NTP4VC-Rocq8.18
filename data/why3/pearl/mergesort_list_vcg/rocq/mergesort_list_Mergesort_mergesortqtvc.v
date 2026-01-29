@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom elt : Type.
@@ -39,4 +39,5 @@ Inductive sorted : list elt -> Prop :=
 Axiom sorted_mem : forall  (l : list elt) (x : elt), ((∀(y : elt), y ∈ l -> le x y) ∧ sorted l) = sorted (cons x l).
 Axiom sorted_append : forall  (l1 : list elt) (l2 : list elt), (sorted l1 ∧ sorted l2 ∧ (∀(x : elt) (y : elt), x ∈ l1 -> y ∈ l2 -> le x y)) = sorted (l1 ++ l2).
 Theorem mergesort'vc (l : list elt) : (match l with | [] => True | cons _ [] => True | _ => 2%Z ≤ Z.of_nat (length l) ∧ (∀(l1 : list elt) (l2 : list elt), 1%Z ≤ Z.of_nat (length l1) ∧ 1%Z ≤ Z.of_nat (length l2) ∧ l ≡ₚ l1 ++ l2 -> (0%Z ≤ Z.of_nat (length l) ∧ Z.of_nat (length l2) < Z.of_nat (length l)) ∧ (∀(o1 : list elt), sorted o1 ∧ o1 ≡ₚ l2 -> (0%Z ≤ Z.of_nat (length l) ∧ Z.of_nat (length l1) < Z.of_nat (length l)) ∧ (∀(o2 : list elt), sorted o2 ∧ o2 ≡ₚ l1 -> sorted o2 ∧ sorted o1))) end) ∧ (∀(result : list elt), (match l with | [] => result = l | cons _ [] => result = l | _ => (∃(l1 : list elt) (l2 : list elt), (1%Z ≤ Z.of_nat (length l1) ∧ 1%Z ≤ Z.of_nat (length l2) ∧ l ≡ₚ l1 ++ l2) ∧ (∃(o1 : list elt), (sorted o1 ∧ o1 ≡ₚ l2) ∧ (∃(o2 : list elt), (sorted o2 ∧ o2 ≡ₚ l1) ∧ sorted result ∧ result ≡ₚ o2 ++ o1))) end) -> sorted result ∧ result ≡ₚ l).
+Proof.
 Admitted.

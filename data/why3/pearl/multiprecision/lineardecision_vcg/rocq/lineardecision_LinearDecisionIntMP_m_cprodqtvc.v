@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -169,4 +169,5 @@ Axiom m_y : (Z -> Z) -> Z -> Rdefinitions.R.
 Axiom m_y'def : forall  (y : Z -> Z) (i : Z), m_y y i = Rdefinitions.IZR (y i).
 Axiom m_y'spec : forall  (y : Z -> Z) (i : Z), m_y y i = Rdefinitions.IZR (y i).
 Theorem m_cprod'vc (e : cprod) : (match e with | C c => True | Times c1 c2 => True end) ∧ (∀(result : LinearDecisionRationalMP.cprod), (match e with | C c => (let o1 : Z * Z * MP64Coeffs.exp := m c in (∀(y : Z -> Z), pos_exp c y -> minterp o1 y = Rdefinitions.IZR (mpinterp c y)) ∧ result = LinearDecisionRationalMP.C o1) | Times c1 c2 => (∃(o1 : LinearDecisionRationalMP.cprod), (∀(y : Z -> Z) (z : Z -> Z), pos_cprod c2 z -> LinearDecisionRationalMP.interp_c o1 (m_y y) z = Rdefinitions.IZR (interp_c c2 y z)) ∧ (∃(o2 : LinearDecisionRationalMP.cprod), (∀(y : Z -> Z) (z : Z -> Z), pos_cprod c1 z -> LinearDecisionRationalMP.interp_c o2 (m_y y) z = Rdefinitions.IZR (interp_c c1 y z)) ∧ result = LinearDecisionRationalMP.Times o2 o1)) end) -> (∀(y : Z -> Z) (z : Z -> Z), pos_cprod e z -> LinearDecisionRationalMP.interp_c result (m_y y) z = Rdefinitions.IZR (interp_c e y z))).
+Proof.
 Admitted.

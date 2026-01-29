@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.real.Sum.
 Require Import Why3.ieee_float.RoundingMode.
@@ -41,4 +41,5 @@ Axiom cos_abs_err_range : Rle 0%R cos_abs_err.
 Axiom cos_max : R.
 Axiom cos_max_range : Rle 0%R cos_max.
 Theorem kinematics'vc (theta1 : udouble) (theta2 : udouble) (fact0 : Rle (Rabs (to_real theta1)) (Rmult (Rdiv 1%R 4) sin_max)) (fact1 : Rle (Rabs (to_real theta2)) (Rmult (Rdiv 1%R 4) sin_max)) : let o1 : udouble := uadd theta1 theta2 in Rle (Rabs (to_real o1)) sin_max ∧ (∀(o2 : udouble), Rle (Rabs (Rminus (to_real o2) (sin (to_real o1)))) (Rplus (Rmult sin_rel_err (Rabs (sin (to_real o1)))) sin_abs_err) -> (∀(o3 : udouble), to_real o3 = Rdiv 5%R 2 -> Rle (Rabs (to_real theta1)) sin_max ∧ (∀(o4 : udouble), Rle (Rabs (Rminus (to_real o4) (sin (to_real theta1)))) (Rplus (Rmult sin_rel_err (Rabs (sin (to_real theta1)))) sin_abs_err) -> (∀(o5 : udouble), to_real o5 = Rdiv 1%R 2 -> (let theta11 : R := to_real theta1 in let theta21 : R := to_real theta2 in let t1 : R := Rplus 1%R eps in let t2 : R := Rplus eps (Rmult sin_rel_err t1) in Rle (Rabs (Rminus (to_real (uadd (umul o5 o4) (umul o3 o2))) (Rplus (Rmult (Rdiv 1%R 2) (sin theta11)) (Rmult (Rdiv 5%R 2) (sin (Rplus theta11 theta21)))))) (Rplus (Rmult (Rplus (Rmult 2%R t2) eps) (Rplus (Rmult (Rdiv 1%R 2) (Rabs (sin theta11))) (Rmult (Rdiv 5%R 2) (Rabs (sin (Rplus theta11 theta21)))))) (Rmult (Rplus t1 t2) (Rplus (Rmult t1 (Rplus (Rmult (Rdiv 1%R 2) sin_abs_err) (Rmult (Rdiv 5%R 2) (Rplus (Rmult (Rmult eps (Rabs (Rplus theta11 theta21))) (Rplus 1%R sin_rel_err)) sin_abs_err)))) (Rmult 2%R eta))))))))).
+Proof.
 Admitted.

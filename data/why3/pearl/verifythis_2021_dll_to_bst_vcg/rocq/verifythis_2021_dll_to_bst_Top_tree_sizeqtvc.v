@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.ocaml.Exceptions.
 Require Import Why3.bintree.Tree.
@@ -43,4 +43,5 @@ Program Fixpoint tree (prev : gmap loc loc) (next : gmap loc loc) (s : list loc)
 valid prev next s ∧ (0%Z ≤ lo ∧ lo ≤ hi ∧ hi ≤ Z.of_nat (length s)) ∧ (match t1 with | Empty => root = null ∧ lo = hi | Node l p r => (lo ≤ p ∧ p < hi) ∧ root = nth (Z.to_nat p) s inhabitant ∧ tree prev next s (lookup_gmap_total prev root) l lo p ∧ tree prev next s (lookup_gmap_total next root) r (p + 1%Z) hi end).
 Admit Obligations.
 Theorem tree_size'vc (prev : gmap loc loc) (next : gmap loc loc) (s : list loc) (root : loc) (t1 : Tree.tree Z) (lo : Z) (hi : Z) (fact0 : tree prev next s root t1 lo hi) : Size.size t1 = hi - lo.
+Proof.
 Admitted.

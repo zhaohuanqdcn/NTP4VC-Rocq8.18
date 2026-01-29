@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -56,4 +56,5 @@ Definition hole (x : selector) := match x with |  selector'mk _ a => a end.
 Definition selection_possible {α : Type} `{Inhabited α} (s : selector) (l : list α) := 0%Z ≤ index s ∧ (if decide (hole s = true) then index s ≤ Z.of_nat (length l) else index s < Z.of_nat (length l)).
 Definition selected {α : Type} `{Inhabited α} (s : selector) (e : split α) := index s = Z.of_nat (length (left1 e)) ∧ (hole s = true) = (middle e = (None : option α)).
 Theorem selected_part'vc {α : Type} `{Inhabited α} (s : selector) (lseq : list α) (d : α) (rseq : list α) (fact0 : selection_possible s (lseq ++ cons d rseq)) : let ind : Z := index s in ∀(result : part_base selector), (if decide (Z.of_nat (length lseq) < ind) then result = Right (selector'mk (ind - Z.of_nat (length lseq) - 1%Z) (hole s)) else if decide (ind < Z.of_nat (length lseq)) then result = Left s else if decide (hole s = true) then result = Left s else result = Here) -> (match result with | Here => selected s (split'mk lseq (Some d) rseq) | Left rsl => selection_possible rsl lseq ∧ (∀(e : split α), selected rsl e ∧ rebuild e = lseq -> selected s (right_extend e d rseq)) | Right rsr => selection_possible rsr rseq ∧ (∀(e : split α), selected rsr e ∧ rebuild e = rseq -> selected s (left_extend lseq d e)) end).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.Qed.Qed.
 Require Import verker.Axiomatic3.Axiomatic3.
@@ -29,4 +29,5 @@ Require Import Why3.Cint.Cint.
 Require Import verker.Compound.Compound.
 Open Scope Z_scope.
 Theorem goal12 (a_29 : addr) (a_18 : addr) (i_3 : Z) (t_1 : addr -> Z) (a_30 : addr) (a_5 : addr) (a_4 : addr) (a_3 : addr) (a_2 : addr) (a_11 : addr) (a_10 : addr) (a_9 : addr) (a_8 : addr) (a_13 : addr) (i_2 : Z) (a_12 : addr) (a_17 : addr) (a_16 : addr) (a_31 : addr) (a_32 : addr) (t : Z -> Z) (i : Z) (i_1 : Z) (a_19 : addr) (a_21 : addr) (a : addr) (a_1 : addr) (a_6 : addr) (a_7 : addr) (a_20 : addr) (a_22 : addr) (a_15 : addr) (a_14 : addr) (a_26 : addr) (a_25 : addr) (a_28 : addr) (a_27 : addr) (a_24 : addr) (a_23 : addr) : let x : Z := offset a_29 in let x_1 : Z := offset a_18 in let x_2 : Z := i_3 + x in let x_3 : Z := t_1 a_29 in let x_4 : Z := t_1 a_30 in let x_5 : Z := i_3 + x - x_1 in (base a_5 = base a_4) = (base a_3 = base a_2) -> (base a_11 = base a_10) = (base a_9 = base a_8) -> ¬ t_1 (shift a_13 i_2) = t_1 (shift a_12 i_2) -> offset a_17 + offset a_30 = offset a_16 + x -> 0%Z ≤ i_2 -> 0%Z ≤ i_3 -> x_1 ≤ x -> region (base a_31) ≤ 0%Z -> region (base a_32) ≤ 0%Z -> i_2 + x_1 < x_2 -> linked t -> is_sint32 i -> is_sint32 i_1 -> is_uint64 i_3 -> addr_le a_19 a_29 -> addr_le a_21 a_30 -> is_uint8 x_3 -> is_uint8 x_4 -> is_uint64 x_5 -> valid_rd t (shift a 0%Z) x_5 -> valid_rd t (shift a_1 0%Z) x_5 -> valid_rd t (shift a_6 0%Z) x_5 -> valid_rd t (shift a_7 0%Z) x_5 -> addr_le a_29 (shift a_20 x_5) -> addr_le a_30 (shift a_22 x_5) -> (if decide (0%Z < i_3) then ¬ x_4 = x_3 ∧ x_4 = i + x_3 ∧ x_4 = i_1 + x_3 else i = 0%Z ∧ i_1 = 0%Z) -> (∀(i_4 : Z), 0%Z ≤ i_4 -> i_4 + x_1 < x -> t_1 (shift a_15 i_4) = t_1 (shift a_14 i_4)) -> (∃(i_4 : Z), ¬ t_1 (shift a_26 i_4) = t_1 (shift a_25 i_4) ∧ t_1 (shift a_28 i_4) = i_1 + t_1 (shift a_27 i_4) ∧ 0%Z ≤ i_4 ∧ i_4 + x_1 < x_2 ∧ (∀(i_5 : Z), 0%Z ≤ i_5 -> i_5 < i_4 -> t_1 (shift a_24 i_5) = t_1 (shift a_23 i_5))).
+Proof.
 Admitted.

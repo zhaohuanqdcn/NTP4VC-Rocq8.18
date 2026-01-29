@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import verifythis_2016_matrix_multiplication.matrices.MyMatrix.
@@ -51,4 +51,5 @@ Axiom l_compare_def : forall (l1 : list Z) (l2 : list Z), l_compare l1 l2 = (mat
 Definition m_lower (m1 : mono) (m2 : mono) := let cmp : Z := l_compare (m_prod m1) (m_prod m2) in cmp < 0%Z ∨ cmp = 0%Z ∧ (m_pos m1 = true -> m_pos m2 = true).
 Definition m_collapse (l : list mono) (m : mono) : list mono := match l with | [] => cons m ([] : list mono) | cons x q => (if decide (¬ m_pos x = true ∧ m_pos m = true ∧ l_compare (m_prod m) (m_prod x) = 0%Z) then q else cons m l) end.
 Theorem m_collapse_ok'vc (f : Z -> mat Z) (r : Z) (c : Z) (l : list mono) (m : mono) (fact0 : lm_vld f r c l) (fact1 : l_vld f r c (m_prod m)) (fact2 : 0%Z ≤ r) (fact3 : 0%Z ≤ c) : let res : list mono := m_collapse l m in (match l with | [] => True | cons x q => (if decide (¬ m_pos x = true) then if decide (m_pos m = true) then true = (if decide (l_compare (m_prod m) (m_prod x) = 0%Z) then true else false) else true = false else true = false) -> l_compare (m_prod m) (m_prod x) = 0%Z end) ∧ ((match l with | [] => True | cons x q => (∃(o1 : bool), (if decide (¬ m_pos x = true) then if decide (m_pos m = true) then o1 = (if decide (l_compare (m_prod m) (m_prod x) = 0%Z) then true else false) else o1 = false else o1 = false) ∧ (o1 = true -> m_prod m = m_prod x)) end) -> (res = m_collapse l m ∧ lm_vld f r c res) ∧ lm_mdl f r c res = add (lm_mdl f r c l) (m_mdl f m)).
+Proof.
 Admitted.

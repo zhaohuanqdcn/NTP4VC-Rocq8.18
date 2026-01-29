@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -140,4 +140,5 @@ Axiom max_var_ctx'spec'0 : forall  (l : list (expr * expr)) (fact0 : valid_ctx l
 Axiom max_var_ctx'spec : forall  (l : list (expr * expr)) (fact0 : valid_ctx l), ctx_bound l (max_var_ctx l).
 Definition atom (e : expr) := match e with | Add _ _ => False | _ => True end.
 Theorem add_expr'vc (e2 : expr) (e1 : expr) : (∀(c : coeff) (i : Z), let o1 : coeff := czero in (eq o1 c -> (∀(y : cvars), interp o1 y = interp c y)) -> (∀(result : expr), (if decide (eq o1 c) then result = Cst czero else result = Term c i) -> (∀(y : Z -> a) (z : cvars), interp1 result y z = interp1 (Term c i) y z))) ∧ (∀(e : expr) (a1 : expr), atom a1 -> (match a1 with | Term x x1 => (match e with | Term x2 x3 => (if decide (x3 = x1) then ∀(o1 : coeff), (∀(v : cvars), interp o1 v = infix_pl (interp x2 v) (interp x v)) -> (∀(o2 : expr), (∀(y : Z -> a) (z : cvars), interp1 o2 y z = interp1 (Term o1 x3) y z) -> (∀(y : Z -> a) (z : cvars), interp1 o2 y z = infix_pl (interp1 e y z) (interp1 a1 y z))) else let o1 : coeff := czero in (eq x2 o1 -> (∀(y : cvars), interp x2 y = interp o1 y)) -> (∀(r : expr) (result : bool), (if decide (eq x2 o1) then (∀(y : Z -> a) (z : cvars), interp1 r y z = interp1 (Term x x1) y z) ∧ result = true else let o2 : coeff := czero in (eq x o2 -> (∀(y : cvars), interp x y = interp o2 y)) ∧ (if decide (eq x o2) then r = e ∧ result = true else r = Add e a1 ∧ result = false)) -> (∀(y : Z -> a) (z : cvars), interp1 r y z = infix_pl (interp1 e y z) (interp1 a1 y z)))) | Cst x2 => (let o1 : coeff := czero in (eq x o1 -> (∀(y : cvars), interp x y = interp o1 y)) -> (∀(r : expr) (result : bool), (if decide (eq x o1) then r = e ∧ result = true else let o2 : coeff := czero in (eq x2 o2 -> (∀(y : cvars), interp x2 y = interp o2 y)) ∧ (if decide (eq x2 o2) then r = a1 ∧ result = true else r = Add e a1 ∧ result = false)) -> (∀(y : Z -> a) (z : cvars), interp1 r y z = infix_pl (interp1 e y z) (interp1 a1 y z)))) | Add x2 x3 => ((match e with | Term _ _ => False | Add f f1 => f = x2 ∨ f1 = x2 | Cst _ => False end) ∧ atom a1) ∧ (∀(r : expr) (b : bool), (∀(y : Z -> a) (z : cvars), interp1 r y z = infix_pl (interp1 x2 y z) (interp1 a1 y z)) -> (if decide (b = true) then (match r with | Cst c => True | _ => True end) ∧ (∀(r1 : expr) (result : bool), (match r with | Cst c => (let o1 : coeff := czero in (eq c o1 -> (∀(y : cvars), interp c y = interp o1 y)) ∧ (if decide (eq c o1) then r1 = x3 ∧ result = true else r1 = Add r x3 ∧ result = true)) | _ => r1 = Add r x3 ∧ result = true end) -> (∀(y : Z -> a) (z : cvars), interp1 r1 y z = infix_pl (interp1 e y z) (interp1 a1 y z))) else ((match e with | Term _ _ => False | Add f f1 => f = x3 ∨ f1 = x3 | Cst _ => False end) ∧ atom a1) ∧ (∀(r1 : expr) (b1 : bool), (∀(y : Z -> a) (z : cvars), interp1 r1 y z = infix_pl (interp1 x3 y z) (interp1 a1 y z)) -> (match r1 with | Cst c => True | _ => True end) ∧ (∀(r2 : expr) (result : bool), (match r1 with | Cst c => (let o1 : coeff := czero in (eq c o1 -> (∀(y : cvars), interp c y = interp o1 y)) ∧ (if decide (eq c o1) then r2 = x2 ∧ result = true else r2 = Add x2 r1 ∧ result = b1)) | _ => r2 = Add x2 r1 ∧ result = b1 end) -> (∀(y : Z -> a) (z : cvars), interp1 r2 y z = infix_pl (interp1 e y z) (interp1 a1 y z)))))) end) | Cst x => (match e with | Cst x1 => (∀(o1 : coeff), (∀(v : cvars), interp o1 v = infix_pl (interp x1 v) (interp x v)) -> (∀(y : Z -> a) (z : cvars), interp1 (Cst o1) y z = infix_pl (interp1 e y z) (interp1 a1 y z))) | Term x1 x2 => (let o1 : coeff := czero in (eq x1 o1 -> (∀(y : cvars), interp x1 y = interp o1 y)) -> (∀(r : expr) (result : bool), (if decide (eq x1 o1) then r = a1 ∧ result = true else let o2 : coeff := czero in (eq x o2 -> (∀(y : cvars), interp x y = interp o2 y)) ∧ (if decide (eq x o2) then r = e ∧ result = true else r = Add e a1 ∧ result = false)) -> (∀(y : Z -> a) (z : cvars), interp1 r y z = infix_pl (interp1 e y z) (interp1 a1 y z)))) | Add x1 x2 => ((match e with | Term _ _ => False | Add f f1 => f = x1 ∨ f1 = x1 | Cst _ => False end) ∧ atom a1) ∧ (∀(r : expr) (b : bool), (∀(y : Z -> a) (z : cvars), interp1 r y z = infix_pl (interp1 x1 y z) (interp1 a1 y z)) -> (if decide (b = true) then (match r with | Cst c => True | _ => True end) ∧ (∀(r1 : expr) (result : bool), (match r with | Cst c => (let o1 : coeff := czero in (eq c o1 -> (∀(y : cvars), interp c y = interp o1 y)) ∧ (if decide (eq c o1) then r1 = x2 ∧ result = true else r1 = Add r x2 ∧ result = true)) | _ => r1 = Add r x2 ∧ result = true end) -> (∀(y : Z -> a) (z : cvars), interp1 r1 y z = infix_pl (interp1 e y z) (interp1 a1 y z))) else ((match e with | Term _ _ => False | Add f f1 => f = x2 ∨ f1 = x2 | Cst _ => False end) ∧ atom a1) ∧ (∀(r1 : expr) (b1 : bool), (∀(y : Z -> a) (z : cvars), interp1 r1 y z = infix_pl (interp1 x2 y z) (interp1 a1 y z)) -> (match r1 with | Cst c => True | _ => True end) ∧ (∀(r2 : expr) (result : bool), (match r1 with | Cst c => (let o1 : coeff := czero in (eq c o1 -> (∀(y : cvars), interp c y = interp o1 y)) ∧ (if decide (eq c o1) then r2 = x1 ∧ result = true else r2 = Add x1 r1 ∧ result = b1)) | _ => r2 = Add x1 r1 ∧ result = b1 end) -> (∀(y : Z -> a) (z : cvars), interp1 r2 y z = infix_pl (interp1 e y z) (interp1 a1 y z)))))) end) | Add x x1 => (match e with | Add x2 x3 => ((match e with | Term _ _ => False | Add f f1 => f = x2 ∨ f1 = x2 | Cst _ => False end) ∧ atom a1) ∧ (∀(r : expr) (b : bool), (∀(y : Z -> a) (z : cvars), interp1 r y z = infix_pl (interp1 x2 y z) (interp1 a1 y z)) -> (if decide (b = true) then (match r with | Cst c => True | _ => True end) ∧ (∀(r1 : expr) (result : bool), (match r with | Cst c => (let o1 : coeff := czero in (eq c o1 -> (∀(y : cvars), interp c y = interp o1 y)) ∧ (if decide (eq c o1) then r1 = x3 ∧ result = true else r1 = Add r x3 ∧ result = true)) | _ => r1 = Add r x3 ∧ result = true end) -> (∀(y : Z -> a) (z : cvars), interp1 r1 y z = infix_pl (interp1 e y z) (interp1 a1 y z))) else ((match e with | Term _ _ => False | Add f f1 => f = x3 ∨ f1 = x3 | Cst _ => False end) ∧ atom a1) ∧ (∀(r1 : expr) (b1 : bool), (∀(y : Z -> a) (z : cvars), interp1 r1 y z = infix_pl (interp1 x3 y z) (interp1 a1 y z)) -> (match r1 with | Cst c => True | _ => True end) ∧ (∀(r2 : expr) (result : bool), (match r1 with | Cst c => (let o1 : coeff := czero in (eq c o1 -> (∀(y : cvars), interp c y = interp o1 y)) ∧ (if decide (eq c o1) then r2 = x2 ∧ result = true else r2 = Add x2 r1 ∧ result = b1)) | _ => r2 = Add x2 r1 ∧ result = b1 end) -> (∀(y : Z -> a) (z : cvars), interp1 r2 y z = infix_pl (interp1 e y z) (interp1 a1 y z)))))) | _ => False end) end)) ∧ (match e2 with | Add e1' e2' => (match e2 with | Term _ _ => False | Add f f1 => f = e1' ∨ f1 = e1' | Cst _ => False end) ∧ (∀(o1 : expr), (∀(y : Z -> a) (z : cvars), interp1 o1 y z = infix_pl (interp1 e1 y z) (interp1 e1' y z)) -> (match e2 with | Term _ _ => False | Add f f1 => f = e2' ∨ f1 = e2' | Cst _ => False end) ∧ (∀(result : expr), (∀(y : Z -> a) (z : cvars), interp1 result y z = infix_pl (interp1 o1 y z) (interp1 e2' y z)) -> (∀(y : Z -> a) (z : cvars), interp1 result y z = infix_pl (interp1 e1 y z) (interp1 e2 y z)))) | _ => atom e2 ∧ (∀(o1 : expr), (∀(y : Z -> a) (z : cvars), interp1 o1 y z = infix_pl (interp1 e1 y z) (interp1 e2 y z)) -> (∀(y : Z -> a) (z : cvars), interp1 o1 y z = infix_pl (interp1 e1 y z) (interp1 e2 y z))) end).
+Proof.
 Admitted.

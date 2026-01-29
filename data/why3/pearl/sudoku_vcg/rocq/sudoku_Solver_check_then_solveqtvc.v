@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import sudoku_vcg.sudoku.Grid.
 Open Scope Z_scope.
@@ -28,4 +28,5 @@ Definition valid_chunk_up_to (g : Z -> Z) (i : Z) (start : list Z) (offsets : li
 Definition valid_up_to (s : sudoku_chunks) (g : Z -> Z) (i : Z) := ∀(j : Z), 0%Z ≤ j ∧ j < i -> valid_column s g j ∧ valid_row s g j ∧ valid_square s g j.
 Definition full_up_to (g : Z -> Z) (i : Z) := ∀(j : Z), 0%Z ≤ j ∧ j < i -> 1%Z ≤ g j ∧ g j ≤ 9%Z.
 Theorem check_then_solve'vc (s : sudoku_chunks) (g : list Z) (fact0 : well_formed_sudoku s) (fact1 : Z.of_nat (length g) = 81%Z) (fact2 : valid_values (nth_i g)) : well_formed_sudoku s ∧ Z.of_nat (length g) = 81%Z ∧ valid_values (nth_i g) ∧ (if decide (valid s (nth_i g)) then well_formed_sudoku s ∧ Z.of_nat (length g) = 81%Z ∧ valid_values (nth_i g) else ∀(h : Z -> Z), included (nth_i g) h ∧ full h -> ¬ valid s h).
+Proof.
 Admitted.

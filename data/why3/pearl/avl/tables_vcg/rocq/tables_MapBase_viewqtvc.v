@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -135,4 +135,5 @@ Global Existing Instance view1_inhabited.
 Arguments AEmpty1 {α}.
 Arguments ANode1 {α}.
 Theorem view'vc {α : Type} `{Inhabited α} (t5 : t4 α) : let o1 : t3 α := field t5 in ∀(o2 : view α), (match o2 with | AEmpty => hgt (m1 o1) = 0%Z ∧ seq (m1 o1) = ([] : list (t α)) | ANode l d r h s => seq (m1 o1) = node_model (seq (m1 l)) d (seq (m1 r)) ∧ s = () ∧ (let hl : Z := hgt (m1 l) in let hr : Z := hgt (m1 r) in (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing) ∧ hgt (m1 o1) = Z.of_nat h ∧ Z.of_nat h = 1%Z + (if decide (hl < hr) then hr else hl)) end) -> (match o2 with | AEmpty => True | ANode l d r h _ => selection_possible () (seq (m1 r)) ∧ (∀(o3 : t4 α), field o3 = r -> selection_possible () (seq (m1 l))) end) ∧ (∀(result : view1 α), (match o2 with | AEmpty => result = (AEmpty1 : view1 α) | ANode l d r h _ => (∃(o3 : t4 α), field o3 = r ∧ (∃(o4 : t4 α), field o4 = l ∧ result = ANode1 o4 d o3 h)) end) -> (match result with | AEmpty1 => card (m3 t5) = 0%Z ∧ (∀(k : t1), ¬ domn (m3 t5) k = true) | ANode1 l d r h => card (m3 t5) = 1%Z + card (m3 l) + card (m3 r) ∧ Z.of_nat h = hgt (m1 (field t5)) ∧ (let k0 : t1 := key d in (∀(k : t1), lt k k0 -> (domn (m3 l) k = true) = (domn (m3 t5) k = true)) ∧ (∀(k : t1), lt k k0 ∧ domn (m3 l) k = true -> func (m3 l) k = func (m3 t5) k) ∧ (∀(k : t1), le k0 k -> ¬ domn (m3 l) k = true) ∧ (∀(k : t1), lt k0 k -> (domn (m3 r) k = true) = (domn (m3 t5) k = true)) ∧ (∀(k : t1), lt k0 k ∧ domn (m3 r) k = true -> func (m3 r) k = func (m3 t5) k) ∧ (∀(k : t1), le k k0 -> ¬ domn (m3 r) k = true) ∧ (∀(k : t1), eq k k0 -> domn (m3 t5) k = true ∧ func (m3 t5) k = d) ∧ domn (m3 t5) k0 = true ∧ func (m3 t5) k0 = d) end)).
+Proof.
 Admitted.

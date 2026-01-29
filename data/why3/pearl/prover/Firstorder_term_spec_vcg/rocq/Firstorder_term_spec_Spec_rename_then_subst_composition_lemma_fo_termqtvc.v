@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import prover.Nat.Nat.
 Require Import prover.Functions.Config.
@@ -63,4 +63,5 @@ Axiom subst_fo_term : forall {ty'b0 : Type} `{Inhabited ty'b0} {ty'b3 : Type} `{
 Axiom subst_fo_term_list_def : forall {ty'b0 : Type} {ty'b3 : Type} {ty'c0 : Type} {ty'c3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} `{Inhabited ty'c0} `{Inhabited ty'c3} (t : fo_term_list ty'b0 ty'b3) (s0 : ty'b0 -> symbol ty'c0) (s3 : ty'b3 -> fo_term ty'c0 ty'c3), subst_fo_term_list t s0 s3 = (match t with | FONil => (FONil : fo_term_list ty'c0 ty'c3) | FOCons v0 v1 => FOCons (subst_fo_term v0 (rename_subst_symbol s0 identity) (rename_subst_fo_term s3 identity identity)) (subst_fo_term_list v1 (rename_subst_symbol s0 identity) (rename_subst_fo_term s3 identity identity)) end).
 Axiom subst_fo_term_def : forall {ty'b0 : Type} {ty'b3 : Type} {ty'c0 : Type} {ty'c3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} `{Inhabited ty'c0} `{Inhabited ty'c3} (t : fo_term ty'b0 ty'b3) (s0 : ty'b0 -> symbol ty'c0) (s3 : ty'b3 -> fo_term ty'c0 ty'c3), subst_fo_term t s0 s3 = (match t with | Var_fo_term v0 => s3 v0 | App v0 v1 => App (subst_symbol v0 (rename_subst_symbol s0 identity)) (subst_fo_term_list v1 (rename_subst_symbol s0 identity) (rename_subst_fo_term s3 identity identity)) end).
 Theorem rename_then_subst_composition_lemma_fo_term'vc {ty'c3 : Type} {ty'b0 : Type} {ty'd0 : Type} {ty'd3 : Type} {ty'b3 : Type} {ty'c0 : Type} `{Inhabited ty'c3} `{Inhabited ty'b0} `{Inhabited ty'd0} `{Inhabited ty'd3} `{Inhabited ty'b3} `{Inhabited ty'c0} (t : fo_term ty'b0 ty'b3) (s10 : ty'b0 -> ty'c0) (s13 : ty'b3 -> ty'c3) (s20 : ty'c0 -> symbol ty'd0) (s23 : ty'c3 -> fo_term ty'd0 ty'd3) : subst_fo_term (rename_fo_term t s10 s13) s20 s23 = subst_fo_term t (compose s20 s10) (compose s23 s13).
+Proof.
 Admitted.

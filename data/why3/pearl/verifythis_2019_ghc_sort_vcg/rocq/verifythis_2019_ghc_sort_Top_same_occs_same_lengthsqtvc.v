@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.NumOf.
@@ -68,4 +68,5 @@ Axiom order'def : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 l
 Axiom order'spec'0 : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 l), sorted1 (order l).
 Axiom order'spec : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 l), l ≡ₚ order l.
 Theorem same_occs_same_lengths'vc (s : Z) (a : Datatypes.list Z) (seq1 : Datatypes.list Z) (fact0 : 0%Z ≤ s) (fact1 : s ≤ Z.of_nat (length a)) (fact2 : ∀(x : Z), map_occ_list x (nth_i a) s (Z.of_nat (length a)) = count_occ' (drop 0%nat (take (length seq1 - 0%nat) seq1)) x) : Z.of_nat (length seq1) = Z.of_nat (length a) - s.
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.Qed.Qed.
 Require Import verker.Axiomatic3.Axiomatic3.
@@ -31,4 +31,5 @@ Require Import verker.Compound.Compound.
 Require Import verker.A_Strlen.A_Strlen.
 Open Scope Z_scope.
 Theorem goal7 (t_1 : addr -> Z) (a : addr) (i_1 : Z) (a_1 : addr) (i : Z) (t : Z -> Z) (a_2 : addr) : let x : Z := t_1 a in let x_1 : Z := to_sint8 i_1 in let x_2 : Z := offset a_1 in let x_3 : Z := i + x_2 in let x_4 : Z := offset a in let x_5 : Z := i + x_2 - x_4 in let x_6 : Z := l_strnlen t_1 a_1 i in ¬ x = 0%Z -> ¬ x = x_1 -> ¬ x_3 = x_4 -> x_4 + l_strnlen t_1 a x_5 = x_2 + x_6 -> x_2 ≤ x_4 -> region (base a_1) ≤ 0%Z -> x_4 ≤ x_3 -> linked t -> sconst t_1 -> is_sint32 i_1 -> is_uint64 i -> addr_le a_1 a -> addr_le a_1 a_2 -> is_sint8 x -> p_valid_strn t t_1 a_1 i -> addr_lt a_2 (shift a 1%Z) -> is_uint64 x_5 -> addr_le a (shift a_1 x_6) -> p_valid_strn t t_1 a x_5 -> (∀(a_3 : addr), addr_lt a_3 a -> addr_le a_1 a_3 -> ¬ t_1 a_3 = x_1) -> ¬ t_1 a_2 = x_1.
+Proof.
 Admitted.

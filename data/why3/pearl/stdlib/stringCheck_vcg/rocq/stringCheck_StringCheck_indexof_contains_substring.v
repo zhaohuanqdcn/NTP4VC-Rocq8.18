@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.string.StringRealization.
 Open Scope Z_scope.
@@ -74,4 +74,5 @@ Axiom substring_indexof : forall  (s1 : string) (s2 : string) (i : Z), 0%Z ≤ i
 Axiom indexof_out_of_range : forall  (i : Z) (s1 : string) (s2 : string) (fact0 : ¬ (0%Z ≤ i ∧ i ≤ StringRealization.length s1)), indexof s1 s2 i = - 1%Z.
 Axiom indexof_in_range : forall  (s1 : string) (s2 : string) (i : Z), 0%Z ≤ i ∧ i ≤ StringRealization.length s1 -> indexof s1 s2 i = - 1%Z ∨ i ≤ indexof s1 s2 i ∧ indexof s1 s2 i ≤ StringRealization.length s1.
 Theorem indexof_contains_substring (i : Z) (s1 : string) (s2 : string) (fact0 : 0%Z ≤ i) (fact1 : i ≤ StringRealization.length s1) (fact2 : contains (StringRealization.substring s1 i (StringRealization.length s1 - i)) s2) : i ≤ indexof s1 s2 i ∧ indexof s1 s2 i ≤ StringRealization.length s1.
+Proof.
 Admitted.

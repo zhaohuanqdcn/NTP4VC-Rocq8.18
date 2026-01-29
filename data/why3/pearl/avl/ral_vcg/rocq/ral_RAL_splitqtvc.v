@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -108,4 +108,5 @@ Axiom m3 : Type -> Type.
 Axiom m3_inhabited : forall  {α : Type} `{Inhabited α}, Inhabited (m3 α).
 Global Existing Instance m3_inhabited.
 Theorem split'vc {α : Type} `{Inhabited α} (n : Z) (l : t2 α) (fact0 : 0%Z ≤ n) (fact1 : n < Z.of_nat (length (seq (m2 l)))) : let sel : selector := selector'mk n false in selection_possible sel (seq (m2 l)) ∧ (∀(r : split α) (lf : t2 α) (md : option α) (rg : t2 α), (selected sel r ∧ rebuild r = seq (m2 l)) ∧ seq (m2 lf) = left1 r ∧ seq (m2 rg) = right1 r ∧ (match md with | None => middle r = (None : option α) | Some d => middle r = Some d end) -> (match md with | None => False | Some md1 => True end) ∧ (∀(lf1 : t2 α) (md1 : α) (rg1 : t2 α), (match md with | None => False | Some md2 => lf1 = lf ∧ md1 = md2 ∧ rg1 = rg end) -> seq (m2 l) = seq (m2 lf1) ++ cons md1 (seq (m2 rg1)) ∧ seq (m2 lf1) = take (Z.to_nat n) (seq (m2 l)) ∧ seq (m2 rg1) = drop (Z.to_nat (n + 1%Z)) (seq (m2 l)))).
+Proof.
 Admitted.

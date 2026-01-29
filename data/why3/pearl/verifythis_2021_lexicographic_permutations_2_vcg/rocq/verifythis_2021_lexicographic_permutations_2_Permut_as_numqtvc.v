@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.MapEq.
@@ -42,4 +42,5 @@ Axiom find_eq'spec : forall  (a1 : list Z) (a2 : list Z) (i : Z) (fact0 : length
 Definition find_le (a1 : list Z) (a2 : list Z) : bool := if decide (length a1 = length a2) then let i : Z := find_eq a1 a2 0%Z in if decide (i = Z.of_nat (length a1)) then true else if decide (nth (Z.to_nat i) a1 inhabitant < nth (Z.to_nat i) a2 inhabitant) then true else false else false.
 Axiom find_le'spec : forall  (a1 : list Z) (a2 : list Z), (find_le a1 a2 = true) = le a1 a2.
 Theorem as_num'vc (base : Z) (a : list Z) (i : Z) (fact0 : boxed base a) (fact1 : 0%Z ≤ i) (fact2 : i ≤ Z.of_nat (length a)) : let o1 : Z := Z.of_nat (length a) in (¬ i = o1 -> (let o2 : Z := i + 1%Z in ((0%Z ≤ Z.of_nat (length a) - i ∧ Z.of_nat (length a) - o2 < Z.of_nat (length a) - i) ∧ boxed base a ∧ 0%Z ≤ o2 ∧ o2 ≤ Z.of_nat (length a)) ∧ (∀(rest : Z), 2%Z * Z.abs rest < Z.pow base (Z.of_nat (length a) - o2) -> 0%Z ≤ i ∧ i < Z.of_nat (length a)))) ∧ (∀(result : Z), (if decide (i = o1) then result = 0%Z else ∃(rest : Z), 2%Z * Z.abs rest < Z.pow base (Z.of_nat (length a) - (i + 1%Z)) ∧ result = nth (Z.to_nat i) a inhabitant * Z.pow base (Z.of_nat (length a) - 1%Z - i) + rest) -> 2%Z * Z.abs result < Z.pow base (Z.of_nat (length a) - i)).
+Proof.
 Admitted.

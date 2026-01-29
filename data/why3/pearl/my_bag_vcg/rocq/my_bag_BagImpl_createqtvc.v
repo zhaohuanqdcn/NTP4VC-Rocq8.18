@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.NumOf.
 Require Import Why3.map.Const.
@@ -44,4 +44,5 @@ Axiom fc2 : forall {α : Type} `{Inhabited α}, α -> Z.
 Axiom fc'def1 : forall  {α : Type} `{Inhabited α} (y0 : α), fc1 y0 = 0%Z.
 Axiom fc'def2 : forall  {α : Type} `{Inhabited α} (y0 : α), fc2 y0 = 0%Z.
 Theorem create'vc {α : Type} `{Inhabited α} (dummy : α) : let o1 : α -> Z := fc1 in 0%Z ≤ 0%Z ∧ (∀(o2 : rarray α), len o2 = 0%Z ∧ ResizableArraySpec.data o2 = (const : α -> Z -> α) dummy -> ((0%Z ≤ 0%Z ∧ 0%Z = len o2) ∧ (∀(x : α), o1 x = numof o2 x 0%Z 0%Z)) ∧ (∀(result : t α), size result = 0%Z ∧ data result = o2 ∧ contents result = o1 -> size result = 0%Z ∧ infix_eqeq (contents result) fc2)).
+Proof.
 Admitted.

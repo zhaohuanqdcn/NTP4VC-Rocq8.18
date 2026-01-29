@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom elt : Type.
@@ -61,4 +61,5 @@ Global Existing Instance heap_countable.
 Axiom inv : Z -> list tree -> Prop.
 Axiom inv_def : forall (m : Z) (h : list tree), inv m h = (match h with | [] => True | cons t r => (let k : Z := rank t in m ≤ k ∧ binomial_tree t ∧ inv (k + 1%Z) r) end).
 Theorem get_min'vc (h : list tree) (fact0 : heaps h) (fact1 : ¬ h = ([] : list tree)) : (match h with | [] => False | cons t l => (∀(m : elt) (l1 : list tree), heaps l1 -> (match l1 with | [] => True | cons (tree'mk x _ _) r => (∀(o1 : elt), (if decide (le x m) then o1 = x else o1 = m) -> (match l1 with | [] => False | cons _ f => f = r end) ∧ heaps r) end) ∧ (∀(result : elt), (match l1 with | [] => result = m | cons (tree'mk x _ _) r => (∃(o1 : elt), (if decide (le x m) then o1 = x else o1 = m) ∧ (result = o1 ∨ mem result r) ∧ le result o1 ∧ (∀(x1 : elt), mem x1 r -> le result x1)) end) -> (result = m ∨ mem result l1) ∧ le result m ∧ (∀(x : elt), mem x l1 -> le result x))) ∧ heaps l end) ∧ (∀(result : elt), (match h with | [] => False | cons t l => (let o1 : elt := elem t in (result = o1 ∨ mem result l) ∧ le result o1 ∧ (∀(x : elt), mem x l -> le result x)) end) -> mem result h ∧ (∀(x : elt), mem x h -> le result x)).
+Proof.
 Admitted.

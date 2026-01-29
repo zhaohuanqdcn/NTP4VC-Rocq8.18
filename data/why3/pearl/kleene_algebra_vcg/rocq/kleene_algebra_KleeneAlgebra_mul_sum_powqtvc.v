@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom t : Type.
@@ -66,4 +66,5 @@ Axiom Star_induct_right : forall  (z : t) (y : t) (x : t) (fact0 : infix_lseq (i
 Axiom sum_pow : t -> Z -> Z -> t.
 Axiom sum_pow'def : forall  (a : Z) (b : Z) (x : t) (fact0 : a ≤ b) (fact1 : 0%Z ≤ a), if decide (b = a) then sum_pow x a b = zero else sum_pow x a b = infix_pl (sum_pow x a (b - 1%Z)) (infix_cf x (b - 1%Z)).
 Theorem mul_sum_pow'vc (a : Z) (b : Z) (x : t) (fact0 : a ≤ b) (fact1 : 0%Z ≤ a) : infix_as (sum_pow x a b) x = sum_pow x (a + 1%Z) (b + 1%Z).
+Proof.
 Admitted.

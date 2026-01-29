@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom t : Type.
@@ -93,4 +93,5 @@ Axiom set_def_colz_changed : forall  (i : Z) (j : Z) (m : mat) (v : t) (fact0 : 
 Axiom set_def_rowz_unchanged : forall  (i : Z) (j : Z) (m : mat) (v : t) (fact0 : 0%Z ≤ i) (fact1 : 0%Z ≤ j) (fact2 : j < row_zeros m i), row_zeros (set m i j v) i = row_zeros m i.
 Axiom set_def_colz_unchanged : forall  (i : Z) (j : Z) (m : mat) (v : t) (fact0 : 0%Z ≤ i) (fact1 : 0%Z ≤ j) (fact2 : i < col_zeros m j), col_zeros (set m i j v) j = col_zeros m j.
 Theorem set_def_other_rowz (i : Z) (j : Z) (i' : Z) (m : mat) (v : t) (fact0 : 0%Z ≤ i) (fact1 : 0%Z ≤ j) (fact2 : 0%Z ≤ i') (fact3 : ¬ i = i') : row_zeros (set m i j v) i' = row_zeros m i'.
+Proof.
 Admitted.

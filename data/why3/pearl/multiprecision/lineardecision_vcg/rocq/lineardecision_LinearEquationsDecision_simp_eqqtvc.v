@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -186,4 +186,5 @@ Program Fixpoint valid_ctx' (ctx : list (expr' * expr')) : Prop :=
 match ctx with | [] => True | cons eq1 t => valid_eq' eq1 ∧ valid_ctx' t end.
 Admit Obligations.
 Theorem simp_eq'vc (g1 : expr') (g2 : expr') : let eq1 : expr' * expr' := (g1, g2) in ∀(o1 : expr), (∀(y : Z -> a) (z : cvars), interp1 o1 y z = interp' g2 y z) ∧ (valid_expr' g2 -> valid_expr o1) -> (∀(o2 : expr), (∀(y : Z -> a) (z : cvars), interp1 o2 y z = interp' g1 y z) ∧ (valid_expr' g1 -> valid_expr o2) -> (let result : expr * expr := (o2, o1) in (∀(y : Z -> a) (z : cvars), interp_eq result y z = interp_eq' eq1 y z) ∧ (valid_eq' eq1 -> valid_eq result))).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import verifythis_2016_matrix_multiplication.matrices.MyMatrix.
@@ -62,4 +62,5 @@ Axiom cat : forall {α : Type} `{Inhabited α}, list α -> list α -> list α.
 Axiom cat_def : forall {α : Type} `{Inhabited α} (l1 : list α) (l2 : list α), cat l1 l2 = (match l1 with | [] => l2 | cons x q => cons x (cat q l2) end).
 Definition m_mul (m1 : mono) (m2 : mono) : mono := mono'mk (cat (m_prod m1) (m_prod m2)) (if decide ((m_pos m1 = true) = (m_pos m2 = true)) then true else false).
 Theorem m_mul_ok'vc (r : Z) (k : Z) (c : Z) (f : Z -> mat Z) (m1 : mono) (m2 : mono) (o1 : bool) (fact0 : 0%Z ≤ r) (fact1 : 0%Z ≤ k) (fact2 : 0%Z ≤ c) (fact3 : l_vld f r k (m_prod m1)) (fact4 : l_vld f k c (m_prod m2)) (fact5 : if decide (m_pos m1 = true) then o1 = m_pos m2 else o1 = (if decide (m_pos m2 = true) then false else true)) : let o2 : list Z := m_prod m2 in let o3 : list Z := m_prod m1 in ((0%Z ≤ r ∧ 0%Z ≤ k ∧ 0%Z ≤ c) ∧ l_vld f r k o3 ∧ l_vld f k c o2) ∧ (let o4 : list Z := cat o3 o2 in l_vld f r c o4 ∧ l_mdl f o4 = mul (l_mdl f o3) (l_mdl f o2) -> (let result : mono := mono'mk o4 o1 in (result = m_mul m1 m2 ∧ l_vld f r c o4) ∧ m_mdl f result = mul (m_mdl f m1) (m_mdl f m2))).
+Proof.
 Admitted.

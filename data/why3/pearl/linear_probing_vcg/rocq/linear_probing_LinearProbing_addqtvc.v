@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.NumOf.
@@ -67,4 +67,5 @@ Definition t'eq (a : t) (b : t) := size a = size b ∧ data a = data b ∧ view 
 Axiom t'inj : forall  (a : t) (b : t) (fact0 : t'eq a b), a = b.
 Definition next (n : Z) (i : Z) : Z := let i1 : Z := i + 1%Z in if decide (i1 = n) then 0%Z else i1.
 Theorem add'vc (x : key) (h : t) (fact0 : neq x dummy) : (if decide (Z.of_nat (length (data h)) ≤ 2%Z * (size h + 1%Z)) then ∀(h1 : t), view h = view h1 ∧ size h = size h1 -> Z.of_nat (length (data h1)) = 2%Z * Z.of_nat (length (data h)) -> size h1 + 1%Z < Z.of_nat (length (data h1)) else size h + 1%Z < Z.of_nat (length (data h))) ∧ (∀(h1 : t), view h = view h1 ∧ size h = size h1 -> size h1 + 1%Z < Z.of_nat (length (data h1)) -> (let o1 : list key := data h1 in (neq x dummy ∧ (let n : Z := Z.of_nat (length o1) in 0%Z < n ∧ 0%Z < numof o1 0%Z n)) ∧ (∀(i : Z), (0%Z ≤ i ∧ i < Z.of_nat (length o1)) ∧ (eq (nth (Z.to_nat i) o1 inhabitant) dummy ∨ eq (nth (Z.to_nat i) o1 inhabitant) x) ∧ (∀(j : Z), 0%Z ≤ j ∧ j < Z.of_nat (length o1) -> between (bucket x (Z.of_nat (length o1))) j i -> neq (nth (Z.to_nat j) o1 inhabitant) x ∧ neq (nth (Z.to_nat j) o1 inhabitant) dummy) -> (let o2 : key := dummy in let o3 : list key := data h1 in (0%Z ≤ i ∧ i < Z.of_nat (length o3)) ∧ (let o4 : key := nth (Z.to_nat i) o3 inhabitant in eq o4 o2 = (keym1 o4 = keym1 o2) -> (if decide (eq o4 o2) then (0%Z ≤ i ∧ i < Z.of_nat (length (data h1))) ∧ (length (set_list (data h1) (Z.to_nat i) x) = length (data h1) -> length (set_list (data h1) (Z.to_nat i) x) = length (data h1) -> nth_i (set_list (data h1) (Z.to_nat i) x) = fun_updt (nth_i (data h1)) i x -> (∀(h2 : t), ((0%Z ≤ size h1 + 1%Z ∧ size h1 + 1%Z < Z.of_nat (length (set_list (data h1) (Z.to_nat i) x))) ∧ (let n : Z := Z.of_nat (length (set_list (data h1) (Z.to_nat i) x)) in size h1 + 1%Z + numof (set_list (data h1) (Z.to_nat i) x) 0%Z n = n) ∧ valid (set_list (data h1) (Z.to_nat i) x) (fun_updt (view h1) (keym1 x) true) (fun_updt (loc h1) (keym1 x) i)) ∧ (fun_updt (loc h1) (keym1 x) i = loc h2 ∧ fun_updt (view h1) (keym1 x) true = view h2 ∧ set_list (data h1) (Z.to_nat i) x = data h2 ∧ size h1 + 1%Z = size h2 -> view h2 = fun_updt (view h) (keym1 x) true))) else ∀(h2 : t), ((0%Z ≤ size h1 ∧ size h1 < Z.of_nat (length (data h1))) ∧ (let n : Z := Z.of_nat (length (data h1)) in size h1 + numof (data h1) 0%Z n = n) ∧ valid (data h1) (fun_updt (view h1) (keym1 x) true) (fun_updt (loc h1) (keym1 x) i)) ∧ (fun_updt (loc h1) (keym1 x) i = loc h2 ∧ fun_updt (view h1) (keym1 x) true = view h2 ∧ data h1 = data h2 ∧ size h1 = size h2 -> view h2 = fun_updt (view h) (keym1 x) true))))))).
+Proof.
 Admitted.

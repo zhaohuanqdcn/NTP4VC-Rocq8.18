@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import leftist_heap_vcg.leftist_heap.TreeRank.
 Require Import leftist_heap_vcg.leftist_heap.Size.
@@ -55,4 +55,5 @@ match h with | E => True | N s l _ r => s = rank h ∧ leftist l ∧ leftist r �
 Admit Obligations.
 Definition leftist_heap (h : tree elt) := is_heap h ∧ leftist h.
 Theorem insert'vc (h : tree elt) (x : elt) (fact0 : leftist_heap h) : let o1 : tree elt := N 1%Z E x E in (leftist_heap o1 ∧ leftist_heap h) ∧ (∀(result : tree elt), Size.size result = Size.size o1 + Size.size h ∧ (∀(x1 : elt), occ x1 result = occ x1 o1 + occ x1 h) ∧ leftist_heap result -> leftist_heap result ∧ occ x result = occ x h + 1%Z ∧ (∀(y : elt), ¬ x = y -> occ y result = occ y h) ∧ Size.size result = Size.size h + 1%Z).
+Proof.
 Admitted.

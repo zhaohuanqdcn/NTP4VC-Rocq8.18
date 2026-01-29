@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.NumOf.
@@ -125,4 +125,5 @@ Definition card {α : Type} (x : m2 α) := match x with |  m'mk1 _ _ a => a end.
 Axiom to_bag : forall {α : Type} `{Inhabited α}, list α -> α -> Z.
 Axiom to_bag'def : forall  {α : Type} `{Inhabited α} (s : list α) (x : α), to_bag s x = Z.of_nat (count_occ' (drop 0%nat (take (length s - 0%nat) s)) x).
 Theorem get_minimum_index'vc {α : Type} `{Inhabited α} (s : list (t α)) (fact0 : ¬ Z.of_nat (length s) = 0%Z) : let o1 : Z := Z.of_nat (length s) - 1%Z in (0%Z ≤ o1 + 1%Z -> (lower_bound_strict (key (nth 0%nat s inhabitant)) (take 0%nat s) ∧ lower_bound (key (nth 0%nat s inhabitant)) (drop 0%nat (take (0%nat - 0%nat) s)) ∧ 0%Z ≤ 0%Z ∧ 0%Z < Z.of_nat (length s)) ∧ (∀(r : Z), (∀(i : Z), (0%Z ≤ i ∧ i ≤ o1) ∧ lower_bound_strict (key (nth (Z.to_nat r) s inhabitant)) (take (Z.to_nat r) s) ∧ lower_bound (key (nth (Z.to_nat r) s inhabitant)) (drop (Z.to_nat r) (take (Z.to_nat i - Z.to_nat r) s)) ∧ (0%Z ≤ r ∧ r ≤ i) ∧ r < Z.of_nat (length s) -> (let o2 : t1 := key (nth (Z.to_nat r) s inhabitant) in let o3 : t1 := key (nth (Z.to_nat i) s inhabitant) in ∀(o4 : Z), (0%Z < o4) = lt o2 o3 ∧ (o4 < 0%Z) = lt o3 o2 ∧ (o4 = 0%Z) = eq o3 o2 -> (if decide (o4 < 0%Z) then lower_bound_strict (key (nth (Z.to_nat i) s inhabitant)) (take (Z.to_nat i) s) ∧ lower_bound (key (nth (Z.to_nat i) s inhabitant)) (drop (Z.to_nat i) (take (Z.to_nat (i + 1%Z) - Z.to_nat i) s)) ∧ (0%Z ≤ i ∧ i ≤ i + 1%Z) ∧ i < Z.of_nat (length s) else lower_bound_strict (key (nth (Z.to_nat r) s inhabitant)) (take (Z.to_nat r) s) ∧ lower_bound (key (nth (Z.to_nat r) s inhabitant)) (drop (Z.to_nat r) (take (Z.to_nat (i + 1%Z) - Z.to_nat r) s)) ∧ (0%Z ≤ r ∧ r ≤ i + 1%Z) ∧ r < Z.of_nat (length s)))) ∧ (lower_bound_strict (key (nth (Z.to_nat r) s inhabitant)) (take (Z.to_nat r) s) ∧ lower_bound (key (nth (Z.to_nat r) s inhabitant)) (drop (Z.to_nat r) (take (Z.to_nat (o1 + 1%Z) - Z.to_nat r) s)) ∧ (0%Z ≤ r ∧ r ≤ o1 + 1%Z) ∧ r < Z.of_nat (length s) -> (0%Z ≤ r ∧ r < Z.of_nat (length s)) ∧ agg measure_closure s = Some (key (nth (Z.to_nat r) s inhabitant)) ∧ lower_bound_strict (key (nth (Z.to_nat r) s inhabitant)) (take (Z.to_nat r) s) ∧ lower_bound (key (nth (Z.to_nat r) s inhabitant)) (drop (Z.to_nat r) s)))) ∧ (o1 + 1%Z < 0%Z -> (0%Z ≤ 0%Z ∧ 0%Z < Z.of_nat (length s)) ∧ agg measure_closure s = Some (key (nth 0%nat s inhabitant)) ∧ lower_bound_strict (key (nth 0%nat s inhabitant)) (take 0%nat s) ∧ lower_bound (key (nth 0%nat s inhabitant)) (drop 0%nat s)).
+Proof.
 Admitted.

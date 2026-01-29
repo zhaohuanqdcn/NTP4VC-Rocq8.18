@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import pairing_heap_bin_vcg.pairing_heap_bin.HeapType.
 Require Import Why3.bintree.Tree.
@@ -47,4 +47,5 @@ Definition is_minimum (x : elt) (h : HeapType.heap) := MyOcc.mem x h ∧ (∀(e 
 Axiom empty : HeapType.heap.
 Axiom empty'def : heap empty ∧ MySize.size empty = 0%Z ∧ (∀(e : elt), ¬ MyOcc.mem e empty).
 Theorem merge'vc (h1 : HeapType.heap) (h2 : HeapType.heap) (fact0 : heap h1) (fact1 : heap h2) : (match h2 with | E => (match h1 with | E => True | _ => True end) | T x x1 => (match h1 with | E => True | T x2 x3 => True end) end) ∧ (∀(result : HeapType.heap), (match h2 with | E => (match h1 with | E => result = h2 | _ => result = h1 end) | T x x1 => (match h1 with | E => result = h2 | T x2 x3 => (if decide (le x2 x) then result = T x2 (Node x1 x x3) else result = T x (Node x3 x2 x1)) end) end) -> heap result ∧ MySize.size result = MySize.size h1 + MySize.size h2 ∧ (∀(x : elt), MyOcc.occ x result = MyOcc.occ x h1 + MyOcc.occ x h2)).
+Proof.
 Admitted.

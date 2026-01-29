@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -140,4 +140,5 @@ Axiom max_var_ctx'spec'0 : forall  (l : list (expr * expr)) (fact0 : valid_ctx l
 Axiom max_var_ctx'spec : forall  (l : list (expr * expr)) (fact0 : valid_ctx l), ctx_bound l (max_var_ctx l).
 Definition atom (e : expr) := match e with | Add _ _ => False | _ => True end.
 Theorem swap_rows'vc (i1 : bv 63%N) (m : matrix coeff) (i2 : bv 63%N) (fact0 : 0%Z ≤ bv_signed i1) (fact1 : bv_signed i1 < bv_signed (rows m)) (fact2 : 0%Z ≤ bv_signed i2) (fact3 : bv_signed i2 < bv_signed (rows m)) : let o1 : bv 63%N := columns m in int'63_in_bounds (bv_signed o1 - 1%Z) ∧ (∀(o2 : bv 63%N), bv_signed o2 = bv_signed o1 - 1%Z -> 0%Z ≤ bv_signed o2 + 1%Z -> (∀(m1 : matrix coeff), rows m1 = rows m ∧ columns m1 = columns m -> (∀(j : bv 63%N), let j1 : Z := bv_signed j in 0%Z ≤ j1 ∧ j1 ≤ bv_signed o2 -> valid_index m1 i1 j ∧ valid_index m1 i2 j ∧ valid_index m1 i1 j ∧ (∀(m2 : matrix coeff), rows m2 = rows m1 ∧ columns m2 = columns m1 -> elts m2 = fun_updt (elts m1) (bv_signed i1) (fun_updt (elts m1 (bv_signed i1)) (bv_signed j) (get_unsafe m1 (bv_signed i2) (bv_signed j))) -> valid_index m2 i2 j)))).
+Proof.
 Admitted.

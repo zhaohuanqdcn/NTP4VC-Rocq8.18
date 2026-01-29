@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import ropes_vcg.ropes.MyString.
 Open Scope Z_scope.
@@ -42,4 +42,5 @@ Admit Obligations.
 Axiom empty : rope.
 Axiom empty'def : length empty = 0%Z ∧ inv empty ∧ infix_eqeq (string empty) MyString.empty.
 Theorem get'vc (r : rope) (i : Z) (fact0 : inv r) (fact1 : 0%Z ≤ i) (fact2 : i < length r) : (match r with | Emp => False | Str s ofs _ => (let o1 : Z := ofs + i in 0%Z ≤ o1 ∧ o1 < MyString.length s) | App left1 right1 _ => (let n : Z := length left1 in if decide (i < n) then (match r with | Emp => False | Str _ _ _ => False | App f f1 _ => f = left1 ∨ f1 = left1 end) ∧ inv left1 ∧ 0%Z ≤ i ∧ i < length left1 else let o1 : Z := i - n in (match r with | Emp => False | Str _ _ _ => False | App f f1 _ => f = right1 ∨ f1 = right1 end) ∧ inv right1 ∧ 0%Z ≤ o1 ∧ o1 < length right1) end) ∧ (∀(result : char), (match r with | Emp => False | Str s ofs _ => result = mixfix_lbrb s (ofs + i) | App left1 right1 _ => (let n : Z := length left1 in if decide (i < n) then result = mixfix_lbrb (string left1) i else result = mixfix_lbrb (string right1) (i - n)) end) -> result = mixfix_lbrb (string r) i).
+Proof.
 Admitted.

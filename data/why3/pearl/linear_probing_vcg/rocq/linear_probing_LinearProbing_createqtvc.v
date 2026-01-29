@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.NumOf.
@@ -66,4 +66,5 @@ Axiom t'invariant : forall  (self : t), 0%Z ≤ size self ∧ size self < Z.of_n
 Definition t'eq (a : t) (b : t) := size a = size b ∧ data a = data b ∧ view a = view b ∧ loc a = loc b.
 Axiom t'inj : forall  (a : t) (b : t) (fact0 : t'eq a b), a = b.
 Theorem create'vc (n : Z) (fact0 : 0%Z < n) : let o1 : keym -> Z := (const : Z -> keym -> Z) 0%Z in let o2 : keym -> bool := (const : bool -> keym -> bool) false in 0%Z ≤ n ∧ (∀(o3 : list key), (∀(i : Z), 0%Z ≤ i ∧ i < n -> nth (Z.to_nat i) o3 inhabitant = dummy) ∧ Z.of_nat (length o3) = n -> ((0%Z ≤ 0%Z ∧ 0%Z < Z.of_nat (length o3)) ∧ (let n1 : Z := Z.of_nat (length o3) in 0%Z + numof o3 0%Z n1 = n1) ∧ valid o3 o2 o1) ∧ (∀(result : t), size result = 0%Z ∧ data result = o3 ∧ view result = o2 ∧ loc result = o1 -> (∀(x : key), ¬ view result (keym1 x) = true))).
+Proof.
 Admitted.

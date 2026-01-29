@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.ocaml.Exceptions.
 Require Import Why3.bintree.Tree.
@@ -46,4 +46,5 @@ Program Fixpoint inorder (s : list loc) (t1 : Tree.tree Z) : list loc :=
 match t1 with | Empty => ([] : list loc) | Node l p r => inorder s l ++ cons (nth (Z.to_nat p) s inhabitant) (inorder s r) end.
 Admit Obligations.
 Theorem tree_inorder'vc (prev : gmap loc loc) (next : gmap loc loc) (s : list loc) (root : loc) (t1 : Tree.tree Z) (lo : Z) (hi : Z) (fact0 : tree prev next s root t1 lo hi) : inorder s t1 = drop (Z.to_nat lo) (take (Z.to_nat hi - Z.to_nat lo) s).
+Proof.
 Admitted.

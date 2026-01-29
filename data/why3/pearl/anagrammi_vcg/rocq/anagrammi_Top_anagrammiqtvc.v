@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Open Scope Z_scope.
@@ -44,4 +44,5 @@ Axiom fc1 : list Z -> bool.
 Axiom fc'def : forall  (x : list Z), fc x = true.
 Axiom fc'def1 : forall  (x : list Z), fc1 x = true.
 Theorem anagrammi'vc : (1%Z ≤ 4%Z + 1%Z -> below ([] : list (list Z)) (pr1 1%Z) ∧ (∀(output : list (list Z)), (∀(i1 : Z), (1%Z ≤ i1 ∧ i1 ≤ 4%Z) ∧ below output (pr1 i1) -> (1%Z ≤ 4%Z + 1%Z -> below output (pr2 i1 1%Z) ∧ (∀(output1 : list (list Z)), (∀(i2 : Z), (1%Z ≤ i2 ∧ i2 ≤ 4%Z) ∧ below output1 (pr2 i1 i2) -> (if decide (i2 = i1) then below output1 (pr2 i1 (i2 + 1%Z)) else (1%Z ≤ 4%Z + 1%Z -> below output1 (pr3 i1 i2 1%Z) ∧ (∀(output2 : list (list Z)), (∀(i3 : Z), (1%Z ≤ i3 ∧ i3 ≤ 4%Z) ∧ below output2 (pr3 i1 i2 i3) -> (if decide (i3 = i1) then below output2 (pr3 i1 i2 (i3 + 1%Z)) else if decide (i3 = i2) then below output2 (pr3 i1 i2 (i3 + 1%Z)) else let i4 : Z := 10%Z - (i1 + i2 + i3) in let o1 : list Z := ([] : list Z) in let o2 : list Z := cons i4 o1 in Z.of_nat (length o2) = 1%Z + Z.of_nat (length o1) ∧ nth 0%nat o2 inhabitant = i4 ∧ (∀(i : Z), 0%Z < i ∧ i ≤ Z.of_nat (length o1) -> nth (Z.to_nat i) o2 inhabitant = nth (Z.to_nat (i - 1%Z)) o1 inhabitant) -> (let o3 : list Z := cons i3 o2 in Z.of_nat (length o3) = 1%Z + Z.of_nat (length o2) ∧ nth 0%nat o3 inhabitant = i3 ∧ (∀(i : Z), 0%Z < i ∧ i ≤ Z.of_nat (length o2) -> nth (Z.to_nat i) o3 inhabitant = nth (Z.to_nat (i - 1%Z)) o2 inhabitant) -> (let o4 : list Z := cons i2 o3 in Z.of_nat (length o4) = 1%Z + Z.of_nat (length o3) ∧ nth 0%nat o4 inhabitant = i2 ∧ (∀(i : Z), 0%Z < i ∧ i ≤ Z.of_nat (length o3) -> nth (Z.to_nat i) o4 inhabitant = nth (Z.to_nat (i - 1%Z)) o3 inhabitant) -> (let line1 : list Z := cons i1 o4 in Z.of_nat (length line1) = 1%Z + Z.of_nat (length o4) ∧ nth 0%nat line1 inhabitant = i1 ∧ (∀(i : Z), 0%Z < i ∧ i ≤ Z.of_nat (length o4) -> nth (Z.to_nat i) line1 inhabitant = nth (Z.to_nat (i - 1%Z)) o4 inhabitant) -> (let o5 : list (list Z) := output2 ++ [line1] in Z.of_nat (length o5) = 1%Z + Z.of_nat (length output2) ∧ nth (length output2) o5 inhabitant = line1 ∧ (∀(i : Z), 0%Z ≤ i ∧ i < Z.of_nat (length output2) -> nth (Z.to_nat i) o5 inhabitant = nth (Z.to_nat i) output2 inhabitant) -> below o5 (pr3 i1 i2 (i3 + 1%Z)))))))) ∧ (below output2 (pr3 i1 i2 (4%Z + 1%Z)) -> below output2 (pr2 i1 (i2 + 1%Z))))) ∧ (4%Z + 1%Z < 1%Z -> below output1 (pr2 i1 (i2 + 1%Z))))) ∧ (below output1 (pr2 i1 (4%Z + 1%Z)) -> below output1 (pr1 (i1 + 1%Z))))) ∧ (4%Z + 1%Z < 1%Z -> below output (pr1 (i1 + 1%Z)))) ∧ (below output (pr1 (4%Z + 1%Z)) -> below output fc))) ∧ (4%Z + 1%Z < 1%Z -> below ([] : list (list Z)) fc1).
+Proof.
 Admitted.

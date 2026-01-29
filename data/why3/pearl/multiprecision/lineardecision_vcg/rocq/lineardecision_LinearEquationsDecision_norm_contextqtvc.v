@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -140,4 +140,5 @@ Axiom max_var_ctx'spec'0 : forall  (l : list (expr * expr)) (fact0 : valid_ctx l
 Axiom max_var_ctx'spec : forall  (l : list (expr * expr)) (fact0 : valid_ctx l), ctx_bound l (max_var_ctx l).
 Definition atom (e : expr) := match e with | Add _ _ => False | _ => True end.
 Theorem norm_context'vc (l : list (expr * expr)) : match l with | [] => (∀(g : expr * expr) (y : Z -> a) (z : cvars), interp_ctx ([] : list (expr * expr)) g y z = true -> interp_ctx l g y z = true) | cons h t => (∀(ex : expr) (c : coeff), (∀(y : Z -> a) (z : cvars), (interp_eq h y z = true) = (interp_eq (ex, Cst c) y z = true)) ∧ (∀(b : Z), eq_bound h b -> expr_bound ex b) -> (match l with | [] => False | cons _ f => f = t end) ∧ (∀(o1 : list (expr * expr)), (∀(g : expr * expr) (y : Z -> a) (z : cvars), interp_ctx o1 g y z = true -> interp_ctx t g y z = true) -> (∀(g : expr * expr) (y : Z -> a) (z : cvars), interp_ctx (cons (ex, Cst c) o1) g y z = true -> interp_ctx l g y z = true))) end.
+Proof.
 Admitted.

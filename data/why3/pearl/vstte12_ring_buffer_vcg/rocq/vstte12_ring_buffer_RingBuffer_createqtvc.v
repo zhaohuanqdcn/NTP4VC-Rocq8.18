@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom buffer : Type -> Type.
@@ -35,4 +35,5 @@ Definition buffer'eq {α : Type} `{Inhabited α} (a : buffer α) (b : buffer α)
 Axiom buffer'inj : forall  {α : Type} `{Inhabited α} (a : buffer α) (b : buffer α) (fact0 : buffer'eq a b), a = b.
 Definition size {α : Type} `{Inhabited α} (b : buffer α) : Z := Z.of_nat (length (data b)).
 Theorem create'vc {α : Type} `{Inhabited α} (n : Z) (dummy : α) (fact0 : 0%Z < n) : let o1 : list α := ([] : list α) in 0%Z ≤ n ∧ (∀(o2 : list α), (∀(i : Z), 0%Z ≤ i ∧ i < n -> nth (Z.to_nat i) o2 inhabitant = dummy) ∧ Z.of_nat (length o2) = n -> (let size1 : Z := Z.of_nat (length o2) in (0%Z ≤ 0%Z ∧ 0%Z < size1) ∧ (0%Z ≤ 0%Z ∧ 0%Z ≤ size1) ∧ 0%Z = Z.of_nat (length o1) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < 0%Z -> (0%Z + i < size1 -> nth_error_i o1 i = Some (nth (Z.to_nat (0%Z + i)) o2 inhabitant)) ∧ (0%Z ≤ 0%Z + i - size1 -> nth_error_i o1 i = Some (nth (Z.to_nat (0%Z + i - size1)) o2 inhabitant)))) ∧ (∀(result : buffer α), first result = 0%Z ∧ len result = 0%Z ∧ data result = o2 ∧ sequence result = o1 -> size result = n ∧ sequence result = ([] : list α))).
+Proof.
 Admitted.

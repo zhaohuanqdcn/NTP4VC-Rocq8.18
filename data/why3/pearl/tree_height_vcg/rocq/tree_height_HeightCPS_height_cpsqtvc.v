@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.bintree.Tree.
 Require Import Why3.bintree.Height.
@@ -40,4 +40,5 @@ Axiom o'def2 : forall  {β : Type} {α : Type} `{Inhabited β} `{Inhabited α} (
 Axiom result'def2 : forall  {β : Type} `{Inhabited β} (k : Z -> β) (hl : Z) (hr : Z), result2 k hl hr = k (1%Z + Z.max hl hr).
 Axiom o'def3 : forall  {β : Type} {α : Type} `{Inhabited β} `{Inhabited α} (k : Z -> β) (r : tree α) (hl : Z), o4 k r hl = result2 k hl (height r).
 Theorem height_cps'vc {β : Type} {α : Type} `{Inhabited β} `{Inhabited α} (t : tree α) (k : Z -> β) : (match t with | Empty => True | Node l _ r => (match t with | Empty => False | Node f _ f1 => f = r ∨ f1 = r end) ∧ (match t with | Empty => False | Node f _ f1 => f = l ∨ f1 = l end) end) ∧ (∀(result3 : β), (match t with | Empty => result3 = k 0%Z | Node l _ r => result3 = o4 k r (height l) end) -> result3 = k (height t)).
+Proof.
 Admitted.

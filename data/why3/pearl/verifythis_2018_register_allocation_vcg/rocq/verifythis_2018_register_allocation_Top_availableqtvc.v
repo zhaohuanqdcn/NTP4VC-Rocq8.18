@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.ocaml.Exceptions.
 Open Scope Z_scope.
@@ -60,4 +60,5 @@ Axiom merge'spec : forall  (v : var) (u : var) (g : t set) (fact0 : ¬ v = u) (f
 Axiom all_from : set -> t var -> set.
 Axiom all_from'spec : forall  (v : var) (s : set) (a : t var), (v ∈ to_fset (all_from s a)) = (∃(k : var), k ∈ to_fset s ∧ to_fmap a !! k = Some v).
 Theorem available'vc (s : set) (a : t var) (r : set) : let o1 : set := all_from s a in (∀(v : var), (v ∈ to_fset o1) = (∃(k : var), k ∈ to_fset s ∧ to_fmap a !! k = Some v)) -> (∀(free_r : set), to_fset free_r = to_fset r ∖ to_fset o1 -> (∀(result : option var), (if decide (to_fset free_r = ∅) then result = None else let o2 : var := choose1 free_r in o2 ∈ to_fset free_r ∧ result = Some o2) -> (match result with | None => (∀(u : var), u ∈ to_fset r -> (∃(v : var), v ∈ to_fset s ∧ to_fmap a !! v = Some u)) | Some res => res ∈ to_fset r ∧ (∀(v : var), v ∈ to_fset s -> v ∈ dom (to_fmap a) -> ¬ res = lookup_gmap_total (to_fmap a) v) end))).
+Proof.
 Admitted.

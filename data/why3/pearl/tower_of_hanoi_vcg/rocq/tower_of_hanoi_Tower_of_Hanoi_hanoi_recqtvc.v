@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Inductive sorted : list Z -> Prop :=
@@ -48,4 +48,5 @@ Axiom tower'invariant : forall  (self : tower), sorted (rod self).
 Definition tower'eq (a : tower) (b : tower) := rod a = rod b.
 Axiom tower'inj : forall  (a : tower) (b : tower) (fact0 : tower'eq a b), a = b.
 Theorem hanoi_rec'vc (p : list Z) (a : tower) (s : list Z) (b : tower) (c : tower) (fact0 : sorted1 p) (fact1 : rod a = rev_append p s) (fact2 : compat p (rod b)) (fact3 : compat p (rod c)) : if decide (0%Z < Z.of_nat (length p)) then let t : list Z := rod c in (match p with | cons x r => True | [] => False end) ∧ (∀(x : Z) (r : list Z), (match p with | cons x1 r1 => x = x1 ∧ r = r1 | [] => False end) -> (let o1 : list Z := cons x s in let o2 : Z := Z.of_nat (length p) - 1%Z in ((0%Z ≤ Z.of_nat (length p) ∧ o2 < Z.of_nat (length p)) ∧ (Z.of_nat (length r) = o2 ∧ sorted1 r) ∧ rod a = rev_append r o1 ∧ compat r (rod c) ∧ compat r (rod b)) ∧ (∀(c1 : tower) (b1 : tower) (a1 : tower), rod a1 = o1 ∧ rod c1 = rev_append r (rod c) ∧ rod b1 = rod b -> (rod a1 = cons x s ∧ (match rod b1 with | [] => True | cons y _ => x < y end)) ∧ (∀(b2 : tower) (a2 : tower), rod a2 = s ∧ rod b2 = cons x (rod b1) -> (let o3 : Z := Z.of_nat (length p) - 1%Z in ((0%Z ≤ Z.of_nat (length p) ∧ o3 < Z.of_nat (length p)) ∧ (Z.of_nat (length r) = o3 ∧ sorted1 r) ∧ rod c1 = rev_append r t ∧ compat r (rod b2) ∧ compat r (rod a2)) ∧ (∀(c2 : tower) (b3 : tower) (a3 : tower), rod c2 = t ∧ rod b3 = rev_append r (rod b2) ∧ rod a3 = rod a2 -> rod a3 = s ∧ rod b3 = rev_append p (rod b) ∧ rod c2 = rod c)))))) else rod a = s ∧ rod b = rev_append p (rod b).
+Proof.
 Admitted.

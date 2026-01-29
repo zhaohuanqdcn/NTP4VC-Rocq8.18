@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.debug.Debug.
@@ -58,4 +58,5 @@ Axiom pure_same_exp'spec : forall  (e1 : exp) (e2 : exp) (y : Z -> Z) (fact0 : p
 Definition meq (a : Z * Z * exp) (b : Z * Z * exp) := match (a, b) with | ((q1, e1), (q2, e2)) => req q1 q2 ∧ pure_same_exp e1 e2 ∨ req q1 (0%Z, 1%Z) ∧ req q2 (0%Z, 1%Z) end.
 Axiom meq'spec : forall  (a : Z * Z * exp) (b : Z * Z * exp) (y : Z -> Z) (fact0 : meq a b), minterp a y = minterp b y.
 Theorem minv'vc (q : Z) (q1 : Z) (e : exp) (fact0 : ¬ meq ((q, q1), e) ((0%Z, 1%Z), Lit 0%Z)) : let q2 : Z * Z := (q, q1) in ∀(o1 : exp), (∀(y : Z -> Z), interp_exp o1 y = - interp_exp e y) -> ¬ req q2 (0%Z, 1%Z) ∧ (∀(o2 : Z) (o3 : Z), let o4 : Z * Z := (o2, o3) in ¬ req o4 (0%Z, 1%Z) ∧ (∀(y : Z -> R), Rmult (rinterp o4 y) (rinterp q2 y) = 1%R) -> ¬ meq (o4, o1) ((0%Z, 1%Z), Lit 0%Z)).
+Proof.
 Admitted.

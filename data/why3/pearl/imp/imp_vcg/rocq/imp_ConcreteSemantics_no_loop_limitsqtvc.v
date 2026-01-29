@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import imp.imp.Syntax.
 Open Scope Z_scope.
@@ -84,4 +84,5 @@ with exec_while1 : config -> Z -> (program_var -> option Z) -> expr -> cmd -> (p
  | exec_while_body_error (cnf : config) (ctr : Z) (env1 : program_var -> option Z) (e : expr) (v : Z) (c : cmd) (env2 : program_var -> option Z) (bhv : behavior) : (match loop_limit cnf with | None => True | Some n => ctr < n end) -> eval_expr env1 e (Enormal v) -> ¬ v = 0%Z -> exec_cmd cnf env1 c env2 bhv -> ¬ bhv = Cnormal -> exec_while1 cnf ctr env1 e c env2 bhv
  | exec_while_loop (cnf : config) (ctr : Z) (env1 : program_var -> option Z) (e : expr) (v : Z) (c : cmd) (env2 : program_var -> option Z) (env3 : program_var -> option Z) (bhv : behavior) : (match loop_limit cnf with | None => True | Some n => ctr < n end) -> eval_expr env1 e (Enormal v) -> ¬ v = 0%Z -> exec_cmd cnf env1 c env2 Cnormal -> exec_while1 cnf (ctr + 1%Z) env2 e c env3 bhv -> exec_while1 cnf ctr env1 e c env3 bhv.
 Theorem no_loop_limits'vc : (∀(cnf : config) (env1 : program_var -> option Z) (c : cmd) (env2 : program_var -> option Z), exec_cmd cnf env1 c env2 Cloop_limit -> loop_limit cnf = None -> ¬ True) ∧ (∀(cnf : config) (ctr : Z) (env1 : program_var -> option Z) (e : expr) (c : cmd) (env2 : program_var -> option Z), exec_while1 cnf ctr env1 e c env2 Cloop_limit -> loop_limit cnf = None -> ¬ True).
+Proof.
 Admitted.

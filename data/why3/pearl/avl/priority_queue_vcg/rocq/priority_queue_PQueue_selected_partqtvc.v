@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -67,4 +67,5 @@ Definition selected {ε : Type} {α : Type} `{Inhabited ε} `{Inhabited α} (x :
 Axiom measure_closure : forall {α : Type} `{Inhabited α}, t α -> option t1.
 Axiom measure_closure_def : forall  {α : Type} `{Inhabited α} (y : t α), measure_closure y = measure y.
 Theorem selected_part'vc {α : Type} `{Inhabited α} (d : t α) (rseq : list (t α)) (lseq : list (t α)) : let s : unit := () in let kd : t1 := key d in (match agg measure_closure rseq with | None => (match agg measure_closure lseq with | None => True | Some x => True end) | Some x => (match agg measure_closure lseq with | None => True | Some x1 => True end) end) ∧ (∀(result : part_base unit), (match agg measure_closure rseq with | None => (match agg measure_closure lseq with | None => result = Here | Some x => (∃(o1 : Z), ((0%Z < o1) = lt x kd ∧ (o1 < 0%Z) = lt kd x ∧ (o1 = 0%Z) = eq kd x) ∧ (if decide (o1 < 0%Z) then result = Here else result = Left ())) end) | Some x => (match agg measure_closure lseq with | None => (∃(o1 : Z), ((0%Z < o1) = lt x kd ∧ (o1 < 0%Z) = lt kd x ∧ (o1 = 0%Z) = eq kd x) ∧ (if decide (o1 ≤ 0%Z) then result = Here else result = Right ())) | Some x1 => (∃(o1 : Z), ((0%Z < o1) = lt x kd ∧ (o1 < 0%Z) = lt kd x ∧ (o1 = 0%Z) = eq kd x) ∧ (if decide (o1 ≤ 0%Z) then ∃(o2 : Z), ((0%Z < o2) = lt kd x1 ∧ (o2 < 0%Z) = lt x1 kd ∧ (o2 = 0%Z) = eq x1 kd) ∧ (if decide (o2 ≤ 0%Z) then result = Left () else result = Here) else ∃(o2 : Z), ((0%Z < o2) = lt x x1 ∧ (o2 < 0%Z) = lt x1 x ∧ (o2 = 0%Z) = eq x1 x) ∧ (if decide (o2 ≤ 0%Z) then result = Left () else result = Right ()))) end) end) -> (match result with | Here => selected s (split'mk lseq (Some d) rseq) | Left rsl => selection_possible rsl lseq ∧ (∀(e : split (t α)), selected rsl e ∧ rebuild e = lseq -> selected s (right_extend e d rseq)) | Right rsr => selection_possible rsr rseq ∧ (∀(e : split (t α)), selected rsr e ∧ rebuild e = rseq -> selected s (left_extend lseq d e)) end)).
+Proof.
 Admitted.

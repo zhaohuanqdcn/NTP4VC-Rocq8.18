@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom t : Type.
@@ -123,4 +123,5 @@ match x1 with | [] => ([] : list m) | cons (M a m1) r => mul_mon x2 (M a m1) ++ 
 Admit Obligations.
 Axiom mul_devel'spec : forall  (x1 : list m) (x2 : list m) (y : Z -> t), interp' (mul_devel x1 x2) y = infix_as (interp' x1 y) (interp' x2 y).
 Theorem conv'vc (x : t2) : (match x with | Var v => True | Add x1 x2 => True | Mul x1 x2 => True | Cst n => True end) ∧ (∀(result : list m), (match x with | Var v => result = cons (M one1 (cons v ([] : list Z))) ([] : list m) | Add x1 x2 => (∃(o1 : list m), (∀(y : Z -> t), interp x2 y = interp' o1 y) ∧ (∃(o2 : list m), (∀(y : Z -> t), interp x1 y = interp' o2 y) ∧ result = o2 ++ o1)) | Mul x1 x2 => (∃(o1 : list m), (∀(y : Z -> t), interp x2 y = interp' o1 y) ∧ (∃(o2 : list m), (∀(y : Z -> t), interp x1 y = interp' o2 y) ∧ result = mul_devel o2 o1 ∧ (∀(y : Z -> t), interp' result y = infix_as (interp' o2 y) (interp' o1 y)))) | Cst n => result = cons (M n ([] : list Z)) ([] : list m) end) -> (∀(y : Z -> t), interp x y = interp' result y)).
+Proof.
 Admitted.

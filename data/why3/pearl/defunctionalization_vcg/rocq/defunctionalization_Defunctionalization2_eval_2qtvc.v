@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import defunctionalization_vcg.defunctionalization.Expr.
 Require Import defunctionalization_vcg.defunctionalization.DirectSem.
@@ -51,4 +51,5 @@ Program Fixpoint size_c (c : cont) (acc : nat) : nat :=
 match c with | I => acc | A1 e2 k => S (size_e e2 (S (size_c k acc))) | A2 _ k => S (size_c k acc) end.
 Admit Obligations.
 Theorem eval_2'vc (e : expr) (c : cont) : (match e with | Cte n => (match size_e e (size_c c O1) with | S f => f = size_c c O1 | O1 => False end) | Sub e1 e2 => (match size_e e (size_c c O1) with | S f => f = size_e e1 (size_c (A1 e2 c) O1) | O1 => False end) end) ∧ (∀(result : Z), (match e with | Cte n => eval_cont c n result | Sub e1 e2 => eval_cont (A1 e2 c) (eval_0 e1) result end) -> eval_cont c (eval_0 e) result).
+Proof.
 Admitted.

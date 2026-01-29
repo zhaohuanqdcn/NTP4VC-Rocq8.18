@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import prover.Nat.Nat.
 Require Import prover.Functions.Config.
@@ -75,4 +75,5 @@ Axiom is_fo_term_free_var_in_fo_term_list_def : forall {ty'b0 : Type} {ty'b3 : T
 Axiom is_symbol_free_var_in_fo_term_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (x : ty'b0) (t : fo_term ty'b0 ty'b3), is_symbol_free_var_in_fo_term x t = (match t with | Var_fo_term v0 => False | App v0 v1 => is_symbol_free_var_in_symbol x v0 ∨ is_symbol_free_var_in_fo_term_list x v1 end).
 Axiom is_fo_term_free_var_in_fo_term_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (x : ty'b3) (t : fo_term ty'b0 ty'b3), is_fo_term_free_var_in_fo_term x t = (match t with | Var_fo_term v0 => v0 = x | App v0 v1 => is_fo_term_free_var_in_fo_term_list x v1 end).
 Theorem rename_free_var_constructive_inversion_symbol_fo_term'vc {ty'b0 : Type} {ty'b3 : Type} {ty'c0 : Type} {ty'c3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} `{Inhabited ty'c0} `{Inhabited ty'c3} (x : ty'c0) (t : fo_term ty'b0 ty'b3) (s0 : ty'b0 -> ty'c0) (s3 : ty'b3 -> ty'c3) (fact0 : is_symbol_free_var_in_fo_term x (rename_fo_term t s0 s3)) : (match t with | Var_fo_term v0 => False | App v0 v1 => (if decide (is_symbol_free_var_in_symbol x (rename_symbol v0 s0)) then is_symbol_free_var_in_symbol x (rename_symbol v0 s0) else is_symbol_free_var_in_fo_term_list x (rename_fo_term_list v1 s0 s3) ∧ (0%Z ≤ size_fo_term t ∧ size_fo_term_list v1 < size_fo_term t) ∧ is_symbol_free_var_in_fo_term_list x (rename_fo_term_list v1 s0 s3)) end) ∧ (∀(result : ty'b0), (match t with | Var_fo_term v0 => False | App v0 v1 => (if decide (is_symbol_free_var_in_symbol x (rename_symbol v0 s0)) then is_symbol_free_var_in_symbol result v0 ∧ s0 result = x else is_symbol_free_var_in_fo_term_list x (rename_fo_term_list v1 s0 s3) ∧ is_symbol_free_var_in_fo_term_list result v1 ∧ s0 result = x) end) -> is_symbol_free_var_in_fo_term result t ∧ s0 result = x).
+Proof.
 Admitted.

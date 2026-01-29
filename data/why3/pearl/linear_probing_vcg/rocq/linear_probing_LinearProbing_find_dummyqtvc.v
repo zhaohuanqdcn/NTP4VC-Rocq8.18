@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.NumOf.
@@ -67,4 +67,5 @@ Definition t'eq (a : t) (b : t) := size a = size b ∧ data a = data b ∧ view 
 Axiom t'inj : forall  (a : t) (b : t) (fact0 : t'eq a b), a = b.
 Definition next (n : Z) (i : Z) : Z := let i1 : Z := i + 1%Z in if decide (i1 = n) then 0%Z else i1.
 Theorem find_dummy'vc (s : Z) (a : list key) (i : Z) (fact0 : 0%Z ≤ s) (fact1 : s < Z.of_nat (length a)) (fact2 : 0%Z ≤ i) (fact3 : i < Z.of_nat (length a)) (fact4 : ¬ i = s) (fact5 : if decide (s ≤ i) then 1%Z ≤ numof a i (Z.of_nat (length a)) + numof a 0%Z s else 1%Z ≤ numof a i s) (fact6 : ∀(k : Z), 0%Z ≤ k ∧ k < Z.of_nat (length a) -> between s k i -> ¬ k = s -> neq (nth (Z.to_nat k) a inhabitant) dummy) : let o1 : key := dummy in (0%Z ≤ i ∧ i < Z.of_nat (length a)) ∧ (let o2 : key := nth (Z.to_nat i) a inhabitant in eq o2 o1 = (keym1 o2 = keym1 o1) -> (¬ eq o2 o1 -> (let o3 : Z := next (Z.of_nat (length a)) i in (0%Z ≤ (if decide (s ≤ i) then Z.of_nat (length a) - i + s else s - i) ∧ (if decide (s ≤ o3) then Z.of_nat (length a) - o3 + s else s - o3) < (if decide (s ≤ i) then Z.of_nat (length a) - i + s else s - i)) ∧ (0%Z ≤ s ∧ s < Z.of_nat (length a)) ∧ (0%Z ≤ o3 ∧ o3 < Z.of_nat (length a)) ∧ ¬ o3 = s ∧ (if decide (s ≤ o3) then 1%Z ≤ numof a o3 (Z.of_nat (length a)) + numof a 0%Z s else 1%Z ≤ numof a o3 s) ∧ (∀(k : Z), 0%Z ≤ k ∧ k < Z.of_nat (length a) -> between s k o3 -> ¬ k = s -> neq (nth (Z.to_nat k) a inhabitant) dummy))) ∧ (∀(result : Z), (if decide (eq o2 o1) then result = i else (0%Z ≤ result ∧ result < Z.of_nat (length a)) ∧ ¬ result = s ∧ eq (nth (Z.to_nat result) a inhabitant) dummy ∧ (∀(k : Z), 0%Z ≤ k ∧ k < Z.of_nat (length a) -> between s k result -> ¬ k = s -> neq (nth (Z.to_nat k) a inhabitant) dummy)) -> (0%Z ≤ result ∧ result < Z.of_nat (length a)) ∧ ¬ result = s ∧ eq (nth (Z.to_nat result) a inhabitant) dummy ∧ (∀(k : Z), 0%Z ≤ k ∧ k < Z.of_nat (length a) -> between s k result -> ¬ k = s -> neq (nth (Z.to_nat k) a inhabitant) dummy))).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.real.Sum.
 Require Import Why3.ieee_float.RoundingMode.
@@ -47,4 +47,5 @@ Axiom exp_error_bounds : Rle 0%R exp_error ∧ Rle exp_error (Rdiv 1%R 4).
 Axiom exp_approx : usingle -> usingle.
 Axiom exp_approx'spec : forall  (x : usingle), Rle (Rabs (Rminus (to_real (exp_approx x)) (exp (to_real x)))) (Rmult exp_error (exp (to_real x))).
 Theorem example2'vc (y : usingle) (x : usingle) : let o1 : usingle := exp_approx y in Rle (Rabs (Rminus (to_real o1) (exp (to_real y)))) (Rmult exp_error (exp (to_real y))) -> (let o2 : usingle := exp_approx x in Rle (Rabs (Rminus (to_real o2) (exp (to_real x)))) (Rmult exp_error (exp (to_real x))) -> (let o3 : usingle := uadd o2 o1 in Rlt 0%R (to_real o3) ∧ (let result : usingle := log_approx o3 in Rle (Rabs (Rminus (to_real result) (ln (to_real o3)))) (Rplus (Rmult (Rabs (ln (to_real o3))) log_error) log_cst_error) -> (let exact : R := ln (Rplus (exp (to_real x)) (exp (to_real y))) in Rle (Rabs (Rminus (to_real result) exact)) (Rplus (Rplus (Rmult (Rabs exact) log_error) (Rmult (Ropp (ln (Rminus 1%R (Rplus (Rmult 2%R exp_error) eps)))) (Rplus 1%R log_error))) log_cst_error))))).
+Proof.
 Admitted.

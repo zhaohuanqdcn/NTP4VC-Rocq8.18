@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.ocaml.Exceptions.
 Open Scope Z_scope.
@@ -63,4 +63,5 @@ Definition no_collision (g : t set) (a : t var) := ∀(u : var) (v : var), u ∈
 Definition irrefl (g : t set) := ∀(u : var), u ∈ dom (to_fmap g) -> ¬ u ∈ to_fset (lookup_gmap_total (to_fmap g) u).
 Definition sym (g : t set) := ∀(u : var) (v : var), u ∈ dom (to_fmap g) -> v ∈ dom (to_fmap g) -> v ∈ to_fset (lookup_gmap_total (to_fmap g) u) -> u ∈ to_fset (lookup_gmap_total (to_fmap g) v).
 Theorem sym_merge'vc (g : t set) (u : var) (v : var) (fact0 : sym g) (fact1 : irrefl g) (fact2 : u ∈ dom (to_fmap g)) (fact3 : v ∈ dom (to_fmap g)) (fact4 : ¬ v = u) (fact5 : ¬ v ∈ to_fset (lookup_gmap_total (to_fmap g) u)) : sym (merge v u g).
+Proof.
 Admitted.

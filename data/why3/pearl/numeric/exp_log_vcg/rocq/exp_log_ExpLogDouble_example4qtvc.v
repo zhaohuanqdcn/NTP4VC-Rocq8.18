@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.real.Sum.
 Require Import Why3.ieee_float.RoundingMode.
@@ -49,4 +49,5 @@ Axiom log10_error_bounds : Rle 0%R log10_error ∧ Rle log10_error 1%R.
 Axiom log10_approx : udouble -> udouble.
 Axiom log10_approx'spec : forall  (x : udouble) (fact0 : Rlt 0%R (to_real x)), Rle (Rabs (Rminus (to_real (log10_approx x)) (Rlog 10 (to_real x)))) (Rmult (Rabs (Rlog 10 (to_real x))) log10_error).
 Theorem example4'vc (x : udouble) (y : udouble) (fact0 : Rlt 0%R (to_real x)) (fact1 : Rlt 0%R (to_real y)) : let o1 : udouble := uadd x y in Rlt 0%R (to_real o1) ∧ (let result : udouble := log10_approx o1 in Rle (Rabs (Rminus (to_real result) (Rlog 10 (to_real o1)))) (Rmult (Rabs (Rlog 10 (to_real o1))) log10_error) -> (let exact : R := Rlog 10 (Rplus (to_real x) (to_real y)) in Rle (Rabs (Rminus (to_real result) exact)) (Rplus (Rmult (Rabs exact) log10_error) (Rmult (Ropp (Rlog 10 (Rminus 1%R eps))) (Rplus 1%R log10_error))))).
+Proof.
 Admitted.

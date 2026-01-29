@@ -1,30 +1,31 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.Sum.
 Require Import vstte10_max_sum_vcg.vstte10_max_sum.MaxAndSum2.
 Open Scope Z_scope.
 Theorem test'vc : 0%Z ≤ 10%Z ∧ (∀(a : list Z), (∀(i : Z), 0%Z ≤ i ∧ i < 10%Z -> nth (Z.to_nat i) a inhabitant = 0%Z) ∧ Z.of_nat (length a) = 10%Z -> (0%Z ≤ 0%Z ∧ 0%Z < Z.of_nat (length a)) ∧ (length (set_list a 0%nat 9%Z) = length a -> nth_i (set_list a 0%nat 9%Z) = fun_updt (nth_i a) 0%Z 9%Z -> (0%Z ≤ 1%Z ∧ 1%Z < Z.of_nat (length (set_list a 0%nat 9%Z))) ∧ (length (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) = length (set_list a 0%nat 9%Z) -> nth_i (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) = fun_updt (nth_i (set_list a 0%nat 9%Z)) 1%Z 5%Z -> (0%Z ≤ 2%Z ∧ 2%Z < Z.of_nat (length (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z))) ∧ (length (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) = length (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) -> nth_i (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) = fun_updt (nth_i (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z)) 2%Z 0%Z -> (0%Z ≤ 3%Z ∧ 3%Z < Z.of_nat (length (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z))) ∧ (length (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) = length (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) -> nth_i (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) = fun_updt (nth_i (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z)) 3%Z 2%Z -> (0%Z ≤ 4%Z ∧ 4%Z < Z.of_nat (length (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z))) ∧ (length (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) = length (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) -> nth_i (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) = fun_updt (nth_i (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z)) 4%Z 7%Z -> (0%Z ≤ 5%Z ∧ 5%Z < Z.of_nat (length (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z))) ∧ (length (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) = length (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) -> nth_i (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) = fun_updt (nth_i (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z)) 5%Z 3%Z -> (0%Z ≤ 6%Z ∧ 6%Z < Z.of_nat (length (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z))) ∧ (length (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) = length (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) -> nth_i (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) = fun_updt (nth_i (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z)) 6%Z 2%Z -> (0%Z ≤ 7%Z ∧ 7%Z < Z.of_nat (length (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z))) ∧ (length (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) = length (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) -> nth_i (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) = fun_updt (nth_i (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z)) 7%Z 1%Z -> (0%Z ≤ 8%Z ∧ 8%Z < Z.of_nat (length (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z))) ∧ (length (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) 8%nat 10%Z) = length (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) -> nth_i (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) 8%nat 10%Z) = fun_updt (nth_i (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z)) 8%Z 10%Z -> (0%Z ≤ 9%Z ∧ 9%Z < Z.of_nat (length (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) 8%nat 10%Z))) ∧ (length (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) 8%nat 10%Z) 9%nat 6%Z) = length (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) 8%nat 10%Z) -> nth_i (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) 8%nat 10%Z) 9%nat 6%Z) = fun_updt (nth_i (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) 8%nat 10%Z)) 9%Z 6%Z -> 10%Z = Z.of_nat (length (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) 8%nat 10%Z) 9%nat 6%Z)) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < 10%Z -> 0%Z ≤ nth (Z.to_nat i) (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list (set_list a 0%nat 9%Z) 1%nat 5%Z) 2%nat 0%Z) 3%nat 2%Z) 4%nat 7%Z) 5%nat 3%Z) 6%nat 2%Z) 7%nat 1%Z) 8%nat 10%Z) 9%nat 6%Z) inhabitant)))))))))))).
+Proof.
 Admitted.

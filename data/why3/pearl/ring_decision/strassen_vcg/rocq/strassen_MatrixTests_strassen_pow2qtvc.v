@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import ring_decision.strassen.Sum_extended.
@@ -48,4 +48,5 @@ Axiom result'def : forall  (a11 : mat) (a12 : mat) (a21 : mat) (a22 : mat) (s : 
 Axiom paste_quarters'def : forall  (a11 : mat) (a12 : mat) (a21 : mat) (a22 : mat) (fact0 : is_finite a11) (fact1 : is_finite a12) (fact2 : is_finite a21) (fact3 : is_finite a22) (fact4 : rows a11 = rows a12) (fact5 : rows a12 = rows a21) (fact6 : rows a21 = rows a22) (fact7 : rows a22 = cols a11) (fact8 : cols a11 = cols a12) (fact9 : cols a12 = cols a21) (fact10 : cols a21 = cols a22), paste_quarters a11 a12 a21 a22 = fcreate (2%Z * rows a11) (2%Z * rows a11) (result a11 a12 a21 a22 (rows a11)).
 Axiom paste_quarters'spec : forall  (a11 : mat) (a12 : mat) (a21 : mat) (a22 : mat) (fact0 : is_finite a11) (fact1 : is_finite a12) (fact2 : is_finite a21) (fact3 : is_finite a22) (fact4 : rows a11 = rows a12) (fact5 : rows a12 = rows a21) (fact6 : rows a21 = rows a22) (fact7 : rows a22 = cols a11) (fact8 : cols a11 = cols a12) (fact9 : cols a12 = cols a21) (fact10 : cols a21 = cols a22), quarters (paste_quarters a11 a12 a21 a22) a11 a12 a21 a22.
 Theorem strassen_pow2'vc (k : Z) (a : mat) (b : mat) (fact0 : 0%Z ≤ k) (fact1 : InfIntMatrix.size a (Z.pow 2%Z k) (Z.pow 2%Z k)) (fact2 : InfIntMatrix.size b (Z.pow 2%Z k) (Z.pow 2%Z k)) : 1%Z ≤ 4%Z ∧ (∀(cutoff : Z), 1%Z ≤ cutoff -> (¬ k ≤ cutoff -> (is_finite a ∧ rows a = cols a ∧ Z.Even (rows a)) ∧ (let o1 : mat * (mat * (mat * mat)) := cut_quarters a in (match o1 with | (a11, (a12, (a21, a22))) => quarters a a11 a12 a21 a22 end) -> (match o1 with | (a11, (a12, (a21, a22))) => (is_finite b ∧ rows b = cols b ∧ Z.Even (rows b)) ∧ (let o2 : mat * (mat * (mat * mat)) := cut_quarters b in (match o2 with | (a111, (a121, (a211, a221))) => quarters b a111 a121 a211 a221 end) -> (match o2 with | (b11, (b12, (b21, b22))) => (let o3 : mat := mul a12 b21 in o3 = f_mul a12 b21 -> (let o4 : mat := mul a11 b11 in o4 = f_mul a11 b11 -> (let c11 : mat := add o4 o3 in c11 = f_add o4 o3 -> (let o5 : mat := mul a12 b22 in o5 = f_mul a12 b22 -> (let o6 : mat := mul a11 b12 in o6 = f_mul a11 b12 -> (let c12 : mat := add o6 o5 in c12 = f_add o6 o5 -> (let o7 : mat := mul a22 b21 in o7 = f_mul a22 b21 -> (let o8 : mat := mul a21 b11 in o8 = f_mul a21 b11 -> (let c21 : mat := add o8 o7 in c21 = f_add o8 o7 -> (let o9 : mat := mul a22 b22 in o9 = f_mul a22 b22 -> (let o10 : mat := mul a21 b12 in o10 = f_mul a21 b12 -> (let c22 : mat := add o10 o9 in c22 = f_add o10 o9 -> ((is_finite c11 ∧ is_finite c12 ∧ is_finite c21 ∧ is_finite c22) ∧ rows c11 = rows c12 ∧ rows c12 = rows c21 ∧ rows c21 = rows c22 ∧ rows c22 = cols c11 ∧ cols c11 = cols c12 ∧ cols c12 = cols c21 ∧ cols c21 = cols c22) ∧ (quarters (paste_quarters c11 c12 c21 c22) c11 c12 c21 c22 -> (let o11 : Z := k - 1%Z in let o12 : mat := add b11 b22 in o12 = f_add b11 b22 -> (let o13 : mat := add a11 a22 in o13 = f_add a11 a22 -> ((0%Z ≤ k ∧ o11 < k) ∧ 0%Z ≤ o11 ∧ InfIntMatrix.size o13 (Z.pow 2%Z o11) (Z.pow 2%Z o11) ∧ InfIntMatrix.size o12 (Z.pow 2%Z o11) (Z.pow 2%Z o11)) ∧ (let m1 : mat := mul o13 o12 in let o14 : Z := k - 1%Z in let o15 : mat := add a21 a22 in o15 = f_add a21 a22 -> ((0%Z ≤ k ∧ o14 < k) ∧ 0%Z ≤ o14 ∧ InfIntMatrix.size o15 (Z.pow 2%Z o14) (Z.pow 2%Z o14) ∧ InfIntMatrix.size b11 (Z.pow 2%Z o14) (Z.pow 2%Z o14)) ∧ (let m2 : mat := mul o15 b11 in let o16 : Z := k - 1%Z in let o17 : mat := sub b12 b22 in ((0%Z ≤ k ∧ o16 < k) ∧ 0%Z ≤ o16 ∧ InfIntMatrix.size a11 (Z.pow 2%Z o16) (Z.pow 2%Z o16) ∧ InfIntMatrix.size o17 (Z.pow 2%Z o16) (Z.pow 2%Z o16)) ∧ (let m3 : mat := mul a11 o17 in let o18 : Z := k - 1%Z in let o19 : mat := sub b21 b11 in ((0%Z ≤ k ∧ o18 < k) ∧ 0%Z ≤ o18 ∧ InfIntMatrix.size a22 (Z.pow 2%Z o18) (Z.pow 2%Z o18) ∧ InfIntMatrix.size o19 (Z.pow 2%Z o18) (Z.pow 2%Z o18)) ∧ (let m4 : mat := mul a22 o19 in let o20 : Z := k - 1%Z in let o21 : mat := add a11 a12 in o21 = f_add a11 a12 -> ((0%Z ≤ k ∧ o20 < k) ∧ 0%Z ≤ o20 ∧ InfIntMatrix.size o21 (Z.pow 2%Z o20) (Z.pow 2%Z o20) ∧ InfIntMatrix.size b22 (Z.pow 2%Z o20) (Z.pow 2%Z o20)) ∧ (let m5 : mat := mul o21 b22 in let o22 : Z := k - 1%Z in let o23 : mat := add b11 b12 in o23 = f_add b11 b12 -> (let o24 : mat := sub a21 a11 in ((0%Z ≤ k ∧ o22 < k) ∧ 0%Z ≤ o22 ∧ InfIntMatrix.size o24 (Z.pow 2%Z o22) (Z.pow 2%Z o22) ∧ InfIntMatrix.size o23 (Z.pow 2%Z o22) (Z.pow 2%Z o22)) ∧ (let o25 : Z := k - 1%Z in let o26 : mat := add b21 b22 in o26 = f_add b21 b22 -> (let o27 : mat := sub a12 a22 in ((0%Z ≤ k ∧ o25 < k) ∧ 0%Z ≤ o25 ∧ InfIntMatrix.size o27 (Z.pow 2%Z o25) (Z.pow 2%Z o25) ∧ InfIntMatrix.size o26 (Z.pow 2%Z o25) (Z.pow 2%Z o25)) ∧ (let o28 : mat := sub (mul o27 o26) m5 in let o29 : mat := add m4 o28 in o29 = f_add m4 o28 -> (let s11 : mat := add m1 o29 in s11 = f_add m1 o29 -> (let s12 : mat := add m3 m5 in s12 = f_add m3 m5 -> (let s21 : mat := add m2 m4 in s21 = f_add m2 m4 -> (let o30 : mat := sub (mul o24 o23) m2 in let o31 : mat := add m3 o30 in o31 = f_add m3 o30 -> (let s22 : mat := add m1 o31 in s22 = f_add m1 o31 -> (is_finite s11 ∧ is_finite s12 ∧ is_finite s21 ∧ is_finite s22) ∧ rows s11 = rows s12 ∧ rows s12 = rows s21 ∧ rows s21 = rows s22 ∧ rows s22 = cols s11 ∧ cols s11 = cols s12 ∧ cols s12 = cols s21 ∧ cols s21 = cols s22))))))))))))))))))))))))))))) end)) end))) ∧ (∀(result1 : mat), (if decide (k ≤ cutoff) then result1 = mul a b ∧ result1 = f_mul a b else let o1 : mat * (mat * (mat * mat)) := cut_quarters a in (match o1 with | (a11, (a12, (a21, a22))) => quarters a a11 a12 a21 a22 end) ∧ (match o1 with | (a11, (a12, (a21, a22))) => (let o2 : mat * (mat * (mat * mat)) := cut_quarters b in (match o2 with | (a111, (a121, (a211, a221))) => quarters b a111 a121 a211 a221 end) ∧ (match o2 with | (b11, (b12, (b21, b22))) => (let o3 : mat := mul a12 b21 in o3 = f_mul a12 b21 ∧ (let o4 : mat := mul a11 b11 in o4 = f_mul a11 b11 ∧ (let c11 : mat := add o4 o3 in c11 = f_add o4 o3 ∧ (let o5 : mat := mul a12 b22 in o5 = f_mul a12 b22 ∧ (let o6 : mat := mul a11 b12 in o6 = f_mul a11 b12 ∧ (let c12 : mat := add o6 o5 in c12 = f_add o6 o5 ∧ (let o7 : mat := mul a22 b21 in o7 = f_mul a22 b21 ∧ (let o8 : mat := mul a21 b11 in o8 = f_mul a21 b11 ∧ (let c21 : mat := add o8 o7 in c21 = f_add o8 o7 ∧ (let o9 : mat := mul a22 b22 in o9 = f_mul a22 b22 ∧ (let o10 : mat := mul a21 b12 in o10 = f_mul a21 b12 ∧ (let c22 : mat := add o10 o9 in c22 = f_add o10 o9 ∧ quarters (paste_quarters c11 c12 c21 c22) c11 c12 c21 c22 ∧ (let o11 : mat := add b11 b22 in o11 = f_add b11 b22 ∧ (let o12 : mat := add a11 a22 in o12 = f_add a11 a22 ∧ (let m1 : mat := mul o12 o11 in let o13 : mat := add a21 a22 in o13 = f_add a21 a22 ∧ (let m2 : mat := mul o13 b11 in let m3 : mat := mul a11 (sub b12 b22) in let m4 : mat := mul a22 (sub b21 b11) in let o14 : mat := add a11 a12 in o14 = f_add a11 a12 ∧ (let m5 : mat := mul o14 b22 in let o15 : mat := add b11 b12 in o15 = f_add b11 b12 ∧ (let o16 : mat := add b21 b22 in o16 = f_add b21 b22 ∧ (let o17 : mat := sub (mul (sub a12 a22) o16) m5 in let o18 : mat := add m4 o17 in o18 = f_add m4 o17 ∧ (let s11 : mat := add m1 o18 in s11 = f_add m1 o18 ∧ (let s12 : mat := add m3 m5 in s12 = f_add m3 m5 ∧ (let s21 : mat := add m2 m4 in s21 = f_add m2 m4 ∧ (let o19 : mat := sub (mul (sub a21 a11) o15) m2 in let o20 : mat := add m3 o19 in o20 = f_add m3 o19 ∧ (let s22 : mat := add m1 o20 in s22 = f_add m1 o20 ∧ result1 = paste_quarters s11 s12 s21 s22 ∧ quarters result1 s11 s12 s21 s22)))))))))))))))))))))))) end)) end)) -> result1 = mul a b)).
+Proof.
 Admitted.

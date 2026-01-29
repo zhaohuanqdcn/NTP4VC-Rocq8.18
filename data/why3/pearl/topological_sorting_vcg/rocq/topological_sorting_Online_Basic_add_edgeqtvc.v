@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -65,4 +65,5 @@ Definition graph (x : t1) := match x with |  t'mk a _ => a end.
 Definition values (x : t1) := match x with |  t'mk _ a => a end.
 Definition inv (g : t1) := sort (graph g) (contents (values g)).
 Theorem add_edge'vc (g : t1) (x : vertex) (y : vertex) (seen : set1) (seen1 : set1) (fact0 : inv g) (fact1 : x ∈ vertices (graph g)) (fact2 : y ∈ vertices (graph g)) (fact3 : to_fset1 seen = (∅ : gset vertex)) (fact4 : Z.of_nat (size (to_fset1 seen)) = 0%Z) (fact5 : to_fset1 seen1 = insert_set x (to_fset1 seen)) (fact6 : if decide (x ∈ to_fset1 seen) then size (to_fset1 seen1) = size (to_fset1 seen) else Z.of_nat (size (to_fset1 seen1)) = Z.of_nat (size (to_fset1 seen)) + 1%Z) : let o1 : t Z := values g in let o2 : Z := mixfix_lbrb o1 x in o2 = contents o1 x -> (inv g ∧ y ∈ vertices (graph g) ∧ to_fset1 seen1 ⊆ vertices (graph g)) ∧ (∀(g1 : t1), g1 = t'mk (graph g) (values g1) -> o2 + 1%Z ≤ mixfix_lbrb (values g1) y ∧ inv g1 ∧ (∀(x1 : vertex), x1 ∈ to_fset1 seen1 -> mixfix_lbrb (values g1) x1 = mixfix_lbrb (values g) x1) ∧ (∀(x1 : vertex), mixfix_lbrb (values g) x1 ≤ mixfix_lbrb (values g1) x1) -> (let o3 : Graph.graph := graph g1 in let o4 : Graph.graph := add_edge o3 x y in (∀(x1 : vertex), preds o4 x1 = (if decide (x1 = y) then insert_set x (preds o3 y) else preds o3 x1)) ∧ (∀(x1 : vertex), succs o4 x1 = (if decide (x1 = x) then insert_set y (succs o3 x) else succs o3 x1)) -> (∀(g2 : t1), graph g2 = o4 ∧ values g2 = values g1 -> inv g2 ∧ graph g2 = add_edge (graph g) x y))).
+Proof.
 Admitted.

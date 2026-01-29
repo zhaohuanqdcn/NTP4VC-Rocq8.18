@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -56,4 +56,5 @@ Definition value_of (x : mpz_ptr) (memo : mpz_memo) : Z := sgn memo x * abs_valu
 Definition sgn_value (p : ptr (bv 64%N)) (sz : bv 32%N) : Z := if decide (0%Z ≤ bv_signed sz) then value p (bv_signed sz) else - value p (- bv_signed sz).
 Definition mpz_unchanged (x : mpz_ptr) (memo1 : mpz_memo) (memo2 : mpz_memo) := readers memo1 x = readers memo2 x ∧ (- 2%Z < readers memo1 x -> abs_value_of memo1 x = abs_value_of memo2 x ∧ alloc memo1 x = alloc memo2 x ∧ abs_size memo1 x = abs_size memo2 x ∧ sgn memo1 x = sgn memo2 x ∧ zones memo1 x = zones memo2 x).
 Theorem unchanged_transitive'vc (x : mpz_ptr) (m1 : mpz_memo) (m2 : mpz_memo) (m3 : mpz_memo) (fact0 : mpz_unchanged x m1 m2) (fact1 : mpz_unchanged x m2 m3) : mpz_unchanged x m1 m3.
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Inductive outcome :=
@@ -49,4 +49,5 @@ Axiom o2 : Z -> Z -> bool.
 Axiom o'def : forall  (lo : Z) (i : Z), (o1 lo i = true) = (i = lo + 1%Z).
 Axiom o'def1 : forall  (lo : Z) (i : Z), (o2 lo i = true) = (i = lo).
 Theorem solve3'vc (counter1 : counter) (balls : list Z) (lo : Z) (lb : Z) (w : Z) (fact0 : 1%Z ≤ v counter1) (fact1 : spec balls lo (lo + 3%Z) lb w) : let o3 : Z -> bool := o1 lo in let o4 : Z -> bool := o2 lo in (0%Z < v counter1 ∧ (∀(i : Z), 0%Z ≤ i ∧ i < 8%Z -> ¬ o4 i = true ∨ ¬ o3 i = true)) ∧ (∀(counter2 : counter) (o5 : outcome), (let left1 : Z := sum balls o4 in let right1 : Z := sum balls o3 in (match o5 with | Left => right1 < left1 | Equal => left1 = right1 | Right => left1 < right1 end)) ∧ v counter2 = v counter1 - 1%Z -> (match o5 with | Right => True | Left => True | Equal => True end) ∧ (∀(result : Z), (match o5 with | Right => result = lo | Left => result = lo + 1%Z | Equal => result = lo + 2%Z end) -> result = lb ∧ v counter2 = v counter1 - 1%Z)).
+Proof.
 Admitted.

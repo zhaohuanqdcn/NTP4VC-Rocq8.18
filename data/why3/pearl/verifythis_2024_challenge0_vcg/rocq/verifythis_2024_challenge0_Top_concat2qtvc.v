@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom char : Type.
@@ -48,4 +48,5 @@ match r with | Leaf x_s => True | Node wl rl rr => wl = Z.of_nat (length (to_str
 Admit Obligations.
 Axiom is_short : list char -> Prop.
 Theorem concat2'vc (left1 : rope) (right1 : rope) (fact0 : valid left1) (fact1 : valid right1) : (match right1 with | Leaf sr => (if decide (is_short sr) then match left1 with | Leaf sl => ¬ is_short sl -> valid left1 ∧ valid right1 | Node wl rl (Leaf sl) => ¬ is_short sl -> valid left1 ∧ valid right1 | _ => valid left1 ∧ valid right1 end else valid left1 ∧ valid right1) | _ => valid left1 ∧ valid right1 end) ∧ (∀(result : rope), (match right1 with | Leaf sr => (if decide (is_short sr) then match left1 with | Leaf sl => (if decide (is_short sl) then let o1 : list char := sl ++ sr in (Z.of_nat (length o1) = Z.of_nat (length sl) + Z.of_nat (length sr) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < Z.of_nat (length sl) -> nth (Z.to_nat i) o1 inhabitant = nth (Z.to_nat i) sl inhabitant) ∧ (∀(i : Z), Z.of_nat (length sl) ≤ i ∧ i < Z.of_nat (length o1) -> nth (Z.to_nat i) o1 inhabitant = nth (Z.to_nat (i - Z.of_nat (length sl))) sr inhabitant)) ∧ result = Leaf o1 else valid result ∧ to_str result = to_str left1 ++ to_str right1) | Node wl rl (Leaf sl) => (if decide (is_short sl) then let o1 : list char := sl ++ sr in (Z.of_nat (length o1) = Z.of_nat (length sl) + Z.of_nat (length sr) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < Z.of_nat (length sl) -> nth (Z.to_nat i) o1 inhabitant = nth (Z.to_nat i) sl inhabitant) ∧ (∀(i : Z), Z.of_nat (length sl) ≤ i ∧ i < Z.of_nat (length o1) -> nth (Z.to_nat i) o1 inhabitant = nth (Z.to_nat (i - Z.of_nat (length sl))) sr inhabitant)) ∧ result = Node wl rl (Leaf o1) else valid result ∧ to_str result = to_str left1 ++ to_str right1) | _ => valid result ∧ to_str result = to_str left1 ++ to_str right1 end else valid result ∧ to_str result = to_str left1 ++ to_str right1) | _ => valid result ∧ to_str result = to_str left1 ++ to_str right1 end) -> valid result ∧ to_str result = to_str left1 ++ to_str right1).
+Proof.
 Admitted.

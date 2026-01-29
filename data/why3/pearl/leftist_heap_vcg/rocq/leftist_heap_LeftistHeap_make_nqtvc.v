@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import leftist_heap_vcg.leftist_heap.TreeRank.
 Require Import leftist_heap_vcg.leftist_heap.Size.
@@ -55,4 +55,5 @@ match h with | E => True | N s l _ r => s = rank h ∧ leftist l ∧ leftist r �
 Admit Obligations.
 Definition leftist_heap (h : tree elt) := is_heap h ∧ leftist h.
 Theorem make_n'vc (r : tree elt) (l : tree elt) (x : elt) (fact0 : leftist_heap r) (fact1 : leftist_heap l) (fact2 : le_root x l) (fact3 : le_root x r) : leftist_heap r ∧ (let o1 : Z := rank r in leftist_heap l ∧ (let o2 : Z := rank l in (if decide (o1 ≤ o2) then leftist_heap r else leftist_heap l) ∧ (∀(result : tree elt), (if decide (o1 ≤ o2) then result = N (rank r + 1%Z) l x r else result = N (rank l + 1%Z) r x l) -> leftist_heap result ∧ minimum result = x ∧ Size.size result = 1%Z + Size.size l + Size.size r ∧ occ x result = 1%Z + occ x l + occ x r ∧ (∀(y : elt), ¬ x = y -> occ y result = occ y l + occ y r)))).
+Proof.
 Admitted.

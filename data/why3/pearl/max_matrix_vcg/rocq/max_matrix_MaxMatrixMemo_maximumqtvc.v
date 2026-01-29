@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -73,4 +73,5 @@ Axiom table_countable : Countable table.
 Global Existing Instance table_countable.
 Definition inv (t1 : HashTable.t (Z * set) (Z * t Z)) := ∀(k : Z * set) (v : Z * t Z), HashTable.mixfix_lbrb t1 k = Some v -> post k v.
 Theorem maximum'vc (i : Z) (c : set) (table1 : HashTable.t (Z * set) (Z * t Z)) (fact0 : pre (i, c)) (fact1 : inv table1) : if decide (i = n) then let o1 : t Z := create 0%Z in contents o1 = (const : Z -> Z -> Z) 0%Z -> post (i, c) (0%Z, o1) ∧ inv table1 else let o1 : t Z := create 0%Z in contents o1 = (const : Z -> Z -> Z) 0%Z -> (let o2 : Z := n - 1%Z in (0%Z ≤ o2 + 1%Z -> (inv table1 ∧ ((∀(k : Z), 0%Z ≤ k ∧ k < 0%Z -> ¬ mem k c) ∨ 0%Z ≤ - 1%Z ∧ solution (contents o1) i ∧ (∀(k : Z), i ≤ k ∧ k < n -> mem (mixfix_lbrb o1 k) c) ∧ - 1%Z = sum (contents o1) i n ∧ (∀(s : Z -> Z), solution s i -> (∀(k : Z), i ≤ k ∧ k < n -> mem (s k) c) -> mem (s i) c -> s i < 0%Z -> sum s i n ≤ - 1%Z))) ∧ (∀(sol : t Z) (r : Z) (table2 : HashTable.t (Z * set) (Z * t Z)), (∀(j : Z), (0%Z ≤ j ∧ j ≤ o2) ∧ inv table2 ∧ (r = - 1%Z ∧ (∀(k : Z), 0%Z ≤ k ∧ k < j -> ¬ mem k c) ∨ 0%Z ≤ r ∧ solution (contents sol) i ∧ (∀(k : Z), i ≤ k ∧ k < n -> mem (mixfix_lbrb sol k) c) ∧ r = sum (contents sol) i n ∧ (∀(s : Z -> Z), solution s i -> (∀(k : Z), i ≤ k ∧ k < n -> mem (s k) c) -> mem (s i) c -> s i < j -> sum s i n ≤ r)) -> (if decide (mem j c) then let o3 : set := remove j c in (∀(y : Z), mem y o3 = (¬ y = j ∧ mem y c)) -> (let o4 : Z := i + 1%Z in ((0%Z ≤ 2%Z * n - 2%Z * i ∧ 2%Z * n - 2%Z * o4 + 1%Z < 2%Z * n - 2%Z * i) ∧ pre (o4, o3) ∧ inv table2) ∧ (∀(table3 : HashTable.t (Z * set) (Z * t Z)) (r' : Z) (sol' : t Z), post (o4, o3) (r', sol') ∧ inv table3 -> (let o5 : t (t Z) := m in let o6 : t Z := mixfix_lbrb o5 i in o6 = contents o5 i -> (let o7 : Z := mixfix_lbrb o6 j in o7 = contents o6 j -> (let x : Z := o7 + r' in if decide (r < x) then let o8 : t Z := mixfix_lblsmnrb sol' i j in contents o8 = fun_updt (contents sol') i j -> inv table3 ∧ (x = - 1%Z ∧ (∀(k : Z), 0%Z ≤ k ∧ k < j + 1%Z -> ¬ mem k c) ∨ 0%Z ≤ x ∧ solution (contents o8) i ∧ (∀(k : Z), i ≤ k ∧ k < n -> mem (mixfix_lbrb o8 k) c) ∧ x = sum (contents o8) i n ∧ (∀(s : Z -> Z), solution s i -> (∀(k : Z), i ≤ k ∧ k < n -> mem (s k) c) -> mem (s i) c -> s i < j + 1%Z -> sum s i n ≤ x)) else inv table3 ∧ (r = - 1%Z ∧ (∀(k : Z), 0%Z ≤ k ∧ k < j + 1%Z -> ¬ mem k c) ∨ 0%Z ≤ r ∧ solution (contents sol) i ∧ (∀(k : Z), i ≤ k ∧ k < n -> mem (mixfix_lbrb sol k) c) ∧ r = sum (contents sol) i n ∧ (∀(s : Z -> Z), solution s i -> (∀(k : Z), i ≤ k ∧ k < n -> mem (s k) c) -> mem (s i) c -> s i < j + 1%Z -> sum s i n ≤ r))))))) else inv table2 ∧ (r = - 1%Z ∧ (∀(k : Z), 0%Z ≤ k ∧ k < j + 1%Z -> ¬ mem k c) ∨ 0%Z ≤ r ∧ solution (contents sol) i ∧ (∀(k : Z), i ≤ k ∧ k < n -> mem (mixfix_lbrb sol k) c) ∧ r = sum (contents sol) i n ∧ (∀(s : Z -> Z), solution s i -> (∀(k : Z), i ≤ k ∧ k < n -> mem (s k) c) -> mem (s i) c -> s i < j + 1%Z -> sum s i n ≤ r)))) ∧ (inv table2 ∧ (r = - 1%Z ∧ (∀(k : Z), 0%Z ≤ k ∧ k < o2 + 1%Z -> ¬ mem k c) ∨ 0%Z ≤ r ∧ solution (contents sol) i ∧ (∀(k : Z), i ≤ k ∧ k < n -> mem (mixfix_lbrb sol k) c) ∧ r = sum (contents sol) i n ∧ (∀(s : Z -> Z), solution s i -> (∀(k : Z), i ≤ k ∧ k < n -> mem (s k) c) -> mem (s i) c -> s i < o2 + 1%Z -> sum s i n ≤ r)) -> post (i, c) (r, sol) ∧ inv table2))) ∧ (o2 + 1%Z < 0%Z -> post (i, c) (- 1%Z, o1) ∧ inv table1)).
+Proof.
 Admitted.

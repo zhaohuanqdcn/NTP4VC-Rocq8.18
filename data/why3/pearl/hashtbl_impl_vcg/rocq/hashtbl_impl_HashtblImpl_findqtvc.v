@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.map.Const.
 Open Scope Z_scope.
@@ -47,4 +47,5 @@ Axiom t'invariant : forall  {α : Type} `{Inhabited α} (self : t α), 0%Z < Z.o
 Definition t'eq {α : Type} `{Inhabited α} (a : t α) (b : t α) := size a = size b ∧ data a = data b ∧ view a = view b.
 Axiom t'inj : forall  {α : Type} `{Inhabited α} (a : t α) (b : t α) (fact0 : t'eq a b), a = b.
 Theorem find'vc {α : Type} `{Inhabited α} (h : t α) (k : key) : let o1 : Z := Z.of_nat (length (data h)) in 0%Z < o1 ∧ (let i : Z := bucket k o1 in 0%Z ≤ i ∧ i < o1 -> (let o2 : list (list (key * α)) := data h in (0%Z ≤ i ∧ i < Z.of_nat (length o2)) ∧ (let o3 : list (key * α) := nth (Z.to_nat i) o2 inhabitant in ∀(result : option α), (match result with | None => (∀(v : α), ¬ (k, v) ∈ o3) | Some v => (k, v) ∈ o3 end) -> result = view h k))).
+Proof.
 Admitted.

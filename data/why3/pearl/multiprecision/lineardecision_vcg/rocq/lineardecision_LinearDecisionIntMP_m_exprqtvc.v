@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -173,4 +173,5 @@ match e with | C c => LinearDecisionRationalMP.C (m c) | Times c1 c2 => LinearDe
 Admit Obligations.
 Axiom m_cprod'spec : forall  (e : cprod) (z : Z -> Z) (y : Z -> Z) (fact0 : pos_cprod e z), LinearDecisionRationalMP.interp_c (m_cprod e) (m_y y) z = Rdefinitions.IZR (interp_c e y z).
 Theorem m_expr'vc (e : expr') : (match e with | Var i => True | Coeff c => True | Sum e1 e2 => True | Diff e1 e2 => True | ProdL e1 c => True | ProdR c e1 => True end) ∧ (∀(result : LinearDecisionRationalMP.expr'), (match e with | Var i => result = LinearDecisionRationalMP.Var i | Coeff c => (let o1 : Z * Z * MP64Coeffs.exp := m c in (∀(y : Z -> Z), pos_exp c y -> minterp o1 y = Rdefinitions.IZR (mpinterp c y)) ∧ result = LinearDecisionRationalMP.Coeff o1) | Sum e1 e2 => (∃(o1 : LinearDecisionRationalMP.expr'), ((∀(y : Z -> Z) (z : Z -> Z), pos_expr' e2 z -> LinearDecisionRationalMP.interp' o1 (m_y y) z = Rdefinitions.IZR (interp' e2 y z)) ∧ (valid_expr' e2 -> LinearDecisionRationalMP.valid_expr' o1)) ∧ (∃(o2 : LinearDecisionRationalMP.expr'), ((∀(y : Z -> Z) (z : Z -> Z), pos_expr' e1 z -> LinearDecisionRationalMP.interp' o2 (m_y y) z = Rdefinitions.IZR (interp' e1 y z)) ∧ (valid_expr' e1 -> LinearDecisionRationalMP.valid_expr' o2)) ∧ result = LinearDecisionRationalMP.Sum o2 o1)) | Diff e1 e2 => (∃(o1 : LinearDecisionRationalMP.expr'), ((∀(y : Z -> Z) (z : Z -> Z), pos_expr' e2 z -> LinearDecisionRationalMP.interp' o1 (m_y y) z = Rdefinitions.IZR (interp' e2 y z)) ∧ (valid_expr' e2 -> LinearDecisionRationalMP.valid_expr' o1)) ∧ (∃(o2 : LinearDecisionRationalMP.expr'), ((∀(y : Z -> Z) (z : Z -> Z), pos_expr' e1 z -> LinearDecisionRationalMP.interp' o2 (m_y y) z = Rdefinitions.IZR (interp' e1 y z)) ∧ (valid_expr' e1 -> LinearDecisionRationalMP.valid_expr' o2)) ∧ result = LinearDecisionRationalMP.Diff o2 o1)) | ProdL e1 c => (let o1 : LinearDecisionRationalMP.cprod := m_cprod c in (∀(y : Z -> Z) (z : Z -> Z), pos_cprod c z -> LinearDecisionRationalMP.interp_c o1 (m_y y) z = Rdefinitions.IZR (interp_c c y z)) ∧ (∃(o2 : LinearDecisionRationalMP.expr'), ((∀(y : Z -> Z) (z : Z -> Z), pos_expr' e1 z -> LinearDecisionRationalMP.interp' o2 (m_y y) z = Rdefinitions.IZR (interp' e1 y z)) ∧ (valid_expr' e1 -> LinearDecisionRationalMP.valid_expr' o2)) ∧ result = LinearDecisionRationalMP.ProdL o2 o1)) | ProdR c e1 => (∃(o1 : LinearDecisionRationalMP.expr'), ((∀(y : Z -> Z) (z : Z -> Z), pos_expr' e1 z -> LinearDecisionRationalMP.interp' o1 (m_y y) z = Rdefinitions.IZR (interp' e1 y z)) ∧ (valid_expr' e1 -> LinearDecisionRationalMP.valid_expr' o1)) ∧ (let o2 : LinearDecisionRationalMP.cprod := m_cprod c in (∀(y : Z -> Z) (z : Z -> Z), pos_cprod c z -> LinearDecisionRationalMP.interp_c o2 (m_y y) z = Rdefinitions.IZR (interp_c c y z)) ∧ result = LinearDecisionRationalMP.ProdR o2 o1)) end) -> (∀(y : Z -> Z) (z : Z -> Z), pos_expr' e z -> LinearDecisionRationalMP.interp' result (m_y y) z = Rdefinitions.IZR (interp' e y z)) ∧ (valid_expr' e -> LinearDecisionRationalMP.valid_expr' result)).
+Proof.
 Admitted.

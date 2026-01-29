@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Inductive color :=
@@ -44,4 +44,5 @@ Axiom first_black_tile'spec'1 : forall  (j : Z) (c : list color) (fact0 : 0%Z �
 Axiom first_black_tile'spec'0 : forall  (c : list color) (fact0 : first_black_tile c < Z.of_nat (length c)), nth (Z.to_nat (first_black_tile c)) c inhabitant = Black.
 Axiom first_black_tile'spec : forall  (c : list color) (fact0 : valid c), first_black_tile c = 0%Z ∨ 3%Z ≤ first_black_tile c.
 Theorem addleft'vc (nr : Z) (c : list color) : (¬ nr ≤ 0%Z -> 0%Z ≤ nr ∧ nr - 1%Z < nr) ∧ (∀(result : list color), (if decide (nr ≤ 0%Z) then let o1 : color := Black in result = cons o1 c ∧ Z.of_nat (length result) = 1%Z + Z.of_nat (length c) ∧ nth 0%nat result inhabitant = o1 ∧ (∀(i : Z), 0%Z < i ∧ i ≤ Z.of_nat (length c) -> nth (Z.to_nat i) result inhabitant = nth (Z.to_nat (i - 1%Z)) c inhabitant) else let o1 : Z := nr - 1%Z in ∃(o2 : list color), (0%Z ≤ o1 -> Z.of_nat (length o2) = Z.of_nat (length c) + o1 + 1%Z) ∧ (let o3 : color := Red in result = cons o3 o2 ∧ Z.of_nat (length result) = 1%Z + Z.of_nat (length o2) ∧ nth 0%nat result inhabitant = o3 ∧ (∀(i : Z), 0%Z < i ∧ i ≤ Z.of_nat (length o2) -> nth (Z.to_nat i) result inhabitant = nth (Z.to_nat (i - 1%Z)) o2 inhabitant))) -> 0%Z ≤ nr -> Z.of_nat (length result) = Z.of_nat (length c) + nr + 1%Z).
+Proof.
 Admitted.

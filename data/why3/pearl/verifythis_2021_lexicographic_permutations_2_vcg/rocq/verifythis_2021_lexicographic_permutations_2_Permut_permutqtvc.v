@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.MapEq.
@@ -49,4 +49,5 @@ Axiom as_number : Z -> list Z -> Z.
 Axiom as_number'def : forall  (base : Z) (a : list Z) (fact0 : boxed base a), as_number base a = as_num base a 0%Z.
 Axiom as_number'spec : forall  (base : Z) (a : list Z) (fact0 : boxed base a), Z.abs (as_number base a) ≤ maxi base a.
 Theorem permut'vc (a : list Z) : let base : Z := greater a in 0%Z ≤ base ∧ (∀(i : Z), 0%Z ≤ i ∧ i < Z.of_nat (length a) -> 2%Z * Z.abs (nth (Z.to_nat i) a inhabitant) < base) -> (∀(res : t (list Z)), seq res = ([] : list (list Z)) -> (if decide (Z.of_nat (length a) = 0%Z) then ∀(res1 : t (list Z)), seq res1 = seq res ++ [([] : list Z)] -> (∀(i1 : Z) (i2 : Z), 0%Z ≤ i1 ∧ i1 < i2 ∧ i2 < Z.of_nat (length (seq res1)) -> lt (of_list (nth (Z.to_nat i1) (seq res1) inhabitant)) (of_list (nth (Z.to_nat i2) (seq res1) inhabitant))) ∧ (∀(a' : list Z), a ≡ₚ a' -> to_list_from 0%Z a' ∈ seq res1) else ∀(a1 : list Z), length a1 = length a -> a1 ≡ₚ a ∧ IntArraySorted.sorted a1 -> (a1 ≡ₚ a ∧ boxed base a1 ∧ (∀(a' : list Z), a' ≡ₚ a1 -> lt a' a1 -> to_list_from 0%Z a' ∈ seq res) ∧ (∀(a' : list Z), to_list_from 0%Z a' ∈ seq res -> lt a' a1) ∧ (∀(i1 : Z) (i2 : Z), 0%Z ≤ i1 ∧ i1 < i2 ∧ i2 < Z.of_nat (length (seq res)) -> lt (of_list (nth (Z.to_nat i1) (seq res) inhabitant)) (of_list (nth (Z.to_nat i2) (seq res) inhabitant)))) ∧ (∀(cont_int : Z) (cont : bool) (res1 : t (list Z)) (a2 : list Z), length a2 = length a1 -> a2 ≡ₚ a ∧ boxed base a2 ∧ (cont_int = 1%Z) = (cont = true) ∧ (cont = true -> (∀(a' : list Z), a' ≡ₚ a2 -> lt a' a2 -> to_list_from 0%Z a' ∈ seq res1)) ∧ (¬ cont = true -> (∀(a' : list Z), a' ≡ₚ a2 -> le a' a2 -> to_list_from 0%Z a' ∈ seq res1)) ∧ (cont = true -> (∀(a' : list Z), to_list_from 0%Z a' ∈ seq res1 -> lt a' a2)) ∧ (¬ cont = true -> (∀(a' : list Z), a2 ≡ₚ a' -> le a2 a' -> a2 = a')) ∧ (∀(i1 : Z) (i2 : Z), 0%Z ≤ i1 ∧ i1 < i2 ∧ i2 < Z.of_nat (length (seq res1)) -> lt (of_list (nth (Z.to_nat i1) (seq res1) inhabitant)) (of_list (nth (Z.to_nat i2) (seq res1) inhabitant))) -> (if decide (cont = true) then ∀(res2 : t (list Z)), seq res2 = seq res1 ++ [to_list_from 0%Z a2] -> (∀(a3 : list Z), length a3 = length a2 -> (∀(o1 : bool), a3 ≡ₚ a2 ∧ (¬ o1 = true -> a3 = a2 ∧ (∀(a' : list Z), a3 ≡ₚ a' -> le a3 a' -> a3 = a')) ∧ (o1 = true -> lt a2 a3 ∧ (∀(a' : list Z), a2 ≡ₚ a' -> lt a2 a' -> le a3 a')) -> (if decide (o1 = true) then (0%Z ≤ cont_int ∧ cont_int < cont_int ∨ 0%Z ≤ maxi base a2 - as_number base a2 ∧ maxi base a3 - as_number base a3 < maxi base a2 - as_number base a2) ∧ a3 ≡ₚ a ∧ boxed base a3 ∧ (cont_int = 1%Z) = (o1 = true) ∧ (o1 = true -> (∀(a' : list Z), a' ≡ₚ a3 -> lt a' a3 -> to_list_from 0%Z a' ∈ seq res2)) ∧ (¬ o1 = true -> (∀(a' : list Z), a' ≡ₚ a3 -> le a' a3 -> to_list_from 0%Z a' ∈ seq res2)) ∧ (o1 = true -> (∀(a' : list Z), to_list_from 0%Z a' ∈ seq res2 -> lt a' a3)) ∧ (¬ o1 = true -> (∀(a' : list Z), a3 ≡ₚ a' -> le a3 a' -> a3 = a')) ∧ (∀(i1 : Z) (i2 : Z), 0%Z ≤ i1 ∧ i1 < i2 ∧ i2 < Z.of_nat (length (seq res2)) -> lt (of_list (nth (Z.to_nat i1) (seq res2) inhabitant)) (of_list (nth (Z.to_nat i2) (seq res2) inhabitant))) else (0%Z ≤ cont_int ∧ 0%Z < cont_int ∨ cont_int = 0%Z ∧ 0%Z ≤ maxi base a2 - as_number base a2 ∧ maxi base a3 - as_number base a3 < maxi base a2 - as_number base a2) ∧ a3 ≡ₚ a ∧ boxed base a3 ∧ (0%Z = 1%Z) = (o1 = true) ∧ (o1 = true -> (∀(a' : list Z), a' ≡ₚ a3 -> lt a' a3 -> to_list_from 0%Z a' ∈ seq res2)) ∧ (¬ o1 = true -> (∀(a' : list Z), a' ≡ₚ a3 -> le a' a3 -> to_list_from 0%Z a' ∈ seq res2)) ∧ (o1 = true -> (∀(a' : list Z), to_list_from 0%Z a' ∈ seq res2 -> lt a' a3)) ∧ (¬ o1 = true -> (∀(a' : list Z), a3 ≡ₚ a' -> le a3 a' -> a3 = a')) ∧ (∀(i1 : Z) (i2 : Z), 0%Z ≤ i1 ∧ i1 < i2 ∧ i2 < Z.of_nat (length (seq res2)) -> lt (of_list (nth (Z.to_nat i1) (seq res2) inhabitant)) (of_list (nth (Z.to_nat i2) (seq res2) inhabitant)))))) else (∀(i1 : Z) (i2 : Z), 0%Z ≤ i1 ∧ i1 < i2 ∧ i2 < Z.of_nat (length (seq res1)) -> lt (of_list (nth (Z.to_nat i1) (seq res1) inhabitant)) (of_list (nth (Z.to_nat i2) (seq res1) inhabitant))) ∧ (∀(a' : list Z), a2 ≡ₚ a' -> to_list_from 0%Z a' ∈ seq res1))))).
+Proof.
 Admitted.

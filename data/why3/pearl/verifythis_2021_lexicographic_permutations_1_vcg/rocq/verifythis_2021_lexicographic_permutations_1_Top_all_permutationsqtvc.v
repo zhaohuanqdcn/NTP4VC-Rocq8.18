@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.NumOf.
@@ -49,4 +49,5 @@ Axiom to_seq'spec : forall  (i : Z) (a : list Z) (fact0 : 0%Z ≤ i) (fact1 : i 
 Axiom cons_closure : forall {α : Type} `{Inhabited α} `{Countable α}, α -> list α -> list α.
 Axiom cons_closure_def : forall  {α : Type} `{Inhabited α} `{Countable α} (y : α) (y1 : list α), cons_closure y y1 = cons y y1.
 Theorem all_permutations'vc (s : list Z) : let n : Z := Z.of_nat (length s) in (∀(k : Z), 0%Z ≤ k ∧ k ≤ n -> (if decide (k = 0%Z) then ∀(p : list Z), Z.of_nat (length p) = k ∧ (∀(i : Z), 0%Z ≤ i ∧ i < k -> 0%Z < occ_all (nth (Z.to_nat i) p inhabitant) s) -> p ∈ ({[([] : list Z)]} : gset _) else let o1 : Z := k - 1%Z in ((0%Z ≤ k ∧ o1 < k) ∧ 0%Z ≤ o1 ∧ o1 ≤ n) ∧ (∀(now : gset (list Z)), (∀(p : list Z), Z.of_nat (length p) = o1 ∧ (∀(i : Z), 0%Z ≤ i ∧ i < o1 -> 0%Z < occ_all (nth (Z.to_nat i) p inhabitant) s) -> p ∈ now) -> (let o2 : Z := n - 1%Z in (0%Z ≤ o2 + 1%Z -> (∀(p : list Z), Z.of_nat (length p) = k ∧ (∀(i : Z), 0%Z ≤ i ∧ i < k -> 0%Z < occ_all (nth (Z.to_nat i) p inhabitant) s) ∧ 0%Z < occ (nth 0%nat p inhabitant) s 0%Z 0%Z -> p ∈ (∅ : gset (list Z))) ∧ (∀(acc : gset (list Z)), (∀(j : Z), (0%Z ≤ j ∧ j ≤ o2) ∧ (∀(p : list Z), Z.of_nat (length p) = k ∧ (∀(i : Z), 0%Z ≤ i ∧ i < k -> 0%Z < occ_all (nth (Z.to_nat i) p inhabitant) s) ∧ 0%Z < occ (nth 0%nat p inhabitant) s 0%Z j -> p ∈ acc) -> (let o3 : Z := nth (Z.to_nat j) s inhabitant in let o4 : list Z -> list Z := cons_closure o3 in (∀(s1 : list Z), Z.of_nat (length (o4 s1)) = 1%Z + Z.of_nat (length s1)) ∧ (∀(s1 : list Z), nth 0%nat (o4 s1) inhabitant = o3) ∧ (∀(s1 : list Z) (i : Z), 0%Z < i ∧ i ≤ Z.of_nat (length s1) -> nth (Z.to_nat i) (o4 s1) inhabitant = nth (Z.to_nat (i - 1%Z)) s1 inhabitant) -> (∀(p : list Z), Z.of_nat (length p) = k ∧ (∀(i : Z), 0%Z ≤ i ∧ i < k -> 0%Z < occ_all (nth (Z.to_nat i) p inhabitant) s) ∧ 0%Z < occ (nth 0%nat p inhabitant) s 0%Z (j + 1%Z) -> p ∈ acc ∪ gset_map o4 now))) ∧ ((∀(p : list Z), Z.of_nat (length p) = k ∧ (∀(i : Z), 0%Z ≤ i ∧ i < k -> 0%Z < occ_all (nth (Z.to_nat i) p inhabitant) s) ∧ 0%Z < occ (nth 0%nat p inhabitant) s 0%Z (o2 + 1%Z) -> p ∈ acc) -> (∀(p : list Z), Z.of_nat (length p) = k ∧ (∀(i : Z), 0%Z ≤ i ∧ i < k -> 0%Z < occ_all (nth (Z.to_nat i) p inhabitant) s) -> p ∈ acc)))) ∧ (o2 + 1%Z < 0%Z -> (∀(p : list Z), Z.of_nat (length p) = k ∧ (∀(i : Z), 0%Z ≤ i ∧ i < k -> 0%Z < occ_all (nth (Z.to_nat i) p inhabitant) s) -> p ∈ (∅ : gset (list Z)))))))) ∧ (0%Z ≤ n ∧ n ≤ n) ∧ (∀(all1 : gset (list Z)), (∀(p : list Z), Z.of_nat (length p) = n ∧ (∀(i : Z), 0%Z ≤ i ∧ i < n -> 0%Z < occ_all (nth (Z.to_nat i) p inhabitant) s) -> p ∈ all1) -> (∀(p : list Z), is_permutation_of p s -> p ∈ all1)).
+Proof.
 Admitted.

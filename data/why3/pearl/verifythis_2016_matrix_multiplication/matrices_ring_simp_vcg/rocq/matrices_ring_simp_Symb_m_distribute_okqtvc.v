@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import verifythis_2016_matrix_multiplication.matrices.MyMatrix.
@@ -64,4 +64,5 @@ Definition m_mul (m1 : mono) (m2 : mono) : mono := mono'mk (cat (m_prod m1) (m_p
 Axiom m_distribute : mono -> list mono -> list mono.
 Axiom m_distribute_def : forall (m : mono) (l : list mono), m_distribute m l = (match l with | [] => ([] : list mono) | cons x q => cons (m_mul m x) (m_distribute m q) end).
 Theorem m_distribute_ok'vc (r : Z) (k : Z) (c : Z) (f : Z -> mat Z) (m : mono) (l : list mono) (fact0 : 0%Z ≤ r) (fact1 : 0%Z ≤ k) (fact2 : 0%Z ≤ c) (fact3 : l_vld f r k (m_prod m)) (fact4 : lm_vld f k c l) : (match l with | [] => True | cons x q => ((match l with | [] => False | cons _ f1 => f1 = q end) ∧ (0%Z ≤ r ∧ 0%Z ≤ k ∧ 0%Z ≤ c) ∧ l_vld f r k (m_prod m) ∧ lm_vld f k c q) ∧ (let o1 : list mono := m_distribute m q in lm_vld f r c o1 ∧ lm_mdl f r c o1 = mul (m_mdl f m) (lm_mdl f k c q) -> (0%Z ≤ r ∧ 0%Z ≤ k ∧ 0%Z ≤ c) ∧ l_vld f r k (m_prod m) ∧ l_vld f k c (m_prod x)) end) ∧ (∀(result : list mono), (match l with | [] => result = ([] : list mono) | cons x q => (let o1 : list mono := m_distribute m q in (lm_vld f r c o1 ∧ lm_mdl f r c o1 = mul (m_mdl f m) (lm_mdl f k c q)) ∧ (let o2 : mono := m_mul m x in (l_vld f r c (m_prod o2) ∧ m_mdl f o2 = mul (m_mdl f m) (m_mdl f x)) ∧ result = cons o2 o1)) end) -> (result = m_distribute m l ∧ lm_vld f r c result) ∧ lm_mdl f r c result = mul (m_mdl f m) (lm_mdl f k c l)).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.NumOf.
@@ -72,4 +72,5 @@ Axiom order'def : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 l
 Axiom order'spec'0 : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 l), sorted1 (order l).
 Axiom order'spec : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 l), l ≡ₚ order l.
 Theorem copy_list'vc (s : Z) (l : Datatypes.list Z) (a : Datatypes.list Z) (fact0 : 0%Z ≤ s) (fact1 : Z.of_nat (length l) = Z.of_nat (length a) - s) : match l with | [] => (∀(x : Z), s ≤ x ∧ x < Z.of_nat (length a) -> nth (Z.to_nat x) a inhabitant = nth (Z.to_nat (x - s)) l inhabitant) ∧ (∀(x : Z), map_occ_list x (nth_i a) s (Z.of_nat (length a)) = count_occ' l x) | cons h t => (0%Z ≤ s ∧ s < Z.of_nat (length a)) ∧ (length (set_list a (Z.to_nat s) h) = length a -> nth_i (set_list a (Z.to_nat s) h) = fun_updt (nth_i a) s h -> (let o1 : Z := s + 1%Z in ((match l with | [] => False | cons _ f => f = t end) ∧ 0%Z ≤ o1 ∧ Z.of_nat (length t) = Z.of_nat (length (set_list a (Z.to_nat s) h)) - o1) ∧ (∀(a1 : Datatypes.list Z), length a1 = length (set_list a (Z.to_nat s) h) -> (∀(x : Z), o1 ≤ x ∧ x < Z.of_nat (length a1) -> nth (Z.to_nat x) a1 inhabitant = nth (Z.to_nat (x - o1)) t inhabitant) ∧ (∀(x : Z), 0%Z ≤ x ∧ x < o1 -> nth (Z.to_nat x) a1 inhabitant = nth (Z.to_nat x) (set_list a (Z.to_nat s) h) inhabitant) ∧ (∀(x : Z), map_occ_list x (nth_i a1) o1 (Z.of_nat (length a1)) = count_occ' t x) -> (∀(x : Z), s ≤ x ∧ x < Z.of_nat (length a1) -> nth (Z.to_nat x) a1 inhabitant = nth (Z.to_nat (x - s)) l inhabitant) ∧ (∀(x : Z), 0%Z ≤ x ∧ x < s -> nth (Z.to_nat x) a1 inhabitant = nth (Z.to_nat x) a inhabitant) ∧ (∀(x : Z), map_occ_list x (nth_i a1) s (Z.of_nat (length a1)) = count_occ' l x)))) end.
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom vertex : Type.
@@ -48,4 +48,5 @@ Axiom path_weight_def : forall (l : list vertex) (dst : vertex), path_weight l d
 Axiom path_weight_right_extension : forall  (l : list vertex) (x : vertex) (y : vertex), path_weight (l ++ cons x ([] : list vertex)) y = path_weight l x + weight x y.
 Axiom path_weight_decomposition : forall  (l1 : list vertex) (y : vertex) (l2 : list vertex) (z : vertex), path_weight (l1 ++ cons y l2) z = path_weight l1 y + path_weight (cons y l2) z.
 Theorem path_in_vertices'vc (v1 : vertex) (l : list vertex) (v2 : vertex) (fact0 : v1 ∈ vertices) (fact1 : path v1 l v2) : v2 ∈ vertices.
+Proof.
 Admitted.

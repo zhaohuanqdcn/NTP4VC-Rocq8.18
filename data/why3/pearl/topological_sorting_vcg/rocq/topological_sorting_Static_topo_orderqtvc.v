@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -59,4 +59,5 @@ Axiom defined_sort'spec : forall  (v : vertex) (m : t Z), (v ∈ defined_sort m)
 Definition partial_sort (g : graph) (m : t Z) := ∀(v : vertex) (u : vertex), (u, v) ∈ edges g -> 0%Z ≤ mixfix_lbrb m v -> 0%Z ≤ mixfix_lbrb m u ∧ mixfix_lbrb m u < mixfix_lbrb m v.
 Definition inv (g : graph) (m : t Z) (next : Z) := defined_sort m ⊆ vertices g ∧ 0%Z ≤ next ∧ partial_sort g m ∧ (∀(v : vertex), v ∈ defined_sort m -> mixfix_lbrb m v < next).
 Theorem topo_order'vc (g : graph) : let values : t Z := create (- 1%Z) in contents values = (const : Z -> vertex -> Z) (- 1%Z) -> (∀(p : set), to_fset p = vertices g -> (inv g values 0%Z ∧ to_fset p ⊆ vertices g ∧ vertices g ∖ to_fset p ⊆ defined_sort values) ∧ (∀(p1 : set) (values1 : t Z) (next : Z), inv g values1 next ∧ to_fset p1 ⊆ vertices g ∧ vertices g ∖ to_fset p1 ⊆ defined_sort values1 -> (if decide (¬ to_fset p1 = ∅) then ¬ to_fset p1 = ∅ ∧ (∀(p2 : set), let u : vertex := choose1 p1 in u ∈ to_fset p1 ∧ to_fset p2 = remove_set u (to_fset p1) -> (∀(o1 : set1), to_fset1 o1 = (∅ : gset vertex) ∧ Z.of_nat (size (to_fset1 o1)) = 0%Z -> (inv g values1 next ∧ u ∈ vertices g ∧ to_fset1 o1 ⊆ vertices g) ∧ (∀(values2 : t Z) (next1 : Z), defined_sort values1 ⊆ defined_sort values2 ∧ (0%Z ≤ mixfix_lbrb values2 u ∧ mixfix_lbrb values2 u ≤ next1) ∧ inv g values2 next1 ∧ (∀(x : vertex), x ∈ to_fset1 o1 -> mixfix_lbrb values1 x = mixfix_lbrb values2 x) -> (0%Z ≤ Z.of_nat (size (to_fset p1)) ∧ Z.of_nat (size (to_fset p2)) < Z.of_nat (size (to_fset p1))) ∧ inv g values2 next1 ∧ to_fset p2 ⊆ vertices g ∧ vertices g ∖ to_fset p2 ⊆ defined_sort values2))) else sort g (contents values1)))).
+Proof.
 Admitted.

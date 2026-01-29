@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom r : Type.
@@ -129,4 +129,5 @@ match x with | [] => ([] : list m) | cons (M r1 m1) l => cons (M (rtimes c r1) m
 Admit Obligations.
 Axiom ext'spec : forall  (c : r) (x : list m) (y : Z -> a), interp' (ext c x) y = infix_dl c (interp' x y).
 Theorem conv'vc (x : t) : (match x with | Var v => True | Add x1 x2 => True | Mul x1 x2 => True | Ext r1 x1 => True | Sub x1 x2 => True end) ∧ (∀(result : list m), (match x with | Var v => result = cons (M rone (cons v ([] : list Z))) ([] : list m) | Add x1 x2 => (∃(o1 : list m), (∀(y : Z -> a), interp x2 y = interp' o1 y) ∧ (∃(o2 : list m), (∀(y : Z -> a), interp x1 y = interp' o2 y) ∧ result = o2 ++ o1)) | Mul x1 x2 => (∃(o1 : list m), (∀(y : Z -> a), interp x2 y = interp' o1 y) ∧ (∃(o2 : list m), (∀(y : Z -> a), interp x1 y = interp' o2 y) ∧ result = mul_devel o2 o1 ∧ (∀(y : Z -> a), interp' result y = atimes (interp' o2 y) (interp' o1 y)))) | Ext r1 x1 => (∃(o1 : list m), (∀(y : Z -> a), interp x1 y = interp' o1 y) ∧ result = ext r1 o1 ∧ (∀(y : Z -> a), interp' result y = infix_dl r1 (interp' o1 y))) | Sub x1 x2 => (∃(o1 : list m), (∀(y : Z -> a), interp x2 y = interp' o1 y) ∧ (let o2 : r := ropp rone in let o3 : list m := ext o2 o1 in (∀(y : Z -> a), interp' o3 y = infix_dl o2 (interp' o1 y)) ∧ (∃(o4 : list m), (∀(y : Z -> a), interp x1 y = interp' o4 y) ∧ result = o4 ++ o3))) end) -> (∀(y : Z -> a), interp x y = interp' result y)).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.bintree.Tree.
 Require Import Why3.bintree.Size.
@@ -36,4 +36,5 @@ Axiom set_tree'spec'1 : forall  {α : Type} `{Inhabited α} (i : Z) (t : tree α
 Axiom set_tree'spec'0 : forall  {α : Type} `{Inhabited α} (i : Z) (t : tree α) (v : α) (fact0 : 0%Z ≤ i) (fact1 : i < Size.size t) (fact2 : braun t), get_tree (set_tree t i v) i = v.
 Axiom set_tree'spec : forall  {α : Type} `{Inhabited α} (i : Z) (t : tree α) (j : Z) (v : α) (fact0 : 0%Z ≤ i) (fact1 : i < Size.size t) (fact2 : braun t) (fact3 : 0%Z ≤ j) (fact4 : j < Size.size t) (fact5 : ¬ j = i), get_tree (set_tree t i v) j = get_tree t j.
 Theorem make_tree'vc {α : Type} `{Inhabited α} (n : Z) (v : α) (fact0 : 0%Z ≤ n) : 0%Z ≤ n ∧ (∀(o1 : tree α) (o2 : tree α), (Size.size o1 = n + 1%Z ∧ Size.size o2 = n) ∧ (braun o1 ∧ braun o2) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < Size.size o1 -> get_tree o1 i = v) ∧ (∀(i : Z), 0%Z ≤ i ∧ i < Size.size o2 -> get_tree o2 i = v) -> Size.size o2 = n ∧ braun o2 ∧ (∀(i : Z), 0%Z ≤ i ∧ i < Size.size o2 -> get_tree o2 i = v)).
+Proof.
 Admitted.

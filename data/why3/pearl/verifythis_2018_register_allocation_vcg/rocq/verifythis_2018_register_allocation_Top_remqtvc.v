@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.ocaml.Exceptions.
 Open Scope Z_scope.
@@ -44,4 +44,5 @@ Axiom t_inhabited : forall  {χ : Type} `{Inhabited χ} `{Countable χ}, Inhabit
 Global Existing Instance t_inhabited.
 Axiom to_fmap : forall {χ : Type} `{Inhabited χ} `{Countable χ}, t χ -> gmap var χ.
 Theorem rem'vc (v : var) (g : t set) (remv : t set) (result : t set) (fact0 : v ∈ dom (to_fmap g)) (fact1 : to_fmap remv = delete_gmap v (to_fmap g)) (fact2 : ∀(k : var), (k ∈ dom (to_fmap result)) = (k ∈ dom (to_fmap remv))) (fact3 : ∀(k : var), k ∈ dom (to_fmap result) -> to_fset (lookup_gmap_total (to_fmap result) k) = remove_set v (to_fset (lookup_gmap_total (to_fmap remv) k))) (fact4 : size_i (to_fmap result) = size_i (to_fmap remv)) : ¬ v ∈ dom (to_fmap result) ∧ (∀(k : var), (k ∈ dom (to_fmap result)) = (¬ k = v ∧ k ∈ dom (to_fmap g))) ∧ (∀(k : var), k ∈ dom (to_fmap result) -> to_fset (lookup_gmap_total (to_fmap result) k) = remove_set v (to_fset (lookup_gmap_total (to_fmap g) k))) ∧ size_i (to_fmap result) = size_i (to_fmap g) - 1%Z.
+Proof.
 Admitted.

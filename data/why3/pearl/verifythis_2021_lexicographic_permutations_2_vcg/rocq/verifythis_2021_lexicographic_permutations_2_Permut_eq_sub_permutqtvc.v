@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.map.MapEq.
 Require Import Why3.map.MapExchange.
@@ -39,4 +39,5 @@ Axiom find_eq'spec : forall  (a1 : list Z) (a2 : list Z) (i : Z) (fact0 : length
 Definition find_le (a1 : list Z) (a2 : list Z) : bool := if decide (length a1 = length a2) then let i : Z := find_eq a1 a2 0%Z in if decide (i = Z.of_nat (length a1)) then true else if decide (nth (Z.to_nat i) a1 inhabitant < nth (Z.to_nat i) a2 inhabitant) then true else false else false.
 Axiom find_le'spec : forall  (a1 : list Z) (a2 : list Z), (find_le a1 a2 = true) = le a1 a2.
 Theorem eq_sub_permut'vc (a1 : list Z) (a2 : list Z) (u : Z) (fact0 : a1 ≡ₚ a2) (fact1 : drop 0%nat (take (Z.to_nat u - 0%nat) a1) = drop 0%nat (take (Z.to_nat u - 0%nat) a2)) : (∀(a11 : list Z) (a21 : list Z) (i1 : Z) (i2 : Z) (i3 : Z), (i1 ≤ i2 ∧ i2 ≤ i3) ∧ permut_sub' a11 a21 (Z.to_nat i1) (Z.to_nat i3) ∧ drop (Z.to_nat i1) (take (Z.to_nat i2 - Z.to_nat i1) a11) = drop (Z.to_nat i1) (take (Z.to_nat i2 - Z.to_nat i1) a21) -> permut_sub' a11 a21 (Z.to_nat i2) (Z.to_nat i3)) ∧ permut_sub' a1 a2 (Z.to_nat u) (length a1).
+Proof.
 Admitted.

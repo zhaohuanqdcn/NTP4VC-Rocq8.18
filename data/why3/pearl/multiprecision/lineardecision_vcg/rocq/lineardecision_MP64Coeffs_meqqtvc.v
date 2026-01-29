@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.debug.Debug.
@@ -56,4 +56,5 @@ match (e1, e2) with | (Lit n1, Lit n2) => n1 = n2 | (Var v1, Var v2) => v1 = v2 
 Admit Obligations.
 Axiom pure_same_exp'spec : forall  (e1 : exp) (e2 : exp) (y : Z -> Z) (fact0 : pure_same_exp e1 e2), interp_exp e1 y = interp_exp e2 y.
 Theorem meq'vc (b : Z) (b1 : Z) (a : Z) (a1 : Z) (a2 : exp) (b2 : exp) (y : Z -> Z) (fact0 : let x : Z * Z := (b, b1) in let x1 : Z * Z := (a, a1) in ∃(o1 : bool), ((req x1 x -> (∀(y : Z -> R), rinterp x1 y = rinterp x y)) ∧ (if decide (req x1 x) then o1 = (if decide (pure_same_exp a2 b2) then true else false) ∧ (o1 = true -> (∀(y : Z -> Z), interp_exp a2 y = interp_exp b2 y)) else o1 = false)) ∧ (if decide (o1 = true) then True else if decide (req x1 (0%Z, 1%Z)) then true = (if decide (req x (0%Z, 1%Z)) then true else false) else true = false)) : minterp ((a, a1), a2) y = minterp ((b, b1), b2) y.
+Proof.
 Admitted.

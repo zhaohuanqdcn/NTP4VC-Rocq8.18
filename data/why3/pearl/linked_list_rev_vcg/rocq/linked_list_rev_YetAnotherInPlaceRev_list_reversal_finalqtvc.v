@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Open Scope Z_scope.
@@ -48,4 +48,5 @@ Axiom is_list'def : forall  (n : Z) (m : mem) (l : loc) (s : Z -> loc) (fact0 : 
 Axiom fc : (Z -> loc) -> Z -> Z -> loc.
 Axiom fc'def : forall  (s : Z -> loc) (n : Z) (i : Z), fc s n i = s (n - 1%Z - i).
 Theorem list_reversal_final'vc (mem1 : loc -> loc) : let mem2 : mem := mem'mk mem1 in ∀(s : Z -> loc) (n : Z) (l : loc), 0%Z ≤ n ∧ is_list mem2 l s n -> (valid_cells s n ∧ listLR mem2 s l 0%Z n) ∧ (∀(mem3 : loc -> loc), let mem4 : mem := mem'mk mem3 in ∀(r : loc), listRL mem4 s r 0%Z n ∧ frame mem4 mem2 s n -> is_list mem4 r (fc s n) n ∧ frame mem4 mem2 s n).
+Proof.
 Admitted.

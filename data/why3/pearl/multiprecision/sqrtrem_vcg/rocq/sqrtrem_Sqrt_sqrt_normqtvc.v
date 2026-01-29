@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -57,4 +57,5 @@ Definition ceilhalf (n : Z) : Z := Z.rem (n + 1%Z) 2%Z.
 Axiom ceilhalf'spec'0 : forall  (n : Z), n ≤ 2%Z * ceilhalf n.
 Axiom ceilhalf'spec : forall  (n : Z), n < 2%Z * (ceilhalf n + 1%Z).
 Theorem sqrt_norm'vc (c : Z) (n : Z) (s : Z) (s0 : Z) (fact0 : 0%Z ≤ c) (fact1 : 0%Z < n) (fact2 : 0%Z ≤ s) (fact3 : 0%Z ≤ s0) (fact4 : s0 < Z.pow 2%Z c) (fact5 : (Z.pow 2%Z c * s + s0) * (Z.pow 2%Z c * s + s0) ≤ Z.pow 2%Z (2%Z * c) * n) (fact6 : Z.pow 2%Z (2%Z * c) * n < (Z.pow 2%Z c * s + s0 + 1%Z) * (Z.pow 2%Z c * s + s0 + 1%Z)) : s * s ≤ n ∧ n < (s + 1%Z) * (s + 1%Z).
+Proof.
 Admitted.

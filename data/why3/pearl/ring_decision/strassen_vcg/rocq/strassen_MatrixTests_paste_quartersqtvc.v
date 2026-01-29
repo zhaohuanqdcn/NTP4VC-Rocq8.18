@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import ring_decision.strassen.Sum_extended.
@@ -45,4 +45,5 @@ Axiom cut_quarters'spec : forall  (a : mat) (fact0 : is_finite a) (fact1 : rows 
 Axiom o1 : mat -> mat -> mat -> mat -> Z -> Z -> Z -> Z.
 Axiom o'def : forall  (a11 : mat) (a12 : mat) (a21 : mat) (a22 : mat) (s : Z) (i : Z) (j : Z), o1 a11 a12 a21 a22 s i j = (if decide (i < s ∧ j < s) then get a11 i j else if decide (i < s) then get a12 i (j - s) else if decide (j < s) then get a21 (i - s) j else get a22 (i - s) (j - s)).
 Theorem paste_quarters'vc (a11 : mat) (a12 : mat) (a21 : mat) (a22 : mat) (fact0 : is_finite a11) (fact1 : is_finite a12) (fact2 : is_finite a21) (fact3 : is_finite a22) (fact4 : rows a11 = rows a12) (fact5 : rows a12 = rows a21) (fact6 : rows a21 = rows a22) (fact7 : rows a22 = cols a11) (fact8 : cols a11 = cols a12) (fact9 : cols a12 = cols a21) (fact10 : cols a21 = cols a22) : let s : Z := rows a11 in quarters (fcreate (2%Z * s) (2%Z * s) (o1 a11 a12 a21 a22 s)) a11 a12 a21 a22.
+Proof.
 Admitted.

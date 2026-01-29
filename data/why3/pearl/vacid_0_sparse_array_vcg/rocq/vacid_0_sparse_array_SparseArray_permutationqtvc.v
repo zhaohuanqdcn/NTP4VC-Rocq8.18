@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.map.MapInjection.
 Open Scope Z_scope.
@@ -39,4 +39,5 @@ Definition is_elt {α : Type} `{Inhabited α} (a : sparse_array α) (i : Z) := (
 Definition value {α : Type} `{Inhabited α} (a : sparse_array α) (i : Z) : α := if decide (is_elt a i) then nth (Z.to_nat i) (values a) inhabitant else def1 a.
 Definition length {α : Type} `{Inhabited α} (a : sparse_array α) : Z := Z.of_nat (List.length (values a)).
 Theorem permutation'vc {α : Type} `{Inhabited α} (a : sparse_array α) (i : Z) (fact0 : 0%Z ≤ card a) (fact1 : card a ≤ Z.of_nat (List.length (values a))) (fact2 : Z.of_nat (List.length (values a)) ≤ 1000%Z) (fact3 : List.length (values a) = List.length (index a)) (fact4 : List.length (index a) = List.length (back a)) (fact5 : ∀(i : Z), 0%Z ≤ i ∧ i < card a -> (0%Z ≤ nth (Z.to_nat i) (back a) inhabitant ∧ nth (Z.to_nat i) (back a) inhabitant < Z.of_nat (List.length (values a))) ∧ nth (Z.to_nat (nth (Z.to_nat i) (back a) inhabitant)) (index a) inhabitant = i) (fact6 : card a = length a) (fact7 : 0%Z ≤ i) (fact8 : i < length a) : is_elt a i.
+Proof.
 Admitted.

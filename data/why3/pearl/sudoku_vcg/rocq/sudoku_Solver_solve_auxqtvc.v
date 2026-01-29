@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import sudoku_vcg.sudoku.Grid.
 Open Scope Z_scope.
@@ -28,4 +28,5 @@ Definition valid_chunk_up_to (g : Z -> Z) (i : Z) (start : list Z) (offsets : li
 Definition valid_up_to (s : sudoku_chunks) (g : Z -> Z) (i : Z) := ∀(j : Z), 0%Z ≤ j ∧ j < i -> valid_column s g j ∧ valid_row s g j ∧ valid_square s g j.
 Definition full_up_to (g : Z -> Z) (i : Z) := ∀(j : Z), 0%Z ≤ j ∧ j < i -> 1%Z ≤ g j ∧ g j ≤ 9%Z.
 Theorem solve_aux'vc (s : sudoku_chunks) (g : list Z) (i : Z) (fact0 : well_formed_sudoku s) (fact1 : Z.of_nat (length g) = 81%Z) (fact2 : valid_values (nth_i g)) (fact3 : 0%Z ≤ i) (fact4 : i ≤ 81%Z) (fact5 : valid_up_to s (nth_i g) i) (fact6 : full_up_to (nth_i g) i) : if decide (i = 81%Z) then is_solution_for s (nth_i g) (nth_i g) else (0%Z ≤ i ∧ i < Z.of_nat (length g)) ∧ (if decide (¬ nth (Z.to_nat i) g inhabitant = 0%Z) then let o1 : list Z := column_offsets s in let o2 : list Z := column_start s in (Z.of_nat (length g) = 81%Z ∧ valid_values (nth_i g) ∧ is_index i ∧ chunk_valid_indexes o2 o1) ∧ (valid_chunk (nth_i g) i o2 o1 -> (let o3 : list Z := row_offsets s in let o4 : list Z := row_start s in (Z.of_nat (length g) = 81%Z ∧ valid_values (nth_i g) ∧ is_index i ∧ chunk_valid_indexes o4 o3) ∧ (valid_chunk (nth_i g) i o4 o3 -> (let o5 : list Z := square_offsets s in let o6 : list Z := square_start s in (Z.of_nat (length g) = 81%Z ∧ valid_values (nth_i g) ∧ is_index i ∧ chunk_valid_indexes o6 o5) ∧ (valid_chunk (nth_i g) i o6 o5 -> (let o7 : Z := i + 1%Z in (0%Z ≤ 81%Z - i ∧ 81%Z - o7 < 81%Z - i) ∧ well_formed_sudoku s ∧ Z.of_nat (length g) = 81%Z ∧ valid_values (nth_i g) ∧ (0%Z ≤ o7 ∧ o7 ≤ 81%Z) ∧ valid_up_to s (nth_i g) o7 ∧ full_up_to (nth_i g) o7)) ∧ (¬ valid_chunk (nth_i g) i o6 o5 -> grid_eq_sub (nth_i g) (nth_i g) 0%Z 81%Z ∧ (∀(h : Z -> Z), included (nth_i g) h ∧ full h -> ¬ valid s h)))) ∧ (¬ valid_chunk (nth_i g) i o4 o3 -> grid_eq_sub (nth_i g) (nth_i g) 0%Z 81%Z ∧ (∀(h : Z -> Z), included (nth_i g) h ∧ full h -> ¬ valid s h)))) ∧ (¬ valid_chunk (nth_i g) i o2 o1 -> grid_eq_sub (nth_i g) (nth_i g) 0%Z 81%Z ∧ (∀(h : Z -> Z), included (nth_i g) h ∧ full h -> ¬ valid s h)) else let old_g : Z -> Z := nth_i g in (1%Z ≤ 9%Z + 1%Z -> (grid_eq_sub old_g (fun_updt (nth_i g) i 0%Z) 0%Z 81%Z ∧ full_up_to (nth_i g) i ∧ (∀(k' : Z), 1%Z ≤ k' ∧ k' < 1%Z -> (∀(h : Z -> Z), included (fun_updt old_g i k') h ∧ full h -> ¬ valid s h))) ∧ (∀(g1 : list Z), length g1 = length g -> (∀(k : Z), (1%Z ≤ k ∧ k ≤ 9%Z) ∧ grid_eq_sub old_g (fun_updt (nth_i g1) i 0%Z) 0%Z 81%Z ∧ full_up_to (nth_i g1) i ∧ (∀(k' : Z), 1%Z ≤ k' ∧ k' < k -> (∀(h : Z -> Z), included (fun_updt old_g i k') h ∧ full h -> ¬ valid s h)) -> (0%Z ≤ i ∧ i < Z.of_nat (length g1)) ∧ (length (set_list g1 (Z.to_nat i) k) = length g1 -> nth_i (set_list g1 (Z.to_nat i) k) = fun_updt (nth_i g1) i k -> (let o1 : list Z := column_offsets s in let o2 : list Z := column_start s in (Z.of_nat (length (set_list g1 (Z.to_nat i) k)) = 81%Z ∧ valid_values (nth_i (set_list g1 (Z.to_nat i) k)) ∧ is_index i ∧ chunk_valid_indexes o2 o1) ∧ (valid_chunk (nth_i (set_list g1 (Z.to_nat i) k)) i o2 o1 -> (let o3 : list Z := row_offsets s in let o4 : list Z := row_start s in (Z.of_nat (length (set_list g1 (Z.to_nat i) k)) = 81%Z ∧ valid_values (nth_i (set_list g1 (Z.to_nat i) k)) ∧ is_index i ∧ chunk_valid_indexes o4 o3) ∧ (valid_chunk (nth_i (set_list g1 (Z.to_nat i) k)) i o4 o3 -> (let o5 : list Z := square_offsets s in let o6 : list Z := square_start s in (Z.of_nat (length (set_list g1 (Z.to_nat i) k)) = 81%Z ∧ valid_values (nth_i (set_list g1 (Z.to_nat i) k)) ∧ is_index i ∧ chunk_valid_indexes o6 o5) ∧ (valid_chunk (nth_i (set_list g1 (Z.to_nat i) k)) i o6 o5 -> (well_formed_sudoku s ∧ is_index i ∧ valid_up_to s old_g i ∧ (1%Z ≤ k ∧ k ≤ 9%Z) ∧ valid_column s (fun_updt old_g i k) i ∧ valid_row s (fun_updt old_g i k) i ∧ valid_square s (fun_updt old_g i k) i) ∧ (valid_up_to s (fun_updt old_g i k) (i + 1%Z) -> (let o7 : Z := i + 1%Z in ((0%Z ≤ 81%Z - i ∧ 81%Z - o7 < 81%Z - i) ∧ well_formed_sudoku s ∧ Z.of_nat (length (set_list g1 (Z.to_nat i) k)) = 81%Z ∧ valid_values (nth_i (set_list g1 (Z.to_nat i) k)) ∧ (0%Z ≤ o7 ∧ o7 ≤ 81%Z) ∧ valid_up_to s (nth_i (set_list g1 (Z.to_nat i) k)) o7 ∧ full_up_to (nth_i (set_list g1 (Z.to_nat i) k)) o7) ∧ (∀(g2 : list Z), length g2 = length (set_list g1 (Z.to_nat i) k) -> (grid_eq_sub (nth_i (set_list g1 (Z.to_nat i) k)) (nth_i g2) 0%Z 81%Z ∧ (∀(h : Z -> Z), included (nth_i g2) h ∧ full h -> ¬ valid s h) -> grid_eq_sub old_g (fun_updt (nth_i g2) i 0%Z) 0%Z 81%Z ∧ full_up_to (nth_i g2) i ∧ (∀(k' : Z), 1%Z ≤ k' ∧ k' < k + 1%Z -> (∀(h : Z -> Z), included (fun_updt old_g i k') h ∧ full h -> ¬ valid s h))) ∧ (is_solution_for s (nth_i g2) (nth_i (set_list g1 (Z.to_nat i) k)) -> is_solution_for s (nth_i g2) (nth_i g)))))) ∧ (¬ valid_chunk (nth_i (set_list g1 (Z.to_nat i) k)) i o6 o5 -> grid_eq_sub old_g (fun_updt (nth_i (set_list g1 (Z.to_nat i) k)) i 0%Z) 0%Z 81%Z ∧ full_up_to (nth_i (set_list g1 (Z.to_nat i) k)) i ∧ (∀(k' : Z), 1%Z ≤ k' ∧ k' < k + 1%Z -> (∀(h : Z -> Z), included (fun_updt old_g i k') h ∧ full h -> ¬ valid s h))))) ∧ (¬ valid_chunk (nth_i (set_list g1 (Z.to_nat i) k)) i o4 o3 -> grid_eq_sub old_g (fun_updt (nth_i (set_list g1 (Z.to_nat i) k)) i 0%Z) 0%Z 81%Z ∧ full_up_to (nth_i (set_list g1 (Z.to_nat i) k)) i ∧ (∀(k' : Z), 1%Z ≤ k' ∧ k' < k + 1%Z -> (∀(h : Z -> Z), included (fun_updt old_g i k') h ∧ full h -> ¬ valid s h))))) ∧ (¬ valid_chunk (nth_i (set_list g1 (Z.to_nat i) k)) i o2 o1 -> grid_eq_sub old_g (fun_updt (nth_i (set_list g1 (Z.to_nat i) k)) i 0%Z) 0%Z 81%Z ∧ full_up_to (nth_i (set_list g1 (Z.to_nat i) k)) i ∧ (∀(k' : Z), 1%Z ≤ k' ∧ k' < k + 1%Z -> (∀(h : Z -> Z), included (fun_updt old_g i k') h ∧ full h -> ¬ valid s h)))))) ∧ (grid_eq_sub old_g (fun_updt (nth_i g1) i 0%Z) 0%Z 81%Z ∧ full_up_to (nth_i g1) i ∧ (∀(k' : Z), 1%Z ≤ k' ∧ k' < 9%Z + 1%Z -> (∀(h : Z -> Z), included (fun_updt old_g i k') h ∧ full h -> ¬ valid s h)) -> (0%Z ≤ i ∧ i < Z.of_nat (length g1)) ∧ (length (set_list g1 (Z.to_nat i) 0%Z) = length g1 -> nth_i (set_list g1 (Z.to_nat i) 0%Z) = fun_updt (nth_i g1) i 0%Z -> grid_eq_sub (nth_i g) (nth_i (set_list g1 (Z.to_nat i) 0%Z)) 0%Z 81%Z ∧ (∀(h : Z -> Z), included (nth_i (set_list g1 (Z.to_nat i) 0%Z)) h ∧ full h -> ¬ valid s h))))) ∧ (9%Z + 1%Z < 1%Z -> (0%Z ≤ i ∧ i < Z.of_nat (length g)) ∧ (length (set_list g (Z.to_nat i) 0%Z) = length g -> nth_i (set_list g (Z.to_nat i) 0%Z) = fun_updt (nth_i g) i 0%Z -> grid_eq_sub (nth_i g) (nth_i (set_list g (Z.to_nat i) 0%Z)) 0%Z 81%Z ∧ (∀(h : Z -> Z), included (nth_i (set_list g (Z.to_nat i) 0%Z)) h ∧ full h -> ¬ valid s h)))).
+Proof.
 Admitted.

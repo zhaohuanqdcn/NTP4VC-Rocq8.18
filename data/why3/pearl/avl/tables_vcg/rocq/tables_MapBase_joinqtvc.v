@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -135,4 +135,5 @@ Global Existing Instance view1_inhabited.
 Arguments AEmpty1 {α}.
 Arguments ANode1 {α}.
 Theorem join'vc {α : Type} `{Inhabited α} (l : t4 α) (d : t α) (r : t4 α) (fact0 : ∀(k : t1), domn (m3 l) k = true -> lt k (key d)) (fact1 : ∀(k : t1), domn (m3 r) k = true -> lt (key d) k) : let o1 : t3 α := field r in let o2 : t3 α := field l in ∀(o3 : t3 α), seq (m1 o3) = node_model (seq (m1 o2)) d (seq (m1 o1)) ∧ (let hl : Z := hgt (m1 o2) in let hr : Z := hgt (m1 o1) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 o3) in 0%Z ≤ he - hres ∧ he - hres ≤ 1%Z) -> selection_possible () (seq (m1 o3)) ∧ (∀(result : t4 α), field result = o3 -> (∀(k : t1), lt k (key d) -> (domn (m3 result) k = true) = (domn (m3 l) k = true)) ∧ (∀(k : t1), lt k (key d) ∧ domn (m3 result) k = true -> func (m3 result) k = func (m3 l) k) ∧ (∀(k : t1), lt (key d) k -> (domn (m3 result) k = true) = (domn (m3 r) k = true)) ∧ (∀(k : t1), lt (key d) k ∧ domn (m3 result) k = true -> func (m3 result) k = func (m3 r) k) ∧ (∀(k : t1), eq k (key d) -> domn (m3 result) k = true ∧ func (m3 result) k = d) ∧ card (m3 result) = 1%Z + card (m3 l) + card (m3 r)).
+Proof.
 Admitted.

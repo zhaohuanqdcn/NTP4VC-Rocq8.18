@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -108,4 +108,5 @@ Axiom m3 : Type -> Type.
 Axiom m3_inhabited : forall  {α : Type} `{Inhabited α}, Inhabited (m3 α).
 Global Existing Instance m3_inhabited.
 Theorem harness'vc (a : t2 Z) (b : t2 Z) (fact0 : 43%Z < Z.of_nat (length (seq (m2 a)))) (fact1 : 43%Z < Z.of_nat (length (seq (m2 b)))) (fact2 : ∀(n : Z), 0%Z ≤ n ∧ n < Z.of_nat (length (seq (m2 a))) -> nth (Z.to_nat n) (seq (m2 a)) inhabitant = 0%Z) (fact3 : ∀(n : Z), 0%Z ≤ n ∧ n < Z.of_nat (length (seq (m2 b))) -> nth (Z.to_nat n) (seq (m2 b)) inhabitant = 1%Z) : 0%Z ≤ 1%Z ∧ 1%Z < Z.of_nat (length (seq (m2 a))) ∧ (∀(a1 : t2 Z), seq (m2 a1) = set_list (seq (m2 a)) 1%nat 1%Z ∧ length (seq (m2 a1)) = length (seq (m2 a)) ∧ (∀(i : Z), (0%Z ≤ i ∧ i < Z.of_nat (length (seq (m2 a)))) ∧ ¬ i = 1%Z -> nth (Z.to_nat i) (seq (m2 a1)) inhabitant = nth (Z.to_nat i) (seq (m2 a)) inhabitant) ∧ nth 1%nat (seq (m2 a1)) inhabitant = 1%Z -> (0%Z ≤ 1%Z ∧ 1%Z < Z.of_nat (length (seq (m2 b)))) ∧ (∀(b1 : t2 Z), seq (m2 b1) = set_list (seq (m2 b)) 1%nat 10%Z ∧ length (seq (m2 b1)) = length (seq (m2 b)) ∧ (∀(i : Z), (0%Z ≤ i ∧ i < Z.of_nat (length (seq (m2 b)))) ∧ ¬ i = 1%Z -> nth (Z.to_nat i) (seq (m2 b1)) inhabitant = nth (Z.to_nat i) (seq (m2 b)) inhabitant) ∧ nth 1%nat (seq (m2 b1)) inhabitant = 10%Z -> (0%Z ≤ 2%Z ∧ 2%Z < Z.of_nat (length (seq (m2 a1)))) ∧ (∀(a2 : t2 Z), seq (m2 a2) = set_list (seq (m2 a1)) 2%nat 2%Z ∧ length (seq (m2 a2)) = length (seq (m2 a1)) ∧ (∀(i : Z), (0%Z ≤ i ∧ i < Z.of_nat (length (seq (m2 a1)))) ∧ ¬ i = 2%Z -> nth (Z.to_nat i) (seq (m2 a2)) inhabitant = nth (Z.to_nat i) (seq (m2 a1)) inhabitant) ∧ nth 2%nat (seq (m2 a2)) inhabitant = 2%Z -> (0%Z ≤ 2%Z ∧ 2%Z < Z.of_nat (length (seq (m2 b1)))) ∧ (∀(b2 : t2 Z), seq (m2 b2) = set_list (seq (m2 b1)) 2%nat 20%Z ∧ length (seq (m2 b2)) = length (seq (m2 b1)) ∧ (∀(i : Z), (0%Z ≤ i ∧ i < Z.of_nat (length (seq (m2 b1)))) ∧ ¬ i = 2%Z -> nth (Z.to_nat i) (seq (m2 b2)) inhabitant = nth (Z.to_nat i) (seq (m2 b1)) inhabitant) ∧ nth 2%nat (seq (m2 b2)) inhabitant = 20%Z -> (nth 1%nat (seq (m2 a2)) inhabitant = 1%Z ∧ nth 42%nat (seq (m2 a2)) inhabitant = 0%Z) ∧ (nth 1%nat (seq (m2 b2)) inhabitant = 10%Z ∧ nth 42%nat (seq (m2 b2)) inhabitant = 1%Z) ∧ (0%Z ≤ 1%Z ∧ 1%Z < Z.of_nat (length (seq (m2 a2)))) ∧ (∀(a3 : t2 Z), seq (m2 a3) = take 1%nat (seq (m2 a2)) ++ drop (Z.to_nat (1%Z + 1%Z)) (seq (m2 a2)) ∧ Z.of_nat (length (seq (m2 a3))) = Z.of_nat (length (seq (m2 a2))) - 1%Z ∧ (∀(i : Z), 0%Z ≤ i ∧ i < 1%Z -> nth (Z.to_nat i) (seq (m2 a3)) inhabitant = nth (Z.to_nat i) (seq (m2 a2)) inhabitant) ∧ (∀(i : Z), 1%Z ≤ i ∧ i < Z.of_nat (length (seq (m2 a3))) -> nth (Z.to_nat i) (seq (m2 a3)) inhabitant = nth (Z.to_nat (i + 1%Z)) (seq (m2 a2)) inhabitant) -> (0%Z ≤ 2%Z ∧ 2%Z < Z.of_nat (length (seq (m2 b2)))) ∧ (∀(b3 : t2 Z), seq (m2 b3) = take 2%nat (seq (m2 b2)) ++ drop (Z.to_nat (2%Z + 1%Z)) (seq (m2 b2)) ∧ Z.of_nat (length (seq (m2 b3))) = Z.of_nat (length (seq (m2 b2))) - 1%Z ∧ (∀(i : Z), 0%Z ≤ i ∧ i < 2%Z -> nth (Z.to_nat i) (seq (m2 b3)) inhabitant = nth (Z.to_nat i) (seq (m2 b2)) inhabitant) ∧ (∀(i : Z), 2%Z ≤ i ∧ i < Z.of_nat (length (seq (m2 b3))) -> nth (Z.to_nat i) (seq (m2 b3)) inhabitant = nth (Z.to_nat (i + 1%Z)) (seq (m2 b2)) inhabitant) -> (nth 1%nat (seq (m2 a3)) inhabitant = 2%Z ∧ nth 42%nat (seq (m2 a3)) inhabitant = 0%Z) ∧ nth 2%nat (seq (m2 b3)) inhabitant = 1%Z ∧ nth 42%nat (seq (m2 b3)) inhabitant = 1%Z)))))).
+Proof.
 Admitted.

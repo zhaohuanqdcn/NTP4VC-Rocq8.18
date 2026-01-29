@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.Sum.
@@ -39,4 +39,5 @@ Axiom get_closure : fenwick -> Z -> Z.
 Axiom get_closure_def : forall  (y : fenwick) (y1 : Z), get_closure y y1 = get y y1.
 Definition rget (f : fenwick) (a : Z) (b : Z) : Z := sum (get_closure f) a b.
 Theorem make'vc (lv : Z) (fact0 : 0%Z ≤ lv) : (if decide (lv = 0%Z) then 0%Z ≤ 0%Z else 0%Z ≤ 2%Z * lv - 1%Z) ∧ (∀(o1 : list Z), (if decide (lv = 0%Z) then (∀(i : Z), 0%Z ≤ i ∧ i < 0%Z -> nth (Z.to_nat i) o1 inhabitant = 0%Z) ∧ Z.of_nat (length o1) = 0%Z else let o2 : Z := 2%Z * lv - 1%Z in (∀(i : Z), 0%Z ≤ i ∧ i < o2 -> nth (Z.to_nat i) o1 inhabitant = 0%Z) ∧ Z.of_nat (length o1) = o2) -> (let result : fenwick := fenwick'mk o1 lv in valid result ∧ (∀(i : Z), 0%Z ≤ i ∧ i < lv -> get result i = 0%Z))).
+Proof.
 Admitted.

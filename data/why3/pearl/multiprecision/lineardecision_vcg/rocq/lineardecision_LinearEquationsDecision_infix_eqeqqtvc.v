@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -124,4 +124,5 @@ Program Fixpoint interp_ctx (l : list (expr * expr)) (g : expr * expr) (y : Z ->
 if decide (match l with | [] => interp_eq g y z = true | cons h t => interp_eq h y z = true -> interp_ctx t g y z = true end) then true else false.
 Admit Obligations.
 Theorem infix_eqeq'vc (b : array63 coeff) (a1 : array63 coeff) : let o1 : bv 63%N := array63_length b in let o2 : bv 63%N := array63_length a1 in (bv_signed o2 = bv_signed o1 -> o2 = o1) -> o2 = o1 -> (let o3 : bv 63%N := array63_length a1 in int'63_in_bounds (bv_signed o3 - 1%Z) ∧ (∀(o4 : bv 63%N), bv_signed o4 = bv_signed o3 - 1%Z -> (0%Z ≤ bv_signed o4 + 1%Z -> (∀(j : Z), 0%Z ≤ j ∧ j < 0%Z -> eq (nth (Z.to_nat j) (array63_elts a1) inhabitant) (nth (Z.to_nat j) (array63_elts b) inhabitant)) ∧ (∀(r : bool), (∀(i : bv 63%N), let i1 : Z := bv_signed i in (0%Z ≤ i1 ∧ i1 ≤ bv_signed o4) ∧ (r = true -> (∀(j : Z), 0%Z ≤ j ∧ j < i1 -> eq (nth (Z.to_nat j) (array63_elts a1) inhabitant) (nth (Z.to_nat j) (array63_elts b) inhabitant))) -> (0%Z ≤ bv_signed i ∧ bv_signed i < bv_signed (array63_length b)) ∧ (let o5 : coeff := nth (Z.to_nat (bv_signed i)) (array63_elts b) inhabitant in (0%Z ≤ bv_signed i ∧ bv_signed i < bv_signed (array63_length a1)) ∧ (let o6 : coeff := nth (Z.to_nat (bv_signed i)) (array63_elts a1) inhabitant in (eq o6 o5 -> (∀(y : cvars), interp o6 y = interp o5 y)) -> (if decide (¬ eq o6 o5) then false = true -> (∀(j : Z), 0%Z ≤ j ∧ j < i1 + 1%Z -> eq (nth (Z.to_nat j) (array63_elts a1) inhabitant) (nth (Z.to_nat j) (array63_elts b) inhabitant)) else r = true -> (∀(j : Z), 0%Z ≤ j ∧ j < i1 + 1%Z -> eq (nth (Z.to_nat j) (array63_elts a1) inhabitant) (nth (Z.to_nat j) (array63_elts b) inhabitant)))))) ∧ ((r = true -> (∀(j : Z), 0%Z ≤ j ∧ j < bv_signed o4 + 1%Z -> eq (nth (Z.to_nat j) (array63_elts a1) inhabitant) (nth (Z.to_nat j) (array63_elts b) inhabitant))) -> r = true -> array63_length a1 = array63_length b ∧ (∀(i : Z), 0%Z ≤ i ∧ i < bv_signed (array63_length a1) -> eq (nth (Z.to_nat i) (array63_elts a1) inhabitant) (nth (Z.to_nat i) (array63_elts b) inhabitant))))) ∧ (bv_signed o4 + 1%Z < 0%Z -> array63_length a1 = array63_length b ∧ (∀(i : Z), 0%Z ≤ i ∧ i < bv_signed (array63_length a1) -> eq (nth (Z.to_nat i) (array63_elts a1) inhabitant) (nth (Z.to_nat i) (array63_elts b) inhabitant))))).
+Proof.
 Admitted.

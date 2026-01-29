@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.string.StringRealization.
 Open Scope Z_scope.
@@ -49,4 +49,5 @@ Axiom substring_smaller_x : forall  (x : Z) (s : string) (i : Z) (fact0 : 0%Z �
 Axiom substring_length : forall  (x : Z) (i : Z) (s : string) (fact0 : 0%Z ≤ x) (fact1 : 0%Z ≤ i) (fact2 : i < StringRealization.length s), if decide (StringRealization.length s < i + x) then StringRealization.length (StringRealization.substring s i x) = StringRealization.length s - i else StringRealization.length (StringRealization.substring s i x) = x.
 Axiom substring_at : forall  (s : string) (i : Z), s_at s i = StringRealization.substring s i 1%Z.
 Theorem substring_substring (ofs : Z) (s : string) (len : Z) (ofs' : Z) (len' : Z) (fact0 : 0%Z ≤ ofs) (fact1 : ofs ≤ StringRealization.length s) (fact2 : 0%Z ≤ len) (fact3 : ofs + len ≤ StringRealization.length s) (fact4 : 0%Z ≤ ofs') (fact5 : ofs' ≤ len) (fact6 : 0%Z ≤ len') (fact7 : ofs' + len' ≤ len) : StringRealization.substring (StringRealization.substring s ofs len) ofs' len' = StringRealization.substring s (ofs + ofs') len'.
+Proof.
 Admitted.

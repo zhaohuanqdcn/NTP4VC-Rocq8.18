@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.WellFounded.WellFounded.
 Require Import Why3.why3.Ref.Ref.
@@ -28,4 +28,5 @@ Open Scope Z_scope.
 Definition sqr (x : bv 64%N) : bv 64%N := bv_mul x x.
 Definition is_pow2 (x : bv 64%N) (n : bv 64%N) := bv_and x (bv_sub (bv_shiftl (1%bv : bv 64%N) n) (1%bv : bv 64%N)) = (0%bv : bv 64%N).
 Theorem isqrt64'vc (x : bv 64%N) : bv_ule (32%bv : bv 64%N) (32%bv : bv 64%N) ∧ (2147483648%bv : bv 64%N) = (if decide ((32%bv : bv 64%N) = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub (32%bv : bv 64%N) (1%bv : bv 64%N))) ∧ (4611686018427387904%bv : bv 64%N) = sqr (2147483648%bv : bv 64%N) ∧ is_pow2 (0%bv : bv 64%N) (32%bv : bv 64%N) ∧ bv_ult (0%bv : bv 64%N) (4294967296%bv : bv 64%N) ∧ (0%bv : bv 64%N) = bv_mul (0%bv : bv 64%N) (bv_shiftl (1%bv : bv 64%N) (32%bv : bv 64%N)) ∧ bv_ule x x ∧ bv_sub x x = sqr (0%bv : bv 64%N) ∧ bv_ule (bv_add (0%bv : bv 64%N) (bv_shiftl (1%bv : bv 64%N) (32%bv : bv 64%N))) (4294967296%bv : bv 64%N) ∧ bv_ule x (bv_sub (sqr (bv_add (0%bv : bv 64%N) (bv_shiftl (1%bv : bv 64%N) (32%bv : bv 64%N)))) (1%bv : bv 64%N)) ∧ (∀(res_g : bv 64%N) (m : bv 64%N) (num : bv 64%N), bv_ule m (32%bv : bv 64%N) ∧ is_pow2 res_g m ∧ bv_ult res_g (4294967296%bv : bv 64%N) ∧ bv_ule num x ∧ bv_sub x num = sqr res_g ∧ bv_ule (bv_add res_g (bv_shiftl (1%bv : bv 64%N) m)) (4294967296%bv : bv 64%N) ∧ bv_ule x (bv_sub (sqr (bv_add res_g (bv_shiftl (1%bv : bv 64%N) m))) (1%bv : bv 64%N)) -> (if decide (¬ sqr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N))) = (0%bv : bv 64%N)) then let b : bv 64%N := bv_or (bv_mul res_g (bv_shiftl (1%bv : bv 64%N) m)) (sqr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) in if decide (bv_ule b num) then bv_unsigned (bv_shiftr (sqr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (2%bv : bv 64%N)) < bv_unsigned (sqr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) ∧ bv_ule (bv_sub m (1%bv : bv 64%N)) (32%bv : bv 64%N) ∧ bv_shiftr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N))) (1%bv : bv 64%N) = (if decide (bv_sub m (1%bv : bv 64%N) = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub (bv_sub m (1%bv : bv 64%N)) (1%bv : bv 64%N))) ∧ bv_shiftr (sqr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (2%bv : bv 64%N) = sqr (bv_shiftr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N))) (1%bv : bv 64%N)) ∧ is_pow2 (bv_add res_g (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (bv_sub m (1%bv : bv 64%N)) ∧ bv_ult (bv_add res_g (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (4294967296%bv : bv 64%N) ∧ bv_or (bv_shiftr (bv_mul res_g (bv_shiftl (1%bv : bv 64%N) m)) (1%bv : bv 64%N)) (sqr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) = bv_mul (bv_add res_g (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N))) ∧ bv_ule (bv_sub num b) x ∧ bv_sub x (bv_sub num b) = sqr (bv_add res_g (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) ∧ bv_ule (bv_add (bv_add res_g (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (4294967296%bv : bv 64%N) ∧ bv_ule x (bv_sub (sqr (bv_add (bv_add res_g (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N))))) (1%bv : bv 64%N)) else bv_unsigned (bv_shiftr (sqr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (2%bv : bv 64%N)) < bv_unsigned (sqr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) ∧ bv_ule (bv_sub m (1%bv : bv 64%N)) (32%bv : bv 64%N) ∧ bv_shiftr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N))) (1%bv : bv 64%N) = (if decide (bv_sub m (1%bv : bv 64%N) = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub (bv_sub m (1%bv : bv 64%N)) (1%bv : bv 64%N))) ∧ bv_shiftr (sqr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (2%bv : bv 64%N) = sqr (bv_shiftr (if decide (m = (0%bv : bv 64%N)) then (0%bv : bv 64%N) else bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N))) (1%bv : bv 64%N)) ∧ is_pow2 res_g (bv_sub m (1%bv : bv 64%N)) ∧ bv_ult res_g (4294967296%bv : bv 64%N) ∧ bv_shiftr (bv_mul res_g (bv_shiftl (1%bv : bv 64%N) m)) (1%bv : bv 64%N) = bv_mul res_g (bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N))) ∧ bv_ule num x ∧ bv_sub x num = sqr res_g ∧ bv_ule (bv_add res_g (bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N)))) (4294967296%bv : bv 64%N) ∧ bv_ule x (bv_sub (sqr (bv_add res_g (bv_shiftl (1%bv : bv 64%N) (bv_sub m (1%bv : bv 64%N))))) (1%bv : bv 64%N)) else bv_ule (sqr (bv_mul res_g (bv_shiftl (1%bv : bv 64%N) m))) x ∧ bv_ule x (bv_sub (sqr (bv_add (bv_mul res_g (bv_shiftl (1%bv : bv 64%N) m)) (1%bv : bv 64%N))) (1%bv : bv 64%N)))).
+Proof.
 Admitted.

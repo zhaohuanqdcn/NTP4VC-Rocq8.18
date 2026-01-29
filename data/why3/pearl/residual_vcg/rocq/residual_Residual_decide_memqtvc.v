@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Open Scope Z_scope.
@@ -51,4 +51,5 @@ Inductive mem : list char -> regexp -> Prop :=
  | mems1 (r : regexp) : mem ([] : list char) (Star r)
  | mems2 (w1 : list char) (r : regexp) (w2 : list char) : mem w1 r -> mem w2 (Star r) -> mem (w1 ++ w2) (Star r).
 Theorem decide_mem'vc (w : list char) (r : regexp) : let o1 : Z := Z.of_nat (length w) - 1%Z in (0%Z ≤ o1 + 1%Z -> mem (drop 0%nat w) r = mem w r ∧ (∀(r' : regexp), (∀(i : Z), (0%Z ≤ i ∧ i ≤ o1) ∧ mem (drop (Z.to_nat i) w) r' = mem w r -> (∀(o2 : regexp), (∀(w1 : list char), mem w1 o2 = mem (cons (nth (Z.to_nat i) w inhabitant) w1) r') -> mem (drop (Z.to_nat (i + 1%Z)) w) o2 = mem w r)) ∧ (mem (drop (Z.to_nat (o1 + 1%Z)) w) r' = mem w r -> mem ([] : list char) r' = mem w r))) ∧ (o1 + 1%Z < 0%Z -> mem ([] : list char) r = mem w r).
+Proof.
 Admitted.

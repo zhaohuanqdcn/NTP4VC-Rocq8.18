@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -128,4 +128,5 @@ Axiom domain_closure_def : forall  {α : Type} `{Inhabited α} (y : list (t α))
 Axiom make_func_closure_def : forall  {α : Type} `{Inhabited α} (y : list (t α)) (y1 : t1), make_func_closure y y1 = make_func y y1.
 Definition m3 {α : Type} `{Inhabited α} (t5 : t4 α) : m2 α := m'mk1 (domain_closure (seq (m1 (field t5)))) (make_func_closure (seq (m1 (field t5)))) (Z.of_nat (length (seq (m1 (field t5))))).
 Theorem add_min'vc {α : Type} `{Inhabited α} (t5 : t4 α) (d : t α) (fact0 : ∀(k : t1), domn (m3 t5) k = true -> lt (key d) k) : let o1 : t3 α := field t5 in ∀(o2 : t3 α), seq (m1 o2) = cons d (seq (m1 o1)) ∧ hgt (m1 o2) - hgt (m1 o1) ≤ 1%Z ∧ 0%Z ≤ hgt (m1 o2) - hgt (m1 o1) -> selection_possible () (seq (m1 o2)) ∧ (∀(result : t4 α), field result = o2 -> card (m3 result) = card (m3 t5) + 1%Z ∧ (∀(k : t1), lt k (key d) -> ¬ domn (m3 result) k = true) ∧ (∀(k : t1), eq k (key d) -> domn (m3 result) k = true ∧ func (m3 result) k = d) ∧ (∀(k : t1), lt (key d) k -> (domn (m3 result) k = true) = (domn (m3 t5) k = true)) ∧ (∀(k : t1), lt (key d) k ∧ domn (m3 result) k = true -> func (m3 result) k = func (m3 t5) k)).
+Proof.
 Admitted.

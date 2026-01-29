@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom t : Type.
@@ -137,4 +137,5 @@ Axiom insertion_sort'spec : forall  (l : list Z), eq_mon l (insertion_sort l).
 Definition sort_mon (x : m) : m := match x with | M a m1 => M a (insertion_sort m1) end.
 Axiom sort_mon'spec : forall  (x : m), eq' (cons x ([] : list m)) (cons (sort_mon x) ([] : list m)).
 Theorem sort_mons'vc (x : list m) : (match x with | [] => True | cons m1 r => (match x with | [] => False | cons _ f => f = r end) end) ∧ (∀(result : list m), (match x with | [] => result = ([] : list m) | cons m1 r => (∃(o1 : list m), eq' o1 r ∧ (let o2 : m := sort_mon m1 in eq' (cons m1 ([] : list m)) (cons o2 ([] : list m)) ∧ result = cons o2 o1)) end) -> eq' result x).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.exn.Exn.
@@ -67,4 +67,5 @@ Axiom order'def : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 l
 Axiom order'spec'0 : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 l), sorted1 (order l).
 Axiom order'spec : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 l), l ≡ₚ order l.
 Theorem list_from'vc (s : Z) (a : Datatypes.list Z) (e : Z) (fact0 : 0%Z ≤ s) (fact1 : s ≤ Z.of_nat (length a)) (fact2 : 0%Z ≤ e) (fact3 : e ≤ Z.of_nat (length a)) (fact4 : (∀(z1 : Z) (z2 : Z), s ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z1) a inhabitant < nth (Z.to_nat z2) a inhabitant) ∨ (∀(z1 : Z) (z2 : Z), s ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z2) a inhabitant ≤ nth (Z.to_nat z1) a inhabitant)) : (¬ e ≤ s -> (let o1 : Z := s + 1%Z in ((0%Z ≤ e - s ∧ e - o1 < e - s) ∧ (0%Z ≤ o1 ∧ o1 ≤ Z.of_nat (length a)) ∧ (0%Z ≤ e ∧ e ≤ Z.of_nat (length a)) ∧ ((∀(z1 : Z) (z2 : Z), o1 ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z1) a inhabitant < nth (Z.to_nat z2) a inhabitant) ∨ (∀(z1 : Z) (z2 : Z), o1 ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z2) a inhabitant ≤ nth (Z.to_nat z1) a inhabitant))) ∧ (∀(o2 : Datatypes.list Z), (∀(x : Z), count_occ' o2 x = map_occ_list x (nth_i a) o1 e) ∧ (∀(x : Z), x ∈ o2 -> (∃(z : Z), (o1 ≤ z ∧ z < e) ∧ nth (Z.to_nat z) a inhabitant = x)) ∧ ((∀(z1 : Z) (z2 : Z), o1 ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z1) a inhabitant < nth (Z.to_nat z2) a inhabitant) -> sorted o2) ∧ ((∀(z1 : Z) (z2 : Z), o1 ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z2) a inhabitant ≤ nth (Z.to_nat z1) a inhabitant) -> sorted2 o2) ∧ (sorted o2 ∨ sorted2 o2) -> 0%Z ≤ s ∧ s < Z.of_nat (length a)))) ∧ (∀(result : Datatypes.list Z), (if decide (e ≤ s) then result = ([] : Datatypes.list Z) else let o1 : Z := s + 1%Z in ∃(o2 : Datatypes.list Z), ((∀(x : Z), count_occ' o2 x = map_occ_list x (nth_i a) o1 e) ∧ (∀(x : Z), x ∈ o2 -> (∃(z : Z), (o1 ≤ z ∧ z < e) ∧ nth (Z.to_nat z) a inhabitant = x)) ∧ ((∀(z1 : Z) (z2 : Z), o1 ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z1) a inhabitant < nth (Z.to_nat z2) a inhabitant) -> sorted o2) ∧ ((∀(z1 : Z) (z2 : Z), o1 ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z2) a inhabitant ≤ nth (Z.to_nat z1) a inhabitant) -> sorted2 o2) ∧ (sorted o2 ∨ sorted2 o2)) ∧ result = cons (nth (Z.to_nat s) a inhabitant) o2) -> (∀(x : Z), count_occ' result x = map_occ_list x (nth_i a) s e) ∧ (∀(x : Z), x ∈ result -> (∃(z : Z), (s ≤ z ∧ z < e) ∧ nth (Z.to_nat z) a inhabitant = x)) ∧ ((∀(z1 : Z) (z2 : Z), s ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z1) a inhabitant < nth (Z.to_nat z2) a inhabitant) -> sorted result) ∧ ((∀(z1 : Z) (z2 : Z), s ≤ z1 ∧ z1 < z2 ∧ z2 < e -> nth (Z.to_nat z2) a inhabitant ≤ nth (Z.to_nat z1) a inhabitant) -> sorted2 result) ∧ (sorted result ∨ sorted2 result)).
+Proof.
 Admitted.

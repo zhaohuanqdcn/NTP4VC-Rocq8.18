@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Open Scope Z_scope.
@@ -78,4 +78,5 @@ Axiom t'invariant : forall  {α : Type} `{Inhabited α} (self : t2 α), balanced
 Definition t'eq {α : Type} `{Inhabited α} (a : t2 α) (b : t2 α) := repr a = repr b ∧ m1 a = m1 b.
 Axiom t'inj : forall  {α : Type} `{Inhabited α} (a : t2 α) (b : t2 α) (fact0 : t'eq a b), a = b.
 Theorem singleton'vc {α : Type} `{Inhabited α} (d : t1 α) : let o1 : list (t1 α) := ([d]:list (t1 α)) in Z.of_nat (length o1) = 1%Z ∧ nth 0%nat o1 inhabitant = d -> (∀(o2 : nat), Z.of_nat o2 = Z.of_nat 0%nat + 1%Z -> (let o3 : tree α := Node (Empty : tree α) d (Empty : tree α) o2 (measure d) in (balanced o3 ∧ o1 = seq_model o3 ∧ 1%Z = real_height o3) ∧ (∀(result : t2 α), repr result = o3 ∧ m1 result = m'mk o1 1%Z -> seq (m1 result) = ([d]:list (t1 α)) ∧ hgt (m1 result) = 1%Z))).
+Proof.
 Admitted.

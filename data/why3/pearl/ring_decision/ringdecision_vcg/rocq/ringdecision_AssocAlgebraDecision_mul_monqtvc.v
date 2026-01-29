@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom r : Type.
@@ -117,4 +117,5 @@ Definition eq' (x1 : list m) (x2 : list m) := ∀(y : Z -> a), interp' x1 y = in
 Definition append_mon (m1 : m) (m2 : m) : m := match (m1, m2) with | (M r1 l1, M r2 l2) => M (rtimes r1 r2) (l1 ++ l2) end.
 Axiom append_mon'spec : forall  (m1 : m) (m2 : m) (y : Z -> a), interp' (cons (append_mon m1 m2) ([] : list m)) y = atimes (interp' (cons m1 ([] : list m)) y) (interp' (cons m2 ([] : list m)) y).
 Theorem mul_mon'vc (x : list m) (mon1 : m) : (match x with | [] => True | cons m1 l => True end) ∧ (∀(result : list m), (match x with | [] => result = ([] : list m) | cons m1 l => (let mr : m := append_mon mon1 m1 in (∀(y : Z -> a), interp' (cons mr ([] : list m)) y = atimes (interp' (cons mon1 ([] : list m)) y) (interp' (cons m1 ([] : list m)) y)) ∧ (∃(lr : list m), (∀(y : Z -> a), interp' lr y = atimes (interp' (cons mon1 ([] : list m)) y) (interp' l y)) ∧ result = cons mr lr)) end) -> (∀(y : Z -> a), interp' result y = atimes (interp' (cons mon1 ([] : list m)) y) (interp' x y))).
+Proof.
 Admitted.

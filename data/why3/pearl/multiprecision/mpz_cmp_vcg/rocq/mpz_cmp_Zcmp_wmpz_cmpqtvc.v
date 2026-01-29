@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -38,4 +38,5 @@ Require Import multiprecision.mpz.Z.
 Require Import multiprecision.mpz.Zutil.
 Open Scope Z_scope.
 Theorem wmpz_cmp'vc (mpz : mpz_memo) (u : mpz_ptr) (v : mpz_ptr) (fact0 : 0%Z ≤ readers mpz u) (fact1 : 0%Z ≤ readers mpz v) (fact2 : int'32_in_bounds (sgn mpz u * abs_size mpz u - sgn mpz v * abs_size mpz v)) : - 2%Z < readers mpz u ∧ (∀(usize : bv 32%N), bv_signed usize = sgn mpz u * abs_size mpz u -> - 2%Z < readers mpz v ∧ (∀(vsize : bv 32%N), bv_signed vsize = sgn mpz v * abs_size mpz v -> int'32_in_bounds (bv_signed usize - bv_signed vsize) ∧ (∀(dsize : bv 32%N), bv_signed dsize = bv_signed usize - bv_signed vsize -> (bv_signed dsize = 0%Z -> dsize = (0%bv : bv 32%N)) -> (if decide (¬ dsize = (0%bv : bv 32%N)) then (∀(w : mpz_ptr), mpz_unchanged w mpz mpz) ∧ (0%Z < bv_signed dsize -> value_of v mpz < value_of u mpz) ∧ (bv_signed dsize < 0%Z -> value_of u mpz < value_of v mpz) ∧ (bv_signed dsize = 0%Z -> value_of u mpz = value_of v mpz) else - 2147483648%Z < bv_signed usize ∧ (∀(asize : bv 32%N), bv_signed asize = Z.abs (bv_signed usize) -> 0%Z ≤ readers mpz u ∧ (∀(mpz1 : mpz_memo), abs_value_of mpz1 = abs_value_of mpz ∧ alloc mpz1 = alloc mpz ∧ abs_size mpz1 = abs_size mpz ∧ sgn mpz1 = sgn mpz ∧ zones mpz1 = zones mpz -> (∀(up : C.ptr (bv 64%N)), readers mpz1 u = readers mpz u + 1%Z ∧ (∀(y : mpz_ptr), ¬ u = y -> readers mpz1 y = readers mpz y) ∧ value up (abs_size mpz1 u) = abs_value_of mpz1 u ∧ plength up = alloc mpz1 u ∧ offset up = 0%Z ∧ min up = 0%Z ∧ C.max up = plength up ∧ zone1 up = zones mpz1 u -> 0%Z ≤ readers mpz1 v ∧ (∀(mpz2 : mpz_memo), abs_value_of mpz2 = abs_value_of mpz1 ∧ alloc mpz2 = alloc mpz1 ∧ abs_size mpz2 = abs_size mpz1 ∧ sgn mpz2 = sgn mpz1 ∧ zones mpz2 = zones mpz1 -> (∀(vp : C.ptr (bv 64%N)), readers mpz2 v = readers mpz1 v + 1%Z ∧ (∀(y : mpz_ptr), ¬ v = y -> readers mpz2 y = readers mpz1 y) ∧ value vp (abs_size mpz2 v) = abs_value_of mpz2 v ∧ plength vp = alloc mpz2 v ∧ offset vp = 0%Z ∧ min vp = 0%Z ∧ C.max vp = plength vp ∧ zone1 vp = zones mpz2 v -> (valid up (bv_signed asize) ∧ valid vp (bv_signed asize)) ∧ (∀(cmp : bv 32%N), bv_signed cmp = compare_int (value up (bv_signed asize)) (value vp (bv_signed asize)) -> (zones mpz2 u = zone1 up ∧ 1%Z ≤ readers mpz2 u ∧ min up = 0%Z ∧ C.max up = plength up) ∧ (∀(mpz3 : mpz_memo), abs_value_of mpz3 = abs_value_of mpz2 ∧ alloc mpz3 = alloc mpz2 ∧ abs_size mpz3 = abs_size mpz2 ∧ sgn mpz3 = sgn mpz2 ∧ zones mpz3 = zones mpz2 -> readers mpz3 u = readers mpz2 u - 1%Z ∧ (∀(y : mpz_ptr), ¬ y = u -> readers mpz3 y = readers mpz2 y) -> (zones mpz3 v = zone1 vp ∧ 1%Z ≤ readers mpz3 v ∧ min vp = 0%Z ∧ C.max vp = plength vp) ∧ (∀(mpz4 : mpz_memo), abs_value_of mpz4 = abs_value_of mpz3 ∧ alloc mpz4 = alloc mpz3 ∧ abs_size mpz4 = abs_size mpz3 ∧ sgn mpz4 = sgn mpz3 ∧ zones mpz4 = zones mpz3 -> readers mpz4 v = readers mpz3 v - 1%Z ∧ (∀(y : mpz_ptr), ¬ y = v -> readers mpz4 y = readers mpz3 y) -> (¬ 0%Z ≤ bv_signed usize -> int'32_in_bounds (- bv_signed cmp)) ∧ (∀(r : bv 32%N), (if decide (0%Z ≤ bv_signed usize) then r = cmp else bv_signed r = - bv_signed cmp) -> (∀(w : mpz_ptr), mpz_unchanged w mpz4 mpz) ∧ (0%Z < bv_signed r -> value_of v mpz4 < value_of u mpz4) ∧ (bv_signed r < 0%Z -> value_of u mpz4 < value_of v mpz4) ∧ (bv_signed r = 0%Z -> value_of u mpz4 = value_of v mpz4)))))))))))))).
+Proof.
 Admitted.

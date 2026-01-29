@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom elt : Type.
@@ -60,4 +60,5 @@ Program Fixpoint avl (t : tree) : Prop :=
 match t with | E => True | N _ l _ r => avl l ∧ avl r ∧ - 1%Z ≤ height l - height r ∧ height l - height r ≤ 1%Z end.
 Admit Obligations.
 Theorem join2'vc (l : tree) (r : tree) (fact0 : wf l) (fact1 : bst l) (fact2 : avl l) (fact3 : wf r) (fact4 : bst r) (fact5 : avl r) (fact6 : ∀(x : elt) (y : elt), mem x l -> mem y r -> lt x y) : (match l with | E => True | _ => (¬ l = E ∧ wf l ∧ bst l ∧ avl l) ∧ (∀(l1 : tree) (k : elt), (wf l1 ∧ bst l1 ∧ avl l1) ∧ (∀(x : elt), mem x l = (mem x l1 ∧ lt x k ∨ x = k)) ∧ tree_lt l1 k -> (wf l1 ∧ wf r) ∧ (bst l1 ∧ tree_lt l1 k) ∧ (bst r ∧ lt_tree k r) ∧ avl l1 ∧ avl r) end) ∧ (∀(t : tree), (match l with | E => t = r | _ => (∃(r1 : tree) (m : elt), ((wf r1 ∧ bst r1 ∧ avl r1) ∧ (∀(x : elt), mem x l = (mem x r1 ∧ lt x m ∨ x = m)) ∧ tree_lt r1 m) ∧ wf t ∧ bst t ∧ (∀(y : elt), mem y t = (mem y r1 ∨ y = m ∨ mem y r)) ∧ avl t ∧ height t ≤ 1%Z + Z.max (height r1) (height r)) end) -> (wf t ∧ bst t ∧ avl t) ∧ (∀(x : elt), mem x t = (mem x l ∨ mem x r))).
+Proof.
 Admitted.

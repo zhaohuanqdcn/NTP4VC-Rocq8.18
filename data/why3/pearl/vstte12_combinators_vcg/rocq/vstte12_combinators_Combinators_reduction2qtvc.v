@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Inductive term :=
@@ -76,4 +76,5 @@ Inductive only_K : term -> Prop :=
  | only_K_K : only_K K
  | only_K_App (t1 : term) (t2 : term) : only_K t1 -> only_K t2 -> only_K (App t1 t2).
 Theorem reduction2'vc (t : term) (c : context) (fact0 : only_K t) (fact1 : is_context c) : (match t with | K => True | App t1 t2 => (let o1 : context := Left Hole t2 in let o2 : context := subst_c c o1 in (is_context c ∧ is_context o1 -> is_context o2) -> ((match t with | S => False | K => False | App f f1 => f = t1 ∨ f1 = t1 end) ∧ only_K t1 ∧ is_context o2) ∧ (∀(v1 : term), (only_K v1 ∧ is_value v1) ∧ relTR (subst o2 t1) (subst o2 v1) -> (let o3 : context := Right v1 Hole in let o4 : context := subst_c c o3 in (is_context c ∧ is_context o3 -> is_context o4) -> ((match t with | S => False | K => False | App f f1 => f = t2 ∨ f1 = t2 end) ∧ only_K t2 ∧ is_context o4) ∧ (∀(v2 : term), (only_K v2 ∧ is_value v2) ∧ relTR (subst o4 t2) (subst o4 v2) -> (match v1 with | K => True | App K v3 => True | _ => False end))))) | _ => False end) ∧ (∀(result : term), (match t with | K => result = K | App t1 t2 => (let o1 : context := Left Hole t2 in let o2 : context := subst_c c o1 in (is_context c ∧ is_context o1 -> is_context o2) ∧ (∃(v1 : term), ((only_K v1 ∧ is_value v1) ∧ relTR (subst o2 t1) (subst o2 v1)) ∧ (let o3 : context := Right v1 Hole in let o4 : context := subst_c c o3 in (is_context c ∧ is_context o3 -> is_context o4) ∧ (∃(v2 : term), ((only_K v2 ∧ is_value v2) ∧ relTR (subst o4 t2) (subst o4 v2)) ∧ (match v1 with | K => result = App v1 v2 | App K v3 => result = v3 | _ => False end))))) | _ => False end) -> (only_K result ∧ is_value result) ∧ relTR (subst c t) (subst c result)).
+Proof.
 Admitted.

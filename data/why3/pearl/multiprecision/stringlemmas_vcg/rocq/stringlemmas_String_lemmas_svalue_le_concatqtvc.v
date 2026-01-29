@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -40,4 +40,5 @@ Axiom svalue_le_sub'def : forall  (n : Z) (m : Z) (b : Z) (x : Z -> bv 8%N), if 
 Definition string_in_base (b : Z) (p : ptr (bv 8%N)) := in_base b (pelts p) (min p) (C.max p).
 Definition svalue_le (b : Z) (x : ptr (bv 8%N)) (sz : Z) : Z := svalue_le_sub b (pelts x) (offset x) (offset x + sz).
 Theorem svalue_le_concat'vc (n : bv 32%N) (m : bv 32%N) (b : Z) (x : ptr (bv 8%N)) (fact0 : 0%Z ≤ bv_signed n) (fact1 : bv_signed n ≤ bv_signed m) (fact2 : in_base b (pelts x) (offset x) (offset x + bv_signed m)) (fact3 : 2%Z ≤ b) (fact4 : b ≤ 256%Z) : svalue_le b x (bv_signed m) = svalue_le b x (bv_signed n) + Z.pow b (bv_signed n) * svalue_le_sub b (pelts x) (offset x + bv_signed n) (offset x + bv_signed m).
+Proof.
 Admitted.

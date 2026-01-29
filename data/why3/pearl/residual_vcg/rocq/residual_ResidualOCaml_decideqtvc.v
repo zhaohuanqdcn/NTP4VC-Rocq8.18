@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Open Scope Z_scope.
@@ -57,4 +57,5 @@ Axiom ostring_countable : Countable ostring.
 Global Existing Instance ostring_countable.
 Axiom str : ostring -> list char.
 Theorem decide'vc (o1 : bv 63%N) (w : ostring) (r : regexp) (fact0 : bv_signed o1 = Z.of_nat (length (str w))) (fact1 : 0%Z ≤ Z.of_nat (length (str w))) : int'63_in_bounds (bv_signed o1 - 1%Z) ∧ (∀(o2 : bv 63%N), bv_signed o2 = bv_signed o1 - 1%Z -> (0%Z ≤ bv_signed o2 + 1%Z -> mem (drop 0%nat (str w)) r = mem (str w) r ∧ (∀(r' : regexp), (∀(i : bv 63%N), let i1 : Z := bv_signed i in (0%Z ≤ i1 ∧ i1 ≤ bv_signed o2) ∧ mem (drop (Z.to_nat i1) (str w)) r' = mem (str w) r -> (0%Z ≤ bv_signed i ∧ bv_signed i < Z.of_nat (length (str w))) ∧ (∀(o3 : regexp), (∀(w1 : list char), mem w1 o3 = mem (cons (nth (Z.to_nat (bv_signed i)) (str w) inhabitant) w1) r') -> mem (drop (Z.to_nat (i1 + 1%Z)) (str w)) o3 = mem (str w) r)) ∧ (mem (drop (Z.to_nat (bv_signed o2 + 1%Z)) (str w)) r' = mem (str w) r -> mem ([] : list char) r' = mem (str w) r))) ∧ (bv_signed o2 + 1%Z < 0%Z -> mem ([] : list char) r = mem (str w) r)).
+Proof.
 Admitted.

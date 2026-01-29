@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.Qed.Qed.
 Require Import verker.Axiomatic3.Axiomatic3.
@@ -32,4 +32,5 @@ Require Import verker.A_Ctype.A_Ctype.
 Require Import verker.A_SkipSpaces.A_SkipSpaces.
 Open Scope Z_scope.
 Theorem goal17 (a : addr) (t_2 : addr -> Z) (t_3 : addr -> Z) (a_1 : addr) (t : Z -> Z) (t_1 : Z -> Z) : let a_2 : addr := l_skip_spaces a in let x : Z := base a in let x_1 : Z := l_strlen t_2 a in let a_3 : addr := shift a (x_1 - 1%Z) in let x_2 : Z := t_2 a_3 in let x_3 : Z := t_3 a_1 in let a_4 : addr := shift a (- 1%Z) in let a_5 : addr := shift a_1 1%Z in let m : addr -> Z := fun_updt t_3 a_5 0%Z in let x_4 : Z := m a_2 in let x_5 : Z := l_strlen m a in let x_6 : Z := m (shift a_2 (l_strlen m a_2 - 1%Z)) in base a_2 = x -> t_2 (shift a x_1) = 0%Z -> ¬ x_2 = 0%Z -> 0%Z < x_1 -> region x ≤ 0%Z -> linked t -> sconst t_2 -> is_sint8 x_3 -> p_valid_str t t_2 a -> addr_le a a_2 -> is_uint64 x_1 -> addr_le a_4 a_1 -> is_sint8 x_4 -> ¬ p_isspace x_4 -> p_valid_str t_1 m a -> p_valid_str t_1 m a_2 -> addr_le a_1 a_3 -> is_sint8 x_2 -> addr_le a_2 (shift a x_5) -> is_sint8 x_6 -> (if decide (addr_le a a_1) then ¬ p_isspace (t_2 a_1) ∧ (a_4 = a_1 ∨ ¬ p_isspace x_3) else t_3 = t_2 ∧ t_1 = t ∧ (a_4 = a_1 ∨ ¬ p_isspace x_3)) -> (a_4 = a_1 -> x_5 = 0%Z) -> (addr_lt a a_1 -> l_strlen m a_1 = 1%Z) -> (∀(i : Z), 0%Z ≤ i -> i < x_1 -> ¬ t_2 (shift a i) = 0%Z) -> (∀(a_6 : addr), addr_le a a_6 -> addr_lt a_6 a_2 -> p_isspace (m a_6)) -> (∀(a_6 : addr), addr_lt a_1 a_6 -> addr_le a_6 a_3 -> p_isspace (t_2 a_6)) -> (∀(a_6 : addr), addr_lt a_5 a_6 -> addr_le a_6 a_3 -> p_isspace (m a_6)) -> ¬ p_isspace x_6.
+Proof.
 Admitted.

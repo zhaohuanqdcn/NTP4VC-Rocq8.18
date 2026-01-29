@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.string.StringBuffer.
 Open Scope Z_scope.
@@ -30,4 +30,5 @@ Definition b642int (c : ascii) : Z := if decide (65%Z ≤ Z.of_nat (Ascii.nat_of
 Definition get_pad (s : string) : Z := if decide (1%Z ≤ Z.of_nat (String.length s) ∧ get_str_i s (Z.of_nat (String.length s) - 1%Z) = Ascii.ascii_of_nat (Z.to_nat (bv_signed (61%bv : bv 63%N)))) then if decide (2%Z ≤ Z.of_nat (String.length s) ∧ get_str_i s (Z.of_nat (String.length s) - 2%Z) = Ascii.ascii_of_nat (Z.to_nat (bv_signed (61%bv : bv 63%N)))) then 2%Z else 1%Z else 0%Z.
 Definition calc_pad (s : string) : Z := if decide (Z.quot (Z.of_nat (String.length s)) 3%Z = 1%Z) then 2%Z else if decide (Z.quot (Z.of_nat (String.length s)) 3%Z = 2%Z) then 1%Z else 0%Z.
 Theorem calc_pad_mod3'vc (s : string) : Z.quot (Z.of_nat (String.length s) + calc_pad s) 3%Z = 0%Z.
+Proof.
 Admitted.

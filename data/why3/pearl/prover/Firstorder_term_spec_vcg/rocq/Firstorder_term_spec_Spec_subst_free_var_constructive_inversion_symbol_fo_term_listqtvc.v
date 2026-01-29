@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import prover.Nat.Nat.
 Require Import prover.Functions.Config.
@@ -75,4 +75,5 @@ Axiom is_fo_term_free_var_in_fo_term_list_def : forall {ty'b0 : Type} {ty'b3 : T
 Axiom is_symbol_free_var_in_fo_term_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (x : ty'b0) (t : fo_term ty'b0 ty'b3), is_symbol_free_var_in_fo_term x t = (match t with | Var_fo_term v0 => False | App v0 v1 => is_symbol_free_var_in_symbol x v0 ∨ is_symbol_free_var_in_fo_term_list x v1 end).
 Axiom is_fo_term_free_var_in_fo_term_def : forall {ty'b0 : Type} {ty'b3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} (x : ty'b3) (t : fo_term ty'b0 ty'b3), is_fo_term_free_var_in_fo_term x t = (match t with | Var_fo_term v0 => v0 = x | App v0 v1 => is_fo_term_free_var_in_fo_term_list x v1 end).
 Theorem subst_free_var_constructive_inversion_symbol_fo_term_list'vc {ty'b0 : Type} {ty'b3 : Type} {ty'c0 : Type} {ty'c3 : Type} `{Inhabited ty'b0} `{Inhabited ty'b3} `{Inhabited ty'c0} `{Inhabited ty'c3} (x : ty'c0) (t : fo_term_list ty'b0 ty'b3) (s0 : ty'b0 -> symbol ty'c0) (s3 : ty'b3 -> fo_term ty'c0 ty'c3) (fact0 : is_symbol_free_var_in_fo_term_list x (subst_fo_term_list t s0 s3)) : (match t with | FONil => False | FOCons v0 v1 => (if decide (is_symbol_free_var_in_fo_term x (subst_fo_term v0 (rename_subst_symbol s0 identity) (rename_subst_fo_term s3 identity identity))) then let o1 : ty'b3 -> fo_term ty'c0 ty'c3 := rename_subst_fo_term s3 identity identity in let o2 : ty'b0 -> symbol ty'c0 := rename_subst_symbol s0 identity in ((0%Z ≤ size_fo_term_list t ∧ size_fo_term v0 < size_fo_term_list t) ∧ is_symbol_free_var_in_fo_term x (subst_fo_term v0 o2 o1)) ∧ (∀(sumx : sum ty'b0 ty'b3), (match sumx with | Left sumx1 => is_symbol_free_var_in_fo_term sumx1 v0 ∧ is_symbol_free_var_in_symbol x (o2 sumx1) | Right sumx1 => is_fo_term_free_var_in_fo_term sumx1 v0 ∧ is_symbol_free_var_in_fo_term x (o1 sumx1) end) -> (match sumx with | Left sumx1 => is_symbol_free_var_in_symbol x (rename_symbol (s0 sumx1) identity) | Right sumx1 => is_symbol_free_var_in_fo_term x (rename_fo_term (s3 sumx1) identity identity) end)) else is_symbol_free_var_in_fo_term_list x (subst_fo_term_list v1 (rename_subst_symbol s0 identity) (rename_subst_fo_term s3 identity identity)) ∧ (let o1 : ty'b3 -> fo_term ty'c0 ty'c3 := rename_subst_fo_term s3 identity identity in let o2 : ty'b0 -> symbol ty'c0 := rename_subst_symbol s0 identity in ((0%Z ≤ size_fo_term_list t ∧ size_fo_term_list v1 < size_fo_term_list t) ∧ is_symbol_free_var_in_fo_term_list x (subst_fo_term_list v1 o2 o1)) ∧ (∀(sumx : sum ty'b0 ty'b3), (match sumx with | Left sumx1 => is_symbol_free_var_in_fo_term_list sumx1 v1 ∧ is_symbol_free_var_in_symbol x (o2 sumx1) | Right sumx1 => is_fo_term_free_var_in_fo_term_list sumx1 v1 ∧ is_symbol_free_var_in_fo_term x (o1 sumx1) end) -> (match sumx with | Left sumx1 => is_symbol_free_var_in_symbol x (rename_symbol (s0 sumx1) identity) | Right sumx1 => is_symbol_free_var_in_fo_term x (rename_fo_term (s3 sumx1) identity identity) end)))) end) ∧ (∀(result : sum ty'b0 ty'b3), (match t with | FONil => False | FOCons v0 v1 => (if decide (is_symbol_free_var_in_fo_term x (subst_fo_term v0 (rename_subst_symbol s0 identity) (rename_subst_fo_term s3 identity identity))) then ∃(sumx : sum ty'b0 ty'b3), (match sumx with | Left sumx1 => is_symbol_free_var_in_fo_term sumx1 v0 ∧ is_symbol_free_var_in_symbol x (rename_subst_symbol s0 identity sumx1) | Right sumx1 => is_fo_term_free_var_in_fo_term sumx1 v0 ∧ is_symbol_free_var_in_fo_term x (rename_subst_fo_term s3 identity identity sumx1) end) ∧ (match sumx with | Left sumx1 => (∃(y : ty'c0), (is_symbol_free_var_in_symbol y (s0 sumx1) ∧ identity y = x) ∧ result = Left sumx1) | Right sumx1 => (∃(y : ty'c0), (is_symbol_free_var_in_fo_term y (s3 sumx1) ∧ identity y = x) ∧ result = Right sumx1) end) else is_symbol_free_var_in_fo_term_list x (subst_fo_term_list v1 (rename_subst_symbol s0 identity) (rename_subst_fo_term s3 identity identity)) ∧ (∃(sumx : sum ty'b0 ty'b3), (match sumx with | Left sumx1 => is_symbol_free_var_in_fo_term_list sumx1 v1 ∧ is_symbol_free_var_in_symbol x (rename_subst_symbol s0 identity sumx1) | Right sumx1 => is_fo_term_free_var_in_fo_term_list sumx1 v1 ∧ is_symbol_free_var_in_fo_term x (rename_subst_fo_term s3 identity identity sumx1) end) ∧ (match sumx with | Left sumx1 => (∃(y : ty'c0), (is_symbol_free_var_in_symbol y (s0 sumx1) ∧ identity y = x) ∧ result = Left sumx1) | Right sumx1 => (∃(y : ty'c0), (is_symbol_free_var_in_fo_term y (s3 sumx1) ∧ identity y = x) ∧ result = Right sumx1) end))) end) -> (match result with | Left sumx => is_symbol_free_var_in_fo_term_list sumx t ∧ is_symbol_free_var_in_symbol x (s0 sumx) | Right sumx => is_fo_term_free_var_in_fo_term_list sumx t ∧ is_symbol_free_var_in_fo_term x (s3 sumx) end)).
+Proof.
 Admitted.

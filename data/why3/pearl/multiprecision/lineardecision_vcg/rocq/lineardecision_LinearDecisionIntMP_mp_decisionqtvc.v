@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -187,4 +187,5 @@ Axiom m_ctx'spec'1 : forall  (ctx : list (expr' * expr')) (z : Z -> Z) (g : expr
 Axiom m_ctx'spec'0 : forall  (ctx : list (expr' * expr')), length (m_ctx ctx) = length ctx.
 Axiom m_ctx'spec : forall  (ctx : list (expr' * expr')) (fact0 : valid_ctx' ctx), LinearDecisionRationalMP.valid_ctx' (m_ctx ctx).
 Theorem mp_decision'vc (g : expr') (g1 : expr') (l : list (expr' * expr')) : let g2 : expr' * expr' := (g, g1) in valid_ctx' l ∧ valid_eq' g2 ∧ Z.of_nat (length l) < 100000%Z -> (let o1 : LinearDecisionRationalMP.expr' * LinearDecisionRationalMP.expr' := m_eq g2 in (∀(y : Z -> Z) (z : Z -> Z), pos_eq' g2 z -> (LinearDecisionRationalMP.interp_eq' o1 (m_y y) z = true) = (interp_eq' g2 y z = true)) ∧ (valid_eq' g2 -> LinearDecisionRationalMP.valid_eq' o1) -> (let o2 : list (LinearDecisionRationalMP.expr' * LinearDecisionRationalMP.expr') := m_ctx l in (∀(y : Z -> Z) (z : Z -> Z) (g3 : expr' * expr'), pos_ctx' l z -> pos_eq' g3 z -> (LinearDecisionRationalMP.interp_ctx' o2 (m_eq g3) (m_y y) z = true) = (interp_ctx' l g3 y z = true)) ∧ length o2 = length l ∧ (valid_ctx' l -> LinearDecisionRationalMP.valid_ctx' o2) -> (LinearDecisionRationalMP.valid_ctx' o2 ∧ LinearDecisionRationalMP.valid_eq' o1 ∧ Z.of_nat (length o2) < 100000%Z) ∧ ((∀(y : Z -> Rdefinitions.R) (z : Z -> Z), LinearDecisionRationalMP.interp_ctx' o2 o1 y z = true) -> (∀(y : Z -> Z) (z : Z -> Z), pos_ctx' l z -> pos_eq' g2 z -> interp_ctx' l g2 y z = true)))).
+Proof.
 Admitted.

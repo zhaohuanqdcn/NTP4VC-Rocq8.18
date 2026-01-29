@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import verifythis_2016_matrix_multiplication.matrices.MyMatrix.
@@ -95,4 +95,5 @@ Definition symb_mat (m : mat Z) (n : Z) : expr := expr'mk (cons (mono'mk (cons n
 Definition symb_opp (e : expr) : expr := expr'mk (lm_opp (e_body e)) (e_rows e) (e_cols e).
 Definition symb_add (e1 : expr) (e2 : expr) : expr := expr'mk (lm_merge ([] : list mono) (e_body e1) (e_body e2)) (e_rows e1) (e_cols e1).
 Theorem symb_add'vc (env1 : env) (e1 : expr) (e2 : expr) (fact0 : e_vld env1 e1) (fact1 : e_vld env1 e2) (fact2 : e_rows e1 = e_rows e2) (fact3 : e_cols e1 = e_cols e2) : let o1 : Z := e_cols e1 in let o2 : Z := e_rows e1 in (let o3 : list mono := e_body e1 in let o4 : Z -> mat Z := ev_f env1 in lm_vld o4 o2 o1 o3 ∧ (lm_mdl_simp o4 o2 o1 o3 = lm_mdl o4 o2 o1 o3 -> (let o5 : list mono := e_body e2 in let o6 : Z -> mat Z := ev_f env1 in lm_vld o6 o2 o1 o5 ∧ (lm_mdl_simp o6 o2 o1 o5 = lm_mdl o6 o2 o1 o5 -> (let o7 : list mono := e_body e2 in let o8 : list mono := e_body e1 in let o9 : list mono := ([] : list mono) in let o10 : Z -> mat Z := ev_f env1 in ((0%Z ≤ o2 ∧ 0%Z ≤ o1 ∧ lm_vld o10 o2 o1 o9) ∧ lm_vld o10 o2 o1 o8 ∧ lm_vld o10 o2 o1 o7) ∧ (let o11 : list mono := lm_merge o9 o8 o7 in lm_vld o10 o2 o1 o11 ∧ lm_mdl o10 o2 o1 o11 = add (lm_mdl o10 o2 o1 o9) (add (lm_mdl o10 o2 o1 o8) (lm_mdl o10 o2 o1 o7)) -> lm_vld (ev_f env1) o2 o1 o11)))))) ∧ (∀(result : expr), (let o3 : list mono := e_body e1 in let o4 : Z -> mat Z := ev_f env1 in lm_mdl_simp o4 o2 o1 o3 = lm_mdl o4 o2 o1 o3 ∧ (let o5 : list mono := e_body e2 in let o6 : Z -> mat Z := ev_f env1 in lm_mdl_simp o6 o2 o1 o5 = lm_mdl o6 o2 o1 o5 ∧ (let o7 : list mono := e_body e2 in let o8 : list mono := e_body e1 in let o9 : list mono := ([] : list mono) in let o10 : Z -> mat Z := ev_f env1 in let o11 : list mono := lm_merge o9 o8 o7 in (lm_vld o10 o2 o1 o11 ∧ lm_mdl o10 o2 o1 o11 = add (lm_mdl o10 o2 o1 o9) (add (lm_mdl o10 o2 o1 o8) (lm_mdl o10 o2 o1 o7))) ∧ (let o12 : Z -> mat Z := ev_f env1 in lm_mdl_simp o12 o2 o1 o11 = lm_mdl o12 o2 o1 o11 ∧ result = expr'mk o11 o2 o1)))) -> e_vld env1 result ∧ result = symb_add e1 e2 ∧ e_mdl env1 result = add (e_mdl env1 e1) (e_mdl env1 e2)).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -99,4 +99,5 @@ Global Existing Instance part_inhabited.
 Axiom part_countable : Countable part.
 Global Existing Instance part_countable.
 Theorem remove'vc {α : Type} `{Inhabited α} (s : selector) (t3 : t2 α) (o1 : view α) (fact0 : selection_possible s (seq (m1 t3))) (fact1 : match o1 with | AEmpty => hgt (m1 t3) = 0%Z ∧ seq (m1 t3) = ([] : list (t1 α)) | ANode l d r h s1 => seq (m1 t3) = node_model (seq (m1 l)) d (seq (m1 r)) ∧ s1 = agg measure_closure (seq (m1 t3)) ∧ (let hl : Z := hgt (m1 l) in let hr : Z := hgt (m1 r) in (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing) ∧ hgt (m1 t3) = Z.of_nat h ∧ Z.of_nat h = 1%Z + (if decide (hl < hr) then hr else hl)) end) : match o1 with | AEmpty => seq (m1 t3) = left1 (split'mk ([] : list (t1 α)) (None : option (t1 α)) ([] : list (t1 α))) ++ right1 (split'mk ([] : list (t1 α)) (None : option (t1 α)) ([] : list (t1 α))) ∧ (selected s (split'mk ([] : list (t1 α)) (None : option (t1 α)) ([] : list (t1 α))) ∧ rebuild (split'mk ([] : list (t1 α)) (None : option (t1 α)) ([] : list (t1 α))) = seq (m1 t3)) ∧ hgt (m1 t3) - hgt (m1 t3) ≤ 1%Z ∧ 0%Z ≤ hgt (m1 t3) - hgt (m1 t3) | ANode tl td tr _ _ => (let o2 : list (t1 α) := seq (m1 tr) in let o3 : list (t1 α) := seq (m1 tl) in (selection_possible s (node_model o3 td o2) ∧ agg measure_closure (seq (m1 tl)) = agg measure_closure o3 ∧ agg measure_closure (seq (m1 tr)) = agg measure_closure o2) ∧ (∀(o4 : part_base selector), (match o4 with | Here => selected s (split'mk o3 (Some td) o2) | Left sl => selection_possible sl o3 ∧ (∀(e : split (t1 α)), selected sl e ∧ rebuild e = o3 -> selected s (right_extend e td o2)) | Right sr => selection_possible sr o2 ∧ (∀(e : split (t1 α)), selected sr e ∧ rebuild e = o2 -> selected s (left_extend o3 td e)) end) -> (match o4 with | Left sl => ((0%Z ≤ hgt (m1 t3) ∧ hgt (m1 tl) < hgt (m1 t3)) ∧ selection_possible sl (seq (m1 tl))) ∧ (∀(r : split (t1 α)) (nl : t2 α), seq (m1 nl) = left1 r ++ right1 r ∧ (selected sl r ∧ rebuild r = seq (m1 tl)) ∧ hgt (m1 tl) - hgt (m1 nl) ≤ 1%Z ∧ 0%Z ≤ hgt (m1 tl) - hgt (m1 nl) -> (- Z.of_nat balancing - 1%Z ≤ hgt (m1 nl) - hgt (m1 tr) ∧ hgt (m1 nl) - hgt (m1 tr) ≤ Z.of_nat balancing + 1%Z) ∧ (∀(result : t2 α), seq (m1 result) = node_model (seq (m1 nl)) td (seq (m1 tr)) ∧ (let hl : Z := hgt (m1 nl) in let hr : Z := hgt (m1 tr) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 result) in (0%Z ≤ he - hres ∧ he - hres ≤ 1%Z) ∧ (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing -> he = hres)) -> seq (m1 result) = left1 (right_extend r td (seq (m1 tr))) ++ right1 (right_extend r td (seq (m1 tr))) ∧ (selected s (right_extend r td (seq (m1 tr))) ∧ rebuild (right_extend r td (seq (m1 tr))) = seq (m1 t3)) ∧ hgt (m1 t3) - hgt (m1 result) ≤ 1%Z ∧ 0%Z ≤ hgt (m1 t3) - hgt (m1 result))) | Right sr => ((0%Z ≤ hgt (m1 t3) ∧ hgt (m1 tr) < hgt (m1 t3)) ∧ selection_possible sr (seq (m1 tr))) ∧ (∀(r : split (t1 α)) (nr : t2 α), seq (m1 nr) = left1 r ++ right1 r ∧ (selected sr r ∧ rebuild r = seq (m1 tr)) ∧ hgt (m1 tr) - hgt (m1 nr) ≤ 1%Z ∧ 0%Z ≤ hgt (m1 tr) - hgt (m1 nr) -> (- Z.of_nat balancing - 1%Z ≤ hgt (m1 tl) - hgt (m1 nr) ∧ hgt (m1 tl) - hgt (m1 nr) ≤ Z.of_nat balancing + 1%Z) ∧ (∀(result : t2 α), seq (m1 result) = node_model (seq (m1 tl)) td (seq (m1 nr)) ∧ (let hl : Z := hgt (m1 tl) in let hr : Z := hgt (m1 nr) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 result) in (0%Z ≤ he - hres ∧ he - hres ≤ 1%Z) ∧ (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing -> he = hres)) -> seq (m1 result) = left1 (left_extend (seq (m1 tl)) td r) ++ right1 (left_extend (seq (m1 tl)) td r) ∧ (selected s (left_extend (seq (m1 tl)) td r) ∧ rebuild (left_extend (seq (m1 tl)) td r) = seq (m1 t3)) ∧ hgt (m1 t3) - hgt (m1 result) ≤ 1%Z ∧ 0%Z ≤ hgt (m1 t3) - hgt (m1 result))) | Here => (- Z.of_nat balancing ≤ hgt (m1 tl) - hgt (m1 tr) ∧ hgt (m1 tl) - hgt (m1 tr) ≤ Z.of_nat balancing) ∧ (∀(result : t2 α), seq (m1 result) = seq (m1 tl) ++ seq (m1 tr) ∧ (let hl : Z := hgt (m1 tl) in let hr : Z := hgt (m1 tr) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in he - hgt (m1 result) ≤ 1%Z ∧ 0%Z ≤ he - hgt (m1 result)) -> seq (m1 result) = left1 (split'mk (seq (m1 tl)) (Some td) (seq (m1 tr))) ++ right1 (split'mk (seq (m1 tl)) (Some td) (seq (m1 tr))) ∧ (selected s (split'mk (seq (m1 tl)) (Some td) (seq (m1 tr))) ∧ rebuild (split'mk (seq (m1 tl)) (Some td) (seq (m1 tr))) = seq (m1 t3)) ∧ hgt (m1 t3) - hgt (m1 result) ≤ 1%Z ∧ 0%Z ≤ hgt (m1 t3) - hgt (m1 result)) end))) end.
+Proof.
 Admitted.

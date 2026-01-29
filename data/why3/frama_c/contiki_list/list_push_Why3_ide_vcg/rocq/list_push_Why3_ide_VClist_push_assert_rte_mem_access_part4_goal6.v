@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.Qed.Qed.
 Require Import Why3.Memory.Memory.
@@ -32,4 +32,5 @@ Require Import contiki_list.A_Index_of_item.A_Index_of_item.
 Require Import contiki_list.Axiomatic1.Axiomatic1.
 Open Scope Z_scope.
 Theorem goal6 (t_3 : addr -> addr) (a_3 : addr) (i_2 : Z) (i : Z) (i_1 : Z) (a_2 : addr) (t_2 : addr -> addr) (a : addr) (a_1 : addr) (t : Z -> Z) (t_1 : addr -> R) : let a_4 : addr := t_3 (shift a_3 i_2) in let x : Z := 1%Z + i + i_1 in let x_1 : Z := l_index_of t_3 a_4 a_3 i_1 x in let x_2 : Z := i + i_1 in let x_3 : Z := 1%Z + i in let a_5 : addr := shift a_3 0%Z in let a_6 : addr := t_3 a_2 in let x_4 : Z := x_1 - 1%Z in let a_7 : addr := shift a_3 x_4 in let a_8 : addr := t_3 a_7 in let a_9 : addr -> addr := havoc t_2 (fun_updt (fun_updt t_3 a_2 a) (shift a_8 0%Z) a_1) (shift a_3 x_1) (1%Z + i + i_1 - x_1) in let a_10 : addr := a_9 a_2 in ¬ a_4 = Mk_addr 0%Z 0%Z -> ¬ x = x_1 -> 0%Z ≤ i_1 -> i_1 ≤ i_2 -> i_2 ≤ x_2 -> region (base a_2) ≤ 0%Z -> region (base a_3) ≤ 0%Z -> region (base a_4) ≤ 0%Z -> i_1 ≤ x_1 -> x_1 ≤ x_2 -> - 2147483648%Z ≤ i -> - 1%Z ≤ i -> i ≤ 2147483644%Z -> i_1 ≤ 2147483646%Z -> - 2147483649%Z ≤ x_2 -> x_2 ≤ 2147483644%Z -> x_2 ≤ 2147483646%Z -> x_1 ≤ x -> framed t_3 -> linked t -> is_sint32 i -> is_sint32 i_1 -> valid_rw t a_2 1%Z -> is_sint32 x_3 -> valid_rw t a_5 2147483646%Z -> valid_rw t (shift a_3 i_1) x_3 -> valid_rw t a_4 4%Z -> separated a_2 1%Z a_5 2147483646%Z -> separated a_6 4%Z a_5 2147483646%Z -> separated a_2 1%Z a_4 4%Z -> separated a_4 4%Z a_5 2147483646%Z -> p_linked_n t t_3 a_6 a_3 i_1 x_3 (Mk_addr 0%Z 0%Z) -> is_sint32 x_1 -> separated a_10 4%Z a_5 2147483646%Z -> eqs1_list (load_s1_list a_4 t_1 a_9) (load_s1_list a_4 t_1 t_3) -> (i_1 < x_1 -> (∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> a_9 a_7 = a_8) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> p_array_swipe_left a_9 t_3 a_3 x_1 x_2) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 < x_2 -> ¬ a_9 (shift a_3 i_3) = a_4)) -> ((∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> ¬ a_4 = t_3 (shift a_3 i_3)) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> ¬ a_9 (shift a_3 i_3) = a_4)) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> p_linked_n t a_9 a_10 a_3 i_1 i (Mk_addr 0%Z 0%Z)) -> ((∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> ¬ a_4 = t_3 (shift a_3 i_3)) -> p_linked_n t a_9 a_10 a_3 i_1 x_3 (Mk_addr 0%Z 0%Z)) -> ((∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> ¬ a_4 = t_3 (shift a_3 i_3)) -> p_unchanged t a_9 t_1 t t_3 t_1 a_3 i_1 x) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> p_unchanged t a_9 t_1 t t_3 t_1 a_3 i_1 x_4) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 < x_2 -> separated a_2 1%Z (a_9 (shift a_3 i_3)) 4%Z)) -> ((∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> ¬ a_4 = t_3 (shift a_3 i_3)) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> separated a_2 1%Z (a_9 (shift a_3 i_3)) 4%Z)) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 < x_2 -> separated a_4 4%Z (a_9 (shift a_3 i_3)) 4%Z)) -> ((∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> ¬ a_4 = t_3 (shift a_3 i_3)) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> separated a_4 4%Z (a_9 (shift a_3 i_3)) 4%Z)) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 < x_2 -> separated (a_9 (shift a_3 i_3)) 4%Z a_5 2147483646%Z)) -> ((∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> ¬ a_4 = t_3 (shift a_3 i_3)) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> separated (a_9 (shift a_3 i_3)) 4%Z a_5 2147483646%Z)) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> (∀(i_3 : Z), i_3 < x_2 -> x_1 ≤ i_3 -> eqs1_list (load_s1_list (a_9 (shift a_3 i_3)) t_1 a_9) (load_s1_list (t_3 (shift a_3 (1%Z + i_3))) t_1 t_3))) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> (∀(i_4 : Z) (i_3 : Z), ¬ i_4 = i_3 -> i_1 ≤ i_3 -> i_1 ≤ i_4 -> i_3 < x_2 -> i_4 < x_2 -> ¬ a_9 (shift a_3 i_4) = a_9 (shift a_3 i_3))) -> ((∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> ¬ a_4 = t_3 (shift a_3 i_3)) -> (∀(i_4 : Z) (i_3 : Z), ¬ i_4 = i_3 -> i_1 ≤ i_3 -> i_1 ≤ i_4 -> i_3 ≤ x_2 -> i_4 ≤ x_2 -> ¬ a_9 (shift a_3 i_4) = a_9 (shift a_3 i_3))) -> ((∃(i_3 : Z), a_4 = t_3 (shift a_3 i_3) ∧ i_1 ≤ i_3 ∧ i_3 ≤ x_2) -> (∀(i_4 : Z) (i_3 : Z), ¬ i_4 = i_3 -> i_1 ≤ i_3 -> i_1 ≤ i_4 -> i_3 < x_2 -> i_4 < x_2 -> separated (a_9 (shift a_3 i_4)) 4%Z (a_9 (shift a_3 i_3)) 4%Z)) -> ((∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> ¬ a_4 = t_3 (shift a_3 i_3)) -> (∀(i_4 : Z) (i_3 : Z), ¬ i_4 = i_3 -> i_1 ≤ i_3 -> i_1 ≤ i_4 -> i_3 ≤ x_2 -> i_4 ≤ x_2 -> separated (a_9 (shift a_3 i_4)) 4%Z (a_9 (shift a_3 i_3)) 4%Z)) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> separated a_2 1%Z (t_3 (shift a_3 i_3)) 4%Z) -> (∀(i_3 : Z), i_1 ≤ i_3 -> i_3 ≤ x_2 -> separated (t_3 (shift a_3 i_3)) 4%Z a_5 2147483646%Z) -> (∀(i_3 : Z), let a_11 : addr := t_3 (shift a_3 i_3) in ¬ a_4 = a_11 -> i_1 ≤ i_3 -> i_3 ≤ x_2 -> separated a_4 4%Z a_11 4%Z) -> (∀(i_4 : Z) (i_3 : Z), ¬ i_4 = i_3 -> i_1 ≤ i_3 -> i_1 ≤ i_4 -> i_3 ≤ x_2 -> i_4 ≤ x_2 -> ¬ t_3 (shift a_3 i_4) = t_3 (shift a_3 i_3)) -> (∀(i_4 : Z) (i_3 : Z), ¬ i_4 = i_3 -> i_1 ≤ i_3 -> i_1 ≤ i_4 -> i_3 ≤ x_2 -> i_4 ≤ x_2 -> separated (t_3 (shift a_3 i_4)) 4%Z (t_3 (shift a_3 i_3)) 4%Z) -> valid_rw t (shift a_4 0%Z) 1%Z.
+Proof.
 Admitted.

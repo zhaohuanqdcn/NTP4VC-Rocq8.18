@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.exn.Exn.
@@ -69,4 +69,5 @@ Axiom order'spec : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 
 Axiom infix_plpl_closure : forall {α : Type} `{Inhabited α}, Datatypes.list α -> Datatypes.list α -> Datatypes.list α.
 Axiom infix_plpl_closure_def : forall  {α : Type} `{Inhabited α} (y : Datatypes.list α) (y1 : Datatypes.list α), infix_plpl_closure y y1 = y ++ y1.
 Theorem sorted_lists'vc (cutp : list_seq) (s : Datatypes.list Z) (fact0 : 0%Z < Z.of_nat (length (list cutp))) (fact1 : ∀(x : Z) (y : Z), 0%Z ≤ x ∧ x < y ∧ y < Z.of_nat (length (seq cutp)) -> nth (Z.to_nat x) (seq cutp) inhabitant ≤ nth (Z.to_nat y) (seq cutp) inhabitant) (fact2 : ∀(z : Z), z ∈ list cutp -> 0%Z ≤ z ∧ z ≤ Z.of_nat (length s)) (fact3 : ∀(k : Z), 0%Z ≤ k ∧ k < Z.of_nat (length (seq cutp)) - 1%Z -> (let ck : Z := nth (Z.to_nat k) (seq cutp) inhabitant in let ck1 : Z := nth (Z.to_nat (k + 1%Z)) (seq cutp) inhabitant in (∀(z1 : Z) (z2 : Z), ck ≤ z1 ∧ z1 < z2 ∧ z2 < ck1 -> nth (Z.to_nat z1) s inhabitant < nth (Z.to_nat z2) s inhabitant) ∨ (∀(z1 : Z) (z2 : Z), ck ≤ z1 ∧ z1 < z2 ∧ z2 < ck1 -> nth (Z.to_nat z2) s inhabitant ≤ nth (Z.to_nat z1) s inhabitant))) : let ls : Datatypes.list Z := list cutp in let seq1 : Datatypes.list Z := seq cutp in (match ls with | [] => True | cons _ [] => True | cons h1 (cons h2 t) => ((0%Z ≤ h2 ∧ h2 ≤ Z.of_nat (length s)) ∧ (0%Z ≤ h1 ∧ h1 ≤ Z.of_nat (length s)) ∧ ((∀(z1 : Z) (z2 : Z), h2 ≤ z1 ∧ z1 < z2 ∧ z2 < h1 -> nth (Z.to_nat z1) s inhabitant < nth (Z.to_nat z2) s inhabitant) ∨ (∀(z1 : Z) (z2 : Z), h2 ≤ z1 ∧ z1 < z2 ∧ z2 < h1 -> nth (Z.to_nat z2) s inhabitant ≤ nth (Z.to_nat z1) s inhabitant))) ∧ (∀(seqi : Datatypes.list Z), (∀(x : Z), count_occ' seqi x = map_occ_list x (nth_i s) h2 h1) ∧ (∀(x : Z), x ∈ seqi -> (∃(z : Z), (h2 ≤ z ∧ z < h1) ∧ nth (Z.to_nat z) s inhabitant = x)) ∧ ((∀(z1 : Z) (z2 : Z), h2 ≤ z1 ∧ z1 < z2 ∧ z2 < h1 -> nth (Z.to_nat z1) s inhabitant < nth (Z.to_nat z2) s inhabitant) -> sorted seqi) ∧ ((∀(z1 : Z) (z2 : Z), h2 ≤ z1 ∧ z1 < z2 ∧ z2 < h1 -> nth (Z.to_nat z2) s inhabitant ≤ nth (Z.to_nat z1) s inhabitant) -> sorted2 seqi) ∧ (sorted seqi ∨ sorted2 seqi) -> (let o1 : Z := Z.of_nat (length seq1) - 1%Z in (0%Z ≤ 0%Z ∧ 0%Z ≤ o1 ∧ o1 ≤ Z.of_nat (length seq1)) ∧ (let o2 : Datatypes.list Z := drop 0%nat (take (Z.to_nat o1 - 0%nat) seq1) in Z.of_nat (length o2) = o1 - 0%Z ∧ (∀(k : Z), 0%Z ≤ k ∧ k < o1 - 0%Z -> nth (Z.to_nat k) o2 inhabitant = nth (Z.to_nat (0%Z + k)) seq1 inhabitant) -> (let o3 : Datatypes.list Z := cons h2 t in o2 = rev o3 ∧ (∀(lseq : list_seq), list lseq = o3 ∧ seq lseq = o2 -> ((match list cutp with | [] => False | cons _ f => f = list lseq end) ∧ 0%Z < Z.of_nat (length (list lseq)) ∧ (∀(x : Z) (y : Z), 0%Z ≤ x ∧ x < y ∧ y < Z.of_nat (length (seq lseq)) -> nth (Z.to_nat x) (seq lseq) inhabitant ≤ nth (Z.to_nat y) (seq lseq) inhabitant) ∧ (∀(z : Z), z ∈ list lseq -> 0%Z ≤ z ∧ z ≤ Z.of_nat (length s)) ∧ (∀(k : Z), 0%Z ≤ k ∧ k < Z.of_nat (length (seq lseq)) - 1%Z -> (let ck : Z := nth (Z.to_nat k) (seq lseq) inhabitant in let ck1 : Z := nth (Z.to_nat (k + 1%Z)) (seq lseq) inhabitant in (∀(z1 : Z) (z2 : Z), ck ≤ z1 ∧ z1 < z2 ∧ z2 < ck1 -> nth (Z.to_nat z1) s inhabitant < nth (Z.to_nat z2) s inhabitant) ∨ (∀(z1 : Z) (z2 : Z), ck ≤ z1 ∧ z1 < z2 ∧ z2 < ck1 -> nth (Z.to_nat z2) s inhabitant ≤ nth (Z.to_nat z1) s inhabitant)))) ∧ (∀(o4 : Datatypes.list (Datatypes.list Z)), (∀(l : Datatypes.list Z), l ∈ o4 -> sorted1 l) ∧ (∀(x : Z), count_occ' (foldr' infix_plpl_closure o4 ([] : Datatypes.list Z)) x = map_occ_list x (nth_i s) (nth 0%nat (seq lseq) inhabitant) (nth (Z.to_nat (Z.of_nat (length (seq lseq)) - 1%Z)) (seq lseq) inhabitant)) -> sorted seqi ∨ sorted2 seqi)))))) end) ∧ (∀(result : Datatypes.list (Datatypes.list Z)), (match ls with | [] => result = ([] : Datatypes.list (Datatypes.list Z)) | cons _ [] => result = ([] : Datatypes.list (Datatypes.list Z)) | cons h1 (cons h2 t) => (∃(seqi : Datatypes.list Z), ((∀(x : Z), count_occ' seqi x = map_occ_list x (nth_i s) h2 h1) ∧ (∀(x : Z), x ∈ seqi -> (∃(z : Z), (h2 ≤ z ∧ z < h1) ∧ nth (Z.to_nat z) s inhabitant = x)) ∧ ((∀(z1 : Z) (z2 : Z), h2 ≤ z1 ∧ z1 < z2 ∧ z2 < h1 -> nth (Z.to_nat z1) s inhabitant < nth (Z.to_nat z2) s inhabitant) -> sorted seqi) ∧ ((∀(z1 : Z) (z2 : Z), h2 ≤ z1 ∧ z1 < z2 ∧ z2 < h1 -> nth (Z.to_nat z2) s inhabitant ≤ nth (Z.to_nat z1) s inhabitant) -> sorted2 seqi) ∧ (sorted seqi ∨ sorted2 seqi)) ∧ (let o1 : Z := Z.of_nat (length seq1) - 1%Z in let o2 : Datatypes.list Z := drop 0%nat (take (Z.to_nat o1 - 0%nat) seq1) in (Z.of_nat (length o2) = o1 - 0%Z ∧ (∀(k : Z), 0%Z ≤ k ∧ k < o1 - 0%Z -> nth (Z.to_nat k) o2 inhabitant = nth (Z.to_nat (0%Z + k)) seq1 inhabitant)) ∧ (∃(lseq : list_seq), (list lseq = cons h2 t ∧ seq lseq = o2) ∧ (∃(o3 : Datatypes.list (Datatypes.list Z)), ((∀(l : Datatypes.list Z), l ∈ o3 -> sorted1 l) ∧ (∀(x : Z), count_occ' (foldr' infix_plpl_closure o3 ([] : Datatypes.list Z)) x = map_occ_list x (nth_i s) (nth 0%nat (seq lseq) inhabitant) (nth (Z.to_nat (Z.of_nat (length (seq lseq)) - 1%Z)) (seq lseq) inhabitant))) ∧ (let o4 : Datatypes.list Z := order seqi in (sorted1 o4 ∧ seqi ≡ₚ o4) ∧ result = cons o4 o3))))) end) -> (∀(l : Datatypes.list Z), l ∈ result -> sorted1 l) ∧ (∀(x : Z), count_occ' (foldr' infix_plpl_closure result ([] : Datatypes.list Z)) x = map_occ_list x (nth_i s) (nth 0%nat (seq cutp) inhabitant) (nth (Z.to_nat (Z.of_nat (length (seq cutp)) - 1%Z)) (seq cutp) inhabitant))).
+Proof.
 Admitted.

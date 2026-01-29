@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.int.NumOf.
@@ -70,4 +70,5 @@ Axiom order'spec : forall  (l : Datatypes.list Z) (fact0 : sorted l ∨ sorted2 
 Axiom infix_plpl_closure : forall {α : Type} `{Inhabited α}, Datatypes.list α -> Datatypes.list α -> Datatypes.list α.
 Axiom infix_plpl_closure_def : forall  {α : Type} `{Inhabited α} (y : Datatypes.list α) (y1 : Datatypes.list α), infix_plpl_closure y y1 = y ++ y1.
 Theorem sort_to_list'vc (a : Datatypes.list Z) (fact0 : 0%Z < Z.of_nat (length a)) : 0%Z < Z.of_nat (length a) ∧ (∀(o1 : list_seq), nth 0%nat (seq o1) inhabitant = 0%Z ∧ nth (Z.to_nat (Z.of_nat (length (seq o1)) - 1%Z)) (seq o1) inhabitant = Z.of_nat (length a) ∧ 2%Z ≤ Z.of_nat (length (list o1)) ∧ (∀(z : Z), z ∈ list o1 -> 0%Z ≤ z ∧ z ≤ Z.of_nat (length a)) ∧ (∀(k : Z), 0%Z ≤ k ∧ k < Z.of_nat (length (seq o1)) - 1%Z -> (let ck : Z := nth (Z.to_nat k) (seq o1) inhabitant in let ck1 : Z := nth (Z.to_nat (k + 1%Z)) (seq o1) inhabitant in (∀(z1 : Z) (z2 : Z), ck ≤ z1 ∧ z1 < z2 ∧ z2 < ck1 -> nth (Z.to_nat z1) a inhabitant < nth (Z.to_nat z2) a inhabitant) ∨ (∀(z1 : Z) (z2 : Z), ck ≤ z1 ∧ z1 < z2 ∧ z2 < ck1 -> nth (Z.to_nat z2) a inhabitant ≤ nth (Z.to_nat z1) a inhabitant))) ∧ (∀(i : Z) (j : Z), 0%Z ≤ i ∧ i < j ∧ j < Z.of_nat (length (seq o1)) -> nth (Z.to_nat i) (seq o1) inhabitant ≤ nth (Z.to_nat j) (seq o1) inhabitant) -> (0%Z < Z.of_nat (length (list o1)) ∧ (∀(x : Z) (y : Z), 0%Z ≤ x ∧ x < y ∧ y < Z.of_nat (length (seq o1)) -> nth (Z.to_nat x) (seq o1) inhabitant ≤ nth (Z.to_nat y) (seq o1) inhabitant) ∧ (∀(z : Z), z ∈ list o1 -> 0%Z ≤ z ∧ z ≤ Z.of_nat (length a)) ∧ (∀(k : Z), 0%Z ≤ k ∧ k < Z.of_nat (length (seq o1)) - 1%Z -> (let ck : Z := nth (Z.to_nat k) (seq o1) inhabitant in let ck1 : Z := nth (Z.to_nat (k + 1%Z)) (seq o1) inhabitant in (∀(z1 : Z) (z2 : Z), ck ≤ z1 ∧ z1 < z2 ∧ z2 < ck1 -> nth (Z.to_nat z1) a inhabitant < nth (Z.to_nat z2) a inhabitant) ∨ (∀(z1 : Z) (z2 : Z), ck ≤ z1 ∧ z1 < z2 ∧ z2 < ck1 -> nth (Z.to_nat z2) a inhabitant ≤ nth (Z.to_nat z1) a inhabitant)))) ∧ (∀(o2 : Datatypes.list (Datatypes.list Z)), (∀(l : Datatypes.list Z), l ∈ o2 -> sorted1 l) ∧ (∀(x : Z), count_occ' (foldr' infix_plpl_closure o2 ([] : Datatypes.list Z)) x = map_occ_list x (nth_i a) (nth 0%nat (seq o1) inhabitant) (nth (Z.to_nat (Z.of_nat (length (seq o1)) - 1%Z)) (seq o1) inhabitant)) -> (∀(l : Datatypes.list Z), l ∈ o2 -> sorted1 l) ∧ (∀(res : Datatypes.list Z), sorted1 res ∧ res ≡ₚ foldr' infix_plpl_closure o2 ([] : Datatypes.list Z) -> sorted1 res ∧ (∀(x : Z), map_occ_list x (nth_i a) 0%Z (Z.of_nat (length a)) = count_occ' res x) ∧ length res = length a))).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import verifythis_2016_matrix_multiplication.matrices.MyMatrix.
@@ -93,4 +93,5 @@ Axiom extends1 : (Z -> mat Z) -> Z -> mat Z -> Z -> mat Z.
 Axiom extends'def : forall  (f : Z -> mat Z) (c : Z) (v : mat Z) (n : Z), extends1 f c v n = (if decide (¬ n = c) then f n else v).
 Definition symb_mat (m : mat Z) (n : Z) : expr := expr'mk (cons (mono'mk (cons n ([] : list Z)) true) ([] : list mono)) (rows m) (cols m).
 Theorem symb_reg'vc (env1 : env) (m : mat Z) : let id1 : Z := ev_c env1 in ∀(env2 : env), ev_f env2 = extends1 (ev_f env1) id1 m ∧ ev_c env2 = ev_c env1 -> (∀(env3 : env), ev_f env3 = ev_f env2 ∧ ev_c env3 = id1 + 1%Z -> (let result : expr := symb_mat m id1 in ev_c env3 = ev_c env1 + 1%Z ∧ ev_f env3 = extends1 (ev_f env1) (ev_c env1) m ∧ result = symb_mat m (ev_c env1) ∧ e_vld env3 result)).
+Proof.
 Admitted.

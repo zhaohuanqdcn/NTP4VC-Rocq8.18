@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -126,4 +126,5 @@ Admit Obligations.
 Axiom infix_eqeq : array63 coeff -> array63 coeff -> Prop.
 Axiom infix_eqeq'spec : forall  (a1 : array63 coeff) (b : array63 coeff) (fact0 : infix_eqeq a1 b), array63_length a1 = array63_length b ∧ (∀(i : Z), 0%Z ≤ i ∧ i < bv_signed (array63_length a1) -> eq (nth (Z.to_nat i) (array63_elts a1) inhabitant) (nth (Z.to_nat i) (array63_elts b) inhabitant)).
 Theorem max_var'vc (e : expr) (fact0 : valid_expr e) : (match e with | Term _ i => True | Cst _ => True | Add e1 e2 => ((match e with | Term _ _ => False | Add f f1 => f = e2 ∨ f1 = e2 | Cst _ => False end) ∧ valid_expr e2) ∧ (∀(o1 : Z), 0%Z ≤ o1 ∧ expr_bound e2 o1 -> (match e with | Term _ _ => False | Add f f1 => f = e1 ∨ f1 = e1 | Cst _ => False end) ∧ valid_expr e1) end) ∧ (∀(result : Z), (match e with | Term _ i => result = i | Cst _ => result = 0%Z | Add e1 e2 => (∃(o1 : Z), (0%Z ≤ o1 ∧ expr_bound e2 o1) ∧ (∃(o2 : Z), (0%Z ≤ o2 ∧ expr_bound e1 o2) ∧ result = Z.max o2 o1)) end) -> 0%Z ≤ result ∧ expr_bound e result).
+Proof.
 Admitted.

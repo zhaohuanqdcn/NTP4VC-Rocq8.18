@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -140,4 +140,5 @@ Axiom max_var_ctx'spec'0 : forall  (l : list (expr * expr)) (fact0 : valid_ctx l
 Axiom max_var_ctx'spec : forall  (l : list (expr * expr)) (fact0 : valid_ctx l), ctx_bound l (max_var_ctx l).
 Definition atom (e : expr) := match e with | Add _ _ => False | _ => True end.
 Theorem check_combination'vc (g : expr) (g1 : expr) (ctx : list (expr * expr)) : let g2 : expr * expr := (g, g1) in (∀(l : list (expr * expr)) (acc : list (expr * expr)) (s : expr) (s1 : expr) (v : list coeff), let s2 : expr * expr := (s, s1) in (∀(y : Z -> a) (z : cvars), interp_ctx acc s2 y z = true) ∧ ctx = acc ++ l -> (match v with | [] => (match l with | [] => (∀(y : Z -> a) (z : cvars), interp_ctx ctx s2 y z = true) | _ => True end) | cons x x1 => (match l with | cons x2 x3 => (let nacc : list (expr * expr) := acc ++ cons x2 ([] : list (expr * expr)) in let o1 : coeff := czero in (eq x o1 -> (∀(y : cvars), interp x y = interp o1 y)) -> (if decide (eq x o1) then (match l with | [] => False | cons _ f => f = x3 end) ∧ (∀(y : Z -> a) (z : cvars), interp_ctx nacc s2 y z = true) ∧ ctx = nacc ++ x3 else ∀(o2 : expr) (o3 : expr), let o4 : expr * expr := (o2, o3) in (∀(y : Z -> a) (z : cvars), interp_eq x2 y z = true -> interp_eq o4 y z = true) -> (∀(ns : expr) (ns1 : expr), let ns2 : expr * expr := (ns, ns1) in (∀(y : Z -> a) (z : cvars), interp_eq s2 y z = true -> interp_eq o4 y z = true -> interp_eq ns2 y z = true) ∧ (∀(y : Z -> a) (z : cvars) (ctx1 : list (expr * expr)), interp_ctx ctx1 s2 y z = true -> interp_ctx ctx1 o4 y z = true -> interp_ctx ctx1 ns2 y z = true) -> (match l with | [] => False | cons _ f => f = x3 end) ∧ (∀(y : Z -> a) (z : cvars), interp_ctx nacc ns2 y z = true) ∧ ctx = nacc ++ x3))) | _ => True end) end)) ∧ (let o1 : list (expr * expr) := ([] : list (expr * expr)) in ((∀(y : Z -> a) (z : cvars), interp_ctx o1 (Cst czero, Cst czero) y z = true) ∧ ctx = o1 ++ ctx) ∧ (∀(o2 : option (expr * expr)), (match o2 with | Some r => (∀(y : Z -> a) (z : cvars), interp_ctx ctx r y z = true) | None => True end) -> (match o2 with | Some sum => (∀(y : Z -> a) (z : cvars), interp_eq sum y z = true -> interp_eq g2 y z = true) -> (∀(y : Z -> a) (z : cvars), interp_ctx ctx g2 y z = true) | None => True end))).
+Proof.
 Admitted.

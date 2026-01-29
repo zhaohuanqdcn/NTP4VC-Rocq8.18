@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.map.MapEq.
 Open Scope Z_scope.
@@ -32,4 +32,5 @@ Axiom of_list : list Z -> list Z.
 Axiom of_list'spec'0 : forall  (l : list Z), length (of_list l) = length l.
 Axiom of_list'spec : forall  (k : Z) (l : list Z) (fact0 : 0%Z ≤ k) (fact1 : k < Z.of_nat (length l)), nth_error_i l k = Some (nth (Z.to_nat k) (of_list l) inhabitant).
 Theorem eq_nth'vc {α : Type} `{Inhabited α} (l1 : list α) (l2 : list α) (fact0 : length l1 = length l2) (fact1 : ∀(k : Z), 0%Z ≤ k ∧ k < Z.of_nat (length l1) -> nth_error_i l1 k = nth_error_i l2 k) : l1 = l2.
+Proof.
 Admitted.

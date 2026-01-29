@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -186,4 +186,5 @@ Program Fixpoint valid_ctx' (ctx : list (expr' * expr')) : Prop :=
 match ctx with | [] => True | cons eq1 t => valid_eq' eq1 ∧ valid_ctx' t end.
 Admit Obligations.
 Theorem simp'vc (e : expr') : (∀(e : cprod), (match e with | C c => (∀(y : Z -> a) (z : cvars), interp c z = interp_c e y z) | Times c1 c2 => (match e with | C _ => False | Times f f1 => f = c2 ∨ f1 = c2 end) ∧ (∀(o1 : coeff), (∀(y : Z -> a) (z : cvars), interp o1 z = interp_c c2 y z) -> (match e with | C _ => False | Times f f1 => f = c1 ∨ f1 = c1 end) ∧ (∀(o2 : coeff), (∀(y : Z -> a) (z : cvars), interp o2 z = interp_c c1 y z) -> (∀(result : coeff), (∀(v : cvars), interp result v = infix_as (interp o2 v) (interp o1 v)) -> (∀(y : Z -> a) (z : cvars), interp result z = interp_c e y z)))) end)) ∧ (match e with | Sum e1 e2 => (match e with | Sum f f1 => f = e2 ∨ f1 = e2 | ProdL f _ => f = e2 | ProdR _ f => f = e2 | Diff f f1 => f = e2 ∨ f1 = e2 | Var _ => False | Coeff _ => False end) ∧ (∀(o1 : expr), (∀(y : Z -> a) (z : cvars), interp1 o1 y z = interp' e2 y z) ∧ (valid_expr' e2 -> valid_expr o1) -> (match e with | Sum f f1 => f = e1 ∨ f1 = e1 | ProdL f _ => f = e1 | ProdR _ f => f = e1 | Diff f f1 => f = e1 ∨ f1 = e1 | Var _ => False | Coeff _ => False end) ∧ (∀(o2 : expr), (∀(y : Z -> a) (z : cvars), interp1 o2 y z = interp' e1 y z) ∧ (valid_expr' e1 -> valid_expr o2) -> (let result : expr := Add o2 o1 in (∀(y : Z -> a) (z : cvars), interp1 result y z = interp' e y z) ∧ (valid_expr' e -> valid_expr result)))) | Diff e1 e2 => (match e with | Sum f f1 => f = e2 ∨ f1 = e2 | ProdL f _ => f = e2 | ProdR _ f => f = e2 | Diff f f1 => f = e2 ∨ f1 = e2 | Var _ => False | Coeff _ => False end) ∧ (∀(o1 : expr), (∀(y : Z -> a) (z : cvars), interp1 o1 y z = interp' e2 y z) ∧ (valid_expr' e2 -> valid_expr o1) -> (∀(o2 : expr), (∀(y : Z -> a) (z : cvars), interp1 o2 y z = prefix_mn (interp1 o1 y z)) ∧ (valid_expr o1 -> valid_expr o2) ∧ (∀(b : Z), expr_bound o1 b -> expr_bound o2 b) -> (match e with | Sum f f1 => f = e1 ∨ f1 = e1 | ProdL f _ => f = e1 | ProdR _ f => f = e1 | Diff f f1 => f = e1 ∨ f1 = e1 | Var _ => False | Coeff _ => False end) ∧ (∀(o3 : expr), (∀(y : Z -> a) (z : cvars), interp1 o3 y z = interp' e1 y z) ∧ (valid_expr' e1 -> valid_expr o3) -> (let result : expr := Add o3 o2 in (∀(y : Z -> a) (z : cvars), interp1 result y z = interp' e y z) ∧ (valid_expr' e -> valid_expr result))))) | Var n => (let result : expr := Term cone n in (∀(y : Z -> a) (z : cvars), interp1 result y z = interp' e y z) ∧ (valid_expr' e -> valid_expr result)) | Coeff c => (let result : expr := Cst c in (∀(y : Z -> a) (z : cvars), interp1 result y z = interp' e y z) ∧ (valid_expr' e -> valid_expr result)) | ProdL e1 c => (∀(o1 : coeff), (∀(y : Z -> a) (z : cvars), interp o1 z = interp_c c y z) -> (match e with | Sum f f1 => f = e1 ∨ f1 = e1 | ProdL f _ => f = e1 | ProdR _ f => f = e1 | Diff f f1 => f = e1 ∨ f1 = e1 | Var _ => False | Coeff _ => False end) ∧ (∀(o2 : expr), (∀(y : Z -> a) (z : cvars), interp1 o2 y z = interp' e1 y z) ∧ (valid_expr' e1 -> valid_expr o2) -> (∀(result : expr), (∀(y : Z -> a) (z : cvars), interp1 result y z = infix_as (interp o1 z) (interp1 o2 y z)) ∧ (valid_expr o2 -> valid_expr result) -> (∀(y : Z -> a) (z : cvars), interp1 result y z = interp' e y z) ∧ (valid_expr' e -> valid_expr result)))) | ProdR c e1 => (∀(o1 : coeff), (∀(y : Z -> a) (z : cvars), interp o1 z = interp_c c y z) -> (match e with | Sum f f1 => f = e1 ∨ f1 = e1 | ProdL f _ => f = e1 | ProdR _ f => f = e1 | Diff f f1 => f = e1 ∨ f1 = e1 | Var _ => False | Coeff _ => False end) ∧ (∀(o2 : expr), (∀(y : Z -> a) (z : cvars), interp1 o2 y z = interp' e1 y z) ∧ (valid_expr' e1 -> valid_expr o2) -> (∀(result : expr), (∀(y : Z -> a) (z : cvars), interp1 result y z = infix_as (interp o1 z) (interp1 o2 y z)) ∧ (valid_expr o2 -> valid_expr result) -> (∀(y : Z -> a) (z : cvars), interp1 result y z = interp' e y z) ∧ (valid_expr' e -> valid_expr result)))) end).
+Proof.
 Admitted.

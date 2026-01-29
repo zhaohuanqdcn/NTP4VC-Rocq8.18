@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import euler_sieve_vcg.euler_sieve.ArithmeticResults.
 Require Import euler_sieve_vcg.euler_sieve.DivisibilityResults.
@@ -38,4 +38,5 @@ Definition only_multiples_marked (marked : list bool) (n : Z) := ∀(k : Z), 2%Z
 Definition prime_multiples_marked (marked_old : list bool) (marked : list bool) (n : Z) (max : Z) := length marked_old = length marked ∧ (n < max ∧ max ≤ Z.of_nat (length marked)) ∧ (∀(i : Z), n ≤ i ∧ i < max -> ¬ nth (Z.to_nat i) marked_old inhabitant = true -> n * i < Z.of_nat (length marked_old) -> nth (Z.to_nat (n * i)) marked inhabitant = true).
 Definition inv_remove_products (nexts : list Z) (marked : list bool) (n : Z) := length nexts = length marked ∧ ¬ nth 2%nat marked inhabitant = true ∧ all_primes marked n ∧ prime n ∧ ¬ nth (Z.to_nat n) marked inhabitant = true ∧ inv_nexts nexts (Z.of_nat (length nexts)).
 Theorem conservation_all_eliminated_marked_on_marked_change'vc (marked : list bool) (nexts : list Z) (i : Z) (fact0 : length marked = length nexts) (fact1 : inv_nexts nexts (Z.of_nat (length nexts))) (fact2 : all_eliminated_marked marked nexts) (fact3 : 0%Z ≤ i) (fact4 : i < Z.of_nat (length marked)) : all_eliminated_marked (set_list marked (Z.to_nat i) true) nexts.
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import prover.Nat.Nat.
 Require Import prover.Functions.Config.
@@ -49,4 +49,5 @@ Axiom subst_id_symbol_definition : forall  {ty'b0 : Type} `{Inhabited ty'b0} (x 
 Definition is_symbol_free_var_in_symbol {ty'b0 : Type} `{Inhabited ty'b0} (x : ty'b0) (t : symbol ty'b0) := match t with | Var_symbol v0 => v0 = x end.
 Axiom rename_free_var_inversion_symbol_symbol : forall  {ty'b0 : Type} {ty'c0 : Type} `{Inhabited ty'b0} `{Inhabited ty'c0} (x : ty'c0) (t : symbol ty'b0) (s0 : ty'b0 -> ty'c0) (fact0 : is_symbol_free_var_in_symbol x (rename_symbol t s0)), ∃(y : ty'b0), is_symbol_free_var_in_symbol y t ∧ s0 y = x.
 Theorem rename_free_var_propagation_symbol_symbol'vc {ty'b0 : Type} {ty'c0 : Type} `{Inhabited ty'b0} `{Inhabited ty'c0} (t : ty'b0) (x : ty'b0) (s0 : ty'b0 -> ty'c0) : let t1 : symbol ty'b0 := Var_symbol t in is_symbol_free_var_in_symbol x t1 -> is_symbol_free_var_in_symbol (s0 x) (rename_symbol t1 s0).
+Proof.
 Admitted.

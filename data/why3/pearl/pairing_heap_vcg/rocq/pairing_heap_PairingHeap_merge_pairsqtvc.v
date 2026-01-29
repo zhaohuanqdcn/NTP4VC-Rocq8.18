@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import pairing_heap_vcg.pairing_heap.HeapType.
 Require Import pairing_heap_vcg.pairing_heap.Size.
@@ -62,4 +62,5 @@ Definition minimum_heap (hh : heap1) : elt := minimum (h hh).
 Axiom empty : heap1.
 Axiom empty'def : size_heap (h empty) = 0%Z ∧ (∀(e : elt), ¬ mem e (h empty)).
 Theorem merge_pairs'vc (l : list tree) (fact0 : heap_list l) : (match l with | [] => heap E | cons t [] => heap (H t) | cons t1 (cons t2 r) => (let o1 : raw_heap := H t1 in heap o1 ∧ (∀(h1 : heap1), h h1 = o1 -> (let o2 : raw_heap := H t2 in heap o2 ∧ (∀(h2 : heap1), h h2 = o2 -> (0%Z ≤ Z.of_nat (length l) ∧ Z.of_nat (length r) < Z.of_nat (length l)) ∧ heap_list r)))) end) ∧ (∀(result : heap1), (match l with | [] => h result = E | cons t [] => h result = H t | cons t1 (cons t2 r) => (∃(h1 : heap1), h h1 = H t1 ∧ (∃(h2 : heap1), h h2 = H t2 ∧ (∃(o1 : heap1), (size_heap (h o1) = size_list r ∧ (∀(x : elt), occ_heap x (h o1) = occ_list x r)) ∧ (∃(o2 : heap1), (size_heap (h o2) = size_heap (h h1) + size_heap (h h2) ∧ (∀(x : elt), occ_heap x (h o2) = occ_heap x (h h1) + occ_heap x (h h2))) ∧ size_heap (h result) = size_heap (h o2) + size_heap (h o1) ∧ (∀(x : elt), occ_heap x (h result) = occ_heap x (h o2) + occ_heap x (h o1)))))) end) -> size_heap (h result) = size_list l ∧ (∀(x : elt), occ_heap x (h result) = occ_list x l)).
+Proof.
 Admitted.

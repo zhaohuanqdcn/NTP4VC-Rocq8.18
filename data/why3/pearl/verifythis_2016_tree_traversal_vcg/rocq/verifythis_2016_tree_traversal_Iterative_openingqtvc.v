@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -74,4 +74,5 @@ Program Fixpoint stack_size (st : stack) : Z :=
 match st with | Bottom => 1%Z | Done => 0%Z | Running s pc f => stack_size s + (100%Z - pc) + (if decide (pc = 0%Z) then 100%Z * (Size.size (tleft f) + Size.size (tright f)) else if decide (pc ≤ 2%Z) then 100%Z * Size.size (tright f) else 0%Z) end.
 Admit Obligations.
 Theorem opening'vc (t : Tree.tree loc) (stop : snap) (scur : snap) (st : stack) (ct : Tree.tree loc) (fact0 : is_stack t stop scur st (Some ct)) (fact1 : is_tree (pointers scur) ct (cursor scur) (parent scur)) (fact2 : ¬ cursor scur = null) : match ct with | Empty => False | Node lf _ rg => is_stack t stop scur (Running st 0%Z (frame'mk scur ct lf (pointers scur Left (cursor scur)) rg (pointers scur Right (cursor scur)) scur scur scur scur)) None ∧ stack_size (Running st 0%Z (frame'mk scur ct lf (pointers scur Left (cursor scur)) rg (pointers scur Right (cursor scur)) scur scur scur scur)) ≤ stack_size st + 100%Z * Size.size ct end.
+Proof.
 Admitted.

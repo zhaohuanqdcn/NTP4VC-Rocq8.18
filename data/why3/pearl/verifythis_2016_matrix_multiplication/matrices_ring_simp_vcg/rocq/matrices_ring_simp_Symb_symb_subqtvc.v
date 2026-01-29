@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.int.Sum.
 Require Import verifythis_2016_matrix_multiplication.matrices.MyMatrix.
@@ -96,4 +96,5 @@ Definition symb_opp (e : expr) : expr := expr'mk (lm_opp (e_body e)) (e_rows e) 
 Definition symb_add (e1 : expr) (e2 : expr) : expr := expr'mk (lm_merge ([] : list mono) (e_body e1) (e_body e2)) (e_rows e1) (e_cols e1).
 Definition symb_sub (e1 : expr) (e2 : expr) : expr := symb_add e1 (symb_opp e2).
 Theorem symb_sub'vc (env1 : env) (e1 : expr) (e2 : expr) (fact0 : e_vld env1 e1) (fact1 : e_vld env1 e2) (fact2 : e_rows e1 = e_rows e2) (fact3 : e_cols e1 = e_cols e2) : e_vld env1 e2 ∧ (e_vld env1 (symb_opp e2) ∧ e_mdl env1 (symb_opp e2) = opp (e_mdl env1 e2) -> ((e_vld env1 e1 ∧ e_vld env1 (symb_opp e2)) ∧ e_rows e1 = e_rows (symb_opp e2) ∧ e_cols e1 = e_cols (symb_opp e2)) ∧ (e_vld env1 (symb_add e1 (symb_opp e2)) ∧ e_mdl env1 (symb_add e1 (symb_opp e2)) = add (e_mdl env1 e1) (e_mdl env1 (symb_opp e2)) -> e_vld env1 (symb_add e1 (symb_opp e2)) ∧ symb_add e1 (symb_opp e2) = symb_sub e1 e2 ∧ e_mdl env1 (symb_add e1 (symb_opp e2)) = sub (e_mdl env1 e1) (e_mdl env1 e2))).
+Proof.
 Admitted.

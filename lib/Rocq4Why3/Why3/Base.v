@@ -1,27 +1,27 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
-From Stdlib Require Import Logic.ClassicalEpsilon.
+From Coq Require Import Reals.
+From Coq Require Import Logic.ClassicalEpsilon.
 
 #[global]
 Instance classical_eq_decision_all (A : Type) : EqDecision A :=
@@ -255,7 +255,7 @@ Definition array_exchange {A : Type} (a1 a2 : list A) (i j : Z) : Prop :=
     | _, _ => False
     end.
 
-From Stdlib Require Import Sorting.Permutation.
+From Coq Require Import Sorting.Permutation.
 
 Definition permut_sub {A : Type} (a1 a2 : list A) (l u : nat) : Prop :=
   length a1 = length a2 ∧ (0 ≤ l ∧ l ≤ length a1)%nat ∧ (0 ≤ u ∧ u ≤ length a1)%nat ∧
@@ -275,5 +275,9 @@ Notation foldr' := (fun f l x => foldr f x l).
 Notation list_to_gset := (fun l => list_to_set l : gset _).
 
 Definition list_mem' {A} (eq : A -> A -> bool) (x : A) (l : list A) := forallb (eq x) l.
+
+(* Compatibility definitions for Coq 8.18 *)
+Definition Zfloor (x : R) : Z := Int_part x.
+Definition Zceil (x : R) : Z := up x.
 
 Definition Ztrunc (x : R) : Z := if Rle_dec 0 x then Zfloor x else Zceil x.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Open Scope Z_scope.
@@ -85,4 +85,5 @@ Global Existing Instance view_inhabited.
 Arguments AEmpty {α}.
 Arguments ANode {α}.
 Theorem join'vc {α : Type} `{Inhabited α} (o1 : view α) (l : t2 α) (r : t2 α) (d : t1 α) (fact0 : match o1 with | AEmpty => hgt (m1 l) = 0%Z ∧ seq (m1 l) = ([] : list (t1 α)) | ANode l1 d r h s => seq (m1 l) = node_model (seq (m1 l1)) d (seq (m1 r)) ∧ s = agg measure_closure (seq (m1 l)) ∧ (let hl : Z := hgt (m1 l1) in let hr : Z := hgt (m1 r) in (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing) ∧ hgt (m1 l) = Z.of_nat h ∧ Z.of_nat h = 1%Z + (if decide (hl < hr) then hr else hl)) end) : (match o1 with | AEmpty => True | ANode ll ld lr lh _ => (∀(o2 : view α), (match o2 with | AEmpty => hgt (m1 r) = 0%Z ∧ seq (m1 r) = ([] : list (t1 α)) | ANode l1 d r1 h s => seq (m1 r) = node_model (seq (m1 l1)) d (seq (m1 r1)) ∧ s = agg measure_closure (seq (m1 r)) ∧ (let hl : Z := hgt (m1 l1) in let hr : Z := hgt (m1 r1) in (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing) ∧ hgt (m1 r) = Z.of_nat h ∧ Z.of_nat h = 1%Z + (if decide (hl < hr) then hr else hl)) end) -> (match o2 with | AEmpty => True | ANode rl rd rr rh _ => (∀(o3 : nat), Z.of_nat o3 = - Z.of_nat rh -> (Z.of_nat o3 ≤ Z.of_nat lh - Z.of_nat rh ∧ Z.of_nat lh - Z.of_nat rh ≤ Z.of_nat lh) ∧ (∀(df : nat), Z.of_nat df = Z.of_nat lh - Z.of_nat rh -> (if decide (Z.of_nat balancing < Z.of_nat df) then (0%Z ≤ (if decide (hgt (m1 r) < hgt (m1 l)) then hgt (m1 l) - hgt (m1 r) else hgt (m1 r) - hgt (m1 l)) ∧ (if decide (hgt (m1 r) < hgt (m1 lr)) then hgt (m1 lr) - hgt (m1 r) else hgt (m1 r) - hgt (m1 lr)) < (if decide (hgt (m1 r) < hgt (m1 l)) then hgt (m1 l) - hgt (m1 r) else hgt (m1 r) - hgt (m1 l))) ∧ (∀(o4 : t2 α), seq (m1 o4) = node_model (seq (m1 lr)) d (seq (m1 r)) ∧ (let hl : Z := hgt (m1 lr) in let hr : Z := hgt (m1 r) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 o4) in 0%Z ≤ he - hres ∧ he - hres ≤ 1%Z) -> - Z.of_nat balancing - 1%Z ≤ hgt (m1 ll) - hgt (m1 o4) ∧ hgt (m1 ll) - hgt (m1 o4) ≤ Z.of_nat balancing + 1%Z) else ∀(o4 : nat), Z.of_nat o4 = - Z.of_nat balancing -> (if decide (Z.of_nat df < Z.of_nat o4) then (0%Z ≤ (if decide (hgt (m1 r) < hgt (m1 l)) then hgt (m1 l) - hgt (m1 r) else hgt (m1 r) - hgt (m1 l)) ∧ (if decide (hgt (m1 rl) < hgt (m1 l)) then hgt (m1 l) - hgt (m1 rl) else hgt (m1 rl) - hgt (m1 l)) < (if decide (hgt (m1 r) < hgt (m1 l)) then hgt (m1 l) - hgt (m1 r) else hgt (m1 r) - hgt (m1 l))) ∧ (∀(o5 : t2 α), seq (m1 o5) = node_model (seq (m1 l)) d (seq (m1 rl)) ∧ (let hl : Z := hgt (m1 l) in let hr : Z := hgt (m1 rl) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 o5) in 0%Z ≤ he - hres ∧ he - hres ≤ 1%Z) -> - Z.of_nat balancing - 1%Z ≤ hgt (m1 o5) - hgt (m1 rr) ∧ hgt (m1 o5) - hgt (m1 rr) ≤ Z.of_nat balancing + 1%Z) else - Z.of_nat balancing ≤ hgt (m1 l) - hgt (m1 r) ∧ hgt (m1 l) - hgt (m1 r) ≤ Z.of_nat balancing)))) end)) end) ∧ (∀(result : t2 α), (match o1 with | AEmpty => seq (m1 result) = cons d (seq (m1 r)) ∧ hgt (m1 result) - hgt (m1 r) ≤ 1%Z ∧ 0%Z ≤ hgt (m1 result) - hgt (m1 r) | ANode ll ld lr lh _ => (∃(o2 : view α), (match o2 with | AEmpty => hgt (m1 r) = 0%Z ∧ seq (m1 r) = ([] : list (t1 α)) | ANode l1 d1 r1 h s => seq (m1 r) = node_model (seq (m1 l1)) d1 (seq (m1 r1)) ∧ s = agg measure_closure (seq (m1 r)) ∧ (let hl : Z := hgt (m1 l1) in let hr : Z := hgt (m1 r1) in (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing) ∧ hgt (m1 r) = Z.of_nat h ∧ Z.of_nat h = 1%Z + (if decide (hl < hr) then hr else hl)) end) ∧ (match o2 with | AEmpty => seq (m1 result) = seq (m1 l) ++ [d] ∧ hgt (m1 result) - hgt (m1 l) ≤ 1%Z ∧ 0%Z ≤ hgt (m1 result) - hgt (m1 l) | ANode rl rd rr rh _ => (∃(o3 : nat), Z.of_nat o3 = - Z.of_nat rh ∧ (∃(df : nat), Z.of_nat df = Z.of_nat lh - Z.of_nat rh ∧ (if decide (Z.of_nat balancing < Z.of_nat df) then ∃(o4 : t2 α), (seq (m1 o4) = node_model (seq (m1 lr)) d (seq (m1 r)) ∧ (let hl : Z := hgt (m1 lr) in let hr : Z := hgt (m1 r) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 o4) in 0%Z ≤ he - hres ∧ he - hres ≤ 1%Z)) ∧ seq (m1 result) = node_model (seq (m1 ll)) ld (seq (m1 o4)) ∧ (let hl : Z := hgt (m1 ll) in let hr : Z := hgt (m1 o4) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 result) in (0%Z ≤ he - hres ∧ he - hres ≤ 1%Z) ∧ (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing -> he = hres)) else ∃(o4 : nat), Z.of_nat o4 = - Z.of_nat balancing ∧ (if decide (Z.of_nat df < Z.of_nat o4) then ∃(o5 : t2 α), (seq (m1 o5) = node_model (seq (m1 l)) d (seq (m1 rl)) ∧ (let hl : Z := hgt (m1 l) in let hr : Z := hgt (m1 rl) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 o5) in 0%Z ≤ he - hres ∧ he - hres ≤ 1%Z)) ∧ seq (m1 result) = node_model (seq (m1 o5)) rd (seq (m1 rr)) ∧ (let hl : Z := hgt (m1 o5) in let hr : Z := hgt (m1 rr) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 result) in (0%Z ≤ he - hres ∧ he - hres ≤ 1%Z) ∧ (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing -> he = hres)) else seq (m1 result) = node_model (seq (m1 l)) d (seq (m1 r)) ∧ hgt (m1 result) = 1%Z + (if decide (hgt (m1 l) < hgt (m1 r)) then hgt (m1 r) else hgt (m1 l)))))) end)) end) -> seq (m1 result) = node_model (seq (m1 l)) d (seq (m1 r)) ∧ (let hl : Z := hgt (m1 l) in let hr : Z := hgt (m1 r) in let he : Z := 1%Z + (if decide (hl < hr) then hr else hl) in let hres : Z := hgt (m1 result) in 0%Z ≤ he - hres ∧ he - hres ≤ 1%Z)).
+Proof.
 Admitted.

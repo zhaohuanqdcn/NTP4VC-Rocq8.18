@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom elt : Type.
@@ -68,4 +68,5 @@ match h with | [] => True | cons t r => (let k : Z := rank t in m ≤ k ∧ bino
 Admit Obligations.
 Definition link (t1 : tree) (t2 : tree) : tree := if decide (le (elem t1) (elem t2)) then tree'mk (elem t1) (cons t2 (children t1)) (rank t1 + 1%Z) else tree'mk (elem t2) (cons t1 (children t2)) (rank t2 + 1%Z).
 Theorem extract_min'vc (h : list tree) (fact0 : heaps h) (fact1 : inv 0%Z h) (fact2 : ¬ h = ([] : list tree)) : heaps h ∧ inv 0%Z h ∧ ¬ h = ([] : list tree) ∧ (∀(t : tree) (h' : list tree), heaps (cons t ([] : list tree)) ∧ heaps h' ∧ inv 0%Z h' ∧ le_roots (elem t) h ∧ binomial_tree t ∧ (∀(x : elt), occ x h = occ x (cons t ([] : list tree)) + occ x h') -> (let o1 : list tree := rev (children t) in heaps o1 ∧ inv 0%Z o1 ∧ heaps h' ∧ inv 0%Z h') ∧ (∀(h'1 : list tree), heaps h'1 ∧ inv 0%Z h'1 ∧ (∀(x : elt), occ x h'1 = occ x (rev (children t)) + occ x h') -> heaps h'1 ∧ inv 0%Z h'1 ∧ occ (elem t) h'1 = occ (elem t) h - 1%Z ∧ (∀(x : elt), ¬ x = elem t -> occ x h'1 = occ x h))).
+Proof.
 Admitted.

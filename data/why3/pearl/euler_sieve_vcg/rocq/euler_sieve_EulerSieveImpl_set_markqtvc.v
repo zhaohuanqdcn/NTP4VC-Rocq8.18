@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import euler_sieve_vcg.euler_sieve.ArithmeticResults.
 Require Import euler_sieve_vcg.euler_sieve.DivisibilityResults.
@@ -41,4 +41,5 @@ Axiom t'invariant : forall  (self : t), bv_signed (max self) < bv_signed int'63_
 Definition t'eq (a : t) (b : t) := nexts a = nexts b ∧ marked a = marked b ∧ arr a = arr b ∧ max a = max b ∧ max_arr a = max_arr b.
 Axiom t'inj : forall  (a : t) (b : t) (fact0 : t'eq a b), a = b.
 Theorem set_mark'vc (i : bv 63%N) (t1 : t) (fact0 : 0%Z ≤ bv_signed i) (fact1 : bv_signed i ≤ bv_signed (max t1)) (fact2 : ZEuclid.modulo (bv_signed i) 2%Z = 1%Z) : ¬ 2%Z = 0%Z ∧ int'63_in_bounds (Z.rem (bv_signed i) 2%Z) ∧ (∀(x : bv 63%N), bv_signed x = Z.rem (bv_signed i) 2%Z -> (let o1 : ArrayInt63.array63 := arr t1 in (0%Z ≤ bv_signed x ∧ bv_signed x < Z.of_nat (length (elts o1))) ∧ (∀(o2 : bv 63%N), bv_signed o2 = nth (Z.to_nat (bv_signed x)) (elts o1) inhabitant -> (if decide (0%Z ≤ bv_signed o2) then let o3 : ArrayInt63.array63 := arr t1 in (0%Z ≤ bv_signed x ∧ bv_signed x < Z.of_nat (length (elts o3))) ∧ (∀(o4 : bv 63%N), bv_signed o4 = nth (Z.to_nat (bv_signed x)) (elts o3) inhabitant -> int'63_in_bounds (- bv_signed o4) ∧ (∀(o5 : bv 63%N), bv_signed o5 = - bv_signed o4 -> (let o6 : ArrayInt63.array63 := arr t1 in (0%Z ≤ bv_signed x ∧ bv_signed x < Z.of_nat (length (elts o6))) ∧ (∀(t_arr : ArrayInt63.array63), ArrayInt63.size t_arr = ArrayInt63.size o6 -> ArrayInt63.size t_arr = ArrayInt63.size (arr t1) -> elts t_arr = set_list (elts o6) (Z.to_nat (bv_signed x)) (bv_signed o5) -> (let o7 : bool := true in let o8 : Z := bv_signed i in (0%Z ≤ o8 ∧ o8 < Z.of_nat (length (marked t1))) ∧ (let o9 : list bool := set_list (marked t1) (Z.to_nat o8) o7 in length o9 = length (marked t1) ∧ nth (Z.to_nat o8) o9 inhabitant = o7 ∧ (∀(j : Z), (0%Z ≤ j ∧ j < Z.of_nat (length (marked t1))) ∧ ¬ j = o8 -> nth (Z.to_nat j) o9 inhabitant = nth (Z.to_nat j) (marked t1) inhabitant) -> (∀(t2 : t), ((bv_signed (max t1) < bv_signed int'63_max ∧ 3%Z ≤ bv_signed (max t1)) ∧ (length (nexts t1) = length o9 ∧ Z.of_nat (length o9) = bv_signed (max t1) + 1%Z) ∧ ZEuclid.div (bv_signed (max t1) - 1%Z) 2%Z = bv_signed (max_arr t1) ∧ Z.of_nat (length (elts t_arr)) = bv_signed (max_arr t1) + 1%Z ∧ inv_nexts (nexts t1) (Z.of_nat (length (nexts t1))) ∧ all_eliminated_marked o9 (nexts t1) ∧ (∀(i1 : Z), 3%Z ≤ i1 ∧ i1 ≤ bv_signed (max t1) -> ZEuclid.modulo i1 2%Z = 0%Z -> nth (Z.to_nat i1) o9 inhabitant = true) ∧ (∀(i1 : Z), 3%Z ≤ i1 ∧ i1 < bv_signed (max t1) - 1%Z -> ZEuclid.modulo i1 2%Z = 1%Z -> ZEuclid.modulo (nth (Z.to_nat i1) (nexts t1) inhabitant) 2%Z = 1%Z ∨ nth (Z.to_nat i1) (nexts t1) inhabitant = bv_signed (max t1) + 1%Z) ∧ (nth (Z.to_nat (bv_signed (max t1))) (nexts t1) inhabitant = bv_signed (max t1) + 1%Z ∧ (ZEuclid.modulo (bv_signed (max t1) - 1%Z) 2%Z = 0%Z -> nth (Z.to_nat (bv_signed (max t1) - 1%Z)) (nexts t1) inhabitant = bv_signed (max t1)) ∧ (ZEuclid.modulo (bv_signed (max t1) - 1%Z) 2%Z = 1%Z -> nth (Z.to_nat (bv_signed (max t1) - 1%Z)) (nexts t1) inhabitant = bv_signed (max t1) + 1%Z)) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> - (bv_signed (max t1) + 1%Z) ≤ nth (Z.to_nat i1) (elts t_arr) inhabitant ∧ nth (Z.to_nat i1) (elts t_arr) inhabitant ≤ bv_signed (max t1) + 1%Z) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> (nth (Z.to_nat (2%Z * i1 + 1%Z)) o9 inhabitant = true) = (nth (Z.to_nat i1) (elts t_arr) inhabitant < 0%Z)) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> ¬ nth (Z.to_nat (2%Z * i1 + 1%Z)) o9 inhabitant = true -> nth (Z.to_nat i1) (elts t_arr) inhabitant = nth (Z.to_nat (2%Z * i1 + 1%Z)) (nexts t1) inhabitant) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> nth (Z.to_nat (2%Z * i1 + 1%Z)) o9 inhabitant = true -> nth (Z.to_nat i1) (elts t_arr) inhabitant = - nth (Z.to_nat (2%Z * i1 + 1%Z)) (nexts t1) inhabitant) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> (i1 < ZEuclid.div (Z.abs (nth (Z.to_nat i1) (elts t_arr) inhabitant)) 2%Z ∧ ZEuclid.div (Z.abs (nth (Z.to_nat i1) (elts t_arr) inhabitant)) 2%Z ≤ bv_signed (max_arr t1) + 1%Z) ∧ Z.abs (nth (Z.to_nat i1) (elts t_arr) inhabitant) ≤ bv_signed (max t1) + 1%Z) ∧ (∀(i1 : Z) (j : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> i1 < j ∧ j < ZEuclid.div (Z.abs (nth (Z.to_nat i1) (elts t_arr) inhabitant)) 2%Z -> nth (Z.to_nat j) (elts t_arr) inhabitant < 0%Z)) ∧ (max_arr t1 = max_arr t2 ∧ max t1 = max t2 ∧ t_arr = arr t2 ∧ o9 = marked t2 ∧ nexts t1 = nexts t2 -> marked t2 = set_list (marked t1) (Z.to_nat (bv_signed i)) true)))))))) else let o3 : bool := true in let o4 : Z := bv_signed i in let o5 : list bool := marked t1 in (0%Z ≤ o4 ∧ o4 < Z.of_nat (length o5)) ∧ (let o6 : list bool := set_list o5 (Z.to_nat o4) o3 in length o6 = length o5 ∧ nth (Z.to_nat o4) o6 inhabitant = o3 ∧ (∀(j : Z), (0%Z ≤ j ∧ j < Z.of_nat (length o5)) ∧ ¬ j = o4 -> nth (Z.to_nat j) o6 inhabitant = nth (Z.to_nat j) o5 inhabitant) -> (∀(t2 : t), ((bv_signed (max t1) < bv_signed int'63_max ∧ 3%Z ≤ bv_signed (max t1)) ∧ (length (nexts t1) = length o6 ∧ Z.of_nat (length o6) = bv_signed (max t1) + 1%Z) ∧ ZEuclid.div (bv_signed (max t1) - 1%Z) 2%Z = bv_signed (max_arr t1) ∧ Z.of_nat (length (elts (arr t1))) = bv_signed (max_arr t1) + 1%Z ∧ inv_nexts (nexts t1) (Z.of_nat (length (nexts t1))) ∧ all_eliminated_marked o6 (nexts t1) ∧ (∀(i1 : Z), 3%Z ≤ i1 ∧ i1 ≤ bv_signed (max t1) -> ZEuclid.modulo i1 2%Z = 0%Z -> nth (Z.to_nat i1) o6 inhabitant = true) ∧ (∀(i1 : Z), 3%Z ≤ i1 ∧ i1 < bv_signed (max t1) - 1%Z -> ZEuclid.modulo i1 2%Z = 1%Z -> ZEuclid.modulo (nth (Z.to_nat i1) (nexts t1) inhabitant) 2%Z = 1%Z ∨ nth (Z.to_nat i1) (nexts t1) inhabitant = bv_signed (max t1) + 1%Z) ∧ (nth (Z.to_nat (bv_signed (max t1))) (nexts t1) inhabitant = bv_signed (max t1) + 1%Z ∧ (ZEuclid.modulo (bv_signed (max t1) - 1%Z) 2%Z = 0%Z -> nth (Z.to_nat (bv_signed (max t1) - 1%Z)) (nexts t1) inhabitant = bv_signed (max t1)) ∧ (ZEuclid.modulo (bv_signed (max t1) - 1%Z) 2%Z = 1%Z -> nth (Z.to_nat (bv_signed (max t1) - 1%Z)) (nexts t1) inhabitant = bv_signed (max t1) + 1%Z)) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> - (bv_signed (max t1) + 1%Z) ≤ nth (Z.to_nat i1) (elts (arr t1)) inhabitant ∧ nth (Z.to_nat i1) (elts (arr t1)) inhabitant ≤ bv_signed (max t1) + 1%Z) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> (nth (Z.to_nat (2%Z * i1 + 1%Z)) o6 inhabitant = true) = (nth (Z.to_nat i1) (elts (arr t1)) inhabitant < 0%Z)) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> ¬ nth (Z.to_nat (2%Z * i1 + 1%Z)) o6 inhabitant = true -> nth (Z.to_nat i1) (elts (arr t1)) inhabitant = nth (Z.to_nat (2%Z * i1 + 1%Z)) (nexts t1) inhabitant) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> nth (Z.to_nat (2%Z * i1 + 1%Z)) o6 inhabitant = true -> nth (Z.to_nat i1) (elts (arr t1)) inhabitant = - nth (Z.to_nat (2%Z * i1 + 1%Z)) (nexts t1) inhabitant) ∧ (∀(i1 : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> (i1 < ZEuclid.div (Z.abs (nth (Z.to_nat i1) (elts (arr t1)) inhabitant)) 2%Z ∧ ZEuclid.div (Z.abs (nth (Z.to_nat i1) (elts (arr t1)) inhabitant)) 2%Z ≤ bv_signed (max_arr t1) + 1%Z) ∧ Z.abs (nth (Z.to_nat i1) (elts (arr t1)) inhabitant) ≤ bv_signed (max t1) + 1%Z) ∧ (∀(i1 : Z) (j : Z), 0%Z ≤ i1 ∧ i1 ≤ bv_signed (max_arr t1) -> i1 < j ∧ j < ZEuclid.div (Z.abs (nth (Z.to_nat i1) (elts (arr t1)) inhabitant)) 2%Z -> nth (Z.to_nat j) (elts (arr t1)) inhabitant < 0%Z)) ∧ (max_arr t1 = max_arr t2 ∧ max t1 = max t2 ∧ arr t1 = arr t2 ∧ o6 = marked t2 ∧ nexts t1 = nexts t2 -> marked t2 = set_list (marked t1) (Z.to_nat (bv_signed i)) true))))))).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -140,4 +140,5 @@ Axiom max_var_ctx'spec'0 : forall  (l : list (expr * expr)) (fact0 : valid_ctx l
 Axiom max_var_ctx'spec : forall  (l : list (expr * expr)) (fact0 : valid_ctx l), ctx_bound l (max_var_ctx l).
 Definition atom (e : expr) := match e with | Add _ _ => False | _ => True end.
 Theorem mul_row'vc (i : bv 63%N) (m : matrix coeff) (c : coeff) (fact0 : 0%Z ≤ bv_signed i) (fact1 : bv_signed i < bv_signed (rows m)) (fact2 : ¬ eq c czero) : let o1 : coeff := cone in (eq c o1 -> (∀(y : cvars), interp c y = interp o1 y)) -> ¬ eq c o1 -> (let o2 : bv 63%N := columns m in int'63_in_bounds (bv_signed o2 - 1%Z) ∧ (∀(o3 : bv 63%N), bv_signed o3 = bv_signed o2 - 1%Z -> 0%Z ≤ bv_signed o3 + 1%Z -> (∀(m1 : matrix coeff), rows m1 = rows m ∧ columns m1 = columns m -> (∀(j : bv 63%N), let j1 : Z := bv_signed j in 0%Z ≤ j1 ∧ j1 ≤ bv_signed o3 -> valid_index m1 i j ∧ (∀(o4 : coeff), (∀(v : cvars), interp o4 v = infix_as (interp c v) (interp (get_unsafe m1 (bv_signed i) (bv_signed j)) v)) -> valid_index m1 i j))))).
+Proof.
 Admitted.

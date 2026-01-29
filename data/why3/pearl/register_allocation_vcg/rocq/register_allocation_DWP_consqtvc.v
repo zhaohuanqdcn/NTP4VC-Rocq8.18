@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import register_allocation_vcg.register_allocation.Spec.
 Open Scope Z_scope.
@@ -63,4 +63,5 @@ Axiom id'def : forall  {α : Type} `{Inhabited α} (x : α), id1 x = x.
 Axiom exec_closure1 : instr -> state -> state.
 Axiom exec_closure_def : forall  (y : instr) (y1 : state), exec_closure1 y y1 = exec y y1.
 Theorem cons'vc (w : wcode) (i : instr) (fact0 : wcode_ok w) : let o1 : (state -> bool) -> state -> bool := rcompose (trans1 w) (rcompose (exec_closure i)) in wcode_ok (wcode'mk o1 (cons i (wcode1 w))) ∧ o1 = rcompose (trans1 w) (rcompose (exec_closure1 i)).
+Proof.
 Admitted.

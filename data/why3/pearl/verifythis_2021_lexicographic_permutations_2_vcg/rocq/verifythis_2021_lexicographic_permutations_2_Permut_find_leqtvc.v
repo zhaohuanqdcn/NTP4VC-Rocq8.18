@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.map.MapEq.
 Require Import Why3.map.MapExchange.
@@ -37,4 +37,5 @@ Axiom find_eq'spec'1 : forall  (a1 : list Z) (a2 : list Z) (i : Z) (fact0 : leng
 Axiom find_eq'spec'0 : forall  (a1 : list Z) (a2 : list Z) (i : Z) (fact0 : length a1 = length a2) (fact1 : 0%Z ≤ i) (fact2 : i ≤ Z.of_nat (length a1)) (fact3 : drop 0%nat (take (Z.to_nat i - 0%nat) a1) = drop 0%nat (take (Z.to_nat i - 0%nat) a2)), drop 0%nat (take (Z.to_nat (find_eq a1 a2 i) - 0%nat) a1) = drop 0%nat (take (Z.to_nat (find_eq a1 a2 i) - 0%nat) a2).
 Axiom find_eq'spec : forall  (a1 : list Z) (a2 : list Z) (i : Z) (fact0 : length a1 = length a2) (fact1 : 0%Z ≤ i) (fact2 : i ≤ Z.of_nat (length a1)) (fact3 : drop 0%nat (take (Z.to_nat i - 0%nat) a1) = drop 0%nat (take (Z.to_nat i - 0%nat) a2)) (fact4 : find_eq a1 a2 i < Z.of_nat (length a1)), ¬ nth (Z.to_nat (find_eq a1 a2 i)) a1 inhabitant = nth (Z.to_nat (find_eq a1 a2 i)) a2 inhabitant.
 Theorem find_le'vc (a2 : list Z) (a1 : list Z) : let o1 : Z := Z.of_nat (length a2) in let o2 : Z := Z.of_nat (length a1) in (o2 = o1 -> (length a1 = length a2 ∧ (0%Z ≤ 0%Z ∧ 0%Z ≤ Z.of_nat (length a1)) ∧ drop 0%nat (take (0%nat - 0%nat) a1) = drop 0%nat (take (0%nat - 0%nat) a2)) ∧ (let i : Z := find_eq a1 a2 0%Z in (0%Z ≤ i ∧ i ≤ Z.of_nat (length a1)) ∧ drop 0%nat (take (Z.to_nat i - 0%nat) a1) = drop 0%nat (take (Z.to_nat i - 0%nat) a2) ∧ (i < Z.of_nat (length a1) -> ¬ nth (Z.to_nat i) a1 inhabitant = nth (Z.to_nat i) a2 inhabitant) -> ¬ i = Z.of_nat (length a1) -> (0%Z ≤ i ∧ i < Z.of_nat (length a2)) ∧ 0%Z ≤ i ∧ i < Z.of_nat (length a1))) ∧ (∀(result : bool), (if decide (o2 = o1) then let i : Z := find_eq a1 a2 0%Z in ((0%Z ≤ i ∧ i ≤ Z.of_nat (length a1)) ∧ drop 0%nat (take (Z.to_nat i - 0%nat) a1) = drop 0%nat (take (Z.to_nat i - 0%nat) a2) ∧ (i < Z.of_nat (length a1) -> ¬ nth (Z.to_nat i) a1 inhabitant = nth (Z.to_nat i) a2 inhabitant)) ∧ (if decide (i = Z.of_nat (length a1)) then result = true else result = (if decide (nth (Z.to_nat i) a1 inhabitant < nth (Z.to_nat i) a2 inhabitant) then true else false)) else result = false) -> (result = true) = le a1 a2).
+Proof.
 Admitted.

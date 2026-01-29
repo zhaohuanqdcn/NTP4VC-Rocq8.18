@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -44,4 +44,5 @@ Definition value_text (b : Z) (s : Z -> ascii) (ofs : Z) : Z := if decide (s ofs
 Definition text_in_base (b : Z) (t : Z -> ascii) (n : Z) (m : Z) := ∀(i : Z), n ≤ i ∧ i < m -> 0%Z ≤ text_to_num b (t i) ∧ text_to_num b (t i) < b.
 Definition string_in_base (b : Z) (s : Z -> ascii) (ofs : Z) := text_in_base b s ofs (ofs + strlen s ofs) ∧ 0%Z < strlen s ofs ∨ s ofs = get_str_i "-"%string 0%Z ∧ text_in_base b s (ofs + 1%Z) (ofs + strlen s ofs) ∧ 1%Z < strlen s ofs.
 Theorem abs_value_sub_text_frame'vc (n : Z) (m : Z) (x : Z -> ascii) (y : Z -> ascii) (b : Z) (fact0 : ∀(i : Z), n ≤ i ∧ i < m -> x i = y i) : abs_value_sub_text b x n m = abs_value_sub_text b y n m.
+Proof.
 Admitted.

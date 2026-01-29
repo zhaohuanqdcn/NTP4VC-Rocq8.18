@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -74,4 +74,5 @@ Program Fixpoint stack_size (st : stack) : Z :=
 match st with | Bottom => 1%Z | Done => 0%Z | Running s pc f => stack_size s + (100%Z - pc) + (if decide (pc = 0%Z) then 100%Z * (Size.size (tleft f) + Size.size (tright f)) else if decide (pc ≤ 2%Z) then 100%Z * Size.size (tright f) else 0%Z) end.
 Admit Obligations.
 Theorem continuing'vc (t : Tree.tree loc) (stop : snap) (sprev : snap) (st : stack) (scur : snap) (fact0 : is_stack t stop sprev st None) (fact1 : match st with | Bottom => False | Done => False | Running _ pc f => bloc_rel (pointers (memo0 f)) (if decide (pc = 0%Z) then GoLeft else if decide (pc = 2%Z) then GoRight else GoBack) sprev scur end) : match st with | Bottom => False | Done => False | Running s pc f => (let o1 : loc := cursor (memo0 f) in let o2 : Tree.tree loc := tright f in let o3 : Tree.tree loc := tleft f in is_tree (pointers (memo0 f)) (Node o3 o1 o2) o1 (parent (memo0 f)) ∧ (¬ o1 ∈ footprint o3 ∧ ¬ o1 ∈ footprint o2 -> (if decide (pc = 0%Z) then ∀(o4 : bool), (if decide (pleft f = null) then o4 = (if decide (pright f = null) then true else false) else o4 = false) -> (if decide (o4 = true) then let o5 : snap := memo0 f in let o6 : Tree.tree loc := tree f in (is_stack t stop o5 s (Some o6) ∧ rec_rel o6 o5 scur) ∧ (∀(st1 : stack), is_stack t stop scur st1 None ∧ stack_size st1 < stack_size s -> is_stack t stop scur st1 None ∧ stack_size st1 < stack_size st) else let o5 : loc := pleft f in let o6 : Tree.tree loc := tleft f in let o7 : snap := memo0 f in let o8 : loc := cursor o7 in let o9 : kind -> loc -> loc := pointers scur in let o10 : kind -> loc -> loc := pointers o7 in let o11 : propset loc := footprint o6 in (ext o11 o10 o9 ∧ footprint o6 ⊆ o11 ∧ is_tree o10 o6 o5 o8) ∧ (is_tree o9 o6 o5 o8 -> (is_stack t stop scur (Running s (pc + 1%Z) (frame'mk o7 (tree f) o6 o5 (tright f) (pright f) scur (memo2 f) (memo3 f) (memo4 f))) (Some o6) ∧ is_tree (pointers scur) o6 (cursor scur) (parent scur) ∧ ¬ cursor scur = null) ∧ (∀(st1 : stack), is_stack t stop scur st1 None ∧ stack_size st1 ≤ stack_size (Running s (pc + 1%Z) (frame'mk o7 (tree f) o6 o5 (tright f) (pright f) scur (memo2 f) (memo3 f) (memo4 f))) + 100%Z * Size.size o6 -> is_stack t stop scur st1 None ∧ stack_size st1 < stack_size st))) else if decide (pc = 2%Z) then let o4 : loc := pright f in let o5 : Tree.tree loc := tright f in let o6 : snap := memo0 f in let o7 : loc := cursor o6 in let o8 : kind -> loc -> loc := pointers scur in let o9 : kind -> loc -> loc := pointers o6 in let o10 : propset loc := footprint o5 in (ext o10 o9 o8 ∧ footprint o5 ⊆ o10 ∧ is_tree o9 o5 o4 o7) ∧ (is_tree o8 o5 o4 o7 -> (is_stack t stop scur (Running s (pc + 1%Z) (frame'mk o6 (tree f) (tleft f) (pleft f) o5 o4 (memo1 f) (memo2 f) scur (memo4 f))) (Some o5) ∧ is_tree (pointers scur) o5 (cursor scur) (parent scur) ∧ ¬ cursor scur = null) ∧ (∀(st1 : stack), is_stack t stop scur st1 None ∧ stack_size st1 ≤ stack_size (Running s (pc + 1%Z) (frame'mk o6 (tree f) (tleft f) (pleft f) o5 o4 (memo1 f) (memo2 f) scur (memo4 f))) + 100%Z * Size.size o5 -> is_stack t stop scur st1 None ∧ stack_size st1 < stack_size st)) else if decide (pc = 4%Z) then let o4 : snap := memo0 f in let o5 : Tree.tree loc := tree f in (is_stack t stop o4 s (Some o5) ∧ rec_rel o5 o4 scur) ∧ (∀(st1 : stack), is_stack t stop scur st1 None ∧ stack_size st1 < stack_size s -> is_stack t stop scur st1 None ∧ stack_size st1 < stack_size st) else is_stack t stop scur st None ∧ stack_size st < stack_size st))) end.
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.Const.
@@ -47,4 +47,5 @@ Definition text_to_num (base : Z) (c : ascii) : Z := if decide (- 36%Z ≤ base 
 Definition num_to_text (base : Z) (d : bv 8%N) : ascii := if decide (0%Z ≤ base ∧ base ≤ 36%Z) then num_to_lowercase_text d else if decide (36%Z < base ∧ base ≤ 62%Z) then num_to_bothcase_text d else if decide (- 36%Z ≤ base) then num_to_uppercase_text d else Ascii.ascii_of_nat (Z.to_nat (- 1%Z)).
 Definition to_num (base : Z) (t : Z -> ascii) (d : Z -> bv 8%N) (n : Z) (m : Z) := ∀(i : Z), n ≤ i ∧ i < m -> bv_signed (d i) = text_to_num base (t i).
 Theorem lowup'vc : Z.of_nat (Ascii.nat_of_ascii (get_str_i "Z"%string 0%Z)) < Z.of_nat (Ascii.nat_of_ascii (get_str_i "a"%string 0%Z)).
+Proof.
 Admitted.

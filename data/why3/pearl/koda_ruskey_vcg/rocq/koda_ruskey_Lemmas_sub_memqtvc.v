@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import koda_ruskey_vcg.koda_ruskey.KodaRuskey_Spec.
 Open Scope Z_scope.
@@ -54,4 +54,5 @@ Inductive sub : list forest -> forest -> (Z -> color) -> Prop :=
  | Sub_brother (st : list forest) (f2 : forest) (c : Z -> color) (i : Z) (f1 : forest) : sub st f2 c -> sub st (N i f1 f2) c
  | Sub_append (st : list forest) (f1 : forest) (c : Z -> color) (i : Z) (f2 : forest) : sub st f1 c -> c i = Black -> sub (st ++ cons f2 ([] : list forest)) (N i f1 f2) c.
 Theorem sub_mem'vc (n : Z) (st : list forest) (f : forest) (c : Z -> color) (fact0 : mem_stack n st) (fact1 : sub st f c) : mem_forest n f.
+Proof.
 Admitted.

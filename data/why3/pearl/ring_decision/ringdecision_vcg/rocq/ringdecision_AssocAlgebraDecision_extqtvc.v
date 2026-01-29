@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom r : Type.
@@ -125,4 +125,5 @@ match x1 with | [] => ([] : list m) | cons (M r1 m1) l => mul_mon (M r1 m1) x2 +
 Admit Obligations.
 Axiom mul_devel'spec : forall  (x1 : list m) (x2 : list m) (y : Z -> a), interp' (mul_devel x1 x2) y = atimes (interp' x1 y) (interp' x2 y).
 Theorem ext'vc (x : list m) (c : r) : (match x with | [] => True | cons (M r1 m1) l => True end) ∧ (∀(result : list m), (match x with | [] => result = ([] : list m) | cons (M r1 m1) l => (∃(o1 : list m), (∀(y : Z -> a), interp' o1 y = infix_dl c (interp' l y)) ∧ result = cons (M (rtimes c r1) m1) o1) end) -> (∀(y : Z -> a), interp' result y = infix_dl c (interp' x y))).
+Proof.
 Admitted.

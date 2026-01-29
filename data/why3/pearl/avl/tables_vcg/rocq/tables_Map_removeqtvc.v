@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -149,4 +149,5 @@ Axiom fc : forall {α : Type} `{Inhabited α}, t4 α -> t -> α.
 Axiom fc'def : forall  {α : Type} `{Inhabited α} (t6 : t4 α) (k : t), fc t6 k = (match func (m3 t6) k with | (_, v) => v end).
 Definition m5 {α : Type} `{Inhabited α} (t6 : t4 α) : m4 α := m'mk2 (domn (m3 t6)) (fc t6) (card (m3 t6)).
 Theorem remove'vc {α : Type} `{Inhabited α} (result : t4 α) (t6 : t4 α) (k0 : t) (fact0 : card (m3 result) = (if decide (domn (m3 t6) k0 = true) then card (m3 t6) - 1%Z else card (m3 t6))) (fact1 : ∀(k : t), eq k k0 -> ¬ domn (m3 result) k = true) (fact2 : ¬ domn (m3 result) k0 = true) (fact3 : ∀(k : t), ¬ eq k k0 -> (domn (m3 result) k = true) = (domn (m3 t6) k = true)) (fact4 : ∀(k : t), ¬ eq k k0 ∧ domn (m3 result) k = true -> func (m3 result) k = func (m3 t6) k) : card1 (m5 result) = (if decide (domn1 (m5 t6) k0 = true) then card1 (m5 t6) - 1%Z else card1 (m5 t6)) ∧ (∀(k : t), eq k k0 -> ¬ domn1 (m5 result) k = true) ∧ ¬ domn1 (m5 result) k0 = true ∧ (∀(k : t), ¬ eq k k0 -> (domn1 (m5 result) k = true) = (domn1 (m5 t6) k = true)) ∧ (∀(k : t), ¬ eq k k0 ∧ domn1 (m5 result) k = true -> func1 (m5 result) k = func1 (m5 t6) k).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.map.MapEq.
@@ -41,4 +41,5 @@ Axiom cursor'invariant : forall  (self : cursor), 0%Z < bv_signed (len self) ∧
 Definition cursor'eq (a : cursor) (b : cursor) := current a = current b ∧ new a = new b ∧ len a = len b ∧ freed a = freed b ∧ bound a = bound b.
 Axiom cursor'inj : forall  (a : cursor) (b : cursor) (fact0 : cursor'eq a b), a = b.
 Theorem free_cursor'vc (c : cursor) (fact0 : ¬ freed c = true) : let o1 : ptr (bv 32%N) := current c in (offset o1 = 0%Z ∧ min o1 = 0%Z ∧ C.max o1 = plength o1 ∧ writable o1 = true) ∧ (∀(c_current : ptr (bv 32%N)), offset c_current = offset (current c) ∧ writable c_current = writable (current c) ∧ zone1 c_current = zone1 (current c) -> (∀(c1 : cursor), (0%Z < bv_signed (len c) ∧ (¬ True -> plength c_current = bv_signed (len c) ∧ offset c_current = 0%Z ∧ valid c_current (bv_signed (len c)) ∧ min c_current = 0%Z ∧ C.max c_current = bv_signed (len c) ∧ is_not_null c_current ∧ writable c_current = true ∧ (∀(i : Z), 0%Z ≤ i ∧ i < bv_signed (len c) -> bv_signed (nth (Z.to_nat i) (data c_current) inhabitant) < bv_signed (bound c)))) ∧ (bound c = bound c1 ∧ true = freed c1 ∧ len c = len c1 ∧ new c = new c1 ∧ c_current = current c1 -> freed c1 = true))).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import sumrange_vcg.sumrange.ArraySum.
@@ -51,4 +51,5 @@ Program Fixpoint depth (t : tree) : Z :=
 match t with | Leaf _ => 1%Z | Node _ l r => 1%Z + Z.max (depth l) (depth r) end.
 Admit Obligations.
 Theorem update_aux_complexity'vc (t : tree) (a : list Z) (i : Z) (v : Z) (c : Z) (fact0 : is_tree_for t a (low (indexes1 t)) (high (indexes1 t))) (fact1 : low (indexes1 t) ≤ i) (fact2 : i < high (indexes1 t)) : match t with | Leaf ind => (let o1 : tree := Leaf (indexes'mk (low ind) (high ind) v) in c + 1%Z - c ≤ depth t ∧ v - isum ind = v - nth (Z.to_nat i) a inhabitant ∧ low (indexes1 o1) = low (indexes1 t) ∧ high (indexes1 o1) = high (indexes1 t) ∧ is_tree_for o1 (set_list a (Z.to_nat i) v) (low (indexes1 o1)) (high (indexes1 o1))) | Node ind l r => (if decide (i < high (indexes1 l)) then ((match t with | Leaf _ => False | Node _ f f1 => f = l ∨ f1 = l end) ∧ is_tree_for l a (low (indexes1 l)) (high (indexes1 l)) ∧ low (indexes1 l) ≤ i ∧ i < high (indexes1 l)) ∧ (∀(c1 : Z) (l' : tree), c1 - (c + 1%Z) ≤ depth l ∧ low (indexes1 l') = low (indexes1 l) ∧ high (indexes1 l') = high (indexes1 l) ∧ is_tree_for l' (set_list a (Z.to_nat i) v) (low (indexes1 l')) (high (indexes1 l')) -> c1 - c ≤ depth t ∧ low (indexes1 (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l' r)) = low (indexes1 t) ∧ high (indexes1 (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l' r)) = high (indexes1 t) ∧ is_tree_for (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l' r) (set_list a (Z.to_nat i) v) (low (indexes1 (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l' r))) (high (indexes1 (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l' r)))) else ((match t with | Leaf _ => False | Node _ f f1 => f = r ∨ f1 = r end) ∧ is_tree_for r a (low (indexes1 r)) (high (indexes1 r)) ∧ low (indexes1 r) ≤ i ∧ i < high (indexes1 r)) ∧ (∀(c1 : Z) (r' : tree), c1 - (c + 1%Z) ≤ depth r ∧ low (indexes1 r') = low (indexes1 r) ∧ high (indexes1 r') = high (indexes1 r) ∧ is_tree_for r' (set_list a (Z.to_nat i) v) (low (indexes1 r')) (high (indexes1 r')) -> c1 - c ≤ depth t ∧ low (indexes1 (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l r')) = low (indexes1 t) ∧ high (indexes1 (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l r')) = high (indexes1 t) ∧ is_tree_for (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l r') (set_list a (Z.to_nat i) v) (low (indexes1 (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l r'))) (high (indexes1 (Node (indexes'mk (low ind) (high ind) (isum ind + (v - nth (Z.to_nat i) a inhabitant))) l r'))))) end.
+Proof.
 Admitted.

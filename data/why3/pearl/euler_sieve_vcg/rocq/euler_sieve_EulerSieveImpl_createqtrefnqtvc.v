@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import euler_sieve_vcg.euler_sieve.ArithmeticResults.
 Require Import euler_sieve_vcg.euler_sieve.DivisibilityResults.
@@ -41,4 +41,5 @@ Axiom t'invariant : forall  (self : t), bv_signed (max self) < bv_signed int'63_
 Definition t'eq (a : t) (b : t) := nexts a = nexts b ∧ marked a = marked b ∧ arr a = arr b ∧ max a = max b ∧ max_arr a = max_arr b.
 Axiom t'inj : forall  (a : t) (b : t) (fact0 : t'eq a b), a = b.
 Theorem create'refn'vc (max1 : bv 63%N) (fact0 : bv_signed max1 < bv_signed int'63_max) (fact1 : 3%Z ≤ bv_signed max1) : bv_signed max1 < bv_signed int'63_max ∧ 3%Z ≤ bv_signed max1 ∧ (∀(result : t), max result = max1 ∧ ((nth 0%nat (marked result) inhabitant = nth 1%nat (marked result) inhabitant ∧ nth 1%nat (marked result) inhabitant = true) ∧ ¬ nth 2%nat (marked result) inhabitant = true) ∧ (∀(i : Z), 1%Z ≤ i ∧ i ≤ ZEuclid.div (bv_signed max1 - 1%Z) 2%Z -> ¬ nth (Z.to_nat (2%Z * i + 1%Z)) (marked result) inhabitant = true) ∧ (∀(i : Z), 2%Z ≤ i ∧ i ≤ ZEuclid.div (bv_signed max1 + 1%Z) 2%Z -> 2%Z * i ≤ bv_signed max1 -> nth (Z.to_nat (2%Z * i)) (marked result) inhabitant = true) ∧ (∀(i : Z), 1%Z ≤ i ∧ i ≤ ZEuclid.div (bv_signed max1 - 1%Z) 2%Z -> 2%Z * i + 1%Z < bv_signed max1 - 1%Z -> nth (Z.to_nat (2%Z * i + 1%Z)) (nexts result) inhabitant = 2%Z * i + 3%Z) ∧ (∀(i : Z), 2%Z ≤ i ∧ i ≤ ZEuclid.div (bv_signed max1 - 1%Z) 2%Z -> 2%Z * i < bv_signed max1 - 1%Z -> nth (Z.to_nat (2%Z * i)) (nexts result) inhabitant = 2%Z * i + 1%Z) ∧ (∀(i : Z), 0%Z ≤ i ∧ i ≤ bv_signed max1 -> nth (Z.to_nat i) (marked result) inhabitant = true -> i < 2%Z ∨ (2%Z | i)) -> max result = max1 ∧ ((nth 0%nat (marked result) inhabitant = nth 1%nat (marked result) inhabitant ∧ nth 1%nat (marked result) inhabitant = true) ∧ ¬ nth 2%nat (marked result) inhabitant = true) ∧ (∀(i : Z), 3%Z ≤ i ∧ i ≤ bv_signed max1 -> (ZEuclid.modulo i 2%Z = 0%Z) = (nth (Z.to_nat i) (marked result) inhabitant = true)) ∧ (∀(i : Z), 3%Z ≤ i ∧ i < bv_signed max1 - 1%Z -> ZEuclid.modulo i 2%Z = 0%Z -> nth (Z.to_nat i) (nexts result) inhabitant = i + 1%Z) ∧ (∀(i : Z), 3%Z ≤ i ∧ i < bv_signed max1 - 1%Z -> ZEuclid.modulo i 2%Z = 1%Z -> nth (Z.to_nat i) (nexts result) inhabitant = i + 2%Z) ∧ (∀(i : Z), 0%Z ≤ i ∧ i ≤ bv_signed max1 -> nth (Z.to_nat i) (marked result) inhabitant = true -> i < 2%Z ∨ (2%Z | i))).
+Proof.
 Admitted.

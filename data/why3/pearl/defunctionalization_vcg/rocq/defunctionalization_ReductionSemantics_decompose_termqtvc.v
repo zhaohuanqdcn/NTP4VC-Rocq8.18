@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import defunctionalization_vcg.defunctionalization.Expr.
 Require Import defunctionalization_vcg.defunctionalization.DirectSem.
@@ -44,4 +44,5 @@ Program Fixpoint size_c (c : context) : Z :=
 match c with | Empty => 0%Z | Left c1 e => 2%Z + size_c c1 + size_e e | Right _ c1 => 1%Z + size_c c1 end.
 Admit Obligations.
 Theorem decompose_term'vc (e : expr) (c : context) : match e with | Cte n => (0%Z ≤ size_e e + size_c c ∧ size_c c < size_e e + size_c c) ∧ (∀(c1 : context) (e1 : expr), recompose c1 e1 = recompose c (Cte n) ∧ is_a_redex e1 -> recompose c1 e1 = recompose c e ∧ is_a_redex e1) ∧ (is_empty_context c -> is_empty_context c ∧ is_a_value e) | Sub e1 e2 => (let o1 : context := Left c e2 in (0%Z ≤ size_e e + size_c c ∧ size_e e1 + size_c o1 < size_e e + size_c c) ∧ (∀(c1 : context) (e11 : expr), recompose c1 e11 = recompose o1 e1 ∧ is_a_redex e11 -> recompose c1 e11 = recompose c e ∧ is_a_redex e11) ∧ (is_empty_context o1 ∧ is_a_value e1 -> is_empty_context c ∧ is_a_value e)) end.
+Proof.
 Admitted.

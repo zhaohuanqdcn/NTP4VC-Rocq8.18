@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Open Scope Z_scope.
@@ -85,4 +85,5 @@ Global Existing Instance view_inhabited.
 Arguments AEmpty {α}.
 Arguments ANode {α}.
 Theorem back_node'vc {α : Type} `{Inhabited α} (o1 : view α) (r : t2 α) (d : t1 α) (fact0 : match o1 with | AEmpty => hgt (m1 r) = 0%Z ∧ seq (m1 r) = ([] : list (t1 α)) | ANode l d r1 h s => seq (m1 r) = node_model (seq (m1 l)) d (seq (m1 r1)) ∧ s = agg measure_closure (seq (m1 r)) ∧ (let hl : Z := hgt (m1 l) in let hr : Z := hgt (m1 r1) in (- Z.of_nat balancing ≤ hl - hr ∧ hl - hr ≤ Z.of_nat balancing) ∧ hgt (m1 r) = Z.of_nat h ∧ Z.of_nat h = 1%Z + (if decide (hl < hr) then hr else hl)) end) : (match o1 with | AEmpty => True | ANode _ d2 r1 _ _ => 0%Z ≤ hgt (m1 r) ∧ hgt (m1 r1) < hgt (m1 r) end) ∧ (∀(result : t1 α), (match o1 with | AEmpty => result = d | ANode _ d2 r1 _ _ => result = nth (length (seq (m1 r1))) (cons d2 (seq (m1 r1))) inhabitant end) -> result = nth (length (seq (m1 r))) (cons d (seq (m1 r))) inhabitant).
+Proof.
 Admitted.

@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Open Scope Z_scope.
 Axiom t : Type.
@@ -55,4 +55,5 @@ Axiom Power_mult : forall  (n : Z) (m : Z) (x : t) (fact0 : 0%Z ≤ n) (fact1 : 
 Axiom Power_comm1 : forall  (x : t) (y : t) (n : Z) (fact0 : infix_pl x y = infix_pl y x) (fact1 : 0%Z ≤ n), infix_pl (mul x n) y = infix_pl y (mul x n).
 Axiom Power_comm2 : forall  (x : t) (y : t) (n : Z) (fact0 : infix_pl x y = infix_pl y x) (fact1 : 0%Z ≤ n), mul (infix_pl x y) n = infix_pl (mul x n) (mul y n).
 Theorem neg_star_l'vc (x : t) (y : t) : infix_as (prefix_mn x) y = prefix_mn (infix_as x y).
+Proof.
 Admitted.

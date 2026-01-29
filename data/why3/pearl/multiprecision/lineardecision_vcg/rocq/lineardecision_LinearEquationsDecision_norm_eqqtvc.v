@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import Why3.mach.matrix.Matrix63.
@@ -140,4 +140,5 @@ Axiom max_var_ctx'spec'0 : forall  (l : list (expr * expr)) (fact0 : valid_ctx l
 Axiom max_var_ctx'spec : forall  (l : list (expr * expr)) (fact0 : valid_ctx l), ctx_bound l (max_var_ctx l).
 Definition atom (e : expr) := match e with | Add _ _ => False | _ => True end.
 Theorem norm_eq'vc (e1 : expr) (e2 : expr) : let e : expr * expr := (e1, e2) in ∀(o1 : expr), (∀(y : Z -> a) (z : cvars), interp1 o1 y z = prefix_mn (interp1 e2 y z)) ∧ (valid_expr e2 -> valid_expr o1) ∧ (∀(b : Z), expr_bound e2 b -> expr_bound o1 b) -> (let s : expr := Add e1 o1 in let o2 : expr := Cst czero in ∀(e3 : expr) (c : coeff), (∀(y : Z -> a) (z : cvars), infix_pl (interp1 e3 y z) (interp1 (Cst c) y z) = infix_pl (interp1 s y z) (infix_pl (interp1 o2 y z) (interp1 (Cst czero) y z))) ∧ (∀(b : Z), expr_bound s b ∧ expr_bound o2 b -> expr_bound e3 b) -> (∀(ec : coeff), (∀(v : cvars), interp ec v = prefix_mn (interp c v)) -> (∀(y : Z -> a) (z : cvars), (interp_eq e y z = true) = (interp_eq (e3, Cst ec) y z = true)) ∧ (∀(b : Z), eq_bound e b -> expr_bound e3 b))).
+Proof.
 Admitted.

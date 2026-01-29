@@ -1,26 +1,26 @@
-From Stdlib Require Import Strings.String.
-From Stdlib Require Import String Ascii.
-From Stdlib Require Arith.
+From Coq Require Import Strings.String.
+From Coq Require Import String Ascii.
+From Coq Require Arith.
 From stdpp Require Import base.
 From stdpp Require Import fin_maps.
 From stdpp Require Import gmap.
 From stdpp Require Import base gmultiset.
-From Stdlib Require Classical.
-From Stdlib Require Import ZArith.
+From Coq Require Classical.
+From Coq Require Import ZArith.
 From stdpp.bitvector Require Import definitions tactics.
-From Stdlib Require Import Sorting.Sorted.
-From Stdlib Require Import Reals.Rbasic_fun.
-From Stdlib Require Import Reals.Abstract.ConstructiveAbs.
-From Stdlib Require Import Reals.Rdefinitions.
+From Coq Require Import Sorting.Sorted.
+From Coq Require Import Reals.Rbasic_fun.
+From Coq Require Import Reals.Abstract.ConstructiveAbs.
+From Coq Require Import Reals.Rdefinitions.
 From stdpp Require Import list_relations.
 From stdpp Require Import list_numbers.
 From stdpp Require Import functions.
-From Stdlib Require Import ClassicalEpsilon.
+From Coq Require Import ClassicalEpsilon.
 From stdpp Require Import base decidable.
-From Stdlib Require Import ZArith.Zeuclid.
-From Stdlib Require Import ZArith.Znumtheory.
+From Coq Require Import ZArith.Zeuclid.
+From Coq Require Import ZArith.Znumtheory.
 From stdpp Require Import propset.
-From Stdlib Require Import Reals.
+From Coq Require Import Reals.
 Require Import Why3.Base.
 Require Import Why3.why3.Ref.Ref.
 Require Import avl.avl.SelectionTypes.
@@ -149,4 +149,5 @@ Axiom fc : forall {α : Type} `{Inhabited α}, t4 α -> t -> α.
 Axiom fc'def : forall  {α : Type} `{Inhabited α} (t6 : t4 α) (k : t), fc t6 k = (match func (m3 t6) k with | (_, v) => v end).
 Definition m5 {α : Type} `{Inhabited α} (t6 : t4 α) : m4 α := m'mk2 (domn (m3 t6)) (fc t6) (card (m3 t6)).
 Theorem decompose_min'vc {α : Type} `{Inhabited α} (result : option (t * α * t4 α)) (t6 : t4 α) (fact0 : match result with | None => card (m3 t6) = 0%Z ∧ (∀(k : t), ¬ domn (m3 t6) k = true) | Some (d, r) => card (m3 t6) = card (m3 r) + 1%Z ∧ domn (m3 t6) (match d with | (a, _) => a end) = true ∧ func (m3 t6) (match d with | (a, _) => a end) = d ∧ ¬ domn (m3 r) (match d with | (a, _) => a end) = true ∧ (∀(k : t), lt k (match d with | (a, _) => a end) -> ¬ domn (m3 t6) k = true) ∧ (∀(k : t), eq k (match d with | (a, _) => a end) -> func (m3 t6) k = d) ∧ (∀(k : t), le k (match d with | (a, _) => a end) -> ¬ domn (m3 r) k = true) ∧ (∀(k : t), lt (match d with | (a, _) => a end) k -> (domn (m3 r) k = true) = (domn (m3 t6) k = true)) ∧ (∀(k : t), lt (match d with | (a, _) => a end) k ∧ domn (m3 r) k = true -> func (m3 r) k = func (m3 t6) k) end) : match result with | None => card1 (m5 t6) = 0%Z ∧ (∀(k : t), ¬ domn1 (m5 t6) k = true) | Some ((k0, v), r) => card1 (m5 t6) = card1 (m5 r) + 1%Z ∧ domn1 (m5 t6) k0 = true ∧ func1 (m5 t6) k0 = v ∧ ¬ domn1 (m5 r) k0 = true ∧ (∀(k : t), lt k k0 -> ¬ domn1 (m5 t6) k = true) ∧ (∀(k : t), eq k k0 -> func1 (m5 t6) k = v) ∧ (∀(k : t), le k k0 -> ¬ domn1 (m5 r) k = true) ∧ (∀(k : t), lt k0 k -> (domn1 (m5 r) k = true) = (domn1 (m5 t6) k = true)) ∧ (∀(k : t), lt k0 k ∧ domn1 (m5 r) k = true -> func1 (m5 r) k = func1 (m5 t6) k) end.
+Proof.
 Admitted.

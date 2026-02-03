@@ -15,6 +15,9 @@ why3shapes
 /data/why3/**/*.lst
 /data/why3/**/*.yaml
 /data/why3/**/*.proof-cache
+/data/why3/frama_c/*/*/rocq/*.json
+/data/why3/frama_c/*/*/*/rocq/*.json
+/data/why3/pearl/*/rocq/*.json
 /.archive
 /results
 /.VCG.cache
@@ -29,3 +32,7 @@ _build
 /data/why3/responses
 /tools/secret.sh
 *.excluded
+*.vo
+*.vos
+*.aux
+*.glob

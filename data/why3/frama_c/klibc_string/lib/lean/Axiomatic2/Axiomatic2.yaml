@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic2.Axiomatic2.p_is_lower: [Axiomatic2.p_is_lower]
+  Axiomatic2.Axiomatic2.p_is_upper: [Axiomatic2.p_is_upper]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.klibc_string.lib.lean.Axiomatic2.Axiomatic2
+prefix_ops: {}
+types: {}

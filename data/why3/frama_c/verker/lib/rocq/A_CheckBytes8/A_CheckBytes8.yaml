@@ -1,0 +1,11 @@
+atoms:
+  A_CheckBytes8.A_CheckBytes8.l_check_bytes8: [l_check_bytes8, A_CheckBytes8.l_check_bytes8]
+axioms:
+  A_CheckBytes8.A_CheckBytes8.fix_l_check_bytes8: [fix_l_check_bytes8, A_CheckBytes8.fix_l_check_bytes8]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_CheckBytes8.A_CheckBytes8
+prefix_ops: {}
+types: {}

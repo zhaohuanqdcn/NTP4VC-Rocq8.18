@@ -1,0 +1,18 @@
+atoms:
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.l_accumulate_1': [l_accumulate_1', A_AccumulateAxiomatic.l_accumulate_1']
+axioms:
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_AccumulateEmpty: [Q_AccumulateEmpty,
+    A_AccumulateAxiomatic.Q_AccumulateEmpty]
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_AccumulateNext: [Q_AccumulateNext,
+    A_AccumulateAxiomatic.Q_AccumulateNext]
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_AccumulateRead: [Q_AccumulateRead,
+    A_AccumulateAxiomatic.Q_AccumulateRead]
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_TL_Accumulate_1': [Q_TL_Accumulate_1',
+    A_AccumulateAxiomatic.Q_TL_Accumulate_1']
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: adjacent_difference_inv.A_AccumulateAxiomatic.A_AccumulateAxiomatic
+prefix_ops: {}
+types: {}

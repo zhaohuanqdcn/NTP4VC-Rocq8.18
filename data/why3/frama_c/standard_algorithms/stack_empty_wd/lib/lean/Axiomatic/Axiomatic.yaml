@@ -1,0 +1,18 @@
+atoms:
+  Axiomatic.Axiomatic.l_capacity: [Axiomatic.l_capacity]
+  Axiomatic.Axiomatic.l_size: [Axiomatic.l_size]
+  Axiomatic.Axiomatic.l_storage: [Axiomatic.l_storage]
+  Axiomatic.Axiomatic.p_empty: [Axiomatic.p_empty]
+  Axiomatic.Axiomatic.p_equal: [Axiomatic.p_equal]
+  Axiomatic.Axiomatic.p_equalranges_1': [Axiomatic.p_equalranges_1']
+  Axiomatic.Axiomatic.p_invariant: [Axiomatic.p_invariant]
+axioms:
+  Axiomatic.Axiomatic.Q_TL_Capacity: Axiomatic.Q_TL_Capacity
+  Axiomatic.Axiomatic.Q_TL_Size: Axiomatic.Q_TL_Size
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.stack_empty_wd.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

@@ -1,0 +1,19 @@
+atoms:
+  Axiomatic19.Axiomatic19.l_l_floatquat_of_rmat_0_max_1': [Axiomatic19.l_l_floatquat_of_rmat_0_max_1']
+  Axiomatic19.Axiomatic19.l_l_floatquat_of_rmat_0_max_t: [Axiomatic19.l_l_floatquat_of_rmat_0_max_t]
+  Axiomatic19.Axiomatic19.l_l_floatquat_of_rmat_1_max_1': [Axiomatic19.l_l_floatquat_of_rmat_1_max_1']
+  Axiomatic19.Axiomatic19.l_l_floatquat_of_rmat_1_max_t: [Axiomatic19.l_l_floatquat_of_rmat_1_max_t]
+  Axiomatic19.Axiomatic19.l_l_floatquat_of_rmat_2_max_1': [Axiomatic19.l_l_floatquat_of_rmat_2_max_1']
+  Axiomatic19.Axiomatic19.l_l_floatquat_of_rmat_2_max_t: [Axiomatic19.l_l_floatquat_of_rmat_2_max_t]
+  Axiomatic19.Axiomatic19.l_l_floatquat_of_rmat_trace_pos_1': [Axiomatic19.l_l_floatquat_of_rmat_trace_pos_1']
+  Axiomatic19.Axiomatic19.l_l_floatquat_of_rmat_trace_pos_t: [Axiomatic19.l_l_floatquat_of_rmat_trace_pos_t]
+  Axiomatic19.Axiomatic19.l_trace_1': [Axiomatic19.l_trace_1']
+  Axiomatic19.Axiomatic19.l_trace_2': [Axiomatic19.l_trace_2']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_quat_of_rmat.lib.lean.Axiomatic19.Axiomatic19
+prefix_ops: {}
+types: {}

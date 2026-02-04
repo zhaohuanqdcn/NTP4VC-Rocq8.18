@@ -1,0 +1,26 @@
+atoms:
+  A_HexToBin.A_HexToBin.l_hex_to_bin: [l_hex_to_bin, A_HexToBin.l_hex_to_bin]
+axioms:
+  A_HexToBin.A_HexToBin.Q_A0: [Q_A0, A_HexToBin.Q_A0]
+  A_HexToBin.A_HexToBin.Q_A1: [Q_A1, A_HexToBin.Q_A1]
+  A_HexToBin.A_HexToBin.Q_A2: [Q_A2, A_HexToBin.Q_A2]
+  A_HexToBin.A_HexToBin.Q_A3: [Q_A3, A_HexToBin.Q_A3]
+  A_HexToBin.A_HexToBin.Q_A4: [Q_A4, A_HexToBin.Q_A4]
+  A_HexToBin.A_HexToBin.Q_A5: [Q_A5, A_HexToBin.Q_A5]
+  A_HexToBin.A_HexToBin.Q_A6: [Q_A6, A_HexToBin.Q_A6]
+  A_HexToBin.A_HexToBin.Q_A7: [Q_A7, A_HexToBin.Q_A7]
+  A_HexToBin.A_HexToBin.Q_A8: [Q_A8, A_HexToBin.Q_A8]
+  A_HexToBin.A_HexToBin.Q_A9: [Q_A9, A_HexToBin.Q_A9]
+  A_HexToBin.A_HexToBin.Q_AA: [Q_AA, A_HexToBin.Q_AA]
+  A_HexToBin.A_HexToBin.Q_AB: [Q_AB, A_HexToBin.Q_AB]
+  A_HexToBin.A_HexToBin.Q_AC: [Q_AC, A_HexToBin.Q_AC]
+  A_HexToBin.A_HexToBin.Q_AD: [Q_AD, A_HexToBin.Q_AD]
+  A_HexToBin.A_HexToBin.Q_AE: [Q_AE, A_HexToBin.Q_AE]
+  A_HexToBin.A_HexToBin.Q_AF: [Q_AF, A_HexToBin.Q_AF]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_HexToBin.A_HexToBin
+prefix_ops: {}
+types: {}

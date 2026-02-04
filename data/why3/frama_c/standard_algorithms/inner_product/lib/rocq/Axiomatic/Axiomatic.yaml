@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_unchanged_1': [p_unchanged_1', Axiomatic.p_unchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: inner_product.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

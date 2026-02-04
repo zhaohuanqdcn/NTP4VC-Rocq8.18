@@ -1,0 +1,19 @@
+atoms:
+  S9_RealVect3_s.S9_RealVect3_s.eqs9_realvect3_s: [eqs9_realvect3_s, S9_RealVect3_s_S9_RealVect3_s.eqs9_realvect3_s]
+  S9_RealVect3_s.S9_RealVect3_s.f9_realvect3_s_x: [f9_realvect3_s_x, S9_RealVect3_s_S9_RealVect3_s.f9_realvect3_s_x,
+    S9_RealVect3_s_S9_RealVect3_s.s9_realvect3_s.f9_realvect3_s_x]
+  S9_RealVect3_s.S9_RealVect3_s.f9_realvect3_s_y: [f9_realvect3_s_y, S9_RealVect3_s_S9_RealVect3_s.f9_realvect3_s_y,
+    S9_RealVect3_s_S9_RealVect3_s.s9_realvect3_s.f9_realvect3_s_y]
+  S9_RealVect3_s.S9_RealVect3_s.f9_realvect3_s_z: [f9_realvect3_s_z, S9_RealVect3_s_S9_RealVect3_s.f9_realvect3_s_z,
+    S9_RealVect3_s_S9_RealVect3_s.s9_realvect3_s.f9_realvect3_s_z]
+  S9_RealVect3_s.S9_RealVect3_s.s9_realvect3_s'mk: [s9_realvect3_s'mk, S9_RealVect3_s_S9_RealVect3_s.s9_realvect3_s'mk,
+    S9_RealVect3_s_S9_RealVect3_s.s9_realvect3_s.s9_realvect3_s'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: airborne.S9_RealVect3_s_S9_RealVect3_s
+prefix_ops: {}
+types:
+  S9_RealVect3_s.S9_RealVect3_s.s9_realvect3_s: [s9_realvect3_s, S9_RealVect3_s_S9_RealVect3_s.s9_realvect3_s]

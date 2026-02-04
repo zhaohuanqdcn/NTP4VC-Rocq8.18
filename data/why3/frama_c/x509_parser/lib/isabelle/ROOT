@@ -1,0 +1,8 @@
+session x509_parser = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "Compound_Compound"
+  "Globals_Globals"
+  "Axiomatic12_Axiomatic12"
+  "S22_S22"

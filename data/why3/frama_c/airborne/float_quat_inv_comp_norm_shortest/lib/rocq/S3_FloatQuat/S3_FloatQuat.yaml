@@ -1,0 +1,15 @@
+atoms:
+  S3_FloatQuat.S3_FloatQuat.f3_floatquat_qi: [f3_floatquat_qi, S3_FloatQuat.f3_floatquat_qi]
+  S3_FloatQuat.S3_FloatQuat.f3_floatquat_qx: [f3_floatquat_qx, S3_FloatQuat.f3_floatquat_qx]
+  S3_FloatQuat.S3_FloatQuat.f3_floatquat_qy: [f3_floatquat_qy, S3_FloatQuat.f3_floatquat_qy]
+  S3_FloatQuat.S3_FloatQuat.f3_floatquat_qz: [f3_floatquat_qz, S3_FloatQuat.f3_floatquat_qz]
+  S3_FloatQuat.S3_FloatQuat.s3_floatquat'mk: [s3_floatquat'mk, S3_FloatQuat.s3_floatquat'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_quat_inv_comp_norm_shortest.S3_FloatQuat.S3_FloatQuat
+prefix_ops: {}
+types:
+  S3_FloatQuat.S3_FloatQuat.s3_floatquat: [s3_floatquat, S3_FloatQuat.s3_floatquat]

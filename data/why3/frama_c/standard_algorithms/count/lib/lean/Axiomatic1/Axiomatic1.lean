@@ -1,0 +1,11 @@
+import Why3.Base
+import Why3.Qed.Qed
+import Why3.Memory.Memory
+import frama_c.standard_algorithms.count.lib.lean.A_Count.A_Count
+import Why3.Cint.Cint
+import frama_c.standard_algorithms.count.lib.lean.Compound.Compound
+import frama_c.standard_algorithms.count.lib.lean.Axiomatic.Axiomatic
+open Classical
+open Lean4Why3
+namespace Axiomatic1
+end Axiomatic1

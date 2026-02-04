@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic15.Axiomatic15.p_finite_floatrates: [p_finite_floatrates, Axiomatic15.p_finite_floatrates]
+  Axiomatic15.Axiomatic15.p_rvalid_floatrates: [p_rvalid_floatrates, Axiomatic15.p_rvalid_floatrates]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_quat_integrate.Axiomatic15.Axiomatic15
+prefix_ops: {}
+types: {}

@@ -1,0 +1,13 @@
+atoms:
+  A_Index_of_item.A_Index_of_item.l_index_of: [l_index_of, A_Index_of_item.l_index_of]
+axioms:
+  A_Index_of_item.A_Index_of_item.Q_found_item: [Q_found_item, A_Index_of_item.Q_found_item]
+  A_Index_of_item.A_Index_of_item.Q_no_more_elements: [Q_no_more_elements, A_Index_of_item.Q_no_more_elements]
+  A_Index_of_item.A_Index_of_item.Q_not_the_item: [Q_not_the_item, A_Index_of_item.Q_not_the_item]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: contiki_list.A_Index_of_item.A_Index_of_item
+prefix_ops: {}
+types: {}

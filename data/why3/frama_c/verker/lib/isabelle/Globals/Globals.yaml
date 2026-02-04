@@ -1,0 +1,11 @@
+atoms: {}
+axioms:
+  Globals.Globals.Q_G_ccmp_2604_linked: Globals_Globals.Q_G_ccmp_2604_linked
+  Globals.Globals.Q_G_ccmp_2604_region: Globals_Globals.Q_G_ccmp_2604_region
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.Globals_Globals
+prefix_ops: {}
+types: {}

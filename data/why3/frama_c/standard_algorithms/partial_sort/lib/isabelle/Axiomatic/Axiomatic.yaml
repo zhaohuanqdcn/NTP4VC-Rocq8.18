@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.p_partition: [p_partition, Axiomatic_Axiomatic.p_partition]
+  Axiomatic.Axiomatic.p_sorted_1': [p_sorted_1', Axiomatic_Axiomatic.p_sorted_1']
+  Axiomatic.Axiomatic.p_unchanged_1': [p_unchanged_1', Axiomatic_Axiomatic.p_unchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

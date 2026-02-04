@@ -1,0 +1,11 @@
+atoms: {}
+axioms:
+  Globals.Globals.Q_G_ccmp_2604_linked: Globals.Q_G_ccmp_2604_linked
+  Globals.Globals.Q_G_ccmp_2604_region: Globals.Q_G_ccmp_2604_region
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.Globals.Globals
+prefix_ops: {}
+types: {}

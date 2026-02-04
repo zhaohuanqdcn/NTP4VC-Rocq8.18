@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_length_of_str_is: [p_length_of_str_is, Axiomatic_Axiomatic.p_length_of_str_is]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: klibc_stdio.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

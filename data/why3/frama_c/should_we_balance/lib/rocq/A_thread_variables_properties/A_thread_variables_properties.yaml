@@ -1,0 +1,11 @@
+atoms:
+  A_thread_variables_properties.A_thread_variables_properties.l_size: [l_size, A_thread_variables_properties.l_size]
+axioms:
+  A_thread_variables_properties.A_thread_variables_properties.Q_some: [Q_some, A_thread_variables_properties.Q_some]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: should_we_balance.A_thread_variables_properties.A_thread_variables_properties
+prefix_ops: {}
+types: {}

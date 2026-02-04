@@ -1,0 +1,5 @@
+session airborne = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "S2_FloatVect3_S2_FloatVect3"

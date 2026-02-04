@@ -1,0 +1,9 @@
+atoms: {}
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.should_we_balance.lib.lean.Compound.Compound
+prefix_ops: {}
+types: {}

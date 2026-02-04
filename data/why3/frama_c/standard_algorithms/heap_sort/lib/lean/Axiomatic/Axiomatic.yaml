@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_unchanged_1': [Axiomatic.p_unchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.heap_sort.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

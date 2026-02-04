@@ -1,0 +1,13 @@
+atoms:
+  Axiomatic1.Axiomatic1.l_heapparent: [Axiomatic1.l_heapparent]
+  Axiomatic1.Axiomatic1.p_isheap: [Axiomatic1.p_isheap]
+  Axiomatic1.Axiomatic1.p_multisetunchanged_1': [Axiomatic1.p_multisetunchanged_1']
+  Axiomatic1.Axiomatic1.p_sorted_1': [Axiomatic1.p_sorted_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.heap_sort.lib.lean.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

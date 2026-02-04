@@ -1,0 +1,6 @@
+session c_cursor = NTP4Verif +
+sessions
+  "Why3STD"
+  "mach"
+theories
+  "ccursor_PtrCursor"

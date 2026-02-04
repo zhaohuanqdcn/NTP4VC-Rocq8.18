@@ -1,0 +1,7 @@
+session should_we_balance = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "A_thread_variables_properties_A_thread_variables_properties"
+  "Compound_Compound"
+  "A_schedule_cpumask_A_schedule_cpumask"

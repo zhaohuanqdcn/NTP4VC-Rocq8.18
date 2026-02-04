@@ -1,0 +1,5 @@
+session standard_algorithms = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "Axiomatic_Axiomatic"

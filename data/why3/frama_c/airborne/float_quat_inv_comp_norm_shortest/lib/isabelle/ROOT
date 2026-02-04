@@ -1,0 +1,5 @@
+session airborne = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "S3_FloatQuat_S3_FloatQuat"

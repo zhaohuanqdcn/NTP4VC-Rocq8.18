@@ -1,0 +1,17 @@
+atoms:
+  A_DifferenceAxiomatic.A_DifferenceAxiomatic.l_difference: [l_difference, A_DifferenceAxiomatic.l_difference]
+axioms:
+  A_DifferenceAxiomatic.A_DifferenceAxiomatic.Q_DifferenceEmptyOrSingle: [Q_DifferenceEmptyOrSingle,
+    A_DifferenceAxiomatic.Q_DifferenceEmptyOrSingle]
+  A_DifferenceAxiomatic.A_DifferenceAxiomatic.Q_DifferenceNext: [Q_DifferenceNext,
+    A_DifferenceAxiomatic.Q_DifferenceNext]
+  A_DifferenceAxiomatic.A_DifferenceAxiomatic.Q_DifferenceRead: [Q_DifferenceRead,
+    A_DifferenceAxiomatic.Q_DifferenceRead]
+  A_DifferenceAxiomatic.A_DifferenceAxiomatic.Q_TL_Difference: [Q_TL_Difference, A_DifferenceAxiomatic.Q_TL_Difference]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: adjacent_difference_inv.A_DifferenceAxiomatic.A_DifferenceAxiomatic
+prefix_ops: {}
+types: {}

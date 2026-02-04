@@ -1,0 +1,11 @@
+atoms:
+  A_MemSet.A_MemSet.l_memset: [l_memset, A_MemSet.l_memset]
+axioms:
+  A_MemSet.A_MemSet.Q_memset_def: [Q_memset_def, A_MemSet.Q_memset_def]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: contiki_memb.A_MemSet.A_MemSet
+prefix_ops: {}
+types: {}

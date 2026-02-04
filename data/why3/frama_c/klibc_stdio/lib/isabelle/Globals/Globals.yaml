@@ -1,0 +1,15 @@
+atoms: {}
+axioms:
+  Globals.Globals.Q_G___stdio_headnode_1722_linked: Globals_Globals.Q_G___stdio_headnode_1722_linked
+  Globals.Globals.Q_G___stdio_headnode_1722_region: Globals_Globals.Q_G___stdio_headnode_1722_region
+  Globals.Globals.Q_L___va_arg0_38234_linked: Globals_Globals.Q_L___va_arg0_38234_linked
+  Globals.Globals.Q_L___va_arg0_38234_region: Globals_Globals.Q_L___va_arg0_38234_region
+  Globals.Globals.Q_L_ch_20234_linked: Globals_Globals.Q_L_ch_20234_linked
+  Globals.Globals.Q_L_ch_20234_region: Globals_Globals.Q_L_ch_20234_region
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: klibc_stdio.Globals_Globals
+prefix_ops: {}
+types: {}

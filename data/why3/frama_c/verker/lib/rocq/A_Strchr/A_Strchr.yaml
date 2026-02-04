@@ -1,0 +1,11 @@
+atoms:
+  A_Strchr.A_Strchr.l_strchr: [l_strchr, A_Strchr.l_strchr]
+axioms:
+  A_Strchr.A_Strchr.fix_l_strchr: [fix_l_strchr, A_Strchr.fix_l_strchr]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_Strchr.A_Strchr
+prefix_ops: {}
+types: {}

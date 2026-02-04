@@ -1,0 +1,17 @@
+atoms:
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.l_innerproduct: [l_innerproduct,
+    A_InnerProductAxiomatic.l_innerproduct]
+axioms:
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.Q_InnerProductEmpty: [Q_InnerProductEmpty,
+    A_InnerProductAxiomatic.Q_InnerProductEmpty]
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.Q_InnerProductNext: [Q_InnerProductNext,
+    A_InnerProductAxiomatic.Q_InnerProductNext]
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.Q_InnerProductRead: [Q_InnerProductRead,
+    A_InnerProductAxiomatic.Q_InnerProductRead]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: inner_product.A_InnerProductAxiomatic.A_InnerProductAxiomatic
+prefix_ops: {}
+types: {}

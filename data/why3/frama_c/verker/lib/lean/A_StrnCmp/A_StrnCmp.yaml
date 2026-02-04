@@ -1,0 +1,13 @@
+atoms:
+  A_StrnCmp.A_StrnCmp.l_strncmp_2': [A_StrnCmp.l_strncmp_2']
+  A_StrnCmp.A_StrnCmp.p_strnequal: [A_StrnCmp.p_strnequal]
+axioms:
+  A_StrnCmp.A_StrnCmp.Q_TL_strncmp_2': A_StrnCmp.Q_TL_strncmp_2'
+  A_StrnCmp.A_StrnCmp.fix_l_strncmp_2': A_StrnCmp.fix_l_strncmp_2'
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.A_StrnCmp.A_StrnCmp
+prefix_ops: {}
+types: {}

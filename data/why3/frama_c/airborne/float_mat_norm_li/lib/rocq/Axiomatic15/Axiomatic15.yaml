@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic15.Axiomatic15.p_rvalid_float_mat_2': [p_rvalid_float_mat_2', Axiomatic15.p_rvalid_float_mat_2']
+  Axiomatic15.Axiomatic15.p_valid_size: [p_valid_size, Axiomatic15.p_valid_size]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_mat_norm_li.Axiomatic15.Axiomatic15
+prefix_ops: {}
+types: {}

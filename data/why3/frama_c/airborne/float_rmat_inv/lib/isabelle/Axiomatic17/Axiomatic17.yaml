@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic17.Axiomatic17.l_l_rmat_of_floatrmat: [l_l_rmat_of_floatrmat, Axiomatic17_Axiomatic17.l_l_rmat_of_floatrmat]
+  Axiomatic17.Axiomatic17.l_transpose: [l_transpose, Axiomatic17_Axiomatic17.l_transpose]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: airborne.Axiomatic17_Axiomatic17
+prefix_ops: {}
+types: {}

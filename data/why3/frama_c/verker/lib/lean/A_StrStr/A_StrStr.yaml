@@ -1,0 +1,11 @@
+atoms:
+  A_StrStr.A_StrStr.l_strstr: [A_StrStr.l_strstr]
+  A_StrStr.A_StrStr.p_strmatch: [A_StrStr.p_strmatch]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.A_StrStr.A_StrStr
+prefix_ops: {}
+types: {}

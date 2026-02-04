@@ -1,0 +1,3 @@
+session foveoos11_cm = NTP4Verif +
+theories
+  "tree_max_BinTree"

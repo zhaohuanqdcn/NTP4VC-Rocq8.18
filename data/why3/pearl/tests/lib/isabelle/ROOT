@@ -1,0 +1,18 @@
+session tests = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "execute_tests_Int63Test"
+  "queue_test_Test"
+  "c_extraction_R"
+  "lemma_functions_LemmaFunction1"
+  "stack_test_Test"
+  "partial_S"
+  "random_test_Test"
+  "test_elim_UnusedAbs"
+  "pqueue_test_Test"
+  "array_test_TestArray"
+  "matrix_test_TestMatrix"
+  "int32_test_TestInt32"
+  "rac_Local"
+  "hashtbl_test_TestHashtbl"

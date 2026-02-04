@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.p_lowerbound_1': [p_lowerbound_1', Axiomatic_Axiomatic.p_lowerbound_1']
+  Axiomatic.Axiomatic.p_minelement: [p_minelement, Axiomatic_Axiomatic.p_minelement]
+  Axiomatic.Axiomatic.p_strictlowerbound_1': [p_strictlowerbound_1', Axiomatic_Axiomatic.p_strictlowerbound_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

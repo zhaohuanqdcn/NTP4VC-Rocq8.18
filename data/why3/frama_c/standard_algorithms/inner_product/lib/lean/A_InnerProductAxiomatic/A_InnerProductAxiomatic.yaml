@@ -1,0 +1,13 @@
+atoms:
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.l_innerproduct: [A_InnerProductAxiomatic.l_innerproduct]
+axioms:
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.Q_InnerProductEmpty: A_InnerProductAxiomatic.Q_InnerProductEmpty
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.Q_InnerProductNext: A_InnerProductAxiomatic.Q_InnerProductNext
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.Q_InnerProductRead: A_InnerProductAxiomatic.Q_InnerProductRead
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.inner_product.lib.lean.A_InnerProductAxiomatic.A_InnerProductAxiomatic
+prefix_ops: {}
+types: {}

@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.p_sorted_1': [Axiomatic.p_sorted_1']
+  Axiomatic.Axiomatic.p_strictlowerbound_1': [Axiomatic.p_strictlowerbound_1']
+  Axiomatic.Axiomatic.p_upperbound_1': [Axiomatic.p_upperbound_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.upper_bound.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

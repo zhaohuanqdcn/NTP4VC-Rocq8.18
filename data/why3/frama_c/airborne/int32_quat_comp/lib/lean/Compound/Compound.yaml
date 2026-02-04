@@ -1,0 +1,9 @@
+atoms: {}
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.int32_quat_comp.lib.lean.Compound.Compound
+prefix_ops: {}
+types: {}

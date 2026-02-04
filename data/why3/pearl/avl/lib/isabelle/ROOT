@@ -1,0 +1,3 @@
+session avl = NTP4Verif +
+theories
+  "avl_SelectionTypes"

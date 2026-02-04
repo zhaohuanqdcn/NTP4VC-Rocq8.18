@@ -1,0 +1,18 @@
+atoms:
+  Compound.Compound.array1_float: [array1_float, Compound_Compound.array1_float]
+  Compound.Compound.load_s5_floatrmat: [load_s5_floatrmat, Compound_Compound.load_s5_floatrmat]
+axioms:
+  Compound.Compound.Q_Array1_float_access: Compound_Compound.Q_Array1_float_access
+  Compound.Compound.Q_Array1_float_eqmem_Mflt: Compound_Compound.Q_Array1_float_eqmem_Mflt
+  Compound.Compound.Q_Array1_float_havoc_Mflt: Compound_Compound.Q_Array1_float_havoc_Mflt
+  Compound.Compound.Q_Array1_float_update_Mflt: Compound_Compound.Q_Array1_float_update_Mflt
+  Compound.Compound.Q_Load_S5_FloatRMat_eqmem_Mflt: Compound_Compound.Q_Load_S5_FloatRMat_eqmem_Mflt
+  Compound.Compound.Q_Load_S5_FloatRMat_havoc_Mflt: Compound_Compound.Q_Load_S5_FloatRMat_havoc_Mflt
+  Compound.Compound.Q_Load_S5_FloatRMat_update_Mflt: Compound_Compound.Q_Load_S5_FloatRMat_update_Mflt
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: airborne.Compound_Compound
+prefix_ops: {}
+types: {}

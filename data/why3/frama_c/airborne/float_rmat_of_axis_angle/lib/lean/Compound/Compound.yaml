@@ -1,0 +1,9 @@
+atoms: {}
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_rmat_of_axis_angle.lib.lean.Compound.Compound
+prefix_ops: {}
+types: {}

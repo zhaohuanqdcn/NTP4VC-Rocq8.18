@@ -1,0 +1,14 @@
+atoms:
+  S12_RealQuatVect_s.S12_RealQuatVect_s.eqs12_realquatvect_s: [S12_RealQuatVect_s.eqs12_realquatvect_s]
+  S12_RealQuatVect_s.S12_RealQuatVect_s.f12_realquatvect_s_scalar: [S12_RealQuatVect_s.s12_realquatvect_s.f12_realquatvect_s_scalar]
+  S12_RealQuatVect_s.S12_RealQuatVect_s.f12_realquatvect_s_vect: [S12_RealQuatVect_s.s12_realquatvect_s.f12_realquatvect_s_vect]
+  S12_RealQuatVect_s.S12_RealQuatVect_s.s12_realquatvect_s'mk: [S12_RealQuatVect_s.s12_realquatvect_s.mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_quat_comp.lib.lean.S12_RealQuatVect_s.S12_RealQuatVect_s
+prefix_ops: {}
+types:
+  S12_RealQuatVect_s.S12_RealQuatVect_s.s12_realquatvect_s: [S12_RealQuatVect_s.s12_realquatvect_s]

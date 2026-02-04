@@ -1,0 +1,16 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_lowerbound_1': [Axiomatic1.p_lowerbound_1']
+  Axiomatic1.Axiomatic1.p_minelement: [Axiomatic1.p_minelement]
+  Axiomatic1.Axiomatic1.p_multisetunchanged_1': [Axiomatic1.p_multisetunchanged_1']
+  Axiomatic1.Axiomatic1.p_sorted_1': [Axiomatic1.p_sorted_1']
+  Axiomatic1.Axiomatic1.p_strictlowerbound_1': [Axiomatic1.p_strictlowerbound_1']
+  Axiomatic1.Axiomatic1.p_strictupperbound_1': [Axiomatic1.p_strictupperbound_1']
+  Axiomatic1.Axiomatic1.p_upperbound_1': [Axiomatic1.p_upperbound_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.selection_sort.lib.lean.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

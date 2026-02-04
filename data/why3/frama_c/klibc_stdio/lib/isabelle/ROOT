@@ -1,0 +1,9 @@
+session klibc_stdio = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "Compound_Compound"
+  "Axiomatic_Axiomatic"
+  "Axiomatic3_Axiomatic3"
+  "A_Length_A_Length"
+  "Globals_Globals"

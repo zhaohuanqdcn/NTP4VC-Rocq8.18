@@ -1,0 +1,15 @@
+atoms:
+  Axiomatic17.Axiomatic17.l_determinant: [l_determinant, Axiomatic17.l_determinant]
+  Axiomatic17.Axiomatic17.l_l_rmat_of_floatrmat: [l_l_rmat_of_floatrmat, Axiomatic17.l_l_rmat_of_floatrmat]
+  Axiomatic17.Axiomatic17.l_mult_realrmat: [l_mult_realrmat, Axiomatic17.l_mult_realrmat]
+  Axiomatic17.Axiomatic17.l_transpose: [l_transpose, Axiomatic17.l_transpose]
+  Axiomatic17.Axiomatic17.p_rotation_matrix: [p_rotation_matrix, Axiomatic17.p_rotation_matrix]
+  Axiomatic17.Axiomatic17.p_special_orthogonal: [p_special_orthogonal, Axiomatic17.p_special_orthogonal]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_rmat_of_eulers_312.Axiomatic17.Axiomatic17
+prefix_ops: {}
+types: {}

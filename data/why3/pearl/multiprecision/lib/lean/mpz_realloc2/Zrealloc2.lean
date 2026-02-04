@@ -1,0 +1,21 @@
+import Why3.Base
+import Why3.why3.Ref.Ref
+import Why3.map.Const
+import Why3.map.MapEq
+import Why3.mach.int.Unsigned
+import Why3.mach.c.C
+import pearl.multiprecision.lib.lean.lemmas.Lemmas
+import pearl.multiprecision.lib.lean.types.Config
+import pearl.multiprecision.lib.lean.types.Types
+import pearl.multiprecision.lib.lean.types.Int32Eq
+import pearl.multiprecision.lib.lean.types.UInt64Eq
+import pearl.multiprecision.lib.lean.util.Util
+import pearl.multiprecision.lib.lean.ptralias.Alias
+import pearl.multiprecision.lib.lean.compare.Compare
+import pearl.multiprecision.lib.lean.mpz.Z
+import pearl.multiprecision.lib.lean.mpz.Zutil
+open Classical
+open Lean4Why3
+namespace Zrealloc2
+noncomputable def alloc_of_bits (bits : ℤ) := if bits ≤ (0 : ℤ) then (1 : ℤ) else (bits + (63 : ℤ)) / (64 : ℤ)
+end Zrealloc2

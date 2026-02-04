@@ -1,0 +1,20 @@
+theory Globals_Globals
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed" "Why3STD.Memory_Memory"
+begin
+axiomatization where Q_L_matchmap_16405_region:   "region (16406 :: int) = (2 :: int)"
+axiomatization where Q_L_matchmap_16405_linked:   "t (16406 :: int) = (0 :: int)"
+ if "linked t"
+  for t :: "int \<Rightarrow> int"
+axiomatization where Q_L_numbuf_7638_region:   "region (7639 :: int) = (2 :: int)"
+axiomatization where Q_L_numbuf_7638_linked:   "t (7639 :: int) = (0 :: int)"
+ if "linked t"
+  for t :: "int \<Rightarrow> int"
+axiomatization where Q_G_message_16589_region:   "region (16590 :: int) = (0 :: int)"
+axiomatization where Q_G_message_16589_linked:   "t (16590 :: int) = (32 :: int)"
+ if "linked t"
+  for t :: "int \<Rightarrow> int"
+axiomatization where Q_G_buf_16729_region:   "region (16730 :: int) = (0 :: int)"
+axiomatization where Q_G_buf_16729_linked:   "t (16730 :: int) = (64 :: int)"
+ if "linked t"
+  for t :: "int \<Rightarrow> int"
+end

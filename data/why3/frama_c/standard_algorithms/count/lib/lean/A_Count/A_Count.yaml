@@ -1,0 +1,14 @@
+atoms:
+  A_Count.A_Count.l_count_1': [A_Count.l_count_1']
+axioms:
+  A_Count.A_Count.Q_CountSectionEmpty: A_Count.Q_CountSectionEmpty
+  A_Count.A_Count.Q_CountSectionHit: A_Count.Q_CountSectionHit
+  A_Count.A_Count.Q_CountSectionMiss: A_Count.Q_CountSectionMiss
+  A_Count.A_Count.Q_CountSectionRead: A_Count.Q_CountSectionRead
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.count.lib.lean.A_Count.A_Count
+prefix_ops: {}
+types: {}

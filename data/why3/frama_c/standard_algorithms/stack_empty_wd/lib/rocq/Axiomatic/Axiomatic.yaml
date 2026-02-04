@@ -1,0 +1,18 @@
+atoms:
+  Axiomatic.Axiomatic.l_capacity: [l_capacity, Axiomatic.l_capacity]
+  Axiomatic.Axiomatic.l_size: [l_size, Axiomatic.l_size]
+  Axiomatic.Axiomatic.l_storage: [l_storage, Axiomatic.l_storage]
+  Axiomatic.Axiomatic.p_empty: [p_empty, Axiomatic.p_empty]
+  Axiomatic.Axiomatic.p_equal: [p_equal, Axiomatic.p_equal]
+  Axiomatic.Axiomatic.p_equalranges_1': [p_equalranges_1', Axiomatic.p_equalranges_1']
+  Axiomatic.Axiomatic.p_invariant: [p_invariant, Axiomatic.p_invariant]
+axioms:
+  Axiomatic.Axiomatic.Q_TL_Capacity: [Q_TL_Capacity, Axiomatic.Q_TL_Capacity]
+  Axiomatic.Axiomatic.Q_TL_Size: [Q_TL_Size, Axiomatic.Q_TL_Size]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: stack_empty_wd.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

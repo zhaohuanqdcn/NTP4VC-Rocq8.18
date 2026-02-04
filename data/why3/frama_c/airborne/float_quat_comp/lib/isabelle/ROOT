@@ -1,0 +1,9 @@
+session airborne = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "Compound_Compound"
+  "Axiomatic15_Axiomatic15"
+  "S9_RealVect3_s_S9_RealVect3_s"
+  "S12_RealQuatVect_s_S12_RealQuatVect_s"
+  "Axiomatic19_Axiomatic19"

@@ -1,0 +1,15 @@
+atoms:
+  Compound.Compound.shift___anonstruct__ext_oid_14: [shift___anonstruct__ext_oid_14,
+    Compound_Compound.shift___anonstruct__ext_oid_14]
+  Compound.Compound.shift___anonstruct__kp_oid_13: [shift___anonstruct__kp_oid_13,
+    Compound_Compound.shift___anonstruct__kp_oid_13]
+  Compound.Compound.shift___anonstruct__name_oid_11: [shift___anonstruct__name_oid_11,
+    Compound_Compound.shift___anonstruct__name_oid_11]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: x509_parser.Compound_Compound
+prefix_ops: {}
+types: {}

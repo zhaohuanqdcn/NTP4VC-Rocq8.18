@@ -1,0 +1,20 @@
+atoms:
+  S8_Int32Quat.S8_Int32Quat.f8_int32quat_qi: [f8_int32quat_qi, S8_Int32Quat_S8_Int32Quat.f8_int32quat_qi,
+    S8_Int32Quat_S8_Int32Quat.s8_int32quat.f8_int32quat_qi]
+  S8_Int32Quat.S8_Int32Quat.f8_int32quat_qx: [f8_int32quat_qx, S8_Int32Quat_S8_Int32Quat.f8_int32quat_qx,
+    S8_Int32Quat_S8_Int32Quat.s8_int32quat.f8_int32quat_qx]
+  S8_Int32Quat.S8_Int32Quat.f8_int32quat_qy: [f8_int32quat_qy, S8_Int32Quat_S8_Int32Quat.f8_int32quat_qy,
+    S8_Int32Quat_S8_Int32Quat.s8_int32quat.f8_int32quat_qy]
+  S8_Int32Quat.S8_Int32Quat.f8_int32quat_qz: [f8_int32quat_qz, S8_Int32Quat_S8_Int32Quat.f8_int32quat_qz,
+    S8_Int32Quat_S8_Int32Quat.s8_int32quat.f8_int32quat_qz]
+  S8_Int32Quat.S8_Int32Quat.s8_int32quat'mk: [s8_int32quat'mk, S8_Int32Quat_S8_Int32Quat.s8_int32quat'mk,
+    S8_Int32Quat_S8_Int32Quat.s8_int32quat.s8_int32quat'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: airborne.S8_Int32Quat_S8_Int32Quat
+prefix_ops: {}
+types:
+  S8_Int32Quat.S8_Int32Quat.s8_int32quat: [s8_int32quat, S8_Int32Quat_S8_Int32Quat.s8_int32quat]

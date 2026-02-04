@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic12.Axiomatic12.p_empty_block: [p_empty_block, Axiomatic12_Axiomatic12.p_empty_block]
+  Axiomatic12.Axiomatic12.p_valid_or_empty: [p_valid_or_empty, Axiomatic12_Axiomatic12.p_valid_or_empty]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: contiki_memb.Axiomatic12_Axiomatic12
+prefix_ops: {}
+types: {}

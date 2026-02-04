@@ -1,0 +1,14 @@
+atoms:
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.l_accumulate: [l_accumulate, A_AccumulateAxiomatic_A_AccumulateAxiomatic.l_accumulate]
+axioms:
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_AccumulateEmpty: A_AccumulateAxiomatic_A_AccumulateAxiomatic.Q_AccumulateEmpty
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_AccumulateNext: A_AccumulateAxiomatic_A_AccumulateAxiomatic.Q_AccumulateNext
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_AccumulateRead: A_AccumulateAxiomatic_A_AccumulateAxiomatic.Q_AccumulateRead
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_TL_Accumulate: A_AccumulateAxiomatic_A_AccumulateAxiomatic.Q_TL_Accumulate
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.A_AccumulateAxiomatic_A_AccumulateAxiomatic
+prefix_ops: {}
+types: {}

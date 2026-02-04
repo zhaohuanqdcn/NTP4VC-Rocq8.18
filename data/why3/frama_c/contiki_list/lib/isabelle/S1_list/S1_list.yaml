@@ -1,0 +1,16 @@
+atoms:
+  S1_list.S1_list.eqs1_list: [eqs1_list, S1_list_S1_list.eqs1_list]
+  S1_list.S1_list.f1_list_next: [f1_list_next, S1_list_S1_list.f1_list_next, S1_list_S1_list.s1_list.f1_list_next]
+  S1_list.S1_list.f1_list_x: [f1_list_x, S1_list_S1_list.f1_list_x, S1_list_S1_list.s1_list.f1_list_x]
+  S1_list.S1_list.f1_list_y: [f1_list_y, S1_list_S1_list.f1_list_y, S1_list_S1_list.s1_list.f1_list_y]
+  S1_list.S1_list.f1_list_z: [f1_list_z, S1_list_S1_list.f1_list_z, S1_list_S1_list.s1_list.f1_list_z]
+  S1_list.S1_list.s1_list'mk: [s1_list'mk, S1_list_S1_list.s1_list'mk, S1_list_S1_list.s1_list.s1_list'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: contiki_list.S1_list_S1_list
+prefix_ops: {}
+types:
+  S1_list.S1_list.s1_list: [s1_list, S1_list_S1_list.s1_list]

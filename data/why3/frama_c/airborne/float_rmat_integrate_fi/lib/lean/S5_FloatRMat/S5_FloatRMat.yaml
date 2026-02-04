@@ -1,0 +1,12 @@
+atoms:
+  S5_FloatRMat.S5_FloatRMat.f5_floatrmat_m: [S5_FloatRMat.s5_floatrmat.f5_floatrmat_m]
+  S5_FloatRMat.S5_FloatRMat.s5_floatrmat'mk: [S5_FloatRMat.s5_floatrmat.mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_rmat_integrate_fi.lib.lean.S5_FloatRMat.S5_FloatRMat
+prefix_ops: {}
+types:
+  S5_FloatRMat.S5_FloatRMat.s5_floatrmat: [S5_FloatRMat.s5_floatrmat]

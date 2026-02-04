@@ -1,0 +1,12 @@
+atoms:
+  A_IntBase.A_IntBase.p_is_dec: [A_IntBase.p_is_dec]
+  A_IntBase.A_IntBase.p_is_hex: [A_IntBase.p_is_hex]
+  A_IntBase.A_IntBase.p_is_oct: [A_IntBase.p_is_oct]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.A_IntBase.A_IntBase
+prefix_ops: {}
+types: {}

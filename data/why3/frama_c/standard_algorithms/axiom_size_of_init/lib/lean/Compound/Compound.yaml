@@ -1,0 +1,9 @@
+atoms: {}
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.axiom_size_of_init.lib.lean.Compound.Compound
+prefix_ops: {}
+types: {}

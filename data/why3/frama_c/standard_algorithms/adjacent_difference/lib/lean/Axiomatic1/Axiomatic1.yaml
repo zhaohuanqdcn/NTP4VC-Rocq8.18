@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_adjacentdifference: [Axiomatic1.p_adjacentdifference]
+  Axiomatic1.Axiomatic1.p_adjacentdifferencebounds: [Axiomatic1.p_adjacentdifferencebounds]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.adjacent_difference.lib.lean.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

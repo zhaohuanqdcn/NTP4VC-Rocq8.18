@@ -1,0 +1,8 @@
+session airborne = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "S5_FloatRMat_S5_FloatRMat"
+  "Compound_Compound"
+  "Axiomatic15_Axiomatic15"
+  "Globals_Globals"

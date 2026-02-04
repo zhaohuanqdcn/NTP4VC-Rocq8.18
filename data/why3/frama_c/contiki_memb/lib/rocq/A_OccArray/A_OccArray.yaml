@@ -1,0 +1,13 @@
+atoms:
+  A_OccArray.A_OccArray.l_occ_a: [l_occ_a, A_OccArray.l_occ_a]
+axioms:
+  A_OccArray.A_OccArray.Q_end_occ_a: [Q_end_occ_a, A_OccArray.Q_end_occ_a]
+  A_OccArray.A_OccArray.Q_iter_occ_a_false: [Q_iter_occ_a_false, A_OccArray.Q_iter_occ_a_false]
+  A_OccArray.A_OccArray.Q_iter_occ_a_true: [Q_iter_occ_a_true, A_OccArray.Q_iter_occ_a_true]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: contiki_memb.A_OccArray.A_OccArray
+prefix_ops: {}
+types: {}

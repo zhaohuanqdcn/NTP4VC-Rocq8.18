@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_accumulatebounds_1': [Axiomatic1.p_accumulatebounds_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.accumulate.lib.lean.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

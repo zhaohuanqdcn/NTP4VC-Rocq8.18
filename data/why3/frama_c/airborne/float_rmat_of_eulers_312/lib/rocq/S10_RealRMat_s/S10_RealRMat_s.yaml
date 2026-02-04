@@ -1,0 +1,21 @@
+atoms:
+  S10_RealRMat_s.S10_RealRMat_s.eqs10_realrmat_s: [eqs10_realrmat_s, S10_RealRMat_s.eqs10_realrmat_s]
+  S10_RealRMat_s.S10_RealRMat_s.f10_realrmat_s_a00: [f10_realrmat_s_a00, S10_RealRMat_s.f10_realrmat_s_a00]
+  S10_RealRMat_s.S10_RealRMat_s.f10_realrmat_s_a01: [f10_realrmat_s_a01, S10_RealRMat_s.f10_realrmat_s_a01]
+  S10_RealRMat_s.S10_RealRMat_s.f10_realrmat_s_a02: [f10_realrmat_s_a02, S10_RealRMat_s.f10_realrmat_s_a02]
+  S10_RealRMat_s.S10_RealRMat_s.f10_realrmat_s_a10: [f10_realrmat_s_a10, S10_RealRMat_s.f10_realrmat_s_a10]
+  S10_RealRMat_s.S10_RealRMat_s.f10_realrmat_s_a11: [f10_realrmat_s_a11, S10_RealRMat_s.f10_realrmat_s_a11]
+  S10_RealRMat_s.S10_RealRMat_s.f10_realrmat_s_a12: [f10_realrmat_s_a12, S10_RealRMat_s.f10_realrmat_s_a12]
+  S10_RealRMat_s.S10_RealRMat_s.f10_realrmat_s_a20: [f10_realrmat_s_a20, S10_RealRMat_s.f10_realrmat_s_a20]
+  S10_RealRMat_s.S10_RealRMat_s.f10_realrmat_s_a21: [f10_realrmat_s_a21, S10_RealRMat_s.f10_realrmat_s_a21]
+  S10_RealRMat_s.S10_RealRMat_s.f10_realrmat_s_a22: [f10_realrmat_s_a22, S10_RealRMat_s.f10_realrmat_s_a22]
+  S10_RealRMat_s.S10_RealRMat_s.s10_realrmat_s'mk: [s10_realrmat_s'mk, S10_RealRMat_s.s10_realrmat_s'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_rmat_of_eulers_312.S10_RealRMat_s.S10_RealRMat_s
+prefix_ops: {}
+types:
+  S10_RealRMat_s.S10_RealRMat_s.s10_realrmat_s: [s10_realrmat_s, S10_RealRMat_s.s10_realrmat_s]

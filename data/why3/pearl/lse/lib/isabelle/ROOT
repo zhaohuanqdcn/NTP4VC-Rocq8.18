@@ -1,0 +1,12 @@
+session lse = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "udouble_UDouble"
+  "my_exp_log_ExpLogLemmas"
+  "my_exp_log_ExpLogApprox"
+  "sum_real_Sum"
+  "my_sum_Sum"
+  "my_sum_Bound"
+  "my_sum_Combine"
+  "my_lse_LSE"

@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.p_lowerbound_1': [p_lowerbound_1', Axiomatic.p_lowerbound_1']
+  Axiomatic.Axiomatic.p_sorted_1': [p_sorted_1', Axiomatic.p_sorted_1']
+  Axiomatic.Axiomatic.p_strictupperbound_1': [p_strictupperbound_1', Axiomatic.p_strictupperbound_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: binary_search.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

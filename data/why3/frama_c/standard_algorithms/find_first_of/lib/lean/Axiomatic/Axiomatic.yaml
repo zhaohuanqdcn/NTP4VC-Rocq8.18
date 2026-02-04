@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic.Axiomatic.p_hasvalue_1': [Axiomatic.p_hasvalue_1']
+  Axiomatic.Axiomatic.p_hasvalueof: [Axiomatic.p_hasvalueof]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.find_first_of.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

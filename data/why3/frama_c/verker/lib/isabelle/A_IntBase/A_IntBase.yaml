@@ -1,0 +1,12 @@
+atoms:
+  A_IntBase.A_IntBase.p_is_dec: [p_is_dec, A_IntBase_A_IntBase.p_is_dec]
+  A_IntBase.A_IntBase.p_is_hex: [p_is_hex, A_IntBase_A_IntBase.p_is_hex]
+  A_IntBase.A_IntBase.p_is_oct: [p_is_oct, A_IntBase_A_IntBase.p_is_oct]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_IntBase_A_IntBase
+prefix_ops: {}
+types: {}

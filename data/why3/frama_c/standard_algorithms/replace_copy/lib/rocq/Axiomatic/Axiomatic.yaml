@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic.Axiomatic.p_replace_1': [p_replace_1', Axiomatic.p_replace_1']
+  Axiomatic.Axiomatic.p_unchanged_1': [p_unchanged_1', Axiomatic.p_unchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: replace_copy.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

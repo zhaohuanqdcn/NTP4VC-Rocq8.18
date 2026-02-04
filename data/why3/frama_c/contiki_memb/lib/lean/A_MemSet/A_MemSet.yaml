@@ -1,0 +1,11 @@
+atoms:
+  A_MemSet.A_MemSet.l_memset: [A_MemSet.l_memset]
+axioms:
+  A_MemSet.A_MemSet.Q_memset_def: A_MemSet.Q_memset_def
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.contiki_memb.lib.lean.A_MemSet.A_MemSet
+prefix_ops: {}
+types: {}

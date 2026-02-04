@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_heapmaximumchild: [p_heapmaximumchild, Axiomatic1.p_heapmaximumchild]
+  Axiomatic1.Axiomatic1.p_multisetunchanged_1': [p_multisetunchanged_1', Axiomatic1.p_multisetunchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: pop_heap.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

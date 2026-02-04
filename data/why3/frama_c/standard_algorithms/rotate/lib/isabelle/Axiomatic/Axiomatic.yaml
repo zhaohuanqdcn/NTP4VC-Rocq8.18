@@ -1,0 +1,16 @@
+atoms:
+  Axiomatic.Axiomatic.p_equalranges_1': [p_equalranges_1', Axiomatic_Axiomatic.p_equalranges_1']
+  Axiomatic.Axiomatic.p_equalranges_3': [p_equalranges_3', Axiomatic_Axiomatic.p_equalranges_3']
+  Axiomatic.Axiomatic.p_equalranges_4': [p_equalranges_4', Axiomatic_Axiomatic.p_equalranges_4']
+  Axiomatic.Axiomatic.p_reverse_1': [p_reverse_1', Axiomatic_Axiomatic.p_reverse_1']
+  Axiomatic.Axiomatic.p_reverse_2': [p_reverse_2', Axiomatic_Axiomatic.p_reverse_2']
+  Axiomatic.Axiomatic.p_reverse_4': [p_reverse_4', Axiomatic_Axiomatic.p_reverse_4']
+  Axiomatic.Axiomatic.p_reverse_5': [p_reverse_5', Axiomatic_Axiomatic.p_reverse_5']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic16.Axiomatic16.l_l_vect_of_floatvect3: [Axiomatic16.l_l_vect_of_floatvect3]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_rmat_transp_vmult.lib.lean.Axiomatic16.Axiomatic16
+prefix_ops: {}
+types: {}

@@ -1,0 +1,13 @@
+atoms:
+  A_StrCSpn.A_StrCSpn.l_strcspn: [l_strcspn, A_StrCSpn.l_strcspn]
+axioms:
+  A_StrCSpn.A_StrCSpn.Q_strcspn_base_case: [Q_strcspn_base_case, A_StrCSpn.Q_strcspn_base_case]
+  A_StrCSpn.A_StrCSpn.Q_strcspn_in_reject: [Q_strcspn_in_reject, A_StrCSpn.Q_strcspn_in_reject]
+  A_StrCSpn.A_StrCSpn.Q_strcspn_not_in_reject: [Q_strcspn_not_in_reject, A_StrCSpn.Q_strcspn_not_in_reject]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_StrCSpn.A_StrCSpn
+prefix_ops: {}
+types: {}

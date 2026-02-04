@@ -1,0 +1,12 @@
+atoms:
+  A_SysfsStr.A_SysfsStr.l_sysfs_strlen: [l_sysfs_strlen, A_SysfsStr_A_SysfsStr.l_sysfs_strlen]
+axioms:
+  A_SysfsStr.A_SysfsStr.Q_TL_sysfs_strlen: A_SysfsStr_A_SysfsStr.Q_TL_sysfs_strlen
+  A_SysfsStr.A_SysfsStr.fix_l_sysfs_strlen: A_SysfsStr_A_SysfsStr.fix_l_sysfs_strlen
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_SysfsStr_A_SysfsStr
+prefix_ops: {}
+types: {}

@@ -1,0 +1,16 @@
+namespace ExpLogApprox
+axiom exp_max_value : ℝ
+axiom exp_max_value_spec : (0 : ℝ) < exp_max_value
+axiom exp_error : ℝ
+axiom exp_error_bound : (0 : ℝ) < exp_error ∧ exp_error ≤ (1 : ℝ) / 2
+axiom u_exp : UDouble.udouble -> UDouble.udouble
+axiom u_exp_spec (x : UDouble.udouble) (fact0 : abs (UDouble.to_real x) ≤ exp_max_value) : abs (UDouble.to_real (u_exp x) - Real.exp (UDouble.to_real x)) ≤ Real.exp (UDouble.to_real x) * exp_error
+axiom log_max_value : ℝ
+axiom log_max_value_spec : (0 : ℝ) < log_max_value
+axiom log_error : ℝ
+axiom log_error_bound : (0 : ℝ) < log_error ∧ log_error ≤ (1 : ℝ)
+axiom u_log : UDouble.udouble -> UDouble.udouble
+axiom u_log_spec (x : UDouble.udouble) (fact0 : (0 : ℝ) < UDouble.to_real x) (fact1 : UDouble.to_real x ≤ log_max_value) : abs (UDouble.to_real (u_log x) - Real.log (UDouble.to_real x)) ≤ abs (Real.log (UDouble.to_real x)) * log_error
+axiom log2_error : ℝ
+axiom log2_error_bound : (0 : ℝ) ≤ log2_error ∧ log2_error ≤ (1 : ℝ) / 4
+end ExpLogApprox

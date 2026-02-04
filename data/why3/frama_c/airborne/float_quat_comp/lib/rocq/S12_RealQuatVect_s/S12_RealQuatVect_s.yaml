@@ -1,0 +1,18 @@
+atoms:
+  S12_RealQuatVect_s.S12_RealQuatVect_s.eqs12_realquatvect_s: [eqs12_realquatvect_s,
+    S12_RealQuatVect_s.eqs12_realquatvect_s]
+  S12_RealQuatVect_s.S12_RealQuatVect_s.f12_realquatvect_s_scalar: [f12_realquatvect_s_scalar,
+    S12_RealQuatVect_s.f12_realquatvect_s_scalar]
+  S12_RealQuatVect_s.S12_RealQuatVect_s.f12_realquatvect_s_vect: [f12_realquatvect_s_vect,
+    S12_RealQuatVect_s.f12_realquatvect_s_vect]
+  S12_RealQuatVect_s.S12_RealQuatVect_s.s12_realquatvect_s'mk: [s12_realquatvect_s'mk,
+    S12_RealQuatVect_s.s12_realquatvect_s'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_quat_comp.S12_RealQuatVect_s.S12_RealQuatVect_s
+prefix_ops: {}
+types:
+  S12_RealQuatVect_s.S12_RealQuatVect_s.s12_realquatvect_s: [s12_realquatvect_s, S12_RealQuatVect_s.s12_realquatvect_s]

@@ -1,0 +1,20 @@
+atoms:
+  Axiomatic.Axiomatic.l_capacity: [l_capacity, Axiomatic_Axiomatic.l_capacity]
+  Axiomatic.Axiomatic.l_size: [l_size, Axiomatic_Axiomatic.l_size]
+  Axiomatic.Axiomatic.l_storage: [l_storage, Axiomatic_Axiomatic.l_storage]
+  Axiomatic.Axiomatic.l_top: [l_top, Axiomatic_Axiomatic.l_top]
+  Axiomatic.Axiomatic.p_empty: [p_empty, Axiomatic_Axiomatic.p_empty]
+  Axiomatic.Axiomatic.p_equal: [p_equal, Axiomatic_Axiomatic.p_equal]
+  Axiomatic.Axiomatic.p_equalranges_1': [p_equalranges_1', Axiomatic_Axiomatic.p_equalranges_1']
+  Axiomatic.Axiomatic.p_invariant: [p_invariant, Axiomatic_Axiomatic.p_invariant]
+axioms:
+  Axiomatic.Axiomatic.Q_TL_Capacity: Axiomatic_Axiomatic.Q_TL_Capacity
+  Axiomatic.Axiomatic.Q_TL_Size: Axiomatic_Axiomatic.Q_TL_Size
+  Axiomatic.Axiomatic.Q_TL_Top: Axiomatic_Axiomatic.Q_TL_Top
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

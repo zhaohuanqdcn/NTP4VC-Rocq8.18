@@ -1,0 +1,13 @@
+import Why3.Base
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Types
+import pearl.prover.lib.lean.Nat.Nat
+import pearl.prover.lib.lean.Functions.Config
+import pearl.prover.lib.lean.Functions.Func
+import pearl.prover.lib.lean.OptionFuncs.Funcs
+import pearl.prover.lib.lean.Sum.Sum
+import pearl.prover.lib.lean.Firstorder_symbol_spec.Spec
+import pearl.prover.lib.lean.Firstorder_symbol_impl.Logic
+open Classical
+open Lean4Why3
+namespace Impl
+end Impl

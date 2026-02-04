@@ -1,0 +1,2 @@
+namespace Bound
+end Bound

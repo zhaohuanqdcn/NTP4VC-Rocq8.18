@@ -1,0 +1,14 @@
+atoms:
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.l_accumulate: [A_AccumulateAxiomatic.l_accumulate]
+axioms:
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_AccumulateEmpty: A_AccumulateAxiomatic.Q_AccumulateEmpty
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_AccumulateNext: A_AccumulateAxiomatic.Q_AccumulateNext
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_AccumulateRead: A_AccumulateAxiomatic.Q_AccumulateRead
+  A_AccumulateAxiomatic.A_AccumulateAxiomatic.Q_TL_Accumulate: A_AccumulateAxiomatic.Q_TL_Accumulate
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.accumulate.lib.lean.A_AccumulateAxiomatic.A_AccumulateAxiomatic
+prefix_ops: {}
+types: {}

@@ -1,0 +1,9 @@
+atoms: {}
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.rotate_copy.lib.lean.Compound.Compound
+prefix_ops: {}
+types: {}

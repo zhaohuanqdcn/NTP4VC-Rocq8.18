@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic15.Axiomatic15.p_finite_floatquat: [p_finite_floatquat, Axiomatic15.p_finite_floatquat]
+  Axiomatic15.Axiomatic15.p_rvalid_floatquat: [p_rvalid_floatquat, Axiomatic15.p_rvalid_floatquat]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_rmat_of_quat.Axiomatic15.Axiomatic15
+prefix_ops: {}
+types: {}

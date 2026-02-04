@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic15.Axiomatic15.p_finite_floatvect3: [Axiomatic15.p_finite_floatvect3]
+  Axiomatic15.Axiomatic15.p_rvalid_floatvect3: [Axiomatic15.p_rvalid_floatvect3]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_rmat_of_axis_angle.lib.lean.Axiomatic15.Axiomatic15
+prefix_ops: {}
+types: {}

@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_array_swipe_left: [p_array_swipe_left, Axiomatic1.p_array_swipe_left]
+  Axiomatic1.Axiomatic1.p_array_swipe_right: [p_array_swipe_right, Axiomatic1.p_array_swipe_right]
+  Axiomatic1.Axiomatic1.p_unchanged: [p_unchanged, Axiomatic1.p_unchanged]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: contiki_list.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

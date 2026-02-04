@@ -1,0 +1,2 @@
+namespace Mul_basecase
+end Mul_basecase

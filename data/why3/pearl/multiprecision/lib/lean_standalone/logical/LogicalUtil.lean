@@ -1,0 +1,2 @@
+namespace LogicalUtil
+end LogicalUtil

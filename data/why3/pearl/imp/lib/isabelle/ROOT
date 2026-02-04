@@ -1,0 +1,11 @@
+session imp = NTP4Verif +
+theories
+  "dict_Functional"
+  "imp_Syntax"
+  "imp_ConcreteSemantics"
+  "imp_Svar"
+  "imp_Constraint"
+  "imp_SymState"
+  "imp_FreshSvar"
+  "imp_SymStateSet"
+  "dict_Imperative"

@@ -1,0 +1,5 @@
+session logic = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "bvsum_PureBV"

@@ -1,0 +1,10 @@
+session ring_decision = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "ringdecision_UnitaryCommutativeRingDecision"
+  "strassen_InfMatrixGen"
+  "strassen_Sum_extended"
+  "strassen_MaxFun"
+  "strassen_InfIntMatrix"
+  "strassen_InfIntMatrixDecision"

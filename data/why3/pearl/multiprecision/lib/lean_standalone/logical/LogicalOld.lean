@@ -1,0 +1,2 @@
+namespace LogicalOld
+end LogicalOld

@@ -1,0 +1,9 @@
+session WP_revisited = NTP4Verif +
+theories
+  "wp2_Imp"
+  "blocking_semantics5_Syntax"
+  "blocking_semantics5_SemOp"
+  "blocking_semantics5_FreshVariables"
+  "blocking_semantics5_Typing"
+  "wp2_HoareLogic"
+  "blocking_semantics5_TypingAndSemantics"

@@ -1,0 +1,5 @@
+session stdlib = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "stringCheck_StringCheck"

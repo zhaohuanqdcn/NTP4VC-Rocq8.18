@@ -1,0 +1,2 @@
+namespace Logical
+end Logical

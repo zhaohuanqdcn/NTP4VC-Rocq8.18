@@ -1,0 +1,2 @@
+namespace Mul
+end Mul

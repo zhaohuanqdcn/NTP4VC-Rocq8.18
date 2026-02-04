@@ -1,0 +1,12 @@
+session verifythis_2016_matrix_multiplication = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "matrices_MatrixGen"
+  "matrices_MyMatrix"
+  "sum_extended_Sum_extended"
+  "matrices_MatrixArithmetic"
+  "naive_MatrixMultiplication"
+  "matrices_BlockMul"
+  "matrices_ring_simp_Symb"
+  "my_strassen_MatrixMultiplication"

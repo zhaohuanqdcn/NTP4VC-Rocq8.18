@@ -1,0 +1,13 @@
+session numeric = NTP4Verif +
+sessions
+  "Why3STD"
+theories
+  "addition_AdditionSingle"
+  "lse_Helpers"
+  "add_sub_mul_AddSubMulSingle"
+  "sum_SumSingle"
+  "add_sqrt_AdditionSqrtSingle"
+  "sin_cos_SinCosSingle"
+  "multiplication_MultiplicationSingle"
+  "exp_log_ExpLogSingle"
+  "substraction_SubstractionSingle"

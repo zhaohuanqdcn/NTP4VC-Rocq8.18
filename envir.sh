@@ -3,13 +3,11 @@ eval $(opam env)
 
 if [ ! -f "README.md" ]; then
     echo "Error: the working directory must be the home of NTP4Verif"
-    exit 1
 fi
 
 first_line=$(head -n 1 README.md)
-if [ "$first_line" != "# NTP4Verif" ]; then
-    echo "Error: the working directory must be the home of NTP4Verif"
-    exit 1
+if [ "$first_line" != "# Neural Theorem Proving for Verification Conditions" ]; then
+    echo "Error: the working directory must be the home of NTP4VC"
 fi
 
 if [[ "$PATH" != "$(pwd)/why3/bin"* ]]; then

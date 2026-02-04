@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_char_in_str: [Axiomatic1.p_char_in_str]
+  Axiomatic1.Axiomatic1.p_exists_first_occurence_of_char: [Axiomatic1.p_exists_first_occurence_of_char]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.klibc_string.lib.lean.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

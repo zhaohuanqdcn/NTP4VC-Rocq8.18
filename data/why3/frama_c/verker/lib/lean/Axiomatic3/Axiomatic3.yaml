@@ -1,0 +1,9 @@
+atoms: {}
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.Axiomatic3.Axiomatic3
+prefix_ops: {}
+types: {}

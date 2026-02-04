@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.p_reverse_1': [p_reverse_1', Axiomatic_Axiomatic.p_reverse_1']
+  Axiomatic.Axiomatic.p_reverse_2': [p_reverse_2', Axiomatic_Axiomatic.p_reverse_2']
+  Axiomatic.Axiomatic.p_unchanged_1': [p_unchanged_1', Axiomatic_Axiomatic.p_unchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

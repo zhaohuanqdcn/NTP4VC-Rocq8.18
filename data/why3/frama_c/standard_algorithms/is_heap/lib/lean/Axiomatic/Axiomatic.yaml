@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic.Axiomatic.l_heapparent: [Axiomatic.l_heapparent]
+  Axiomatic.Axiomatic.p_isheap: [Axiomatic.p_isheap]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.is_heap.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

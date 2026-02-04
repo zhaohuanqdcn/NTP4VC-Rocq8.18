@@ -1,0 +1,12 @@
+atoms:
+  A_ToUpper.A_ToUpper.l_toupper: [l_toupper, A_ToUpper.l_toupper]
+axioms:
+  A_ToUpper.A_ToUpper.Q_TL_ToUpper: [Q_TL_ToUpper, A_ToUpper.Q_TL_ToUpper]
+  A_ToUpper.A_ToUpper.Q_to_upper_char: [Q_to_upper_char, A_ToUpper.Q_to_upper_char]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: klibc_string.A_ToUpper.A_ToUpper
+prefix_ops: {}
+types: {}

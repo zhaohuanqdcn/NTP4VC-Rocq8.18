@@ -1,0 +1,21 @@
+atoms:
+  S11_RealQuat_s.S11_RealQuat_s.eqs11_realquat_s: [eqs11_realquat_s, S11_RealQuat_s_S11_RealQuat_s.eqs11_realquat_s]
+  S11_RealQuat_s.S11_RealQuat_s.f11_realquat_s_qi: [f11_realquat_s_qi, S11_RealQuat_s_S11_RealQuat_s.f11_realquat_s_qi,
+    S11_RealQuat_s_S11_RealQuat_s.s11_realquat_s.f11_realquat_s_qi]
+  S11_RealQuat_s.S11_RealQuat_s.f11_realquat_s_qx: [f11_realquat_s_qx, S11_RealQuat_s_S11_RealQuat_s.f11_realquat_s_qx,
+    S11_RealQuat_s_S11_RealQuat_s.s11_realquat_s.f11_realquat_s_qx]
+  S11_RealQuat_s.S11_RealQuat_s.f11_realquat_s_qy: [f11_realquat_s_qy, S11_RealQuat_s_S11_RealQuat_s.f11_realquat_s_qy,
+    S11_RealQuat_s_S11_RealQuat_s.s11_realquat_s.f11_realquat_s_qy]
+  S11_RealQuat_s.S11_RealQuat_s.f11_realquat_s_qz: [f11_realquat_s_qz, S11_RealQuat_s_S11_RealQuat_s.f11_realquat_s_qz,
+    S11_RealQuat_s_S11_RealQuat_s.s11_realquat_s.f11_realquat_s_qz]
+  S11_RealQuat_s.S11_RealQuat_s.s11_realquat_s'mk: [s11_realquat_s'mk, S11_RealQuat_s_S11_RealQuat_s.s11_realquat_s'mk,
+    S11_RealQuat_s_S11_RealQuat_s.s11_realquat_s.s11_realquat_s'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: airborne.S11_RealQuat_s_S11_RealQuat_s
+prefix_ops: {}
+types:
+  S11_RealQuat_s.S11_RealQuat_s.s11_realquat_s: [s11_realquat_s, S11_RealQuat_s_S11_RealQuat_s.s11_realquat_s]

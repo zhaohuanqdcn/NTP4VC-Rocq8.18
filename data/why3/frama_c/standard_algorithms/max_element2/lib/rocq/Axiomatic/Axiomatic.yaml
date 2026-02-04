@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.p_maxelement: [p_maxelement, Axiomatic.p_maxelement]
+  Axiomatic.Axiomatic.p_strictupperbound_1': [p_strictupperbound_1', Axiomatic.p_strictupperbound_1']
+  Axiomatic.Axiomatic.p_upperbound_1': [p_upperbound_1', Axiomatic.p_upperbound_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: max_element2.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

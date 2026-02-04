@@ -1,0 +1,11 @@
+atoms:
+  A_Strchrnul.A_Strchrnul.l_strchrnul: [l_strchrnul, A_Strchrnul_A_Strchrnul.l_strchrnul]
+axioms:
+  A_Strchrnul.A_Strchrnul.fix_l_strchrnul: A_Strchrnul_A_Strchrnul.fix_l_strchrnul
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_Strchrnul_A_Strchrnul
+prefix_ops: {}
+types: {}

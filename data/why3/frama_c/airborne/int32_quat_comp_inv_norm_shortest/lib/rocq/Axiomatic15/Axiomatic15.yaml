@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic15.Axiomatic15.p_bound_int32quat: [p_bound_int32quat, Axiomatic15.p_bound_int32quat]
+  Axiomatic15.Axiomatic15.p_rvalid_bound_int32quat: [p_rvalid_bound_int32quat, Axiomatic15.p_rvalid_bound_int32quat]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: int32_quat_comp_inv_norm_shortest.Axiomatic15.Axiomatic15
+prefix_ops: {}
+types: {}

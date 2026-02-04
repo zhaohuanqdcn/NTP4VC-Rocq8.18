@@ -1,0 +1,16 @@
+atoms:
+  Axiomatic.Axiomatic.l_heapleft: [l_heapleft, Axiomatic.l_heapleft]
+  Axiomatic.Axiomatic.l_heapparent: [l_heapparent, Axiomatic.l_heapparent]
+  Axiomatic.Axiomatic.l_heapright: [l_heapright, Axiomatic.l_heapright]
+  Axiomatic.Axiomatic.p_isheap: [p_isheap, Axiomatic.p_isheap]
+  Axiomatic.Axiomatic.p_maxelement: [p_maxelement, Axiomatic.p_maxelement]
+  Axiomatic.Axiomatic.p_unchanged_1': [p_unchanged_1', Axiomatic.p_unchanged_1']
+  Axiomatic.Axiomatic.p_upperbound_1': [p_upperbound_1', Axiomatic.p_upperbound_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: pop_heap.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

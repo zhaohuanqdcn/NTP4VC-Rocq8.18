@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.l_heapparent: [l_heapparent, Axiomatic_Axiomatic.l_heapparent]
+  Axiomatic.Axiomatic.p_isheap: [p_isheap, Axiomatic_Axiomatic.p_isheap]
+  Axiomatic.Axiomatic.p_unchanged_1': [p_unchanged_1', Axiomatic_Axiomatic.p_unchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

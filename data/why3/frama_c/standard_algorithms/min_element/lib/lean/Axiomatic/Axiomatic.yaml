@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.p_lowerbound_1': [Axiomatic.p_lowerbound_1']
+  Axiomatic.Axiomatic.p_minelement: [Axiomatic.p_minelement]
+  Axiomatic.Axiomatic.p_strictlowerbound_1': [Axiomatic.p_strictlowerbound_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.min_element.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

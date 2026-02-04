@@ -1,0 +1,17 @@
+atoms:
+  Axiomatic1.Axiomatic1.l_heapparent: [Axiomatic1.l_heapparent]
+  Axiomatic1.Axiomatic1.p_hasvalue_1': [Axiomatic1.p_hasvalue_1']
+  Axiomatic1.Axiomatic1.p_isheap: [Axiomatic1.p_isheap]
+  Axiomatic1.Axiomatic1.p_lowerbound_1': [Axiomatic1.p_lowerbound_1']
+  Axiomatic1.Axiomatic1.p_maxelement: [Axiomatic1.p_maxelement]
+  Axiomatic1.Axiomatic1.p_multisetunchanged_1': [Axiomatic1.p_multisetunchanged_1']
+  Axiomatic1.Axiomatic1.p_swappedinside: [Axiomatic1.p_swappedinside]
+  Axiomatic1.Axiomatic1.p_upperbound_1': [Axiomatic1.p_upperbound_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.partial_sort.lib.lean.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

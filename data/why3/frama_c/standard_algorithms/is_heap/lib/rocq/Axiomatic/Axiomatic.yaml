@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic.Axiomatic.l_heapparent: [l_heapparent, Axiomatic.l_heapparent]
+  Axiomatic.Axiomatic.p_isheap: [p_isheap, Axiomatic.p_isheap]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: is_heap.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

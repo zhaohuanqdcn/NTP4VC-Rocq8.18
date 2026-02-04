@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_equalranges_1': [p_equalranges_1', Axiomatic.p_equalranges_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: mismatch.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

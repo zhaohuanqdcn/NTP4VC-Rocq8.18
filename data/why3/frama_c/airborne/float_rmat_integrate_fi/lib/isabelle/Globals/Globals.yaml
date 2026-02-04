@@ -1,0 +1,11 @@
+atoms: {}
+axioms:
+  Globals.Globals.Q_L_exp_omega_dt_3319_linked: Globals_Globals.Q_L_exp_omega_dt_3319_linked
+  Globals.Globals.Q_L_exp_omega_dt_3319_region: Globals_Globals.Q_L_exp_omega_dt_3319_region
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: airborne.Globals_Globals
+prefix_ops: {}
+types: {}

@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_accumulatebounds_1': [p_accumulatebounds_1', Axiomatic1.p_accumulatebounds_1']
+  Axiomatic1.Axiomatic1.p_partialsum: [p_partialsum, Axiomatic1.p_partialsum]
+axioms:
+  Axiomatic1.Axiomatic1.Q_TL_Accumulate_2': [Q_TL_Accumulate_2', Axiomatic1.Q_TL_Accumulate_2']
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: partial_sum_inv.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

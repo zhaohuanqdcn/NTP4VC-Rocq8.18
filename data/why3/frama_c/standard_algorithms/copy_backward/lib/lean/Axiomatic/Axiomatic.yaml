@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.p_equalranges_1': [Axiomatic.p_equalranges_1']
+  Axiomatic.Axiomatic.p_equalranges_2': [Axiomatic.p_equalranges_2']
+  Axiomatic.Axiomatic.p_unchanged_1': [Axiomatic.p_unchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.copy_backward.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

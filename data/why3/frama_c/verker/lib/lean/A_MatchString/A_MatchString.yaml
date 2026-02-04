@@ -1,0 +1,15 @@
+atoms:
+  A_MatchString.A_MatchString.l_match_string: [A_MatchString.l_match_string]
+  A_MatchString.A_MatchString.l_real_len: [A_MatchString.l_real_len]
+axioms:
+  A_MatchString.A_MatchString.Q_TL_match_string: A_MatchString.Q_TL_match_string
+  A_MatchString.A_MatchString.Q_TL_real_len: A_MatchString.Q_TL_real_len
+  A_MatchString.A_MatchString.fix_l_match_string: A_MatchString.fix_l_match_string
+  A_MatchString.A_MatchString.fix_l_real_len: A_MatchString.fix_l_real_len
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.A_MatchString.A_MatchString
+prefix_ops: {}
+types: {}

@@ -1,0 +1,21 @@
+theory A_HexToBin_A_HexToBin
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed"
+begin
+consts l_hex_to_bin :: "int \<Rightarrow> int"
+axiomatization where Q_A0:   "l_hex_to_bin (48 :: int) = (0 :: int)"
+axiomatization where Q_A1:   "l_hex_to_bin (49 :: int) = (1 :: int)"
+axiomatization where Q_A2:   "l_hex_to_bin (50 :: int) = (2 :: int)"
+axiomatization where Q_A3:   "l_hex_to_bin (51 :: int) = (3 :: int)"
+axiomatization where Q_A4:   "l_hex_to_bin (52 :: int) = (4 :: int)"
+axiomatization where Q_A5:   "l_hex_to_bin (53 :: int) = (5 :: int)"
+axiomatization where Q_A6:   "l_hex_to_bin (54 :: int) = (6 :: int)"
+axiomatization where Q_A7:   "l_hex_to_bin (55 :: int) = (7 :: int)"
+axiomatization where Q_A8:   "l_hex_to_bin (56 :: int) = (8 :: int)"
+axiomatization where Q_A9:   "l_hex_to_bin (57 :: int) = (9 :: int)"
+axiomatization where Q_AA:   "l_hex_to_bin (65 :: int) = (10 :: int) \<and> l_hex_to_bin (97 :: int) = l_hex_to_bin (65 :: int)"
+axiomatization where Q_AB:   "l_hex_to_bin (66 :: int) = (11 :: int) \<and> l_hex_to_bin (98 :: int) = l_hex_to_bin (66 :: int)"
+axiomatization where Q_AC:   "l_hex_to_bin (67 :: int) = (12 :: int) \<and> l_hex_to_bin (99 :: int) = l_hex_to_bin (67 :: int)"
+axiomatization where Q_AD:   "l_hex_to_bin (68 :: int) = (13 :: int) \<and> l_hex_to_bin (100 :: int) = l_hex_to_bin (68 :: int)"
+axiomatization where Q_AE:   "l_hex_to_bin (69 :: int) = (14 :: int) \<and> l_hex_to_bin (101 :: int) = l_hex_to_bin (69 :: int)"
+axiomatization where Q_AF:   "l_hex_to_bin (70 :: int) = (15 :: int) \<and> l_hex_to_bin (102 :: int) = l_hex_to_bin (70 :: int)"
+end

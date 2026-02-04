@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic16.Axiomatic16.l_l_vect_of_floatvect3: [l_l_vect_of_floatvect3, Axiomatic16_Axiomatic16.l_l_vect_of_floatvect3]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: airborne.Axiomatic16_Axiomatic16
+prefix_ops: {}
+types: {}

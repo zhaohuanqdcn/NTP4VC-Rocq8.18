@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_innerproductbounds: [Axiomatic1.p_innerproductbounds]
+  Axiomatic1.Axiomatic1.p_productbounds: [Axiomatic1.p_productbounds]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.inner_product.lib.lean.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

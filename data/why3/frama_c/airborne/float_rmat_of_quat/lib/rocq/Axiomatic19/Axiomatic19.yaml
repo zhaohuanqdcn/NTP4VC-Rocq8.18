@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic19.Axiomatic19.l_l_rmat_of_floatquat_1': [l_l_rmat_of_floatquat_1', Axiomatic19.l_l_rmat_of_floatquat_1']
+  Axiomatic19.Axiomatic19.p_unitary_quaternion_1': [p_unitary_quaternion_1', Axiomatic19.p_unitary_quaternion_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_rmat_of_quat.Axiomatic19.Axiomatic19
+prefix_ops: {}
+types: {}

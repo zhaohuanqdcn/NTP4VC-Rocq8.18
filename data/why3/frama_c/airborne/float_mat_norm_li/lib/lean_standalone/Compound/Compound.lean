@@ -1,0 +1,2 @@
+namespace Compound
+end Compound

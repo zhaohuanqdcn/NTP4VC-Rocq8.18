@@ -1,0 +1,15 @@
+atoms:
+  Axiomatic17.Axiomatic17.l_determinant: [Axiomatic17.l_determinant]
+  Axiomatic17.Axiomatic17.l_l_rmat_of_floatrmat: [Axiomatic17.l_l_rmat_of_floatrmat]
+  Axiomatic17.Axiomatic17.l_mult_realrmat: [Axiomatic17.l_mult_realrmat]
+  Axiomatic17.Axiomatic17.l_transpose: [Axiomatic17.l_transpose]
+  Axiomatic17.Axiomatic17.p_rotation_matrix: [Axiomatic17.p_rotation_matrix]
+  Axiomatic17.Axiomatic17.p_special_orthogonal: [Axiomatic17.p_special_orthogonal]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_rmat_of_eulers_321.lib.lean.Axiomatic17.Axiomatic17
+prefix_ops: {}
+types: {}

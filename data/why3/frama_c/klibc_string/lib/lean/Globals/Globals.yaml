@@ -1,0 +1,17 @@
+atoms: {}
+axioms:
+  Globals.Globals.Q_G_buf_16729_linked: Globals.Q_G_buf_16729_linked
+  Globals.Globals.Q_G_buf_16729_region: Globals.Q_G_buf_16729_region
+  Globals.Globals.Q_G_message_16589_linked: Globals.Q_G_message_16589_linked
+  Globals.Globals.Q_G_message_16589_region: Globals.Q_G_message_16589_region
+  Globals.Globals.Q_L_matchmap_16405_linked: Globals.Q_L_matchmap_16405_linked
+  Globals.Globals.Q_L_matchmap_16405_region: Globals.Q_L_matchmap_16405_region
+  Globals.Globals.Q_L_numbuf_7638_linked: Globals.Q_L_numbuf_7638_linked
+  Globals.Globals.Q_L_numbuf_7638_region: Globals.Q_L_numbuf_7638_region
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.klibc_string.lib.lean.Globals.Globals
+prefix_ops: {}
+types: {}

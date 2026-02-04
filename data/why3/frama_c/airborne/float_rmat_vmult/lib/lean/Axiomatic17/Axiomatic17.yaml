@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic17.Axiomatic17.l_l_rmat_of_floatrmat: [Axiomatic17.l_l_rmat_of_floatrmat]
+  Axiomatic17.Axiomatic17.l_mult_realrmat_realvect3: [Axiomatic17.l_mult_realrmat_realvect3]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_rmat_vmult.lib.lean.Axiomatic17.Axiomatic17
+prefix_ops: {}
+types: {}

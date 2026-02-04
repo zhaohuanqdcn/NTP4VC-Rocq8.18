@@ -1,0 +1,12 @@
+atoms:
+  S5_FloatRMat.S5_FloatRMat.f5_floatrmat_m: [f5_floatrmat_m, S5_FloatRMat.f5_floatrmat_m]
+  S5_FloatRMat.S5_FloatRMat.s5_floatrmat'mk: [s5_floatrmat'mk, S5_FloatRMat.s5_floatrmat'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_rmat_integrate_fi.S5_FloatRMat.S5_FloatRMat
+prefix_ops: {}
+types:
+  S5_FloatRMat.S5_FloatRMat.s5_floatrmat: [s5_floatrmat, S5_FloatRMat.s5_floatrmat]

@@ -1,0 +1,11 @@
+atoms: {}
+axioms:
+  Globals.Globals.Q_L_exp_omega_dt_3319_linked: Globals.Q_L_exp_omega_dt_3319_linked
+  Globals.Globals.Q_L_exp_omega_dt_3319_region: Globals.Q_L_exp_omega_dt_3319_region
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_rmat_integrate_fi.lib.lean.Globals.Globals
+prefix_ops: {}
+types: {}

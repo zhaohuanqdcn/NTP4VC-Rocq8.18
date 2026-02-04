@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic15.Axiomatic15.p_bound_int32rmat: [p_bound_int32rmat, Axiomatic15_Axiomatic15.p_bound_int32rmat]
+  Axiomatic15.Axiomatic15.p_rvalid_bound_int32rmat: [p_rvalid_bound_int32rmat, Axiomatic15_Axiomatic15.p_rvalid_bound_int32rmat]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: airborne.Axiomatic15_Axiomatic15
+prefix_ops: {}
+types: {}

@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_hasvalue_1': [p_hasvalue_1', Axiomatic_Axiomatic.p_hasvalue_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

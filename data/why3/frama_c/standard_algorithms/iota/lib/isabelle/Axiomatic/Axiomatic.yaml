@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_iota: [p_iota, Axiomatic_Axiomatic.p_iota]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

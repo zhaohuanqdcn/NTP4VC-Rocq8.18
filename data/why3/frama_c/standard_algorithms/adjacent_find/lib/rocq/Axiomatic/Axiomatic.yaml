@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_hasequalneighbors: [p_hasequalneighbors, Axiomatic.p_hasequalneighbors]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: adjacent_find.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

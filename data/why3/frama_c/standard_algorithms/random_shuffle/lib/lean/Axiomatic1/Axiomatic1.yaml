@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_multisetunchanged_1': [Axiomatic1.p_multisetunchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.random_shuffle.lib.lean.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

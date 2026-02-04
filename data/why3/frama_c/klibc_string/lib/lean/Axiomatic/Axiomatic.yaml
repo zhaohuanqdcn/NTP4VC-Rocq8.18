@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_length_of_str_is: [Axiomatic.p_length_of_str_is]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.klibc_string.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

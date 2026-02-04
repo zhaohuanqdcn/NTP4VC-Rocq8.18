@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_multisetretainrest_1': [p_multisetretainrest_1', Axiomatic1.p_multisetretainrest_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: remove_copy.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

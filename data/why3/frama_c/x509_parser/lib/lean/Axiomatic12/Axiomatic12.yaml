@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic12.Axiomatic12.p_bmatch: [Axiomatic12.p_bmatch]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.x509_parser.lib.lean.Axiomatic12.Axiomatic12
+prefix_ops: {}
+types: {}

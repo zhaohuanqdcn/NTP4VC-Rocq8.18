@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic.Axiomatic.p_equalranges_1': [p_equalranges_1', Axiomatic.p_equalranges_1']
+  Axiomatic.Axiomatic.p_equalranges_2': [p_equalranges_2', Axiomatic.p_equalranges_2']
+  Axiomatic.Axiomatic.p_unchanged_1': [p_unchanged_1', Axiomatic.p_unchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: copy_backward.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

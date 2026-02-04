@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic2.Axiomatic2.p_is_lower: [p_is_lower, Axiomatic2_Axiomatic2.p_is_lower]
+  Axiomatic2.Axiomatic2.p_is_upper: [p_is_upper, Axiomatic2_Axiomatic2.p_is_upper]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: klibc_string.Axiomatic2_Axiomatic2
+prefix_ops: {}
+types: {}

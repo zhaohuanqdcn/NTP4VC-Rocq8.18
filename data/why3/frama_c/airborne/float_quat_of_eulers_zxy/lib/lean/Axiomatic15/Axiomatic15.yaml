@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic15.Axiomatic15.p_finite_floateulers: [Axiomatic15.p_finite_floateulers]
+  Axiomatic15.Axiomatic15.p_rvalid_floateulers: [Axiomatic15.p_rvalid_floateulers]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_quat_of_eulers_zxy.lib.lean.Axiomatic15.Axiomatic15
+prefix_ops: {}
+types: {}

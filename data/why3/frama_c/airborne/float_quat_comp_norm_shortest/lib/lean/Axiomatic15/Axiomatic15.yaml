@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic15.Axiomatic15.p_finite_floatquat: [Axiomatic15.p_finite_floatquat]
+  Axiomatic15.Axiomatic15.p_rvalid_floatquat: [Axiomatic15.p_rvalid_floatquat]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_quat_comp_norm_shortest.lib.lean.Axiomatic15.Axiomatic15
+prefix_ops: {}
+types: {}

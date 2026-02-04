@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic.Axiomatic.p_sorted_1': [p_sorted_1', Axiomatic.p_sorted_1']
+  Axiomatic.Axiomatic.p_weaklysorted_1': [p_weaklysorted_1', Axiomatic.p_weaklysorted_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: is_sorted.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

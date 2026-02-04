@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic15.Axiomatic15.p_bound_int32quat: [Axiomatic15.p_bound_int32quat]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.int32_quat_comp.lib.lean.Axiomatic15.Axiomatic15
+prefix_ops: {}
+types: {}

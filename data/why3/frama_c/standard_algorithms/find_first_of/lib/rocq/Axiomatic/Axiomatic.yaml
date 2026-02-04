@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic.Axiomatic.p_hasvalue_1': [p_hasvalue_1', Axiomatic.p_hasvalue_1']
+  Axiomatic.Axiomatic.p_hasvalueof: [p_hasvalueof, Axiomatic.p_hasvalueof]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: find_first_of.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

@@ -1,0 +1,13 @@
+atoms:
+  Axiomatic.Axiomatic.p_equalranges_1': [Axiomatic.p_equalranges_1']
+  Axiomatic.Axiomatic.p_equalranges_3': [Axiomatic.p_equalranges_3']
+  Axiomatic.Axiomatic.p_equalranges_4': [Axiomatic.p_equalranges_4']
+  Axiomatic.Axiomatic.p_unchanged_1': [Axiomatic.p_unchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.insertion_sort.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

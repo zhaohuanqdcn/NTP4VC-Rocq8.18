@@ -1,0 +1,13 @@
+atoms:
+  A_Strlen.A_Strlen.l_strlen: [l_strlen, A_Strlen.l_strlen]
+  A_Strlen.A_Strlen.p_valid_str: [p_valid_str, A_Strlen.p_valid_str]
+axioms:
+  A_Strlen.A_Strlen.Q_TL_strlen: [Q_TL_strlen, A_Strlen.Q_TL_strlen]
+  A_Strlen.A_Strlen.fix_l_strlen: [fix_l_strlen, A_Strlen.fix_l_strlen]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_Strlen.A_Strlen
+prefix_ops: {}
+types: {}

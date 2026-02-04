@@ -1,0 +1,11 @@
+atoms:
+  A_SkipSpaces.A_SkipSpaces.l_skip_spaces: [A_SkipSpaces.l_skip_spaces]
+axioms:
+  A_SkipSpaces.A_SkipSpaces.Q_skip_spaces_def: A_SkipSpaces.Q_skip_spaces_def
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.A_SkipSpaces.A_SkipSpaces
+prefix_ops: {}
+types: {}

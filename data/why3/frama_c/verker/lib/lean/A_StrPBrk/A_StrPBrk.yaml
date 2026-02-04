@@ -1,0 +1,13 @@
+atoms:
+  A_StrPBrk.A_StrPBrk.l_strpbrk: [A_StrPBrk.l_strpbrk]
+axioms:
+  A_StrPBrk.A_StrPBrk.Q_strpbrk_base_case: A_StrPBrk.Q_strpbrk_base_case
+  A_StrPBrk.A_StrPBrk.Q_strpbrk_found: A_StrPBrk.Q_strpbrk_found
+  A_StrPBrk.A_StrPBrk.Q_strpbrk_not_found: A_StrPBrk.Q_strpbrk_not_found
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.A_StrPBrk.A_StrPBrk
+prefix_ops: {}
+types: {}

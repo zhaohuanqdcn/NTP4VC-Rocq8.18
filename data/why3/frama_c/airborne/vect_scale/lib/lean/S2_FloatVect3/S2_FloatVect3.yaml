@@ -1,0 +1,14 @@
+atoms:
+  S2_FloatVect3.S2_FloatVect3.f2_floatvect3_x: [S2_FloatVect3.s2_floatvect3.f2_floatvect3_x]
+  S2_FloatVect3.S2_FloatVect3.f2_floatvect3_y: [S2_FloatVect3.s2_floatvect3.f2_floatvect3_y]
+  S2_FloatVect3.S2_FloatVect3.f2_floatvect3_z: [S2_FloatVect3.s2_floatvect3.f2_floatvect3_z]
+  S2_FloatVect3.S2_FloatVect3.s2_floatvect3'mk: [S2_FloatVect3.s2_floatvect3.mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.vect_scale.lib.lean.S2_FloatVect3.S2_FloatVect3
+prefix_ops: {}
+types:
+  S2_FloatVect3.S2_FloatVect3.s2_floatvect3: [S2_FloatVect3.s2_floatvect3]

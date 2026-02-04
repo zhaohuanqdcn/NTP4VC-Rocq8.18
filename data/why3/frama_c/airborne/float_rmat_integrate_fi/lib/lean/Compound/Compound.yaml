@@ -1,0 +1,18 @@
+atoms:
+  Compound.Compound.array1_float: [Compound.array1_float]
+  Compound.Compound.load_s5_floatrmat: [Compound.load_s5_floatrmat]
+axioms:
+  Compound.Compound.Q_Array1_float_access: Compound.Q_Array1_float_access
+  Compound.Compound.Q_Array1_float_eqmem_Mflt: Compound.Q_Array1_float_eqmem_Mflt
+  Compound.Compound.Q_Array1_float_havoc_Mflt: Compound.Q_Array1_float_havoc_Mflt
+  Compound.Compound.Q_Array1_float_update_Mflt: Compound.Q_Array1_float_update_Mflt
+  Compound.Compound.Q_Load_S5_FloatRMat_eqmem_Mflt: Compound.Q_Load_S5_FloatRMat_eqmem_Mflt
+  Compound.Compound.Q_Load_S5_FloatRMat_havoc_Mflt: Compound.Q_Load_S5_FloatRMat_havoc_Mflt
+  Compound.Compound.Q_Load_S5_FloatRMat_update_Mflt: Compound.Q_Load_S5_FloatRMat_update_Mflt
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_rmat_integrate_fi.lib.lean.Compound.Compound
+prefix_ops: {}
+types: {}

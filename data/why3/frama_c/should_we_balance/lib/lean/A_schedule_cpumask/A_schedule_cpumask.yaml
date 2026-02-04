@@ -1,0 +1,20 @@
+atoms:
+  A_schedule_cpumask.A_schedule_cpumask.l_cpu_smt_mask: [A_schedule_cpumask.l_cpu_smt_mask]
+  A_schedule_cpumask.A_schedule_cpumask.l_group_balance_cpu: [A_schedule_cpumask.l_group_balance_cpu]
+  A_schedule_cpumask.A_schedule_cpumask.l_group_balance_mask: [A_schedule_cpumask.l_group_balance_mask]
+  A_schedule_cpumask.A_schedule_cpumask.l_idle_cpu: [A_schedule_cpumask.l_idle_cpu]
+  A_schedule_cpumask.A_schedule_cpumask.l_sched_group_cpus: [A_schedule_cpumask.l_sched_group_cpus]
+  A_schedule_cpumask.A_schedule_cpumask.l_sched_group_mask: [A_schedule_cpumask.l_sched_group_mask]
+  A_schedule_cpumask.A_schedule_cpumask.p_idle_core: [A_schedule_cpumask.p_idle_core]
+axioms:
+  A_schedule_cpumask.A_schedule_cpumask.Q_TL_idle_cpu: A_schedule_cpumask.Q_TL_idle_cpu
+  A_schedule_cpumask.A_schedule_cpumask.Q_mask_refl: A_schedule_cpumask.Q_mask_refl
+  A_schedule_cpumask.A_schedule_cpumask.Q_mask_symm: A_schedule_cpumask.Q_mask_symm
+  A_schedule_cpumask.A_schedule_cpumask.Q_mask_trans: A_schedule_cpumask.Q_mask_trans
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.should_we_balance.lib.lean.A_schedule_cpumask.A_schedule_cpumask
+prefix_ops: {}
+types: {}

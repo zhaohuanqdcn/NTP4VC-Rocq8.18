@@ -1,0 +1,11 @@
+atoms:
+  A_PosOfChar.A_PosOfChar.l_posofchar: [l_posofchar, A_PosOfChar.l_posofchar]
+axioms:
+  A_PosOfChar.A_PosOfChar.Q_pos_of_char: [Q_pos_of_char, A_PosOfChar.Q_pos_of_char]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: klibc_string.A_PosOfChar.A_PosOfChar
+prefix_ops: {}
+types: {}

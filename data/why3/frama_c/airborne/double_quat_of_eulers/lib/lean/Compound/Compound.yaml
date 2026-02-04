@@ -1,0 +1,9 @@
+atoms: {}
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.double_quat_of_eulers.lib.lean.Compound.Compound
+prefix_ops: {}
+types: {}

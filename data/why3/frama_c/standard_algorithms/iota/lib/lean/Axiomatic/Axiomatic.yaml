@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_iota: [Axiomatic.p_iota]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.iota.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

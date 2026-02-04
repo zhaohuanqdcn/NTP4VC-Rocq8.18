@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic19.Axiomatic19.p_finite_doubleeulers: [Axiomatic19.p_finite_doubleeulers]
+  Axiomatic19.Axiomatic19.p_rvalid_doubleeulers: [Axiomatic19.p_rvalid_doubleeulers]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.double_rmat_of_eulers_321.lib.lean.Axiomatic19.Axiomatic19
+prefix_ops: {}
+types: {}

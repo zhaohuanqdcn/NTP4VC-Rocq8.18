@@ -1,0 +1,14 @@
+atoms:
+  S1_size_type_pair.S1_size_type_pair.f1_size_type_pair_first: [S1_size_type_pair.s1_size_type_pair.f1_size_type_pair_first]
+  S1_size_type_pair.S1_size_type_pair.f1_size_type_pair_second: [S1_size_type_pair.s1_size_type_pair.f1_size_type_pair_second]
+  S1_size_type_pair.S1_size_type_pair.iss1_size_type_pair: [S1_size_type_pair.iss1_size_type_pair]
+  S1_size_type_pair.S1_size_type_pair.s1_size_type_pair'mk: [S1_size_type_pair.s1_size_type_pair.mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.equal_range2.lib.lean.S1_size_type_pair.S1_size_type_pair
+prefix_ops: {}
+types:
+  S1_size_type_pair.S1_size_type_pair.s1_size_type_pair: [S1_size_type_pair.s1_size_type_pair]

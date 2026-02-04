@@ -1,0 +1,10 @@
+namespace Axiomatic
+noncomputable def p_unchanged_1' (mint_0 : Memory.addr -> ℤ) (mint_1 : Memory.addr -> ℤ) (a : Memory.addr) (m : ℤ) (n : ℤ) := ∀(i : ℤ), let a_1 : Memory.addr := Memory.shift a i; m ≤ i → i < n → mint_1 a_1 = mint_0 a_1
+end Axiomatic
+namespace A_AccumulateAxiomatic
+axiom l_accumulate_1' : (Memory.addr -> ℤ) -> Memory.addr -> ℤ -> ℤ -> ℤ
+axiom Q_TL_Accumulate_1' (mint_0 : Memory.addr -> ℤ) (a : Memory.addr) (n : ℤ) (init_0 : ℤ) : Cint.is_sint32 (l_accumulate_1' mint_0 a n init_0)
+axiom Q_AccumulateEmpty (n : ℤ) (init_0 : ℤ) (mint_0 : Memory.addr -> ℤ) (a : Memory.addr) (fact0 : n ≤ (0 : ℤ)) (fact1 : Cint.is_sint32 init_0) : l_accumulate_1' mint_0 a n init_0 = init_0
+axiom Q_AccumulateNext (n : ℤ) (init_0 : ℤ) (mint_0 : Memory.addr -> ℤ) (a : Memory.addr) : (0 : ℤ) < n → Cint.is_sint32 init_0 → mint_0 (Memory.shift a (n - (1 : ℤ))) + l_accumulate_1' mint_0 a (n - (1 : ℤ)) init_0 = l_accumulate_1' mint_0 a n init_0
+axiom Q_AccumulateRead (init_0 : ℤ) (mint_0 : Memory.addr -> ℤ) (mint_1 : Memory.addr -> ℤ) (a : Memory.addr) (n : ℤ) (fact0 : Cint.is_sint32 init_0) (fact1 : Axiomatic.p_unchanged_1' mint_0 mint_1 a (0 : ℤ) n) : l_accumulate_1' mint_1 a n init_0 = l_accumulate_1' mint_0 a n init_0
+end A_AccumulateAxiomatic

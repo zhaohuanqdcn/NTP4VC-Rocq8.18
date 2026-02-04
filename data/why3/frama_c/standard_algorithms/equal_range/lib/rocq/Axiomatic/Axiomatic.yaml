@@ -1,0 +1,15 @@
+atoms:
+  Axiomatic.Axiomatic.p_constantrange: [p_constantrange, Axiomatic.p_constantrange]
+  Axiomatic.Axiomatic.p_lowerbound_1': [p_lowerbound_1', Axiomatic.p_lowerbound_1']
+  Axiomatic.Axiomatic.p_sorted_1': [p_sorted_1', Axiomatic.p_sorted_1']
+  Axiomatic.Axiomatic.p_strictlowerbound_1': [p_strictlowerbound_1', Axiomatic.p_strictlowerbound_1']
+  Axiomatic.Axiomatic.p_strictupperbound_1': [p_strictupperbound_1', Axiomatic.p_strictupperbound_1']
+  Axiomatic.Axiomatic.p_upperbound_1': [p_upperbound_1', Axiomatic.p_upperbound_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: equal_range.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

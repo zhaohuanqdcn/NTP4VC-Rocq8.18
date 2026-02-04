@@ -1,0 +1,14 @@
+atoms:
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.l_innerproduct: [l_innerproduct,
+    A_InnerProductAxiomatic_A_InnerProductAxiomatic.l_innerproduct]
+axioms:
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.Q_InnerProductEmpty: A_InnerProductAxiomatic_A_InnerProductAxiomatic.Q_InnerProductEmpty
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.Q_InnerProductNext: A_InnerProductAxiomatic_A_InnerProductAxiomatic.Q_InnerProductNext
+  A_InnerProductAxiomatic.A_InnerProductAxiomatic.Q_InnerProductRead: A_InnerProductAxiomatic_A_InnerProductAxiomatic.Q_InnerProductRead
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.A_InnerProductAxiomatic_A_InnerProductAxiomatic
+prefix_ops: {}
+types: {}

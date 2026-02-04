@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic18.Axiomatic18.l_l_quat_of_floatquat: [Axiomatic18.l_l_quat_of_floatquat]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_quat_of_rmat.lib.lean.Axiomatic18.Axiomatic18
+prefix_ops: {}
+types: {}

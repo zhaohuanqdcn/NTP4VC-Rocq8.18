@@ -1,0 +1,60 @@
+theory A_Ctype_A_Ctype
+  imports "NTP4Verif.NTP4Verif" "Why3STD.Qed_Qed"
+begin
+definition p_islower :: "int \<Rightarrow> _"
+  where "p_islower c \<longleftrightarrow> (97 :: int) \<le> c \<and> c \<le> (122 :: int)" for c
+definition p_isupper :: "int \<Rightarrow> _"
+  where "p_isupper c \<longleftrightarrow> (65 :: int) \<le> c \<and> c \<le> (90 :: int)" for c
+definition p_isalpha :: "int \<Rightarrow> _"
+  where "p_isalpha c \<longleftrightarrow> p_islower c \<or> p_isupper c" for c
+definition p_isdigit :: "int \<Rightarrow> _"
+  where "p_isdigit c \<longleftrightarrow> (48 :: int) \<le> c \<and> c \<le> (57 :: int)" for c
+definition p_isodigit :: "int \<Rightarrow> _"
+  where "p_isodigit c \<longleftrightarrow> (48 :: int) \<le> c \<and> c \<le> (55 :: int)" for c
+definition p_isalnum :: "int \<Rightarrow> _"
+  where "p_isalnum c \<longleftrightarrow> p_isalpha c \<or> p_isdigit c" for c
+definition p_isspace :: "int \<Rightarrow> _"
+  where "p_isspace c \<longleftrightarrow> c = (9 :: int) \<or> c = (10 :: int) \<or> c = (12 :: int) \<or> c = (13 :: int) \<or> c = (32 :: int)" for c
+definition p_isxdigit :: "int \<Rightarrow> _"
+  where "p_isxdigit c \<longleftrightarrow> p_isdigit c \<or> (65 :: int) \<le> c \<and> c \<le> (70 :: int) \<or> (97 :: int) \<le> c \<and> c \<le> (102 :: int)" for c
+consts l_tolower :: "int \<Rightarrow> int"
+consts l_toupper :: "int \<Rightarrow> int"
+axiomatization where Q_a:   "l_tolower (65 :: int) = (97 :: int)"
+axiomatization where Q_b:   "l_tolower (66 :: int) = (98 :: int)"
+axiomatization where Q_c:   "l_tolower (67 :: int) = (99 :: int)"
+axiomatization where Q_d:   "l_tolower (68 :: int) = (100 :: int)"
+axiomatization where Q_e:   "l_tolower (69 :: int) = (101 :: int)"
+axiomatization where Q_f:   "l_tolower (70 :: int) = (102 :: int)"
+axiomatization where Q_g:   "l_tolower (71 :: int) = (103 :: int)"
+axiomatization where Q_h:   "l_tolower (72 :: int) = (104 :: int)"
+axiomatization where Q_i:   "l_tolower (73 :: int) = (105 :: int)"
+axiomatization where Q_j:   "l_tolower (74 :: int) = (106 :: int)"
+axiomatization where Q_k:   "l_tolower (75 :: int) = (107 :: int)"
+axiomatization where Q_l:   "l_tolower (76 :: int) = (108 :: int)"
+axiomatization where Q_m:   "l_tolower (77 :: int) = (109 :: int)"
+axiomatization where Q_n:   "l_tolower (78 :: int) = (110 :: int)"
+axiomatization where Q_o:   "l_tolower (79 :: int) = (111 :: int)"
+axiomatization where Q_p:   "l_tolower (80 :: int) = (112 :: int)"
+axiomatization where Q_q:   "l_tolower (81 :: int) = (113 :: int)"
+axiomatization where Q_r:   "l_tolower (82 :: int) = (114 :: int)"
+axiomatization where Q_s:   "l_tolower (83 :: int) = (115 :: int)"
+axiomatization where Q_t:   "l_tolower (84 :: int) = (116 :: int)"
+axiomatization where Q_u:   "l_tolower (85 :: int) = (117 :: int)"
+axiomatization where Q_v:   "l_tolower (86 :: int) = (118 :: int)"
+axiomatization where Q_w:   "l_tolower (87 :: int) = (119 :: int)"
+axiomatization where Q_x:   "l_tolower (88 :: int) = (120 :: int)"
+axiomatization where Q_y:   "l_tolower (89 :: int) = (121 :: int)"
+axiomatization where Q_z:   "l_tolower (90 :: int) = (122 :: int)"
+axiomatization where Q_pl:   "l_tolower c = c"
+ if "\<not>p_isupper c"
+  for c :: "int"
+axiomatization where Q_pu:   "l_toupper c = c"
+ if "\<not>p_islower c"
+  for c :: "int"
+axiomatization where Q_tl:   "l_toupper (l_tolower c) = c"
+ if "\<not>p_islower c"
+  for c :: "int"
+axiomatization where Q_tu:   "l_tolower (l_toupper c) = c"
+ if "\<not>p_isupper c"
+  for c :: "int"
+end

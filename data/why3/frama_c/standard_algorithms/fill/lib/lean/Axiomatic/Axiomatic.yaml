@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_constantrange: [Axiomatic.p_constantrange]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.fill.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

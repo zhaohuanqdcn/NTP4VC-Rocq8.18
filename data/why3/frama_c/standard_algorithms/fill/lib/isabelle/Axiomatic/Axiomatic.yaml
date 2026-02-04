@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_constantrange: [p_constantrange, Axiomatic_Axiomatic.p_constantrange]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

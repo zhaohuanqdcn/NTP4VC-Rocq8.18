@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic2.Axiomatic2.p_adjacentdifference: [p_adjacentdifference, Axiomatic2_Axiomatic2.p_adjacentdifference]
+  Axiomatic2.Axiomatic2.p_adjacentdifferencebounds: [p_adjacentdifferencebounds, Axiomatic2_Axiomatic2.p_adjacentdifferencebounds]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: standard_algorithms.Axiomatic2_Axiomatic2
+prefix_ops: {}
+types: {}

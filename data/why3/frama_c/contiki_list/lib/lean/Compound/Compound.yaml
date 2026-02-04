@@ -1,0 +1,16 @@
+atoms:
+  Compound.Compound.load_s1_list: [Compound.load_s1_list]
+axioms:
+  Compound.Compound.Q_Load_S1_list_eqmem_Mflt: Compound.Q_Load_S1_list_eqmem_Mflt
+  Compound.Compound.Q_Load_S1_list_eqmem_Mptr: Compound.Q_Load_S1_list_eqmem_Mptr
+  Compound.Compound.Q_Load_S1_list_havoc_Mflt: Compound.Q_Load_S1_list_havoc_Mflt
+  Compound.Compound.Q_Load_S1_list_havoc_Mptr: Compound.Q_Load_S1_list_havoc_Mptr
+  Compound.Compound.Q_Load_S1_list_update_Mflt: Compound.Q_Load_S1_list_update_Mflt
+  Compound.Compound.Q_Load_S1_list_update_Mptr: Compound.Q_Load_S1_list_update_Mptr
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.contiki_list.lib.lean.Compound.Compound
+prefix_ops: {}
+types: {}

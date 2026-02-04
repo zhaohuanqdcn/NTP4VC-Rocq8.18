@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic.Axiomatic.p_linked_n: [p_linked_n, Axiomatic_Axiomatic.p_linked_n]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: contiki_list.Axiomatic_Axiomatic
+prefix_ops: {}
+types: {}

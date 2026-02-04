@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic18.Axiomatic18.l_l_quat_of_floatquat: [l_l_quat_of_floatquat, Axiomatic18_Axiomatic18.l_l_quat_of_floatquat]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: airborne.Axiomatic18_Axiomatic18
+prefix_ops: {}
+types: {}

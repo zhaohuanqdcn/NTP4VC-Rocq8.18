@@ -1,0 +1,10 @@
+atoms:
+  Axiomatic18.Axiomatic18.l_l_quat_of_floatquat: [l_l_quat_of_floatquat, Axiomatic18.l_l_quat_of_floatquat]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_quat_of_rmat.Axiomatic18.Axiomatic18
+prefix_ops: {}
+types: {}

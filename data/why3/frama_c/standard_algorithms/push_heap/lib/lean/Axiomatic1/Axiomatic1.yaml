@@ -1,0 +1,14 @@
+atoms:
+  Axiomatic1.Axiomatic1.p_multisetadd: [Axiomatic1.p_multisetadd]
+  Axiomatic1.Axiomatic1.p_multisetminus: [Axiomatic1.p_multisetminus]
+  Axiomatic1.Axiomatic1.p_multisetretain: [Axiomatic1.p_multisetretain]
+  Axiomatic1.Axiomatic1.p_multisetretainrest_3': [Axiomatic1.p_multisetretainrest_3']
+  Axiomatic1.Axiomatic1.p_multisetunchanged_1': [Axiomatic1.p_multisetunchanged_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.push_heap.lib.lean.Axiomatic1.Axiomatic1
+prefix_ops: {}
+types: {}

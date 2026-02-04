@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic.Axiomatic.p_equalranges_1': [Axiomatic.p_equalranges_1']
+  Axiomatic.Axiomatic.p_hassubrange_1': [Axiomatic.p_hassubrange_1']
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.standard_algorithms.search.lib.lean.Axiomatic.Axiomatic
+prefix_ops: {}
+types: {}

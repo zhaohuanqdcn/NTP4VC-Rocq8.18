@@ -1,0 +1,18 @@
+atoms:
+  Axiomatic13.Axiomatic13.l__memb_index: [l__memb_index, Axiomatic13_Axiomatic13.l__memb_index]
+  Axiomatic13.Axiomatic13.l__memb_numfree: [l__memb_numfree, Axiomatic13_Axiomatic13.l__memb_numfree]
+  Axiomatic13.Axiomatic13.l__memb_ptr: [l__memb_ptr, Axiomatic13_Axiomatic13.l__memb_ptr]
+  Axiomatic13.Axiomatic13.p__memb_allocated: [p__memb_allocated, Axiomatic13_Axiomatic13.p__memb_allocated]
+  Axiomatic13.Axiomatic13.p__memb_empty: [p__memb_empty, Axiomatic13_Axiomatic13.p__memb_empty]
+  Axiomatic13.Axiomatic13.p__memb_full: [p__memb_full, Axiomatic13_Axiomatic13.p__memb_full]
+  Axiomatic13.Axiomatic13.p__memb_has: [p__memb_has, Axiomatic13_Axiomatic13.p__memb_has]
+  Axiomatic13.Axiomatic13.p_valid_memb: [p_valid_memb, Axiomatic13_Axiomatic13.p_valid_memb]
+axioms:
+  Axiomatic13.Axiomatic13.Q_mult_simplification: Axiomatic13_Axiomatic13.Q_mult_simplification
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: contiki_memb.Axiomatic13_Axiomatic13
+prefix_ops: {}
+types: {}

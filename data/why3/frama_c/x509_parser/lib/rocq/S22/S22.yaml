@@ -1,0 +1,26 @@
+atoms:
+  S22.S22.f22_aki_has_keyidentifier: [f22_aki_has_keyidentifier, S22.f22_aki_has_keyidentifier]
+  S22.S22.f22_bc_critical: [f22_bc_critical, S22.f22_bc_critical]
+  S22.S22.f22_ca_true: [f22_ca_true, S22.f22_ca_true]
+  S22.S22.f22_crlsign_set: [f22_crlsign_set, S22.f22_crlsign_set]
+  S22.S22.f22_empty_subject: [f22_empty_subject, S22.f22_empty_subject]
+  S22.S22.f22_has_crldp: [f22_has_crldp, S22.f22_has_crldp]
+  S22.S22.f22_has_keyusage: [f22_has_keyusage, S22.f22_has_keyusage]
+  S22.S22.f22_has_name_constraints: [f22_has_name_constraints, S22.f22_has_name_constraints]
+  S22.S22.f22_has_ski: [f22_has_ski, S22.f22_has_ski]
+  S22.S22.f22_keycertsign_set: [f22_keycertsign_set, S22.f22_keycertsign_set]
+  S22.S22.f22_one_crldp_has_all_reasons: [f22_one_crldp_has_all_reasons, S22.f22_one_crldp_has_all_reasons]
+  S22.S22.f22_pathlenconstraint_set: [f22_pathlenconstraint_set, S22.f22_pathlenconstraint_set]
+  S22.S22.f22_san_critical: [f22_san_critical, S22.f22_san_critical]
+  S22.S22.f22_san_empty: [f22_san_empty, S22.f22_san_empty]
+  S22.S22.f22_self_signed: [f22_self_signed, S22.f22_self_signed]
+  S22.S22.s22'mk: [s22'mk, S22.s22'mk]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: x509_parser.S22.S22
+prefix_ops: {}
+types:
+  S22.S22.s22: [s22, S22.s22]

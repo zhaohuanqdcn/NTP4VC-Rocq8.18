@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic5.Axiomatic5.p_kstrtobool_fmt: [Axiomatic5.p_kstrtobool_fmt]
+  Axiomatic5.Axiomatic5.p_kstrtobool_fmt_false: [Axiomatic5.p_kstrtobool_fmt_false]
+  Axiomatic5.Axiomatic5.p_kstrtobool_fmt_true: [Axiomatic5.p_kstrtobool_fmt_true]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.Axiomatic5.Axiomatic5
+prefix_ops: {}
+types: {}

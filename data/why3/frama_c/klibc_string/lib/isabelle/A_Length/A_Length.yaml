@@ -1,0 +1,11 @@
+atoms:
+  A_Length.A_Length.l_length: [l_length, A_Length_A_Length.l_length]
+axioms:
+  A_Length.A_Length.Q_string_length: A_Length_A_Length.Q_string_length
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: klibc_string.A_Length_A_Length
+prefix_ops: {}
+types: {}

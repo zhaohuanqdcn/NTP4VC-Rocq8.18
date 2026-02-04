@@ -1,0 +1,14 @@
+atoms:
+  A_StrSpn.A_StrSpn.l_strspn: [l_strspn, A_StrSpn_A_StrSpn.l_strspn]
+  A_StrSpn.A_StrSpn.p_in_array: [p_in_array, A_StrSpn_A_StrSpn.p_in_array]
+axioms:
+  A_StrSpn.A_StrSpn.Q_strspn_base_case: A_StrSpn_A_StrSpn.Q_strspn_base_case
+  A_StrSpn.A_StrSpn.Q_strspn_in_accept: A_StrSpn_A_StrSpn.Q_strspn_in_accept
+  A_StrSpn.A_StrSpn.Q_strspn_not_in_accept: A_StrSpn_A_StrSpn.Q_strspn_not_in_accept
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_StrSpn_A_StrSpn
+prefix_ops: {}
+types: {}

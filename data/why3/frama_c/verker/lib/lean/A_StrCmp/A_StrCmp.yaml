@@ -1,0 +1,15 @@
+atoms:
+  A_StrCmp.A_StrCmp.l_cmp: [A_StrCmp.l_cmp]
+  A_StrCmp.A_StrCmp.l_strcmp: [A_StrCmp.l_strcmp]
+  A_StrCmp.A_StrCmp.l_strncmp_1': [A_StrCmp.l_strncmp_1']
+  A_StrCmp.A_StrCmp.p_equal: [A_StrCmp.p_equal]
+  A_StrCmp.A_StrCmp.p_equaln: [A_StrCmp.p_equaln]
+axioms:
+  A_StrCmp.A_StrCmp.fix_l_strncmp_1': A_StrCmp.fix_l_strncmp_1'
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.verker.lib.lean.A_StrCmp.A_StrCmp
+prefix_ops: {}
+types: {}

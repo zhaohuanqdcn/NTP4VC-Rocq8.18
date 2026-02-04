@@ -1,0 +1,49 @@
+atoms:
+  A_Ctype.A_Ctype.l_tolower: [l_tolower, A_Ctype.l_tolower]
+  A_Ctype.A_Ctype.l_toupper: [l_toupper, A_Ctype.l_toupper]
+  A_Ctype.A_Ctype.p_isalnum: [p_isalnum, A_Ctype.p_isalnum]
+  A_Ctype.A_Ctype.p_isalpha: [p_isalpha, A_Ctype.p_isalpha]
+  A_Ctype.A_Ctype.p_isdigit: [p_isdigit, A_Ctype.p_isdigit]
+  A_Ctype.A_Ctype.p_islower: [p_islower, A_Ctype.p_islower]
+  A_Ctype.A_Ctype.p_isodigit: [p_isodigit, A_Ctype.p_isodigit]
+  A_Ctype.A_Ctype.p_isspace: [p_isspace, A_Ctype.p_isspace]
+  A_Ctype.A_Ctype.p_isupper: [p_isupper, A_Ctype.p_isupper]
+  A_Ctype.A_Ctype.p_isxdigit: [p_isxdigit, A_Ctype.p_isxdigit]
+axioms:
+  A_Ctype.A_Ctype.Q_a: [Q_a, A_Ctype.Q_a]
+  A_Ctype.A_Ctype.Q_b: [Q_b, A_Ctype.Q_b]
+  A_Ctype.A_Ctype.Q_c: [Q_c, A_Ctype.Q_c]
+  A_Ctype.A_Ctype.Q_d: [Q_d, A_Ctype.Q_d]
+  A_Ctype.A_Ctype.Q_e: [Q_e, A_Ctype.Q_e]
+  A_Ctype.A_Ctype.Q_f: [Q_f, A_Ctype.Q_f]
+  A_Ctype.A_Ctype.Q_g: [Q_g, A_Ctype.Q_g]
+  A_Ctype.A_Ctype.Q_h: [Q_h, A_Ctype.Q_h]
+  A_Ctype.A_Ctype.Q_i: [Q_i, A_Ctype.Q_i]
+  A_Ctype.A_Ctype.Q_j: [Q_j, A_Ctype.Q_j]
+  A_Ctype.A_Ctype.Q_k: [Q_k, A_Ctype.Q_k]
+  A_Ctype.A_Ctype.Q_l: [Q_l, A_Ctype.Q_l]
+  A_Ctype.A_Ctype.Q_m: [Q_m, A_Ctype.Q_m]
+  A_Ctype.A_Ctype.Q_n: [Q_n, A_Ctype.Q_n]
+  A_Ctype.A_Ctype.Q_o: [Q_o, A_Ctype.Q_o]
+  A_Ctype.A_Ctype.Q_p: [Q_p, A_Ctype.Q_p]
+  A_Ctype.A_Ctype.Q_pl: [Q_pl, A_Ctype.Q_pl]
+  A_Ctype.A_Ctype.Q_pu: [Q_pu, A_Ctype.Q_pu]
+  A_Ctype.A_Ctype.Q_q: [Q_q, A_Ctype.Q_q]
+  A_Ctype.A_Ctype.Q_r: [Q_r, A_Ctype.Q_r]
+  A_Ctype.A_Ctype.Q_s: [Q_s, A_Ctype.Q_s]
+  A_Ctype.A_Ctype.Q_t: [Q_t, A_Ctype.Q_t]
+  A_Ctype.A_Ctype.Q_tl: [Q_tl, A_Ctype.Q_tl]
+  A_Ctype.A_Ctype.Q_tu: [Q_tu, A_Ctype.Q_tu]
+  A_Ctype.A_Ctype.Q_u: [Q_u, A_Ctype.Q_u]
+  A_Ctype.A_Ctype.Q_v: [Q_v, A_Ctype.Q_v]
+  A_Ctype.A_Ctype.Q_w: [Q_w, A_Ctype.Q_w]
+  A_Ctype.A_Ctype.Q_x: [Q_x, A_Ctype.Q_x]
+  A_Ctype.A_Ctype.Q_y: [Q_y, A_Ctype.Q_y]
+  A_Ctype.A_Ctype.Q_z: [Q_z, A_Ctype.Q_z]
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: verker.A_Ctype.A_Ctype
+prefix_ops: {}
+types: {}

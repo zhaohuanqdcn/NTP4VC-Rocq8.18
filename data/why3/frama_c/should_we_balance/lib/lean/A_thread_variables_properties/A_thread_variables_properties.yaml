@@ -1,0 +1,11 @@
+atoms:
+  A_thread_variables_properties.A_thread_variables_properties.l_size: [A_thread_variables_properties.l_size]
+axioms:
+  A_thread_variables_properties.A_thread_variables_properties.Q_some: A_thread_variables_properties.Q_some
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.should_we_balance.lib.lean.A_thread_variables_properties.A_thread_variables_properties
+prefix_ops: {}
+types: {}

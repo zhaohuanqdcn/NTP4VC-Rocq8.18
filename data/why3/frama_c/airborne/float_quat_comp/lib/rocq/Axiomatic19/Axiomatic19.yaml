@@ -1,0 +1,11 @@
+atoms:
+  Axiomatic19.Axiomatic19.l_l_quatvect_of_floatquat: [l_l_quatvect_of_floatquat, Axiomatic19.l_l_quatvect_of_floatquat]
+  Axiomatic19.Axiomatic19.l_mult_realquatvect: [l_mult_realquatvect, Axiomatic19.l_mult_realquatvect]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: float_quat_comp.Axiomatic19.Axiomatic19
+prefix_ops: {}
+types: {}

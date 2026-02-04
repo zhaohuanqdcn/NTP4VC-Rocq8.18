@@ -1,0 +1,13 @@
+atoms:
+  Axiomatic16.Axiomatic16.l_add_realvect3: [Axiomatic16.l_add_realvect3]
+  Axiomatic16.Axiomatic16.l_cross_product: [Axiomatic16.l_cross_product]
+  Axiomatic16.Axiomatic16.l_mult_scalar_1': [Axiomatic16.l_mult_scalar_1']
+  Axiomatic16.Axiomatic16.l_scalar_product: [Axiomatic16.l_scalar_product]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.airborne.float_quat_comp.lib.lean.Axiomatic16.Axiomatic16
+prefix_ops: {}
+types: {}

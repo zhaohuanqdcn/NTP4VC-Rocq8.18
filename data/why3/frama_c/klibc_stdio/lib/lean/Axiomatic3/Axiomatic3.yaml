@@ -1,0 +1,12 @@
+atoms:
+  Axiomatic3.Axiomatic3.p_valid_file: [Axiomatic3.p_valid_file]
+  Axiomatic3.Axiomatic3.p_valid_io_file_pvt: [Axiomatic3.p_valid_io_file_pvt]
+  Axiomatic3.Axiomatic3.p_valid_io_file_pvt_norec: [Axiomatic3.p_valid_io_file_pvt_norec]
+axioms: {}
+binders: {}
+binops: {}
+datatypes: {}
+defs: {}
+name: frama_c.klibc_stdio.lib.lean.Axiomatic3.Axiomatic3
+prefix_ops: {}
+types: {}
